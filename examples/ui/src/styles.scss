@@ -1,0 +1,179 @@
+/* Styl jak w produkcyjnym walidatorze: jasne tło, pomarańczowy cienki tytuł, indygo etykiety i łącza,
+   pasek standardu w pomarańczu, szare paski sekcji, tabele z pomarańczową linią pod nagłówkami,
+   status jako kolorowe słowo. Bez zaokrągleń poza paskiem standardu. */
+:root {
+  --ink: #333;
+  --muted: #777;
+  --line: #e2e2e2;
+  --line-strong: #c4c4c4;
+  --page: #f4f4f4;
+  --surface: #fff;
+  --surface-2: #ececec;
+  --orange: #ff6200;
+  --orange-soft: #ff8a3d;
+  --indigo: #524fb7;
+  --indigo-dark: #443f9f;
+  --ok: #1b7a3c;
+  --bad: #c1281f;
+  --warn: #9a6200;
+  --info: #2d5f9a;
+  --select-bg: #fff4ea;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  font-family: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--ink);
+  background: var(--page);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.25;
+  margin: 0;
+}
+
+p {
+  margin: 0 0 0.6rem;
+}
+
+button {
+  font: inherit;
+  font-weight: 600;
+  padding: 0.5rem 1.1rem;
+  border: 1px solid var(--indigo);
+  border-radius: 2px;
+  background: var(--indigo);
+  color: #fff;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    background: var(--indigo-dark);
+    border-color: var(--indigo-dark);
+  }
+
+  &.secondary {
+    background: var(--surface);
+    color: var(--indigo);
+
+    &:hover:not(:disabled) {
+      background: #efeef8;
+    }
+  }
+
+  &.link {
+    background: transparent;
+    border-color: transparent;
+    color: var(--indigo);
+    padding: 0.2rem 0.3rem;
+
+    &:hover:not(:disabled) {
+      background: transparent;
+      border-color: transparent;
+      text-decoration: underline;
+    }
+  }
+
+  &.small {
+    font-size: 0.86rem;
+    padding: 0.3rem 0.7rem;
+  }
+
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+}
+
+input[type='text'] {
+  font: inherit;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  background: var(--surface);
+  color: var(--ink);
+
+  &:focus {
+    border-color: var(--indigo);
+    outline: none;
+  }
+}
+
+button,
+input,
+a,
+summary {
+  &:focus-visible {
+    outline: 2px solid var(--orange);
+    outline-offset: 2px;
+  }
+}
+
+a {
+  color: var(--indigo);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+
+  th,
+  td {
+    text-align: left;
+    vertical-align: top;
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  th {
+    font-weight: 600;
+    color: var(--ink);
+    border-bottom: 2px solid var(--orange);
+  }
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.mono {
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 0.88em;
+}
+
+/* Status i waga: słowo w kolorze, bez plakietek. */
+.status-ok {
+  color: var(--ok);
+  font-weight: 600;
+}
+
+.status-bad {
+  color: var(--bad);
+  font-weight: 600;
+}
+
+.status-warn {
+  color: var(--warn);
+  font-weight: 600;
+}
+
+.status-info {
+  color: var(--info);
+  font-weight: 600;
+}
+
+.status-manual {
+  color: var(--indigo);
+  font-weight: 600;
+}

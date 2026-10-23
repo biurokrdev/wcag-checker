@@ -1,0 +1,293 @@
+<h1 class="page-title">Walidator dostępności oraz jakości szablonu pisma <sup class="version">v 1.0</sup></h1>
+
+@if (formVisible()) {
+  <form class="setup" (submit)="$event.preventDefault()">
+    <h2 class="field-label">Standardy</h2>
+    <div class="panel-soft">
+      @if (catalogError()) {
+        <div class="box error" role="alert" data-testid="catalog-error">Nie udało się pobrać listy standardów. {{ catalogError() }}</div>
+      } @else if (catalog().length === 0) {
+        <p class="muted">Pobieranie listy standardów…</p>
+      } @else {
+        <ul class="standards" role="group" aria-label="Standardy">
+          @for (s of catalog(); track s.key) {
+            <li>
+              <label class="standard">
+                <input type="checkbox" [checked]="isSelected(s.key)" (change)="toggle(s.key, $any($event.target).checked)" [attr.data-testid]="'standard-' + s.key" />
+                <span class="name">{{ s.name }}</span>
+                @if (!s.confirmed) { <span class="status-warn draft">wersja robocza</span> }
+                @if (s.note) { <span class="muted note">{{ s.note }}</span> }
+              </label>
+            </li>
+          }
+        </ul>
+        @if (!canSelectFile()) {
+          <p class="muted" data-testid="no-standards">Zaznacz co najmniej jeden standard.</p>
+        }
+      }
+    </div>
+
+    <h2 class="field-label">Plik szablonu (*.docx)</h2>
+    <div class="panel-soft">
+      <div
+        class="dropzone"
+        [class.active]="dragging()"
+        [class.disabled]="!canSelectFile()"
+        (dragover)="onDragOver($event)"
+        (dragleave)="dragging.set(false)"
+        (drop)="onDrop($event)"
+        data-testid="dropzone"
+      >
+        <span class="drop-icon" aria-hidden="true">⤓</span>
+        <span>
+          <b>Przeciągnij i upuść tutaj</b><br />
+          Dopuszczalny format pliku: DOCX, do 20 MB
+        </span>
+      </div>
+      <input #fileInput type="file" class="visually-hidden" accept=".docx" (change)="onFileSelected($event)" data-testid="file-input" />
+      <button type="button" class="link pick" (click)="fileInput.click()" [disabled]="!canSelectFile()" data-testid="pick-button">⊕ Wybierz plik</button>
+    </div>
+  </form>
+}
+
+@if (busy() || error()) {
+  <div class="panel-soft">
+    @if (busy()) {
+      <p class="status" role="status" aria-live="polite" data-testid="stage">{{ stage() }}</p>
+    }
+    @if (error()) {
+      <div class="box error" role="alert" data-testid="error"><b>Nie udało się przetworzyć dokumentu.</b> {{ error() }}</div>
+      <div class="actions">
+        @if (result()) {
+          <button type="button" (click)="next()" data-testid="next-button">Sprawdź kolejny</button>
+        } @else {
+          <button type="button" (click)="back()" data-testid="back-button">Wróć</button>
+        }
+      </div>
+    }
+  </div>
+}
+
+@if (result(); as r) {
+  <section class="report" data-testid="result" [attr.data-status]="r.status">
+    <div class="report-head">
+      <div class="title-row">
+        <h2 class="report-title">Raport: {{ r.document.fileName }}</h2>
+        <div class="title-actions" data-testid="export">
+          <button type="button" (click)="exportReport()" [disabled]="exporting() || !r.reportId" data-testid="export-docx">
+            {{ exporting() ? 'Przygotowanie raportu…' : 'Pobierz raport (docx)' }}
+          </button>
+          <button type="button" class="secondary" (click)="next()" [disabled]="busy()" data-testid="next-button">Zakończ</button>
+        </div>
+      </div>
+      <p class="verdict" [class.status-ok]="r.status === 'Valid'" [class.status-bad]="r.status !== 'Valid'" data-testid="summary">
+        Wynik: {{ outcomeLabel[r.status] }}. {{ r.summary }}
+      </p>
+      <dl class="facts">
+        <dt>Standardy</dt><dd data-testid="standards-line">{{ standardsLine(r) }}</dd>
+        <dt>Dokument</dt><dd>{{ documentLine(r) }}</dd>
+      </dl>
+      <p class="muted">
+        Zweryfikowane ręcznie: {{ verifiedCount() }} z {{ findings().length }}.
+        @if (exportError()) { <span class="status-bad" role="alert" data-testid="export-error">{{ exportError() }}</span> }
+      </p>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="Raport">
+      <button type="button" role="tab" [attr.aria-selected]="tab() === 'summary'" [class.active]="tab() === 'summary'" (click)="showTab('summary')" data-testid="tab-summary">Podsumowanie</button>
+      <button type="button" role="tab" [attr.aria-selected]="tab() === 'findings'" [class.active]="tab() === 'findings'" (click)="showTab('findings')" data-testid="tab-findings">
+        Wyniki walidacji ({{ findings().length }}@if (verifiedCount() > 0) {<span data-testid="verified-count">, zweryfikowane {{ verifiedCount() }}</span>})
+      </button>
+    </div>
+
+    @if (tab() === 'summary') {
+      <div role="tabpanel" data-testid="panel-summary">
+        @for (group of summaryByStandard(); track group.standard) {
+          <section class="standard-block" [attr.data-standard]="group.standard">
+            <h3 class="standard-bar">{{ group.name }}</h3>
+            <div class="standard-body">
+              @for (section of group.sections; track section.section) {
+                <details class="section" open [attr.data-section]="section.section">
+                  <summary class="section-bar">{{ section.section }} <span class="muted">({{ sectionSummary(section) }})</span></summary>
+                  <table class="checks">
+                    <thead>
+                      <tr><th class="col-status">Status</th><th class="col-check">Kontrola</th><th>Szczegóły</th></tr>
+                    </thead>
+                    <tbody>
+                      @for (row of section.rows; track row.id) {
+                        <tr [attr.data-check]="row.id" [attr.data-status]="row.status">
+                          <td><span [class]="checkStatusClass(row.status)">{{ checkStatusLabel[row.status] }}</span></td>
+                          <td>{{ row.name }}</td>
+                          <td class="details">
+                            @for (d of row.details; track $index) {
+                              <div class="detail" [attr.data-code]="d.code" [attr.title]="'Kod ' + d.code">
+                                <b>{{ issueLabel(d.code, d.label) }}</b> – {{ d.message }}
+                                @if (d.occurrences > 1) { <span class="muted">({{ d.occurrences }} wystąpień)</span> }
+                              </div>
+                            }
+                            @if (row.details.length === 0 && row.note) { <span class="muted">{{ row.note }}</span> }
+                          </td>
+                        </tr>
+                      }
+                    </tbody>
+                  </table>
+                </details>
+              }
+            </div>
+          </section>
+        }
+
+        @if (r.wcag; as w) {
+          <section class="standard-block">
+            <h3 class="standard-bar">Kryteria WCAG 2.1</h3>
+            <div class="standard-body">
+              <details class="section" data-testid="wcag-report">
+                <summary class="section-bar">Stan kryteriów <span class="muted">({{ w.summary }})</span></summary>
+                <p class="muted">
+                  Spełnione = kryterium sprawdzane w całości automatycznie, bez zgłoszeń. Do przeglądu = bez błędów, ale ocena wymaga człowieka;
+                  ostrzeżenia przy kryterium mówią, na co patrzeć.
+                </p>
+                <table>
+                  <thead>
+                    <tr><th>Kryterium</th><th>Poziom</th><th>Pokrycie</th><th>Stan</th><th>Co zostaje dla człowieka</th></tr>
+                  </thead>
+                  <tbody>
+                    @for (c of w.criteria; track c.id) {
+                      <tr [attr.data-criterion]="c.id" [attr.data-status]="c.status">
+                        <td><b>{{ c.id }}</b> {{ c.name }}</td>
+                        <td>{{ c.level }}</td>
+                        <td>{{ coverageLabel[c.coverage] }}</td>
+                        <td><span [class]="criterionStatusClass(c.status)">{{ criterionStatusLabel[c.status] }}</span></td>
+                        <td>
+                          {{ c.note }}
+                          @if (c.issues.length > 0) {
+                            <ul class="plain">
+                              @for (i of c.issues; track $index) {
+                                <li [attr.data-code]="i.code" [attr.title]="'Kod ' + i.code"><b>{{ issueLabel(i.code, i.label) }}</b>: {{ i.message }}</li>
+                              }
+                            </ul>
+                          }
+                        </td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </details>
+              @if (r.outline.length > 0) {
+                <details class="section">
+                  <summary class="section-bar">Struktura nagłówków <span class="muted">({{ r.outline.length }})</span></summary>
+                  <ol class="outline" data-testid="outline">
+                    @for (h of r.outline; track $index) {
+                      <li [style.margin-left.rem]="(h.level - 1) * 1.2"><span class="level">H{{ h.level }}</span> {{ h.text }}</li>
+                    }
+                  </ol>
+                </details>
+              }
+            </div>
+          </section>
+        }
+      </div>
+    }
+
+    @if (tab() === 'findings') {
+      @if (findings().length === 0) {
+        <div role="tabpanel" class="no-findings" data-testid="panel-findings">
+          <p data-testid="no-findings">Brak uwag po walidacji</p>
+        </div>
+      } @else {
+      <div role="tabpanel" class="findings" data-testid="panel-findings">
+        <nav class="findings-list" aria-label="Wystąpienia">
+          @if (pageCount() > 1) {
+            <div class="pager pager-top" data-testid="pager">
+              <button type="button" class="secondary small" (click)="goToPage(page() - 1); list.scrollTop = 0" [disabled]="page() === 1" data-testid="pager-prev">‹ Poprzednia</button>
+              <span class="muted">Strona {{ page() }} z {{ pageCount() }}</span>
+              <button type="button" class="secondary small" (click)="goToPage(page() + 1); list.scrollTop = 0" [disabled]="page() === pageCount()" data-testid="pager-next">Następna ›</button>
+            </div>
+          }
+          <ol #list class="findings-scroll" data-testid="findings-list">
+            @for (f of pageFindings(); track f.index) {
+              <li>
+                <button type="button" class="finding" [class.selected]="selectedFinding()?.index === f.index" [class.verified]="isVerified(f)" (click)="select(f)" [attr.data-testid]="'finding-' + f.index" [attr.data-code]="f.code" [attr.data-verified]="isVerified(f)">
+                  <span class="nr">{{ f.index + 1 }}.</span>
+                  <span [class]="severityClass(f.severity)">{{ severityLabel[f.severity] }}</span>
+                  <span class="code" [attr.title]="'Kod ' + f.code">{{ issueLabel(f.code, f.label) }}</span>
+                  @if (f.occurrenceCount > 1) { <span class="muted">{{ f.occurrence }}/{{ f.occurrenceCount }}</span> }
+                  @if (isVerified(f)) { <span class="status-ok">✓</span> }
+                  <span class="snippet">{{ f.location ? f.location.snippet : 'cały dokument' }}</span>
+                </button>
+              </li>
+            }
+          </ol>
+        </nav>
+
+        <section class="finding-detail" data-testid="finding-detail">
+          <div class="detail-head">
+            <h3>Szczegóły</h3>
+            <div class="detail-nav">
+              <button type="button" class="secondary small" (click)="selectPrevious()" [disabled]="!hasPrevious()" data-testid="finding-prev">‹ Poprzedni</button>
+              <button type="button" class="small" [class.secondary]="!selectedVerified()" (click)="toggleSelectedVerified()" [disabled]="!selectedFinding()" [attr.aria-pressed]="selectedFinding() ? selectedVerified() : null" data-testid="verify-button">
+                {{ selectedVerified() ? '✓ Zweryfikowany' : 'Zweryfikowany' }}
+              </button>
+              <button type="button" class="secondary small" (click)="selectNext()" [disabled]="!hasNext()" data-testid="finding-next">Następny ›</button>
+            </div>
+          </div>
+          @if (selectedFinding(); as f) {
+            <div class="finding-title">
+              <span class="severity-tag" [class]="'severity-tag ' + severityClass(f.severity)">{{ severityLabel[f.severity] }}</span>
+              <h4>{{ issueLabel(f.code, f.label) }}</h4>
+            </div>
+            <p class="muted finding-meta">Pozycja {{ f.index + 1 }} z {{ findings().length }} · kod {{ f.code }}</p>
+            <p class="message" data-testid="finding-message">{{ f.message }}</p>
+            <dl class="facts">
+              <dt>Standard</dt><dd>{{ f.standardName ?? f.standard }}</dd>
+              @if (f.criteria.length > 0) { <dt>Kryteria WCAG</dt><dd>{{ f.criteria.join(', ') }}</dd> }
+              <dt>Kategoria</dt><dd>{{ categoryLabel[f.category] }}</dd>
+              <dt>Miejsce</dt>
+              <dd>
+                @if (f.location; as l) {
+                  {{ locationKindLabel[l.kind] }} · {{ storyLabel(l.story) }} · „{{ l.snippet }}”
+                  @if (f.occurrenceCount > 1) { (wystąpienie {{ f.occurrence }} z {{ f.occurrenceCount }}) }
+                } @else { cały dokument }
+              </dd>
+              <dt>Weryfikacja</dt>
+              <dd><span data-testid="verified-state" [class.status-ok]="isVerified(f)">{{ isVerified(f) ? 'zweryfikowano ręcznie' : 'niezweryfikowane' }}</span></dd>
+            </dl>
+
+            @if (previewBusy()) {
+              <p class="status" role="status" aria-live="polite" data-testid="preview-stage">Przygotowanie podglądu…</p>
+            }
+            @if (previewError()) {
+              <div class="box error" role="alert" data-testid="preview-error">{{ previewError() }}</div>
+            }
+            @if (preview(); as p) {
+              <div class="preview" data-testid="preview">
+                <p class="muted">{{ p.note }}</p>
+                @if (p.imageDataUri || p.imageDescription) {
+                  <figure class="original" data-testid="preview-original">
+                    @if (p.imageDataUri) {
+                      <img [src]="p.imageDataUri" alt="Obraz z dokumentu, którego dotyczy uwaga" data-testid="preview-original-image" />
+                    }
+                    <figcaption class="muted">Obraz z dokumentu. {{ p.imageDescription }}</figcaption>
+                  </figure>
+                }
+                @if (p.zoomDataUri) {
+                  <figure>
+                    <img [src]="p.zoomDataUri" alt="Powiększenie miejsca wystąpienia z łososiową ramką" data-testid="preview-zoom" />
+                    <figcaption class="muted">Powiększenie</figcaption>
+                  </figure>
+                }
+                <figure>
+                  <img [src]="p.pageDataUri" [width]="p.widthPx" [height]="p.heightPx" alt="Strona {{ p.page }} z {{ p.pageCount }} ze schematu dokumentu z zaznaczonym miejscem" data-testid="preview-page" />
+                  <figcaption class="muted">Strona {{ p.page }} z {{ p.pageCount }} (schemat układu, nie wierny wygląd Worda)</figcaption>
+                </figure>
+              </div>
+            }
+          } @else {
+            <p class="muted" data-testid="no-selection">Wybierz pozycję z listy, żeby zobaczyć opis i miejsce w dokumencie.</p>
+          }
+        </section>
+      </div>
+      }
+    }
+  </section>
+}
