@@ -15,7 +15,7 @@ public sealed class WcagValidationProfile
     public static WcagValidationProfile Default { get; } = new();
 
     /// <summary>
-    /// Klucze standardów, np. <c>["wcag/2.1", "firmowy/2.5"]</c>; kolejność = kolejność reguł i napraw.
+    /// Klucze standardów, np. <c>["wcag/2.1", "firmowy/2.0"]</c>; kolejność = kolejność reguł i napraw.
     /// Pusta lista oznacza <see cref="DefaultStandards"/> (dzięki temu bindowanie z konfiguracji nie dokleja wpisów do domyślnych).
     /// </summary>
     public List<string> Standards { get; set; } = [];

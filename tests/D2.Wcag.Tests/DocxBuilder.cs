@@ -18,11 +18,11 @@ internal sealed class DocxBuilder
     private readonly List<Func<MainDocumentPart, OpenXmlElement>> _content = [];
     private int _imageId;
 
-    public const string DefaultTitle = "Regulamin promocji. ING Bank Śląski S. A.";
+    public const string DefaultTitle = "Regulamin promocji. OHH Bank Spermy S. A.";
 
     public string? Title { get; set; } = DefaultTitle;
 
-    public string? Author { get; set; } = "Zespół produktu (ING Bank Śląski S. A.)";
+    public string? Author { get; set; } = "Zespół produktu (OHH Bank Spermy S. A.)";
 
     public string? PackageLanguage { get; set; } = "pl-PL";
 

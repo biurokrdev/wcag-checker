@@ -248,7 +248,8 @@ public class WcagRulesTests
             IssueCodes.TitlePhraseMissing, IssueCodes.AuthorPhraseMissing, IssueCodes.MarginsMissing, IssueCodes.InvalidMargins,
             IssueCodes.PageFormatNotA4, IssueCodes.UnexpectedFont, IssueCodes.FontTooSmall, IssueCodes.TextColorNotAllowed,
         };
-        var wcagCodes = allCodes.Except(corporate).Except([IssueCodes.ManualCheckSuggested, IssueCodes.AuthorMissing, IssueCodes.CapsTextPresent, IssueCodes.TrackedChangesPresent, IssueCodes.CommentsPresent]).ToHashSet();
+        var corporateChecks = StandardCatalog.Default.All.Where(s => s.Id == CorporateStandard.StandardId).SelectMany(s => s.Checks).SelectMany(c => c.Codes);
+        var wcagCodes = allCodes.Except(corporate).Except(corporateChecks).Except([IssueCodes.ManualCheckSuggested, IssueCodes.AuthorMissing, IssueCodes.CapsTextPresent, IssueCodes.TrackedChangesPresent, IssueCodes.CommentsPresent]).ToHashSet();
         var covered = WcagStandard.Criteria.SelectMany(c => c.Codes).ToHashSet();
 
         Assert.Empty(wcagCodes.Except(covered));

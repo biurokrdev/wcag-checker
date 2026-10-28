@@ -97,9 +97,13 @@ public class LocationTests
         Assert.Contains(WcagStandard.StandardChecks, c => c.Manual && c.Section == "Weryfikacja ręczna");
         Assert.All(WcagStandard.Criteria.SelectMany(c => c.Codes), code => Assert.Contains(code, wcagCodes));
 
-        var v25 = CorporateStandards.V25.Checks;
-        Assert.Equal(6, v25.Count);
-        Assert.All(v25, c => Assert.Equal(CorporateStandards.V25.Name, c.Section));
+        var full = new CorporateStandard
+        {
+            Version = "test", RequiredMetadataPhrase = "Firma", RequiredMarginPt = 36, EnforceA4Format = true,
+            RequiredFontName = "Arial", MinFontSizePt = 10, AllowedTextColors = ["000000"],
+        };
+        Assert.Equal(6, full.Checks.Count);
+        Assert.All(full.Checks, c => Assert.Equal(full.Name, c.Section));
         Assert.Single(CorporateStandards.V19.Checks, c => c.Id == "margins");
     }
 }

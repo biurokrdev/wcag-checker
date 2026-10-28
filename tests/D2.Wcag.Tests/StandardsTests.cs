@@ -13,9 +13,9 @@ public class StandardsTests
     [Fact]
     public void DefaultCatalog_HasWcagAndBuiltInCorporateVersions()
     {
-        Assert.Equal(["wcag/2.1", "firmowy/1.9", "firmowy/2.5"], StandardCatalog.Default.All.Select(s => s.Key()));
+        Assert.Equal(["wcag/2.1", "firmowy/1.9", "firmowy/2.0"], StandardCatalog.Default.All.Select(s => s.Key()));
         Assert.True(StandardCatalog.Default.Get("firmowy/1.9").Confirmed);
-        Assert.False(StandardCatalog.Default.Get("FIRMOWY/2.5").Confirmed);
+        Assert.True(StandardCatalog.Default.Get("FIRMOWY/2.0").Confirmed);
         Assert.Equal(["wcag/2.1", "firmowy/1.9"], WcagValidationProfile.DefaultStandards);
     }
 
@@ -25,7 +25,7 @@ public class StandardsTests
         var ex = Assert.Throws<StandardNotFoundException>(() => new WcagDocxValidator().Validate([], new WcagValidationProfile().WithStandards("firmowy/9.9")));
 
         Assert.Equal("firmowy/9.9", ex.Key);
-        Assert.Contains("firmowy/2.5", ex.Message);
+        Assert.Contains("firmowy/2.0", ex.Message);
     }
 
     [Fact]
@@ -54,16 +54,17 @@ public class StandardsTests
     }
 
     [Fact]
-    public void CorporateV25_AddsFontRules_ThatV19DoesNotHave()
+    public void ParametricVersion_AddsFontRules_ThatV19DoesNotHave()
     {
         var document = new DocxBuilder { MarginTwips = 1134 }
             .Heading(1, "A")
             .Runs(new Run(new RunProperties(new RunFonts { Ascii = "Calibri" }, new FontSize { Val = "18" }), new Text("drobny druk")))
             .Build();
-        var validator = new WcagDocxValidator();
+        var draft = new CorporateStandard { Version = "test", RequiredMarginPt = 56.7, MarginTolerancePt = 1, EnforceA4Format = true, RequiredFontName = "Arial", MinFontSizePt = 11 };
+        var validator = new WcagDocxValidator(catalog: StandardCatalog.Default.With(draft));
 
         var v19 = validator.Validate(document, new WcagValidationProfile().WithStandards("firmowy/1.9"));
-        var v25 = validator.Validate(document, new WcagValidationProfile().WithStandards("firmowy/2.5"));
+        var v25 = validator.Validate(document, new WcagValidationProfile().WithStandards("firmowy/test"));
 
         Assert.Contains(v19.Issues, i => i.Code == IssueCodes.InvalidMargins);
         Assert.DoesNotContain(v19.Issues, i => i.Code is IssueCodes.UnexpectedFont or IssueCodes.FontTooSmall or IssueCodes.PageFormatNotA4);

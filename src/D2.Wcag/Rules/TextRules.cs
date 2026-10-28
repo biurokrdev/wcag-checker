@@ -37,7 +37,8 @@ internal sealed class TextRules(int capsTextMinLetters) : IDocumentRule
             foreach (var run in story.Root.Descendants<Run>())
             {
                 var text = run.InnerText;
-                if (string.IsNullOrWhiteSpace(text))
+                // Kody pól (np. „ PAGE ”, „ NUMPAGES ”) nie są tekstem widocznym dla czytelnika.
+                if (string.IsNullOrWhiteSpace(text) || run.Elements<FieldCode>().Any())
                 {
                     continue;
                 }

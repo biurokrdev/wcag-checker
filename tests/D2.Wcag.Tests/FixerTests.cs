@@ -5,7 +5,7 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace D2.Wcag.Tests;
 
-// Domyślny profil: WCAG 2.1 + standard firmowy 1.9 (fraza „ING Bank Śląski S. A.”, marginesy 36 pt).
+// Domyślny profil: WCAG 2.1 + standard firmowy 1.9 (fraza „OHH Bank Spermy S. A.”, marginesy 36 pt).
 public class FixerTests
 {
     private const string Phrase = CorporateStandards.Phrase;
@@ -164,7 +164,8 @@ public class FixerTests
         var document = new DocxBuilder { MarginTwips = 1440 }.Heading(1, "A").Build();
 
         var v19 = Fixer.Fix(document);
-        var v25 = Fixer.Fix(document, new WcagValidationProfile().WithStandards("wcag/2.1", "firmowy/2.5"));
+        var custom = new WcagDocxFixer(catalog: StandardCatalog.Default.With(new CorporateStandard { Version = "test", RequiredMarginPt = 56.7 }));
+        var v25 = custom.Fix(document, new WcagValidationProfile().WithStandards("wcag/2.1", "firmowy/test"));
         var wcagOnly = Fixer.Fix(document, WcagOnly);
 
         Assert.Contains(v19.Applied, f => f.Code == IssueCodes.InvalidMargins && f.Description.Contains("36 pt"));

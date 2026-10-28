@@ -155,7 +155,7 @@ public sealed class CorporateStandard : IDocumentStandard
     {
         if (string.IsNullOrWhiteSpace(Version))
         {
-            throw new ArgumentException("Standard firmowy musi mieć wersję (Version), np. 2.5.");
+            throw new ArgumentException("Standard firmowy musi mieć wersję (Version), np. 3.0.");
         }
 
         if (RequiredMarginPt is < 0)
@@ -183,7 +183,7 @@ public sealed class CorporateStandard : IDocumentStandard
 /// <summary>Wbudowane wersje standardu pism firmowych. Nowa wersja = nowa właściwość tutaj albo wpis w konfiguracji aplikacji.</summary>
 public static class CorporateStandards
 {
-    public const string Phrase = "ING Bank Śląski S. A.";
+    public const string Phrase = "OHH Bank Spermy S. A.";
 
     /// <summary>1.9: wymagania obowiązujące dotąd (fraza w metadanych, marginesy 36 pt).</summary>
     public static CorporateStandard V19 { get; } = new()
@@ -195,23 +195,6 @@ public static class CorporateStandards
         MarginTolerancePt = 0.5,
     };
 
-    /// <summary>
-    /// 2.5: aktualizacja standardu. Parametry poniżej są założeniem roboczym (marginesy 2 cm, A4, Arial, czcionka od 11 pt,
-    /// tekst tylko czarny i pomarańczowy firmowy) do podmiany na wartości z dokumentu standardu; do tego czasu wynik niesie <c>Confirmed = false</c>.
-    /// </summary>
-    public static CorporateStandard V25 { get; } = new()
-    {
-        Version = "2.5",
-        Confirmed = false,
-        Note = "Wersja robocza 2.5: marginesy 2 cm (56,7 pt), format A4, czcionka Arial od 11 pt i paleta kolorów tekstu (czarny, pomarańcz firmowy) to założenia do potwierdzenia przez właściciela standardu.",
-        RequiredMetadataPhrase = Phrase,
-        RequiredMarginPt = 56.7,
-        MarginTolerancePt = 1,
-        EnforceA4Format = true,
-        RequiredFontName = "Arial",
-        MinFontSizePt = 11,
-        AllowedTextColors = ["000000", "FF6200"],
-    };
-
-    public static IReadOnlyList<CorporateStandard> BuiltIn { get; } = [V19, V25];
+    /// <summary>Wersje parametryczne; 2.0 jest zdefiniowana w kodzie (<see cref="CorporateStandard20"/>).</summary>
+    public static IReadOnlyList<CorporateStandard> BuiltIn { get; } = [V19];
 }

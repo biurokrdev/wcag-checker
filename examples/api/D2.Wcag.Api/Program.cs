@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 var builder = WebApplication.CreateBuilder(args);
 
 // Profil (które standardy domyślnie) z sekcji "Wcag"; dodatkowe wersje standardu firmowego z "Wcag:CorporateStandards"
-// trafiają do katalogu obok wbudowanych 1.9 i 2.5. AddD2Wcag rejestruje katalog, walidator i naprawę jako singletony.
+// trafiają do katalogu obok wbudowanych 1.9 i 2.0. AddD2Wcag rejestruje katalog, walidator i naprawę jako singletony.
 builder.Services.Configure<WcagValidationProfile>(builder.Configuration.GetSection(WcagProfileSection.Name));
 foreach (var standard in builder.Configuration.GetSection(WcagProfileSection.CorporateStandards).Get<List<CorporateStandard>>() ?? [])
 {

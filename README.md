@@ -9,7 +9,7 @@ Biblioteka .NET 8 do sprawdzania dokumentów Word (DOCX) według **wersjonowanyc
 |---|---|---|
 | `wcag/2.1` | dostępność dokumentu Word (poziom AA): nagłówki i fałszywe nagłówki, listy, tabele, obrazy (także w nagłówkach i stopkach), łącza, kontrast, puste znaki, numer strony, spis treści, tytuł, język | potwierdzony; pokrycie kryteriów w sekcji [Pokrycie kryteriów WCAG 2.1](#pokrycie-kryteriów-wcag-21) |
 | `firmowy/1.9` | standard pism firmowych obowiązujący dotąd: fraza instytucji w tytule i autorze, marginesy 36 pt | potwierdzony |
-| `firmowy/2.5` | aktualizacja standardu: do tego marginesy 2 cm, format A4, czcionka Arial od 11 pt, tekst tylko w kolorach czarnym i pomarańczowym firmowym | **wersja robocza**, parametry do potwierdzenia |
+| `firmowy/2.0` | standard pism firmowych według „Specyfikacji technicznej guidebooka” 1.0: A4 i marginesy 12,7 mm, wyrównanie do lewej, OHH Me / OHH Display, interlinia 1,2, typografia H1–H5, paleta 7 kolorów, łącza, stopka, spis treści, listy, tabele, metadane, warianty, WZÓR (reguły G-01…G-16) | potwierdzony; sekcja [Standard pism firmowych 2.0](#standard-pism-firmowych-20) |
 
 Profil walidacji tylko wybiera standardy (domyślnie `wcag/2.1` + `firmowy/1.9`); parametry reguł są w samych standardach. Wersję 3.0, 4.0, … dokłada się bez zmian w bibliotece: jako nową instancję `CorporateStandard` w kodzie albo w konfiguracji aplikacji, a wymaganie, którego nie da się opisać parametrem, jako własną implementację `IDocumentStandard` (sekcja [Standardy i wersje](#standardy-i-wersje)).
 
@@ -31,13 +31,13 @@ if (!result.IsValid)
 }
 
 // inny zestaw standardów: WCAG i nowa wersja standardu firmowego
-var v25 = new WcagValidationProfile().WithStandards("wcag/2.1", "firmowy/2.5");
-var result2 = validator.Validate(docxBytes, v25);
+var v20 = new WcagValidationProfile().WithStandards("wcag/2.1", "firmowy/2.0");
+var result2 = validator.Validate(docxBytes, v20);
 Console.WriteLine(string.Join(", ", result2.Standards.Select(s => $"{s.Name}{(s.Confirmed ? "" : " (wersja robocza)")}")));
 
 // naprawa: waliduje, poprawia co się da (naprawy też pochodzą ze standardów), waliduje ponownie
 IWcagDocxFixer fixer = new WcagDocxFixer();
-var fix = fixer.Fix(docxBytes, v25, new WcagFixOptions { FileName = "regulamin.docx", Author = "Dział Komunikacji" });
+var fix = fixer.Fix(docxBytes, v20, new WcagFixOptions { FileName = "regulamin.docx", Author = "Dział Komunikacji" });
 File.WriteAllBytes("regulamin_poprawiony.docx", fix.Document);
 foreach (var applied in fix.Applied)
     Console.WriteLine($"{applied.Code}: {applied.Description}");
@@ -60,7 +60,7 @@ builder.Services.AddDocumentStandard<MojStandardStylu>();
 builder.Services.AddD2Wcag();
 
 // albo wszystko w kodzie
-builder.Services.AddD2Wcag(p => p.Standards = ["wcag/2.1", "firmowy/2.5"]);
+builder.Services.AddD2Wcag(p => p.Standards = ["wcag/2.1", "firmowy/2.0"]);
 ```
 
 `AddD2Wcag` rejestruje `StandardCatalog` (wbudowane standardy plus wszystkie zarejestrowane `IDocumentStandard`), `IWcagDocxValidator` i `IWcagDocxFixer` jako singletony z profilem z `IOptions<WcagValidationProfile>`; istniejących rejestracji nie nadpisuje. Metody `Validate`/`Fix` przyjmują też profil na wywołanie, który ma pierwszeństwo przed profilem z DI.
@@ -74,11 +74,11 @@ Wejście: `byte[]`, `Stream`, ścieżka pliku; wersje `Async` dla strumienia.
 **Nowa wersja parametrami** (`CorporateStandard`): wersja, nazwa, `Confirmed`/`Note`, `RequiredMetadataPhrase`, `RequiredMarginPt` (+ `MarginTolerancePt`), `EnforceA4Format`, `RequiredFontName`, `MinFontSizePt`, `AllowedTextColors` (lista RRGGBB); parametr `null` wyłącza regułę.
 
 ```csharp
-// w kodzie: obok CorporateStandards.V19 i V25
+// w kodzie: przykład kolejnej wersji parametrycznej obok CorporateStandards.V19
 var v30 = new CorporateStandard
 {
     Version = "3.0", Confirmed = false, Note = "Do potwierdzenia z właścicielem standardu.",
-    RequiredMetadataPhrase = "ING Bank Śląski S. A.", RequiredMarginPt = 56.7, EnforceA4Format = true, RequiredFontName = "Arial", MinFontSizePt = 11,
+    RequiredMetadataPhrase = "OHH Bank Spermy S. A.", RequiredMarginPt = 56.7, EnforceA4Format = true, RequiredFontName = "Arial", MinFontSizePt = 11,
 };
 var validator = new WcagDocxValidator(catalog: StandardCatalog.Default.With(v30));
 ```
@@ -87,13 +87,44 @@ var validator = new WcagDocxValidator(catalog: StandardCatalog.Default.With(v30)
 // w konfiguracji aplikacji (patrz examples/api/D2.Wcag.Api/appsettings.json)
 "Wcag": {
   "Standards": [ "wcag/2.1", "firmowy/3.0" ],
-  "CorporateStandards": [ { "Version": "3.0", "RequiredMetadataPhrase": "ING Bank Śląski S. A.", "RequiredMarginPt": 56.7, "EnforceA4Format": true } ]
+  "CorporateStandards": [ { "Version": "3.0", "RequiredMetadataPhrase": "OHH Bank Spermy S. A.", "RequiredMarginPt": 56.7, "EnforceA4Format": true } ]
 }
 ```
 
 **Nowe wymaganie poza parametrami**: klasa dziedzicząca po `DocumentStandard` z własnymi `IDocumentRule` (i opcjonalnie `IDocumentFix`), zarejestrowana przez `AddDocumentStandard<T>()` albo `StandardCatalog.Default.With(...)`. `DocxDocument` daje pakiet OpenXml, treść, rozstrzyganie stylów nagłówków i język; przykład w `tests/D2.Wcag.Tests/StandardsTests.cs` (`NoExclamationStandard`).
 
 Reguły WCAG też da się dostroić: `new WcagStandard(new WcagStandardOptions { CapsTextMinLetters = 12, SuggestManualCheck = false })` zarejestrowany pod tym samym kluczem `wcag/2.1` zastępuje wbudowany.
+
+## Standard pism firmowych 2.0
+
+`CorporateStandard20` (`firmowy/2.0`) implementuje „Specyfikację techniczną guidebooka” (wersja 1.0, 24.10.2026), rozdz. 20 „Reguły walidacji dokumentu”. Wymagania „WYMAGANE” są błędami, „REKOMENDOWANE” i „WARUNKOWE” ostrzeżeniami. Nazwa instytucji (dopisek w tytule, autor) jest parametrem konstruktora, domyślnie z rozdz. 17.
+
+| Reguła | Co sprawdza w DOCX | Kody |
+|---|---|---|
+| G-01 | A4 210 × 297 mm, marginesy 12,7 mm (36 pt) z każdej strony | `PAGE_FORMAT_NOT_A4`, `INVALID_MARGINS`, `MARGINS_MISSING` |
+| G-02 | kolor efektywny każdego fragmentu tekstu z palety #000000, #FF6200, #0000FF, #AB0066, #7724FF, #696969, #4D0020; kolor użyty zgodnie z przeznaczeniem (pomarańcz tylko H1 i punktory, fiolet tylko łącza, szary tylko stopka i dane rejestrowe 8 pt, bordo tylko grafika) | `TEXT_COLOR_NOT_ALLOWED`, `TEXT_COLOR_USAGE_MISMATCH` |
+| G-03 | H1 OHH Display 24 pt (#000000/#FF6200/#0000FF) albo 32 pt (#FF6200); H2 16, H3 14, H4 12, H5 10 pt OHH Me (#000000/#0000FF); wszystkie Bold | `HEADING_STYLE_MISMATCH` |
+| G-04 | brak justowania | `JUSTIFICATION_FORBIDDEN` |
+| G-05 | H1: 42,5 pt nad (w piśmie z polem adresowym ok. 210 pt), 34 pt pod | `HEADING_SPACING_MISMATCH` |
+| G-06 | automatyczny spis treści powyżej 9 stron (liczba stron z właściwości pliku); „Spis treści” nie jest nagłówkiem, ma styl OHH Me Bold 10 pt | `TOC_REQUIRED`, `TOC_HEADING_IN_TOC`, `TOC_HEADING_STYLE_MISMATCH` |
+| G-07 | hierarchia nagłówków: pierwszy to H1, bez przeskoków poziomów (to samo zgłoszenie co WCAG; walidator scala duplikaty) | `HEADING_LEVEL_SKIPPED` |
+| G-08, G-09 | tabele danych: wiersz nagłówkowy oznaczony (czyli powtarzany na kolejnych stronach), bez pustych komórek, wiersze niepodzielne, krawędzie 1 pt #000000, nagłówki Bold, tekst do lewej i do środka w pionie, tytuł w tekście alternatywnym; brak opisu to informacja | `TABLE_MISSING_HEADERS`, `TABLE_EMPTY_CELL`, `TABLE_ROW_CAN_SPLIT`, `TABLE_BORDER_MISMATCH`, `TABLE_HEADER_NOT_BOLD`, `TABLE_ALIGNMENT_MISMATCH`, `TABLE_TITLE_MISSING`, `TABLE_DESCRIPTION_MISSING` |
+| G-10 | grafika z „logo” w nazwie albo opisie: alt „Bank Spermy S. A. logo”, 44 × 10 mm; „symbol”/„identyfikator”: alt „Symbol graficzny Bank Spermy S. A.”, 22 × 22 mm (±1 mm) | `BRAND_IMAGE_MISMATCH` |
+| G-11 | stopka OHH Me 8 pt #696969, interlinia 1,2, z numerem strony i tytułem; dokument ze stroną tytułową (H1 32 pt) ma „Inną na pierwszej stronie” z pustą stopką | `FOOTER_STYLE_MISMATCH`, `FOOTER_TITLE_MISSING`, `LINE_SPACING_MISMATCH`, `TITLE_PAGE_FOOTER_PRESENT` |
+| G-12 | Title „[Tytuł dokumentu]. Bank Spermy S. A.”, Author = bank | `TITLE_SUFFIX_INVALID`, `AUTHOR_NOT_INSTITUTION` |
+| G-13 | język dokumentu ustawiony (to samo zgłoszenie co WCAG) | `LANGUAGE_MISSING`, `LANGUAGE_INVALID` |
+| G-14 | `[wariant N]` … `[koniec wariantu N]` zagnieżdżone i domknięte, znaczniki i `[lub]` w #AB0066, zapisy `<…>` w #0000FF, bez skrótów fleksyjnych („Zostałam [lub] em”); wewnątrz wariantu alternatywa „PLN / EUR” zamiast `[lub]` to ostrzeżenie | `VARIANT_MARKER_UNBALANCED`, `VARIANT_MARKER_COLOR_MISMATCH`, `VARIABLE_COLOR_MISMATCH`, `VARIANT_INFLECTION_SHORTCUT`, `VARIANT_SLASH_ALTERNATIVE` |
+| G-16 | napis WZÓR w nagłówku strony (czyli na każdej stronie), OHH Me Bold 28 pt #000000 | `SAMPLE_MARK_NOT_ON_EVERY_PAGE`, `SAMPLE_MARK_STYLE_MISMATCH` |
+| rozdz. 1, 3, 4 | rodzina OHH Me (H1 OHH Display), grubość nie w nazwie rodziny; interlinia 1,2; tekst podstawowy 10 pt (12/14 pt warunkowo; zwrot „Szanowni Państwo” 14/16 pt w układzie z polem adresowym) | `FONT_FAMILY_MISMATCH`, `FONT_WEIGHT_IN_FAMILY_NAME`, `LINE_SPACING_MISMATCH`, `BODY_TEXT_SIZE_MISMATCH` |
+| rozdz. 3.2, 7 | łącza #7724FF z podkreśleniem; punktory #FF6200/#000000, numery list pogrubione | `LINK_STYLE_MISMATCH`, `LIST_BULLET_COLOR_MISMATCH`, `LIST_NUMBER_NOT_BOLD` |
+
+Kontrole ręczne w podsumowaniu: G-07 (drzewo tagów w wygenerowanym PDF), G-10 (alt text ikon „tak/nie” i QR z kontekstu, pole na barcode dekoracyjne, zasoby z OrangeSharing), G-13 (język fragmentów), G-15 (sygnatura 270°, SIGNOTEK), wariant układu (dane rejestrowe, pole adresowe), pola podpisów i kontrolki w px. Parametry, które specyfikacja zostawia „do weryfikacji” (odstępy H2–H5, wcięcia list, pozycja WZÓR, próg kontrastu, format numeracji), nie są sprawdzane.
+
+Naprawy (tylko jednoznaczne): marginesy 36 pt, wyrównanie do lewej, pierwszy wiersz tabeli jako nagłówkowy (gdy wszystkie komórki wypełnione), „nie dziel wiersza” w tabelach, tytuł z dopiskiem banku, autor = bank. Typografii, kolorów i treści wariantów naprawa nie zmienia.
+
+Gdy profil łączy `wcag/2.1` z `firmowy/2.0`, zgłoszenia identyczne co do kodu, treści i wystąpień (hierarchia nagłówków, język, wiersz nagłówkowy tabeli) są scalane i przypisane do pierwszego standardu w profilu.
+
+Uwaga do G-15: biały identyfikator SIGNOTEK, którego wymaga specyfikacja, standard WCAG zgłosi jako `HIDDEN_TEXT_LOW_CONTRAST`; specyfikacja sama każe ocenić to osobno.
 
 ## Wynik
 
@@ -255,7 +286,7 @@ wcag-checker/
 │  ├─ Docx/                            IWcagDocxValidator, WcagDocxValidator, IWcagDocxFixer, WcagDocxFixer; DocxDocument (widok pakietu dla reguł: historie, style, formatowanie efektywne, DocxLocator: numerowanie elementów), DocxOpener
 │  └─ DependencyInjection/             AddD2Wcag, AddDocumentStandard
 ├─ tests/D2.Wcag.Tests/                xUnit; minimalne DOCX generowane w kodzie (DocxBuilder) + pliki z Worda z samples/
-├─ samples/                            dokumenty do prób + D2.Wcag.Console (patrz samples/README.md)
+├─ samples/                            dokumenty do prób, D2.Wcag.Console, TemplateGenerator (wzorcowy szablon 2.0; patrz samples/README.md)
 └─ examples/                           przykładowa aplikacja: API .NET i ekran Angular (examples/README.md)
 ```
 

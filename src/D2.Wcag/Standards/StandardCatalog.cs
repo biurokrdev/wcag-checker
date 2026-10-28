@@ -34,8 +34,8 @@ public sealed class StandardCatalog
         }
     }
 
-    /// <summary>WCAG 2.1 i wbudowane wersje standardu firmowego.</summary>
-    public static StandardCatalog Default { get; } = new([new WcagStandard(), .. CorporateStandards.BuiltIn]);
+    /// <summary>WCAG 2.1 i wbudowane wersje standardu firmowego: 1.9 i 2.0 (ze specyfikacji guidebooka).</summary>
+    public static StandardCatalog Default { get; } = new([new WcagStandard(), CorporateStandards.V19, new CorporateStandard20()]);
 
     public IReadOnlyList<IDocumentStandard> All => _ordered;
 

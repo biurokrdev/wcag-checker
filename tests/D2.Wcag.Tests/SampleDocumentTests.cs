@@ -22,7 +22,7 @@ public class SampleDocumentTests
 
     [Theory]
     [InlineData("firmowy/1.9")]
-    [InlineData("firmowy/2.5")]
+    [InlineData("firmowy/2.0")]
     public void SampleFromWord_HasFewerErrorsAfterFix_AndStaysReadable(string corporate)
     {
         var profile = new WcagValidationProfile().WithStandards("wcag/2.1", corporate);
@@ -37,5 +37,20 @@ public class SampleDocumentTests
         {
             Assert.DoesNotContain(result.After.Errors, i => i.Code == fix.Code);
         }
+    }
+
+    // Wzorcowy szablon z samples/TemplateGenerator: zgodny z WCAG 2.1 i standardem 2.0 bez błędów i ostrzeżeń.
+    [Fact]
+    public void LetterTemplate20_PassesWcagAndCorporate20_WithoutErrorsOrWarnings()
+    {
+        var profile = new WcagValidationProfile().WithStandards("wcag/2.1", "firmowy/2.0");
+
+        var result = new WcagDocxValidator().Validate(Sample("szablon_pisma_2.0.docx"), profile);
+
+        Assert.True(result.IsValid, result.Summary);
+        Assert.Empty(result.Warnings);
+        Assert.Equal("Wzór pisma firmowego. Bank Spermy S. A.", result.Document!.Title);
+        Assert.Equal(7, result.Document.Headings);
+        Assert.Equal(1, result.Document.Tables);
     }
 }

@@ -7,10 +7,16 @@ using DocumentFormat.OpenXml.Wordprocessing;
 namespace D2.Wcag.Docx;
 
 /// <summary>Efektywne formatowanie fragmentu tekstu po złożeniu domyślnych ustawień, stylu akapitu, stylu znaku i formatowania bezpośredniego.</summary>
-public sealed record RunFormat(bool Bold, bool Caps, double SizePt, string? ColorHex, string? Highlight, string? ShadingFill, string? FontName, string? Language);
+public sealed record RunFormat(bool Bold, bool Caps, double SizePt, string? ColorHex, string? Highlight, string? ShadingFill, string? FontName, string? Language, bool Underline = false);
 
 /// <summary>Efektywne formatowanie akapitu: numeracja (także ze stylu), wyjustowanie, cieniowanie.</summary>
-public sealed record ParagraphFormat(int? NumberingId, bool Justified, string? ShadingFill);
+/// <param name="Alignment">Wartość w:jc (left, start, center, right, end, both, distribute…); <c>null</c> = domyślne (do lewej).</param>
+/// <param name="LineSpacing">Interlinia jako mnożnik (w:spacing/@line przy lineRule=auto, 240 = 1,0); <c>null</c> = dokładna/minimalna albo nieustawiona.</param>
+/// <param name="SpacingBeforePt">Odstęp przed akapitem w pt; <c>null</c>, gdy nieustawiony.</param>
+/// <param name="SpacingAfterPt">Odstęp po akapicie w pt; <c>null</c>, gdy nieustawiony.</param>
+public sealed record ParagraphFormat(
+    int? NumberingId, bool Justified, string? ShadingFill,
+    string? Alignment = null, double? LineSpacing = null, double? SpacingBeforePt = null, double? SpacingAfterPt = null);
 
 /// <summary>Jedna „historia” dokumentu: treść główna, nagłówek, stopka albo przypisy, z częścią pakietu (relacje łączy) i opisem miejsca.</summary>
 public sealed record Story(OpenXmlPart Part, OpenXmlElement Root, string Where);
@@ -182,6 +188,10 @@ public sealed partial class DocxDocument
         int? numberingId = null;
         bool? justified = null;
         string? shading = null;
+        string? alignment = null;
+        double? lineSpacing = null;
+        double? before = null;
+        double? after = null;
 
         void Apply(OpenXmlElement? layer)
         {
@@ -195,9 +205,29 @@ public sealed partial class DocxDocument
                 numberingId = numId;
             }
 
-            if (layer.GetFirstChild<Justification>()?.Val?.Value is { } justification)
+            if (layer.GetFirstChild<Justification>()?.Val is { } justificationValue && justificationValue.Value is var justification)
             {
                 justified = justification == JustificationValues.Both || justification == JustificationValues.Distribute;
+                alignment = justificationValue.InnerText;
+            }
+
+            if (layer.GetFirstChild<SpacingBetweenLines>() is { } spacing)
+            {
+                if (TwipsToPt(spacing.Before?.Value) is { } b)
+                {
+                    before = b;
+                }
+
+                if (TwipsToPt(spacing.After?.Value) is { } a)
+                {
+                    after = a;
+                }
+
+                if (spacing.Line?.Value is { } line && double.TryParse(line, NumberStyles.Float, CultureInfo.InvariantCulture, out var lineValue))
+                {
+                    var rule = spacing.LineRule?.Value;
+                    lineSpacing = rule is null || rule == LineSpacingRuleValues.Auto ? lineValue / 240 : null;
+                }
             }
 
             if (RunFormatBuilder.Fill(layer.GetFirstChild<Shading>()) is { } fill)
@@ -206,14 +236,18 @@ public sealed partial class DocxDocument
             }
         }
 
+        Apply(Main.StyleDefinitionsPart?.Styles?.DocDefaults?.ParagraphPropertiesDefault?.ParagraphPropertiesBaseStyle);
         foreach (var style in StyleChain(paragraph.ParagraphProperties?.ParagraphStyleId?.Val?.Value ?? _defaultParagraphStyleId))
         {
             Apply(style.StyleParagraphProperties);
         }
 
         Apply(paragraph.ParagraphProperties);
-        return new ParagraphFormat(numberingId is > 0 ? numberingId : null, justified ?? false, shading);
+        return new ParagraphFormat(numberingId is > 0 ? numberingId : null, justified ?? false, shading, alignment, lineSpacing, before, after);
     }
+
+    private static double? TwipsToPt(string? twips) =>
+        twips is not null && double.TryParse(twips, NumberStyles.Float, CultureInfo.InvariantCulture, out var value) ? value / 20 : null;
 
     /// <summary>Język z właściwości pakietu albo z domyślnych ustawień stylów (w:docDefaults/w:lang).</summary>
     public string? Language()
@@ -265,6 +299,7 @@ public sealed partial class DocxDocument
     {
         private bool _bold = start.Bold;
         private bool _caps = start.Caps;
+        private bool _underline = start.Underline;
         private double _sizePt = start.SizePt;
         private string? _color = start.ColorHex;
         private string? _highlight = start.Highlight;
@@ -287,6 +322,11 @@ public sealed partial class DocxDocument
             if (layer.GetFirstChild<Bold>() is { } bold)
             {
                 _bold = bold.Val?.Value ?? true;
+            }
+
+            if (layer.GetFirstChild<Underline>() is { } underline)
+            {
+                _underline = underline.Val is null || underline.Val.Value != UnderlineValues.None;
             }
 
             if (layer.GetFirstChild<Caps>() is { } caps)
@@ -336,7 +376,7 @@ public sealed partial class DocxDocument
             }
         }
 
-        public RunFormat Build() => new(_bold, _caps, _sizePt, _color, _highlight, _shading, _font, _language);
+        public RunFormat Build() => new(_bold, _caps, _sizePt, _color, _highlight, _shading, _font, _language, _underline);
 
         public static string? Fill(Shading? shading)
         {

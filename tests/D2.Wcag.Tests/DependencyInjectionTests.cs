@@ -11,7 +11,7 @@ public class DependencyInjectionTests
     [Fact]
     public void AddD2Wcag_RegistersSingletons_WithTheConfiguredProfile()
     {
-        var services = new ServiceCollection().AddD2Wcag(p => p.Standards = ["wcag/2.1", "firmowy/2.5"]);
+        var services = new ServiceCollection().AddD2Wcag(p => p.Standards = ["wcag/2.1", "firmowy/2.0"]);
         using var provider = services.BuildServiceProvider();
 
         var validator = provider.GetRequiredService<IWcagDocxValidator>();
@@ -22,8 +22,8 @@ public class DependencyInjectionTests
         Assert.IsType<WcagDocxFixer>(fixer);
 
         var result = validator.Validate(new DocxBuilder().Heading(1, "A").Build());
-        Assert.Equal(["wcag/2.1", "firmowy/2.5"], result.Standards.Select(s => s.Key));
-        Assert.Contains(result.Issues, i => i.Code == IssueCodes.InvalidMargins && i.Standard == "firmowy/2.5");
+        Assert.Equal(["wcag/2.1", "firmowy/2.0"], result.Standards.Select(s => s.Key));
+        Assert.Contains(result.Issues, i => i.Code == IssueCodes.AuthorNotInstitution && i.Standard == "firmowy/2.0");
     }
 
     [Fact]
@@ -52,7 +52,7 @@ public class DependencyInjectionTests
         using var provider = services.BuildServiceProvider();
 
         var catalog = provider.GetRequiredService<StandardCatalog>();
-        Assert.Equal(["wcag/2.1", "firmowy/1.9", "firmowy/2.5", "firmowy/3.0"], catalog.All.Select(s => s.Key()));
+        Assert.Equal(["wcag/2.1", "firmowy/1.9", "firmowy/2.0", "firmowy/3.0"], catalog.All.Select(s => s.Key()));
 
         var result = provider.GetRequiredService<IWcagDocxValidator>().Validate(new DocxBuilder { MarginTwips = 1440 }.Heading(1, "A").Build());
         Assert.Equal("Standard pism 3.0 (z konfiguracji)", result.Standards[1].Name);

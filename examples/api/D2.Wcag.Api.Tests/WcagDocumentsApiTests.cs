@@ -17,7 +17,7 @@ public class WcagDocumentsApiTests : IClassFixture<DefaultApiTestHost>
     private const string Fix = "/api/wcag-documents/fix";
     private const string FixFile = "/api/wcag-documents/fix/file";
 
-    private const string Phrase = "ING Bank Śląski S. A.";
+    private const string Phrase = "OHH Bank Spermy S. A.";
 
     private readonly HttpClient _client;
 
@@ -31,11 +31,11 @@ public class WcagDocumentsApiTests : IClassFixture<DefaultApiTestHost>
     {
         var result = await Body<StandardsResponse>(await _client.GetAsync(Standards));
 
-        Assert.Equal(["wcag/2.1", "firmowy/1.9", "firmowy/2.5", "firmowy/3.0"], result.Standards.Select(s => s.Key));
+        Assert.Equal(["wcag/2.1", "firmowy/1.9", "firmowy/2.0"], result.Standards.Select(s => s.Key));
         Assert.Equal(["wcag/2.1", "firmowy/1.9"], result.Default);
         Assert.True(result.Standards.Single(s => s.Key == "firmowy/1.9").Confirmed);
-        Assert.False(result.Standards.Single(s => s.Key == "firmowy/3.0").Confirmed);
-        Assert.Contains("z konfiguracji", result.Standards.Single(s => s.Key == "firmowy/3.0").Name);
+        Assert.True(result.Standards.Single(s => s.Key == "firmowy/2.0").Confirmed);
+        Assert.DoesNotContain(result.Standards, s => s.Key is "firmowy/2.5" or "firmowy/3.0");
     }
 
     [Fact]
@@ -73,13 +73,16 @@ public class WcagDocumentsApiTests : IClassFixture<DefaultApiTestHost>
         var document = new DocxBuilder { MarginTwips = 1440 }.Heading(1, "A").Build();
 
         var wcagOnly = await Body<ValidationResponse>(await _client.PostAsync(Validate, Form(document, "a.docx", ("standards", "wcag/2.1"))));
-        var v25 = await Body<ValidationResponse>(await _client.PostAsync(Validate, Form(document, "a.docx", ("standards", "wcag/2.1"), ("standards", "firmowy/2.5"))));
+        var v20 = await Body<ValidationResponse>(await _client.PostAsync(Validate, Form(document, "a.docx", ("standards", "wcag/2.1"), ("standards", "firmowy/2.0"))));
 
         Assert.Equal(["wcag/2.1"], wcagOnly.Standards.Select(s => s.Key));
         Assert.DoesNotContain(wcagOnly.Issues, i => i.Category == IssueCategory.Quality);
-        Assert.Equal(["wcag/2.1", "firmowy/2.5"], v25.Standards.Select(s => s.Key));
-        Assert.Contains(v25.Issues, i => i.Code == IssueCodes.InvalidMargins && i.Message.Contains("56,7 pt"));
-        Assert.False(v25.Standards[1].Confirmed);
+        Assert.Equal(["wcag/2.1", "firmowy/2.0"], v20.Standards.Select(s => s.Key));
+        Assert.Contains(v20.Issues, i => i.Code == IssueCodes.InvalidMargins && i.Message.Contains("wymagane jest 36 pt"));
+        Assert.True(v20.Standards[1].Confirmed);
+
+        var removed = await _client.PostAsync(Validate, Form(document, "a.docx", ("standards", "firmowy/2.5")));
+        Assert.Equal(System.Net.HttpStatusCode.BadRequest, removed.StatusCode);
     }
 
     [Fact]

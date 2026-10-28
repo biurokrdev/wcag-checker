@@ -4,7 +4,7 @@ using D2.Wcag.Rules;
 namespace D2.Wcag.Standards;
 
 /// <summary>
-/// Wersjonowany zestaw reguł (i napraw) do walidacji dokumentu: WCAG 2.1, standard pism firmowych 1.9, 2.5, …
+/// Wersjonowany zestaw reguł (i napraw) do walidacji dokumentu: WCAG 2.1, standard pism firmowych 1.9, 2.0, …
 /// Nową wersję dokłada się jako nową implementację (albo nową instancję <see cref="CorporateStandard"/>) i rejestruje
 /// w <see cref="StandardCatalog"/>; profil walidacji wybiera standardy po kluczu „id/wersja”.
 /// </summary>
@@ -13,10 +13,10 @@ public interface IDocumentStandard
     /// <summary>Stały identyfikator rodzaju standardu, np. <c>wcag</c>, <c>firmowy</c>.</summary>
     string Id { get; }
 
-    /// <summary>Wersja, np. <c>2.1</c>, <c>1.9</c>, <c>2.5</c>.</summary>
+    /// <summary>Wersja, np. <c>2.1</c>, <c>1.9</c>, <c>2.0</c>.</summary>
     string Version { get; }
 
-    /// <summary>Nazwa do wyświetlania, np. „Standard pism firmowych 2.5”.</summary>
+    /// <summary>Nazwa do wyświetlania, np. „Standard pism firmowych 2.0”.</summary>
     string Name { get; }
 
     /// <summary><c>false</c> = wersja robocza: parametry wymagają potwierdzenia przez właściciela standardu.</summary>
@@ -41,7 +41,7 @@ public sealed record StandardInfo(string Key, string Id, string Version, string 
 
 public static class DocumentStandardExtensions
 {
-    /// <summary>Klucz „id/wersja”, np. <c>firmowy/2.5</c>.</summary>
+    /// <summary>Klucz „id/wersja”, np. <c>firmowy/2.0</c>.</summary>
     public static string Key(this IDocumentStandard standard) => StandardKey.Of(standard.Id, standard.Version);
 }
 

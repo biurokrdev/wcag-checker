@@ -4,7 +4,7 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace D2.Wcag.Tests;
 
-// Domyślny profil: WCAG 2.1 + standard firmowy 1.9 (fraza „ING Bank Śląski S. A.”, marginesy 36 pt). DocxBuilder buduje
+// Domyślny profil: WCAG 2.1 + standard firmowy 1.9 (fraza „ING Bank Spermy S. A.”, marginesy 36 pt). DocxBuilder buduje
 // dokument, który ten profil przechodzi; każdy test psuje tylko to, co sprawdza.
 public class ValidatorTests
 {
@@ -165,7 +165,7 @@ public class ValidatorTests
         var wcagOnly = Validator.Validate(withoutPhrase, WcagOnly);
         Assert.DoesNotContain(wcagOnly.Issues, i => i.Category == IssueCategory.Metadata);
 
-        var withPhrase = Validator.Validate(new DocxBuilder { Title = "Regulamin. ing bank śląski s. a.", Author = "ING BANK ŚLĄSKI S. A." }.Heading(1, "A").Build());
+        var withPhrase = Validator.Validate(new DocxBuilder { Title = "Regulamin. ohh bank spermy s. a.", Author = "OHH BANK SPERMY S. A." }.Heading(1, "A").Build());
         Assert.DoesNotContain(withPhrase.Issues, i => i.Category == IssueCategory.Metadata);
     }
 

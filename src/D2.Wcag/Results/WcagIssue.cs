@@ -39,7 +39,7 @@ public enum IssueCategory
 
 public sealed record WcagIssue(string Code, IssueSeverity Severity, IssueCategory Category, string Message)
 {
-    /// <summary>Klucz standardu, którego reguła zgłosiła problem, np. <c>firmowy/2.5</c>; ustawia go walidator.</summary>
+    /// <summary>Klucz standardu, którego reguła zgłosiła problem, np. <c>firmowy/2.0</c>; ustawia go walidator.</summary>
     public string? Standard { get; init; }
 
     /// <summary>
@@ -151,6 +151,75 @@ public static class IssueCodes
     public const string FontTooSmall = "FONT_TOO_SMALL";
 
     public const string TextColorNotAllowed = "TEXT_COLOR_NOT_ALLOWED";
+
+    // Standard pism firmowych 2.0
+    public const string JustificationForbidden = "JUSTIFICATION_FORBIDDEN";
+
+    public const string FontFamilyMismatch = "FONT_FAMILY_MISMATCH";
+
+    public const string FontWeightInFamilyName = "FONT_WEIGHT_IN_FAMILY_NAME";
+
+    public const string LineSpacingMismatch = "LINE_SPACING_MISMATCH";
+
+    public const string BodyTextSizeMismatch = "BODY_TEXT_SIZE_MISMATCH";
+
+    public const string HeadingStyleMismatch = "HEADING_STYLE_MISMATCH";
+
+    public const string HeadingSpacingMismatch = "HEADING_SPACING_MISMATCH";
+
+    public const string LinkStyleMismatch = "LINK_STYLE_MISMATCH";
+
+    public const string FooterStyleMismatch = "FOOTER_STYLE_MISMATCH";
+
+    public const string FooterTitleMissing = "FOOTER_TITLE_MISSING";
+
+    public const string TocRequired = "TOC_REQUIRED";
+
+    public const string TocHeadingInToc = "TOC_HEADING_IN_TOC";
+
+    public const string TocHeadingStyleMismatch = "TOC_HEADING_STYLE_MISMATCH";
+
+    public const string ListBulletColorMismatch = "LIST_BULLET_COLOR_MISMATCH";
+
+    public const string ListNumberNotBold = "LIST_NUMBER_NOT_BOLD";
+
+    public const string TableEmptyCell = "TABLE_EMPTY_CELL";
+
+    public const string TableRowCanSplit = "TABLE_ROW_CAN_SPLIT";
+
+    public const string TableBorderMismatch = "TABLE_BORDER_MISMATCH";
+
+    public const string TableHeaderNotBold = "TABLE_HEADER_NOT_BOLD";
+
+    public const string TableAlignmentMismatch = "TABLE_ALIGNMENT_MISMATCH";
+
+    public const string TableTitleMissing = "TABLE_TITLE_MISSING";
+
+    public const string TitleSuffixInvalid = "TITLE_SUFFIX_INVALID";
+
+    public const string AuthorNotInstitution = "AUTHOR_NOT_INSTITUTION";
+
+    public const string VariantMarkerUnbalanced = "VARIANT_MARKER_UNBALANCED";
+
+    public const string VariantMarkerColorMismatch = "VARIANT_MARKER_COLOR_MISMATCH";
+
+    public const string VariableColorMismatch = "VARIABLE_COLOR_MISMATCH";
+
+    public const string VariantInflectionShortcut = "VARIANT_INFLECTION_SHORTCUT";
+
+    public const string SampleMarkStyleMismatch = "SAMPLE_MARK_STYLE_MISMATCH";
+
+    public const string SampleMarkNotOnEveryPage = "SAMPLE_MARK_NOT_ON_EVERY_PAGE";
+
+    public const string TableDescriptionMissing = "TABLE_DESCRIPTION_MISSING";
+
+    public const string TextColorUsageMismatch = "TEXT_COLOR_USAGE_MISMATCH";
+
+    public const string VariantSlashAlternative = "VARIANT_SLASH_ALTERNATIVE";
+
+    public const string TitlePageFooterPresent = "TITLE_PAGE_FOOTER_PRESENT";
+
+    public const string BrandImageMismatch = "BRAND_IMAGE_MISMATCH";
 
     public const string ManualCheckSuggested = "MANUAL_CHECK_SUGGESTED";
 }

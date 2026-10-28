@@ -10,10 +10,11 @@ const previewUrl = (reportId: string, index: number) => `/api/wcag-documents/rep
 
 const WCAG: Standard = { key: 'wcag/2.1', id: 'wcag', version: '2.1', name: 'WCAG 2.1 (dokument Word)', confirmed: true, note: null };
 const V19: Standard = { key: 'firmowy/1.9', id: 'firmowy', version: '1.9', name: 'Standard pism firmowych 1.9', confirmed: true, note: null };
-const V25: Standard = { key: 'firmowy/2.5', id: 'firmowy', version: '2.5', name: 'Standard pism firmowych 2.5', confirmed: false, note: 'Wersja robocza.' };
+const V20: Standard = { key: 'firmowy/2.0', id: 'firmowy', version: '2.0', name: 'Standard pism firmowych 2.0', confirmed: true, note: null };
+const DRAFT: Standard = { key: 'firmowy/9.0', id: 'firmowy', version: '9.0', name: 'Standard pism firmowych 9.0', confirmed: false, note: 'Wersja robocza.' };
 
 function catalog(): StandardsCatalog {
-  return { standards: [WCAG, V19, V25], default: ['wcag/2.1', 'firmowy/1.9'] };
+  return { standards: [WCAG, V19, V20, DRAFT], default: ['wcag/2.1', 'firmowy/1.9'] };
 }
 
 function issue(overrides: Partial<Issue> = {}): Issue {
@@ -180,8 +181,9 @@ describe('DocumentCheck', () => {
     const { q } = render();
     expect(q<HTMLInputElement>('standard-wcag/2.1')!.checked).toBe(true);
     expect(q<HTMLInputElement>('standard-firmowy/1.9')!.checked).toBe(true);
-    expect(q<HTMLInputElement>('standard-firmowy/2.5')!.checked).toBe(false);
-    expect(q<HTMLInputElement>('standard-firmowy/2.5')!.closest('label')!.textContent).toContain('wersja robocza');
+    expect(q<HTMLInputElement>('standard-firmowy/2.0')!.checked).toBe(false);
+    expect(q<HTMLInputElement>('standard-firmowy/2.0')!.closest('label')!.textContent).not.toContain('wersja robocza');
+    expect(q<HTMLInputElement>('standard-firmowy/9.0')!.closest('label')!.textContent).toContain('wersja robocza');
     expect(q('file-input')).toBeTruthy();
     expect(q('result')).toBeNull();
   });
@@ -198,7 +200,7 @@ describe('DocumentCheck', () => {
   it('sends the selected standards and opens the report on the summary tab', () => {
     const { fixture, q, selectFile, check } = render();
     check('standard-firmowy/1.9', false);
-    check('standard-firmowy/2.5', true);
+    check('standard-firmowy/2.0', true);
 
     selectFile(docx());
 
@@ -207,13 +209,13 @@ describe('DocumentCheck', () => {
     expect(req.request.method).toBe('POST');
     const body = req.request.body as FormData;
     expect((body.get('file') as File).name).toBe('pismo.docx');
-    expect(body.getAll('standards')).toEqual(['wcag/2.1', 'firmowy/2.5']);
-    req.flush(validation({ standards: [WCAG, V25] }));
+    expect(body.getAll('standards')).toEqual(['wcag/2.1', 'firmowy/2.0']);
+    req.flush(validation({ standards: [WCAG, V20] }));
     fixture.detectChanges();
 
     expect(q('result')!.getAttribute('data-status')).toBe('Invalid');
     expect(q('summary')!.textContent).toContain('1 błąd');
-    expect(q('standards-line')!.textContent).toContain('Standard pism firmowych 2.5 (wersja robocza)');
+    expect(q('standards-line')!.textContent).toContain('Standard pism firmowych 2.0');
     expect(q('panel-summary')).toBeTruthy();
     expect(q('panel-findings')).toBeNull();
     expect(q('file-input')).toBeNull();

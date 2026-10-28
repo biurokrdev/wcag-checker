@@ -34,9 +34,7 @@ internal sealed class TableRules : IDocumentRule
 
             if (!HasHeaderRow(rows[0]))
             {
-                yield return new WcagIssue(
-                    IssueCodes.TableMissingHeaders, IssueSeverity.Error, IssueCategory.Tables,
-                    $"Tabela {index} nie ma oznaczonego wiersza nagłówkowego (Właściwości tabeli → Powtórz jako wiersz nagłówka).").At(location);
+                yield return MissingHeaderRow(index, location);
             }
             else
             {
@@ -84,6 +82,11 @@ internal sealed class TableRules : IDocumentRule
     }
 
     public static bool HasHeaderRow(TableRow row) => row.TableRowProperties?.Elements<TableHeader>().Any() == true;
+
+    /// <summary>Brak wiersza nagłówkowego; wspólne dla WCAG i standardu firmowego 2.0 (G-08), walidator scala duplikaty.</summary>
+    public static WcagIssue MissingHeaderRow(int index, IssueLocation? location) => new WcagIssue(
+        IssueCodes.TableMissingHeaders, IssueSeverity.Error, IssueCategory.Tables,
+        $"Tabela {index} nie ma oznaczonego wiersza nagłówkowego (Właściwości tabeli → Powtórz jako wiersz nagłówka).").At(location);
 
     /// <summary>Jeden wiersz albo jedna kolumna: nie ma relacji nagłówek–dane, to tabela układu.</summary>
     public static bool IsLayoutTable(IReadOnlyList<TableRow> rows) =>

@@ -6,7 +6,7 @@ using D2.Wcag.Standards;
 // Sprawdzenie jednego pliku z wiersza poleceń, z opcjonalną naprawą do pliku „<nazwa>_poprawiony.docx”.
 //   dotnet run --project samples/D2.Wcag.Console -- --list-standards
 //   dotnet run --project samples/D2.Wcag.Console -- samples/przyklad.docx
-//   dotnet run --project samples/D2.Wcag.Console -- samples/przyklad.docx --fix --standard wcag/2.1 --standard firmowy/2.5
+//   dotnet run --project samples/D2.Wcag.Console -- samples/przyklad.docx --fix --standard wcag/2.1 --standard firmowy/2.0
 Console.OutputEncoding = Encoding.UTF8;
 
 string? path = null;

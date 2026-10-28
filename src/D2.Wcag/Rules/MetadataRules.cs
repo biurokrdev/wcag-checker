@@ -26,6 +26,16 @@ internal sealed partial class MetadataRules : IDocumentRule
             yield return new WcagIssue(IssueCodes.AuthorMissing, IssueSeverity.Warning, IssueCategory.Metadata, "Dokument nie ma autora w metadanych.").At(whole);
         }
 
+        foreach (var issue in LanguageIssues(document))
+        {
+            yield return issue;
+        }
+    }
+
+    /// <summary>Język dokumentu (3.1.1); wspólne dla WCAG i standardu firmowego 2.0 (rozdz. 18), walidator scala duplikaty.</summary>
+    public static IEnumerable<WcagIssue> LanguageIssues(DocxDocument document)
+    {
+        var whole = IssueLocation.Document("(metadane dokumentu)");
         var language = document.Language();
         if (language is null)
         {

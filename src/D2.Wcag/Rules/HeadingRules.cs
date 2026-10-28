@@ -13,6 +13,29 @@ internal sealed class HeadingRules : IDocumentRule
     private const int MaxFakeHeadingLength = 80;
     private const double FakeHeadingMinSizePt = 14;
 
+    /// <summary>
+    /// Przeskok poziomu: pierwszy nagłówek nie jest H1 albo poziom rośnie o więcej niż 1. Wspólne dla WCAG i standardu
+    /// firmowego 2.0 (rozdz. 16), żeby oba zgłaszały identyczne zgłoszenie, które walidator scala.
+    /// </summary>
+    public static WcagIssue? SkippedLevel(int? previousLevel, int level, string text, IssueLocation? location)
+    {
+        if (previousLevel is null && level > 1)
+        {
+            return new WcagIssue(
+                IssueCodes.HeadingLevelSkipped, IssueSeverity.Warning, IssueCategory.Headings,
+                $"Pierwszy nagłówek „{DocxDocument.Snippet(text)}” ma poziom {level}; dokument powinien zaczynać się od nagłówka poziomu 1.").At(location);
+        }
+
+        if (previousLevel is { } previous && level > previous + 1)
+        {
+            return new WcagIssue(
+                IssueCodes.HeadingLevelSkipped, IssueSeverity.Warning, IssueCategory.Headings,
+                $"Nagłówek „{DocxDocument.Snippet(text)}” ma poziom {level} zaraz po poziomie {previous}; pominięto poziom {previous + 1}.").At(location);
+        }
+
+        return null;
+    }
+
     public IEnumerable<WcagIssue> Check(DocxDocument document)
     {
         // Bez żadnego nagłówka zgłaszane jest tylko UNCLEAR_READING_ORDER (StructureRules), nie „treść przed nagłówkiem”.
@@ -61,17 +84,9 @@ internal sealed class HeadingRules : IDocumentRule
                 continue;
             }
 
-            if (previousLevel is null && level > 1)
+            if (SkippedLevel(previousLevel, level.Value, text, location) is { } skipped)
             {
-                yield return new WcagIssue(
-                    IssueCodes.HeadingLevelSkipped, IssueSeverity.Warning, IssueCategory.Headings,
-                    $"Pierwszy nagłówek „{DocxDocument.Snippet(text)}” ma poziom {level}; dokument powinien zaczynać się od nagłówka poziomu 1.").At(location);
-            }
-            else if (previousLevel is { } previous && level > previous + 1)
-            {
-                yield return new WcagIssue(
-                    IssueCodes.HeadingLevelSkipped, IssueSeverity.Warning, IssueCategory.Headings,
-                    $"Nagłówek „{DocxDocument.Snippet(text)}” ma poziom {level} zaraz po poziomie {previous}; pominięto poziom {previous + 1}.").At(location);
+                yield return skipped;
             }
 
             if (text.Length > MaxHeadingLength)

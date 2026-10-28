@@ -1,6 +1,6 @@
 # Walidacja dokumentu Word (WCAG + standard pism firmowych): przykładowa aplikacja
 
-Przykład użycia biblioteki `D2.Wcag`: API .NET i jeden ekran w Angularze. Przebieg: (1) wybór standardów (WCAG 2.1 i wersja standardu pism firmowych: 1.9, 2.5, …) i wczytanie pliku DOCX, (2) analiza i ocena zgodności w bibliotece, (3) raport w dwóch zakładkach: **Podsumowanie** (tabela kontroli standardów „Status | Kontrola | Szczegóły” z sekcjami, raport kryteriów WCAG, automatyczna naprawa) i **Wyniki walidacji** (po lewej lista wystąpień, każde osobno, po 30 na stronę; po prawej opis wystąpienia i podgląd strony z miejscem zaznaczonym łososiową ramką, także w powiększeniu). Walidację i naprawę wykonuje biblioteka; aplikacja dokłada przyjmowanie plików, konfigurację, kontrakt JSON, schematyczny renderer stron i ekran.
+Przykład użycia biblioteki `D2.Wcag`: API .NET i jeden ekran w Angularze. Przebieg: (1) wybór standardów (WCAG 2.1 i wersja standardu pism firmowych: 1.9, 2.0, …) i wczytanie pliku DOCX, (2) analiza i ocena zgodności w bibliotece, (3) raport w dwóch zakładkach: **Podsumowanie** (tabela kontroli standardów „Status | Kontrola | Szczegóły” z sekcjami, raport kryteriów WCAG, automatyczna naprawa) i **Wyniki walidacji** (po lewej lista wystąpień, każde osobno, po 30 na stronę; po prawej opis wystąpienia i podgląd strony z miejscem zaznaczonym łososiową ramką, także w powiększeniu). Walidację i naprawę wykonuje biblioteka; aplikacja dokłada przyjmowanie plików, konfigurację, kontrakt JSON, schematyczny renderer stron i ekran.
 
 ```
 examples/
@@ -38,7 +38,7 @@ Sekcja `Wcag` jest bindowana na `D2.Wcag.WcagValidationProfile` (`services.Confi
 |---|---|
 | `Standards` | klucze standardów stosowane, gdy żądanie nie wskaże innych; domyślnie `wcag/2.1`, `firmowy/1.9` |
 | `DefaultLanguage` | język wpisywany przy naprawie, gdy dokument go nie ma (domyślnie `pl-PL`) |
-| `CorporateStandards[]` | kolejne wersje standardu pism firmowych opisane parametrami, bez zmian w kodzie: `Version`, `Name`, `Confirmed`, `Note`, `RequiredMetadataPhrase`, `RequiredMarginPt`, `MarginTolerancePt`, `EnforceA4Format`, `RequiredFontName`, `MinFontSizePt` (`null` wyłącza regułę). Ten sam `Version` co wbudowany (1.9, 2.5) podmienia wbudowaną definicję. W przykładzie jest szkic `3.0` z `Confirmed = false` |
+| `CorporateStandards[]` | kolejne wersje standardu pism firmowych opisane parametrami, bez zmian w kodzie: `Version`, `Name`, `Confirmed`, `Note`, `RequiredMetadataPhrase`, `RequiredMarginPt`, `MarginTolerancePt`, `EnforceA4Format`, `RequiredFontName`, `MinFontSizePt` (`null` wyłącza regułę). Ten sam `Version` co wbudowany (1.9) podmienia wbudowaną definicję. Domyślnie pusta lista; przykład wpisu poniżej |
 | `Cors:Origins` | adresy ekranu (domyślnie `http://localhost:4310`) |
 | `Reports:LifetimeMinutes`, `Reports:MaxTotalMegabytes` | jak długo i ile dokumentów API trzyma w pamięci na potrzeby podglądów wystąpień (domyślnie 30 min, 256 MB); nic nie trafia na dysk ani do GCS |
 
@@ -55,8 +55,7 @@ Katalog standardów do wyboru i domyślny zestaw API:
   "standards": [
     { "key": "wcag/2.1", "id": "wcag", "version": "2.1", "name": "WCAG 2.1 (dokument Word)", "confirmed": true, "note": null },
     { "key": "firmowy/1.9", "id": "firmowy", "version": "1.9", "name": "Standard pism firmowych 1.9", "confirmed": true, "note": null },
-    { "key": "firmowy/2.5", "id": "firmowy", "version": "2.5", "name": "Standard pism firmowych 2.5", "confirmed": false, "note": "Wersja robocza 2.5: …" },
-    { "key": "firmowy/3.0", "id": "firmowy", "version": "3.0", "name": "Standard pism firmowych 3.0 (szkic z konfiguracji)", "confirmed": false, "note": "…" }
+    { "key": "firmowy/2.0", "id": "firmowy", "version": "2.0", "name": "Standard pism firmowych 2.0", "confirmed": true, "note": "Według specyfikacji technicznej guidebooka 1.0. …" }
   ],
   "default": [ "wcag/2.1", "firmowy/1.9" ]
 }
@@ -74,7 +73,7 @@ Macierz pokrycia kryteriów WCAG 2.1 (`id`, `name`, `level`, `coverage`: `Automa
 | `standards` | klucz „id/wersja”, pole powtarzane; pusto = domyślne z konfiguracji |
 
 ```
-curl -F "file=@samples/przyklad.docx" -F standards=wcag/2.1 -F standards=firmowy/2.5 http://localhost:5100/api/wcag-documents/validate
+curl -F "file=@samples/przyklad.docx" -F standards=wcag/2.1 -F standards=firmowy/2.0 http://localhost:5100/api/wcag-documents/validate
 ```
 
 ### `GET /api/wcag-documents/reports/{reportId}/findings/{index}/preview`

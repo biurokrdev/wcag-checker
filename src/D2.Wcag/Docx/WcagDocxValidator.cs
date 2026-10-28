@@ -74,8 +74,11 @@ public sealed class WcagDocxValidator : IWcagDocxValidator
 
     internal static WcagValidationResult Validate(DocxDocument document, IReadOnlyList<IDocumentStandard> standards)
     {
+        // Dwa standardy mogą sprawdzać to samo (np. hierarchię nagłówków sprawdza WCAG i standard firmowy 2.0);
+        // identyczne zgłoszenie zostaje raz, przypisane do pierwszego standardu w profilu.
         var issues = standards
             .SelectMany(standard => standard.Rules.SelectMany(rule => rule.Check(document)).Select(issue => issue with { Standard = standard.Key() }))
+            .DistinctBy(i => (i.Code, i.Message, string.Join("|", i.Locations.Select(l => l.Key))))
             .OrderByDescending(i => i.Severity)
             .ThenBy(i => i.Category)
             .ThenBy(i => i.Code, StringComparer.Ordinal)
