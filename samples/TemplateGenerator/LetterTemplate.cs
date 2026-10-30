@@ -204,7 +204,7 @@ public static class LetterTemplate
         var footer = main.AddNewPart<FooterPart>();
         Run FooterText(string text) => new(new Text(text) { Space = SpaceProcessingModeValues.Preserve });
 
-        // „Strona: 2 z 3. Tytuł dokumentu” (rozdz. 11), styl Stopka: OHH Me 8 pt #696969, interlinia 1,2.
+        // „Strona: 2 z 3. Tytuł dokumentu” (rozdz. 11), styl Stopka: SUN Me 8 pt #696969, interlinia 1,2.
         footer.Footer = new Footer(new Paragraph(
             new ParagraphProperties(new ParagraphStyleId { Val = "Stopka" }),
             FooterText("Strona: "),

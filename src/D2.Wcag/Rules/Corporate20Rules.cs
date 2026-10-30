@@ -64,12 +64,12 @@ internal sealed class Justification20Rule : IDocumentRule
 }
 
 /// <summary>
-/// Rodzina czcionki: „OHH Me” dla tekstu, „OHH Display” dla H1. Grubość ustawia się atrybutem (Regular/Bold),
-/// więc nazwa rodziny w rodzaju „OHH Me Bold” to błąd zapisu.
+/// Rodzina czcionki: „SUN Me” dla tekstu, „SUN Display” dla H1. Grubość ustawia się atrybutem (Regular/Bold),
+/// więc nazwa rodziny w rodzaju „SUN Me Bold” to błąd zapisu.
 /// </summary>
 internal sealed class FontFamily20Rule : IDocumentRule
 {
-    private static readonly Regex WeightInName = new(@"^OHH (Me|Display)\s+(Bold|Regular|Light|Medium|Semibold|Black|Italic)\b", RegexOptions.IgnoreCase);
+    private static readonly Regex WeightInName = new(@"^SUN (Me|Display)\s+(Bold|Regular|Light|Medium|Semibold|Black|Italic)\b", RegexOptions.IgnoreCase);
 
     public IEnumerable<WcagIssue> Check(DocxDocument document)
     {
@@ -109,7 +109,7 @@ internal sealed class FontFamily20Rule : IDocumentRule
         {
             yield return new WcagIssue(
                 IssueCodes.FontWeightInFamilyName, IssueSeverity.Error, IssueCategory.Quality,
-                $"{Polish.Count(weight.Count, "fragment tekstu ma", "fragmenty tekstu mają", "fragmentów tekstu ma")} grubość w nazwie rodziny (np. „OHH Me Bold”); rodzina to „OHH Me”, a pogrubienie ustawia się osobno.").At(weight);
+                $"{Polish.Count(weight.Count, "fragment tekstu ma", "fragmenty tekstu mają", "fragmentów tekstu ma")} grubość w nazwie rodziny (np. „SUN Me Bold”); rodzina to „SUN Me”, a pogrubienie ustawia się osobno.").At(weight);
         }
     }
 }
@@ -477,7 +477,7 @@ internal sealed class HeadingSpacing20Rule : IDocumentRule
     }
 }
 
-/// <summary>Łącze: OHH Me 10 pt, kolor #7724FF, podkreślenie.</summary>
+/// <summary>Łącze: SUN Me 10 pt, kolor #7724FF, podkreślenie.</summary>
 internal sealed class LinkStyle20Rule : IDocumentRule
 {
     public IEnumerable<WcagIssue> Check(DocxDocument document)
@@ -515,7 +515,7 @@ internal sealed class LinkStyle20Rule : IDocumentRule
     }
 }
 
-/// <summary>G-11: stopka OHH Me 8 pt, #696969, interlinia 1,2; treść: numer strony i tytuł dokumentu.</summary>
+/// <summary>G-11: stopka SUN Me 8 pt, #696969, interlinia 1,2; treść: numer strony i tytuł dokumentu.</summary>
 internal sealed class Footer20Rule : IDocumentRule
 {
     public IEnumerable<WcagIssue> Check(DocxDocument document)
@@ -557,7 +557,7 @@ internal sealed class Footer20Rule : IDocumentRule
         {
             yield return new WcagIssue(
                 IssueCodes.FooterStyleMismatch, IssueSeverity.Error, IssueCategory.Quality,
-                $"{Polish.Count(wrong.Count, "fragment stopki ma", "fragmenty stopki mają", "fragmentów stopki ma")} styl inny niż OHH Me 8 pt #{Spec20.Gray}.").At(wrong);
+                $"{Polish.Count(wrong.Count, "fragment stopki ma", "fragmenty stopki mają", "fragmentów stopki ma")} styl inny niż SUN Me 8 pt #{Spec20.Gray}.").At(wrong);
         }
 
         if (withoutTitle.Count > 0)
@@ -569,7 +569,7 @@ internal sealed class Footer20Rule : IDocumentRule
     }
 }
 
-/// <summary>G-06 i rozdz. 6: spis treści dla dokumentów powyżej 9 stron; nagłówek „Spis treści” nie jest pozycją spisu i ma styl OHH Me Bold 10 pt.</summary>
+/// <summary>G-06 i rozdz. 6: spis treści dla dokumentów powyżej 9 stron; nagłówek „Spis treści” nie jest pozycją spisu i ma styl SUN Me Bold 10 pt.</summary>
 internal sealed class Toc20Rule : IDocumentRule
 {
     private const int PagesThatNeedToc = 9;
@@ -604,7 +604,7 @@ internal sealed class Toc20Rule : IDocumentRule
             {
                 yield return new WcagIssue(
                     IssueCodes.TocHeadingStyleMismatch, IssueSeverity.Error, IssueCategory.Structure,
-                    "Nagłówek „Spis treści” ma mieć styl OHH Me, Bold, 10 pt.").At(location);
+                    "Nagłówek „Spis treści” ma mieć styl SUN Me, Bold, 10 pt.").At(location);
             }
         }
     }
@@ -962,7 +962,7 @@ internal sealed partial class Variants20Rule : IDocumentRule
     private static partial Regex Inflection();
 }
 
-/// <summary>G-16 i rozdz. 15: napis WZÓR (OHH Me Bold 28 pt #000000) w nagłówku strony, czyli na każdej stronie.</summary>
+/// <summary>G-16 i rozdz. 15: napis WZÓR (SUN Me Bold 28 pt #000000) w nagłówku strony, czyli na każdej stronie.</summary>
 internal sealed class SampleMark20Rule : IDocumentRule
 {
     public IEnumerable<WcagIssue> Check(DocxDocument document)
@@ -990,7 +990,7 @@ internal sealed class SampleMark20Rule : IDocumentRule
         {
             yield return new WcagIssue(
                 IssueCodes.SampleMarkStyleMismatch, IssueSeverity.Error, IssueCategory.Quality,
-                "Napis WZÓR ma mieć styl OHH Me, Bold, 28 pt, #000000.").At(wrong.Select(m => document.Locate(m.Paragraph)));
+                "Napis WZÓR ma mieć styl SUN Me, Bold, 28 pt, #000000.").At(wrong.Select(m => document.Locate(m.Paragraph)));
         }
     }
 }

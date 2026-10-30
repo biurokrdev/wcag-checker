@@ -17,7 +17,7 @@ public class WcagDocumentsApiTests : IClassFixture<DefaultApiTestHost>
     private const string Fix = "/api/wcag-documents/fix";
     private const string FixFile = "/api/wcag-documents/fix/file";
 
-    private const string Phrase = "OHH Bank Spermy S. A.";
+    private const string Phrase = "SUN Example Company S. A.";
 
     private readonly HttpClient _client;
 

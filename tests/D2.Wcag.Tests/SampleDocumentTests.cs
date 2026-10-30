@@ -49,7 +49,7 @@ public class SampleDocumentTests
 
         Assert.True(result.IsValid, result.Summary);
         Assert.Empty(result.Warnings);
-        Assert.Equal("Wzór pisma firmowego. Bank Spermy S. A.", result.Document!.Title);
+        Assert.Equal("Wzór pisma firmowego. Example Company S. A.", result.Document!.Title);
         Assert.Equal(7, result.Document.Headings);
         Assert.Equal(1, result.Document.Tables);
     }

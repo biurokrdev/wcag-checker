@@ -9,7 +9,7 @@ Biblioteka .NET 8 do sprawdzania dokumentów Word (DOCX) według **wersjonowanyc
 |---|---|---|
 | `wcag/2.1` | dostępność dokumentu Word (poziom AA): nagłówki i fałszywe nagłówki, listy, tabele, obrazy (także w nagłówkach i stopkach), łącza, kontrast, puste znaki, numer strony, spis treści, tytuł, język | potwierdzony; pokrycie kryteriów w sekcji [Pokrycie kryteriów WCAG 2.1](#pokrycie-kryteriów-wcag-21) |
 | `firmowy/1.9` | standard pism firmowych obowiązujący dotąd: fraza instytucji w tytule i autorze, marginesy 36 pt | potwierdzony |
-| `firmowy/2.0` | standard pism firmowych według „Specyfikacji technicznej guidebooka” 1.0: A4 i marginesy 12,7 mm, wyrównanie do lewej, OHH Me / OHH Display, interlinia 1,2, typografia H1–H5, paleta 7 kolorów, łącza, stopka, spis treści, listy, tabele, metadane, warianty, WZÓR (reguły G-01…G-16) | potwierdzony; sekcja [Standard pism firmowych 2.0](#standard-pism-firmowych-20) |
+| `firmowy/2.0` | standard pism firmowych według „Specyfikacji technicznej guidebooka” 1.0: A4 i marginesy 12,7 mm, wyrównanie do lewej, SUN Me / SUN Display, interlinia 1,2, typografia H1–H5, paleta 7 kolorów, łącza, stopka, spis treści, listy, tabele, metadane, warianty, WZÓR (reguły G-01…G-16) | potwierdzony; sekcja [Standard pism firmowych 2.0](#standard-pism-firmowych-20) |
 
 Profil walidacji tylko wybiera standardy (domyślnie `wcag/2.1` + `firmowy/1.9`); parametry reguł są w samych standardach. Wersję 3.0, 4.0, … dokłada się bez zmian w bibliotece: jako nową instancję `CorporateStandard` w kodzie albo w konfiguracji aplikacji, a wymaganie, którego nie da się opisać parametrem, jako własną implementację `IDocumentStandard` (sekcja [Standardy i wersje](#standardy-i-wersje)).
 
@@ -78,7 +78,7 @@ Wejście: `byte[]`, `Stream`, ścieżka pliku; wersje `Async` dla strumienia.
 var v30 = new CorporateStandard
 {
     Version = "3.0", Confirmed = false, Note = "Do potwierdzenia z właścicielem standardu.",
-    RequiredMetadataPhrase = "OHH Bank Spermy S. A.", RequiredMarginPt = 56.7, EnforceA4Format = true, RequiredFontName = "Arial", MinFontSizePt = 11,
+    RequiredMetadataPhrase = "SUN Example Company S. A.", RequiredMarginPt = 56.7, EnforceA4Format = true, RequiredFontName = "Arial", MinFontSizePt = 11,
 };
 var validator = new WcagDocxValidator(catalog: StandardCatalog.Default.With(v30));
 ```
@@ -87,7 +87,7 @@ var validator = new WcagDocxValidator(catalog: StandardCatalog.Default.With(v30)
 // w konfiguracji aplikacji (patrz examples/api/D2.Wcag.Api/appsettings.json)
 "Wcag": {
   "Standards": [ "wcag/2.1", "firmowy/3.0" ],
-  "CorporateStandards": [ { "Version": "3.0", "RequiredMetadataPhrase": "OHH Bank Spermy S. A.", "RequiredMarginPt": 56.7, "EnforceA4Format": true } ]
+  "CorporateStandards": [ { "Version": "3.0", "RequiredMetadataPhrase": "SUN Example Company S. A.", "RequiredMarginPt": 56.7, "EnforceA4Format": true } ]
 }
 ```
 
@@ -103,24 +103,26 @@ Reguły WCAG też da się dostroić: `new WcagStandard(new WcagStandardOptions {
 |---|---|---|
 | G-01 | A4 210 × 297 mm, marginesy 12,7 mm (36 pt) z każdej strony | `PAGE_FORMAT_NOT_A4`, `INVALID_MARGINS`, `MARGINS_MISSING` |
 | G-02 | kolor efektywny każdego fragmentu tekstu z palety #000000, #FF6200, #0000FF, #AB0066, #7724FF, #696969, #4D0020; kolor użyty zgodnie z przeznaczeniem (pomarańcz tylko H1 i punktory, fiolet tylko łącza, szary tylko stopka i dane rejestrowe 8 pt, bordo tylko grafika) | `TEXT_COLOR_NOT_ALLOWED`, `TEXT_COLOR_USAGE_MISMATCH` |
-| G-03 | H1 OHH Display 24 pt (#000000/#FF6200/#0000FF) albo 32 pt (#FF6200); H2 16, H3 14, H4 12, H5 10 pt OHH Me (#000000/#0000FF); wszystkie Bold | `HEADING_STYLE_MISMATCH` |
+| G-03 | H1 SUN Display 24 pt (#000000/#FF6200/#0000FF) albo 32 pt (#FF6200); H2 16, H3 14, H4 12, H5 10 pt SUN Me (#000000/#0000FF); wszystkie Bold | `HEADING_STYLE_MISMATCH` |
 | G-04 | brak justowania | `JUSTIFICATION_FORBIDDEN` |
 | G-05 | H1: 42,5 pt nad (w piśmie z polem adresowym ok. 210 pt), 34 pt pod | `HEADING_SPACING_MISMATCH` |
-| G-06 | automatyczny spis treści powyżej 9 stron (liczba stron z właściwości pliku); „Spis treści” nie jest nagłówkiem, ma styl OHH Me Bold 10 pt | `TOC_REQUIRED`, `TOC_HEADING_IN_TOC`, `TOC_HEADING_STYLE_MISMATCH` |
+| G-06 | automatyczny spis treści powyżej 9 stron (liczba stron z właściwości pliku); „Spis treści” nie jest nagłówkiem, ma styl SUN Me Bold 10 pt | `TOC_REQUIRED`, `TOC_HEADING_IN_TOC`, `TOC_HEADING_STYLE_MISMATCH` |
 | G-07 | hierarchia nagłówków: pierwszy to H1, bez przeskoków poziomów (to samo zgłoszenie co WCAG; walidator scala duplikaty) | `HEADING_LEVEL_SKIPPED` |
 | G-08, G-09 | tabele danych: wiersz nagłówkowy oznaczony (czyli powtarzany na kolejnych stronach), bez pustych komórek, wiersze niepodzielne, krawędzie 1 pt #000000, nagłówki Bold, tekst do lewej i do środka w pionie, tytuł w tekście alternatywnym; brak opisu to informacja | `TABLE_MISSING_HEADERS`, `TABLE_EMPTY_CELL`, `TABLE_ROW_CAN_SPLIT`, `TABLE_BORDER_MISMATCH`, `TABLE_HEADER_NOT_BOLD`, `TABLE_ALIGNMENT_MISMATCH`, `TABLE_TITLE_MISSING`, `TABLE_DESCRIPTION_MISSING` |
-| G-10 | grafika z „logo” w nazwie albo opisie: alt „Bank Spermy S. A. logo”, 44 × 10 mm; „symbol”/„identyfikator”: alt „Symbol graficzny Bank Spermy S. A.”, 22 × 22 mm (±1 mm) | `BRAND_IMAGE_MISMATCH` |
-| G-11 | stopka OHH Me 8 pt #696969, interlinia 1,2, z numerem strony i tytułem; dokument ze stroną tytułową (H1 32 pt) ma „Inną na pierwszej stronie” z pustą stopką | `FOOTER_STYLE_MISMATCH`, `FOOTER_TITLE_MISSING`, `LINE_SPACING_MISMATCH`, `TITLE_PAGE_FOOTER_PRESENT` |
-| G-12 | Title „[Tytuł dokumentu]. Bank Spermy S. A.”, Author = bank | `TITLE_SUFFIX_INVALID`, `AUTHOR_NOT_INSTITUTION` |
+| G-10 | grafika z „logo” w nazwie albo opisie: alt „Example Company S. A. logo”, 44 × 10 mm; „symbol”/„identyfikator”: alt „Symbol graficzny Example Company S. A.”, 22 × 22 mm (±1 mm) | `BRAND_IMAGE_MISMATCH` |
+| G-11 | stopka SUN Me 8 pt #696969, interlinia 1,2, z numerem strony i tytułem; dokument ze stroną tytułową (H1 32 pt) ma „Inną na pierwszej stronie” z pustą stopką | `FOOTER_STYLE_MISMATCH`, `FOOTER_TITLE_MISSING`, `LINE_SPACING_MISMATCH`, `TITLE_PAGE_FOOTER_PRESENT` |
+| G-12 | Title „[Tytuł dokumentu]. Example Company S. A.”, Author = bank | `TITLE_SUFFIX_INVALID`, `AUTHOR_NOT_INSTITUTION` |
 | G-13 | język dokumentu ustawiony (to samo zgłoszenie co WCAG) | `LANGUAGE_MISSING`, `LANGUAGE_INVALID` |
 | G-14 | `[wariant N]` … `[koniec wariantu N]` zagnieżdżone i domknięte, znaczniki i `[lub]` w #AB0066, zapisy `<…>` w #0000FF, bez skrótów fleksyjnych („Zostałam [lub] em”); wewnątrz wariantu alternatywa „PLN / EUR” zamiast `[lub]` to ostrzeżenie | `VARIANT_MARKER_UNBALANCED`, `VARIANT_MARKER_COLOR_MISMATCH`, `VARIABLE_COLOR_MISMATCH`, `VARIANT_INFLECTION_SHORTCUT`, `VARIANT_SLASH_ALTERNATIVE` |
-| G-16 | napis WZÓR w nagłówku strony (czyli na każdej stronie), OHH Me Bold 28 pt #000000 | `SAMPLE_MARK_NOT_ON_EVERY_PAGE`, `SAMPLE_MARK_STYLE_MISMATCH` |
-| rozdz. 1, 3, 4 | rodzina OHH Me (H1 OHH Display), grubość nie w nazwie rodziny; interlinia 1,2; tekst podstawowy 10 pt (12/14 pt warunkowo; zwrot „Szanowni Państwo” 14/16 pt w układzie z polem adresowym) | `FONT_FAMILY_MISMATCH`, `FONT_WEIGHT_IN_FAMILY_NAME`, `LINE_SPACING_MISMATCH`, `BODY_TEXT_SIZE_MISMATCH` |
+| G-16 | napis WZÓR w nagłówku strony (czyli na każdej stronie), SUN Me Bold 28 pt #000000 | `SAMPLE_MARK_NOT_ON_EVERY_PAGE`, `SAMPLE_MARK_STYLE_MISMATCH` |
+| rozdz. 1, 3, 4 | rodzina SUN Me (H1 SUN Display), grubość nie w nazwie rodziny; interlinia 1,2; tekst podstawowy 10 pt (12/14 pt warunkowo; zwrot „Szanowni Państwo” 14/16 pt w układzie z polem adresowym) | `FONT_FAMILY_MISMATCH`, `FONT_WEIGHT_IN_FAMILY_NAME`, `LINE_SPACING_MISMATCH`, `BODY_TEXT_SIZE_MISMATCH` |
 | rozdz. 3.2, 7 | łącza #7724FF z podkreśleniem; punktory #FF6200/#000000, numery list pogrubione | `LINK_STYLE_MISMATCH`, `LIST_BULLET_COLOR_MISMATCH`, `LIST_NUMBER_NOT_BOLD` |
 
 Kontrole ręczne w podsumowaniu: G-07 (drzewo tagów w wygenerowanym PDF), G-10 (alt text ikon „tak/nie” i QR z kontekstu, pole na barcode dekoracyjne, zasoby z OrangeSharing), G-13 (język fragmentów), G-15 (sygnatura 270°, SIGNOTEK), wariant układu (dane rejestrowe, pole adresowe), pola podpisów i kontrolki w px. Parametry, które specyfikacja zostawia „do weryfikacji” (odstępy H2–H5, wcięcia list, pozycja WZÓR, próg kontrastu, format numeracji), nie są sprawdzane.
 
 Naprawy (tylko jednoznaczne): marginesy 36 pt, wyrównanie do lewej, pierwszy wiersz tabeli jako nagłówkowy (gdy wszystkie komórki wypełnione), „nie dziel wiersza” w tabelach, tytuł z dopiskiem banku, autor = bank. Typografii, kolorów i treści wariantów naprawa nie zmienia.
+
+Standard 2.0 obejmuje wszystko, co sprawdza 1.9: marginesy 36 pt tą samą regułą i naprawą, a frazę instytucji w tytule i autorze (`TITLE_PHRASE_MISSING`, `AUTHOR_PHRASE_MISSING`) zastępuje ścisły format z rozdz. 17 (`TITLE_SUFFIX_INVALID`, `AUTHOR_NOT_INSTITUTION`). Pilnuje tego test `Standard20_CoversEveryRequirementOf19`. Różnica: 1.9 wymaga frazy `CorporateStandards.Phrase` („SUN Example Company S. A.”), 2.0 nazwy z rozdz. 17 specyfikacji (`CorporateStandard20.DefaultInstitution`, „Example Company S. A.”); każdy standard sprawdza dokument według własnej definicji, więc ten sam tytuł nie przejdzie obu naraz, dopóki nazwy nie zostaną ujednolicone.
 
 Gdy profil łączy `wcag/2.1` z `firmowy/2.0`, zgłoszenia identyczne co do kodu, treści i wystąpień (hierarchia nagłówków, język, wiersz nagłówkowy tabeli) są scalane i przypisane do pierwszego standardu w profilu.
 

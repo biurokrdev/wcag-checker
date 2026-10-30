@@ -16,7 +16,7 @@ public class CorporateStandard20Tests
 
     private static WcagValidationResult Validate(byte[] document) => new WcagDocxValidator().Validate(document, Only20);
 
-    // Szablon zgodny ze standardem: docDefaults OHH Me 10 pt, interlinia 1,2, nagłówki według tabeli 3.1, H1 z odstępami
+    // Szablon zgodny ze standardem: docDefaults SUN Me 10 pt, interlinia 1,2, nagłówki według tabeli 3.1, H1 z odstępami
     // 42,5/34 pt, stopka „Strona: N. Tytuł” 8 pt #696969, metadane „[Tytuł]. Bank”, autor = bank.
     private static DocxBuilder Compliant() => new() { Title = $"Regulamin promocji. {Bank}", Author = Bank };
 
@@ -32,7 +32,7 @@ public class CorporateStandard20Tests
             var styles = main.StyleDefinitionsPart!.Styles!;
             styles.DocDefaults = new DocDefaults(
                 new RunPropertiesDefault(new RunPropertiesBaseStyle(
-                    new RunFonts { Ascii = "OHH Me", HighAnsi = "OHH Me" }, new Color { Val = "000000" }, new FontSize { Val = "20" }, new Languages { Val = "pl-PL" })),
+                    new RunFonts { Ascii = "SUN Me", HighAnsi = "SUN Me" }, new Color { Val = "000000" }, new FontSize { Val = "20" }, new Languages { Val = "pl-PL" })),
                 new ParagraphPropertiesDefault(new ParagraphPropertiesBaseStyle(new SpacingBetweenLines { Line = "288", LineRule = LineSpacingRuleValues.Auto })));
 
             void HeadingRun(int level, string font, string size, string color, SpacingBetweenLines? spacing = null)
@@ -45,10 +45,10 @@ public class CorporateStandard20Tests
                 }
             }
 
-            HeadingRun(1, "OHH Display", "48", "FF6200", new SpacingBetweenLines { Before = "850", After = "680", Line = "288", LineRule = LineSpacingRuleValues.Auto });
-            HeadingRun(2, "OHH Me", "32", "000000");
-            HeadingRun(3, "OHH Me", "28", "0000FF");
-            HeadingRun(4, "OHH Me", "24", "000000");
+            HeadingRun(1, "SUN Display", "48", "FF6200", new SpacingBetweenLines { Before = "850", After = "680", Line = "288", LineRule = LineSpacingRuleValues.Auto });
+            HeadingRun(2, "SUN Me", "32", "000000");
+            HeadingRun(3, "SUN Me", "28", "0000FF");
+            HeadingRun(4, "SUN Me", "24", "000000");
 
             var footer = main.FooterParts.Single();
             footer.Footer = new Footer(new Paragraph(
@@ -97,6 +97,30 @@ public class CorporateStandard20Tests
         Assert.All(codes, c => Assert.NotEqual(c.ToLowerInvariant().Replace('_', ' '), IssueLabels.Of(c)));
     }
 
+    // Standard 2.0 ma obejmować wszystko, co sprawdza 1.9: ten sam kod kontroli albo kod, który go zastąpił ściślejszym
+    // wymaganiem (fraza w metadanych → format tytułu i autora z rozdz. 17). Nowy parametr w 1.9 bez odpowiednika w 2.0
+    // ma tu wyjść na teście, a nie u klienta.
+    [Fact]
+    public void Standard20_CoversEveryRequirementOf19()
+    {
+        var superseded = new Dictionary<string, string>
+        {
+            [IssueCodes.TitlePhraseMissing] = IssueCodes.TitleSuffixInvalid,
+            [IssueCodes.AuthorPhraseMissing] = IssueCodes.AuthorNotInstitution,
+        };
+        var v20 = StandardCatalog.Default.Get("firmowy/2.0");
+        var codes20 = v20.Checks.SelectMany(c => c.Codes).ToHashSet();
+
+        foreach (var code in CorporateStandards.V19.Checks.SelectMany(c => c.Codes))
+        {
+            Assert.True(codes20.Contains(superseded.GetValueOrDefault(code, code)), $"Standard 2.0 nie sprawdza wymagania 1.9: {code}");
+        }
+
+        var fixes19 = CorporateStandards.V19.Fixes.SelectMany(f => f.Codes).Select(c => superseded.GetValueOrDefault(c, c));
+        var fixes20 = v20.Fixes.SelectMany(f => f.Codes).ToHashSet();
+        Assert.All(fixes19, code => Assert.Contains(code, fixes20));
+    }
+
     [Fact]
     public void CompliantDocument_HasNoCorporate20Issues()
     {
@@ -141,7 +165,7 @@ public class CorporateStandard20Tests
     {
         var result = Validate(Build(Compliant().Heading(1, "A")
             .Runs(new Run(new RunProperties(new RunFonts { Ascii = "Calibri" }), new Text("Calibri")))
-            .Runs(new Run(new RunProperties(new RunFonts { Ascii = "OHH Me Bold" }), new Text("Zła nazwa")))));
+            .Runs(new Run(new RunProperties(new RunFonts { Ascii = "SUN Me Bold" }), new Text("Zła nazwa")))));
 
         Assert.Contains(result.Errors, i => i.Code == IssueCodes.FontFamilyMismatch && i.Message.Contains("Calibri"));
         Assert.Contains(result.Errors, i => i.Code == IssueCodes.FontWeightInFamilyName);

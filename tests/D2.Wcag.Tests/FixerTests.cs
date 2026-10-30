@@ -5,7 +5,7 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace D2.Wcag.Tests;
 
-// Domyślny profil: WCAG 2.1 + standard firmowy 1.9 (fraza „OHH Bank Spermy S. A.”, marginesy 36 pt).
+// Domyślny profil: WCAG 2.1 + standard firmowy 1.9 (fraza „SUN Example Company S. A.”, marginesy 36 pt).
 public class FixerTests
 {
     private const string Phrase = CorporateStandards.Phrase;

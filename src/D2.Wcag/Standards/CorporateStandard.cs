@@ -183,7 +183,7 @@ public sealed class CorporateStandard : IDocumentStandard
 /// <summary>Wbudowane wersje standardu pism firmowych. Nowa wersja = nowa właściwość tutaj albo wpis w konfiguracji aplikacji.</summary>
 public static class CorporateStandards
 {
-    public const string Phrase = "OHH Bank Spermy S. A.";
+    public const string Phrase = "SUN Example Company S. A.";
 
     /// <summary>1.9: wymagania obowiązujące dotąd (fraza w metadanych, marginesy 36 pt).</summary>
     public static CorporateStandard V19 { get; } = new()

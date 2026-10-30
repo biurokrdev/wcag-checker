@@ -33,15 +33,15 @@ Co jest w szablonie:
 | Element | Styl / ustawienie |
 |---|---|
 | Strona | A4, marginesy 12,7 mm, interlinia 1,2, wyrównanie do lewej (bez justowania) |
-| Tekst | „Normalny”: OHH Me 10 pt, #000000, język pl-PL |
-| Nagłówki | „Nagłówek 1”: OHH Display 24 pt pogrubiony #FF6200, odstęp 15 mm przed i 12 mm po; „Nagłówek 2–5”: OHH Me 16/14/12/10 pt pogrubiony #000000; hierarchia bez przeskoków poziomów |
+| Tekst | „Normalny”: SUN Me 10 pt, #000000, język pl-PL |
+| Nagłówki | „Nagłówek 1”: SUN Display 24 pt pogrubiony #FF6200, odstęp 15 mm przed i 12 mm po; „Nagłówek 2–5”: SUN Me 16/14/12/10 pt pogrubiony #000000; hierarchia bez przeskoków poziomów |
 | Zapisy zmienne | styl znakowy „Zapis zmienny” (#0000FF), np. `<imię i nazwisko>` |
 | Warianty | styl znakowy „Znacznik wariantu” (#AB0066) dla `[wariant 1]`, `[lub]`, `[koniec wariantu 1]` |
 | Hiperłącza | styl „Hiperłącze”: #7724FF, podkreślenie, opisowy tekst linku |
 | Listy | punktory #FF6200, numeracja „1)” pogrubiona; prawdziwe listy Worda (numbering), nie ręczne znaki |
 | Tabela | styl „Tabela standardowa”: krawędzie 1 pt czarne, wiersz nagłówkowy powtarzany i pogrubiony, wiersze bez dzielenia między stronami, komórki wyśrodkowane w pionie, tekst do lewej, tytuł i opis tabeli (tekst alternatywny), bez pustych komórek |
-| Nagłówek strony | logo z tekstem alternatywnym „Bank Spermy S. A. logo” oraz napis „WZÓR” (OHH Me 28 pt pogrubiony) – usunąć w dokumencie docelowym |
-| Stopka | „Strona: N z M. Wzór pisma firmowego”, OHH Me 8 pt #696969 (pola PAGE i NUMPAGES) |
-| Metadane | tytuł „Wzór pisma firmowego. Bank Spermy S. A.”, autor „Bank Spermy S. A.”, język pl-PL |
+| Nagłówek strony | logo z tekstem alternatywnym „Example Company S. A. logo” oraz napis „WZÓR” (SUN Me 28 pt pogrubiony) – usunąć w dokumencie docelowym |
+| Stopka | „Strona: N z M. Wzór pisma firmowego”, SUN Me 8 pt #696969 (pola PAGE i NUMPAGES) |
+| Metadane | tytuł „Wzór pisma firmowego. Example Company S. A.”, autor „Example Company S. A.”, język pl-PL |
 
-Logo w pliku to zaślepka (jednopikselowy PNG rozciągnięty do 44 × 10 mm); w szablonie produkcyjnym podmień ją na plik logo, zostawiając tekst alternatywny. Czcionki OHH Me / OHH Display muszą być zainstalowane, inaczej Word podstawi zastępczą tylko na ekranie – w pliku nazwa czcionki zostaje poprawna. Po zmianie tytułu dokumentu zmień też tytuł w stopce i we właściwościach pliku (Plik → Informacje → Tytuł), zachowując dopisek „. Bank Spermy S. A.”. Gdy pismo ma więcej niż 9 stron, dodaj spis treści (wymóg standardu 2.0).
+Logo w pliku to zaślepka (jednopikselowy PNG rozciągnięty do 44 × 10 mm); w szablonie produkcyjnym podmień ją na plik logo, zostawiając tekst alternatywny. Czcionki SUN Me / SUN Display muszą być zainstalowane, inaczej Word podstawi zastępczą tylko na ekranie – w pliku nazwa czcionki zostaje poprawna. Po zmianie tytułu dokumentu zmień też tytuł w stopce i we właściwościach pliku (Plik → Informacje → Tytuł), zachowując dopisek „. Example Company S. A.”. Gdy pismo ma więcej niż 9 stron, dodaj spis treści (wymóg standardu 2.0).
