@@ -1,0 +1,89 @@
+{
+  "outcome": "Valid",
+  "summary": "5 ostrzeżeń.",
+  "standards": [
+    {
+      "key": "firmowy/1.9",
+      "id": "firmowy",
+      "version": "1.9",
+      "name": "Standard pism firmowych 1.9",
+      "confirmed": true
+    }
+  ],
+  "document": {
+    "author": "Krzysztof Rybka",
+    "language": "pl-PL",
+    "paragraphs": 13,
+    "headings": 0,
+    "tables": 1,
+    "images": 2
+  },
+  "outline": [],
+  "issues": [
+    {
+      "code": "AUTHOR_PHRASE_MISSING",
+      "severity": "Warning",
+      "category": "Metadata",
+      "standard": "firmowy/1.9",
+      "message": "Autor „Krzysztof Rybka” nie zawiera wymaganej frazy „SUN Example Company S. A.”.",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": "(metadane dokumentu)"
+        }
+      ]
+    },
+    {
+      "code": "INVALID_MARGINS",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/1.9",
+      "message": "Margines górny ma 70,9 pt, a wymagane jest 36 pt.",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": "(ustawienia strony)"
+        }
+      ]
+    },
+    {
+      "code": "INVALID_MARGINS",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/1.9",
+      "message": "Margines dolny ma 70,9 pt, a wymagane jest 36 pt.",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": "(ustawienia strony)"
+        }
+      ]
+    },
+    {
+      "code": "INVALID_MARGINS",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/1.9",
+      "message": "Margines lewy ma 70,9 pt, a wymagane jest 36 pt.",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": "(ustawienia strony)"
+        }
+      ]
+    },
+    {
+      "code": "INVALID_MARGINS",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/1.9",
+      "message": "Margines prawy ma 70,9 pt, a wymagane jest 36 pt.",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": "(ustawienia strony)"
+        }
+      ]
+    }
+  ]
+}

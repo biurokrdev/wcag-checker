@@ -1,0 +1,642 @@
+{
+  "status": "Valid",
+  "summary": "Dokument spełnia wszystkie automatycznie sprawdzane wymagania (1 informacja).",
+  "standards": [
+    {
+      "key": "wcag/2.1",
+      "id": "wcag",
+      "version": "2.1",
+      "name": "WCAG 2.1 AA (dokument Word)",
+      "confirmed": true,
+      "note": null
+    }
+  ],
+  "document": {
+    "fileName": "szablon_pisma_2.0.docx",
+    "title": "Wzór pisma firmowego. Example Company S. A.",
+    "author": "Example Company S. A.",
+    "language": "pl-PL",
+    "paragraphs": 30,
+    "headings": 7,
+    "tables": 1,
+    "images": 0
+  },
+  "counts": {
+    "errors": 0,
+    "warnings": 0,
+    "infos": 1
+  },
+  "issues": [
+    {
+      "code": "MANUAL_CHECK_SUGGESTED",
+      "label": "Zalecane sprawdzenie ręczne",
+      "severity": "Info",
+      "category": "Document",
+      "message": "Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie.",
+      "standard": "wcag/2.1",
+      "fixable": false
+    }
+  ],
+  "outline": [
+    {
+      "level": 1,
+      "text": "Wzór pisma firmowego"
+    },
+    {
+      "level": 2,
+      "text": "Dane umowy"
+    },
+    {
+      "level": 2,
+      "text": "Wykaz opłat"
+    },
+    {
+      "level": 2,
+      "text": "Warunki promocji"
+    },
+    {
+      "level": 3,
+      "text": "Dokumenty do pobrania"
+    },
+    {
+      "level": 4,
+      "text": "Kontakt"
+    },
+    {
+      "level": 5,
+      "text": "Podpis"
+    }
+  ],
+  "wcag": {
+    "summary": "3 kryteria spełnione, 0 niespełnionych, 15 do przeglądu ręcznego.",
+    "passed": 3,
+    "failed": 0,
+    "needsReview": 15,
+    "notChecked": 0,
+    "noFailures": true,
+    "criteria": [
+      {
+        "id": "1.1.1",
+        "name": "Treść nietekstowa",
+        "level": "A",
+        "coverage": "Partial",
+        "status": "NeedsReview",
+        "codes": [
+          "IMAGE_MISSING_ALT_TEXT",
+          "IMAGE_ALT_TEXT_PLACEHOLDER"
+        ],
+        "note": "Automat sprawdza, czy każda grafika (DrawingML, VML, także w nagłówkach, stopkach i przypisach) ma tekst alternatywny albo jest oznaczona jako dekoracyjna i czy opis nie jest tymczasowy. Czy opis oddaje treść obrazu, ocenia człowiek.",
+        "issues": []
+      },
+      {
+        "id": "1.3.1",
+        "name": "Informacje i relacje",
+        "level": "A",
+        "coverage": "Partial",
+        "status": "NeedsReview",
+        "codes": [
+          "EMPTY_HEADING",
+          "HEADING_LEVEL_SKIPPED",
+          "HEADING_TOO_LONG",
+          "FAKE_HEADING",
+          "CONTENT_BEFORE_HEADING",
+          "LIST_MISSING_SEMANTIC",
+          "TABLE_MISSING_HEADERS",
+          "TABLE_HEADER_CELL_EMPTY",
+          "TABLE_STRUCTURE_INVALID",
+          "TABLE_IRREGULAR",
+          "TABLE_MERGED_CELLS",
+          "TABLE_CAPTION_MISSING",
+          "NESTED_TABLE",
+          "TABLE_LAYOUT_SUSPECTED",
+          "MANUAL_TABS",
+          "REPEATED_BLANKS",
+          "UNSTRUCTURED_CONTENT",
+          "DOCUMENT_MISSING_SECTIONS"
+        ],
+        "note": "Nagłówki jako style (także fałszywe nagłówki rozpoznawane po formatowaniu efektywnym), listy jako listy, tabele danych z wierszem nagłówkowym, tabele układu wskazane osobno, bez układu robionego tabulatorami i pustymi akapitami. Czy hierarchia nagłówków odpowiada treści, ocenia człowiek.",
+        "issues": []
+      },
+      {
+        "id": "1.3.2",
+        "name": "Zrozumiała kolejność",
+        "level": "A",
+        "coverage": "Partial",
+        "status": "NeedsReview",
+        "codes": [
+          "FLOATING_ELEMENTS_PRESENT",
+          "UNCLEAR_READING_ORDER"
+        ],
+        "note": "Automat wskazuje elementy pływające, pola tekstowe i tabele z opływaniem, których miejsce w kolejności odczytu nie wynika z treści, oraz brak nagłówków. Sam porządek treści ocenia człowiek.",
+        "issues": []
+      },
+      {
+        "id": "1.3.3",
+        "name": "Właściwości zmysłowe",
+        "level": "A",
+        "coverage": "Manual",
+        "status": "NeedsReview",
+        "codes": [],
+        "note": "Odwołania typu „zielone pole po prawej” wymagają lektury.",
+        "issues": []
+      },
+      {
+        "id": "1.4.1",
+        "name": "Użycie koloru",
+        "level": "A",
+        "coverage": "Manual",
+        "status": "NeedsReview",
+        "codes": [],
+        "note": "Czy kolor jest jedynym nośnikiem informacji, ocenia człowiek.",
+        "issues": []
+      },
+      {
+        "id": "1.4.3",
+        "name": "Kontrast (minimum)",
+        "level": "AA",
+        "coverage": "Partial",
+        "status": "NeedsReview",
+        "codes": [
+          "HIDDEN_TEXT_LOW_CONTRAST",
+          "TEXT_LOW_CONTRAST"
+        ],
+        "note": "Automat liczy kontrast dla kolorów wynikających z pliku (kolor czcionki ze stylu albo bezpośredni, cieniowanie tekstu, akapitu i komórki, wyróżnienie). Kolory motywu bez wartości, tekst na obrazach i grafiki ocenia człowiek.",
+        "issues": []
+      },
+      {
+        "id": "1.4.5",
+        "name": "Obrazy tekstu",
+        "level": "AA",
+        "coverage": "Manual",
+        "status": "NeedsReview",
+        "codes": [],
+        "note": "Czy obraz zawiera tekst, który powinien być tekstem, ocenia człowiek.",
+        "issues": []
+      },
+      {
+        "id": "1.4.8",
+        "name": "Prezentacja wizualna (zalecenie)",
+        "level": "AAA",
+        "coverage": "Partial",
+        "status": "NeedsReview",
+        "codes": [
+          "JUSTIFIED_TEXT"
+        ],
+        "note": "Wyjustowanie tekstu zgłaszane jako informacja; poziom AAA, nie wpływa na wynik.",
+        "issues": []
+      },
+      {
+        "id": "1.4.10",
+        "name": "Dopasowanie do ekranu",
+        "level": "AA",
+        "coverage": "Manual",
+        "status": "NeedsReview",
+        "codes": [],
+        "note": "Nie dotyczy dokumentu Word wprost; tabele i pola tekstowe o stałej szerokości ogląda człowiek.",
+        "issues": []
+      },
+      {
+        "id": "2.4.2",
+        "name": "Tytuł strony",
+        "level": "A",
+        "coverage": "Automatic",
+        "status": "Passed",
+        "codes": [
+          "TITLE_MISSING",
+          "TITLE_GENERIC"
+        ],
+        "note": "Tytuł w metadanych, inny niż nazwa domyślna albo nazwa pliku.",
+        "issues": []
+      },
+      {
+        "id": "2.4.4",
+        "name": "Cel łącza (w kontekście)",
+        "level": "A",
+        "coverage": "Partial",
+        "status": "NeedsReview",
+        "codes": [
+          "INVALID_HYPERLINK",
+          "HYPERLINK_AMBIGUOUS"
+        ],
+        "note": "Automat wykrywa łącza bez celu, bez tekstu, z samym adresem, z tekstem w rodzaju „tutaj” i ten sam tekst prowadzący do różnych miejsc. Czy tekst łącza opisuje cel, ocenia człowiek.",
+        "issues": []
+      },
+      {
+        "id": "2.4.5",
+        "name": "Wiele dróg",
+        "level": "AA",
+        "coverage": "Partial",
+        "status": "NeedsReview",
+        "codes": [
+          "TOC_MISSING",
+          "FOOTER_MISSING",
+          "PAGE_NUMBERS_MISSING"
+        ],
+        "note": "Spis treści w długim dokumencie i numery stron.",
+        "issues": []
+      },
+      {
+        "id": "2.4.6",
+        "name": "Nagłówki i etykiety",
+        "level": "AA",
+        "coverage": "Partial",
+        "status": "NeedsReview",
+        "codes": [
+          "EMPTY_HEADING",
+          "HEADING_TOO_LONG",
+          "FORM_FIELD_LABEL_MISSING"
+        ],
+        "note": "Nagłówki istnieją, nie są puste ani nadmiernie długie; pola formularza mają etykiety. Czy opisują treść, ocenia człowiek.",
+        "issues": []
+      },
+      {
+        "id": "3.1.1",
+        "name": "Język strony",
+        "level": "A",
+        "coverage": "Automatic",
+        "status": "Passed",
+        "codes": [
+          "LANGUAGE_MISSING",
+          "LANGUAGE_INVALID"
+        ],
+        "note": "Język dokumentu ustawiony (właściwości pakietu albo domyślne ustawienia stylów) i zapisany jako kod języka.",
+        "issues": []
+      },
+      {
+        "id": "3.1.2",
+        "name": "Język części",
+        "level": "AA",
+        "coverage": "Manual",
+        "status": "NeedsReview",
+        "codes": [],
+        "note": "Fragmenty w innym języku powinny mieć oznaczony język (w:lang); automat nie rozpozna języka tekstu.",
+        "issues": []
+      },
+      {
+        "id": "3.3.2",
+        "name": "Etykiety lub instrukcje",
+        "level": "A",
+        "coverage": "Partial",
+        "status": "NeedsReview",
+        "codes": [
+          "FORM_FIELD_LABEL_MISSING"
+        ],
+        "note": "Pola FORMTEXT i formanty zawartości mają tekst etykiety albo tytuł.",
+        "issues": []
+      },
+      {
+        "id": "4.1.1",
+        "name": "Poprawność kodu",
+        "level": "A",
+        "coverage": "Automatic",
+        "status": "Passed",
+        "codes": [
+          "INVALID_DOCUMENT"
+        ],
+        "note": "Pakiet DOCX otwiera się i ma część główną.",
+        "issues": []
+      },
+      {
+        "id": "4.1.2",
+        "name": "Nazwa, rola, wartość",
+        "level": "A",
+        "coverage": "Partial",
+        "status": "NeedsReview",
+        "codes": [
+          "FORM_FIELD_LABEL_MISSING"
+        ],
+        "note": "Formanty mają nazwę (etykietę albo tytuł); rola i wartość wynikają z typu formantu w Wordzie.",
+        "issues": []
+      }
+    ]
+  },
+  "reportId": "<id>",
+  "summaryTable": [
+    {
+      "standard": "wcag/2.1",
+      "standardName": "WCAG 2.1 AA (dokument Word)",
+      "section": "Dokument",
+      "rows": [
+        {
+          "id": "file",
+          "name": "Poprawność pliku DOCX",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "title",
+          "name": "Tytuł dokumentu w metadanych",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "author",
+          "name": "Autor w metadanych",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "language",
+          "name": "Język dokumentu",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "final",
+          "name": "Wersja ostateczna (bez zmian śledzonych i komentarzy)",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "sections",
+          "name": "Sekcje i ustawienia strony",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "page-numbers",
+          "name": "Numer strony w stopce albo nagłówku",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "toc",
+          "name": "Spis treści w długim dokumencie",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        }
+      ]
+    },
+    {
+      "standard": "wcag/2.1",
+      "standardName": "WCAG 2.1 AA (dokument Word)",
+      "section": "Struktura",
+      "rows": [
+        {
+          "id": "headings",
+          "name": "Hierarchia nagłówków",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "fake-headings",
+          "name": "Nagłówki jako style, nie formatowanie",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "reading-order",
+          "name": "Kolejność odczytu (elementy pływające, pola tekstowe)",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "content",
+          "name": "Treść strukturalna",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "blanks",
+          "name": "Układ bez tabulatorów i pustych znaków",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "lists",
+          "name": "Listy jako listy",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        }
+      ]
+    },
+    {
+      "standard": "wcag/2.1",
+      "standardName": "WCAG 2.1 AA (dokument Word)",
+      "section": "Tekst",
+      "rows": [
+        {
+          "id": "contrast",
+          "name": "Kontrast tekstu z tłem",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "caps",
+          "name": "Tekst bez długich ciągów wielkich liter",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "justified",
+          "name": "Wyrównanie do lewej (zalecenie)",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        }
+      ]
+    },
+    {
+      "standard": "wcag/2.1",
+      "standardName": "WCAG 2.1 AA (dokument Word)",
+      "section": "Obrazy",
+      "rows": [
+        {
+          "id": "alt",
+          "name": "Tekst alternatywny obrazów",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        }
+      ]
+    },
+    {
+      "standard": "wcag/2.1",
+      "standardName": "WCAG 2.1 AA (dokument Word)",
+      "section": "Tabele",
+      "rows": [
+        {
+          "id": "table-headers",
+          "name": "Wiersz nagłówkowy tabel",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "table-structure",
+          "name": "Regularna siatka bez scaleń",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "table-caption",
+          "name": "Podpis tabeli",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "table-layout",
+          "name": "Bez tabel zagnieżdżonych i tabel układu",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        }
+      ]
+    },
+    {
+      "standard": "wcag/2.1",
+      "standardName": "WCAG 2.1 AA (dokument Word)",
+      "section": "Łącza",
+      "rows": [
+        {
+          "id": "links",
+          "name": "Opisowe i jednoznaczne łącza",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        }
+      ]
+    },
+    {
+      "standard": "wcag/2.1",
+      "standardName": "WCAG 2.1 AA (dokument Word)",
+      "section": "Formularze",
+      "rows": [
+        {
+          "id": "forms",
+          "name": "Etykiety pól formularza",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        }
+      ]
+    },
+    {
+      "standard": "wcag/2.1",
+      "standardName": "WCAG 2.1 AA (dokument Word)",
+      "section": "Weryfikacja ręczna",
+      "rows": [
+        {
+          "id": "manual-1.3.3",
+          "name": "1.3.3 Właściwości zmysłowe",
+          "status": "ManualReview",
+          "details": [],
+          "note": "Odwołania typu „zielone pole po prawej” wymagają lektury."
+        },
+        {
+          "id": "manual-1.4.1",
+          "name": "1.4.1 Użycie koloru",
+          "status": "ManualReview",
+          "details": [],
+          "note": "Czy kolor jest jedynym nośnikiem informacji, ocenia człowiek."
+        },
+        {
+          "id": "manual-1.4.5",
+          "name": "1.4.5 Obrazy tekstu",
+          "status": "ManualReview",
+          "details": [],
+          "note": "Czy obraz zawiera tekst, który powinien być tekstem, ocenia człowiek."
+        },
+        {
+          "id": "manual-1.4.10",
+          "name": "1.4.10 Dopasowanie do ekranu",
+          "status": "ManualReview",
+          "details": [],
+          "note": "Nie dotyczy dokumentu Word wprost; tabele i pola tekstowe o stałej szerokości ogląda człowiek."
+        },
+        {
+          "id": "manual-3.1.2",
+          "name": "3.1.2 Język części",
+          "status": "ManualReview",
+          "details": [],
+          "note": "Fragmenty w innym języku powinny mieć oznaczony język (w:lang); automat nie rozpozna języka tekstu."
+        },
+        {
+          "id": "manual-alt",
+          "name": "Treść tekstów alternatywnych",
+          "status": "ManualReview",
+          "details": [],
+          "note": "Czy opisy obrazów oddają ich treść i funkcję."
+        },
+        {
+          "id": "manual-links",
+          "name": "Sens tekstów łączy",
+          "status": "ManualReview",
+          "details": [],
+          "note": "Czy tekst każdego łącza mówi, dokąd prowadzi."
+        },
+        {
+          "id": "manual-order",
+          "name": "Logiczna kolejność treści",
+          "status": "ManualReview",
+          "details": [],
+          "note": "Czy kolejność czytania odpowiada zamierzonej, zwłaszcza przy elementach pływających."
+        }
+      ]
+    },
+    {
+      "standard": "wcag/2.1",
+      "standardName": "WCAG 2.1 AA (dokument Word)",
+      "section": "Inne",
+      "rows": [
+        {
+          "id": "MANUAL_CHECK_SUGGESTED",
+          "name": "Zalecane sprawdzenie ręczne",
+          "status": "Info",
+          "details": [
+            {
+              "code": "MANUAL_CHECK_SUGGESTED",
+              "label": "Zalecane sprawdzenie ręczne",
+              "message": "Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie.",
+              "occurrences": 1,
+              "severity": "Info"
+            }
+          ],
+          "note": null
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "index": 0,
+      "code": "MANUAL_CHECK_SUGGESTED",
+      "label": "Zalecane sprawdzenie ręczne",
+      "severity": "Info",
+      "category": "Document",
+      "standard": "wcag/2.1",
+      "standardName": "WCAG 2.1 AA (dokument Word)",
+      "message": "Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Document:0",
+        "kind": "Document",
+        "story": "body",
+        "index": 0,
+        "subIndex": null,
+        "snippet": ""
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1
+    }
+  ]
+}

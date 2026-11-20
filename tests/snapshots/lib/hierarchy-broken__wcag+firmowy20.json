@@ -1,0 +1,204 @@
+{
+  "outcome": "Invalid",
+  "summary": "3 błędy, 5 ostrzeżeń, 2 informacje.",
+  "standards": [
+    {
+      "key": "wcag/2.1",
+      "id": "wcag",
+      "version": "2.1",
+      "name": "WCAG 2.1 AA (dokument Word)",
+      "confirmed": true
+    },
+    {
+      "key": "firmowy/2.0",
+      "id": "firmowy",
+      "version": "2.0",
+      "name": "Standard pism firmowych 2.0",
+      "confirmed": true,
+      "note": ""
+    }
+  ],
+  "document": {
+    "title": "Hierarchia treści. Example Company S. A.",
+    "author": "Example Company S. A.",
+    "language": "pl-PL",
+    "paragraphs": 38,
+    "headings": 8,
+    "tables": 1,
+    "images": 0
+  },
+  "outline": [
+    {
+      "level": 2,
+      "text": "Zakres dokumentu"
+    },
+    {
+      "level": 4,
+      "text": "Szczegóły zakresu"
+    },
+    {
+      "level": 3,
+      "text": "Nagłówek z poziomu konspektu"
+    },
+    {
+      "level": 3,
+      "text": "Ten nagłówek jest zdecydowanie za długi, ponieważ zawiera całe zdanie opisujące zawartość sekcji zamiast krótkiego tytuł…"
+    },
+    {
+      "level": 3,
+      "text": "Nagłówek w komórce"
+    },
+    {
+      "level": 1,
+      "text": "Część główna"
+    },
+    {
+      "level": 2,
+      "text": "Podsumowanie"
+    },
+    {
+      "level": 1,
+      "text": "Załączniki"
+    }
+  ],
+  "issues": [
+    {
+      "code": "EMPTY_HEADING",
+      "severity": "Error",
+      "category": "Headings",
+      "standard": "wcag/2.1",
+      "message": "Nagłówek poziomu 3 w akapicie 7 jest pusty.",
+      "locations": [
+        {
+          "key": "body:Paragraph:6",
+          "snippet": ""
+        }
+      ]
+    },
+    {
+      "code": "HEADING_STYLE_MISMATCH",
+      "severity": "Error",
+      "category": "Headings",
+      "standard": "firmowy/2.0",
+      "message": "Nagłówek H3 „Nagłówek z poziomu konspektu”: rozmiar 10 pt zamiast 14 pt; brak pogrubienia.",
+      "locations": [
+        {
+          "key": "body:Paragraph:10",
+          "snippet": "Nagłówek z poziomu konspektu"
+        }
+      ]
+    },
+    {
+      "code": "LIST_MISSING_SEMANTIC",
+      "severity": "Error",
+      "category": "Lists",
+      "standard": "wcag/2.1",
+      "message": "3 akapity wyglądają na element listy (znak wypunktowania albo numer wpisany w tekst), ale bez właściwości listy; pierwszy: „- pierwsza pozycja,”.",
+      "locations": [
+        {
+          "key": "body:Paragraph:22",
+          "snippet": "- pierwsza pozycja,"
+        },
+        {
+          "key": "body:Paragraph:23",
+          "snippet": "- druga pozycja,"
+        },
+        {
+          "key": "body:Paragraph:24",
+          "snippet": "- trzecia pozycja."
+        }
+      ]
+    },
+    {
+      "code": "CONTENT_BEFORE_HEADING",
+      "severity": "Warning",
+      "category": "Headings",
+      "standard": "wcag/2.1",
+      "message": "Treść zaczyna się przed pierwszym nagłówkiem: „Ten akapit stoi przed pierwszym nagłówkiem dokumentu.”.",
+      "locations": [
+        {
+          "key": "body:Paragraph:1",
+          "snippet": "Ten akapit stoi przed pierwszym nagłówki…"
+        }
+      ]
+    },
+    {
+      "code": "FAKE_HEADING",
+      "severity": "Warning",
+      "category": "Headings",
+      "standard": "wcag/2.1",
+      "message": "1 akapit wygląda na nagłówek (krótki, pogrubiony albo dużą czcionką), ale bez stylu nagłówka, więc poza konspektem dokumentu; pierwszy: „Postanowienia ogólne”.",
+      "locations": [
+        {
+          "key": "body:Paragraph:8",
+          "snippet": "Postanowienia ogólne"
+        }
+      ]
+    },
+    {
+      "code": "HEADING_LEVEL_SKIPPED",
+      "severity": "Warning",
+      "category": "Headings",
+      "standard": "wcag/2.1",
+      "message": "Pierwszy nagłówek „Zakres dokumentu” ma poziom 2; dokument powinien zaczynać się od nagłówka poziomu 1.",
+      "locations": [
+        {
+          "key": "body:Paragraph:2",
+          "snippet": "Zakres dokumentu"
+        }
+      ]
+    },
+    {
+      "code": "HEADING_LEVEL_SKIPPED",
+      "severity": "Warning",
+      "category": "Headings",
+      "standard": "wcag/2.1",
+      "message": "Nagłówek „Szczegóły zakresu” ma poziom 4 zaraz po poziomie 2; pominięto poziom 3.",
+      "locations": [
+        {
+          "key": "body:Paragraph:4",
+          "snippet": "Szczegóły zakresu"
+        }
+      ]
+    },
+    {
+      "code": "HEADING_TOO_LONG",
+      "severity": "Warning",
+      "category": "Headings",
+      "standard": "wcag/2.1",
+      "message": "Nagłówek „Ten nagłówek jest zdecydowanie za długi, ponieważ zawiera ca…” ma 158 znaków; to raczej akapit treści ze stylem nagłówka niż tytuł sekcji.",
+      "locations": [
+        {
+          "key": "body:Paragraph:12",
+          "snippet": "Ten nagłówek jest zdecydowanie za długi,…"
+        }
+      ]
+    },
+    {
+      "code": "MANUAL_CHECK_SUGGESTED",
+      "severity": "Info",
+      "category": "Document",
+      "standard": "wcag/2.1",
+      "message": "Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie.",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": ""
+        }
+      ]
+    },
+    {
+      "code": "TOC_MISSING",
+      "severity": "Info",
+      "category": "Structure",
+      "standard": "wcag/2.1",
+      "message": "Dokument ma 8 nagłówków, a nie ma spisu treści (pole TOC); spis ułatwia nawigację czytnikiem ekranu.",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": ""
+        }
+      ]
+    }
+  ]
+}

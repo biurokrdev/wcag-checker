@@ -1,0 +1,108 @@
+Tytuł: Raport walidacji: hierarchy-broken.docx
+Autor: D2.Wcag
+Język: pl-PL
+Obrazy: 0
+
+Raport walidacji dokumentu „hierarchy-broken.docx”
+Wynik: niepoprawny. 3 błędy, 6 ostrzeżeń, 2 informacje.
+Data sprawdzenia: <data>. Standardy: WCAG 2.1 AA (dokument Word); Standard pism firmowych 1.9.
+Dokument: tytuł „Hierarchia treści. Example Company S. A.”, autor „Example Company S. A.”, język pl-PL, 38 akapitów, 8 nagłówków, 1 tabel, 0 obrazów.
+Podsumowanie kontroli
+WCAG 2.1 AA (dokument Word)
+Sekcja „Dokument”
+| Status | Kontrola | Szczegóły |
+| Zatwierdzono | Poprawność pliku DOCX | – |
+| Zatwierdzono | Tytuł dokumentu w metadanych | – |
+| Zatwierdzono | Autor w metadanych | – |
+| Zatwierdzono | Język dokumentu | – |
+| Zatwierdzono | Wersja ostateczna (bez zmian śledzonych i komentarzy) | – |
+| Zatwierdzono | Sekcje i ustawienia strony | – |
+| Zatwierdzono | Numer strony w stopce albo nagłówku | – |
+| Informacja | Spis treści w długim dokumencie | Brak spisu treści: Dokument ma 8 nagłówków, a nie ma spisu treści (pole TOC); spis ułatwia nawigację czytnikiem ekranu. |
+Sekcja „Struktura”
+| Status | Kontrola | Szczegóły |
+| Błąd | Hierarchia nagłówków | Pusty nagłówek: Nagłówek poziomu 3 w akapicie 7 jest pusty. ⏎ Treść przed pierwszym nagłówkiem: Treść zaczyna się przed pierwszym nagłówkiem: „Ten akapit stoi przed pierwszym nagłówkiem dokumentu.”. ⏎ Pominięty poziom nagłówka: Pierwszy nagłówek „Zakres dokumentu” ma poziom 2; dokument powinien zaczynać się od nagłówka poziomu 1. ⏎ Pominięty poziom nagłówka: Nagłówek „Szczegóły zakresu” ma poziom 4 zaraz po poziomie 2; pominięto poziom 3. ⏎ Za długi nagłówek: Nagłówek „Ten nagłówek jest zdecydowanie za długi, ponieważ zawiera ca…” ma 158 znaków; to raczej akapit treści ze stylem nagłówka niż tytuł sekcji. |
+| Ostrzeżenie | Nagłówki jako style, nie formatowanie | Nagłówek zrobiony formatowaniem: 1 akapit wygląda na nagłówek (krótki, pogrubiony albo dużą czcionką), ale bez stylu nagłówka, więc poza konspektem dokumentu; pierwszy: „Postanowienia ogólne”. |
+| Zatwierdzono | Kolejność odczytu (elementy pływające, pola tekstowe) | – |
+| Zatwierdzono | Treść strukturalna | – |
+| Zatwierdzono | Układ bez tabulatorów i pustych znaków | – |
+| Błąd | Listy jako listy | Lista zrobiona ręcznie: 3 akapity wyglądają na element listy (znak wypunktowania albo numer wpisany w tekst), ale bez właściwości listy; pierwszy: „- pierwsza pozycja,”. (3 wystąpień) |
+Sekcja „Tekst”
+| Status | Kontrola | Szczegóły |
+| Zatwierdzono | Kontrast tekstu z tłem | – |
+| Zatwierdzono | Tekst bez długich ciągów wielkich liter | – |
+| Zatwierdzono | Wyrównanie do lewej (zalecenie) | – |
+Sekcja „Obrazy”
+| Status | Kontrola | Szczegóły |
+| Zatwierdzono | Tekst alternatywny obrazów | – |
+Sekcja „Tabele”
+| Status | Kontrola | Szczegóły |
+| Zatwierdzono | Wiersz nagłówkowy tabel | – |
+| Zatwierdzono | Regularna siatka bez scaleń | – |
+| Zatwierdzono | Podpis tabeli | – |
+| Zatwierdzono | Bez tabel zagnieżdżonych i tabel układu | – |
+Sekcja „Łącza”
+| Status | Kontrola | Szczegóły |
+| Zatwierdzono | Opisowe i jednoznaczne łącza | – |
+Sekcja „Formularze”
+| Status | Kontrola | Szczegóły |
+| Zatwierdzono | Etykiety pól formularza | – |
+Sekcja „Weryfikacja ręczna”
+| Status | Kontrola | Szczegóły |
+| Ręczna weryfikacja | 1.3.3 Właściwości zmysłowe | Odwołania typu „zielone pole po prawej” wymagają lektury. |
+| Ręczna weryfikacja | 1.4.1 Użycie koloru | Czy kolor jest jedynym nośnikiem informacji, ocenia człowiek. |
+| Ręczna weryfikacja | 1.4.5 Obrazy tekstu | Czy obraz zawiera tekst, który powinien być tekstem, ocenia człowiek. |
+| Ręczna weryfikacja | 1.4.10 Dopasowanie do ekranu | Nie dotyczy dokumentu Word wprost; tabele i pola tekstowe o stałej szerokości ogląda człowiek. |
+| Ręczna weryfikacja | 3.1.2 Język części | Fragmenty w innym języku powinny mieć oznaczony język (w:lang); automat nie rozpozna języka tekstu. |
+| Ręczna weryfikacja | Treść tekstów alternatywnych | Czy opisy obrazów oddają ich treść i funkcję. |
+| Ręczna weryfikacja | Sens tekstów łączy | Czy tekst każdego łącza mówi, dokąd prowadzi. |
+| Ręczna weryfikacja | Logiczna kolejność treści | Czy kolejność czytania odpowiada zamierzonej, zwłaszcza przy elementach pływających. |
+Sekcja „Inne”
+| Status | Kontrola | Szczegóły |
+| Informacja | Zalecane sprawdzenie ręczne | Zalecane sprawdzenie ręczne: Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie. |
+Standard pism firmowych 1.9
+Sekcja „Standard pism firmowych 1.9”
+| Status | Kontrola | Szczegóły |
+| Błąd | Fraza „SUN Example Company S. A.” w tytule i autorze | Tytuł bez wymaganej nazwy instytucji: Tytuł „Hierarchia treści. Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”. ⏎ Autor bez wymaganej nazwy instytucji: Autor „Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”. |
+| Zatwierdzono | Marginesy 36 pt | – |
+Kryteria WCAG 2.1
+3 kryteria spełnione, 2 niespełnione, 13 do przeglądu ręcznego.
+Tabela stanu kryteriów WCAG 2.1
+| Kryterium | Poziom | Pokrycie | Stan | Uwagi |
+| 1.1.1 Treść nietekstowa | A | częściowo | do przeglądu | Automat sprawdza, czy każda grafika (DrawingML, VML, także w nagłówkach, stopkach i przypisach) ma tekst alternatywny albo jest oznaczona jako dekoracyjna i czy opis nie jest tymczasowy. Czy opis oddaje treść obrazu, ocenia człowiek. |
+| 1.3.1 Informacje i relacje | A | częściowo | niespełnione | Pusty nagłówek: Nagłówek poziomu 3 w akapicie 7 jest pusty. ⏎ Lista zrobiona ręcznie: 3 akapity wyglądają na element listy (znak wypunktowania albo numer wpisany w tekst), ale bez właściwości listy; pierwszy: „- pierwsza pozycja,”. ⏎ Treść przed pierwszym nagłówkiem: Treść zaczyna się przed pierwszym nagłówkiem: „Ten akapit stoi przed pierwszym nagłówkiem dokumentu.”. ⏎ Nagłówek zrobiony formatowaniem: 1 akapit wygląda na nagłówek (krótki, pogrubiony albo dużą czcionką), ale bez stylu nagłówka, więc poza konspektem dokumentu; pierwszy: „Postanowienia ogólne”. ⏎ Pominięty poziom nagłówka: Pierwszy nagłówek „Zakres dokumentu” ma poziom 2; dokument powinien zaczynać się od nagłówka poziomu 1. ⏎ Pominięty poziom nagłówka: Nagłówek „Szczegóły zakresu” ma poziom 4 zaraz po poziomie 2; pominięto poziom 3. ⏎ Za długi nagłówek: Nagłówek „Ten nagłówek jest zdecydowanie za długi, ponieważ zawiera ca…” ma 158 znaków; to raczej akapit treści ze stylem nagłówka niż tytuł sekcji. |
+| 1.3.2 Zrozumiała kolejność | A | częściowo | do przeglądu | Automat wskazuje elementy pływające, pola tekstowe i tabele z opływaniem, których miejsce w kolejności odczytu nie wynika z treści, oraz brak nagłówków. Sam porządek treści ocenia człowiek. |
+| 1.3.3 Właściwości zmysłowe | A | ręcznie | do przeglądu | Odwołania typu „zielone pole po prawej” wymagają lektury. |
+| 1.4.1 Użycie koloru | A | ręcznie | do przeglądu | Czy kolor jest jedynym nośnikiem informacji, ocenia człowiek. |
+| 1.4.3 Kontrast (minimum) | AA | częściowo | do przeglądu | Automat liczy kontrast dla kolorów wynikających z pliku (kolor czcionki ze stylu albo bezpośredni, cieniowanie tekstu, akapitu i komórki, wyróżnienie). Kolory motywu bez wartości, tekst na obrazach i grafiki ocenia człowiek. |
+| 1.4.5 Obrazy tekstu | AA | ręcznie | do przeglądu | Czy obraz zawiera tekst, który powinien być tekstem, ocenia człowiek. |
+| 1.4.8 Prezentacja wizualna (zalecenie) | AAA | częściowo | do przeglądu | Wyjustowanie tekstu zgłaszane jako informacja; poziom AAA, nie wpływa na wynik. |
+| 1.4.10 Dopasowanie do ekranu | AA | ręcznie | do przeglądu | Nie dotyczy dokumentu Word wprost; tabele i pola tekstowe o stałej szerokości ogląda człowiek. |
+| 2.4.2 Tytuł strony | A | automatycznie | spełnione | Tytuł w metadanych, inny niż nazwa domyślna albo nazwa pliku. |
+| 2.4.4 Cel łącza (w kontekście) | A | częściowo | do przeglądu | Automat wykrywa łącza bez celu, bez tekstu, z samym adresem, z tekstem w rodzaju „tutaj” i ten sam tekst prowadzący do różnych miejsc. Czy tekst łącza opisuje cel, ocenia człowiek. |
+| 2.4.5 Wiele dróg | AA | częściowo | do przeglądu | Brak spisu treści: Dokument ma 8 nagłówków, a nie ma spisu treści (pole TOC); spis ułatwia nawigację czytnikiem ekranu. |
+| 2.4.6 Nagłówki i etykiety | AA | częściowo | niespełnione | Pusty nagłówek: Nagłówek poziomu 3 w akapicie 7 jest pusty. ⏎ Za długi nagłówek: Nagłówek „Ten nagłówek jest zdecydowanie za długi, ponieważ zawiera ca…” ma 158 znaków; to raczej akapit treści ze stylem nagłówka niż tytuł sekcji. |
+| 3.1.1 Język strony | A | automatycznie | spełnione | Język dokumentu ustawiony (właściwości pakietu albo domyślne ustawienia stylów) i zapisany jako kod języka. |
+| 3.1.2 Język części | AA | ręcznie | do przeglądu | Fragmenty w innym języku powinny mieć oznaczony język (w:lang); automat nie rozpozna języka tekstu. |
+| 3.3.2 Etykiety lub instrukcje | A | częściowo | do przeglądu | Pola FORMTEXT i formanty zawartości mają tekst etykiety albo tytuł. |
+| 4.1.1 Poprawność kodu | A | automatycznie | spełnione | Pakiet DOCX otwiera się i ma część główną. |
+| 4.1.2 Nazwa, rola, wartość | A | częściowo | do przeglądu | Formanty mają nazwę (etykietę albo tytuł); rola i wartość wynikają z typu formantu w Wordzie. |
+Wyniki walidacji
+13 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
+Tabela wystąpień
+| Nr | Waga | Zgłoszenie | Standard | Miejsce | Komunikat | Zweryfikowano |
+| 1 | błąd | Pusty nagłówek | WCAG 2.1 AA (dokument Word) | akapit: „” | Nagłówek poziomu 3 w akapicie 7 jest pusty. | nie |
+| 2 | błąd | Lista zrobiona ręcznie | WCAG 2.1 AA (dokument Word) | akapit: „- pierwsza pozycja,” (1/3) | 3 akapity wyglądają na element listy (znak wypunktowania albo numer wpisany w tekst), ale bez właściwości listy; pierwszy: „- pierwsza pozycja,”. | nie |
+| 3 | błąd | Lista zrobiona ręcznie | WCAG 2.1 AA (dokument Word) | akapit: „- druga pozycja,” (2/3) | 3 akapity wyglądają na element listy (znak wypunktowania albo numer wpisany w tekst), ale bez właściwości listy; pierwszy: „- pierwsza pozycja,”. | nie |
+| 4 | błąd | Lista zrobiona ręcznie | WCAG 2.1 AA (dokument Word) | akapit: „- trzecia pozycja.” (3/3) | 3 akapity wyglądają na element listy (znak wypunktowania albo numer wpisany w tekst), ale bez właściwości listy; pierwszy: „- pierwsza pozycja,”. | nie |
+| 5 | błąd | Tytuł bez wymaganej nazwy instytucji | Standard pism firmowych 1.9 | dokument: „(metadane dokumentu)” | Tytuł „Hierarchia treści. Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”. | nie |
+| 6 | ostrzeżenie | Treść przed pierwszym nagłówkiem | WCAG 2.1 AA (dokument Word) | akapit: „Ten akapit stoi przed pierwszym nagłówki…” | Treść zaczyna się przed pierwszym nagłówkiem: „Ten akapit stoi przed pierwszym nagłówkiem dokumentu.”. | nie |
+| 7 | ostrzeżenie | Nagłówek zrobiony formatowaniem | WCAG 2.1 AA (dokument Word) | akapit: „Postanowienia ogólne” | 1 akapit wygląda na nagłówek (krótki, pogrubiony albo dużą czcionką), ale bez stylu nagłówka, więc poza konspektem dokumentu; pierwszy: „Postanowienia ogólne”. | nie |
+| 8 | ostrzeżenie | Pominięty poziom nagłówka | WCAG 2.1 AA (dokument Word) | akapit: „Zakres dokumentu” | Pierwszy nagłówek „Zakres dokumentu” ma poziom 2; dokument powinien zaczynać się od nagłówka poziomu 1. | nie |
+| 9 | ostrzeżenie | Pominięty poziom nagłówka | WCAG 2.1 AA (dokument Word) | akapit: „Szczegóły zakresu” | Nagłówek „Szczegóły zakresu” ma poziom 4 zaraz po poziomie 2; pominięto poziom 3. | nie |
+| 10 | ostrzeżenie | Za długi nagłówek | WCAG 2.1 AA (dokument Word) | akapit: „Ten nagłówek jest zdecydowanie za długi,…” | Nagłówek „Ten nagłówek jest zdecydowanie za długi, ponieważ zawiera ca…” ma 158 znaków; to raczej akapit treści ze stylem nagłówka niż tytuł sekcji. | nie |
+| 11 | ostrzeżenie | Autor bez wymaganej nazwy instytucji | Standard pism firmowych 1.9 | dokument: „(metadane dokumentu)” | Autor „Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”. | nie |
+| 12 | informacja | Zalecane sprawdzenie ręczne | WCAG 2.1 AA (dokument Word) | dokument: „” | Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie. | nie |
+| 13 | informacja | Brak spisu treści | WCAG 2.1 AA (dokument Word) | dokument: „” | Dokument ma 8 nagłówków, a nie ma spisu treści (pole TOC); spis ułatwia nawigację czytnikiem ekranu. | nie |
+
+PDF: %PDF-, strony: 9

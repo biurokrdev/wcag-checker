@@ -1,0 +1,103 @@
+Tytuł: Raport walidacji: edge.docx
+Autor: D2.Wcag
+Język: pl-PL
+Obrazy: 0
+
+Raport walidacji dokumentu „edge.docx”
+Wynik: niepoprawny. 3 błędy, 3 ostrzeżenia, 1 informacja.
+Data sprawdzenia: <data>. Standardy: WCAG 2.1 AA (dokument Word); Standard pism firmowych 1.9.
+Dokument: tytuł „Przypadki brzegowe. Example Company S. A.”, autor „Example Company S. A.”, język pl-PL, 21 akapitów, 3 nagłówków, 1 tabel, 1 obrazów.
+Podsumowanie kontroli
+WCAG 2.1 AA (dokument Word)
+Sekcja „Dokument”
+| Status | Kontrola | Szczegóły |
+| Zatwierdzono | Poprawność pliku DOCX | – |
+| Zatwierdzono | Tytuł dokumentu w metadanych | – |
+| Zatwierdzono | Autor w metadanych | – |
+| Zatwierdzono | Język dokumentu | – |
+| Ostrzeżenie | Wersja ostateczna (bez zmian śledzonych i komentarzy) | Komentarze w dokumencie: Dokument zawiera 1 komentarz; usuń je przed publikacją. |
+| Zatwierdzono | Sekcje i ustawienia strony | – |
+| Zatwierdzono | Numer strony w stopce albo nagłówku | – |
+| Zatwierdzono | Spis treści w długim dokumencie | – |
+Sekcja „Struktura”
+| Status | Kontrola | Szczegóły |
+| Zatwierdzono | Hierarchia nagłówków | – |
+| Zatwierdzono | Nagłówki jako style, nie formatowanie | – |
+| Ostrzeżenie | Kolejność odczytu (elementy pływające, pola tekstowe) | Elementy pływające poza kolejnością odczytu: Dokument zawiera 1 element pływający, 2 pola tekstowe; ich położenie w kolejności odczytu nie wynika z treści. (2 wystąpień) |
+| Zatwierdzono | Treść strukturalna | – |
+| Zatwierdzono | Układ bez tabulatorów i pustych znaków | – |
+| Zatwierdzono | Listy jako listy | – |
+Sekcja „Tekst”
+| Status | Kontrola | Szczegóły |
+| Błąd | Kontrast tekstu z tłem | Za mały kontrast tekstu: 1 fragment tekstu ma za mały kontrast z tłem (najgorszy 2,4:1, wymagane 4,5:1 albo 3:1 dla dużego tekstu); pierwszy: „rozjaśniony akcent”. |
+| Zatwierdzono | Tekst bez długich ciągów wielkich liter | – |
+| Zatwierdzono | Wyrównanie do lewej (zalecenie) | – |
+Sekcja „Obrazy”
+| Status | Kontrola | Szczegóły |
+| Błąd | Tekst alternatywny obrazów | Obraz bez tekstu alternatywnego: Obraz nr 2 (obiekt VML) nie ma tekstu alternatywnego. |
+Sekcja „Tabele”
+| Status | Kontrola | Szczegóły |
+| Zatwierdzono | Wiersz nagłówkowy tabel | – |
+| Zatwierdzono | Regularna siatka bez scaleń | – |
+| Zatwierdzono | Podpis tabeli | – |
+| Zatwierdzono | Bez tabel zagnieżdżonych i tabel układu | – |
+Sekcja „Łącza”
+| Status | Kontrola | Szczegóły |
+| Zatwierdzono | Opisowe i jednoznaczne łącza | – |
+Sekcja „Formularze”
+| Status | Kontrola | Szczegóły |
+| Zatwierdzono | Etykiety pól formularza | – |
+Sekcja „Weryfikacja ręczna”
+| Status | Kontrola | Szczegóły |
+| Ręczna weryfikacja | 1.3.3 Właściwości zmysłowe | Odwołania typu „zielone pole po prawej” wymagają lektury. |
+| Ręczna weryfikacja | 1.4.1 Użycie koloru | Czy kolor jest jedynym nośnikiem informacji, ocenia człowiek. |
+| Ręczna weryfikacja | 1.4.5 Obrazy tekstu | Czy obraz zawiera tekst, który powinien być tekstem, ocenia człowiek. |
+| Ręczna weryfikacja | 1.4.10 Dopasowanie do ekranu | Nie dotyczy dokumentu Word wprost; tabele i pola tekstowe o stałej szerokości ogląda człowiek. |
+| Ręczna weryfikacja | 3.1.2 Język części | Fragmenty w innym języku powinny mieć oznaczony język (w:lang); automat nie rozpozna języka tekstu. |
+| Ręczna weryfikacja | Treść tekstów alternatywnych | Czy opisy obrazów oddają ich treść i funkcję. |
+| Ręczna weryfikacja | Sens tekstów łączy | Czy tekst każdego łącza mówi, dokąd prowadzi. |
+| Ręczna weryfikacja | Logiczna kolejność treści | Czy kolejność czytania odpowiada zamierzonej, zwłaszcza przy elementach pływających. |
+Sekcja „Inne”
+| Status | Kontrola | Szczegóły |
+| Informacja | Zalecane sprawdzenie ręczne | Zalecane sprawdzenie ręczne: Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie. |
+Standard pism firmowych 1.9
+Sekcja „Standard pism firmowych 1.9”
+| Status | Kontrola | Szczegóły |
+| Błąd | Fraza „SUN Example Company S. A.” w tytule i autorze | Tytuł bez wymaganej nazwy instytucji: Tytuł „Przypadki brzegowe. Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”. ⏎ Autor bez wymaganej nazwy instytucji: Autor „Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”. |
+| Zatwierdzono | Marginesy 36 pt | – |
+Kryteria WCAG 2.1
+3 kryteria spełnione, 2 niespełnione, 13 do przeglądu ręcznego.
+Tabela stanu kryteriów WCAG 2.1
+| Kryterium | Poziom | Pokrycie | Stan | Uwagi |
+| 1.1.1 Treść nietekstowa | A | częściowo | niespełnione | Obraz bez tekstu alternatywnego: Obraz nr 2 (obiekt VML) nie ma tekstu alternatywnego. |
+| 1.3.1 Informacje i relacje | A | częściowo | do przeglądu | Nagłówki jako style (także fałszywe nagłówki rozpoznawane po formatowaniu efektywnym), listy jako listy, tabele danych z wierszem nagłówkowym, tabele układu wskazane osobno, bez układu robionego tabulatorami i pustymi akapitami. Czy hierarchia nagłówków odpowiada treści, ocenia człowiek. |
+| 1.3.2 Zrozumiała kolejność | A | częściowo | do przeglądu | Elementy pływające poza kolejnością odczytu: Dokument zawiera 1 element pływający, 2 pola tekstowe; ich położenie w kolejności odczytu nie wynika z treści. |
+| 1.3.3 Właściwości zmysłowe | A | ręcznie | do przeglądu | Odwołania typu „zielone pole po prawej” wymagają lektury. |
+| 1.4.1 Użycie koloru | A | ręcznie | do przeglądu | Czy kolor jest jedynym nośnikiem informacji, ocenia człowiek. |
+| 1.4.3 Kontrast (minimum) | AA | częściowo | niespełnione | Za mały kontrast tekstu: 1 fragment tekstu ma za mały kontrast z tłem (najgorszy 2,4:1, wymagane 4,5:1 albo 3:1 dla dużego tekstu); pierwszy: „rozjaśniony akcent”. |
+| 1.4.5 Obrazy tekstu | AA | ręcznie | do przeglądu | Czy obraz zawiera tekst, który powinien być tekstem, ocenia człowiek. |
+| 1.4.8 Prezentacja wizualna (zalecenie) | AAA | częściowo | do przeglądu | Wyjustowanie tekstu zgłaszane jako informacja; poziom AAA, nie wpływa na wynik. |
+| 1.4.10 Dopasowanie do ekranu | AA | ręcznie | do przeglądu | Nie dotyczy dokumentu Word wprost; tabele i pola tekstowe o stałej szerokości ogląda człowiek. |
+| 2.4.2 Tytuł strony | A | automatycznie | spełnione | Tytuł w metadanych, inny niż nazwa domyślna albo nazwa pliku. |
+| 2.4.4 Cel łącza (w kontekście) | A | częściowo | do przeglądu | Automat wykrywa łącza bez celu, bez tekstu, z samym adresem, z tekstem w rodzaju „tutaj” i ten sam tekst prowadzący do różnych miejsc. Czy tekst łącza opisuje cel, ocenia człowiek. |
+| 2.4.5 Wiele dróg | AA | częściowo | do przeglądu | Spis treści w długim dokumencie i numery stron. |
+| 2.4.6 Nagłówki i etykiety | AA | częściowo | do przeglądu | Nagłówki istnieją, nie są puste ani nadmiernie długie; pola formularza mają etykiety. Czy opisują treść, ocenia człowiek. |
+| 3.1.1 Język strony | A | automatycznie | spełnione | Język dokumentu ustawiony (właściwości pakietu albo domyślne ustawienia stylów) i zapisany jako kod języka. |
+| 3.1.2 Język części | AA | ręcznie | do przeglądu | Fragmenty w innym języku powinny mieć oznaczony język (w:lang); automat nie rozpozna języka tekstu. |
+| 3.3.2 Etykiety lub instrukcje | A | częściowo | do przeglądu | Pola FORMTEXT i formanty zawartości mają tekst etykiety albo tytuł. |
+| 4.1.1 Poprawność kodu | A | automatycznie | spełnione | Pakiet DOCX otwiera się i ma część główną. |
+| 4.1.2 Nazwa, rola, wartość | A | częściowo | do przeglądu | Formanty mają nazwę (etykietę albo tytuł); rola i wartość wynikają z typu formantu w Wordzie. |
+Wyniki walidacji
+8 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
+Tabela wystąpień
+| Nr | Waga | Zgłoszenie | Standard | Miejsce | Komunikat | Zweryfikowano |
+| 1 | błąd | Obraz bez tekstu alternatywnego | WCAG 2.1 AA (dokument Word) | fragment tekstu: „(obiekt VML)” | Obraz nr 2 (obiekt VML) nie ma tekstu alternatywnego. | nie |
+| 2 | błąd | Za mały kontrast tekstu | WCAG 2.1 AA (dokument Word) | fragment tekstu: „rozjaśniony akcent (2,4:1)” | 1 fragment tekstu ma za mały kontrast z tłem (najgorszy 2,4:1, wymagane 4,5:1 albo 3:1 dla dużego tekstu); pierwszy: „rozjaśniony akcent”. | nie |
+| 3 | błąd | Tytuł bez wymaganej nazwy instytucji | Standard pism firmowych 1.9 | dokument: „(metadane dokumentu)” | Tytuł „Przypadki brzegowe. Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”. | nie |
+| 4 | ostrzeżenie | Komentarze w dokumencie | WCAG 2.1 AA (dokument Word) | akapit: „(komentarz)” | Dokument zawiera 1 komentarz; usuń je przed publikacją. | nie |
+| 5 | ostrzeżenie | Elementy pływające poza kolejnością odczytu | WCAG 2.1 AA (dokument Word) | obraz: „(element pływający)” (1/2) | Dokument zawiera 1 element pływający, 2 pola tekstowe; ich położenie w kolejności odczytu nie wynika z treści. | nie |
+| 6 | ostrzeżenie | Elementy pływające poza kolejnością odczytu | WCAG 2.1 AA (dokument Word) | fragment tekstu: „(pole tekstowe)” (2/2) | Dokument zawiera 1 element pływający, 2 pola tekstowe; ich położenie w kolejności odczytu nie wynika z treści. | nie |
+| 7 | ostrzeżenie | Autor bez wymaganej nazwy instytucji | Standard pism firmowych 1.9 | dokument: „(metadane dokumentu)” | Autor „Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”. | nie |
+| 8 | informacja | Zalecane sprawdzenie ręczne | WCAG 2.1 AA (dokument Word) | dokument: „” | Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie. | nie |
+
+PDF: %PDF-, strony: 6

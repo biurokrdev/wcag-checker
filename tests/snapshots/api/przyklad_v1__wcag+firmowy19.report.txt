@@ -1,0 +1,113 @@
+Tytuł: Raport walidacji: przyklad_v1.docx
+Autor: D2.Wcag
+Język: pl-PL
+Obrazy: 0
+
+Raport walidacji dokumentu „przyklad_v1.docx”
+Wynik: niepoprawny. 6 błędów, 9 ostrzeżeń, 1 informacja.
+Data sprawdzenia: <data>. Standardy: WCAG 2.1 AA (dokument Word); Standard pism firmowych 1.9.
+Dokument: tytuł „brak”, autor „Krzysztof Rybka”, język pl-PL, 13 akapitów, 0 nagłówków, 1 tabel, 2 obrazów.
+Podsumowanie kontroli
+WCAG 2.1 AA (dokument Word)
+Sekcja „Dokument”
+| Status | Kontrola | Szczegóły |
+| Zatwierdzono | Poprawność pliku DOCX | – |
+| Błąd | Tytuł dokumentu w metadanych | Brak tytułu dokumentu: Dokument nie ma tytułu w metadanych (Plik → Informacje → Tytuł). |
+| Zatwierdzono | Autor w metadanych | – |
+| Zatwierdzono | Język dokumentu | – |
+| Zatwierdzono | Wersja ostateczna (bez zmian śledzonych i komentarzy) | – |
+| Zatwierdzono | Sekcje i ustawienia strony | – |
+| Zatwierdzono | Numer strony w stopce albo nagłówku | – |
+| Zatwierdzono | Spis treści w długim dokumencie | – |
+Sekcja „Struktura”
+| Status | Kontrola | Szczegóły |
+| Błąd | Hierarchia nagłówków | Pusty nagłówek: Nagłówek poziomu 1 w akapicie 15 jest pusty. ⏎ Treść przed pierwszym nagłówkiem: Treść zaczyna się przed pierwszym nagłówkiem: „Jebać TEKOM”. ⏎ Brak nagłówków w dokumencie: Dokument nie ma żadnego nagłówka, więc nie da się po nim nawigować ani ustalić logicznej kolejności odczytu. |
+| Ostrzeżenie | Nagłówki jako style, nie formatowanie | Nagłówek zrobiony formatowaniem: 2 akapity wyglądają na nagłówek (krótki, pogrubiony albo dużą czcionką), ale bez stylu nagłówka, więc poza konspektem dokumentu; pierwszy: „Jebać TEKOM”. (2 wystąpień) |
+| Zatwierdzono | Kolejność odczytu (elementy pływające, pola tekstowe) | – |
+| Zatwierdzono | Treść strukturalna | – |
+| Ostrzeżenie | Układ bez tabulatorów i pustych znaków | Odstępy zrobione pustymi znakami: Odstępy robione pustymi znakami: 1 ciąg co najmniej dwóch pustych akapitów; czytnik ekranu czyta je jako „pusty”. Odstępy ustawia się w formatowaniu akapitu. |
+| Zatwierdzono | Listy jako listy | – |
+Sekcja „Tekst”
+| Status | Kontrola | Szczegóły |
+| Błąd | Kontrast tekstu z tłem | Za mały kontrast tekstu: 2 fragmenty tekstu mają za mały kontrast z tłem (najgorszy 2,8:1, wymagane 4,5:1 albo 3:1 dla dużego tekstu); pierwszy: „Jebać TEKOM”. (2 wystąpień) |
+| Zatwierdzono | Tekst bez długich ciągów wielkich liter | – |
+| Zatwierdzono | Wyrównanie do lewej (zalecenie) | – |
+Sekcja „Obrazy”
+| Status | Kontrola | Szczegóły |
+| Błąd | Tekst alternatywny obrazów | Obraz bez tekstu alternatywnego: Obraz nr 2 („Obraz 1”) nie ma tekstu alternatywnego. |
+Sekcja „Tabele”
+| Status | Kontrola | Szczegóły |
+| Błąd | Wiersz nagłówkowy tabel | Tabela bez wiersza nagłówkowego: Tabela 1 nie ma oznaczonego wiersza nagłówkowego (Właściwości tabeli → Powtórz jako wiersz nagłówka). |
+| Zatwierdzono | Regularna siatka bez scaleń | – |
+| Zatwierdzono | Podpis tabeli | – |
+| Zatwierdzono | Bez tabel zagnieżdżonych i tabel układu | – |
+Sekcja „Łącza”
+| Status | Kontrola | Szczegóły |
+| Błąd | Opisowe i jednoznaczne łącza | Nieopisowe lub zepsute łącze: Hiperłącze nr 1 ma jako tekst sam adres „www.dupeczki.pl”. |
+Sekcja „Formularze”
+| Status | Kontrola | Szczegóły |
+| Zatwierdzono | Etykiety pól formularza | – |
+Sekcja „Weryfikacja ręczna”
+| Status | Kontrola | Szczegóły |
+| Ręczna weryfikacja | 1.3.3 Właściwości zmysłowe | Odwołania typu „zielone pole po prawej” wymagają lektury. |
+| Ręczna weryfikacja | 1.4.1 Użycie koloru | Czy kolor jest jedynym nośnikiem informacji, ocenia człowiek. |
+| Ręczna weryfikacja | 1.4.5 Obrazy tekstu | Czy obraz zawiera tekst, który powinien być tekstem, ocenia człowiek. |
+| Ręczna weryfikacja | 1.4.10 Dopasowanie do ekranu | Nie dotyczy dokumentu Word wprost; tabele i pola tekstowe o stałej szerokości ogląda człowiek. |
+| Ręczna weryfikacja | 3.1.2 Język części | Fragmenty w innym języku powinny mieć oznaczony język (w:lang); automat nie rozpozna języka tekstu. |
+| Ręczna weryfikacja | Treść tekstów alternatywnych | Czy opisy obrazów oddają ich treść i funkcję. |
+| Ręczna weryfikacja | Sens tekstów łączy | Czy tekst każdego łącza mówi, dokąd prowadzi. |
+| Ręczna weryfikacja | Logiczna kolejność treści | Czy kolejność czytania odpowiada zamierzonej, zwłaszcza przy elementach pływających. |
+Sekcja „Inne”
+| Status | Kontrola | Szczegóły |
+| Informacja | Zalecane sprawdzenie ręczne | Zalecane sprawdzenie ręczne: Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie. |
+Standard pism firmowych 1.9
+Sekcja „Standard pism firmowych 1.9”
+| Status | Kontrola | Szczegóły |
+| Ostrzeżenie | Fraza „SUN Example Company S. A.” w tytule i autorze | Autor bez wymaganej nazwy instytucji: Autor „Krzysztof Rybka” nie zawiera wymaganej frazy „SUN Example Company S. A.”. |
+| Ostrzeżenie | Marginesy 36 pt | Marginesy inne niż wymagane: Margines górny ma 70,9 pt, a wymagane jest 36 pt. ⏎ Marginesy inne niż wymagane: Margines dolny ma 70,9 pt, a wymagane jest 36 pt. ⏎ Marginesy inne niż wymagane: Margines lewy ma 70,9 pt, a wymagane jest 36 pt. ⏎ Marginesy inne niż wymagane: Margines prawy ma 70,9 pt, a wymagane jest 36 pt. |
+Kryteria WCAG 2.1
+2 kryteria spełnione, 6 niespełnionych, 10 do przeglądu ręcznego.
+Tabela stanu kryteriów WCAG 2.1
+| Kryterium | Poziom | Pokrycie | Stan | Uwagi |
+| 1.1.1 Treść nietekstowa | A | częściowo | niespełnione | Obraz bez tekstu alternatywnego: Obraz nr 2 („Obraz 1”) nie ma tekstu alternatywnego. |
+| 1.3.1 Informacje i relacje | A | częściowo | niespełnione | Pusty nagłówek: Nagłówek poziomu 1 w akapicie 15 jest pusty. ⏎ Tabela bez wiersza nagłówkowego: Tabela 1 nie ma oznaczonego wiersza nagłówkowego (Właściwości tabeli → Powtórz jako wiersz nagłówka). ⏎ Treść przed pierwszym nagłówkiem: Treść zaczyna się przed pierwszym nagłówkiem: „Jebać TEKOM”. ⏎ Nagłówek zrobiony formatowaniem: 2 akapity wyglądają na nagłówek (krótki, pogrubiony albo dużą czcionką), ale bez stylu nagłówka, więc poza konspektem dokumentu; pierwszy: „Jebać TEKOM”. ⏎ Odstępy zrobione pustymi znakami: Odstępy robione pustymi znakami: 1 ciąg co najmniej dwóch pustych akapitów; czytnik ekranu czyta je jako „pusty”. Odstępy ustawia się w formatowaniu akapitu. |
+| 1.3.2 Zrozumiała kolejność | A | częściowo | do przeglądu | Brak nagłówków w dokumencie: Dokument nie ma żadnego nagłówka, więc nie da się po nim nawigować ani ustalić logicznej kolejności odczytu. |
+| 1.3.3 Właściwości zmysłowe | A | ręcznie | do przeglądu | Odwołania typu „zielone pole po prawej” wymagają lektury. |
+| 1.4.1 Użycie koloru | A | ręcznie | do przeglądu | Czy kolor jest jedynym nośnikiem informacji, ocenia człowiek. |
+| 1.4.3 Kontrast (minimum) | AA | częściowo | niespełnione | Za mały kontrast tekstu: 2 fragmenty tekstu mają za mały kontrast z tłem (najgorszy 2,8:1, wymagane 4,5:1 albo 3:1 dla dużego tekstu); pierwszy: „Jebać TEKOM”. |
+| 1.4.5 Obrazy tekstu | AA | ręcznie | do przeglądu | Czy obraz zawiera tekst, który powinien być tekstem, ocenia człowiek. |
+| 1.4.8 Prezentacja wizualna (zalecenie) | AAA | częściowo | do przeglądu | Wyjustowanie tekstu zgłaszane jako informacja; poziom AAA, nie wpływa na wynik. |
+| 1.4.10 Dopasowanie do ekranu | AA | ręcznie | do przeglądu | Nie dotyczy dokumentu Word wprost; tabele i pola tekstowe o stałej szerokości ogląda człowiek. |
+| 2.4.2 Tytuł strony | A | automatycznie | niespełnione | Brak tytułu dokumentu: Dokument nie ma tytułu w metadanych (Plik → Informacje → Tytuł). |
+| 2.4.4 Cel łącza (w kontekście) | A | częściowo | niespełnione | Nieopisowe lub zepsute łącze: Hiperłącze nr 1 ma jako tekst sam adres „www.dupeczki.pl”. |
+| 2.4.5 Wiele dróg | AA | częściowo | do przeglądu | Spis treści w długim dokumencie i numery stron. |
+| 2.4.6 Nagłówki i etykiety | AA | częściowo | niespełnione | Pusty nagłówek: Nagłówek poziomu 1 w akapicie 15 jest pusty. |
+| 3.1.1 Język strony | A | automatycznie | spełnione | Język dokumentu ustawiony (właściwości pakietu albo domyślne ustawienia stylów) i zapisany jako kod języka. |
+| 3.1.2 Język części | AA | ręcznie | do przeglądu | Fragmenty w innym języku powinny mieć oznaczony język (w:lang); automat nie rozpozna języka tekstu. |
+| 3.3.2 Etykiety lub instrukcje | A | częściowo | do przeglądu | Pola FORMTEXT i formanty zawartości mają tekst etykiety albo tytuł. |
+| 4.1.1 Poprawność kodu | A | automatycznie | spełnione | Pakiet DOCX otwiera się i ma część główną. |
+| 4.1.2 Nazwa, rola, wartość | A | częściowo | do przeglądu | Formanty mają nazwę (etykietę albo tytuł); rola i wartość wynikają z typu formantu w Wordzie. |
+Wyniki walidacji
+18 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
+Tabela wystąpień
+| Nr | Waga | Zgłoszenie | Standard | Miejsce | Komunikat | Zweryfikowano |
+| 1 | błąd | Obraz bez tekstu alternatywnego | WCAG 2.1 AA (dokument Word) | obraz: „obraz „Obraz 1”” | Obraz nr 2 („Obraz 1”) nie ma tekstu alternatywnego. | nie |
+| 2 | błąd | Pusty nagłówek | WCAG 2.1 AA (dokument Word) | akapit: „” | Nagłówek poziomu 1 w akapicie 15 jest pusty. | nie |
+| 3 | błąd | Tabela bez wiersza nagłówkowego | WCAG 2.1 AA (dokument Word) | tabela: „tabela 1” | Tabela 1 nie ma oznaczonego wiersza nagłówkowego (Właściwości tabeli → Powtórz jako wiersz nagłówka). | nie |
+| 4 | błąd | Nieopisowe lub zepsute łącze | WCAG 2.1 AA (dokument Word) | łącze: „www.dupeczki.pl” | Hiperłącze nr 1 ma jako tekst sam adres „www.dupeczki.pl”. | nie |
+| 5 | błąd | Za mały kontrast tekstu | WCAG 2.1 AA (dokument Word) | fragment tekstu: „Jebać TEKOM (2,8:1)” (1/2) | 2 fragmenty tekstu mają za mały kontrast z tłem (najgorszy 2,8:1, wymagane 4,5:1 albo 3:1 dla dużego tekstu); pierwszy: „Jebać TEKOM”. | nie |
+| 6 | błąd | Za mały kontrast tekstu | WCAG 2.1 AA (dokument Word) | fragment tekstu: „Kutas boko też jest spoko (2,8:1)” (2/2) | 2 fragmenty tekstu mają za mały kontrast z tłem (najgorszy 2,8:1, wymagane 4,5:1 albo 3:1 dla dużego tekstu); pierwszy: „Jebać TEKOM”. | nie |
+| 7 | błąd | Brak tytułu dokumentu | WCAG 2.1 AA (dokument Word) | dokument: „(metadane dokumentu)” | Dokument nie ma tytułu w metadanych (Plik → Informacje → Tytuł). | nie |
+| 8 | ostrzeżenie | Treść przed pierwszym nagłówkiem | WCAG 2.1 AA (dokument Word) | akapit: „Jebać TEKOM” | Treść zaczyna się przed pierwszym nagłówkiem: „Jebać TEKOM”. | nie |
+| 9 | ostrzeżenie | Nagłówek zrobiony formatowaniem | WCAG 2.1 AA (dokument Word) | akapit: „Jebać TEKOM” (1/2) | 2 akapity wyglądają na nagłówek (krótki, pogrubiony albo dużą czcionką), ale bez stylu nagłówka, więc poza konspektem dokumentu; pierwszy: „Jebać TEKOM”. | nie |
+| 10 | ostrzeżenie | Nagłówek zrobiony formatowaniem | WCAG 2.1 AA (dokument Word) | akapit: „Kutas boko też jest spoko” (2/2) | 2 akapity wyglądają na nagłówek (krótki, pogrubiony albo dużą czcionką), ale bez stylu nagłówka, więc poza konspektem dokumentu; pierwszy: „Jebać TEKOM”. | nie |
+| 11 | ostrzeżenie | Odstępy zrobione pustymi znakami | WCAG 2.1 AA (dokument Word) | akapit: „(puste akapity)” | Odstępy robione pustymi znakami: 1 ciąg co najmniej dwóch pustych akapitów; czytnik ekranu czyta je jako „pusty”. Odstępy ustawia się w formatowaniu akapitu. | nie |
+| 12 | ostrzeżenie | Brak nagłówków w dokumencie | WCAG 2.1 AA (dokument Word) | dokument: „” | Dokument nie ma żadnego nagłówka, więc nie da się po nim nawigować ani ustalić logicznej kolejności odczytu. | nie |
+| 13 | ostrzeżenie | Autor bez wymaganej nazwy instytucji | Standard pism firmowych 1.9 | dokument: „(metadane dokumentu)” | Autor „Krzysztof Rybka” nie zawiera wymaganej frazy „SUN Example Company S. A.”. | nie |
+| 14 | ostrzeżenie | Marginesy inne niż wymagane | Standard pism firmowych 1.9 | dokument: „(ustawienia strony)” | Margines górny ma 70,9 pt, a wymagane jest 36 pt. | nie |
+| 15 | ostrzeżenie | Marginesy inne niż wymagane | Standard pism firmowych 1.9 | dokument: „(ustawienia strony)” | Margines dolny ma 70,9 pt, a wymagane jest 36 pt. | nie |
+| 16 | ostrzeżenie | Marginesy inne niż wymagane | Standard pism firmowych 1.9 | dokument: „(ustawienia strony)” | Margines lewy ma 70,9 pt, a wymagane jest 36 pt. | nie |
+| 17 | ostrzeżenie | Marginesy inne niż wymagane | Standard pism firmowych 1.9 | dokument: „(ustawienia strony)” | Margines prawy ma 70,9 pt, a wymagane jest 36 pt. | nie |
+| 18 | informacja | Zalecane sprawdzenie ręczne | WCAG 2.1 AA (dokument Word) | dokument: „” | Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie. | nie |
+
+PDF: %PDF-, strony: 9

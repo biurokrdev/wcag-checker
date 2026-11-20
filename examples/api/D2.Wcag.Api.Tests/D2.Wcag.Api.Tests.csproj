@@ -21,11 +21,15 @@
 
   <ItemGroup>
     <ProjectReference Include="..\D2.Wcag.Api\D2.Wcag.Api.csproj" />
+    <ProjectReference Include="..\..\..\tests\D2.Wcag.Fixtures\D2.Wcag.Fixtures.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <!-- Ten sam generator minimalnych DOCX co w testach biblioteki. -->
     <Compile Include="..\..\..\tests\D2.Wcag.Tests\DocxBuilder.cs" Link="DocxBuilder.cs" />
+    <!-- Snapshoty i ścieżki repozytorium wspólne z testami biblioteki. -->
+    <Compile Include="..\..\..\tests\Shared\*.cs" Link="Shared\%(Filename)%(Extension)" />
+    <None Include="..\..\..\tests\fixtures\*.docx" Link="fixtures\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\..\..\samples\*.docx" Link="samples\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
     <None Include="images\*" Link="images\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>

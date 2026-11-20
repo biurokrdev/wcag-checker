@@ -1,0 +1,204 @@
+{
+  "outcome": "Invalid",
+  "summary": "7 błędów, 4 ostrzeżenia, 1 informacja.",
+  "standards": [
+    {
+      "key": "wcag/2.1",
+      "id": "wcag",
+      "version": "2.1",
+      "name": "WCAG 2.1 AA (dokument Word)",
+      "confirmed": true
+    }
+  ],
+  "document": {
+    "author": "Krzysztof Rybka",
+    "language": "pl-PL",
+    "paragraphs": 13,
+    "headings": 0,
+    "tables": 1,
+    "images": 2
+  },
+  "outline": [],
+  "issues": [
+    {
+      "code": "IMAGE_MISSING_ALT_TEXT",
+      "severity": "Error",
+      "category": "Images",
+      "standard": "wcag/2.1",
+      "message": "Obraz nr 2 („Obraz 1”) nie ma tekstu alternatywnego.",
+      "locations": [
+        {
+          "key": "body:Drawing:1",
+          "snippet": "obraz „Obraz 1”"
+        }
+      ]
+    },
+    {
+      "code": "EMPTY_HEADING",
+      "severity": "Error",
+      "category": "Headings",
+      "standard": "wcag/2.1",
+      "message": "Nagłówek poziomu 1 w akapicie 15 jest pusty.",
+      "locations": [
+        {
+          "key": "body:Paragraph:14",
+          "snippet": ""
+        }
+      ]
+    },
+    {
+      "code": "TABLE_MISSING_HEADERS",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "wcag/2.1",
+      "message": "Tabela 1 nie ma oznaczonego wiersza nagłówkowego (Właściwości tabeli → Powtórz jako wiersz nagłówka).",
+      "locations": [
+        {
+          "key": "body:Table:0",
+          "snippet": "tabela 1"
+        }
+      ]
+    },
+    {
+      "code": "INVALID_HYPERLINK",
+      "severity": "Error",
+      "category": "Hyperlinks",
+      "standard": "wcag/2.1",
+      "message": "Hiperłącze nr 1 ma jako tekst sam adres „www.dupeczki.pl”.",
+      "locations": [
+        {
+          "key": "body:Hyperlink:0",
+          "snippet": "www.dupeczki.pl"
+        }
+      ]
+    },
+    {
+      "code": "HIDDEN_TEXT_LOW_CONTRAST",
+      "severity": "Error",
+      "category": "Text",
+      "standard": "wcag/2.1",
+      "message": "3 fragmenty tekstu mają białą czcionkę bez widocznego tła; pierwszy: „Lubię jak mi żona ssie”.",
+      "locations": [
+        {
+          "key": "body:Run:5:0",
+          "snippet": "Lubię jak mi żona ssie"
+        },
+        {
+          "key": "body:Run:5:1",
+          "snippet": "kutango"
+        },
+        {
+          "key": "body:Run:5:2",
+          "snippet": "."
+        }
+      ]
+    },
+    {
+      "code": "TEXT_LOW_CONTRAST",
+      "severity": "Error",
+      "category": "Text",
+      "standard": "wcag/2.1",
+      "message": "4 fragmenty tekstu mają za mały kontrast z tłem (najgorszy 2,8:1, wymagane 4,5:1 albo 3:1 dla dużego tekstu); pierwszy: „Jebać TEKOM”.",
+      "locations": [
+        {
+          "key": "body:Run:0:0",
+          "snippet": "Jebać TEKOM (2,8:1)"
+        },
+        {
+          "key": "body:Run:2:0",
+          "snippet": "Kutas (2,8:1)"
+        },
+        {
+          "key": "body:Run:2:1",
+          "snippet": "boko (2,8:1)"
+        },
+        {
+          "key": "body:Run:2:2",
+          "snippet": "też jest spoko (2,8:1)"
+        }
+      ]
+    },
+    {
+      "code": "TITLE_MISSING",
+      "severity": "Error",
+      "category": "Metadata",
+      "standard": "wcag/2.1",
+      "message": "Dokument nie ma tytułu w metadanych (Plik → Informacje → Tytuł).",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": "(metadane dokumentu)"
+        }
+      ]
+    },
+    {
+      "code": "CONTENT_BEFORE_HEADING",
+      "severity": "Warning",
+      "category": "Headings",
+      "standard": "wcag/2.1",
+      "message": "Treść zaczyna się przed pierwszym nagłówkiem: „Jebać TEKOM”.",
+      "locations": [
+        {
+          "key": "body:Paragraph:0",
+          "snippet": "Jebać TEKOM"
+        }
+      ]
+    },
+    {
+      "code": "FAKE_HEADING",
+      "severity": "Warning",
+      "category": "Headings",
+      "standard": "wcag/2.1",
+      "message": "2 akapity wyglądają na nagłówek (krótki, pogrubiony albo dużą czcionką), ale bez stylu nagłówka, więc poza konspektem dokumentu; pierwszy: „Jebać TEKOM”.",
+      "locations": [
+        {
+          "key": "body:Paragraph:0",
+          "snippet": "Jebać TEKOM"
+        },
+        {
+          "key": "body:Paragraph:2",
+          "snippet": "Kutas boko też jest spoko"
+        }
+      ]
+    },
+    {
+      "code": "REPEATED_BLANKS",
+      "severity": "Warning",
+      "category": "Text",
+      "standard": "wcag/2.1",
+      "message": "Odstępy robione pustymi znakami: 1 ciąg co najmniej dwóch pustych akapitów; czytnik ekranu czyta je jako „pusty”. Odstępy ustawia się w formatowaniu akapitu.",
+      "locations": [
+        {
+          "key": "body:Paragraph:14",
+          "snippet": "(puste akapity)"
+        }
+      ]
+    },
+    {
+      "code": "UNCLEAR_READING_ORDER",
+      "severity": "Warning",
+      "category": "Structure",
+      "standard": "wcag/2.1",
+      "message": "Dokument nie ma żadnego nagłówka, więc nie da się po nim nawigować ani ustalić logicznej kolejności odczytu.",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": ""
+        }
+      ]
+    },
+    {
+      "code": "MANUAL_CHECK_SUGGESTED",
+      "severity": "Info",
+      "category": "Document",
+      "standard": "wcag/2.1",
+      "message": "Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie.",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": ""
+        }
+      ]
+    }
+  ]
+}

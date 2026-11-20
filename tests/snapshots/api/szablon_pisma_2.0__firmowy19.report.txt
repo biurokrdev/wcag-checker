@@ -1,0 +1,23 @@
+Tytuł: Raport walidacji: szablon_pisma_2.0.docx
+Autor: D2.Wcag
+Język: pl-PL
+Obrazy: 0
+
+Raport walidacji dokumentu „szablon_pisma_2.0.docx”
+Wynik: niepoprawny. 1 błąd, 1 ostrzeżenie.
+Data sprawdzenia: <data>. Standardy: Standard pism firmowych 1.9.
+Dokument: tytuł „Wzór pisma firmowego. Example Company S. A.”, autor „Example Company S. A.”, język pl-PL, 30 akapitów, 7 nagłówków, 1 tabel, 0 obrazów.
+Podsumowanie kontroli
+Standard pism firmowych 1.9
+Sekcja „Standard pism firmowych 1.9”
+| Status | Kontrola | Szczegóły |
+| Błąd | Fraza „SUN Example Company S. A.” w tytule i autorze | Tytuł bez wymaganej nazwy instytucji: Tytuł „Wzór pisma firmowego. Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”. ⏎ Autor bez wymaganej nazwy instytucji: Autor „Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”. |
+| Zatwierdzono | Marginesy 36 pt | – |
+Wyniki walidacji
+2 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
+Tabela wystąpień
+| Nr | Waga | Zgłoszenie | Standard | Miejsce | Komunikat | Zweryfikowano |
+| 1 | błąd | Tytuł bez wymaganej nazwy instytucji | Standard pism firmowych 1.9 | dokument: „(metadane dokumentu)” | Tytuł „Wzór pisma firmowego. Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”. | nie |
+| 2 | ostrzeżenie | Autor bez wymaganej nazwy instytucji | Standard pism firmowych 1.9 | dokument: „(metadane dokumentu)” | Autor „Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”. | nie |
+
+PDF: %PDF-, strony: 1

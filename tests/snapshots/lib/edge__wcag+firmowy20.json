@@ -1,0 +1,182 @@
+{
+  "outcome": "Invalid",
+  "summary": "4 błędy, 3 ostrzeżenia, 1 informacja.",
+  "standards": [
+    {
+      "key": "wcag/2.1",
+      "id": "wcag",
+      "version": "2.1",
+      "name": "WCAG 2.1 AA (dokument Word)",
+      "confirmed": true
+    },
+    {
+      "key": "firmowy/2.0",
+      "id": "firmowy",
+      "version": "2.0",
+      "name": "Standard pism firmowych 2.0",
+      "confirmed": true,
+      "note": ""
+    }
+  ],
+  "document": {
+    "title": "Przypadki brzegowe. Example Company S. A.",
+    "author": "Example Company S. A.",
+    "language": "pl-PL",
+    "paragraphs": 21,
+    "headings": 3,
+    "tables": 1,
+    "images": 1
+  },
+  "outline": [
+    {
+      "level": 1,
+      "text": "Przypadki brzegowe"
+    },
+    {
+      "level": 2,
+      "text": "Tabela ze stylem tabeli"
+    },
+    {
+      "level": 2,
+      "text": "Druga sekcja"
+    }
+  ],
+  "issues": [
+    {
+      "code": "IMAGE_MISSING_ALT_TEXT",
+      "severity": "Error",
+      "category": "Images",
+      "standard": "wcag/2.1",
+      "message": "Obraz nr 2 (obiekt VML) nie ma tekstu alternatywnego.",
+      "locations": [
+        {
+          "key": "body:Run:6:1",
+          "snippet": "(obiekt VML)"
+        }
+      ]
+    },
+    {
+      "code": "TABLE_ALIGNMENT_MISMATCH",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "message": "Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
+      "locations": [
+        {
+          "key": "body:TableCell:0:0",
+          "snippet": "Etap"
+        },
+        {
+          "key": "body:TableCell:0:1",
+          "snippet": "Termin"
+        },
+        {
+          "key": "body:TableCell:0:2",
+          "snippet": "Złożenie wniosku"
+        },
+        {
+          "key": "body:TableCell:0:3",
+          "snippet": "do 30 dni"
+        },
+        {
+          "key": "body:TableCell:0:4",
+          "snippet": "Decyzja"
+        },
+        {
+          "key": "body:TableCell:0:5",
+          "snippet": "do 14 dni"
+        }
+      ]
+    },
+    {
+      "code": "TABLE_HEADER_NOT_BOLD",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "message": "Tabela 1: 2 komórki nagłówka nie są pogrubione.",
+      "locations": [
+        {
+          "key": "body:TableCell:0:0",
+          "snippet": "Etap"
+        },
+        {
+          "key": "body:TableCell:0:1",
+          "snippet": "Termin"
+        }
+      ]
+    },
+    {
+      "code": "TEXT_LOW_CONTRAST",
+      "severity": "Error",
+      "category": "Text",
+      "standard": "wcag/2.1",
+      "message": "1 fragment tekstu ma za mały kontrast z tłem (najgorszy 2,4:1, wymagane 4,5:1 albo 3:1 dla dużego tekstu); pierwszy: „rozjaśniony akcent”.",
+      "locations": [
+        {
+          "key": "body:Run:3:1",
+          "snippet": "rozjaśniony akcent (2,4:1)"
+        }
+      ]
+    },
+    {
+      "code": "COMMENTS_PRESENT",
+      "severity": "Warning",
+      "category": "Document",
+      "standard": "wcag/2.1",
+      "message": "Dokument zawiera 1 komentarz; usuń je przed publikacją.",
+      "locations": [
+        {
+          "key": "body:Paragraph:1",
+          "snippet": "(komentarz)"
+        }
+      ]
+    },
+    {
+      "code": "FLOATING_ELEMENTS_PRESENT",
+      "severity": "Warning",
+      "category": "Structure",
+      "standard": "wcag/2.1",
+      "message": "Dokument zawiera 1 element pływający, 2 pola tekstowe; ich położenie w kolejności odczytu nie wynika z treści.",
+      "locations": [
+        {
+          "key": "body:Drawing:0",
+          "snippet": "(element pływający)"
+        },
+        {
+          "key": "body:Run:6:1",
+          "snippet": "(pole tekstowe)"
+        }
+      ]
+    },
+    {
+      "code": "TEXT_COLOR_NOT_ALLOWED",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "message": "2 fragmenty tekstu mają kolor spoza dozwolonej palety (#8EAADB, #2F5496); dozwolone: #000000, #FF6200, #0000FF, #AB0066, #7724FF, #696969, #4D0020.",
+      "locations": [
+        {
+          "key": "body:Run:3:1",
+          "snippet": "rozjaśniony akcent (#8EAADB)"
+        },
+        {
+          "key": "body:Run:3:3",
+          "snippet": "przyciemniony akcent (#2F5496)"
+        }
+      ]
+    },
+    {
+      "code": "MANUAL_CHECK_SUGGESTED",
+      "severity": "Info",
+      "category": "Document",
+      "standard": "wcag/2.1",
+      "message": "Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie.",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": ""
+        }
+      ]
+    }
+  ]
+}

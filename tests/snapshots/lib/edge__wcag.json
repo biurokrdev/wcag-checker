@@ -1,0 +1,107 @@
+{
+  "outcome": "Invalid",
+  "summary": "2 błędy, 2 ostrzeżenia, 1 informacja.",
+  "standards": [
+    {
+      "key": "wcag/2.1",
+      "id": "wcag",
+      "version": "2.1",
+      "name": "WCAG 2.1 AA (dokument Word)",
+      "confirmed": true
+    }
+  ],
+  "document": {
+    "title": "Przypadki brzegowe. Example Company S. A.",
+    "author": "Example Company S. A.",
+    "language": "pl-PL",
+    "paragraphs": 21,
+    "headings": 3,
+    "tables": 1,
+    "images": 1
+  },
+  "outline": [
+    {
+      "level": 1,
+      "text": "Przypadki brzegowe"
+    },
+    {
+      "level": 2,
+      "text": "Tabela ze stylem tabeli"
+    },
+    {
+      "level": 2,
+      "text": "Druga sekcja"
+    }
+  ],
+  "issues": [
+    {
+      "code": "IMAGE_MISSING_ALT_TEXT",
+      "severity": "Error",
+      "category": "Images",
+      "standard": "wcag/2.1",
+      "message": "Obraz nr 2 (obiekt VML) nie ma tekstu alternatywnego.",
+      "locations": [
+        {
+          "key": "body:Run:6:1",
+          "snippet": "(obiekt VML)"
+        }
+      ]
+    },
+    {
+      "code": "TEXT_LOW_CONTRAST",
+      "severity": "Error",
+      "category": "Text",
+      "standard": "wcag/2.1",
+      "message": "1 fragment tekstu ma za mały kontrast z tłem (najgorszy 2,4:1, wymagane 4,5:1 albo 3:1 dla dużego tekstu); pierwszy: „rozjaśniony akcent”.",
+      "locations": [
+        {
+          "key": "body:Run:3:1",
+          "snippet": "rozjaśniony akcent (2,4:1)"
+        }
+      ]
+    },
+    {
+      "code": "COMMENTS_PRESENT",
+      "severity": "Warning",
+      "category": "Document",
+      "standard": "wcag/2.1",
+      "message": "Dokument zawiera 1 komentarz; usuń je przed publikacją.",
+      "locations": [
+        {
+          "key": "body:Paragraph:1",
+          "snippet": "(komentarz)"
+        }
+      ]
+    },
+    {
+      "code": "FLOATING_ELEMENTS_PRESENT",
+      "severity": "Warning",
+      "category": "Structure",
+      "standard": "wcag/2.1",
+      "message": "Dokument zawiera 1 element pływający, 2 pola tekstowe; ich położenie w kolejności odczytu nie wynika z treści.",
+      "locations": [
+        {
+          "key": "body:Drawing:0",
+          "snippet": "(element pływający)"
+        },
+        {
+          "key": "body:Run:6:1",
+          "snippet": "(pole tekstowe)"
+        }
+      ]
+    },
+    {
+      "code": "MANUAL_CHECK_SUGGESTED",
+      "severity": "Info",
+      "category": "Document",
+      "standard": "wcag/2.1",
+      "message": "Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie.",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": ""
+        }
+      ]
+    }
+  ]
+}

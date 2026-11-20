@@ -1,0 +1,353 @@
+{
+  "status": "Valid",
+  "summary": "1 ostrzeżenie.",
+  "standards": [
+    {
+      "key": "firmowy/2.0",
+      "id": "firmowy",
+      "version": "2.0",
+      "name": "Standard pism firmowych 2.0",
+      "confirmed": true,
+      "note": ""
+    }
+  ],
+  "document": {
+    "fileName": "direct-formatting.docx",
+    "title": "Formatowanie bezpośrednie. Example Company S. A.",
+    "author": "Example Company S. A.",
+    "language": "pl-PL",
+    "paragraphs": 22,
+    "headings": 4,
+    "tables": 1,
+    "images": 0
+  },
+  "counts": {
+    "errors": 0,
+    "warnings": 1,
+    "infos": 0
+  },
+  "issues": [
+    {
+      "code": "BODY_TEXT_SIZE_MISMATCH",
+      "label": "Rozmiar tekstu podstawowego spoza standardu",
+      "severity": "Warning",
+      "category": "Quality",
+      "message": "1 fragment tekstu jest powiększony do 12 albo 14 pt; dopuszczalne tylko z potrzeby biznesowej.",
+      "standard": "firmowy/2.0",
+      "fixable": false
+    }
+  ],
+  "outline": [
+    {
+      "level": 1,
+      "text": "Formatowanie bezpośrednie"
+    },
+    {
+      "level": 2,
+      "text": "Akapity"
+    },
+    {
+      "level": 2,
+      "text": "Style znakowe"
+    },
+    {
+      "level": 2,
+      "text": "Lista i tabela"
+    }
+  ],
+  "wcag": null,
+  "reportId": "<id>",
+  "summaryTable": [
+    {
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "section": "Format strony i ustawienia bazowe",
+      "rows": [
+        {
+          "id": "g01",
+          "name": "G-01 A4 210 × 297 mm, marginesy 12,7 mm",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "g04",
+          "name": "G-04 Wyrównanie do lewej, bez justowania",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "fonts",
+          "name": "Czcionka SUN Me (H1: SUN Display), grubość osobno",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "line",
+          "name": "Interlinia 1,2",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        }
+      ]
+    },
+    {
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "section": "Paleta kolorów",
+      "rows": [
+        {
+          "id": "g02",
+          "name": "G-02 Kolory tylko z palety, użyte zgodnie z przeznaczeniem",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        }
+      ]
+    },
+    {
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "section": "Typografia",
+      "rows": [
+        {
+          "id": "g03",
+          "name": "G-03 Style H1–H5 zgodne z tabelą typografii",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "body",
+          "name": "Tekst podstawowy 10 pt (12/14 pt warunkowo)",
+          "status": "Warning",
+          "details": [
+            {
+              "code": "BODY_TEXT_SIZE_MISMATCH",
+              "label": "Rozmiar tekstu podstawowego spoza standardu",
+              "message": "1 fragment tekstu jest powiększony do 12 albo 14 pt; dopuszczalne tylko z potrzeby biznesowej.",
+              "occurrences": 1,
+              "severity": "Warning"
+            }
+          ],
+          "note": null
+        },
+        {
+          "id": "links",
+          "name": "Łącza #7724FF z podkreśleniem",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "g05",
+          "name": "G-05 Odstępy H1: 42,5 pt nad, 34 pt pod",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "g07",
+          "name": "G-07 Hierarchia nagłówków: start od H1, bez przeskoków",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        }
+      ]
+    },
+    {
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "section": "Spis treści i listy",
+      "rows": [
+        {
+          "id": "g06",
+          "name": "G-06 Automatyczny spis treści powyżej 9 stron",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "toc-heading",
+          "name": "Nagłówek „Spis treści” poza spisem, SUN Me Bold 10 pt",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "lists",
+          "name": "Punktory #FF6200/#000000, numery pogrubione",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        }
+      ]
+    },
+    {
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "section": "Tabele",
+      "rows": [
+        {
+          "id": "g08",
+          "name": "G-08 Wiersz nagłówkowy powtarzany, bez pustych komórek, wiersze niepodzielne",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "g09",
+          "name": "G-09 Krawędzie 1 pt #000000, nagłówki Bold, lewo/środek w pionie",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "table-title",
+          "name": "Tytuł i opis tabeli w tekście alternatywnym",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        }
+      ]
+    },
+    {
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "section": "Grafika",
+      "rows": [
+        {
+          "id": "g10",
+          "name": "G-10 Logo 44 × 10 mm i symbol 22 × 22 mm z tekstem alternatywnym z guidebooka",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        }
+      ]
+    },
+    {
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "section": "Stopka i metadane",
+      "rows": [
+        {
+          "id": "g11",
+          "name": "G-11 Stopka SUN Me 8 pt #696969 interlinia 1,2, numer i tytuł, bez stopki na stronie tytułowej",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "g12",
+          "name": "G-12 Title „[Tytuł]. Bank”, Author = bank",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "g13",
+          "name": "G-13 Język dokumentu ustawiony",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        }
+      ]
+    },
+    {
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "section": "Warianty i oznaczenia",
+      "rows": [
+        {
+          "id": "g14",
+          "name": "G-14 Warianty zagnieżdżone i domknięte, kolory znaczników, [lub] zamiast ukośnika",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "g16",
+          "name": "G-16 Napis WZÓR na każdej stronie, SUN Me Bold 28 pt",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        }
+      ]
+    },
+    {
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "section": "Weryfikacja ręczna",
+      "rows": [
+        {
+          "id": "manual-g07",
+          "name": "G-07 Hierarchia tagów w wygenerowanym PDF",
+          "status": "ManualReview",
+          "details": [],
+          "note": "Sprawdzić na wygenerowanym PDF/UA (drzewo tagów); w DOCX hierarchia nagłówków jest sprawdzana automatycznie."
+        },
+        {
+          "id": "manual-g10",
+          "name": "G-10 Alt text ikon i QR zależny od kontekstu, dekoracje wyłączone",
+          "status": "ManualReview",
+          "details": [],
+          "note": "Ikony „tak/nie” i informacji z opisem z kontekstu; QR z przeznaczeniem; pole na naklejkę barcode dekoracyjne; zasoby z OrangeSharing, nie ze zdjęć."
+        },
+        {
+          "id": "manual-g13",
+          "name": "G-13 Znaczniki językowe fragmentów w innym języku",
+          "status": "ManualReview",
+          "details": [],
+          "note": "Cytaty, tytuły i rozwinięcia skrótów w innym języku oznaczone miejscowo."
+        },
+        {
+          "id": "manual-g15",
+          "name": "G-15 Sygnatura (SUN Me 8 pt, 270°, prawy dolny róg) i SIGNOTEK",
+          "status": "ManualReview",
+          "details": [],
+          "note": "Zgodność z integracją; biały identyfikator SIGNOTEK ocenić osobno pod kątem dostępności."
+        },
+        {
+          "id": "manual-layout",
+          "name": "Wariant układu (dane rejestrowe, strona tytułowa, pole adresowe)",
+          "status": "ManualReview",
+          "details": [],
+          "note": "Dane rejestrowe SUN Me 8 pt #696969 interlinia 1,5; strona tytułowa bez stopki; pole adresowe najlepiej puste."
+        },
+        {
+          "id": "manual-signatures",
+          "name": "Pola podpisów, separatory i kontrolki formularza",
+          "status": "ManualReview",
+          "details": [],
+          "note": "Linia podpisu 1 px #000000 60 mm; inputy 1 px #696969, 24 px wysokości; checkbox 20 × 20 px."
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "index": 0,
+      "code": "BODY_TEXT_SIZE_MISMATCH",
+      "label": "Rozmiar tekstu podstawowego spoza standardu",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "1 fragment tekstu jest powiększony do 12 albo 14 pt; dopuszczalne tylko z potrzeby biznesowej.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Run:7:0",
+        "kind": "Run",
+        "story": "body",
+        "index": 7,
+        "subIndex": 0,
+        "snippet": "Warunki dodatkowe (14 pt)"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1
+    }
+  ]
+}

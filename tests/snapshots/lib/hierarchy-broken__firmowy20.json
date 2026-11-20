@@ -1,0 +1,98 @@
+{
+  "outcome": "Invalid",
+  "summary": "1 błąd, 2 ostrzeżenia.",
+  "standards": [
+    {
+      "key": "firmowy/2.0",
+      "id": "firmowy",
+      "version": "2.0",
+      "name": "Standard pism firmowych 2.0",
+      "confirmed": true,
+      "note": ""
+    }
+  ],
+  "document": {
+    "title": "Hierarchia treści. Example Company S. A.",
+    "author": "Example Company S. A.",
+    "language": "pl-PL",
+    "paragraphs": 38,
+    "headings": 8,
+    "tables": 1,
+    "images": 0
+  },
+  "outline": [
+    {
+      "level": 2,
+      "text": "Zakres dokumentu"
+    },
+    {
+      "level": 4,
+      "text": "Szczegóły zakresu"
+    },
+    {
+      "level": 3,
+      "text": "Nagłówek z poziomu konspektu"
+    },
+    {
+      "level": 3,
+      "text": "Ten nagłówek jest zdecydowanie za długi, ponieważ zawiera całe zdanie opisujące zawartość sekcji zamiast krótkiego tytuł…"
+    },
+    {
+      "level": 3,
+      "text": "Nagłówek w komórce"
+    },
+    {
+      "level": 1,
+      "text": "Część główna"
+    },
+    {
+      "level": 2,
+      "text": "Podsumowanie"
+    },
+    {
+      "level": 1,
+      "text": "Załączniki"
+    }
+  ],
+  "issues": [
+    {
+      "code": "HEADING_STYLE_MISMATCH",
+      "severity": "Error",
+      "category": "Headings",
+      "standard": "firmowy/2.0",
+      "message": "Nagłówek H3 „Nagłówek z poziomu konspektu”: rozmiar 10 pt zamiast 14 pt; brak pogrubienia.",
+      "locations": [
+        {
+          "key": "body:Paragraph:10",
+          "snippet": "Nagłówek z poziomu konspektu"
+        }
+      ]
+    },
+    {
+      "code": "HEADING_LEVEL_SKIPPED",
+      "severity": "Warning",
+      "category": "Headings",
+      "standard": "firmowy/2.0",
+      "message": "Pierwszy nagłówek „Zakres dokumentu” ma poziom 2; dokument powinien zaczynać się od nagłówka poziomu 1.",
+      "locations": [
+        {
+          "key": "body:Paragraph:2",
+          "snippet": "Zakres dokumentu"
+        }
+      ]
+    },
+    {
+      "code": "HEADING_LEVEL_SKIPPED",
+      "severity": "Warning",
+      "category": "Headings",
+      "standard": "firmowy/2.0",
+      "message": "Nagłówek „Szczegóły zakresu” ma poziom 4 zaraz po poziomie 2; pominięto poziom 3.",
+      "locations": [
+        {
+          "key": "body:Paragraph:4",
+          "snippet": "Szczegóły zakresu"
+        }
+      ]
+    }
+  ]
+}

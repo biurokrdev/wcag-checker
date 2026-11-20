@@ -1,0 +1,56 @@
+{
+  "outcome": "Valid",
+  "summary": "1 ostrzeżenie.",
+  "standards": [
+    {
+      "key": "firmowy/2.0",
+      "id": "firmowy",
+      "version": "2.0",
+      "name": "Standard pism firmowych 2.0",
+      "confirmed": true,
+      "note": ""
+    }
+  ],
+  "document": {
+    "title": "Formatowanie bezpośrednie. Example Company S. A.",
+    "author": "Example Company S. A.",
+    "language": "pl-PL",
+    "paragraphs": 22,
+    "headings": 4,
+    "tables": 1,
+    "images": 0
+  },
+  "outline": [
+    {
+      "level": 1,
+      "text": "Formatowanie bezpośrednie"
+    },
+    {
+      "level": 2,
+      "text": "Akapity"
+    },
+    {
+      "level": 2,
+      "text": "Style znakowe"
+    },
+    {
+      "level": 2,
+      "text": "Lista i tabela"
+    }
+  ],
+  "issues": [
+    {
+      "code": "BODY_TEXT_SIZE_MISMATCH",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "message": "1 fragment tekstu jest powiększony do 12 albo 14 pt; dopuszczalne tylko z potrzeby biznesowej.",
+      "locations": [
+        {
+          "key": "body:Run:7:0",
+          "snippet": "Warunki dodatkowe (14 pt)"
+        }
+      ]
+    }
+  ]
+}

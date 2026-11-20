@@ -1,0 +1,169 @@
+{
+  "status": "Invalid",
+  "summary": "1 błąd, 1 ostrzeżenie.",
+  "standards": [
+    {
+      "key": "firmowy/1.9",
+      "id": "firmowy",
+      "version": "1.9",
+      "name": "Standard pism firmowych 1.9",
+      "confirmed": true,
+      "note": null
+    }
+  ],
+  "document": {
+    "fileName": "hierarchy-broken.docx",
+    "title": "Hierarchia treści. Example Company S. A.",
+    "author": "Example Company S. A.",
+    "language": "pl-PL",
+    "paragraphs": 38,
+    "headings": 8,
+    "tables": 1,
+    "images": 0
+  },
+  "counts": {
+    "errors": 1,
+    "warnings": 1,
+    "infos": 0
+  },
+  "issues": [
+    {
+      "code": "TITLE_PHRASE_MISSING",
+      "label": "Tytuł bez wymaganej nazwy instytucji",
+      "severity": "Error",
+      "category": "Metadata",
+      "message": "Tytuł „Hierarchia treści. Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”.",
+      "standard": "firmowy/1.9",
+      "fixable": true
+    },
+    {
+      "code": "AUTHOR_PHRASE_MISSING",
+      "label": "Autor bez wymaganej nazwy instytucji",
+      "severity": "Warning",
+      "category": "Metadata",
+      "message": "Autor „Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”.",
+      "standard": "firmowy/1.9",
+      "fixable": true
+    }
+  ],
+  "outline": [
+    {
+      "level": 2,
+      "text": "Zakres dokumentu"
+    },
+    {
+      "level": 4,
+      "text": "Szczegóły zakresu"
+    },
+    {
+      "level": 3,
+      "text": "Nagłówek z poziomu konspektu"
+    },
+    {
+      "level": 3,
+      "text": "Ten nagłówek jest zdecydowanie za długi, ponieważ zawiera całe zdanie opisujące zawartość sekcji zamiast krótkiego tytuł…"
+    },
+    {
+      "level": 3,
+      "text": "Nagłówek w komórce"
+    },
+    {
+      "level": 1,
+      "text": "Część główna"
+    },
+    {
+      "level": 2,
+      "text": "Podsumowanie"
+    },
+    {
+      "level": 1,
+      "text": "Załączniki"
+    }
+  ],
+  "wcag": null,
+  "reportId": "<id>",
+  "summaryTable": [
+    {
+      "standard": "firmowy/1.9",
+      "standardName": "Standard pism firmowych 1.9",
+      "section": "Standard pism firmowych 1.9",
+      "rows": [
+        {
+          "id": "phrase",
+          "name": "Fraza „SUN Example Company S. A.” w tytule i autorze",
+          "status": "Error",
+          "details": [
+            {
+              "code": "TITLE_PHRASE_MISSING",
+              "label": "Tytuł bez wymaganej nazwy instytucji",
+              "message": "Tytuł „Hierarchia treści. Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”.",
+              "occurrences": 1,
+              "severity": "Error"
+            },
+            {
+              "code": "AUTHOR_PHRASE_MISSING",
+              "label": "Autor bez wymaganej nazwy instytucji",
+              "message": "Autor „Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”.",
+              "occurrences": 1,
+              "severity": "Warning"
+            }
+          ],
+          "note": null
+        },
+        {
+          "id": "margins",
+          "name": "Marginesy 36 pt",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "index": 0,
+      "code": "TITLE_PHRASE_MISSING",
+      "label": "Tytuł bez wymaganej nazwy instytucji",
+      "severity": "Error",
+      "category": "Metadata",
+      "standard": "firmowy/1.9",
+      "standardName": "Standard pism firmowych 1.9",
+      "message": "Tytuł „Hierarchia treści. Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”.",
+      "fixable": true,
+      "criteria": [],
+      "location": {
+        "key": "body:Document:0",
+        "kind": "Document",
+        "story": "body",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "(metadane dokumentu)"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1
+    },
+    {
+      "index": 1,
+      "code": "AUTHOR_PHRASE_MISSING",
+      "label": "Autor bez wymaganej nazwy instytucji",
+      "severity": "Warning",
+      "category": "Metadata",
+      "standard": "firmowy/1.9",
+      "standardName": "Standard pism firmowych 1.9",
+      "message": "Autor „Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”.",
+      "fixable": true,
+      "criteria": [],
+      "location": {
+        "key": "body:Document:0",
+        "kind": "Document",
+        "story": "body",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "(metadane dokumentu)"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1
+    }
+  ]
+}

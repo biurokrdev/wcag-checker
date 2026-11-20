@@ -1,0 +1,2 @@
+*.docx binary
+tests/snapshots/** text eol=lf

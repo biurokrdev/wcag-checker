@@ -1,0 +1,99 @@
+Tytuł: Raport walidacji: direct-formatting.docx
+Autor: D2.Wcag
+Język: pl-PL
+Obrazy: 0
+
+Raport walidacji dokumentu „direct-formatting.docx”
+Wynik: niepoprawny. 1 błąd, 2 ostrzeżenia, 1 informacja.
+Data sprawdzenia: <data>. Standardy: WCAG 2.1 AA (dokument Word); Standard pism firmowych 1.9.
+Dokument: tytuł „Formatowanie bezpośrednie. Example Company S. A.”, autor „Example Company S. A.”, język pl-PL, 22 akapitów, 4 nagłówków, 1 tabel, 0 obrazów.
+Podsumowanie kontroli
+WCAG 2.1 AA (dokument Word)
+Sekcja „Dokument”
+| Status | Kontrola | Szczegóły |
+| Zatwierdzono | Poprawność pliku DOCX | – |
+| Zatwierdzono | Tytuł dokumentu w metadanych | – |
+| Zatwierdzono | Autor w metadanych | – |
+| Zatwierdzono | Język dokumentu | – |
+| Zatwierdzono | Wersja ostateczna (bez zmian śledzonych i komentarzy) | – |
+| Zatwierdzono | Sekcje i ustawienia strony | – |
+| Zatwierdzono | Numer strony w stopce albo nagłówku | – |
+| Zatwierdzono | Spis treści w długim dokumencie | – |
+Sekcja „Struktura”
+| Status | Kontrola | Szczegóły |
+| Zatwierdzono | Hierarchia nagłówków | – |
+| Ostrzeżenie | Nagłówki jako style, nie formatowanie | Nagłówek zrobiony formatowaniem: 1 akapit wygląda na nagłówek (krótki, pogrubiony albo dużą czcionką), ale bez stylu nagłówka, więc poza konspektem dokumentu; pierwszy: „Warunki dodatkowe”. |
+| Zatwierdzono | Kolejność odczytu (elementy pływające, pola tekstowe) | – |
+| Zatwierdzono | Treść strukturalna | – |
+| Zatwierdzono | Układ bez tabulatorów i pustych znaków | – |
+| Zatwierdzono | Listy jako listy | – |
+Sekcja „Tekst”
+| Status | Kontrola | Szczegóły |
+| Zatwierdzono | Kontrast tekstu z tłem | – |
+| Zatwierdzono | Tekst bez długich ciągów wielkich liter | – |
+| Zatwierdzono | Wyrównanie do lewej (zalecenie) | – |
+Sekcja „Obrazy”
+| Status | Kontrola | Szczegóły |
+| Zatwierdzono | Tekst alternatywny obrazów | – |
+Sekcja „Tabele”
+| Status | Kontrola | Szczegóły |
+| Zatwierdzono | Wiersz nagłówkowy tabel | – |
+| Zatwierdzono | Regularna siatka bez scaleń | – |
+| Zatwierdzono | Podpis tabeli | – |
+| Zatwierdzono | Bez tabel zagnieżdżonych i tabel układu | – |
+Sekcja „Łącza”
+| Status | Kontrola | Szczegóły |
+| Zatwierdzono | Opisowe i jednoznaczne łącza | – |
+Sekcja „Formularze”
+| Status | Kontrola | Szczegóły |
+| Zatwierdzono | Etykiety pól formularza | – |
+Sekcja „Weryfikacja ręczna”
+| Status | Kontrola | Szczegóły |
+| Ręczna weryfikacja | 1.3.3 Właściwości zmysłowe | Odwołania typu „zielone pole po prawej” wymagają lektury. |
+| Ręczna weryfikacja | 1.4.1 Użycie koloru | Czy kolor jest jedynym nośnikiem informacji, ocenia człowiek. |
+| Ręczna weryfikacja | 1.4.5 Obrazy tekstu | Czy obraz zawiera tekst, który powinien być tekstem, ocenia człowiek. |
+| Ręczna weryfikacja | 1.4.10 Dopasowanie do ekranu | Nie dotyczy dokumentu Word wprost; tabele i pola tekstowe o stałej szerokości ogląda człowiek. |
+| Ręczna weryfikacja | 3.1.2 Język części | Fragmenty w innym języku powinny mieć oznaczony język (w:lang); automat nie rozpozna języka tekstu. |
+| Ręczna weryfikacja | Treść tekstów alternatywnych | Czy opisy obrazów oddają ich treść i funkcję. |
+| Ręczna weryfikacja | Sens tekstów łączy | Czy tekst każdego łącza mówi, dokąd prowadzi. |
+| Ręczna weryfikacja | Logiczna kolejność treści | Czy kolejność czytania odpowiada zamierzonej, zwłaszcza przy elementach pływających. |
+Sekcja „Inne”
+| Status | Kontrola | Szczegóły |
+| Informacja | Zalecane sprawdzenie ręczne | Zalecane sprawdzenie ręczne: Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie. |
+Standard pism firmowych 1.9
+Sekcja „Standard pism firmowych 1.9”
+| Status | Kontrola | Szczegóły |
+| Błąd | Fraza „SUN Example Company S. A.” w tytule i autorze | Tytuł bez wymaganej nazwy instytucji: Tytuł „Formatowanie bezpośrednie. Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”. ⏎ Autor bez wymaganej nazwy instytucji: Autor „Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”. |
+| Zatwierdzono | Marginesy 36 pt | – |
+Kryteria WCAG 2.1
+3 kryteria spełnione, 0 niespełnionych, 15 do przeglądu ręcznego.
+Tabela stanu kryteriów WCAG 2.1
+| Kryterium | Poziom | Pokrycie | Stan | Uwagi |
+| 1.1.1 Treść nietekstowa | A | częściowo | do przeglądu | Automat sprawdza, czy każda grafika (DrawingML, VML, także w nagłówkach, stopkach i przypisach) ma tekst alternatywny albo jest oznaczona jako dekoracyjna i czy opis nie jest tymczasowy. Czy opis oddaje treść obrazu, ocenia człowiek. |
+| 1.3.1 Informacje i relacje | A | częściowo | do przeglądu | Nagłówek zrobiony formatowaniem: 1 akapit wygląda na nagłówek (krótki, pogrubiony albo dużą czcionką), ale bez stylu nagłówka, więc poza konspektem dokumentu; pierwszy: „Warunki dodatkowe”. |
+| 1.3.2 Zrozumiała kolejność | A | częściowo | do przeglądu | Automat wskazuje elementy pływające, pola tekstowe i tabele z opływaniem, których miejsce w kolejności odczytu nie wynika z treści, oraz brak nagłówków. Sam porządek treści ocenia człowiek. |
+| 1.3.3 Właściwości zmysłowe | A | ręcznie | do przeglądu | Odwołania typu „zielone pole po prawej” wymagają lektury. |
+| 1.4.1 Użycie koloru | A | ręcznie | do przeglądu | Czy kolor jest jedynym nośnikiem informacji, ocenia człowiek. |
+| 1.4.3 Kontrast (minimum) | AA | częściowo | do przeglądu | Automat liczy kontrast dla kolorów wynikających z pliku (kolor czcionki ze stylu albo bezpośredni, cieniowanie tekstu, akapitu i komórki, wyróżnienie). Kolory motywu bez wartości, tekst na obrazach i grafiki ocenia człowiek. |
+| 1.4.5 Obrazy tekstu | AA | ręcznie | do przeglądu | Czy obraz zawiera tekst, który powinien być tekstem, ocenia człowiek. |
+| 1.4.8 Prezentacja wizualna (zalecenie) | AAA | częściowo | do przeglądu | Wyjustowanie tekstu zgłaszane jako informacja; poziom AAA, nie wpływa na wynik. |
+| 1.4.10 Dopasowanie do ekranu | AA | ręcznie | do przeglądu | Nie dotyczy dokumentu Word wprost; tabele i pola tekstowe o stałej szerokości ogląda człowiek. |
+| 2.4.2 Tytuł strony | A | automatycznie | spełnione | Tytuł w metadanych, inny niż nazwa domyślna albo nazwa pliku. |
+| 2.4.4 Cel łącza (w kontekście) | A | częściowo | do przeglądu | Automat wykrywa łącza bez celu, bez tekstu, z samym adresem, z tekstem w rodzaju „tutaj” i ten sam tekst prowadzący do różnych miejsc. Czy tekst łącza opisuje cel, ocenia człowiek. |
+| 2.4.5 Wiele dróg | AA | częściowo | do przeglądu | Spis treści w długim dokumencie i numery stron. |
+| 2.4.6 Nagłówki i etykiety | AA | częściowo | do przeglądu | Nagłówki istnieją, nie są puste ani nadmiernie długie; pola formularza mają etykiety. Czy opisują treść, ocenia człowiek. |
+| 3.1.1 Język strony | A | automatycznie | spełnione | Język dokumentu ustawiony (właściwości pakietu albo domyślne ustawienia stylów) i zapisany jako kod języka. |
+| 3.1.2 Język części | AA | ręcznie | do przeglądu | Fragmenty w innym języku powinny mieć oznaczony język (w:lang); automat nie rozpozna języka tekstu. |
+| 3.3.2 Etykiety lub instrukcje | A | częściowo | do przeglądu | Pola FORMTEXT i formanty zawartości mają tekst etykiety albo tytuł. |
+| 4.1.1 Poprawność kodu | A | automatycznie | spełnione | Pakiet DOCX otwiera się i ma część główną. |
+| 4.1.2 Nazwa, rola, wartość | A | częściowo | do przeglądu | Formanty mają nazwę (etykietę albo tytuł); rola i wartość wynikają z typu formantu w Wordzie. |
+Wyniki walidacji
+4 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
+Tabela wystąpień
+| Nr | Waga | Zgłoszenie | Standard | Miejsce | Komunikat | Zweryfikowano |
+| 1 | błąd | Tytuł bez wymaganej nazwy instytucji | Standard pism firmowych 1.9 | dokument: „(metadane dokumentu)” | Tytuł „Formatowanie bezpośrednie. Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”. | nie |
+| 2 | ostrzeżenie | Nagłówek zrobiony formatowaniem | WCAG 2.1 AA (dokument Word) | akapit: „Warunki dodatkowe” | 1 akapit wygląda na nagłówek (krótki, pogrubiony albo dużą czcionką), ale bez stylu nagłówka, więc poza konspektem dokumentu; pierwszy: „Warunki dodatkowe”. | nie |
+| 3 | ostrzeżenie | Autor bez wymaganej nazwy instytucji | Standard pism firmowych 1.9 | dokument: „(metadane dokumentu)” | Autor „Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”. | nie |
+| 4 | informacja | Zalecane sprawdzenie ręczne | WCAG 2.1 AA (dokument Word) | dokument: „” | Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie. | nie |
+
+PDF: %PDF-, strony: 6

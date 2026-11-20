@@ -1,0 +1,268 @@
+{
+  "status": "Valid",
+  "summary": "5 ostrzeżeń.",
+  "standards": [
+    {
+      "key": "firmowy/1.9",
+      "id": "firmowy",
+      "version": "1.9",
+      "name": "Standard pism firmowych 1.9",
+      "confirmed": true,
+      "note": null
+    }
+  ],
+  "document": {
+    "fileName": "audit20-gaps.docx",
+    "title": null,
+    "author": "Example Company S. A.",
+    "language": "pl-PL",
+    "paragraphs": 23,
+    "headings": 4,
+    "tables": 1,
+    "images": 0
+  },
+  "counts": {
+    "errors": 0,
+    "warnings": 5,
+    "infos": 0
+  },
+  "issues": [
+    {
+      "code": "AUTHOR_PHRASE_MISSING",
+      "label": "Autor bez wymaganej nazwy instytucji",
+      "severity": "Warning",
+      "category": "Metadata",
+      "message": "Autor „Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”.",
+      "standard": "firmowy/1.9",
+      "fixable": true
+    },
+    {
+      "code": "INVALID_MARGINS",
+      "label": "Marginesy inne niż wymagane",
+      "severity": "Warning",
+      "category": "Quality",
+      "message": "Margines górny ma 70,9 pt, a wymagane jest 36 pt.",
+      "standard": "firmowy/1.9",
+      "fixable": true
+    },
+    {
+      "code": "INVALID_MARGINS",
+      "label": "Marginesy inne niż wymagane",
+      "severity": "Warning",
+      "category": "Quality",
+      "message": "Margines dolny ma 70,9 pt, a wymagane jest 36 pt.",
+      "standard": "firmowy/1.9",
+      "fixable": true
+    },
+    {
+      "code": "INVALID_MARGINS",
+      "label": "Marginesy inne niż wymagane",
+      "severity": "Warning",
+      "category": "Quality",
+      "message": "Margines lewy ma 70,9 pt, a wymagane jest 36 pt.",
+      "standard": "firmowy/1.9",
+      "fixable": true
+    },
+    {
+      "code": "INVALID_MARGINS",
+      "label": "Marginesy inne niż wymagane",
+      "severity": "Warning",
+      "category": "Quality",
+      "message": "Margines prawy ma 70,9 pt, a wymagane jest 36 pt.",
+      "standard": "firmowy/1.9",
+      "fixable": true
+    }
+  ],
+  "outline": [
+    {
+      "level": 1,
+      "text": "Luki audytu 2.0"
+    },
+    {
+      "level": 3,
+      "text": "Listy z nadpisaniami"
+    },
+    {
+      "level": 2,
+      "text": "Tabela z nadpisaniami"
+    },
+    {
+      "level": 2,
+      "text": "Dane rejestrowe"
+    }
+  ],
+  "wcag": null,
+  "reportId": "<id>",
+  "summaryTable": [
+    {
+      "standard": "firmowy/1.9",
+      "standardName": "Standard pism firmowych 1.9",
+      "section": "Standard pism firmowych 1.9",
+      "rows": [
+        {
+          "id": "phrase",
+          "name": "Fraza „SUN Example Company S. A.” w tytule i autorze",
+          "status": "Warning",
+          "details": [
+            {
+              "code": "AUTHOR_PHRASE_MISSING",
+              "label": "Autor bez wymaganej nazwy instytucji",
+              "message": "Autor „Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”.",
+              "occurrences": 1,
+              "severity": "Warning"
+            }
+          ],
+          "note": null
+        },
+        {
+          "id": "margins",
+          "name": "Marginesy 36 pt",
+          "status": "Warning",
+          "details": [
+            {
+              "code": "INVALID_MARGINS",
+              "label": "Marginesy inne niż wymagane",
+              "message": "Margines górny ma 70,9 pt, a wymagane jest 36 pt.",
+              "occurrences": 1,
+              "severity": "Warning"
+            },
+            {
+              "code": "INVALID_MARGINS",
+              "label": "Marginesy inne niż wymagane",
+              "message": "Margines dolny ma 70,9 pt, a wymagane jest 36 pt.",
+              "occurrences": 1,
+              "severity": "Warning"
+            },
+            {
+              "code": "INVALID_MARGINS",
+              "label": "Marginesy inne niż wymagane",
+              "message": "Margines lewy ma 70,9 pt, a wymagane jest 36 pt.",
+              "occurrences": 1,
+              "severity": "Warning"
+            },
+            {
+              "code": "INVALID_MARGINS",
+              "label": "Marginesy inne niż wymagane",
+              "message": "Margines prawy ma 70,9 pt, a wymagane jest 36 pt.",
+              "occurrences": 1,
+              "severity": "Warning"
+            }
+          ],
+          "note": null
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "index": 0,
+      "code": "AUTHOR_PHRASE_MISSING",
+      "label": "Autor bez wymaganej nazwy instytucji",
+      "severity": "Warning",
+      "category": "Metadata",
+      "standard": "firmowy/1.9",
+      "standardName": "Standard pism firmowych 1.9",
+      "message": "Autor „Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”.",
+      "fixable": true,
+      "criteria": [],
+      "location": {
+        "key": "body:Document:0",
+        "kind": "Document",
+        "story": "body",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "(metadane dokumentu)"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1
+    },
+    {
+      "index": 1,
+      "code": "INVALID_MARGINS",
+      "label": "Marginesy inne niż wymagane",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/1.9",
+      "standardName": "Standard pism firmowych 1.9",
+      "message": "Margines górny ma 70,9 pt, a wymagane jest 36 pt.",
+      "fixable": true,
+      "criteria": [],
+      "location": {
+        "key": "body:Document:0",
+        "kind": "Document",
+        "story": "body",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "(ustawienia strony)"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1
+    },
+    {
+      "index": 2,
+      "code": "INVALID_MARGINS",
+      "label": "Marginesy inne niż wymagane",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/1.9",
+      "standardName": "Standard pism firmowych 1.9",
+      "message": "Margines dolny ma 70,9 pt, a wymagane jest 36 pt.",
+      "fixable": true,
+      "criteria": [],
+      "location": {
+        "key": "body:Document:0",
+        "kind": "Document",
+        "story": "body",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "(ustawienia strony)"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1
+    },
+    {
+      "index": 3,
+      "code": "INVALID_MARGINS",
+      "label": "Marginesy inne niż wymagane",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/1.9",
+      "standardName": "Standard pism firmowych 1.9",
+      "message": "Margines lewy ma 70,9 pt, a wymagane jest 36 pt.",
+      "fixable": true,
+      "criteria": [],
+      "location": {
+        "key": "body:Document:0",
+        "kind": "Document",
+        "story": "body",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "(ustawienia strony)"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1
+    },
+    {
+      "index": 4,
+      "code": "INVALID_MARGINS",
+      "label": "Marginesy inne niż wymagane",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/1.9",
+      "standardName": "Standard pism firmowych 1.9",
+      "message": "Margines prawy ma 70,9 pt, a wymagane jest 36 pt.",
+      "fixable": true,
+      "criteria": [],
+      "location": {
+        "key": "body:Document:0",
+        "kind": "Document",
+        "story": "body",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "(ustawienia strony)"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1
+    }
+  ]
+}

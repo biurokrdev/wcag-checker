@@ -1,0 +1,2143 @@
+{
+  "status": "Invalid",
+  "summary": "11 błędów, 9 ostrzeżeń, 1 informacja.",
+  "standards": [
+    {
+      "key": "firmowy/2.0",
+      "id": "firmowy",
+      "version": "2.0",
+      "name": "Standard pism firmowych 2.0",
+      "confirmed": true,
+      "note": ""
+    }
+  ],
+  "document": {
+    "fileName": "przyklad_v1.docx",
+    "title": null,
+    "author": "Krzysztof Rybka",
+    "language": "pl-PL",
+    "paragraphs": 13,
+    "headings": 0,
+    "tables": 1,
+    "images": 2
+  },
+  "counts": {
+    "errors": 11,
+    "warnings": 9,
+    "infos": 1
+  },
+  "issues": [
+    {
+      "code": "TABLE_ALIGNMENT_MISMATCH",
+      "label": "Wyrównanie w tabeli niezgodne ze standardem",
+      "severity": "Error",
+      "category": "Tables",
+      "message": "Tabela 1: 4 komórki nie są wyrównane do lewej i do środka w pionie.",
+      "standard": "firmowy/2.0",
+      "fixable": false
+    },
+    {
+      "code": "TABLE_BORDER_MISMATCH",
+      "label": "Krawędzie tabeli inne niż 1 pt czarne",
+      "severity": "Error",
+      "category": "Tables",
+      "message": "Tabela 1 nie ma wszystkich krawędzi 1 pt w kolorze #000000.",
+      "standard": "firmowy/2.0",
+      "fixable": false
+    },
+    {
+      "code": "TABLE_EMPTY_CELL",
+      "label": "Pusta komórka tabeli",
+      "severity": "Error",
+      "category": "Tables",
+      "message": "Tabela 1: 4 puste komórki; wpisz „Brak danych”, „0” albo inną wartość słowną.",
+      "standard": "firmowy/2.0",
+      "fixable": false
+    },
+    {
+      "code": "TABLE_MISSING_HEADERS",
+      "label": "Tabela bez wiersza nagłówkowego",
+      "severity": "Error",
+      "category": "Tables",
+      "message": "Tabela 1 nie ma oznaczonego wiersza nagłówkowego (Właściwości tabeli → Powtórz jako wiersz nagłówka).",
+      "standard": "firmowy/2.0",
+      "fixable": true
+    },
+    {
+      "code": "TABLE_ROW_CAN_SPLIT",
+      "label": "Wiersz tabeli może dzielić się między strony",
+      "severity": "Error",
+      "category": "Tables",
+      "message": "Tabela 1: 2 wiersze mogą dzielić się między strony (brak „Nie dziel wiersza między stronami”).",
+      "standard": "firmowy/2.0",
+      "fixable": true
+    },
+    {
+      "code": "LINK_STYLE_MISMATCH",
+      "label": "Łącze w niewłaściwym stylu",
+      "severity": "Error",
+      "category": "Hyperlinks",
+      "message": "1 fragment łącza nie ma stylu łącza: kolor #7724FF z podkreśleniem.",
+      "standard": "firmowy/2.0",
+      "fixable": false
+    },
+    {
+      "code": "AUTHOR_NOT_INSTITUTION",
+      "label": "Autor inny niż nazwa banku",
+      "severity": "Error",
+      "category": "Metadata",
+      "message": "Autor „Krzysztof Rybka” ma być zastąpiony nazwą banku „Example Company S. A.”.",
+      "standard": "firmowy/2.0",
+      "fixable": true
+    },
+    {
+      "code": "BODY_TEXT_SIZE_MISMATCH",
+      "label": "Rozmiar tekstu podstawowego spoza standardu",
+      "severity": "Error",
+      "category": "Quality",
+      "message": "2 fragmenty tekstu podstawowego mają rozmiar spoza standardu; wymagane 10 pt (dopuszczalnie 12 albo 14 pt).",
+      "standard": "firmowy/2.0",
+      "fixable": false
+    },
+    {
+      "code": "FONT_FAMILY_MISMATCH",
+      "label": "Niedozwolona rodzina czcionki",
+      "severity": "Error",
+      "category": "Quality",
+      "message": "14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display.",
+      "standard": "firmowy/2.0",
+      "fixable": false
+    },
+    {
+      "code": "FOOTER_STYLE_MISMATCH",
+      "label": "Stopka niezgodna ze stylem",
+      "severity": "Error",
+      "category": "Quality",
+      "message": "2 fragmenty stopki mają styl inny niż SUN Me 8 pt #696969.",
+      "standard": "firmowy/2.0",
+      "fixable": false
+    },
+    {
+      "code": "LINE_SPACING_MISMATCH",
+      "label": "Interlinia inna niż 1,2",
+      "severity": "Error",
+      "category": "Quality",
+      "message": "14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288).",
+      "standard": "firmowy/2.0",
+      "fixable": false
+    },
+    {
+      "code": "BRAND_IMAGE_MISMATCH",
+      "label": "Logo lub symbol niezgodny z guidebookiem",
+      "severity": "Warning",
+      "category": "Images",
+      "message": "1 logo lub symbol graficzny jest niezgodny z rozdz. 5 guidebooka (tekst alternatywny, wymiary).",
+      "standard": "firmowy/2.0",
+      "fixable": false
+    },
+    {
+      "code": "TABLE_TITLE_MISSING",
+      "label": "Tabela bez tytułu w tekście alternatywnym",
+      "severity": "Warning",
+      "category": "Tables",
+      "message": "Tabela 1 nie ma tytułu w tekście alternatywnym (Właściwości tabeli → Tekst alternatywny → Tytuł); decyzja biznesowa.",
+      "standard": "firmowy/2.0",
+      "fixable": false
+    },
+    {
+      "code": "FOOTER_TITLE_MISSING",
+      "label": "Stopka bez tytułu dokumentu",
+      "severity": "Warning",
+      "category": "Structure",
+      "message": "Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”.",
+      "standard": "firmowy/2.0",
+      "fixable": false
+    },
+    {
+      "code": "BODY_TEXT_SIZE_MISMATCH",
+      "label": "Rozmiar tekstu podstawowego spoza standardu",
+      "severity": "Warning",
+      "category": "Quality",
+      "message": "12 fragmentów tekstu jest powiększonych do 12 albo 14 pt; dopuszczalne tylko z potrzeby biznesowej.",
+      "standard": "firmowy/2.0",
+      "fixable": false
+    },
+    {
+      "code": "INVALID_MARGINS",
+      "label": "Marginesy inne niż wymagane",
+      "severity": "Warning",
+      "category": "Quality",
+      "message": "Margines górny ma 70,9 pt, a wymagane jest 36 pt.",
+      "standard": "firmowy/2.0",
+      "fixable": true
+    },
+    {
+      "code": "INVALID_MARGINS",
+      "label": "Marginesy inne niż wymagane",
+      "severity": "Warning",
+      "category": "Quality",
+      "message": "Margines dolny ma 70,9 pt, a wymagane jest 36 pt.",
+      "standard": "firmowy/2.0",
+      "fixable": true
+    },
+    {
+      "code": "INVALID_MARGINS",
+      "label": "Marginesy inne niż wymagane",
+      "severity": "Warning",
+      "category": "Quality",
+      "message": "Margines lewy ma 70,9 pt, a wymagane jest 36 pt.",
+      "standard": "firmowy/2.0",
+      "fixable": true
+    },
+    {
+      "code": "INVALID_MARGINS",
+      "label": "Marginesy inne niż wymagane",
+      "severity": "Warning",
+      "category": "Quality",
+      "message": "Margines prawy ma 70,9 pt, a wymagane jest 36 pt.",
+      "standard": "firmowy/2.0",
+      "fixable": true
+    },
+    {
+      "code": "TEXT_COLOR_NOT_ALLOWED",
+      "label": "Kolor tekstu spoza palety",
+      "severity": "Warning",
+      "category": "Quality",
+      "message": "3 fragmenty tekstu mają kolor spoza dozwolonej palety (#ED7D31, #0563C1); dozwolone: #000000, #FF6200, #0000FF, #AB0066, #7724FF, #696969, #4D0020.",
+      "standard": "firmowy/2.0",
+      "fixable": false
+    },
+    {
+      "code": "TABLE_DESCRIPTION_MISSING",
+      "label": "Tabela bez opisu w tekście alternatywnym",
+      "severity": "Info",
+      "category": "Tables",
+      "message": "Tabela 1 nie ma opisu w tekście alternatywnym (dłuższego od tytułu); guidebook go rekomenduje.",
+      "standard": "firmowy/2.0",
+      "fixable": false
+    }
+  ],
+  "outline": [],
+  "wcag": null,
+  "reportId": "<id>",
+  "summaryTable": [
+    {
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "section": "Format strony i ustawienia bazowe",
+      "rows": [
+        {
+          "id": "g01",
+          "name": "G-01 A4 210 × 297 mm, marginesy 12,7 mm",
+          "status": "Warning",
+          "details": [
+            {
+              "code": "INVALID_MARGINS",
+              "label": "Marginesy inne niż wymagane",
+              "message": "Margines górny ma 70,9 pt, a wymagane jest 36 pt.",
+              "occurrences": 1,
+              "severity": "Warning"
+            },
+            {
+              "code": "INVALID_MARGINS",
+              "label": "Marginesy inne niż wymagane",
+              "message": "Margines dolny ma 70,9 pt, a wymagane jest 36 pt.",
+              "occurrences": 1,
+              "severity": "Warning"
+            },
+            {
+              "code": "INVALID_MARGINS",
+              "label": "Marginesy inne niż wymagane",
+              "message": "Margines lewy ma 70,9 pt, a wymagane jest 36 pt.",
+              "occurrences": 1,
+              "severity": "Warning"
+            },
+            {
+              "code": "INVALID_MARGINS",
+              "label": "Marginesy inne niż wymagane",
+              "message": "Margines prawy ma 70,9 pt, a wymagane jest 36 pt.",
+              "occurrences": 1,
+              "severity": "Warning"
+            }
+          ],
+          "note": null
+        },
+        {
+          "id": "g04",
+          "name": "G-04 Wyrównanie do lewej, bez justowania",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "fonts",
+          "name": "Czcionka SUN Me (H1: SUN Display), grubość osobno",
+          "status": "Error",
+          "details": [
+            {
+              "code": "FONT_FAMILY_MISMATCH",
+              "label": "Niedozwolona rodzina czcionki",
+              "message": "14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display.",
+              "occurrences": 14,
+              "severity": "Error"
+            }
+          ],
+          "note": null
+        },
+        {
+          "id": "line",
+          "name": "Interlinia 1,2",
+          "status": "Error",
+          "details": [
+            {
+              "code": "LINE_SPACING_MISMATCH",
+              "label": "Interlinia inna niż 1,2",
+              "message": "14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288).",
+              "occurrences": 14,
+              "severity": "Error"
+            }
+          ],
+          "note": null
+        }
+      ]
+    },
+    {
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "section": "Paleta kolorów",
+      "rows": [
+        {
+          "id": "g02",
+          "name": "G-02 Kolory tylko z palety, użyte zgodnie z przeznaczeniem",
+          "status": "Warning",
+          "details": [
+            {
+              "code": "TEXT_COLOR_NOT_ALLOWED",
+              "label": "Kolor tekstu spoza palety",
+              "message": "3 fragmenty tekstu mają kolor spoza dozwolonej palety (#ED7D31, #0563C1); dozwolone: #000000, #FF6200, #0000FF, #AB0066, #7724FF, #696969, #4D0020.",
+              "occurrences": 3,
+              "severity": "Warning"
+            }
+          ],
+          "note": null
+        }
+      ]
+    },
+    {
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "section": "Typografia",
+      "rows": [
+        {
+          "id": "g03",
+          "name": "G-03 Style H1–H5 zgodne z tabelą typografii",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "body",
+          "name": "Tekst podstawowy 10 pt (12/14 pt warunkowo)",
+          "status": "Error",
+          "details": [
+            {
+              "code": "BODY_TEXT_SIZE_MISMATCH",
+              "label": "Rozmiar tekstu podstawowego spoza standardu",
+              "message": "2 fragmenty tekstu podstawowego mają rozmiar spoza standardu; wymagane 10 pt (dopuszczalnie 12 albo 14 pt).",
+              "occurrences": 2,
+              "severity": "Error"
+            },
+            {
+              "code": "BODY_TEXT_SIZE_MISMATCH",
+              "label": "Rozmiar tekstu podstawowego spoza standardu",
+              "message": "12 fragmentów tekstu jest powiększonych do 12 albo 14 pt; dopuszczalne tylko z potrzeby biznesowej.",
+              "occurrences": 12,
+              "severity": "Warning"
+            }
+          ],
+          "note": null
+        },
+        {
+          "id": "links",
+          "name": "Łącza #7724FF z podkreśleniem",
+          "status": "Error",
+          "details": [
+            {
+              "code": "LINK_STYLE_MISMATCH",
+              "label": "Łącze w niewłaściwym stylu",
+              "message": "1 fragment łącza nie ma stylu łącza: kolor #7724FF z podkreśleniem.",
+              "occurrences": 1,
+              "severity": "Error"
+            }
+          ],
+          "note": null
+        },
+        {
+          "id": "g05",
+          "name": "G-05 Odstępy H1: 42,5 pt nad, 34 pt pod",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "g07",
+          "name": "G-07 Hierarchia nagłówków: start od H1, bez przeskoków",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        }
+      ]
+    },
+    {
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "section": "Spis treści i listy",
+      "rows": [
+        {
+          "id": "g06",
+          "name": "G-06 Automatyczny spis treści powyżej 9 stron",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "toc-heading",
+          "name": "Nagłówek „Spis treści” poza spisem, SUN Me Bold 10 pt",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "lists",
+          "name": "Punktory #FF6200/#000000, numery pogrubione",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        }
+      ]
+    },
+    {
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "section": "Tabele",
+      "rows": [
+        {
+          "id": "g08",
+          "name": "G-08 Wiersz nagłówkowy powtarzany, bez pustych komórek, wiersze niepodzielne",
+          "status": "Error",
+          "details": [
+            {
+              "code": "TABLE_EMPTY_CELL",
+              "label": "Pusta komórka tabeli",
+              "message": "Tabela 1: 4 puste komórki; wpisz „Brak danych”, „0” albo inną wartość słowną.",
+              "occurrences": 4,
+              "severity": "Error"
+            },
+            {
+              "code": "TABLE_MISSING_HEADERS",
+              "label": "Tabela bez wiersza nagłówkowego",
+              "message": "Tabela 1 nie ma oznaczonego wiersza nagłówkowego (Właściwości tabeli → Powtórz jako wiersz nagłówka).",
+              "occurrences": 1,
+              "severity": "Error"
+            },
+            {
+              "code": "TABLE_ROW_CAN_SPLIT",
+              "label": "Wiersz tabeli może dzielić się między strony",
+              "message": "Tabela 1: 2 wiersze mogą dzielić się między strony (brak „Nie dziel wiersza między stronami”).",
+              "occurrences": 1,
+              "severity": "Error"
+            }
+          ],
+          "note": null
+        },
+        {
+          "id": "g09",
+          "name": "G-09 Krawędzie 1 pt #000000, nagłówki Bold, lewo/środek w pionie",
+          "status": "Error",
+          "details": [
+            {
+              "code": "TABLE_ALIGNMENT_MISMATCH",
+              "label": "Wyrównanie w tabeli niezgodne ze standardem",
+              "message": "Tabela 1: 4 komórki nie są wyrównane do lewej i do środka w pionie.",
+              "occurrences": 4,
+              "severity": "Error"
+            },
+            {
+              "code": "TABLE_BORDER_MISMATCH",
+              "label": "Krawędzie tabeli inne niż 1 pt czarne",
+              "message": "Tabela 1 nie ma wszystkich krawędzi 1 pt w kolorze #000000.",
+              "occurrences": 1,
+              "severity": "Error"
+            }
+          ],
+          "note": null
+        },
+        {
+          "id": "table-title",
+          "name": "Tytuł i opis tabeli w tekście alternatywnym",
+          "status": "Warning",
+          "details": [
+            {
+              "code": "TABLE_TITLE_MISSING",
+              "label": "Tabela bez tytułu w tekście alternatywnym",
+              "message": "Tabela 1 nie ma tytułu w tekście alternatywnym (Właściwości tabeli → Tekst alternatywny → Tytuł); decyzja biznesowa.",
+              "occurrences": 1,
+              "severity": "Warning"
+            },
+            {
+              "code": "TABLE_DESCRIPTION_MISSING",
+              "label": "Tabela bez opisu w tekście alternatywnym",
+              "message": "Tabela 1 nie ma opisu w tekście alternatywnym (dłuższego od tytułu); guidebook go rekomenduje.",
+              "occurrences": 1,
+              "severity": "Info"
+            }
+          ],
+          "note": null
+        }
+      ]
+    },
+    {
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "section": "Grafika",
+      "rows": [
+        {
+          "id": "g10",
+          "name": "G-10 Logo 44 × 10 mm i symbol 22 × 22 mm z tekstem alternatywnym z guidebooka",
+          "status": "Warning",
+          "details": [
+            {
+              "code": "BRAND_IMAGE_MISMATCH",
+              "label": "Logo lub symbol niezgodny z guidebookiem",
+              "message": "1 logo lub symbol graficzny jest niezgodny z rozdz. 5 guidebooka (tekst alternatywny, wymiary).",
+              "occurrences": 1,
+              "severity": "Warning"
+            }
+          ],
+          "note": null
+        }
+      ]
+    },
+    {
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "section": "Stopka i metadane",
+      "rows": [
+        {
+          "id": "g11",
+          "name": "G-11 Stopka SUN Me 8 pt #696969 interlinia 1,2, numer i tytuł, bez stopki na stronie tytułowej",
+          "status": "Error",
+          "details": [
+            {
+              "code": "FOOTER_STYLE_MISMATCH",
+              "label": "Stopka niezgodna ze stylem",
+              "message": "2 fragmenty stopki mają styl inny niż SUN Me 8 pt #696969.",
+              "occurrences": 2,
+              "severity": "Error"
+            },
+            {
+              "code": "FOOTER_TITLE_MISSING",
+              "label": "Stopka bez tytułu dokumentu",
+              "message": "Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”.",
+              "occurrences": 1,
+              "severity": "Warning"
+            }
+          ],
+          "note": null
+        },
+        {
+          "id": "g12",
+          "name": "G-12 Title „[Tytuł]. Bank”, Author = bank",
+          "status": "Error",
+          "details": [
+            {
+              "code": "AUTHOR_NOT_INSTITUTION",
+              "label": "Autor inny niż nazwa banku",
+              "message": "Autor „Krzysztof Rybka” ma być zastąpiony nazwą banku „Example Company S. A.”.",
+              "occurrences": 1,
+              "severity": "Error"
+            }
+          ],
+          "note": null
+        },
+        {
+          "id": "g13",
+          "name": "G-13 Język dokumentu ustawiony",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        }
+      ]
+    },
+    {
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "section": "Warianty i oznaczenia",
+      "rows": [
+        {
+          "id": "g14",
+          "name": "G-14 Warianty zagnieżdżone i domknięte, kolory znaczników, [lub] zamiast ukośnika",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "g16",
+          "name": "G-16 Napis WZÓR na każdej stronie, SUN Me Bold 28 pt",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        }
+      ]
+    },
+    {
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "section": "Weryfikacja ręczna",
+      "rows": [
+        {
+          "id": "manual-g07",
+          "name": "G-07 Hierarchia tagów w wygenerowanym PDF",
+          "status": "ManualReview",
+          "details": [],
+          "note": "Sprawdzić na wygenerowanym PDF/UA (drzewo tagów); w DOCX hierarchia nagłówków jest sprawdzana automatycznie."
+        },
+        {
+          "id": "manual-g10",
+          "name": "G-10 Alt text ikon i QR zależny od kontekstu, dekoracje wyłączone",
+          "status": "ManualReview",
+          "details": [],
+          "note": "Ikony „tak/nie” i informacji z opisem z kontekstu; QR z przeznaczeniem; pole na naklejkę barcode dekoracyjne; zasoby z OrangeSharing, nie ze zdjęć."
+        },
+        {
+          "id": "manual-g13",
+          "name": "G-13 Znaczniki językowe fragmentów w innym języku",
+          "status": "ManualReview",
+          "details": [],
+          "note": "Cytaty, tytuły i rozwinięcia skrótów w innym języku oznaczone miejscowo."
+        },
+        {
+          "id": "manual-g15",
+          "name": "G-15 Sygnatura (SUN Me 8 pt, 270°, prawy dolny róg) i SIGNOTEK",
+          "status": "ManualReview",
+          "details": [],
+          "note": "Zgodność z integracją; biały identyfikator SIGNOTEK ocenić osobno pod kątem dostępności."
+        },
+        {
+          "id": "manual-layout",
+          "name": "Wariant układu (dane rejestrowe, strona tytułowa, pole adresowe)",
+          "status": "ManualReview",
+          "details": [],
+          "note": "Dane rejestrowe SUN Me 8 pt #696969 interlinia 1,5; strona tytułowa bez stopki; pole adresowe najlepiej puste."
+        },
+        {
+          "id": "manual-signatures",
+          "name": "Pola podpisów, separatory i kontrolki formularza",
+          "status": "ManualReview",
+          "details": [],
+          "note": "Linia podpisu 1 px #000000 60 mm; inputy 1 px #696969, 24 px wysokości; checkbox 20 × 20 px."
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "index": 0,
+      "code": "TABLE_ALIGNMENT_MISMATCH",
+      "label": "Wyrównanie w tabeli niezgodne ze standardem",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Tabela 1: 4 komórki nie są wyrównane do lewej i do środka w pionie.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:TableCell:0:0",
+        "kind": "TableCell",
+        "story": "body",
+        "index": 0,
+        "subIndex": 0,
+        "snippet": ""
+      },
+      "occurrence": 1,
+      "occurrenceCount": 4
+    },
+    {
+      "index": 1,
+      "code": "TABLE_ALIGNMENT_MISMATCH",
+      "label": "Wyrównanie w tabeli niezgodne ze standardem",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Tabela 1: 4 komórki nie są wyrównane do lewej i do środka w pionie.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:TableCell:0:1",
+        "kind": "TableCell",
+        "story": "body",
+        "index": 0,
+        "subIndex": 1,
+        "snippet": ""
+      },
+      "occurrence": 2,
+      "occurrenceCount": 4
+    },
+    {
+      "index": 2,
+      "code": "TABLE_ALIGNMENT_MISMATCH",
+      "label": "Wyrównanie w tabeli niezgodne ze standardem",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Tabela 1: 4 komórki nie są wyrównane do lewej i do środka w pionie.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:TableCell:0:2",
+        "kind": "TableCell",
+        "story": "body",
+        "index": 0,
+        "subIndex": 2,
+        "snippet": ""
+      },
+      "occurrence": 3,
+      "occurrenceCount": 4
+    },
+    {
+      "index": 3,
+      "code": "TABLE_ALIGNMENT_MISMATCH",
+      "label": "Wyrównanie w tabeli niezgodne ze standardem",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Tabela 1: 4 komórki nie są wyrównane do lewej i do środka w pionie.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:TableCell:0:3",
+        "kind": "TableCell",
+        "story": "body",
+        "index": 0,
+        "subIndex": 3,
+        "snippet": ""
+      },
+      "occurrence": 4,
+      "occurrenceCount": 4
+    },
+    {
+      "index": 4,
+      "code": "TABLE_BORDER_MISMATCH",
+      "label": "Krawędzie tabeli inne niż 1 pt czarne",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Tabela 1 nie ma wszystkich krawędzi 1 pt w kolorze #000000.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Table:0",
+        "kind": "Table",
+        "story": "body",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "tabela 1"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1
+    },
+    {
+      "index": 5,
+      "code": "TABLE_EMPTY_CELL",
+      "label": "Pusta komórka tabeli",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Tabela 1: 4 puste komórki; wpisz „Brak danych”, „0” albo inną wartość słowną.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:TableCell:0:0",
+        "kind": "TableCell",
+        "story": "body",
+        "index": 0,
+        "subIndex": 0,
+        "snippet": "(pusta komórka)"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 4
+    },
+    {
+      "index": 6,
+      "code": "TABLE_EMPTY_CELL",
+      "label": "Pusta komórka tabeli",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Tabela 1: 4 puste komórki; wpisz „Brak danych”, „0” albo inną wartość słowną.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:TableCell:0:1",
+        "kind": "TableCell",
+        "story": "body",
+        "index": 0,
+        "subIndex": 1,
+        "snippet": "(pusta komórka)"
+      },
+      "occurrence": 2,
+      "occurrenceCount": 4
+    },
+    {
+      "index": 7,
+      "code": "TABLE_EMPTY_CELL",
+      "label": "Pusta komórka tabeli",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Tabela 1: 4 puste komórki; wpisz „Brak danych”, „0” albo inną wartość słowną.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:TableCell:0:2",
+        "kind": "TableCell",
+        "story": "body",
+        "index": 0,
+        "subIndex": 2,
+        "snippet": "(pusta komórka)"
+      },
+      "occurrence": 3,
+      "occurrenceCount": 4
+    },
+    {
+      "index": 8,
+      "code": "TABLE_EMPTY_CELL",
+      "label": "Pusta komórka tabeli",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Tabela 1: 4 puste komórki; wpisz „Brak danych”, „0” albo inną wartość słowną.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:TableCell:0:3",
+        "kind": "TableCell",
+        "story": "body",
+        "index": 0,
+        "subIndex": 3,
+        "snippet": "(pusta komórka)"
+      },
+      "occurrence": 4,
+      "occurrenceCount": 4
+    },
+    {
+      "index": 9,
+      "code": "TABLE_MISSING_HEADERS",
+      "label": "Tabela bez wiersza nagłówkowego",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Tabela 1 nie ma oznaczonego wiersza nagłówkowego (Właściwości tabeli → Powtórz jako wiersz nagłówka).",
+      "fixable": true,
+      "criteria": [
+        "1.3.1"
+      ],
+      "location": {
+        "key": "body:Table:0",
+        "kind": "Table",
+        "story": "body",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "tabela 1"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1
+    },
+    {
+      "index": 10,
+      "code": "TABLE_ROW_CAN_SPLIT",
+      "label": "Wiersz tabeli może dzielić się między strony",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Tabela 1: 2 wiersze mogą dzielić się między strony (brak „Nie dziel wiersza między stronami”).",
+      "fixable": true,
+      "criteria": [],
+      "location": {
+        "key": "body:Table:0",
+        "kind": "Table",
+        "story": "body",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "tabela 1"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1
+    },
+    {
+      "index": 11,
+      "code": "LINK_STYLE_MISMATCH",
+      "label": "Łącze w niewłaściwym stylu",
+      "severity": "Error",
+      "category": "Hyperlinks",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "1 fragment łącza nie ma stylu łącza: kolor #7724FF z podkreśleniem.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Run:6:0",
+        "kind": "Run",
+        "story": "body",
+        "index": 6,
+        "subIndex": 0,
+        "snippet": "www.dupeczki.pl (kolor #0563C1)"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1
+    },
+    {
+      "index": 12,
+      "code": "AUTHOR_NOT_INSTITUTION",
+      "label": "Autor inny niż nazwa banku",
+      "severity": "Error",
+      "category": "Metadata",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Autor „Krzysztof Rybka” ma być zastąpiony nazwą banku „Example Company S. A.”.",
+      "fixable": true,
+      "criteria": [],
+      "location": {
+        "key": "body:Document:0",
+        "kind": "Document",
+        "story": "body",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "(metadane dokumentu)"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1
+    },
+    {
+      "index": 13,
+      "code": "BODY_TEXT_SIZE_MISMATCH",
+      "label": "Rozmiar tekstu podstawowego spoza standardu",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "2 fragmenty tekstu podstawowego mają rozmiar spoza standardu; wymagane 10 pt (dopuszczalnie 12 albo 14 pt).",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Run:0:0",
+        "kind": "Run",
+        "story": "body",
+        "index": 0,
+        "subIndex": 0,
+        "snippet": "Jebać TEKOM (28 pt)"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 2
+    },
+    {
+      "index": 14,
+      "code": "BODY_TEXT_SIZE_MISMATCH",
+      "label": "Rozmiar tekstu podstawowego spoza standardu",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "2 fragmenty tekstu podstawowego mają rozmiar spoza standardu; wymagane 10 pt (dopuszczalnie 12 albo 14 pt).",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Run:2:0",
+        "kind": "Run",
+        "story": "body",
+        "index": 2,
+        "subIndex": 0,
+        "snippet": "Kutas boko też jest spoko (28 pt)"
+      },
+      "occurrence": 2,
+      "occurrenceCount": 2
+    },
+    {
+      "index": 15,
+      "code": "FONT_FAMILY_MISMATCH",
+      "label": "Niedozwolona rodzina czcionki",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Run:0:0",
+        "kind": "Run",
+        "story": "body",
+        "index": 0,
+        "subIndex": 0,
+        "snippet": "Jebać TEKOM (Calibri Light, oczekiwano SUN Me)"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 14
+    },
+    {
+      "index": 16,
+      "code": "FONT_FAMILY_MISMATCH",
+      "label": "Niedozwolona rodzina czcionki",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Run:1:0",
+        "kind": "Run",
+        "story": "body",
+        "index": 1,
+        "subIndex": 0,
+        "snippet": "Lubię (Arial, oczekiwano SUN Me)"
+      },
+      "occurrence": 2,
+      "occurrenceCount": 14
+    },
+    {
+      "index": 17,
+      "code": "FONT_FAMILY_MISMATCH",
+      "label": "Niedozwolona rodzina czcionki",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Run:1:1",
+        "kind": "Run",
+        "story": "body",
+        "index": 1,
+        "subIndex": 1,
+        "snippet": "pierdolić głupoty (Arial, oczekiwano SUN Me)"
+      },
+      "occurrence": 3,
+      "occurrenceCount": 14
+    },
+    {
+      "index": 18,
+      "code": "FONT_FAMILY_MISMATCH",
+      "label": "Niedozwolona rodzina czcionki",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Run:2:0",
+        "kind": "Run",
+        "story": "body",
+        "index": 2,
+        "subIndex": 0,
+        "snippet": "Kutas boko też jest spoko (Calibri Light, oczekiwano SUN Me)"
+      },
+      "occurrence": 4,
+      "occurrenceCount": 14
+    },
+    {
+      "index": 19,
+      "code": "FONT_FAMILY_MISMATCH",
+      "label": "Niedozwolona rodzina czcionki",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Run:3:0",
+        "kind": "Run",
+        "story": "body",
+        "index": 3,
+        "subIndex": 0,
+        "snippet": "Jestem sobie dokumentem i mam wszystko w… (Arial, oczekiwano SUN Me)"
+      },
+      "occurrence": 5,
+      "occurrenceCount": 14
+    },
+    {
+      "index": 20,
+      "code": "FONT_FAMILY_MISMATCH",
+      "label": "Niedozwolona rodzina czcionki",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Run:5:0",
+        "kind": "Run",
+        "story": "body",
+        "index": 5,
+        "subIndex": 0,
+        "snippet": "Lubię jak mi żona ssie kutango. (Arial, oczekiwano SUN Me)"
+      },
+      "occurrence": 6,
+      "occurrenceCount": 14
+    },
+    {
+      "index": 21,
+      "code": "FONT_FAMILY_MISMATCH",
+      "label": "Niedozwolona rodzina czcionki",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Run:6:0",
+        "kind": "Run",
+        "story": "body",
+        "index": 6,
+        "subIndex": 0,
+        "snippet": "www.dupeczki.pl (Calibri, oczekiwano SUN Me)"
+      },
+      "occurrence": 7,
+      "occurrenceCount": 14
+    },
+    {
+      "index": 22,
+      "code": "FONT_FAMILY_MISMATCH",
+      "label": "Niedozwolona rodzina czcionki",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Run:7:0",
+        "kind": "Run",
+        "story": "body",
+        "index": 7,
+        "subIndex": 0,
+        "snippet": "Kobieta (Calibri, oczekiwano SUN Me)"
+      },
+      "occurrence": 8,
+      "occurrenceCount": 14
+    },
+    {
+      "index": 23,
+      "code": "FONT_FAMILY_MISMATCH",
+      "label": "Niedozwolona rodzina czcionki",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Run:8:0",
+        "kind": "Run",
+        "story": "body",
+        "index": 8,
+        "subIndex": 0,
+        "snippet": "Robi mi (Calibri, oczekiwano SUN Me)"
+      },
+      "occurrence": 9,
+      "occurrenceCount": 14
+    },
+    {
+      "index": 24,
+      "code": "FONT_FAMILY_MISMATCH",
+      "label": "Niedozwolona rodzina czcionki",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Run:9:0",
+        "kind": "Run",
+        "story": "body",
+        "index": 9,
+        "subIndex": 0,
+        "snippet": "Laskę (Calibri, oczekiwano SUN Me)"
+      },
+      "occurrence": 10,
+      "occurrenceCount": 14
+    },
+    {
+      "index": 25,
+      "code": "FONT_FAMILY_MISMATCH",
+      "label": "Niedozwolona rodzina czcionki",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Run:10:0",
+        "kind": "Run",
+        "story": "body",
+        "index": 10,
+        "subIndex": 0,
+        "snippet": "Śniadanie (Calibri, oczekiwano SUN Me)"
+      },
+      "occurrence": 11,
+      "occurrenceCount": 14
+    },
+    {
+      "index": 26,
+      "code": "FONT_FAMILY_MISMATCH",
+      "label": "Niedozwolona rodzina czcionki",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Run:11:0",
+        "kind": "Run",
+        "story": "body",
+        "index": 11,
+        "subIndex": 0,
+        "snippet": "Kawkę (Calibri, oczekiwano SUN Me)"
+      },
+      "occurrence": 12,
+      "occurrenceCount": 14
+    },
+    {
+      "index": 27,
+      "code": "FONT_FAMILY_MISMATCH",
+      "label": "Niedozwolona rodzina czcionki",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Run:12:0",
+        "kind": "Run",
+        "story": "body",
+        "index": 12,
+        "subIndex": 0,
+        "snippet": "Pierdoli (Calibri, oczekiwano SUN Me)"
+      },
+      "occurrence": 13,
+      "occurrenceCount": 14
+    },
+    {
+      "index": 28,
+      "code": "FONT_FAMILY_MISMATCH",
+      "label": "Niedozwolona rodzina czcionki",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Run:13:0",
+        "kind": "Run",
+        "story": "body",
+        "index": 13,
+        "subIndex": 0,
+        "snippet": "głupoty (Calibri, oczekiwano SUN Me)"
+      },
+      "occurrence": 14,
+      "occurrenceCount": 14
+    },
+    {
+      "index": 29,
+      "code": "FOOTER_STYLE_MISMATCH",
+      "label": "Stopka niezgodna ze stylem",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "2 fragmenty stopki mają styl inny niż SUN Me 8 pt #696969.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "footer/0:Run:0:1",
+        "kind": "Run",
+        "story": "footer/0",
+        "index": 0,
+        "subIndex": 1,
+        "snippet": "PAGE \\* MERGEFORMAT (12 pt, #000000)"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 2
+    },
+    {
+      "index": 30,
+      "code": "FOOTER_STYLE_MISMATCH",
+      "label": "Stopka niezgodna ze stylem",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "2 fragmenty stopki mają styl inny niż SUN Me 8 pt #696969.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "footer/0:Run:0:3",
+        "kind": "Run",
+        "story": "footer/0",
+        "index": 0,
+        "subIndex": 3,
+        "snippet": "2 (12 pt, #000000)"
+      },
+      "occurrence": 2,
+      "occurrenceCount": 2
+    },
+    {
+      "index": 31,
+      "code": "LINE_SPACING_MISMATCH",
+      "label": "Interlinia inna niż 1,2",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288).",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:0",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "Jebać TEKOM (interlinia 1)"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 14
+    },
+    {
+      "index": 32,
+      "code": "LINE_SPACING_MISMATCH",
+      "label": "Interlinia inna niż 1,2",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288).",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:1",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 1,
+        "subIndex": null,
+        "snippet": "Lubię pierdolić głupoty (interlinia 1,2)"
+      },
+      "occurrence": 2,
+      "occurrenceCount": 14
+    },
+    {
+      "index": 33,
+      "code": "LINE_SPACING_MISMATCH",
+      "label": "Interlinia inna niż 1,2",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288).",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:2",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 2,
+        "subIndex": null,
+        "snippet": "Kutas boko też jest spoko (interlinia 1)"
+      },
+      "occurrence": 3,
+      "occurrenceCount": 14
+    },
+    {
+      "index": 34,
+      "code": "LINE_SPACING_MISMATCH",
+      "label": "Interlinia inna niż 1,2",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288).",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:3",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 3,
+        "subIndex": null,
+        "snippet": "Jestem sobie dokumentem i mam wszystko w… (interlinia 1,2)"
+      },
+      "occurrence": 4,
+      "occurrenceCount": 14
+    },
+    {
+      "index": 35,
+      "code": "LINE_SPACING_MISMATCH",
+      "label": "Interlinia inna niż 1,2",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288).",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:5",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 5,
+        "subIndex": null,
+        "snippet": "Lubię jak mi żona ssie kutango. (interlinia 1,2)"
+      },
+      "occurrence": 5,
+      "occurrenceCount": 14
+    },
+    {
+      "index": 36,
+      "code": "LINE_SPACING_MISMATCH",
+      "label": "Interlinia inna niż 1,2",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288).",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:6",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 6,
+        "subIndex": null,
+        "snippet": "www.dupeczki.pl (interlinia 1,2)"
+      },
+      "occurrence": 6,
+      "occurrenceCount": 14
+    },
+    {
+      "index": 37,
+      "code": "LINE_SPACING_MISMATCH",
+      "label": "Interlinia inna niż 1,2",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288).",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:7",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 7,
+        "subIndex": null,
+        "snippet": "Kobieta (interlinia 1,2)"
+      },
+      "occurrence": 7,
+      "occurrenceCount": 14
+    },
+    {
+      "index": 38,
+      "code": "LINE_SPACING_MISMATCH",
+      "label": "Interlinia inna niż 1,2",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288).",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:8",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 8,
+        "subIndex": null,
+        "snippet": "Robi mi (interlinia 1,2)"
+      },
+      "occurrence": 8,
+      "occurrenceCount": 14
+    },
+    {
+      "index": 39,
+      "code": "LINE_SPACING_MISMATCH",
+      "label": "Interlinia inna niż 1,2",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288).",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:9",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 9,
+        "subIndex": null,
+        "snippet": "Laskę (interlinia 1,2)"
+      },
+      "occurrence": 9,
+      "occurrenceCount": 14
+    },
+    {
+      "index": 40,
+      "code": "LINE_SPACING_MISMATCH",
+      "label": "Interlinia inna niż 1,2",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288).",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:10",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 10,
+        "subIndex": null,
+        "snippet": "Śniadanie (interlinia 1,2)"
+      },
+      "occurrence": 10,
+      "occurrenceCount": 14
+    },
+    {
+      "index": 41,
+      "code": "LINE_SPACING_MISMATCH",
+      "label": "Interlinia inna niż 1,2",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288).",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:11",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 11,
+        "subIndex": null,
+        "snippet": "Kawkę (interlinia 1,2)"
+      },
+      "occurrence": 11,
+      "occurrenceCount": 14
+    },
+    {
+      "index": 42,
+      "code": "LINE_SPACING_MISMATCH",
+      "label": "Interlinia inna niż 1,2",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288).",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:12",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 12,
+        "subIndex": null,
+        "snippet": "Pierdoli (interlinia 1,2)"
+      },
+      "occurrence": 12,
+      "occurrenceCount": 14
+    },
+    {
+      "index": 43,
+      "code": "LINE_SPACING_MISMATCH",
+      "label": "Interlinia inna niż 1,2",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288).",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:13",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 13,
+        "subIndex": null,
+        "snippet": "głupoty (interlinia 1,2)"
+      },
+      "occurrence": 13,
+      "occurrenceCount": 14
+    },
+    {
+      "index": 44,
+      "code": "LINE_SPACING_MISMATCH",
+      "label": "Interlinia inna niż 1,2",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288).",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "footer/0:Paragraph:0",
+        "kind": "Paragraph",
+        "story": "footer/0",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "PAGE \\* MERGEFORMAT2 (interlinia 1)"
+      },
+      "occurrence": 14,
+      "occurrenceCount": 14
+    },
+    {
+      "index": 45,
+      "code": "BRAND_IMAGE_MISMATCH",
+      "label": "Logo lub symbol niezgodny z guidebookiem",
+      "severity": "Warning",
+      "category": "Images",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "1 logo lub symbol graficzny jest niezgodny z rozdz. 5 guidebooka (tekst alternatywny, wymiary).",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Drawing:0",
+        "kind": "Drawing",
+        "story": "body",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "Obraz 1: tekst alternatywny „Logo Google” zamiast „Example Company S. A. logo”; rozmiar 84 × 34,5 mm zamiast 44 × 10 mm"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1
+    },
+    {
+      "index": 46,
+      "code": "TABLE_TITLE_MISSING",
+      "label": "Tabela bez tytułu w tekście alternatywnym",
+      "severity": "Warning",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Tabela 1 nie ma tytułu w tekście alternatywnym (Właściwości tabeli → Tekst alternatywny → Tytuł); decyzja biznesowa.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Table:0",
+        "kind": "Table",
+        "story": "body",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "tabela 1"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1
+    },
+    {
+      "index": 47,
+      "code": "FOOTER_TITLE_MISSING",
+      "label": "Stopka bez tytułu dokumentu",
+      "severity": "Warning",
+      "category": "Structure",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "footer/0:Paragraph:0",
+        "kind": "Paragraph",
+        "story": "footer/0",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "(stopka)"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1
+    },
+    {
+      "index": 48,
+      "code": "BODY_TEXT_SIZE_MISMATCH",
+      "label": "Rozmiar tekstu podstawowego spoza standardu",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "12 fragmentów tekstu jest powiększonych do 12 albo 14 pt; dopuszczalne tylko z potrzeby biznesowej.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Run:1:0",
+        "kind": "Run",
+        "story": "body",
+        "index": 1,
+        "subIndex": 0,
+        "snippet": "Lubię (12 pt)"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 12
+    },
+    {
+      "index": 49,
+      "code": "BODY_TEXT_SIZE_MISMATCH",
+      "label": "Rozmiar tekstu podstawowego spoza standardu",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "12 fragmentów tekstu jest powiększonych do 12 albo 14 pt; dopuszczalne tylko z potrzeby biznesowej.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Run:1:1",
+        "kind": "Run",
+        "story": "body",
+        "index": 1,
+        "subIndex": 1,
+        "snippet": "pierdolić głupoty (12 pt)"
+      },
+      "occurrence": 2,
+      "occurrenceCount": 12
+    },
+    {
+      "index": 50,
+      "code": "BODY_TEXT_SIZE_MISMATCH",
+      "label": "Rozmiar tekstu podstawowego spoza standardu",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "12 fragmentów tekstu jest powiększonych do 12 albo 14 pt; dopuszczalne tylko z potrzeby biznesowej.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Run:3:0",
+        "kind": "Run",
+        "story": "body",
+        "index": 3,
+        "subIndex": 0,
+        "snippet": "Jestem sobie dokumentem i mam wszystko w… (12 pt)"
+      },
+      "occurrence": 3,
+      "occurrenceCount": 12
+    },
+    {
+      "index": 51,
+      "code": "BODY_TEXT_SIZE_MISMATCH",
+      "label": "Rozmiar tekstu podstawowego spoza standardu",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "12 fragmentów tekstu jest powiększonych do 12 albo 14 pt; dopuszczalne tylko z potrzeby biznesowej.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Run:5:0",
+        "kind": "Run",
+        "story": "body",
+        "index": 5,
+        "subIndex": 0,
+        "snippet": "Lubię jak mi żona ssie kutango. (12 pt)"
+      },
+      "occurrence": 4,
+      "occurrenceCount": 12
+    },
+    {
+      "index": 52,
+      "code": "BODY_TEXT_SIZE_MISMATCH",
+      "label": "Rozmiar tekstu podstawowego spoza standardu",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "12 fragmentów tekstu jest powiększonych do 12 albo 14 pt; dopuszczalne tylko z potrzeby biznesowej.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Run:6:0",
+        "kind": "Run",
+        "story": "body",
+        "index": 6,
+        "subIndex": 0,
+        "snippet": "www.dupeczki.pl (12 pt)"
+      },
+      "occurrence": 5,
+      "occurrenceCount": 12
+    },
+    {
+      "index": 53,
+      "code": "BODY_TEXT_SIZE_MISMATCH",
+      "label": "Rozmiar tekstu podstawowego spoza standardu",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "12 fragmentów tekstu jest powiększonych do 12 albo 14 pt; dopuszczalne tylko z potrzeby biznesowej.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Run:7:0",
+        "kind": "Run",
+        "story": "body",
+        "index": 7,
+        "subIndex": 0,
+        "snippet": "Kobieta (12 pt)"
+      },
+      "occurrence": 6,
+      "occurrenceCount": 12
+    },
+    {
+      "index": 54,
+      "code": "BODY_TEXT_SIZE_MISMATCH",
+      "label": "Rozmiar tekstu podstawowego spoza standardu",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "12 fragmentów tekstu jest powiększonych do 12 albo 14 pt; dopuszczalne tylko z potrzeby biznesowej.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Run:8:0",
+        "kind": "Run",
+        "story": "body",
+        "index": 8,
+        "subIndex": 0,
+        "snippet": "Robi mi (12 pt)"
+      },
+      "occurrence": 7,
+      "occurrenceCount": 12
+    },
+    {
+      "index": 55,
+      "code": "BODY_TEXT_SIZE_MISMATCH",
+      "label": "Rozmiar tekstu podstawowego spoza standardu",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "12 fragmentów tekstu jest powiększonych do 12 albo 14 pt; dopuszczalne tylko z potrzeby biznesowej.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Run:9:0",
+        "kind": "Run",
+        "story": "body",
+        "index": 9,
+        "subIndex": 0,
+        "snippet": "Laskę (12 pt)"
+      },
+      "occurrence": 8,
+      "occurrenceCount": 12
+    },
+    {
+      "index": 56,
+      "code": "BODY_TEXT_SIZE_MISMATCH",
+      "label": "Rozmiar tekstu podstawowego spoza standardu",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "12 fragmentów tekstu jest powiększonych do 12 albo 14 pt; dopuszczalne tylko z potrzeby biznesowej.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Run:10:0",
+        "kind": "Run",
+        "story": "body",
+        "index": 10,
+        "subIndex": 0,
+        "snippet": "Śniadanie (12 pt)"
+      },
+      "occurrence": 9,
+      "occurrenceCount": 12
+    },
+    {
+      "index": 57,
+      "code": "BODY_TEXT_SIZE_MISMATCH",
+      "label": "Rozmiar tekstu podstawowego spoza standardu",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "12 fragmentów tekstu jest powiększonych do 12 albo 14 pt; dopuszczalne tylko z potrzeby biznesowej.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Run:11:0",
+        "kind": "Run",
+        "story": "body",
+        "index": 11,
+        "subIndex": 0,
+        "snippet": "Kawkę (12 pt)"
+      },
+      "occurrence": 10,
+      "occurrenceCount": 12
+    },
+    {
+      "index": 58,
+      "code": "BODY_TEXT_SIZE_MISMATCH",
+      "label": "Rozmiar tekstu podstawowego spoza standardu",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "12 fragmentów tekstu jest powiększonych do 12 albo 14 pt; dopuszczalne tylko z potrzeby biznesowej.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Run:12:0",
+        "kind": "Run",
+        "story": "body",
+        "index": 12,
+        "subIndex": 0,
+        "snippet": "Pierdoli (12 pt)"
+      },
+      "occurrence": 11,
+      "occurrenceCount": 12
+    },
+    {
+      "index": 59,
+      "code": "BODY_TEXT_SIZE_MISMATCH",
+      "label": "Rozmiar tekstu podstawowego spoza standardu",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "12 fragmentów tekstu jest powiększonych do 12 albo 14 pt; dopuszczalne tylko z potrzeby biznesowej.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Run:13:0",
+        "kind": "Run",
+        "story": "body",
+        "index": 13,
+        "subIndex": 0,
+        "snippet": "głupoty (12 pt)"
+      },
+      "occurrence": 12,
+      "occurrenceCount": 12
+    },
+    {
+      "index": 60,
+      "code": "INVALID_MARGINS",
+      "label": "Marginesy inne niż wymagane",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Margines górny ma 70,9 pt, a wymagane jest 36 pt.",
+      "fixable": true,
+      "criteria": [],
+      "location": {
+        "key": "body:Document:0",
+        "kind": "Document",
+        "story": "body",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "(ustawienia strony)"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1
+    },
+    {
+      "index": 61,
+      "code": "INVALID_MARGINS",
+      "label": "Marginesy inne niż wymagane",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Margines dolny ma 70,9 pt, a wymagane jest 36 pt.",
+      "fixable": true,
+      "criteria": [],
+      "location": {
+        "key": "body:Document:0",
+        "kind": "Document",
+        "story": "body",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "(ustawienia strony)"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1
+    },
+    {
+      "index": 62,
+      "code": "INVALID_MARGINS",
+      "label": "Marginesy inne niż wymagane",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Margines lewy ma 70,9 pt, a wymagane jest 36 pt.",
+      "fixable": true,
+      "criteria": [],
+      "location": {
+        "key": "body:Document:0",
+        "kind": "Document",
+        "story": "body",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "(ustawienia strony)"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1
+    },
+    {
+      "index": 63,
+      "code": "INVALID_MARGINS",
+      "label": "Marginesy inne niż wymagane",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Margines prawy ma 70,9 pt, a wymagane jest 36 pt.",
+      "fixable": true,
+      "criteria": [],
+      "location": {
+        "key": "body:Document:0",
+        "kind": "Document",
+        "story": "body",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "(ustawienia strony)"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1
+    },
+    {
+      "index": 64,
+      "code": "TEXT_COLOR_NOT_ALLOWED",
+      "label": "Kolor tekstu spoza palety",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "3 fragmenty tekstu mają kolor spoza dozwolonej palety (#ED7D31, #0563C1); dozwolone: #000000, #FF6200, #0000FF, #AB0066, #7724FF, #696969, #4D0020.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Run:0:0",
+        "kind": "Run",
+        "story": "body",
+        "index": 0,
+        "subIndex": 0,
+        "snippet": "Jebać TEKOM (#ED7D31)"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 3
+    },
+    {
+      "index": 65,
+      "code": "TEXT_COLOR_NOT_ALLOWED",
+      "label": "Kolor tekstu spoza palety",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "3 fragmenty tekstu mają kolor spoza dozwolonej palety (#ED7D31, #0563C1); dozwolone: #000000, #FF6200, #0000FF, #AB0066, #7724FF, #696969, #4D0020.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Run:2:0",
+        "kind": "Run",
+        "story": "body",
+        "index": 2,
+        "subIndex": 0,
+        "snippet": "Kutas boko też jest spoko (#ED7D31)"
+      },
+      "occurrence": 2,
+      "occurrenceCount": 3
+    },
+    {
+      "index": 66,
+      "code": "TEXT_COLOR_NOT_ALLOWED",
+      "label": "Kolor tekstu spoza palety",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "3 fragmenty tekstu mają kolor spoza dozwolonej palety (#ED7D31, #0563C1); dozwolone: #000000, #FF6200, #0000FF, #AB0066, #7724FF, #696969, #4D0020.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Run:6:0",
+        "kind": "Run",
+        "story": "body",
+        "index": 6,
+        "subIndex": 0,
+        "snippet": "www.dupeczki.pl (#0563C1)"
+      },
+      "occurrence": 3,
+      "occurrenceCount": 3
+    },
+    {
+      "index": 67,
+      "code": "TABLE_DESCRIPTION_MISSING",
+      "label": "Tabela bez opisu w tekście alternatywnym",
+      "severity": "Info",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Tabela 1 nie ma opisu w tekście alternatywnym (dłuższego od tytułu); guidebook go rekomenduje.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Table:0",
+        "kind": "Table",
+        "story": "body",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "tabela 1"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1
+    }
+  ]
+}

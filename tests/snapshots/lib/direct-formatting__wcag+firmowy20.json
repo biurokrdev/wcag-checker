@@ -1,0 +1,89 @@
+{
+  "outcome": "Valid",
+  "summary": "2 ostrzeżenia, 1 informacja.",
+  "standards": [
+    {
+      "key": "wcag/2.1",
+      "id": "wcag",
+      "version": "2.1",
+      "name": "WCAG 2.1 AA (dokument Word)",
+      "confirmed": true
+    },
+    {
+      "key": "firmowy/2.0",
+      "id": "firmowy",
+      "version": "2.0",
+      "name": "Standard pism firmowych 2.0",
+      "confirmed": true,
+      "note": ""
+    }
+  ],
+  "document": {
+    "title": "Formatowanie bezpośrednie. Example Company S. A.",
+    "author": "Example Company S. A.",
+    "language": "pl-PL",
+    "paragraphs": 22,
+    "headings": 4,
+    "tables": 1,
+    "images": 0
+  },
+  "outline": [
+    {
+      "level": 1,
+      "text": "Formatowanie bezpośrednie"
+    },
+    {
+      "level": 2,
+      "text": "Akapity"
+    },
+    {
+      "level": 2,
+      "text": "Style znakowe"
+    },
+    {
+      "level": 2,
+      "text": "Lista i tabela"
+    }
+  ],
+  "issues": [
+    {
+      "code": "FAKE_HEADING",
+      "severity": "Warning",
+      "category": "Headings",
+      "standard": "wcag/2.1",
+      "message": "1 akapit wygląda na nagłówek (krótki, pogrubiony albo dużą czcionką), ale bez stylu nagłówka, więc poza konspektem dokumentu; pierwszy: „Warunki dodatkowe”.",
+      "locations": [
+        {
+          "key": "body:Paragraph:7",
+          "snippet": "Warunki dodatkowe"
+        }
+      ]
+    },
+    {
+      "code": "BODY_TEXT_SIZE_MISMATCH",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "message": "1 fragment tekstu jest powiększony do 12 albo 14 pt; dopuszczalne tylko z potrzeby biznesowej.",
+      "locations": [
+        {
+          "key": "body:Run:7:0",
+          "snippet": "Warunki dodatkowe (14 pt)"
+        }
+      ]
+    },
+    {
+      "code": "MANUAL_CHECK_SUGGESTED",
+      "severity": "Info",
+      "category": "Document",
+      "standard": "wcag/2.1",
+      "message": "Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie.",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": ""
+        }
+      ]
+    }
+  ]
+}

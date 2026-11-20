@@ -1,0 +1,32 @@
+{
+  "standards": [
+    {
+      "key": "wcag/2.1",
+      "id": "wcag",
+      "version": "2.1",
+      "name": "WCAG 2.1 AA (dokument Word)",
+      "confirmed": true,
+      "note": null
+    },
+    {
+      "key": "firmowy/1.9",
+      "id": "firmowy",
+      "version": "1.9",
+      "name": "Standard pism firmowych 1.9",
+      "confirmed": true,
+      "note": null
+    },
+    {
+      "key": "firmowy/2.0",
+      "id": "firmowy",
+      "version": "2.0",
+      "name": "Standard pism firmowych 2.0",
+      "confirmed": true,
+      "note": ""
+    }
+  ],
+  "default": [
+    "wcag/2.1",
+    "firmowy/1.9"
+  ]
+}

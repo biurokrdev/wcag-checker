@@ -1,0 +1,54 @@
+{
+  "outcome": "Valid",
+  "summary": "Dokument spełnia wszystkie automatycznie sprawdzane wymagania.",
+  "standards": [
+    {
+      "key": "firmowy/2.0",
+      "id": "firmowy",
+      "version": "2.0",
+      "name": "Standard pism firmowych 2.0",
+      "confirmed": true,
+      "note": ""
+    }
+  ],
+  "document": {
+    "title": "Wzór pisma firmowego. Example Company S. A.",
+    "author": "Example Company S. A.",
+    "language": "pl-PL",
+    "paragraphs": 30,
+    "headings": 7,
+    "tables": 1,
+    "images": 0
+  },
+  "outline": [
+    {
+      "level": 1,
+      "text": "Wzór pisma firmowego"
+    },
+    {
+      "level": 2,
+      "text": "Dane umowy"
+    },
+    {
+      "level": 2,
+      "text": "Wykaz opłat"
+    },
+    {
+      "level": 2,
+      "text": "Warunki promocji"
+    },
+    {
+      "level": 3,
+      "text": "Dokumenty do pobrania"
+    },
+    {
+      "level": 4,
+      "text": "Kontakt"
+    },
+    {
+      "level": 5,
+      "text": "Podpis"
+    }
+  ],
+  "issues": []
+}

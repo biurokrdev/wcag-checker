@@ -1,0 +1,580 @@
+{
+  "status": "Invalid",
+  "summary": "2 błędy, 1 ostrzeżenie.",
+  "standards": [
+    {
+      "key": "firmowy/2.0",
+      "id": "firmowy",
+      "version": "2.0",
+      "name": "Standard pism firmowych 2.0",
+      "confirmed": true,
+      "note": ""
+    }
+  ],
+  "document": {
+    "fileName": "edge.docx",
+    "title": "Przypadki brzegowe. Example Company S. A.",
+    "author": "Example Company S. A.",
+    "language": "pl-PL",
+    "paragraphs": 21,
+    "headings": 3,
+    "tables": 1,
+    "images": 1
+  },
+  "counts": {
+    "errors": 2,
+    "warnings": 1,
+    "infos": 0
+  },
+  "issues": [
+    {
+      "code": "TABLE_ALIGNMENT_MISMATCH",
+      "label": "Wyrównanie w tabeli niezgodne ze standardem",
+      "severity": "Error",
+      "category": "Tables",
+      "message": "Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
+      "standard": "firmowy/2.0",
+      "fixable": false
+    },
+    {
+      "code": "TABLE_HEADER_NOT_BOLD",
+      "label": "Nagłówek tabeli bez pogrubienia",
+      "severity": "Error",
+      "category": "Tables",
+      "message": "Tabela 1: 2 komórki nagłówka nie są pogrubione.",
+      "standard": "firmowy/2.0",
+      "fixable": false
+    },
+    {
+      "code": "TEXT_COLOR_NOT_ALLOWED",
+      "label": "Kolor tekstu spoza palety",
+      "severity": "Warning",
+      "category": "Quality",
+      "message": "2 fragmenty tekstu mają kolor spoza dozwolonej palety (#8EAADB, #2F5496); dozwolone: #000000, #FF6200, #0000FF, #AB0066, #7724FF, #696969, #4D0020.",
+      "standard": "firmowy/2.0",
+      "fixable": false
+    }
+  ],
+  "outline": [
+    {
+      "level": 1,
+      "text": "Przypadki brzegowe"
+    },
+    {
+      "level": 2,
+      "text": "Tabela ze stylem tabeli"
+    },
+    {
+      "level": 2,
+      "text": "Druga sekcja"
+    }
+  ],
+  "wcag": null,
+  "reportId": "<id>",
+  "summaryTable": [
+    {
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "section": "Format strony i ustawienia bazowe",
+      "rows": [
+        {
+          "id": "g01",
+          "name": "G-01 A4 210 × 297 mm, marginesy 12,7 mm",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "g04",
+          "name": "G-04 Wyrównanie do lewej, bez justowania",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "fonts",
+          "name": "Czcionka SUN Me (H1: SUN Display), grubość osobno",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "line",
+          "name": "Interlinia 1,2",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        }
+      ]
+    },
+    {
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "section": "Paleta kolorów",
+      "rows": [
+        {
+          "id": "g02",
+          "name": "G-02 Kolory tylko z palety, użyte zgodnie z przeznaczeniem",
+          "status": "Warning",
+          "details": [
+            {
+              "code": "TEXT_COLOR_NOT_ALLOWED",
+              "label": "Kolor tekstu spoza palety",
+              "message": "2 fragmenty tekstu mają kolor spoza dozwolonej palety (#8EAADB, #2F5496); dozwolone: #000000, #FF6200, #0000FF, #AB0066, #7724FF, #696969, #4D0020.",
+              "occurrences": 2,
+              "severity": "Warning"
+            }
+          ],
+          "note": null
+        }
+      ]
+    },
+    {
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "section": "Typografia",
+      "rows": [
+        {
+          "id": "g03",
+          "name": "G-03 Style H1–H5 zgodne z tabelą typografii",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "body",
+          "name": "Tekst podstawowy 10 pt (12/14 pt warunkowo)",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "links",
+          "name": "Łącza #7724FF z podkreśleniem",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "g05",
+          "name": "G-05 Odstępy H1: 42,5 pt nad, 34 pt pod",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "g07",
+          "name": "G-07 Hierarchia nagłówków: start od H1, bez przeskoków",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        }
+      ]
+    },
+    {
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "section": "Spis treści i listy",
+      "rows": [
+        {
+          "id": "g06",
+          "name": "G-06 Automatyczny spis treści powyżej 9 stron",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "toc-heading",
+          "name": "Nagłówek „Spis treści” poza spisem, SUN Me Bold 10 pt",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "lists",
+          "name": "Punktory #FF6200/#000000, numery pogrubione",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        }
+      ]
+    },
+    {
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "section": "Tabele",
+      "rows": [
+        {
+          "id": "g08",
+          "name": "G-08 Wiersz nagłówkowy powtarzany, bez pustych komórek, wiersze niepodzielne",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "g09",
+          "name": "G-09 Krawędzie 1 pt #000000, nagłówki Bold, lewo/środek w pionie",
+          "status": "Error",
+          "details": [
+            {
+              "code": "TABLE_ALIGNMENT_MISMATCH",
+              "label": "Wyrównanie w tabeli niezgodne ze standardem",
+              "message": "Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
+              "occurrences": 6,
+              "severity": "Error"
+            },
+            {
+              "code": "TABLE_HEADER_NOT_BOLD",
+              "label": "Nagłówek tabeli bez pogrubienia",
+              "message": "Tabela 1: 2 komórki nagłówka nie są pogrubione.",
+              "occurrences": 2,
+              "severity": "Error"
+            }
+          ],
+          "note": null
+        },
+        {
+          "id": "table-title",
+          "name": "Tytuł i opis tabeli w tekście alternatywnym",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        }
+      ]
+    },
+    {
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "section": "Grafika",
+      "rows": [
+        {
+          "id": "g10",
+          "name": "G-10 Logo 44 × 10 mm i symbol 22 × 22 mm z tekstem alternatywnym z guidebooka",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        }
+      ]
+    },
+    {
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "section": "Stopka i metadane",
+      "rows": [
+        {
+          "id": "g11",
+          "name": "G-11 Stopka SUN Me 8 pt #696969 interlinia 1,2, numer i tytuł, bez stopki na stronie tytułowej",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "g12",
+          "name": "G-12 Title „[Tytuł]. Bank”, Author = bank",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "g13",
+          "name": "G-13 Język dokumentu ustawiony",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        }
+      ]
+    },
+    {
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "section": "Warianty i oznaczenia",
+      "rows": [
+        {
+          "id": "g14",
+          "name": "G-14 Warianty zagnieżdżone i domknięte, kolory znaczników, [lub] zamiast ukośnika",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "g16",
+          "name": "G-16 Napis WZÓR na każdej stronie, SUN Me Bold 28 pt",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        }
+      ]
+    },
+    {
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "section": "Weryfikacja ręczna",
+      "rows": [
+        {
+          "id": "manual-g07",
+          "name": "G-07 Hierarchia tagów w wygenerowanym PDF",
+          "status": "ManualReview",
+          "details": [],
+          "note": "Sprawdzić na wygenerowanym PDF/UA (drzewo tagów); w DOCX hierarchia nagłówków jest sprawdzana automatycznie."
+        },
+        {
+          "id": "manual-g10",
+          "name": "G-10 Alt text ikon i QR zależny od kontekstu, dekoracje wyłączone",
+          "status": "ManualReview",
+          "details": [],
+          "note": "Ikony „tak/nie” i informacji z opisem z kontekstu; QR z przeznaczeniem; pole na naklejkę barcode dekoracyjne; zasoby z OrangeSharing, nie ze zdjęć."
+        },
+        {
+          "id": "manual-g13",
+          "name": "G-13 Znaczniki językowe fragmentów w innym języku",
+          "status": "ManualReview",
+          "details": [],
+          "note": "Cytaty, tytuły i rozwinięcia skrótów w innym języku oznaczone miejscowo."
+        },
+        {
+          "id": "manual-g15",
+          "name": "G-15 Sygnatura (SUN Me 8 pt, 270°, prawy dolny róg) i SIGNOTEK",
+          "status": "ManualReview",
+          "details": [],
+          "note": "Zgodność z integracją; biały identyfikator SIGNOTEK ocenić osobno pod kątem dostępności."
+        },
+        {
+          "id": "manual-layout",
+          "name": "Wariant układu (dane rejestrowe, strona tytułowa, pole adresowe)",
+          "status": "ManualReview",
+          "details": [],
+          "note": "Dane rejestrowe SUN Me 8 pt #696969 interlinia 1,5; strona tytułowa bez stopki; pole adresowe najlepiej puste."
+        },
+        {
+          "id": "manual-signatures",
+          "name": "Pola podpisów, separatory i kontrolki formularza",
+          "status": "ManualReview",
+          "details": [],
+          "note": "Linia podpisu 1 px #000000 60 mm; inputy 1 px #696969, 24 px wysokości; checkbox 20 × 20 px."
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "index": 0,
+      "code": "TABLE_ALIGNMENT_MISMATCH",
+      "label": "Wyrównanie w tabeli niezgodne ze standardem",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:TableCell:0:0",
+        "kind": "TableCell",
+        "story": "body",
+        "index": 0,
+        "subIndex": 0,
+        "snippet": "Etap"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 6
+    },
+    {
+      "index": 1,
+      "code": "TABLE_ALIGNMENT_MISMATCH",
+      "label": "Wyrównanie w tabeli niezgodne ze standardem",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:TableCell:0:1",
+        "kind": "TableCell",
+        "story": "body",
+        "index": 0,
+        "subIndex": 1,
+        "snippet": "Termin"
+      },
+      "occurrence": 2,
+      "occurrenceCount": 6
+    },
+    {
+      "index": 2,
+      "code": "TABLE_ALIGNMENT_MISMATCH",
+      "label": "Wyrównanie w tabeli niezgodne ze standardem",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:TableCell:0:2",
+        "kind": "TableCell",
+        "story": "body",
+        "index": 0,
+        "subIndex": 2,
+        "snippet": "Złożenie wniosku"
+      },
+      "occurrence": 3,
+      "occurrenceCount": 6
+    },
+    {
+      "index": 3,
+      "code": "TABLE_ALIGNMENT_MISMATCH",
+      "label": "Wyrównanie w tabeli niezgodne ze standardem",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:TableCell:0:3",
+        "kind": "TableCell",
+        "story": "body",
+        "index": 0,
+        "subIndex": 3,
+        "snippet": "do 30 dni"
+      },
+      "occurrence": 4,
+      "occurrenceCount": 6
+    },
+    {
+      "index": 4,
+      "code": "TABLE_ALIGNMENT_MISMATCH",
+      "label": "Wyrównanie w tabeli niezgodne ze standardem",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:TableCell:0:4",
+        "kind": "TableCell",
+        "story": "body",
+        "index": 0,
+        "subIndex": 4,
+        "snippet": "Decyzja"
+      },
+      "occurrence": 5,
+      "occurrenceCount": 6
+    },
+    {
+      "index": 5,
+      "code": "TABLE_ALIGNMENT_MISMATCH",
+      "label": "Wyrównanie w tabeli niezgodne ze standardem",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:TableCell:0:5",
+        "kind": "TableCell",
+        "story": "body",
+        "index": 0,
+        "subIndex": 5,
+        "snippet": "do 14 dni"
+      },
+      "occurrence": 6,
+      "occurrenceCount": 6
+    },
+    {
+      "index": 6,
+      "code": "TABLE_HEADER_NOT_BOLD",
+      "label": "Nagłówek tabeli bez pogrubienia",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Tabela 1: 2 komórki nagłówka nie są pogrubione.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:TableCell:0:0",
+        "kind": "TableCell",
+        "story": "body",
+        "index": 0,
+        "subIndex": 0,
+        "snippet": "Etap"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 2
+    },
+    {
+      "index": 7,
+      "code": "TABLE_HEADER_NOT_BOLD",
+      "label": "Nagłówek tabeli bez pogrubienia",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Tabela 1: 2 komórki nagłówka nie są pogrubione.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:TableCell:0:1",
+        "kind": "TableCell",
+        "story": "body",
+        "index": 0,
+        "subIndex": 1,
+        "snippet": "Termin"
+      },
+      "occurrence": 2,
+      "occurrenceCount": 2
+    },
+    {
+      "index": 8,
+      "code": "TEXT_COLOR_NOT_ALLOWED",
+      "label": "Kolor tekstu spoza palety",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "2 fragmenty tekstu mają kolor spoza dozwolonej palety (#8EAADB, #2F5496); dozwolone: #000000, #FF6200, #0000FF, #AB0066, #7724FF, #696969, #4D0020.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Run:3:1",
+        "kind": "Run",
+        "story": "body",
+        "index": 3,
+        "subIndex": 1,
+        "snippet": "rozjaśniony akcent (#8EAADB)"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 2
+    },
+    {
+      "index": 9,
+      "code": "TEXT_COLOR_NOT_ALLOWED",
+      "label": "Kolor tekstu spoza palety",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "2 fragmenty tekstu mają kolor spoza dozwolonej palety (#8EAADB, #2F5496); dozwolone: #000000, #FF6200, #0000FF, #AB0066, #7724FF, #696969, #4D0020.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Run:3:3",
+        "kind": "Run",
+        "story": "body",
+        "index": 3,
+        "subIndex": 3,
+        "snippet": "przyciemniony akcent (#2F5496)"
+      },
+      "occurrence": 2,
+      "occurrenceCount": 2
+    }
+  ]
+}

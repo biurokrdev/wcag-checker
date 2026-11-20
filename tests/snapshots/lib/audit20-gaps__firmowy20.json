@@ -1,0 +1,239 @@
+{
+  "outcome": "Invalid",
+  "summary": "7 błędów, 6 ostrzeżeń.",
+  "standards": [
+    {
+      "key": "firmowy/2.0",
+      "id": "firmowy",
+      "version": "2.0",
+      "name": "Standard pism firmowych 2.0",
+      "confirmed": true,
+      "note": ""
+    }
+  ],
+  "document": {
+    "author": "Example Company S. A.",
+    "language": "pl-PL",
+    "paragraphs": 23,
+    "headings": 4,
+    "tables": 1,
+    "images": 0
+  },
+  "outline": [
+    {
+      "level": 1,
+      "text": "Luki audytu 2.0"
+    },
+    {
+      "level": 3,
+      "text": "Listy z nadpisaniami"
+    },
+    {
+      "level": 2,
+      "text": "Tabela z nadpisaniami"
+    },
+    {
+      "level": 2,
+      "text": "Dane rejestrowe"
+    }
+  ],
+  "issues": [
+    {
+      "code": "TABLE_ALIGNMENT_MISMATCH",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "message": "Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
+      "locations": [
+        {
+          "key": "body:TableCell:0:0",
+          "snippet": "Rodzaj opłaty"
+        },
+        {
+          "key": "body:TableCell:0:1",
+          "snippet": "Kwota"
+        },
+        {
+          "key": "body:TableCell:0:2",
+          "snippet": "Prowadzenie konta"
+        },
+        {
+          "key": "body:TableCell:0:3",
+          "snippet": "0 zł"
+        },
+        {
+          "key": "body:TableCell:0:4",
+          "snippet": "Karta debetowa"
+        },
+        {
+          "key": "body:TableCell:0:5",
+          "snippet": ""
+        }
+      ]
+    },
+    {
+      "code": "TABLE_EMPTY_CELL",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "message": "Tabela 1: 1 pusta komórka; wpisz „Brak danych”, „0” albo inną wartość słowną.",
+      "locations": [
+        {
+          "key": "body:TableCell:0:5",
+          "snippet": "(pusta komórka)"
+        }
+      ]
+    },
+    {
+      "code": "TABLE_HEADER_NOT_BOLD",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "message": "Tabela 1: 2 komórki nagłówka nie są pogrubione.",
+      "locations": [
+        {
+          "key": "body:TableCell:0:0",
+          "snippet": "Rodzaj opłaty"
+        },
+        {
+          "key": "body:TableCell:0:1",
+          "snippet": "Kwota"
+        }
+      ]
+    },
+    {
+      "code": "TABLE_ROW_CAN_SPLIT",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "message": "Tabela 1: 1 wiersz może dzielić się między strony (brak „Nie dziel wiersza między stronami”).",
+      "locations": [
+        {
+          "key": "body:Table:0",
+          "snippet": "tabela 1"
+        }
+      ]
+    },
+    {
+      "code": "LIST_BULLET_COLOR_MISMATCH",
+      "severity": "Error",
+      "category": "Lists",
+      "standard": "firmowy/2.0",
+      "message": "2 pozycje listy mają punktor w kolorze spoza #FF6200 i #000000.",
+      "locations": [
+        {
+          "key": "body:Paragraph:10",
+          "snippet": "pozycja z zielonym punktorem, (punktor #00AA00)"
+        },
+        {
+          "key": "body:Paragraph:11",
+          "snippet": "druga pozycja z zielonym punktorem. (punktor #00AA00)"
+        }
+      ]
+    },
+    {
+      "code": "BODY_TEXT_SIZE_MISMATCH",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "message": "1 fragment tekstu podstawowego ma rozmiar spoza standardu; wymagane 10 pt (dopuszczalnie 12 albo 14 pt).",
+      "locations": [
+        {
+          "key": "body:Run:22:0",
+          "snippet": "Example Company S. A. z siedzibą w Warsz… (8 pt)"
+        }
+      ]
+    },
+    {
+      "code": "LINE_SPACING_MISMATCH",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "message": "1 akapit ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288).",
+      "locations": [
+        {
+          "key": "body:Paragraph:22",
+          "snippet": "Example Company S. A. z siedzibą w Warsz… (interlinia 1,5)"
+        }
+      ]
+    },
+    {
+      "code": "HEADING_LEVEL_SKIPPED",
+      "severity": "Warning",
+      "category": "Headings",
+      "standard": "firmowy/2.0",
+      "message": "Nagłówek „Listy z nadpisaniami” ma poziom 3 zaraz po poziomie 1; pominięto poziom 2.",
+      "locations": [
+        {
+          "key": "body:Paragraph:5",
+          "snippet": "Listy z nadpisaniami"
+        }
+      ]
+    },
+    {
+      "code": "VARIANT_SLASH_ALTERNATIVE",
+      "severity": "Warning",
+      "category": "Text",
+      "standard": "firmowy/2.0",
+      "message": "1 akapit wewnątrz wariantu ma alternatywę z ukośnikiem (np. „PLN / EUR”); w wariantach separator zastępuje się znacznikiem [lub] w kolorze #AB0066.",
+      "locations": [
+        {
+          "key": "body:Paragraph:3",
+          "snippet": "PLN / EUR"
+        }
+      ]
+    },
+    {
+      "code": "INVALID_MARGINS",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "message": "Margines górny ma 70,9 pt, a wymagane jest 36 pt.",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": "(ustawienia strony)"
+        }
+      ]
+    },
+    {
+      "code": "INVALID_MARGINS",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "message": "Margines dolny ma 70,9 pt, a wymagane jest 36 pt.",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": "(ustawienia strony)"
+        }
+      ]
+    },
+    {
+      "code": "INVALID_MARGINS",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "message": "Margines lewy ma 70,9 pt, a wymagane jest 36 pt.",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": "(ustawienia strony)"
+        }
+      ]
+    },
+    {
+      "code": "INVALID_MARGINS",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "message": "Margines prawy ma 70,9 pt, a wymagane jest 36 pt.",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": "(ustawienia strony)"
+        }
+      ]
+    }
+  ]
+}

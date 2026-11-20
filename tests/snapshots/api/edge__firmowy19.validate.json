@@ -1,0 +1,149 @@
+{
+  "status": "Invalid",
+  "summary": "1 błąd, 1 ostrzeżenie.",
+  "standards": [
+    {
+      "key": "firmowy/1.9",
+      "id": "firmowy",
+      "version": "1.9",
+      "name": "Standard pism firmowych 1.9",
+      "confirmed": true,
+      "note": null
+    }
+  ],
+  "document": {
+    "fileName": "edge.docx",
+    "title": "Przypadki brzegowe. Example Company S. A.",
+    "author": "Example Company S. A.",
+    "language": "pl-PL",
+    "paragraphs": 21,
+    "headings": 3,
+    "tables": 1,
+    "images": 1
+  },
+  "counts": {
+    "errors": 1,
+    "warnings": 1,
+    "infos": 0
+  },
+  "issues": [
+    {
+      "code": "TITLE_PHRASE_MISSING",
+      "label": "Tytuł bez wymaganej nazwy instytucji",
+      "severity": "Error",
+      "category": "Metadata",
+      "message": "Tytuł „Przypadki brzegowe. Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”.",
+      "standard": "firmowy/1.9",
+      "fixable": true
+    },
+    {
+      "code": "AUTHOR_PHRASE_MISSING",
+      "label": "Autor bez wymaganej nazwy instytucji",
+      "severity": "Warning",
+      "category": "Metadata",
+      "message": "Autor „Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”.",
+      "standard": "firmowy/1.9",
+      "fixable": true
+    }
+  ],
+  "outline": [
+    {
+      "level": 1,
+      "text": "Przypadki brzegowe"
+    },
+    {
+      "level": 2,
+      "text": "Tabela ze stylem tabeli"
+    },
+    {
+      "level": 2,
+      "text": "Druga sekcja"
+    }
+  ],
+  "wcag": null,
+  "reportId": "<id>",
+  "summaryTable": [
+    {
+      "standard": "firmowy/1.9",
+      "standardName": "Standard pism firmowych 1.9",
+      "section": "Standard pism firmowych 1.9",
+      "rows": [
+        {
+          "id": "phrase",
+          "name": "Fraza „SUN Example Company S. A.” w tytule i autorze",
+          "status": "Error",
+          "details": [
+            {
+              "code": "TITLE_PHRASE_MISSING",
+              "label": "Tytuł bez wymaganej nazwy instytucji",
+              "message": "Tytuł „Przypadki brzegowe. Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”.",
+              "occurrences": 1,
+              "severity": "Error"
+            },
+            {
+              "code": "AUTHOR_PHRASE_MISSING",
+              "label": "Autor bez wymaganej nazwy instytucji",
+              "message": "Autor „Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”.",
+              "occurrences": 1,
+              "severity": "Warning"
+            }
+          ],
+          "note": null
+        },
+        {
+          "id": "margins",
+          "name": "Marginesy 36 pt",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "index": 0,
+      "code": "TITLE_PHRASE_MISSING",
+      "label": "Tytuł bez wymaganej nazwy instytucji",
+      "severity": "Error",
+      "category": "Metadata",
+      "standard": "firmowy/1.9",
+      "standardName": "Standard pism firmowych 1.9",
+      "message": "Tytuł „Przypadki brzegowe. Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”.",
+      "fixable": true,
+      "criteria": [],
+      "location": {
+        "key": "body:Document:0",
+        "kind": "Document",
+        "story": "body",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "(metadane dokumentu)"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1
+    },
+    {
+      "index": 1,
+      "code": "AUTHOR_PHRASE_MISSING",
+      "label": "Autor bez wymaganej nazwy instytucji",
+      "severity": "Warning",
+      "category": "Metadata",
+      "standard": "firmowy/1.9",
+      "standardName": "Standard pism firmowych 1.9",
+      "message": "Autor „Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”.",
+      "fixable": true,
+      "criteria": [],
+      "location": {
+        "key": "body:Document:0",
+        "kind": "Document",
+        "story": "body",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "(metadane dokumentu)"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1
+    }
+  ]
+}

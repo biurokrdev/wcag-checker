@@ -1,0 +1,64 @@
+Tytuł: Raport walidacji: direct-formatting.docx
+Autor: D2.Wcag
+Język: pl-PL
+Obrazy: 0
+
+Raport walidacji dokumentu „direct-formatting.docx”
+Wynik: poprawny. 1 ostrzeżenie.
+Data sprawdzenia: <data>. Standardy: Standard pism firmowych 2.0.
+Dokument: tytuł „Formatowanie bezpośrednie. Example Company S. A.”, autor „Example Company S. A.”, język pl-PL, 22 akapitów, 4 nagłówków, 1 tabel, 0 obrazów.
+Podsumowanie kontroli
+Standard pism firmowych 2.0
+Sekcja „Format strony i ustawienia bazowe”
+| Status | Kontrola | Szczegóły |
+| Zatwierdzono | G-01 A4 210 × 297 mm, marginesy 12,7 mm | – |
+| Zatwierdzono | G-04 Wyrównanie do lewej, bez justowania | – |
+| Zatwierdzono | Czcionka SUN Me (H1: SUN Display), grubość osobno | – |
+| Zatwierdzono | Interlinia 1,2 | – |
+Sekcja „Paleta kolorów”
+| Status | Kontrola | Szczegóły |
+| Zatwierdzono | G-02 Kolory tylko z palety, użyte zgodnie z przeznaczeniem | – |
+Sekcja „Typografia”
+| Status | Kontrola | Szczegóły |
+| Zatwierdzono | G-03 Style H1–H5 zgodne z tabelą typografii | – |
+| Ostrzeżenie | Tekst podstawowy 10 pt (12/14 pt warunkowo) | Rozmiar tekstu podstawowego spoza standardu: 1 fragment tekstu jest powiększony do 12 albo 14 pt; dopuszczalne tylko z potrzeby biznesowej. |
+| Zatwierdzono | Łącza #7724FF z podkreśleniem | – |
+| Zatwierdzono | G-05 Odstępy H1: 42,5 pt nad, 34 pt pod | – |
+| Zatwierdzono | G-07 Hierarchia nagłówków: start od H1, bez przeskoków | – |
+Sekcja „Spis treści i listy”
+| Status | Kontrola | Szczegóły |
+| Zatwierdzono | G-06 Automatyczny spis treści powyżej 9 stron | – |
+| Zatwierdzono | Nagłówek „Spis treści” poza spisem, SUN Me Bold 10 pt | – |
+| Zatwierdzono | Punktory #FF6200/#000000, numery pogrubione | – |
+Sekcja „Tabele”
+| Status | Kontrola | Szczegóły |
+| Zatwierdzono | G-08 Wiersz nagłówkowy powtarzany, bez pustych komórek, wiersze niepodzielne | – |
+| Zatwierdzono | G-09 Krawędzie 1 pt #000000, nagłówki Bold, lewo/środek w pionie | – |
+| Zatwierdzono | Tytuł i opis tabeli w tekście alternatywnym | – |
+Sekcja „Grafika”
+| Status | Kontrola | Szczegóły |
+| Zatwierdzono | G-10 Logo 44 × 10 mm i symbol 22 × 22 mm z tekstem alternatywnym z guidebooka | – |
+Sekcja „Stopka i metadane”
+| Status | Kontrola | Szczegóły |
+| Zatwierdzono | G-11 Stopka SUN Me 8 pt #696969 interlinia 1,2, numer i tytuł, bez stopki na stronie tytułowej | – |
+| Zatwierdzono | G-12 Title „[Tytuł]. Bank”, Author = bank | – |
+| Zatwierdzono | G-13 Język dokumentu ustawiony | – |
+Sekcja „Warianty i oznaczenia”
+| Status | Kontrola | Szczegóły |
+| Zatwierdzono | G-14 Warianty zagnieżdżone i domknięte, kolory znaczników, [lub] zamiast ukośnika | – |
+| Zatwierdzono | G-16 Napis WZÓR na każdej stronie, SUN Me Bold 28 pt | – |
+Sekcja „Weryfikacja ręczna”
+| Status | Kontrola | Szczegóły |
+| Ręczna weryfikacja | G-07 Hierarchia tagów w wygenerowanym PDF | Sprawdzić na wygenerowanym PDF/UA (drzewo tagów); w DOCX hierarchia nagłówków jest sprawdzana automatycznie. |
+| Ręczna weryfikacja | G-10 Alt text ikon i QR zależny od kontekstu, dekoracje wyłączone | Ikony „tak/nie” i informacji z opisem z kontekstu; QR z przeznaczeniem; pole na naklejkę barcode dekoracyjne; zasoby z OrangeSharing, nie ze zdjęć. |
+| Ręczna weryfikacja | G-13 Znaczniki językowe fragmentów w innym języku | Cytaty, tytuły i rozwinięcia skrótów w innym języku oznaczone miejscowo. |
+| Ręczna weryfikacja | G-15 Sygnatura (SUN Me 8 pt, 270°, prawy dolny róg) i SIGNOTEK | Zgodność z integracją; biały identyfikator SIGNOTEK ocenić osobno pod kątem dostępności. |
+| Ręczna weryfikacja | Wariant układu (dane rejestrowe, strona tytułowa, pole adresowe) | Dane rejestrowe SUN Me 8 pt #696969 interlinia 1,5; strona tytułowa bez stopki; pole adresowe najlepiej puste. |
+| Ręczna weryfikacja | Pola podpisów, separatory i kontrolki formularza | Linia podpisu 1 px #000000 60 mm; inputy 1 px #696969, 24 px wysokości; checkbox 20 × 20 px. |
+Wyniki walidacji
+1 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
+Tabela wystąpień
+| Nr | Waga | Zgłoszenie | Standard | Miejsce | Komunikat | Zweryfikowano |
+| 1 | ostrzeżenie | Rozmiar tekstu podstawowego spoza standardu | Standard pism firmowych 2.0 | fragment tekstu: „Warunki dodatkowe (14 pt)” | 1 fragment tekstu jest powiększony do 12 albo 14 pt; dopuszczalne tylko z potrzeby biznesowej. | nie |
+
+PDF: %PDF-, strony: 3

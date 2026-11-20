@@ -1,0 +1,712 @@
+{
+  "outcome": "Invalid",
+  "summary": "17 błędów, 13 ostrzeżeń, 2 informacje.",
+  "standards": [
+    {
+      "key": "wcag/2.1",
+      "id": "wcag",
+      "version": "2.1",
+      "name": "WCAG 2.1 AA (dokument Word)",
+      "confirmed": true
+    },
+    {
+      "key": "firmowy/2.0",
+      "id": "firmowy",
+      "version": "2.0",
+      "name": "Standard pism firmowych 2.0",
+      "confirmed": true,
+      "note": ""
+    }
+  ],
+  "document": {
+    "author": "Krzysztof Rybka",
+    "language": "pl-PL",
+    "paragraphs": 13,
+    "headings": 0,
+    "tables": 1,
+    "images": 2
+  },
+  "outline": [],
+  "issues": [
+    {
+      "code": "IMAGE_MISSING_ALT_TEXT",
+      "severity": "Error",
+      "category": "Images",
+      "standard": "wcag/2.1",
+      "message": "Obraz nr 2 („Obraz 1”) nie ma tekstu alternatywnego.",
+      "locations": [
+        {
+          "key": "body:Drawing:1",
+          "snippet": "obraz „Obraz 1”"
+        }
+      ]
+    },
+    {
+      "code": "EMPTY_HEADING",
+      "severity": "Error",
+      "category": "Headings",
+      "standard": "wcag/2.1",
+      "message": "Nagłówek poziomu 1 w akapicie 15 jest pusty.",
+      "locations": [
+        {
+          "key": "body:Paragraph:14",
+          "snippet": ""
+        }
+      ]
+    },
+    {
+      "code": "TABLE_ALIGNMENT_MISMATCH",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "message": "Tabela 1: 4 komórki nie są wyrównane do lewej i do środka w pionie.",
+      "locations": [
+        {
+          "key": "body:TableCell:0:0",
+          "snippet": ""
+        },
+        {
+          "key": "body:TableCell:0:1",
+          "snippet": ""
+        },
+        {
+          "key": "body:TableCell:0:2",
+          "snippet": ""
+        },
+        {
+          "key": "body:TableCell:0:3",
+          "snippet": ""
+        }
+      ]
+    },
+    {
+      "code": "TABLE_BORDER_MISMATCH",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "message": "Tabela 1 nie ma wszystkich krawędzi 1 pt w kolorze #000000.",
+      "locations": [
+        {
+          "key": "body:Table:0",
+          "snippet": "tabela 1"
+        }
+      ]
+    },
+    {
+      "code": "TABLE_EMPTY_CELL",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "message": "Tabela 1: 4 puste komórki; wpisz „Brak danych”, „0” albo inną wartość słowną.",
+      "locations": [
+        {
+          "key": "body:TableCell:0:0",
+          "snippet": "(pusta komórka)"
+        },
+        {
+          "key": "body:TableCell:0:1",
+          "snippet": "(pusta komórka)"
+        },
+        {
+          "key": "body:TableCell:0:2",
+          "snippet": "(pusta komórka)"
+        },
+        {
+          "key": "body:TableCell:0:3",
+          "snippet": "(pusta komórka)"
+        }
+      ]
+    },
+    {
+      "code": "TABLE_MISSING_HEADERS",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "wcag/2.1",
+      "message": "Tabela 1 nie ma oznaczonego wiersza nagłówkowego (Właściwości tabeli → Powtórz jako wiersz nagłówka).",
+      "locations": [
+        {
+          "key": "body:Table:0",
+          "snippet": "tabela 1"
+        }
+      ]
+    },
+    {
+      "code": "TABLE_ROW_CAN_SPLIT",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "message": "Tabela 1: 2 wiersze mogą dzielić się między strony (brak „Nie dziel wiersza między stronami”).",
+      "locations": [
+        {
+          "key": "body:Table:0",
+          "snippet": "tabela 1"
+        }
+      ]
+    },
+    {
+      "code": "INVALID_HYPERLINK",
+      "severity": "Error",
+      "category": "Hyperlinks",
+      "standard": "wcag/2.1",
+      "message": "Hiperłącze nr 1 ma jako tekst sam adres „www.dupeczki.pl”.",
+      "locations": [
+        {
+          "key": "body:Hyperlink:0",
+          "snippet": "www.dupeczki.pl"
+        }
+      ]
+    },
+    {
+      "code": "LINK_STYLE_MISMATCH",
+      "severity": "Error",
+      "category": "Hyperlinks",
+      "standard": "firmowy/2.0",
+      "message": "1 fragment łącza nie ma stylu łącza: kolor #7724FF z podkreśleniem.",
+      "locations": [
+        {
+          "key": "body:Run:6:0",
+          "snippet": "www.dupeczki.pl (kolor #0563C1)"
+        }
+      ]
+    },
+    {
+      "code": "HIDDEN_TEXT_LOW_CONTRAST",
+      "severity": "Error",
+      "category": "Text",
+      "standard": "wcag/2.1",
+      "message": "3 fragmenty tekstu mają białą czcionkę bez widocznego tła; pierwszy: „Lubię jak mi żona ssie”.",
+      "locations": [
+        {
+          "key": "body:Run:5:0",
+          "snippet": "Lubię jak mi żona ssie"
+        },
+        {
+          "key": "body:Run:5:1",
+          "snippet": "kutango"
+        },
+        {
+          "key": "body:Run:5:2",
+          "snippet": "."
+        }
+      ]
+    },
+    {
+      "code": "TEXT_LOW_CONTRAST",
+      "severity": "Error",
+      "category": "Text",
+      "standard": "wcag/2.1",
+      "message": "4 fragmenty tekstu mają za mały kontrast z tłem (najgorszy 2,8:1, wymagane 4,5:1 albo 3:1 dla dużego tekstu); pierwszy: „Jebać TEKOM”.",
+      "locations": [
+        {
+          "key": "body:Run:0:0",
+          "snippet": "Jebać TEKOM (2,8:1)"
+        },
+        {
+          "key": "body:Run:2:0",
+          "snippet": "Kutas (2,8:1)"
+        },
+        {
+          "key": "body:Run:2:1",
+          "snippet": "boko (2,8:1)"
+        },
+        {
+          "key": "body:Run:2:2",
+          "snippet": "też jest spoko (2,8:1)"
+        }
+      ]
+    },
+    {
+      "code": "AUTHOR_NOT_INSTITUTION",
+      "severity": "Error",
+      "category": "Metadata",
+      "standard": "firmowy/2.0",
+      "message": "Autor „Krzysztof Rybka” ma być zastąpiony nazwą banku „Example Company S. A.”.",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": "(metadane dokumentu)"
+        }
+      ]
+    },
+    {
+      "code": "TITLE_MISSING",
+      "severity": "Error",
+      "category": "Metadata",
+      "standard": "wcag/2.1",
+      "message": "Dokument nie ma tytułu w metadanych (Plik → Informacje → Tytuł).",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": "(metadane dokumentu)"
+        }
+      ]
+    },
+    {
+      "code": "BODY_TEXT_SIZE_MISMATCH",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "message": "4 fragmenty tekstu podstawowego mają rozmiar spoza standardu; wymagane 10 pt (dopuszczalnie 12 albo 14 pt).",
+      "locations": [
+        {
+          "key": "body:Run:0:0",
+          "snippet": "Jebać TEKOM (28 pt)"
+        },
+        {
+          "key": "body:Run:2:0",
+          "snippet": "Kutas (28 pt)"
+        },
+        {
+          "key": "body:Run:2:1",
+          "snippet": "boko (28 pt)"
+        },
+        {
+          "key": "body:Run:2:2",
+          "snippet": "też jest spoko (28 pt)"
+        }
+      ]
+    },
+    {
+      "code": "FONT_FAMILY_MISMATCH",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "message": "18 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display.",
+      "locations": [
+        {
+          "key": "body:Run:0:0",
+          "snippet": "Jebać TEKOM (Calibri Light, oczekiwano SUN Me)"
+        },
+        {
+          "key": "body:Run:1:0",
+          "snippet": "Lubię (Arial, oczekiwano SUN Me)"
+        },
+        {
+          "key": "body:Run:1:1",
+          "snippet": "pierdolić głupoty (Arial, oczekiwano SUN Me)"
+        },
+        {
+          "key": "body:Run:2:0",
+          "snippet": "Kutas (Calibri Light, oczekiwano SUN Me)"
+        },
+        {
+          "key": "body:Run:2:1",
+          "snippet": "boko (Calibri Light, oczekiwano SUN Me)"
+        },
+        {
+          "key": "body:Run:2:2",
+          "snippet": "też jest spoko (Calibri Light, oczekiwano SUN Me)"
+        },
+        {
+          "key": "body:Run:3:0",
+          "snippet": "Jestem sobie dokumentem i mam wszystko w… (Arial, oczekiwano SUN Me)"
+        },
+        {
+          "key": "body:Run:5:0",
+          "snippet": "Lubię jak mi żona ssie (Arial, oczekiwano SUN Me)"
+        },
+        {
+          "key": "body:Run:5:1",
+          "snippet": "kutango (Arial, oczekiwano SUN Me)"
+        },
+        {
+          "key": "body:Run:5:2",
+          "snippet": ". (Arial, oczekiwano SUN Me)"
+        },
+        {
+          "key": "body:Run:6:0",
+          "snippet": "www.dupeczki.pl (Calibri, oczekiwano SUN Me)"
+        },
+        {
+          "key": "body:Run:7:0",
+          "snippet": "Kobieta (Calibri, oczekiwano SUN Me)"
+        },
+        {
+          "key": "body:Run:8:0",
+          "snippet": "Robi mi (Calibri, oczekiwano SUN Me)"
+        },
+        {
+          "key": "body:Run:9:0",
+          "snippet": "Laskę (Calibri, oczekiwano SUN Me)"
+        },
+        {
+          "key": "body:Run:10:0",
+          "snippet": "Śniadanie (Calibri, oczekiwano SUN Me)"
+        },
+        {
+          "key": "body:Run:11:0",
+          "snippet": "Kawkę (Calibri, oczekiwano SUN Me)"
+        },
+        {
+          "key": "body:Run:12:0",
+          "snippet": "Pierdoli (Calibri, oczekiwano SUN Me)"
+        },
+        {
+          "key": "body:Run:13:0",
+          "snippet": "głupoty (Calibri, oczekiwano SUN Me)"
+        }
+      ]
+    },
+    {
+      "code": "FOOTER_STYLE_MISMATCH",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "message": "2 fragmenty stopki mają styl inny niż SUN Me 8 pt #696969.",
+      "locations": [
+        {
+          "key": "footer/0:Run:0:1",
+          "snippet": "PAGE \\* MERGEFORMAT (12 pt, #000000)"
+        },
+        {
+          "key": "footer/0:Run:0:3",
+          "snippet": "2 (12 pt, #000000)"
+        }
+      ]
+    },
+    {
+      "code": "LINE_SPACING_MISMATCH",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "message": "14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288).",
+      "locations": [
+        {
+          "key": "body:Paragraph:0",
+          "snippet": "Jebać TEKOM (interlinia 1)"
+        },
+        {
+          "key": "body:Paragraph:1",
+          "snippet": "Lubię pierdolić głupoty (interlinia 1,2)"
+        },
+        {
+          "key": "body:Paragraph:2",
+          "snippet": "Kutas boko też jest spoko (interlinia 1)"
+        },
+        {
+          "key": "body:Paragraph:3",
+          "snippet": "Jestem sobie dokumentem i mam wszystko w… (interlinia 1,2)"
+        },
+        {
+          "key": "body:Paragraph:5",
+          "snippet": "Lubię jak mi żona ssie kutango. (interlinia 1,2)"
+        },
+        {
+          "key": "body:Paragraph:6",
+          "snippet": "www.dupeczki.pl (interlinia 1,2)"
+        },
+        {
+          "key": "body:Paragraph:7",
+          "snippet": "Kobieta (interlinia 1,2)"
+        },
+        {
+          "key": "body:Paragraph:8",
+          "snippet": "Robi mi (interlinia 1,2)"
+        },
+        {
+          "key": "body:Paragraph:9",
+          "snippet": "Laskę (interlinia 1,2)"
+        },
+        {
+          "key": "body:Paragraph:10",
+          "snippet": "Śniadanie (interlinia 1,2)"
+        },
+        {
+          "key": "body:Paragraph:11",
+          "snippet": "Kawkę (interlinia 1,2)"
+        },
+        {
+          "key": "body:Paragraph:12",
+          "snippet": "Pierdoli (interlinia 1,2)"
+        },
+        {
+          "key": "body:Paragraph:13",
+          "snippet": "głupoty (interlinia 1,2)"
+        },
+        {
+          "key": "footer/0:Paragraph:0",
+          "snippet": "PAGE \\* MERGEFORMAT2 (interlinia 1)"
+        }
+      ]
+    },
+    {
+      "code": "BRAND_IMAGE_MISMATCH",
+      "severity": "Warning",
+      "category": "Images",
+      "standard": "firmowy/2.0",
+      "message": "1 logo lub symbol graficzny jest niezgodny z rozdz. 5 guidebooka (tekst alternatywny, wymiary).",
+      "locations": [
+        {
+          "key": "body:Drawing:0",
+          "snippet": "Obraz 1: tekst alternatywny „Logo Google” zamiast „Example Company S. A. logo”; rozmiar 84 × 34,5 mm zamiast 44 × 10 mm"
+        }
+      ]
+    },
+    {
+      "code": "CONTENT_BEFORE_HEADING",
+      "severity": "Warning",
+      "category": "Headings",
+      "standard": "wcag/2.1",
+      "message": "Treść zaczyna się przed pierwszym nagłówkiem: „Jebać TEKOM”.",
+      "locations": [
+        {
+          "key": "body:Paragraph:0",
+          "snippet": "Jebać TEKOM"
+        }
+      ]
+    },
+    {
+      "code": "FAKE_HEADING",
+      "severity": "Warning",
+      "category": "Headings",
+      "standard": "wcag/2.1",
+      "message": "2 akapity wyglądają na nagłówek (krótki, pogrubiony albo dużą czcionką), ale bez stylu nagłówka, więc poza konspektem dokumentu; pierwszy: „Jebać TEKOM”.",
+      "locations": [
+        {
+          "key": "body:Paragraph:0",
+          "snippet": "Jebać TEKOM"
+        },
+        {
+          "key": "body:Paragraph:2",
+          "snippet": "Kutas boko też jest spoko"
+        }
+      ]
+    },
+    {
+      "code": "TABLE_TITLE_MISSING",
+      "severity": "Warning",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "message": "Tabela 1 nie ma tytułu w tekście alternatywnym (Właściwości tabeli → Tekst alternatywny → Tytuł); decyzja biznesowa.",
+      "locations": [
+        {
+          "key": "body:Table:0",
+          "snippet": "tabela 1"
+        }
+      ]
+    },
+    {
+      "code": "REPEATED_BLANKS",
+      "severity": "Warning",
+      "category": "Text",
+      "standard": "wcag/2.1",
+      "message": "Odstępy robione pustymi znakami: 1 ciąg co najmniej dwóch pustych akapitów; czytnik ekranu czyta je jako „pusty”. Odstępy ustawia się w formatowaniu akapitu.",
+      "locations": [
+        {
+          "key": "body:Paragraph:14",
+          "snippet": "(puste akapity)"
+        }
+      ]
+    },
+    {
+      "code": "FOOTER_TITLE_MISSING",
+      "severity": "Warning",
+      "category": "Structure",
+      "standard": "firmowy/2.0",
+      "message": "Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”.",
+      "locations": [
+        {
+          "key": "footer/0:Paragraph:0",
+          "snippet": "(stopka)"
+        }
+      ]
+    },
+    {
+      "code": "UNCLEAR_READING_ORDER",
+      "severity": "Warning",
+      "category": "Structure",
+      "standard": "wcag/2.1",
+      "message": "Dokument nie ma żadnego nagłówka, więc nie da się po nim nawigować ani ustalić logicznej kolejności odczytu.",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": ""
+        }
+      ]
+    },
+    {
+      "code": "BODY_TEXT_SIZE_MISMATCH",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "message": "14 fragmentów tekstu jest powiększonych do 12 albo 14 pt; dopuszczalne tylko z potrzeby biznesowej.",
+      "locations": [
+        {
+          "key": "body:Run:1:0",
+          "snippet": "Lubię (12 pt)"
+        },
+        {
+          "key": "body:Run:1:1",
+          "snippet": "pierdolić głupoty (12 pt)"
+        },
+        {
+          "key": "body:Run:3:0",
+          "snippet": "Jestem sobie dokumentem i mam wszystko w… (12 pt)"
+        },
+        {
+          "key": "body:Run:5:0",
+          "snippet": "Lubię jak mi żona ssie (12 pt)"
+        },
+        {
+          "key": "body:Run:5:1",
+          "snippet": "kutango (12 pt)"
+        },
+        {
+          "key": "body:Run:5:2",
+          "snippet": ". (12 pt)"
+        },
+        {
+          "key": "body:Run:6:0",
+          "snippet": "www.dupeczki.pl (12 pt)"
+        },
+        {
+          "key": "body:Run:7:0",
+          "snippet": "Kobieta (12 pt)"
+        },
+        {
+          "key": "body:Run:8:0",
+          "snippet": "Robi mi (12 pt)"
+        },
+        {
+          "key": "body:Run:9:0",
+          "snippet": "Laskę (12 pt)"
+        },
+        {
+          "key": "body:Run:10:0",
+          "snippet": "Śniadanie (12 pt)"
+        },
+        {
+          "key": "body:Run:11:0",
+          "snippet": "Kawkę (12 pt)"
+        },
+        {
+          "key": "body:Run:12:0",
+          "snippet": "Pierdoli (12 pt)"
+        },
+        {
+          "key": "body:Run:13:0",
+          "snippet": "głupoty (12 pt)"
+        }
+      ]
+    },
+    {
+      "code": "INVALID_MARGINS",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "message": "Margines górny ma 70,9 pt, a wymagane jest 36 pt.",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": "(ustawienia strony)"
+        }
+      ]
+    },
+    {
+      "code": "INVALID_MARGINS",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "message": "Margines dolny ma 70,9 pt, a wymagane jest 36 pt.",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": "(ustawienia strony)"
+        }
+      ]
+    },
+    {
+      "code": "INVALID_MARGINS",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "message": "Margines lewy ma 70,9 pt, a wymagane jest 36 pt.",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": "(ustawienia strony)"
+        }
+      ]
+    },
+    {
+      "code": "INVALID_MARGINS",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "message": "Margines prawy ma 70,9 pt, a wymagane jest 36 pt.",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": "(ustawienia strony)"
+        }
+      ]
+    },
+    {
+      "code": "TEXT_COLOR_NOT_ALLOWED",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "message": "8 fragmentów tekstu ma kolor spoza dozwolonej palety (#ED7D31, #FFFFFF, #0563C1); dozwolone: #000000, #FF6200, #0000FF, #AB0066, #7724FF, #696969, #4D0020.",
+      "locations": [
+        {
+          "key": "body:Run:0:0",
+          "snippet": "Jebać TEKOM (#ED7D31)"
+        },
+        {
+          "key": "body:Run:2:0",
+          "snippet": "Kutas (#ED7D31)"
+        },
+        {
+          "key": "body:Run:2:1",
+          "snippet": "boko (#ED7D31)"
+        },
+        {
+          "key": "body:Run:2:2",
+          "snippet": "też jest spoko (#ED7D31)"
+        },
+        {
+          "key": "body:Run:5:0",
+          "snippet": "Lubię jak mi żona ssie (#FFFFFF)"
+        },
+        {
+          "key": "body:Run:5:1",
+          "snippet": "kutango (#FFFFFF)"
+        },
+        {
+          "key": "body:Run:5:2",
+          "snippet": ". (#FFFFFF)"
+        },
+        {
+          "key": "body:Run:6:0",
+          "snippet": "www.dupeczki.pl (#0563C1)"
+        }
+      ]
+    },
+    {
+      "code": "MANUAL_CHECK_SUGGESTED",
+      "severity": "Info",
+      "category": "Document",
+      "standard": "wcag/2.1",
+      "message": "Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie.",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": ""
+        }
+      ]
+    },
+    {
+      "code": "TABLE_DESCRIPTION_MISSING",
+      "severity": "Info",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "message": "Tabela 1 nie ma opisu w tekście alternatywnym (dłuższego od tytułu); guidebook go rekomenduje.",
+      "locations": [
+        {
+          "key": "body:Table:0",
+          "snippet": "tabela 1"
+        }
+      ]
+    }
+  ]
+}
