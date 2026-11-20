@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+using D2.Wcag.Docx;
 using D2.Wcag.Standards;
 
 namespace D2.Wcag.Api.Contracts;
@@ -30,9 +32,36 @@ public sealed record SummarySectionDto(string Standard, string StandardName, str
 
 // ---- Wyniki walidacji: jedno wystąpienie zgłoszenia = jedna pozycja na liście, z własnym podglądem.
 
+// Nowe pola kontraktu zgłoszenia (Range, Status, Fix, Scope, Details) są pomijane w JSON, gdy puste: zgłoszenia reguł
+// sprzed kontraktu dają dokładnie taki sam JSON jak wcześniej.
+public sealed record TextRangeDto(int Start, int Length);
+
 public sealed record LocationDto(string Key, LocationKind Kind, string Story, int Index, int? SubIndex, string Snippet)
 {
-    public static LocationDto From(IssueLocation location) => new(location.Key, location.Kind, location.Story, location.Index, location.SubIndex, location.Snippet);
+    /// <summary>Zakres znaków w tekście akapitu (tylko Kind=Paragraph), gdy zgłoszenie dotyczy części akapitu.</summary>
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public TextRangeDto? Range { get; init; }
+
+    public static LocationDto From(IssueLocation location) => new(location.Key, location.Kind, location.Story, location.Index, location.SubIndex, location.Snippet)
+    {
+        Range = location.Range is { } range ? new TextRangeDto(range.Start, range.Length) : null,
+    };
+
+    public IssueLocation ToLocation() => new(Kind, Story, Index, SubIndex, Snippet)
+    {
+        Range = Range is { } range ? new TextRange(range.Start, range.Length) : null,
+    };
+}
+
+/// <summary>Właściwość, której dotyczy zgłoszenie: nazwa techniczna, etykieta po polsku, wartość, wartość oczekiwana, źródło.</summary>
+public sealed record FindingDetailDto(string Property, string Label, string? Actual, string? Expected, string? Source)
+{
+    public static FindingDetailDto From(IssueDetail detail) => new(
+        detail.Property,
+        FormatProps.Label(detail.Property),
+        detail.Actual is null ? null : FormatProps.Display(detail.Property, detail.Actual),
+        detail.Expected is null ? null : FormatProps.Display(detail.Property, detail.Expected),
+        detail.Source);
 }
 
 public sealed record FindingDto(
@@ -48,7 +77,27 @@ public sealed record FindingDto(
     IReadOnlyList<string> Criteria,
     LocationDto? Location,
     int Occurrence,
-    int OccurrenceCount);
+    int OccurrenceCount)
+{
+    /// <summary>Status wymagania w specyfikacji (WYMAGANE…); null dla reguł bez statusu.</summary>
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public SpecStatus? Status { get; init; }
+
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string? StatusLabel { get; init; }
+
+    /// <summary>Instrukcja naprawy („Jak naprawić”).</summary>
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string? Fix { get; init; }
+
+    /// <summary>Zakres zgłoszenia, tylko gdy reguła podała go wprost.</summary>
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public IssueScope? Scope { get; init; }
+
+    /// <summary>Tabela właściwości; null, gdy zgłoszenie ich nie ma.</summary>
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public IReadOnlyList<FindingDetailDto>? Details { get; init; }
+}
 
 public sealed record PreviewFrameDto(float Left, float Top, float Width, float Height);
 
@@ -70,11 +119,19 @@ public static class ReportBuilder
             var criteria = WcagStandard.CriteriaFor(issue.Code).Select(c => c.Id).ToList();
             var standardName = issue.Standard is not null && names.TryGetValue(issue.Standard, out var name) ? name : null;
             var locations = issue.Locations.Count == 0 ? [null] : issue.Locations.Cast<IssueLocation?>().ToList();
+            var details = issue.Details.Count == 0 ? null : issue.Details.Select(FindingDetailDto.From).ToList();
             for (var i = 0; i < locations.Count; i++)
             {
                 findings.Add(new FindingDto(
-                    findings.Count, issue.Code, IssueLabels.Of(issue.Code), issue.Severity, issue.Category, issue.Standard, standardName, issue.Message, fixable.Contains(issue.Code),
-                    criteria, locations[i] is { } location ? LocationDto.From(location) : null, i + 1, locations.Count));
+                    findings.Count, issue.Code, LabelOf(issue), issue.Severity, issue.Category, issue.Standard, standardName, issue.Message, fixable.Contains(issue.Code),
+                    criteria, locations[i] is { } location ? LocationDto.From(location) : null, i + 1, locations.Count)
+                {
+                    Status = issue.Status,
+                    StatusLabel = issue.Status is { } status ? SpecStatuses.Label(status) : null,
+                    Fix = issue.Fix,
+                    Scope = issue.Scope,
+                    Details = details,
+                });
             }
         }
 
@@ -114,7 +171,7 @@ public static class ReportBuilder
             {
                 sections.Add(new SummarySectionDto(info.Key, info.Name, checks.Count == 0 ? info.Name : "Inne", others
                     .GroupBy(i => i.Code)
-                    .Select(g => new SummaryRowDto(g.Key, IssueLabels.Of(g.Key), Status(null, g.ToList()), g.Select(Detail).ToList(), null))
+                    .Select(g => new SummaryRowDto(g.Key, LabelOf(g.First()), Status(null, g.ToList()), g.Select(Detail).ToList(), null))
                     .ToList()));
             }
         }
@@ -122,7 +179,10 @@ public static class ReportBuilder
         return sections;
     }
 
-    private static SummaryDetailDto Detail(WcagIssue issue) => new(issue.Code, IssueLabels.Of(issue.Code), issue.Message, Math.Max(1, issue.Locations.Count), issue.Severity);
+    /// <summary>Tytuł zgłoszenia: z reguły (nowe reguły niosą go same) albo ze słownika kodów.</summary>
+    public static string LabelOf(WcagIssue issue) => issue.Title ?? IssueLabels.Of(issue.Code);
+
+    private static SummaryDetailDto Detail(WcagIssue issue) => new(issue.Code, LabelOf(issue), issue.Message, Math.Max(1, issue.Locations.Count), issue.Severity);
 
     private static CheckStatus Status(StandardCheck? check, IReadOnlyList<WcagIssue> matched)
     {

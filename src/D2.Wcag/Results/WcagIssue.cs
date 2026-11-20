@@ -48,10 +48,63 @@ public sealed record WcagIssue(string Code, IssueSeverity Severity, IssueCategor
     /// </summary>
     public IReadOnlyList<IssueLocation> Locations { get; init; } = [];
 
+    /// <summary>
+    /// Status wymagania w specyfikacji; <c>null</c> = reguła sprzed kontraktu (waga podana wprost). Gdy ustawiony,
+    /// waga odpowiada <see cref="SpecStatuses.Severity"/>.
+    /// </summary>
+    public SpecStatus? Status { get; init; }
+
+    /// <summary>Tytuł zgłoszenia po polsku; <c>null</c> = <see cref="IssueLabels.Of"/> dla kodu.</summary>
+    public string? Title { get; init; }
+
+    /// <summary>Instrukcja naprawy; <c>null</c> = jest częścią <see cref="Message"/>.</summary>
+    public string? Fix { get; init; }
+
+    /// <summary>Zakres zgłoszenia podany wprost; <c>null</c> = wyliczany z wystąpienia (<see cref="IssueScopes.Effective"/>).</summary>
+    public IssueScope? Scope { get; init; }
+
+    /// <summary>Właściwości, których dotyczy zgłoszenie (wartość, oczekiwana, źródło).</summary>
+    public IReadOnlyList<IssueDetail> Details { get; init; } = [];
+
+    /// <summary>
+    /// Grupa deduplikacji: zgłoszenia z tą samą grupą i tymi samymi wystąpieniami walidator scala do jednego
+    /// (wygrywa pierwszy standard w profilu), nawet gdy mają różne kody.
+    /// </summary>
+    public string? DedupGroup { get; init; }
+
     /// <summary>Kopia zgłoszenia z wystąpieniami (puste pomijane).</summary>
     public WcagIssue At(params IssueLocation?[] locations) => this with { Locations = locations.OfType<IssueLocation>().ToList() };
 
     public WcagIssue At(IEnumerable<IssueLocation?> locations) => this with { Locations = locations.OfType<IssueLocation>().ToList() };
+}
+
+public static class IssueScopes
+{
+    /// <summary>
+    /// Zakres zgłoszenia dla jednego wystąpienia: podany wprost albo wyliczony – brak wystąpienia lub cały dokument →
+    /// <see cref="IssueScope.Document"/>; historia nagłówka albo stopki → <see cref="IssueScope.HeaderFooter"/>;
+    /// fragment tekstu albo zakres znaków → <see cref="IssueScope.Range"/>; pozostałe → <see cref="IssueScope.Paragraph"/>.
+    /// </summary>
+    public static IssueScope Effective(WcagIssue issue, IssueLocation? location)
+    {
+        ArgumentNullException.ThrowIfNull(issue);
+        if (issue.Scope is { } scope)
+        {
+            return scope;
+        }
+
+        if (location is null || location.Kind == LocationKind.Document)
+        {
+            return IssueScope.Document;
+        }
+
+        if (location.Story.StartsWith("header", StringComparison.Ordinal) || location.Story.StartsWith("footer", StringComparison.Ordinal))
+        {
+            return IssueScope.HeaderFooter;
+        }
+
+        return location.Kind == LocationKind.Run || location.Range is not null ? IssueScope.Range : IssueScope.Paragraph;
+    }
 }
 
 public static class IssueCodes

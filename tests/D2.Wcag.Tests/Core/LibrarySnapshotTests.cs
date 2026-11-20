@@ -38,11 +38,18 @@ public class LibrarySnapshotTests
         standard = issue.Standard,
         message = issue.Message,
         locations = issue.Locations.Select(ProjectLocation).ToList(),
+        status = issue.Status,
+        title = issue.Title,
+        fix = issue.Fix,
+        scope = issue.Scope,
+        details = issue.Details.Count == 0 ? null : issue.Details,
+        dedupGroup = issue.DedupGroup,
     };
 
     private static object ProjectLocation(IssueLocation location) => new
     {
         key = location.Key,
         snippet = location.Snippet,
+        range = location.Range,
     };
 }

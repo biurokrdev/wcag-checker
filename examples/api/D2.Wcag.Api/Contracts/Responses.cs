@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using D2.Wcag.Standards;
 
 namespace D2.Wcag.Api.Contracts;
@@ -18,8 +19,18 @@ public sealed record WcagCriterionDto(string Id, string Name, string Level, Crit
 
 public sealed record IssueDto(string Code, string Label, IssueSeverity Severity, IssueCategory Category, string Message, string? Standard, bool Fixable)
 {
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public SpecStatus? Status { get; init; }
+
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string? Fix { get; init; }
+
     public static IssueDto From(WcagIssue issue, IReadOnlySet<string> fixable) =>
-        new(issue.Code, IssueLabels.Of(issue.Code), issue.Severity, issue.Category, issue.Message, issue.Standard, fixable.Contains(issue.Code));
+        new(issue.Code, ReportBuilder.LabelOf(issue), issue.Severity, issue.Category, issue.Message, issue.Standard, fixable.Contains(issue.Code))
+        {
+            Status = issue.Status,
+            Fix = issue.Fix,
+        };
 }
 
 public sealed record OutlineEntryDto(int Level, string Text);

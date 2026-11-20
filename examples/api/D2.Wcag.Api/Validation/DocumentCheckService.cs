@@ -75,7 +75,7 @@ public sealed class DocumentCheckService(
         }
 
         var finding = report.Findings[findingIndex];
-        var location = finding.Location is { } l ? new IssueLocation(l.Kind, l.Story, l.Index, l.SubIndex, l.Snippet) : null;
+        var location = finding.Location?.ToLocation();
 
         using var renderer = new SchematicDocxRenderer(report.Document);
         var preview = IssuePreviewRenderer.Render(renderer, location);
