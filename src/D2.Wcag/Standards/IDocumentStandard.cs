@@ -30,6 +30,16 @@ public interface IDocumentStandard
 
     /// <summary>Kontrole do tabeli podsumowania (sekcja, nazwa, kody); domyślnie brak, wtedy podsumowanie idzie po kodach zgłoszeń.</summary>
     IReadOnlyList<StandardCheck> Checks => [];
+
+    /// <summary>Rejestr reguł opisanych deskryptorami (kod, status, tytuł, instrukcja naprawy); domyślnie pusty.</summary>
+    IReadOnlyList<RuleDescriptor> Descriptors => [];
+
+    /// <summary>
+    /// Status specyfikacji dla ISTNIEJĄCYCH kodów zgłoszeń bez przepisywania reguł: walidator ustawia zgłoszeniu
+    /// o takim kodzie (i bez własnego statusu) status oraz wagę z <see cref="SpecStatuses.Severity"/>. Domyślnie pusto,
+    /// czyli bez zmian.
+    /// </summary>
+    IReadOnlyDictionary<string, SpecStatus> LegacyStatuses => DocumentStandard.NoLegacyStatuses;
 }
 
 /// <summary>Opis standardu w wyniku walidacji i w API.</summary>
@@ -76,4 +86,11 @@ public abstract class DocumentStandard : IDocumentStandard
     public virtual IReadOnlyList<IDocumentFix> Fixes => [];
 
     public virtual IReadOnlyList<StandardCheck> Checks => [];
+
+    internal static IReadOnlyDictionary<string, SpecStatus> NoLegacyStatuses { get; } = new Dictionary<string, SpecStatus>(StringComparer.Ordinal);
+
+    /// <summary>Deskryptory zebrane z reguł implementujących <see cref="IDescribedRule"/>.</summary>
+    public virtual IReadOnlyList<RuleDescriptor> Descriptors => Rules.OfType<IDescribedRule>().SelectMany(r => r.Descriptors).ToList();
+
+    public virtual IReadOnlyDictionary<string, SpecStatus> LegacyStatuses => NoLegacyStatuses;
 }

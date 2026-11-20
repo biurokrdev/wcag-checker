@@ -1,3 +1,4 @@
+using D2.Wcag.Rules;
 using D2.Wcag.Standards;
 using DocumentFormat.OpenXml.Wordprocessing;
 
@@ -75,10 +76,12 @@ public sealed class WcagDocxValidator : IWcagDocxValidator
     internal static WcagValidationResult Validate(DocxDocument document, IReadOnlyList<IDocumentStandard> standards)
     {
         // Dwa standardy mogą sprawdzać to samo (np. hierarchię nagłówków sprawdza WCAG i standard firmowy 2.0);
-        // identyczne zgłoszenie zostaje raz, przypisane do pierwszego standardu w profilu.
+        // identyczne zgłoszenie zostaje raz, przypisane do pierwszego standardu w profilu. Waga wchodzi do klucza,
+        // więc ostrzeżenie jednego standardu nie połyka błędu drugiego. Zgłoszenia z grupą deduplikacji scalają się
+        // po grupie i wystąpieniach, niezależnie od kodu.
         var issues = standards
-            .SelectMany(standard => standard.Rules.SelectMany(rule => rule.Check(document)).Select(issue => issue with { Standard = standard.Key() }))
-            .DistinctBy(i => (i.Code, i.Message, string.Join("|", i.Locations.Select(l => l.Key))))
+            .SelectMany(standard => Stamp(standard, standard.Rules.SelectMany(rule => rule.Check(document))))
+            .DistinctBy(DedupKey)
             .OrderByDescending(i => i.Severity)
             .ThenBy(i => i.Category)
             .ThenBy(i => i.Code, StringComparer.Ordinal)
@@ -112,6 +115,49 @@ public sealed class WcagDocxValidator : IWcagDocxValidator
             document.Body.Descendants<Drawing>().Count());
 
         return new WcagValidationResult(isDocumentReadable: true, standards.Select(StandardInfo.From).ToList(), issues, outline, info);
+    }
+
+    // Stemplowanie zgłoszeń standardu: klucz standardu, status i waga dla istniejących kodów (LegacyStatuses),
+    // tytuł, instrukcja naprawy, zakres i grupa deduplikacji z deskryptora, jeśli zgłoszenie ich nie ma.
+    private static IEnumerable<WcagIssue> Stamp(IDocumentStandard standard, IEnumerable<WcagIssue> issues)
+    {
+        var key = standard.Key();
+        var legacy = standard.LegacyStatuses;
+        var descriptors = new Dictionary<string, RuleDescriptor>(StringComparer.Ordinal);
+        foreach (var descriptor in standard.Descriptors)
+        {
+            descriptors.TryAdd(descriptor.Code, descriptor);
+        }
+
+        foreach (var issue in issues)
+        {
+            var stamped = issue with { Standard = key };
+            if (stamped.Status is null && legacy.TryGetValue(stamped.Code, out var status))
+            {
+                stamped = stamped with { Status = status, Severity = SpecStatuses.Severity(status) };
+            }
+
+            if (descriptors.TryGetValue(stamped.Code, out var described))
+            {
+                stamped = stamped with
+                {
+                    Title = stamped.Title ?? described.Title,
+                    Fix = stamped.Fix ?? described.Fix,
+                    Scope = stamped.Scope ?? described.Scope,
+                    DedupGroup = stamped.DedupGroup ?? described.DedupGroup,
+                };
+            }
+
+            yield return stamped;
+        }
+    }
+
+    private static (string, string, IssueSeverity?, string) DedupKey(WcagIssue issue)
+    {
+        var locations = string.Join("|", issue.Locations.Select(l => l.Range is { } range ? $"{l.Key}@{range.Start}+{range.Length}" : l.Key));
+        return issue.DedupGroup is { } group
+            ? ("group:" + group, "", null, locations)
+            : ("code:" + issue.Code, issue.Message, issue.Severity, locations);
     }
 
     private static string? Clean(string? value) => string.IsNullOrWhiteSpace(value) ? null : value.Trim();
