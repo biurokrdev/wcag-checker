@@ -134,7 +134,8 @@ public static class WorkbookReportDocxWriter
         var description = f.Message
             + (f.Evidence.Count == 0 ? "" : "\nDowód: " + string.Join("; ", f.Evidence.Select(e => $"{e.Name}: {e.Value}")))
             + (f.MoreCount > 0 ? $"\n+{f.MoreCount} kolejnych wystąpień tej reguły na tym arkuszu." : "");
-        return [Number(f.Index + 1), f.SeverityLabel, what, criteria, place, description, f.FixInstruction];
+        // Instrukcje mają postać „1. … 2. …”; bez wstępu komórka wyglądałaby jak lista wpisana ręcznie (LIST_MISSING_SEMANTIC).
+        return [Number(f.Index + 1), f.SeverityLabel, what, criteria, place, description, "Kroki: " + f.FixInstruction];
     }
 
     private static void AppendCriteria(Body body, WorkbookValidationResponse r)

@@ -201,7 +201,10 @@ public class WorkbookValidateApiTests : IClassFixture<DefaultApiTestHost>
 
         Assert.True(result.Workbook.IsEmpty);
         Assert.StartsWith("Skoroszyt jest pusty", result.Summary);
-        Assert.Equal(0, result.Counts.Errors);
+        // Pusty skoroszyt nie ma treści do oceny, ale metadane nadal podlegają 2.4.2: fixtura nie ma tytułu.
+        var error = Assert.Single(result.Findings, f => f.Severity == XlsxSeverity.Error);
+        Assert.Equal("XL-TITLE", error.Code);
+        Assert.Equal(1, result.Counts.Errors);
     }
 
     [Fact]
