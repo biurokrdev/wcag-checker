@@ -40,6 +40,13 @@ public interface IDocumentStandard
     /// czyli bez zmian.
     /// </summary>
     IReadOnlyDictionary<string, SpecStatus> LegacyStatuses => DocumentStandard.NoLegacyStatuses;
+
+    /// <summary>
+    /// Instrukcja naprawy dla ISTNIEJĄCYCH kodów zgłoszeń bez przepisywania reguł (kod → tekst krok po kroku):
+    /// walidator dopisuje ją zgłoszeniu tego standardu, które nie ma własnej (<see cref="WcagIssue.Fix"/>). Nie zmienia
+    /// wagi, tytułu, zakresu ani komunikatu. Domyślnie pusto, czyli bez zmian.
+    /// </summary>
+    IReadOnlyDictionary<string, string> LegacyFixes => DocumentStandard.NoLegacyFixes;
 }
 
 /// <summary>Opis standardu w wyniku walidacji i w API.</summary>
@@ -93,4 +100,8 @@ public abstract class DocumentStandard : IDocumentStandard
     public virtual IReadOnlyList<RuleDescriptor> Descriptors => Rules.OfType<IDescribedRule>().SelectMany(r => r.Descriptors).ToList();
 
     public virtual IReadOnlyDictionary<string, SpecStatus> LegacyStatuses => NoLegacyStatuses;
+
+    internal static IReadOnlyDictionary<string, string> NoLegacyFixes { get; } = new Dictionary<string, string>(StringComparer.Ordinal);
+
+    public virtual IReadOnlyDictionary<string, string> LegacyFixes => NoLegacyFixes;
 }

@@ -119,11 +119,13 @@ public sealed class WcagDocxValidator : IWcagDocxValidator
     }
 
     // Stemplowanie zgłoszeń standardu: klucz standardu, status i waga dla istniejących kodów (LegacyStatuses),
-    // tytuł, instrukcja naprawy, zakres i grupa deduplikacji z deskryptora, jeśli zgłoszenie ich nie ma.
+    // instrukcja naprawy dla istniejących kodów (LegacyFixes), a tytuł, instrukcja naprawy, zakres i grupa
+    // deduplikacji z deskryptora, jeśli zgłoszenie ich nie ma.
     private static IEnumerable<WcagIssue> Stamp(IDocumentStandard standard, IEnumerable<WcagIssue> issues)
     {
         var key = standard.Key();
         var legacy = standard.LegacyStatuses;
+        var legacyFixes = standard.LegacyFixes;
         var descriptors = new Dictionary<string, RuleDescriptor>(StringComparer.Ordinal);
         foreach (var descriptor in standard.Descriptors)
         {
@@ -136,6 +138,11 @@ public sealed class WcagDocxValidator : IWcagDocxValidator
             if (stamped.Status is null && legacy.TryGetValue(stamped.Code, out var status))
             {
                 stamped = stamped with { Status = status, Severity = SpecStatuses.Severity(status) };
+            }
+
+            if (stamped.Fix is null && legacyFixes.TryGetValue(stamped.Code, out var fix))
+            {
+                stamped = stamped with { Fix = fix };
             }
 
             if (descriptors.TryGetValue(stamped.Code, out var described))

@@ -246,7 +246,8 @@
           "key": "body:Run:3:3",
           "snippet": "przyciemniony akcent (#2F5496)"
         }
-      ]
+      ],
+      "fix": "1. Zaznacz fragment. 2. Narzędzia główne → Kolor czcionki → Więcej kolorów → Niestandardowy → wpisz kod koloru z palety (dla zwykłego tekstu 000000) → OK. 3. Albo usuń kolor nadany ręcznie skrótem Ctrl+Spacja, żeby kolor nadał styl."
     },
     {
       "code": "MANUAL_CHECK_SUGGESTED",

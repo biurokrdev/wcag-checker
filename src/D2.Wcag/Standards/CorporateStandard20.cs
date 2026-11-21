@@ -86,6 +86,31 @@ public sealed class CorporateStandard20 : DocumentStandard
         [IssueCodes.AuthorMissing] = SpecStatus.Required,
         // Rozdz. 11 (G-11): tytuł dokumentu w stopce obok numeru strony.
         [IssueCodes.FooterTitleMissing] = SpecStatus.Required,
+        // Poniżej wymagania, które specyfikacja oznacza wprost jako WYMAGANE i które już były błędami: status
+        // niczego w wadze nie zmienia, tylko trafia do zgłoszenia.
+        // Rozdz. 1: wyrównanie do lewej, rodzina czcionki i jej zapis, interlinia 1,2.
+        [IssueCodes.JustificationForbidden] = SpecStatus.Required,
+        [IssueCodes.FontFamilyMismatch] = SpecStatus.Required,
+        [IssueCodes.FontWeightInFamilyName] = SpecStatus.Required,
+        [IssueCodes.LineSpacingMismatch] = SpecStatus.Required,
+        // Rozdz. 6: nagłówek „Spis treści” poza spisem, SUN Me Bold 10 pt.
+        [IssueCodes.TocHeadingInToc] = SpecStatus.Required,
+        [IssueCodes.TocHeadingStyleMismatch] = SpecStatus.Required,
+        // Rozdz. 9: tabele.
+        [IssueCodes.TableMissingHeaders] = SpecStatus.Required,
+        [IssueCodes.TableEmptyCell] = SpecStatus.Required,
+        [IssueCodes.TableRowCanSplit] = SpecStatus.Required,
+        [IssueCodes.TableBorderMismatch] = SpecStatus.Required,
+        [IssueCodes.TableHeaderNotBold] = SpecStatus.Required,
+        [IssueCodes.TableAlignmentMismatch] = SpecStatus.Required,
+        // Rozdz. 14: znaczniki wariantów, kolory, skróty fleksyjne.
+        [IssueCodes.VariantMarkerUnbalanced] = SpecStatus.Required,
+        [IssueCodes.VariantMarkerColorMismatch] = SpecStatus.Required,
+        [IssueCodes.VariableColorMismatch] = SpecStatus.Required,
+        [IssueCodes.VariantInflectionShortcut] = SpecStatus.Required,
+        // Rozdz. 18: język dokumentu.
+        [IssueCodes.LanguageMissing] = SpecStatus.Required,
+        [IssueCodes.LanguageInvalid] = SpecStatus.Required,
     };
 
     private readonly string _institution;
@@ -100,6 +125,7 @@ public sealed class CorporateStandard20 : DocumentStandard
         ArgumentNullException.ThrowIfNull(options);
         _institution = string.IsNullOrWhiteSpace(options.Institution) ? DefaultInstitution : options.Institution.Trim();
         Layout = options.Layout;
+        LegacyFixes = LegacyFixes20.For(_institution);
         var registration = new RegistrationData20(options.RegistrationDataStyles ?? CorporateStandard20Options.DefaultRegistrationDataStyles);
 
         var rules = new List<IDocumentRule>
@@ -168,6 +194,9 @@ public sealed class CorporateStandard20 : DocumentStandard
     public override IReadOnlyList<StandardCheck> Checks => BuildChecks();
 
     public override IReadOnlyDictionary<string, SpecStatus> LegacyStatuses => Statuses;
+
+    /// <summary>Instrukcje naprawy dla kodów sprzed rejestru reguł, które zgłasza ten standard (także wspólnych z WCAG i 1.9).</summary>
+    public override IReadOnlyDictionary<string, string> LegacyFixes { get; }
 
     /// <summary>Nazwa układu dokumentu po polsku, jak w rozdz. 4 specyfikacji.</summary>
     public static string LayoutName(DocumentLayout20 layout) => layout switch

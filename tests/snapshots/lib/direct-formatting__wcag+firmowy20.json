@@ -215,7 +215,8 @@
           "key": "body:Run:7:0",
           "snippet": "Warunki dodatkowe (14 pt)"
         }
-      ]
+      ],
+      "fix": "1. Zaznacz fragment. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja albo ustaw Narzędzia główne → Rozmiar czcionki: 10. 3. Rozmiar 12 albo 14 pt zostaw tylko tam, gdzie wymaga tego potrzeba biznesowa."
     },
     {
       "code": "MANUAL_CHECK_SUGGESTED",

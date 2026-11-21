@@ -30,10 +30,12 @@
 #6 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 3: „rozjaśniony akcent”
     [TEXT_COLOR_NOT_ALLOWED] Kolor tekstu spoza palety  ·  ostrzeżenie
     Problem: 2 fragmenty tekstu mają kolor spoza dozwolonej palety (#8EAADB, #2F5496); dozwolone: #000000, #FF6200, #0000FF, #AB0066, #7724FF, #696969, #4D0020.
+    Jak naprawić: 1. Zaznacz fragment. 2. Narzędzia główne → Kolor czcionki → Więcej kolorów → Niestandardowy → wpisz kod koloru z palety (dla zwykłego tekstu 000000) → OK. 3. Albo usuń kolor nadany ręcznie skrótem Ctrl+Spacja, żeby kolor nadał styl.
 
 #7 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 3: „przyciemniony akcent”
     [TEXT_COLOR_NOT_ALLOWED] Kolor tekstu spoza palety  ·  ostrzeżenie
     Problem: 2 fragmenty tekstu mają kolor spoza dozwolonej palety (#8EAADB, #2F5496); dozwolone: #000000, #FF6200, #0000FF, #AB0066, #7724FF, #696969, #4D0020.
+    Jak naprawić: 1. Zaznacz fragment. 2. Narzędzia główne → Kolor czcionki → Więcej kolorów → Niestandardowy → wpisz kod koloru z palety (dla zwykłego tekstu 000000) → OK. 3. Albo usuń kolor nadany ręcznie skrótem Ctrl+Spacja, żeby kolor nadał styl.
 
 #8 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 6: „Uwaga w polu tekstowym.”
     [IMAGE_MISSING_ALT_TEXT] Obraz bez tekstu alternatywnego  ·  błąd

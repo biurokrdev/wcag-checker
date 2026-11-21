@@ -219,7 +219,9 @@
           "key": "body:TableCell:0:3",
           "snippet": ""
         }
-      ]
+      ],
+      "status": "Required",
+      "fix": "1. Zaznacz wskazane komórki. 2. Układ (karta narzędzi tabeli) → grupa Wyrównanie → „Wyrównaj do środka z lewej” (tekst do lewej, w pionie na środku)."
     },
     {
       "code": "TABLE_BORDER_MISMATCH",
@@ -232,7 +234,9 @@
           "key": "body:Table:0",
           "snippet": "tabela 1"
         }
-      ]
+      ],
+      "status": "Required",
+      "fix": "1. Zaznacz tabelę albo wskazane komórki. 2. Projekt tabeli → Obramowania → Obramowanie i cieniowanie. 3. Ustawienie: Wszystkie, Styl: linia ciągła, Kolor: czarny, Szerokość: 1 pkt. 4. Zastosuj do: Tabela (albo Komórka) → OK."
     },
     {
       "code": "TABLE_EMPTY_CELL",
@@ -257,7 +261,9 @@
           "key": "body:TableCell:0:3",
           "snippet": "(pusta komórka)"
         }
-      ]
+      ],
+      "status": "Required",
+      "fix": "1. Kliknij pustą komórkę. 2. Wpisz „Brak danych”, „0” albo inną wartość słowną zgodną ze znaczeniem komórki."
     },
     {
       "code": "TABLE_MISSING_HEADERS",
@@ -283,7 +289,9 @@
           "key": "body:Table:0",
           "snippet": "tabela 1"
         }
-      ]
+      ],
+      "status": "Required",
+      "fix": "1. Zaznacz całą tabelę. 2. Prawy przycisk myszy → Właściwości tabeli → Wiersz. 3. Odznacz „Zezwalaj na dzielenie wierszy między strony” → OK."
     },
     {
       "code": "INVALID_HYPERLINK",
@@ -309,7 +317,8 @@
           "key": "body:Run:6:0",
           "snippet": "www.dupeczki.pl (kolor #0563C1)"
         }
-      ]
+      ],
+      "fix": "1. Zaznacz łącze. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja albo wybierz Narzędzia główne → Style → „Hiperłącze”. 3. Styl „Hiperłącze” ma mieć kolor 7724FF i podkreślenie pojedyncze (prawy przycisk myszy na stylu → Modyfikuj)."
     },
     {
       "code": "HIDDEN_TEXT_LOW_CONTRAST",
@@ -369,7 +378,8 @@
           "snippet": "(stopka)"
         }
       ],
-      "status": "Required"
+      "status": "Required",
+      "fix": "1. Kliknij dwukrotnie stopkę. 2. Po numerze strony dopisz kropkę, spację i tytuł dokumentu, np. „Strona: 2 z 3. Regulamin promocji”. 3. Zamknij stopkę klawiszem Esc."
     },
     {
       "code": "AUTHOR_NOT_INSTITUTION",
@@ -382,7 +392,8 @@
           "key": "body:Document:0",
           "snippet": "(metadane dokumentu)"
         }
-      ]
+      ],
+      "fix": "1. Plik → Informacje → Powiązane osoby → Autor. 2. Usuń autora osobowego (prawy przycisk myszy → Usuń osobę). 3. Wpisz „Example Company S. A.”."
     },
     {
       "code": "TITLE_MISSING",
@@ -420,7 +431,8 @@
           "key": "body:Run:2:2",
           "snippet": "też jest spoko (28 pt)"
         }
-      ]
+      ],
+      "fix": "1. Zaznacz fragment. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja albo ustaw Narzędzia główne → Rozmiar czcionki: 10. 3. Rozmiar 12 albo 14 pt zostaw tylko tam, gdzie wymaga tego potrzeba biznesowa."
     },
     {
       "code": "FONT_FAMILY_MISMATCH",
@@ -501,7 +513,9 @@
           "key": "body:Run:13:0",
           "snippet": "głupoty (Calibri, oczekiwano SUN Me)"
         }
-      ]
+      ],
+      "status": "Required",
+      "fix": "1. Zaznacz fragment. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja, żeby czcionkę nadał styl. 3. Jeśli zła czcionka jest w stylu: Narzędzia główne → Style → prawy przycisk myszy na stylu → Modyfikuj → czcionka SUN Me (dla stylu „Nagłówek 1”: SUN Display) → OK."
     },
     {
       "code": "FOOTER_STYLE_MISMATCH",
@@ -518,7 +532,8 @@
           "key": "footer/0:Run:0:3",
           "snippet": "2 (Calibri, 12 pt, #000000)"
         }
-      ]
+      ],
+      "fix": "1. Kliknij dwukrotnie stopkę. 2. Zaznacz jej tekst, usuń formatowanie ręczne skrótem Ctrl+Spacja i wybierz Narzędzia główne → Style → „Stopka”. 3. Styl „Stopka” ma mieć czcionkę SUN Me, 8 pt, bez pogrubienia, kolor 696969 i interlinię 1,2 (prawy przycisk myszy na stylu → Modyfikuj)."
     },
     {
       "code": "INVALID_MARGINS",
@@ -532,7 +547,8 @@
           "snippet": "(ustawienia strony)"
         }
       ],
-      "status": "Required"
+      "status": "Required",
+      "fix": "1. Układ → Marginesy → Marginesy niestandardowe. 2. W polach Górny, Dolny, Lewy i Prawy wpisz 1,27 cm. 3. Zastosuj do: Cały dokument → OK."
     },
     {
       "code": "INVALID_MARGINS",
@@ -546,7 +562,8 @@
           "snippet": "(ustawienia strony)"
         }
       ],
-      "status": "Required"
+      "status": "Required",
+      "fix": "1. Układ → Marginesy → Marginesy niestandardowe. 2. W polach Górny, Dolny, Lewy i Prawy wpisz 1,27 cm. 3. Zastosuj do: Cały dokument → OK."
     },
     {
       "code": "INVALID_MARGINS",
@@ -560,7 +577,8 @@
           "snippet": "(ustawienia strony)"
         }
       ],
-      "status": "Required"
+      "status": "Required",
+      "fix": "1. Układ → Marginesy → Marginesy niestandardowe. 2. W polach Górny, Dolny, Lewy i Prawy wpisz 1,27 cm. 3. Zastosuj do: Cały dokument → OK."
     },
     {
       "code": "INVALID_MARGINS",
@@ -574,7 +592,8 @@
           "snippet": "(ustawienia strony)"
         }
       ],
-      "status": "Required"
+      "status": "Required",
+      "fix": "1. Układ → Marginesy → Marginesy niestandardowe. 2. W polach Górny, Dolny, Lewy i Prawy wpisz 1,27 cm. 3. Zastosuj do: Cały dokument → OK."
     },
     {
       "code": "LINE_SPACING_MISMATCH",
@@ -639,7 +658,9 @@
           "key": "footer/0:Paragraph:0",
           "snippet": "PAGE \\* MERGEFORMAT2 (interlinia 1)"
         }
-      ]
+      ],
+      "status": "Required",
+      "fix": "1. Zaznacz akapit. 2. Narzędzia główne → Akapit (strzałka w rogu grupy) → Interlinia: Wielokrotne, Co: 1,2 → OK. 3. Najlepiej ustaw to w stylu: prawy przycisk myszy na stylu → Modyfikuj → Format → Akapit."
     },
     {
       "code": "BRAND_IMAGE_MISMATCH",
@@ -652,7 +673,8 @@
           "key": "body:Drawing:0",
           "snippet": "Obraz 1: tekst alternatywny „Logo Google” zamiast „Example Company S. A. logo”; rozmiar 84 × 34,5 mm zamiast 44 × 10 mm"
         }
-      ]
+      ],
+      "fix": "1. Prawy przycisk myszy na grafice → Wyświetl tekst alternatywny. 2. Wpisz „Example Company S. A. logo” (logo poziome) albo „Symbol graficzny Example Company S. A.” (identyfikator graficzny). 3. Formatowanie obrazu → Rozmiar: logo 4,4 cm × 1 cm, symbol 2,2 cm × 2,2 cm."
     },
     {
       "code": "CONTENT_BEFORE_HEADING",
@@ -695,7 +717,8 @@
           "key": "body:Table:0",
           "snippet": "tabela 1"
         }
-      ]
+      ],
+      "fix": "1. Prawy przycisk myszy na tabeli → Właściwości tabeli → Tekst alternatywny. 2. W polu Tytuł wpisz krótką nazwę tabeli → OK."
     },
     {
       "code": "REPEATED_BLANKS",
@@ -786,7 +809,8 @@
           "key": "body:Run:13:0",
           "snippet": "głupoty (12 pt)"
         }
-      ]
+      ],
+      "fix": "1. Zaznacz fragment. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja albo ustaw Narzędzia główne → Rozmiar czcionki: 10. 3. Rozmiar 12 albo 14 pt zostaw tylko tam, gdzie wymaga tego potrzeba biznesowa."
     },
     {
       "code": "TEXT_COLOR_NOT_ALLOWED",
@@ -827,7 +851,8 @@
           "key": "body:Run:6:0",
           "snippet": "www.dupeczki.pl (#0563C1)"
         }
-      ]
+      ],
+      "fix": "1. Zaznacz fragment. 2. Narzędzia główne → Kolor czcionki → Więcej kolorów → Niestandardowy → wpisz kod koloru z palety (dla zwykłego tekstu 000000) → OK. 3. Albo usuń kolor nadany ręcznie skrótem Ctrl+Spacja, żeby kolor nadał styl."
     },
     {
       "code": "MANUAL_CHECK_SUGGESTED",
@@ -853,7 +878,8 @@
           "key": "body:Table:0",
           "snippet": "tabela 1"
         }
-      ]
+      ],
+      "fix": "1. Prawy przycisk myszy na tabeli → Właściwości tabeli → Tekst alternatywny. 2. W polu Opis napisz, co tabela przedstawia (dłużej niż w tytule) → OK."
     }
   ]
 }

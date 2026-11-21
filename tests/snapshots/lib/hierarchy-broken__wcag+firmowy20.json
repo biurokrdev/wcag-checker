@@ -450,7 +450,8 @@
           "snippet": "Zakres dokumentu"
         }
       ],
-      "status": "Required"
+      "status": "Required",
+      "fix": "1. Kliknij nagłówek. 2. Narzędzia główne → Style → wybierz poziom najwyżej o jeden niższy od poprzedniego nagłówka (po „Nagłówek 1” – „Nagłówek 2”). 3. Pierwszy nagłówek dokumentu ma mieć styl „Nagłówek 1”. 4. Kolejność poziomów sprawdź w Widok → Okienko nawigacji."
     },
     {
       "code": "HEADING_LEVEL_SKIPPED",
@@ -464,7 +465,8 @@
           "snippet": "Szczegóły zakresu"
         }
       ],
-      "status": "Required"
+      "status": "Required",
+      "fix": "1. Kliknij nagłówek. 2. Narzędzia główne → Style → wybierz poziom najwyżej o jeden niższy od poprzedniego nagłówka (po „Nagłówek 1” – „Nagłówek 2”). 3. Pierwszy nagłówek dokumentu ma mieć styl „Nagłówek 1”. 4. Kolejność poziomów sprawdź w Widok → Okienko nawigacji."
     },
     {
       "code": "HEADING_STYLE_MISMATCH",
@@ -477,7 +479,8 @@
           "key": "body:Paragraph:10",
           "snippet": "Nagłówek z poziomu konspektu"
         }
-      ]
+      ],
+      "fix": "1. Kliknij nagłówek. 2. Narzędzia główne → Style → prawy przycisk myszy na stylu nagłówka → Modyfikuj. 3. Ustaw czcionkę, rozmiar, pogrubienie i kolor według tabeli typografii: H1 SUN Display 24 albo 32 pt, H2 16 pt, H3 14 pt, H4 12 pt, H5 10 pt SUN Me, wszystkie pogrubione → OK. 4. Formatowanie nadane ręcznie w nagłówku usuń skrótem Ctrl+Spacja."
     },
     {
       "code": "LIST_MISSING_SEMANTIC",

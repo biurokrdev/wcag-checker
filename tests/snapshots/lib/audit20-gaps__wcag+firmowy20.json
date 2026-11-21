@@ -392,7 +392,8 @@
           "snippet": "Listy z nadpisaniami"
         }
       ],
-      "status": "Required"
+      "status": "Required",
+      "fix": "1. Kliknij nagłówek. 2. Narzędzia główne → Style → wybierz poziom najwyżej o jeden niższy od poprzedniego nagłówka (po „Nagłówek 1” – „Nagłówek 2”). 3. Pierwszy nagłówek dokumentu ma mieć styl „Nagłówek 1”. 4. Kolejność poziomów sprawdź w Widok → Okienko nawigacji."
     },
     {
       "code": "TABLE_ALIGNMENT_MISMATCH",
@@ -409,7 +410,9 @@
           "key": "body:TableCell:1:5",
           "snippet": "0,5%"
         }
-      ]
+      ],
+      "status": "Required",
+      "fix": "1. Zaznacz wskazane komórki. 2. Układ (karta narzędzi tabeli) → grupa Wyrównanie → „Wyrównaj do środka z lewej” (tekst do lewej, w pionie na środku)."
     },
     {
       "code": "TABLE_BORDER_MISMATCH",
@@ -422,7 +425,9 @@
           "key": "body:TableCell:0:3",
           "snippet": "0 zł (krawędzie: górna 0,5 pt #FF0000, lewa 0,5 pt #FF0000, dolna 0,5 pt #FF0000, prawa 0,5 pt #FF0000)"
         }
-      ]
+      ],
+      "status": "Required",
+      "fix": "1. Zaznacz tabelę albo wskazane komórki. 2. Projekt tabeli → Obramowania → Obramowanie i cieniowanie. 3. Ustawienie: Wszystkie, Styl: linia ciągła, Kolor: czarny, Szerokość: 1 pkt. 4. Zastosuj do: Tabela (albo Komórka) → OK."
     },
     {
       "code": "TABLE_EMPTY_CELL",
@@ -435,7 +440,9 @@
           "key": "body:TableCell:0:5",
           "snippet": "(pusta komórka)"
         }
-      ]
+      ],
+      "status": "Required",
+      "fix": "1. Kliknij pustą komórkę. 2. Wpisz „Brak danych”, „0” albo inną wartość słowną zgodną ze znaczeniem komórki."
     },
     {
       "code": "TABLE_HEADER_NOT_BOLD",
@@ -448,7 +455,9 @@
           "key": "body:TableCell:1:1",
           "snippet": "Stawka"
         }
-      ]
+      ],
+      "status": "Required",
+      "fix": "1. Zaznacz wiersz nagłówka tabeli. 2. Narzędzia główne → Pogrubienie (Ctrl+B). 3. Jeśli pogrubienie ma dawać styl tabeli: Projekt tabeli → zaznacz „Wiersz nagłówka” i sprawdź, że komórka nie ma wyłączonego pogrubienia."
     },
     {
       "code": "TABLE_ROW_CAN_SPLIT",
@@ -461,7 +470,9 @@
           "key": "body:Table:0",
           "snippet": "tabela 1"
         }
-      ]
+      ],
+      "status": "Required",
+      "fix": "1. Zaznacz całą tabelę. 2. Prawy przycisk myszy → Właściwości tabeli → Wiersz. 3. Odznacz „Zezwalaj na dzielenie wierszy między strony” → OK."
     },
     {
       "code": "LIST_BULLET_COLOR_MISMATCH",
@@ -478,7 +489,8 @@
           "key": "body:Paragraph:13",
           "snippet": "druga pozycja z zielonym punktorem. (punktor #00AA00)"
         }
-      ]
+      ],
+      "fix": "1. Kliknij pozycję listy. 2. Narzędzia główne → Punktory (strzałka obok przycisku) → Zdefiniuj nowy punktor → Czcionka. 3. Kolor czcionki → Więcej kolorów → Niestandardowy → FF6200 albo 000000 → OK."
     },
     {
       "code": "VARIANT_SLASH_ALTERNATIVE",
@@ -504,7 +516,8 @@
           }
         }
       ],
-      "status": "Required"
+      "status": "Required",
+      "fix": "1. Usuń ukośnik między alternatywami. 2. Wpisz w jego miejsce „[lub]” ze spacją z obu stron, np. „PLN [lub] EUR”. 3. Zaznacz „[lub]” i wybierz Narzędzia główne → Style → „Znacznik wariantu” (kolor AB0066)."
     },
     {
       "code": "F20-FOOTER-MISSING",
@@ -552,7 +565,8 @@
           "snippet": "(stopka)"
         }
       ],
-      "status": "Required"
+      "status": "Required",
+      "fix": "1. Kliknij dwukrotnie stopkę. 2. Po numerze strony dopisz kropkę, spację i tytuł dokumentu, np. „Strona: 2 z 3. Regulamin promocji”. 3. Zamknij stopkę klawiszem Esc."
     },
     {
       "code": "AUTHOR_MISSING",
@@ -566,7 +580,8 @@
           "snippet": "(metadane dokumentu)"
         }
       ],
-      "status": "Required"
+      "status": "Required",
+      "fix": "1. Plik → Informacje → Powiązane osoby → Autor. 2. Usuń autora osobowego (prawy przycisk myszy → Usuń osobę). 3. Wpisz „Example Company S. A.”."
     },
     {
       "code": "TITLE_MISSING",
@@ -664,7 +679,8 @@
           "key": "footer/1:Run:0:1",
           "snippet": "3 (Arial, pogrubienie)"
         }
-      ]
+      ],
+      "fix": "1. Kliknij dwukrotnie stopkę. 2. Zaznacz jej tekst, usuń formatowanie ręczne skrótem Ctrl+Spacja i wybierz Narzędzia główne → Style → „Stopka”. 3. Styl „Stopka” ma mieć czcionkę SUN Me, 8 pt, bez pogrubienia, kolor 696969 i interlinię 1,2 (prawy przycisk myszy na stylu → Modyfikuj)."
     },
     {
       "code": "INVALID_MARGINS",
@@ -678,7 +694,8 @@
           "snippet": "(ustawienia strony)"
         }
       ],
-      "status": "Required"
+      "status": "Required",
+      "fix": "1. Układ → Marginesy → Marginesy niestandardowe. 2. W polach Górny, Dolny, Lewy i Prawy wpisz 1,27 cm. 3. Zastosuj do: Cały dokument → OK."
     },
     {
       "code": "INVALID_MARGINS",
@@ -692,7 +709,8 @@
           "snippet": "(ustawienia strony)"
         }
       ],
-      "status": "Required"
+      "status": "Required",
+      "fix": "1. Układ → Marginesy → Marginesy niestandardowe. 2. W polach Górny, Dolny, Lewy i Prawy wpisz 1,27 cm. 3. Zastosuj do: Cały dokument → OK."
     },
     {
       "code": "INVALID_MARGINS",
@@ -706,7 +724,8 @@
           "snippet": "(ustawienia strony)"
         }
       ],
-      "status": "Required"
+      "status": "Required",
+      "fix": "1. Układ → Marginesy → Marginesy niestandardowe. 2. W polach Górny, Dolny, Lewy i Prawy wpisz 1,27 cm. 3. Zastosuj do: Cały dokument → OK."
     },
     {
       "code": "INVALID_MARGINS",
@@ -720,7 +739,8 @@
           "snippet": "(ustawienia strony)"
         }
       ],
-      "status": "Required"
+      "status": "Required",
+      "fix": "1. Układ → Marginesy → Marginesy niestandardowe. 2. W polach Górny, Dolny, Lewy i Prawy wpisz 1,27 cm. 3. Zastosuj do: Cały dokument → OK."
     },
     {
       "code": "PAGE_FORMAT_NOT_A4",
@@ -734,7 +754,8 @@
           "snippet": "(ustawienia strony)"
         }
       ],
-      "status": "Required"
+      "status": "Required",
+      "fix": "1. Układ → Rozmiar → A4 (21 cm × 29,7 cm). 2. Gdy dokument ma kilka sekcji: Układ → Rozmiar → Więcej rozmiarów papieru → Zastosuj do: Cały dokument → OK."
     },
     {
       "code": "HEADING_LEVEL_SKIPPED",
@@ -764,7 +785,8 @@
           "key": "body:Paragraph:10",
           "snippet": "Drugi krok z numerem bez pogrubienia."
         }
-      ]
+      ],
+      "fix": "1. Kliknij pozycję listy. 2. Narzędzia główne → Numerowanie (strzałka obok przycisku) → Zdefiniuj nowy format numeracji → Czcionka. 3. Styl czcionki: Pogrubienie → OK."
     },
     {
       "code": "F20-FOOTER-FORMAT",

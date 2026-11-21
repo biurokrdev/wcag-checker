@@ -131,25 +131,25 @@ public class SeverityTableTests
     [Fact]
     public void RequiredRequirements_RaisedForStandard20_AreErrors()
     {
+        // Kody, którym standard 2.0 podniósł wagę względem WCAG i 1.9 (albo które dołożył jako błędy).
         var statuses = Standard().LegacyStatuses;
-        Assert.All(
-            new[]
-            {
-                IssueCodes.PageFormatNotA4, IssueCodes.MarginsMissing, IssueCodes.InvalidMargins, IssueCodes.HeadingLevelSkipped,
-                IssueCodes.VariantSlashAlternative, IssueCodes.TitleMissing, IssueCodes.AuthorMissing, IssueCodes.FooterTitleMissing,
-            },
-            code => Assert.Equal(SpecStatus.Required, statuses[code]));
+        string[] raisedCodes =
+        [
+            IssueCodes.PageFormatNotA4, IssueCodes.MarginsMissing, IssueCodes.InvalidMargins, IssueCodes.HeadingLevelSkipped,
+            IssueCodes.VariantSlashAlternative, IssueCodes.TitleMissing, IssueCodes.AuthorMissing, IssueCodes.FooterTitleMissing,
+        ];
+        Assert.All(raisedCodes, code => Assert.Equal(SpecStatus.Required, statuses[code]));
 
         // „audit20-gaps” wywołuje wszystkie podniesione kody poza brakiem marginesów; ten daje dokument bez w:pgMar.
         var withoutMargins = Audit20.Validate(DocxBuilder.Compliant20().Heading(1, "A").Build20(main =>
             main.Document.Body!.Descendants<PageMargin>().Single().Remove()));
         var issues = Audit20.Gaps.Issues.Concat(withoutMargins.Issues).ToList();
 
-        Assert.All(statuses, pair =>
+        Assert.All(raisedCodes, code =>
         {
-            var raised = issues.Where(i => i.Code == pair.Key).ToList();
-            Assert.True(raised.Count > 0, $"Żaden dokument testowy nie wywołuje {pair.Key}.");
-            Assert.All(raised, i => Assert.Equal((pair.Value, IssueSeverity.Error), (i.Status, i.Severity)));
+            var raised = issues.Where(i => i.Code == code).ToList();
+            Assert.True(raised.Count > 0, $"Żaden dokument testowy nie wywołuje {code}.");
+            Assert.All(raised, i => Assert.Equal(((SpecStatus?)SpecStatus.Required, IssueSeverity.Error), (i.Status, i.Severity)));
         });
         Assert.False(Audit20.Gaps.IsValid);
     }

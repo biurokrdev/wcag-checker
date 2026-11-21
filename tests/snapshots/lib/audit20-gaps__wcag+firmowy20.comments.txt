@@ -3,16 +3,22 @@
     Dokument i metadane
     [AUTHOR_MISSING] Brak autora dokumentu  ·  WYMAGANE → błąd
     Problem: Dokument nie ma autora w metadanych.
+    Jak naprawić: 1. Plik → Informacje → Powiązane osoby → Autor. 2. Usuń autora osobowego (prawy przycisk myszy → Usuń osobę). 3. Wpisz „Example Company S. A.”.
     [INVALID_MARGINS] Marginesy inne niż wymagane  ·  WYMAGANE → błąd
     Problem: Margines górny ma 70,9 pt, a wymagane jest 36 pt.
+    Jak naprawić: 1. Układ → Marginesy → Marginesy niestandardowe. 2. W polach Górny, Dolny, Lewy i Prawy wpisz 1,27 cm. 3. Zastosuj do: Cały dokument → OK.
     [INVALID_MARGINS] Marginesy inne niż wymagane  ·  WYMAGANE → błąd
     Problem: Margines dolny ma 70,9 pt, a wymagane jest 36 pt.
+    Jak naprawić: 1. Układ → Marginesy → Marginesy niestandardowe. 2. W polach Górny, Dolny, Lewy i Prawy wpisz 1,27 cm. 3. Zastosuj do: Cały dokument → OK.
     [INVALID_MARGINS] Marginesy inne niż wymagane  ·  WYMAGANE → błąd
     Problem: Margines lewy ma 70,9 pt, a wymagane jest 36 pt.
+    Jak naprawić: 1. Układ → Marginesy → Marginesy niestandardowe. 2. W polach Górny, Dolny, Lewy i Prawy wpisz 1,27 cm. 3. Zastosuj do: Cały dokument → OK.
     [INVALID_MARGINS] Marginesy inne niż wymagane  ·  WYMAGANE → błąd
     Problem: Margines prawy ma 70,9 pt, a wymagane jest 36 pt.
+    Jak naprawić: 1. Układ → Marginesy → Marginesy niestandardowe. 2. W polach Górny, Dolny, Lewy i Prawy wpisz 1,27 cm. 3. Zastosuj do: Cały dokument → OK.
     [PAGE_FORMAT_NOT_A4] Strona inna niż A4  ·  WYMAGANE → błąd
     Problem: Strona ma 216 × 279 mm, a wymagany jest format A4 (210 × 297 mm).
+    Jak naprawić: 1. Układ → Rozmiar → A4 (21 cm × 29,7 cm). 2. Gdy dokument ma kilka sekcji: Układ → Rozmiar → Więcej rozmiarów papieru → Zastosuj do: Cały dokument → OK.
     [TITLE_MISSING] Brak tytułu dokumentu  ·  błąd
     Problem: Dokument nie ma tytułu w metadanych (Plik → Informacje → Tytuł).
     [AUTHOR_MISSING] Brak autora dokumentu  ·  ostrzeżenie
@@ -29,14 +35,17 @@
 #2 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 2: „ Pani/Pan ”
     [VARIANT_SLASH_ALTERNATIVE] Alternatywa z ukośnikiem zamiast [lub]  ·  WYMAGANE → błąd
     Problem: 2 akapity wewnątrz wariantu mają alternatywę z ukośnikiem (np. „PLN / EUR”); w wariantach separator zastępuje się znacznikiem [lub] w kolorze #AB0066.
+    Jak naprawić: 1. Usuń ukośnik między alternatywami. 2. Wpisz w jego miejsce „[lub]” ze spacją z obu stron, np. „PLN [lub] EUR”. 3. Zaznacz „[lub]” i wybierz Narzędzia główne → Style → „Znacznik wariantu” (kolor AB0066).
 
 #3 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 3: „ Opłata jest pobierana w walucie PLN / EUR zgodnie z umową.”
     [VARIANT_SLASH_ALTERNATIVE] Alternatywa z ukośnikiem zamiast [lub]  ·  WYMAGANE → błąd
     Problem: 2 akapity wewnątrz wariantu mają alternatywę z ukośnikiem (np. „PLN / EUR”); w wariantach separator zastępuje się znacznikiem [lub] w kolorze #AB0066.
+    Jak naprawić: 1. Usuń ukośnik między alternatywami. 2. Wpisz w jego miejsce „[lub]” ze spacją z obu stron, np. „PLN [lub] EUR”. 3. Zaznacz „[lub]” i wybierz Narzędzia główne → Style → „Znacznik wariantu” (kolor AB0066).
 
 #4 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 7: „Listy z nadpisaniami”
     [HEADING_LEVEL_SKIPPED] Pominięty poziom nagłówka  ·  WYMAGANE → błąd
     Problem: Nagłówek „Listy z nadpisaniami” ma poziom 3 zaraz po poziomie 1; pominięto poziom 2.
+    Jak naprawić: 1. Kliknij nagłówek. 2. Narzędzia główne → Style → wybierz poziom najwyżej o jeden niższy od poprzedniego nagłówka (po „Nagłówek 1” – „Nagłówek 2”). 3. Pierwszy nagłówek dokumentu ma mieć styl „Nagłówek 1”. 4. Kolejność poziomów sprawdź w Widok → Okienko nawigacji.
 
 #5 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 7: „Listy z nadpisaniami”
     [HEADING_LEVEL_SKIPPED] Pominięty poziom nagłówka  ·  ostrzeżenie
@@ -45,43 +54,53 @@
 #6 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 9: „Pierwszy krok z numerem bez pogrubienia.”
     [LIST_NUMBER_NOT_BOLD] Numer listy bez pogrubienia  ·  ostrzeżenie
     Problem: 2 pozycje listy numerowanej mają niepogrubiony numer; guidebook: „Lista numerowana: bold”.
+    Jak naprawić: 1. Kliknij pozycję listy. 2. Narzędzia główne → Numerowanie (strzałka obok przycisku) → Zdefiniuj nowy format numeracji → Czcionka. 3. Styl czcionki: Pogrubienie → OK.
 
 #7 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 10: „Drugi krok z numerem bez pogrubienia.”
     [LIST_NUMBER_NOT_BOLD] Numer listy bez pogrubienia  ·  ostrzeżenie
     Problem: 2 pozycje listy numerowanej mają niepogrubiony numer; guidebook: „Lista numerowana: bold”.
+    Jak naprawić: 1. Kliknij pozycję listy. 2. Narzędzia główne → Numerowanie (strzałka obok przycisku) → Zdefiniuj nowy format numeracji → Czcionka. 3. Styl czcionki: Pogrubienie → OK.
 
 #8 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 12: „pozycja z zielonym punktorem,”
     [LIST_BULLET_COLOR_MISMATCH] Punktor w niedozwolonym kolorze  ·  błąd
     Problem: 2 pozycje listy mają punktor w kolorze spoza #FF6200 i #000000.
+    Jak naprawić: 1. Kliknij pozycję listy. 2. Narzędzia główne → Punktory (strzałka obok przycisku) → Zdefiniuj nowy punktor → Czcionka. 3. Kolor czcionki → Więcej kolorów → Niestandardowy → FF6200 albo 000000 → OK.
 
 #9 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 13: „druga pozycja z zielonym punktorem.”
     [LIST_BULLET_COLOR_MISMATCH] Punktor w niedozwolonym kolorze  ·  błąd
     Problem: 2 pozycje listy mają punktor w kolorze spoza #FF6200 i #000000.
+    Jak naprawić: 1. Kliknij pozycję listy. 2. Narzędzia główne → Punktory (strzałka obok przycisku) → Zdefiniuj nowy punktor → Czcionka. 3. Kolor czcionki → Więcej kolorów → Niestandardowy → FF6200 albo 000000 → OK.
 
 #10 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 19: „Rodzaj opłaty”
     Dotyczy całej tabeli (komentarz w jej pierwszej komórce).
-    [TABLE_ROW_CAN_SPLIT] Wiersz tabeli może dzielić się między strony  ·  błąd
+    [TABLE_ROW_CAN_SPLIT] Wiersz tabeli może dzielić się między strony  ·  WYMAGANE → błąd
     Problem: Tabela 1: 1 wiersz może dzielić się między strony (brak „Nie dziel wiersza między stronami”).
+    Jak naprawić: 1. Zaznacz całą tabelę. 2. Prawy przycisk myszy → Właściwości tabeli → Wiersz. 3. Odznacz „Zezwalaj na dzielenie wierszy między strony” → OK.
 
 #11 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 22: „0 zł”
-    [TABLE_BORDER_MISMATCH] Krawędzie tabeli inne niż 1 pt czarne  ·  błąd
+    [TABLE_BORDER_MISMATCH] Krawędzie tabeli inne niż 1 pt czarne  ·  WYMAGANE → błąd
     Problem: Tabela 1: 1 komórka ma krawędzie inne niż 1 pt w kolorze #000000 (nadpisane w komórce albo w stylu tabeli).
+    Jak naprawić: 1. Zaznacz tabelę albo wskazane komórki. 2. Projekt tabeli → Obramowania → Obramowanie i cieniowanie. 3. Ustawienie: Wszystkie, Styl: linia ciągła, Kolor: czarny, Szerokość: 1 pkt. 4. Zastosuj do: Tabela (albo Komórka) → OK.
 
 #12 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 24: „”
-    [TABLE_EMPTY_CELL] Pusta komórka tabeli  ·  błąd
+    [TABLE_EMPTY_CELL] Pusta komórka tabeli  ·  WYMAGANE → błąd
     Problem: Tabela 1: 1 pusta komórka; wpisz „Brak danych”, „0” albo inną wartość słowną.
+    Jak naprawić: 1. Kliknij pustą komórkę. 2. Wpisz „Brak danych”, „0” albo inną wartość słowną zgodną ze znaczeniem komórki.
 
 #13 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 27: „Stawka”
-    [TABLE_HEADER_NOT_BOLD] Nagłówek tabeli bez pogrubienia  ·  błąd
+    [TABLE_HEADER_NOT_BOLD] Nagłówek tabeli bez pogrubienia  ·  WYMAGANE → błąd
     Problem: Tabela 2: 1 komórka nagłówka nie jest pogrubiona.
+    Jak naprawić: 1. Zaznacz wiersz nagłówka tabeli. 2. Narzędzia główne → Pogrubienie (Ctrl+B). 3. Jeśli pogrubienie ma dawać styl tabeli: Projekt tabeli → zaznacz „Wiersz nagłówka” i sprawdź, że komórka nie ma wyłączonego pogrubienia.
 
 #14 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 29: „1,5%”
-    [TABLE_ALIGNMENT_MISMATCH] Wyrównanie w tabeli niezgodne ze standardem  ·  błąd
+    [TABLE_ALIGNMENT_MISMATCH] Wyrównanie w tabeli niezgodne ze standardem  ·  WYMAGANE → błąd
     Problem: Tabela 2: 2 komórki nie są wyrównane do lewej i do środka w pionie.
+    Jak naprawić: 1. Zaznacz wskazane komórki. 2. Układ (karta narzędzi tabeli) → grupa Wyrównanie → „Wyrównaj do środka z lewej” (tekst do lewej, w pionie na środku).
 
 #15 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 31: „0,5%”
-    [TABLE_ALIGNMENT_MISMATCH] Wyrównanie w tabeli niezgodne ze standardem  ·  błąd
+    [TABLE_ALIGNMENT_MISMATCH] Wyrównanie w tabeli niezgodne ze standardem  ·  WYMAGANE → błąd
     Problem: Tabela 2: 2 komórki nie są wyrównane do lewej i do środka w pionie.
+    Jak naprawić: 1. Zaznacz wskazane komórki. 2. Układ (karta narzędzi tabeli) → grupa Wyrównanie → „Wyrównaj do środka z lewej” (tekst do lewej, w pionie na środku).
 
 #16 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 40: „Dane rejestrowe”
     Dotyczy stopki (sekcja 2, strony: wszystkie): Dokument wewnętrzny
@@ -103,16 +122,19 @@
     Dotyczy stopki (sekcja 3, strony: wszystkie): Strona: (Arial, pogrubienie)
     [FOOTER_STYLE_MISMATCH] Stopka niezgodna ze stylem  ·  błąd
     Problem: 2 fragmenty stopki mają styl inny niż SUN Me 8 pt #696969.
+    Jak naprawić: 1. Kliknij dwukrotnie stopkę. 2. Zaznacz jej tekst, usuń formatowanie ręczne skrótem Ctrl+Spacja i wybierz Narzędzia główne → Style → „Stopka”. 3. Styl „Stopka” ma mieć czcionkę SUN Me, 8 pt, bez pogrubienia, kolor 696969 i interlinię 1,2 (prawy przycisk myszy na stylu → Modyfikuj).
 
 #20 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 47: „Stopka i format strony”
     Dotyczy stopki (sekcja 3, strony: wszystkie): 3 (Arial, pogrubienie)
     [FOOTER_STYLE_MISMATCH] Stopka niezgodna ze stylem  ·  błąd
     Problem: 2 fragmenty stopki mają styl inny niż SUN Me 8 pt #696969.
+    Jak naprawić: 1. Kliknij dwukrotnie stopkę. 2. Zaznacz jej tekst, usuń formatowanie ręczne skrótem Ctrl+Spacja i wybierz Narzędzia główne → Style → „Stopka”. 3. Styl „Stopka” ma mieć czcionkę SUN Me, 8 pt, bez pogrubienia, kolor 696969 i interlinię 1,2 (prawy przycisk myszy na stylu → Modyfikuj).
 
 #21 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 47: „Stopka i format strony”
     Dotyczy stopki (sekcja 3, strony: wszystkie): (stopka)
     [FOOTER_TITLE_MISSING] Stopka bez tytułu dokumentu  ·  WYMAGANE → błąd
     Problem: Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”.
+    Jak naprawić: 1. Kliknij dwukrotnie stopkę. 2. Po numerze strony dopisz kropkę, spację i tytuł dokumentu, np. „Strona: 2 z 3. Regulamin promocji”. 3. Zamknij stopkę klawiszem Esc.
 
 #22 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 50: „Stopka w innej postaci”
     Dotyczy stopki (sekcja 4, strony: wszystkie): PAGE 4 / 5 – Luki audytu 2.0

@@ -60,7 +60,9 @@
       "category": "Tables",
       "message": "Tabela 1: 4 komórki nie są wyrównane do lewej i do środka w pionie.",
       "standard": "firmowy/2.0",
-      "fixable": false
+      "fixable": false,
+      "status": "Required",
+      "fix": "1. Zaznacz wskazane komórki. 2. Układ (karta narzędzi tabeli) → grupa Wyrównanie → „Wyrównaj do środka z lewej” (tekst do lewej, w pionie na środku)."
     },
     {
       "code": "TABLE_BORDER_MISMATCH",
@@ -69,7 +71,9 @@
       "category": "Tables",
       "message": "Tabela 1 nie ma wszystkich krawędzi 1 pt w kolorze #000000.",
       "standard": "firmowy/2.0",
-      "fixable": false
+      "fixable": false,
+      "status": "Required",
+      "fix": "1. Zaznacz tabelę albo wskazane komórki. 2. Projekt tabeli → Obramowania → Obramowanie i cieniowanie. 3. Ustawienie: Wszystkie, Styl: linia ciągła, Kolor: czarny, Szerokość: 1 pkt. 4. Zastosuj do: Tabela (albo Komórka) → OK."
     },
     {
       "code": "TABLE_EMPTY_CELL",
@@ -78,7 +82,9 @@
       "category": "Tables",
       "message": "Tabela 1: 4 puste komórki; wpisz „Brak danych”, „0” albo inną wartość słowną.",
       "standard": "firmowy/2.0",
-      "fixable": false
+      "fixable": false,
+      "status": "Required",
+      "fix": "1. Kliknij pustą komórkę. 2. Wpisz „Brak danych”, „0” albo inną wartość słowną zgodną ze znaczeniem komórki."
     },
     {
       "code": "TABLE_MISSING_HEADERS",
@@ -96,7 +102,9 @@
       "category": "Tables",
       "message": "Tabela 1: 2 wiersze mogą dzielić się między strony (brak „Nie dziel wiersza między stronami”).",
       "standard": "firmowy/2.0",
-      "fixable": true
+      "fixable": true,
+      "status": "Required",
+      "fix": "1. Zaznacz całą tabelę. 2. Prawy przycisk myszy → Właściwości tabeli → Wiersz. 3. Odznacz „Zezwalaj na dzielenie wierszy między strony” → OK."
     },
     {
       "code": "INVALID_HYPERLINK",
@@ -114,7 +122,8 @@
       "category": "Hyperlinks",
       "message": "1 fragment łącza nie ma stylu łącza: kolor #7724FF z podkreśleniem.",
       "standard": "firmowy/2.0",
-      "fixable": false
+      "fixable": false,
+      "fix": "1. Zaznacz łącze. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja albo wybierz Narzędzia główne → Style → „Hiperłącze”. 3. Styl „Hiperłącze” ma mieć kolor 7724FF i podkreślenie pojedyncze (prawy przycisk myszy na stylu → Modyfikuj)."
     },
     {
       "code": "TEXT_LOW_CONTRAST",
@@ -133,7 +142,8 @@
       "message": "Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”.",
       "standard": "firmowy/2.0",
       "fixable": false,
-      "status": "Required"
+      "status": "Required",
+      "fix": "1. Kliknij dwukrotnie stopkę. 2. Po numerze strony dopisz kropkę, spację i tytuł dokumentu, np. „Strona: 2 z 3. Regulamin promocji”. 3. Zamknij stopkę klawiszem Esc."
     },
     {
       "code": "AUTHOR_NOT_INSTITUTION",
@@ -142,7 +152,8 @@
       "category": "Metadata",
       "message": "Autor „Krzysztof Rybka” ma być zastąpiony nazwą banku „Example Company S. A.”.",
       "standard": "firmowy/2.0",
-      "fixable": true
+      "fixable": true,
+      "fix": "1. Plik → Informacje → Powiązane osoby → Autor. 2. Usuń autora osobowego (prawy przycisk myszy → Usuń osobę). 3. Wpisz „Example Company S. A.”."
     },
     {
       "code": "TITLE_MISSING",
@@ -160,7 +171,8 @@
       "category": "Quality",
       "message": "2 fragmenty tekstu podstawowego mają rozmiar spoza standardu; wymagane 10 pt (dopuszczalnie 12 albo 14 pt).",
       "standard": "firmowy/2.0",
-      "fixable": false
+      "fixable": false,
+      "fix": "1. Zaznacz fragment. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja albo ustaw Narzędzia główne → Rozmiar czcionki: 10. 3. Rozmiar 12 albo 14 pt zostaw tylko tam, gdzie wymaga tego potrzeba biznesowa."
     },
     {
       "code": "FONT_FAMILY_MISMATCH",
@@ -169,7 +181,9 @@
       "category": "Quality",
       "message": "14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display.",
       "standard": "firmowy/2.0",
-      "fixable": false
+      "fixable": false,
+      "status": "Required",
+      "fix": "1. Zaznacz fragment. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja, żeby czcionkę nadał styl. 3. Jeśli zła czcionka jest w stylu: Narzędzia główne → Style → prawy przycisk myszy na stylu → Modyfikuj → czcionka SUN Me (dla stylu „Nagłówek 1”: SUN Display) → OK."
     },
     {
       "code": "FOOTER_STYLE_MISMATCH",
@@ -178,7 +192,8 @@
       "category": "Quality",
       "message": "2 fragmenty stopki mają styl inny niż SUN Me 8 pt #696969.",
       "standard": "firmowy/2.0",
-      "fixable": false
+      "fixable": false,
+      "fix": "1. Kliknij dwukrotnie stopkę. 2. Zaznacz jej tekst, usuń formatowanie ręczne skrótem Ctrl+Spacja i wybierz Narzędzia główne → Style → „Stopka”. 3. Styl „Stopka” ma mieć czcionkę SUN Me, 8 pt, bez pogrubienia, kolor 696969 i interlinię 1,2 (prawy przycisk myszy na stylu → Modyfikuj)."
     },
     {
       "code": "INVALID_MARGINS",
@@ -188,7 +203,8 @@
       "message": "Margines górny ma 70,9 pt, a wymagane jest 36 pt.",
       "standard": "firmowy/2.0",
       "fixable": true,
-      "status": "Required"
+      "status": "Required",
+      "fix": "1. Układ → Marginesy → Marginesy niestandardowe. 2. W polach Górny, Dolny, Lewy i Prawy wpisz 1,27 cm. 3. Zastosuj do: Cały dokument → OK."
     },
     {
       "code": "INVALID_MARGINS",
@@ -198,7 +214,8 @@
       "message": "Margines dolny ma 70,9 pt, a wymagane jest 36 pt.",
       "standard": "firmowy/2.0",
       "fixable": true,
-      "status": "Required"
+      "status": "Required",
+      "fix": "1. Układ → Marginesy → Marginesy niestandardowe. 2. W polach Górny, Dolny, Lewy i Prawy wpisz 1,27 cm. 3. Zastosuj do: Cały dokument → OK."
     },
     {
       "code": "INVALID_MARGINS",
@@ -208,7 +225,8 @@
       "message": "Margines lewy ma 70,9 pt, a wymagane jest 36 pt.",
       "standard": "firmowy/2.0",
       "fixable": true,
-      "status": "Required"
+      "status": "Required",
+      "fix": "1. Układ → Marginesy → Marginesy niestandardowe. 2. W polach Górny, Dolny, Lewy i Prawy wpisz 1,27 cm. 3. Zastosuj do: Cały dokument → OK."
     },
     {
       "code": "INVALID_MARGINS",
@@ -218,7 +236,8 @@
       "message": "Margines prawy ma 70,9 pt, a wymagane jest 36 pt.",
       "standard": "firmowy/2.0",
       "fixable": true,
-      "status": "Required"
+      "status": "Required",
+      "fix": "1. Układ → Marginesy → Marginesy niestandardowe. 2. W polach Górny, Dolny, Lewy i Prawy wpisz 1,27 cm. 3. Zastosuj do: Cały dokument → OK."
     },
     {
       "code": "LINE_SPACING_MISMATCH",
@@ -227,7 +246,9 @@
       "category": "Quality",
       "message": "14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288).",
       "standard": "firmowy/2.0",
-      "fixable": false
+      "fixable": false,
+      "status": "Required",
+      "fix": "1. Zaznacz akapit. 2. Narzędzia główne → Akapit (strzałka w rogu grupy) → Interlinia: Wielokrotne, Co: 1,2 → OK. 3. Najlepiej ustaw to w stylu: prawy przycisk myszy na stylu → Modyfikuj → Format → Akapit."
     },
     {
       "code": "BRAND_IMAGE_MISMATCH",
@@ -236,7 +257,8 @@
       "category": "Images",
       "message": "1 logo lub symbol graficzny jest niezgodny z rozdz. 5 guidebooka (tekst alternatywny, wymiary).",
       "standard": "firmowy/2.0",
-      "fixable": false
+      "fixable": false,
+      "fix": "1. Prawy przycisk myszy na grafice → Wyświetl tekst alternatywny. 2. Wpisz „Example Company S. A. logo” (logo poziome) albo „Symbol graficzny Example Company S. A.” (identyfikator graficzny). 3. Formatowanie obrazu → Rozmiar: logo 4,4 cm × 1 cm, symbol 2,2 cm × 2,2 cm."
     },
     {
       "code": "CONTENT_BEFORE_HEADING",
@@ -263,7 +285,8 @@
       "category": "Tables",
       "message": "Tabela 1 nie ma tytułu w tekście alternatywnym (Właściwości tabeli → Tekst alternatywny → Tytuł); decyzja biznesowa.",
       "standard": "firmowy/2.0",
-      "fixable": false
+      "fixable": false,
+      "fix": "1. Prawy przycisk myszy na tabeli → Właściwości tabeli → Tekst alternatywny. 2. W polu Tytuł wpisz krótką nazwę tabeli → OK."
     },
     {
       "code": "REPEATED_BLANKS",
@@ -290,7 +313,8 @@
       "category": "Quality",
       "message": "12 fragmentów tekstu jest powiększonych do 12 albo 14 pt; dopuszczalne tylko z potrzeby biznesowej.",
       "standard": "firmowy/2.0",
-      "fixable": false
+      "fixable": false,
+      "fix": "1. Zaznacz fragment. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja albo ustaw Narzędzia główne → Rozmiar czcionki: 10. 3. Rozmiar 12 albo 14 pt zostaw tylko tam, gdzie wymaga tego potrzeba biznesowa."
     },
     {
       "code": "TEXT_COLOR_NOT_ALLOWED",
@@ -299,7 +323,8 @@
       "category": "Quality",
       "message": "3 fragmenty tekstu mają kolor spoza dozwolonej palety (#ED7D31, #0563C1); dozwolone: #000000, #FF6200, #0000FF, #AB0066, #7724FF, #696969, #4D0020.",
       "standard": "firmowy/2.0",
-      "fixable": false
+      "fixable": false,
+      "fix": "1. Zaznacz fragment. 2. Narzędzia główne → Kolor czcionki → Więcej kolorów → Niestandardowy → wpisz kod koloru z palety (dla zwykłego tekstu 000000) → OK. 3. Albo usuń kolor nadany ręcznie skrótem Ctrl+Spacja, żeby kolor nadał styl."
     },
     {
       "code": "MANUAL_CHECK_SUGGESTED",
@@ -317,7 +342,8 @@
       "category": "Tables",
       "message": "Tabela 1 nie ma opisu w tekście alternatywnym (dłuższego od tytułu); guidebook go rekomenduje.",
       "standard": "firmowy/2.0",
-      "fixable": false
+      "fixable": false,
+      "fix": "1. Prawy przycisk myszy na tabeli → Właściwości tabeli → Tekst alternatywny. 2. W polu Opis napisz, co tabela przedstawia (dłużej niż w tytule) → OK."
     }
   ],
   "outline": [],
@@ -1541,7 +1567,10 @@
         "snippet": ""
       },
       "occurrence": 1,
-      "occurrenceCount": 4
+      "occurrenceCount": 4,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Zaznacz wskazane komórki. 2. Układ (karta narzędzi tabeli) → grupa Wyrównanie → „Wyrównaj do środka z lewej” (tekst do lewej, w pionie na środku)."
     },
     {
       "index": 3,
@@ -1563,7 +1592,10 @@
         "snippet": ""
       },
       "occurrence": 2,
-      "occurrenceCount": 4
+      "occurrenceCount": 4,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Zaznacz wskazane komórki. 2. Układ (karta narzędzi tabeli) → grupa Wyrównanie → „Wyrównaj do środka z lewej” (tekst do lewej, w pionie na środku)."
     },
     {
       "index": 4,
@@ -1585,7 +1617,10 @@
         "snippet": ""
       },
       "occurrence": 3,
-      "occurrenceCount": 4
+      "occurrenceCount": 4,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Zaznacz wskazane komórki. 2. Układ (karta narzędzi tabeli) → grupa Wyrównanie → „Wyrównaj do środka z lewej” (tekst do lewej, w pionie na środku)."
     },
     {
       "index": 5,
@@ -1607,7 +1642,10 @@
         "snippet": ""
       },
       "occurrence": 4,
-      "occurrenceCount": 4
+      "occurrenceCount": 4,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Zaznacz wskazane komórki. 2. Układ (karta narzędzi tabeli) → grupa Wyrównanie → „Wyrównaj do środka z lewej” (tekst do lewej, w pionie na środku)."
     },
     {
       "index": 6,
@@ -1629,7 +1667,10 @@
         "snippet": "tabela 1"
       },
       "occurrence": 1,
-      "occurrenceCount": 1
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Zaznacz tabelę albo wskazane komórki. 2. Projekt tabeli → Obramowania → Obramowanie i cieniowanie. 3. Ustawienie: Wszystkie, Styl: linia ciągła, Kolor: czarny, Szerokość: 1 pkt. 4. Zastosuj do: Tabela (albo Komórka) → OK."
     },
     {
       "index": 7,
@@ -1651,7 +1692,10 @@
         "snippet": "(pusta komórka)"
       },
       "occurrence": 1,
-      "occurrenceCount": 4
+      "occurrenceCount": 4,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Kliknij pustą komórkę. 2. Wpisz „Brak danych”, „0” albo inną wartość słowną zgodną ze znaczeniem komórki."
     },
     {
       "index": 8,
@@ -1673,7 +1717,10 @@
         "snippet": "(pusta komórka)"
       },
       "occurrence": 2,
-      "occurrenceCount": 4
+      "occurrenceCount": 4,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Kliknij pustą komórkę. 2. Wpisz „Brak danych”, „0” albo inną wartość słowną zgodną ze znaczeniem komórki."
     },
     {
       "index": 9,
@@ -1695,7 +1742,10 @@
         "snippet": "(pusta komórka)"
       },
       "occurrence": 3,
-      "occurrenceCount": 4
+      "occurrenceCount": 4,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Kliknij pustą komórkę. 2. Wpisz „Brak danych”, „0” albo inną wartość słowną zgodną ze znaczeniem komórki."
     },
     {
       "index": 10,
@@ -1717,7 +1767,10 @@
         "snippet": "(pusta komórka)"
       },
       "occurrence": 4,
-      "occurrenceCount": 4
+      "occurrenceCount": 4,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Kliknij pustą komórkę. 2. Wpisz „Brak danych”, „0” albo inną wartość słowną zgodną ze znaczeniem komórki."
     },
     {
       "index": 11,
@@ -1763,7 +1816,10 @@
         "snippet": "tabela 1"
       },
       "occurrence": 1,
-      "occurrenceCount": 1
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Zaznacz całą tabelę. 2. Prawy przycisk myszy → Właściwości tabeli → Wiersz. 3. Odznacz „Zezwalaj na dzielenie wierszy między strony” → OK."
     },
     {
       "index": 13,
@@ -1809,7 +1865,8 @@
         "snippet": "www.dupeczki.pl (kolor #0563C1)"
       },
       "occurrence": 1,
-      "occurrenceCount": 1
+      "occurrenceCount": 1,
+      "fix": "1. Zaznacz łącze. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja albo wybierz Narzędzia główne → Style → „Hiperłącze”. 3. Styl „Hiperłącze” ma mieć kolor 7724FF i podkreślenie pojedyncze (prawy przycisk myszy na stylu → Modyfikuj)."
     },
     {
       "index": 15,
@@ -1881,7 +1938,8 @@
       "occurrence": 1,
       "occurrenceCount": 1,
       "status": "Required",
-      "statusLabel": "WYMAGANE"
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Kliknij dwukrotnie stopkę. 2. Po numerze strony dopisz kropkę, spację i tytuł dokumentu, np. „Strona: 2 z 3. Regulamin promocji”. 3. Zamknij stopkę klawiszem Esc."
     },
     {
       "index": 18,
@@ -1903,7 +1961,8 @@
         "snippet": "(metadane dokumentu)"
       },
       "occurrence": 1,
-      "occurrenceCount": 1
+      "occurrenceCount": 1,
+      "fix": "1. Plik → Informacje → Powiązane osoby → Autor. 2. Usuń autora osobowego (prawy przycisk myszy → Usuń osobę). 3. Wpisz „Example Company S. A.”."
     },
     {
       "index": 19,
@@ -1949,7 +2008,8 @@
         "snippet": "Jebać TEKOM (28 pt)"
       },
       "occurrence": 1,
-      "occurrenceCount": 2
+      "occurrenceCount": 2,
+      "fix": "1. Zaznacz fragment. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja albo ustaw Narzędzia główne → Rozmiar czcionki: 10. 3. Rozmiar 12 albo 14 pt zostaw tylko tam, gdzie wymaga tego potrzeba biznesowa."
     },
     {
       "index": 21,
@@ -1971,7 +2031,8 @@
         "snippet": "Kutas boko też jest spoko (28 pt)"
       },
       "occurrence": 2,
-      "occurrenceCount": 2
+      "occurrenceCount": 2,
+      "fix": "1. Zaznacz fragment. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja albo ustaw Narzędzia główne → Rozmiar czcionki: 10. 3. Rozmiar 12 albo 14 pt zostaw tylko tam, gdzie wymaga tego potrzeba biznesowa."
     },
     {
       "index": 22,
@@ -1993,7 +2054,10 @@
         "snippet": "Jebać TEKOM (Calibri Light, oczekiwano SUN Me)"
       },
       "occurrence": 1,
-      "occurrenceCount": 14
+      "occurrenceCount": 14,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Zaznacz fragment. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja, żeby czcionkę nadał styl. 3. Jeśli zła czcionka jest w stylu: Narzędzia główne → Style → prawy przycisk myszy na stylu → Modyfikuj → czcionka SUN Me (dla stylu „Nagłówek 1”: SUN Display) → OK."
     },
     {
       "index": 23,
@@ -2015,7 +2079,10 @@
         "snippet": "Lubię (Arial, oczekiwano SUN Me)"
       },
       "occurrence": 2,
-      "occurrenceCount": 14
+      "occurrenceCount": 14,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Zaznacz fragment. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja, żeby czcionkę nadał styl. 3. Jeśli zła czcionka jest w stylu: Narzędzia główne → Style → prawy przycisk myszy na stylu → Modyfikuj → czcionka SUN Me (dla stylu „Nagłówek 1”: SUN Display) → OK."
     },
     {
       "index": 24,
@@ -2037,7 +2104,10 @@
         "snippet": "pierdolić głupoty (Arial, oczekiwano SUN Me)"
       },
       "occurrence": 3,
-      "occurrenceCount": 14
+      "occurrenceCount": 14,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Zaznacz fragment. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja, żeby czcionkę nadał styl. 3. Jeśli zła czcionka jest w stylu: Narzędzia główne → Style → prawy przycisk myszy na stylu → Modyfikuj → czcionka SUN Me (dla stylu „Nagłówek 1”: SUN Display) → OK."
     },
     {
       "index": 25,
@@ -2059,7 +2129,10 @@
         "snippet": "Kutas boko też jest spoko (Calibri Light, oczekiwano SUN Me)"
       },
       "occurrence": 4,
-      "occurrenceCount": 14
+      "occurrenceCount": 14,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Zaznacz fragment. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja, żeby czcionkę nadał styl. 3. Jeśli zła czcionka jest w stylu: Narzędzia główne → Style → prawy przycisk myszy na stylu → Modyfikuj → czcionka SUN Me (dla stylu „Nagłówek 1”: SUN Display) → OK."
     },
     {
       "index": 26,
@@ -2081,7 +2154,10 @@
         "snippet": "Jestem sobie dokumentem i mam wszystko w… (Arial, oczekiwano SUN Me)"
       },
       "occurrence": 5,
-      "occurrenceCount": 14
+      "occurrenceCount": 14,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Zaznacz fragment. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja, żeby czcionkę nadał styl. 3. Jeśli zła czcionka jest w stylu: Narzędzia główne → Style → prawy przycisk myszy na stylu → Modyfikuj → czcionka SUN Me (dla stylu „Nagłówek 1”: SUN Display) → OK."
     },
     {
       "index": 27,
@@ -2103,7 +2179,10 @@
         "snippet": "Lubię jak mi żona ssie kutango. (Arial, oczekiwano SUN Me)"
       },
       "occurrence": 6,
-      "occurrenceCount": 14
+      "occurrenceCount": 14,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Zaznacz fragment. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja, żeby czcionkę nadał styl. 3. Jeśli zła czcionka jest w stylu: Narzędzia główne → Style → prawy przycisk myszy na stylu → Modyfikuj → czcionka SUN Me (dla stylu „Nagłówek 1”: SUN Display) → OK."
     },
     {
       "index": 28,
@@ -2125,7 +2204,10 @@
         "snippet": "www.dupeczki.pl (Calibri, oczekiwano SUN Me)"
       },
       "occurrence": 7,
-      "occurrenceCount": 14
+      "occurrenceCount": 14,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Zaznacz fragment. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja, żeby czcionkę nadał styl. 3. Jeśli zła czcionka jest w stylu: Narzędzia główne → Style → prawy przycisk myszy na stylu → Modyfikuj → czcionka SUN Me (dla stylu „Nagłówek 1”: SUN Display) → OK."
     },
     {
       "index": 29,
@@ -2147,7 +2229,10 @@
         "snippet": "Kobieta (Calibri, oczekiwano SUN Me)"
       },
       "occurrence": 8,
-      "occurrenceCount": 14
+      "occurrenceCount": 14,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Zaznacz fragment. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja, żeby czcionkę nadał styl. 3. Jeśli zła czcionka jest w stylu: Narzędzia główne → Style → prawy przycisk myszy na stylu → Modyfikuj → czcionka SUN Me (dla stylu „Nagłówek 1”: SUN Display) → OK."
     },
     {
       "index": 30,
@@ -2169,7 +2254,10 @@
         "snippet": "Robi mi (Calibri, oczekiwano SUN Me)"
       },
       "occurrence": 9,
-      "occurrenceCount": 14
+      "occurrenceCount": 14,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Zaznacz fragment. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja, żeby czcionkę nadał styl. 3. Jeśli zła czcionka jest w stylu: Narzędzia główne → Style → prawy przycisk myszy na stylu → Modyfikuj → czcionka SUN Me (dla stylu „Nagłówek 1”: SUN Display) → OK."
     },
     {
       "index": 31,
@@ -2191,7 +2279,10 @@
         "snippet": "Laskę (Calibri, oczekiwano SUN Me)"
       },
       "occurrence": 10,
-      "occurrenceCount": 14
+      "occurrenceCount": 14,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Zaznacz fragment. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja, żeby czcionkę nadał styl. 3. Jeśli zła czcionka jest w stylu: Narzędzia główne → Style → prawy przycisk myszy na stylu → Modyfikuj → czcionka SUN Me (dla stylu „Nagłówek 1”: SUN Display) → OK."
     },
     {
       "index": 32,
@@ -2213,7 +2304,10 @@
         "snippet": "Śniadanie (Calibri, oczekiwano SUN Me)"
       },
       "occurrence": 11,
-      "occurrenceCount": 14
+      "occurrenceCount": 14,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Zaznacz fragment. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja, żeby czcionkę nadał styl. 3. Jeśli zła czcionka jest w stylu: Narzędzia główne → Style → prawy przycisk myszy na stylu → Modyfikuj → czcionka SUN Me (dla stylu „Nagłówek 1”: SUN Display) → OK."
     },
     {
       "index": 33,
@@ -2235,7 +2329,10 @@
         "snippet": "Kawkę (Calibri, oczekiwano SUN Me)"
       },
       "occurrence": 12,
-      "occurrenceCount": 14
+      "occurrenceCount": 14,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Zaznacz fragment. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja, żeby czcionkę nadał styl. 3. Jeśli zła czcionka jest w stylu: Narzędzia główne → Style → prawy przycisk myszy na stylu → Modyfikuj → czcionka SUN Me (dla stylu „Nagłówek 1”: SUN Display) → OK."
     },
     {
       "index": 34,
@@ -2257,7 +2354,10 @@
         "snippet": "Pierdoli (Calibri, oczekiwano SUN Me)"
       },
       "occurrence": 13,
-      "occurrenceCount": 14
+      "occurrenceCount": 14,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Zaznacz fragment. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja, żeby czcionkę nadał styl. 3. Jeśli zła czcionka jest w stylu: Narzędzia główne → Style → prawy przycisk myszy na stylu → Modyfikuj → czcionka SUN Me (dla stylu „Nagłówek 1”: SUN Display) → OK."
     },
     {
       "index": 35,
@@ -2279,7 +2379,10 @@
         "snippet": "głupoty (Calibri, oczekiwano SUN Me)"
       },
       "occurrence": 14,
-      "occurrenceCount": 14
+      "occurrenceCount": 14,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Zaznacz fragment. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja, żeby czcionkę nadał styl. 3. Jeśli zła czcionka jest w stylu: Narzędzia główne → Style → prawy przycisk myszy na stylu → Modyfikuj → czcionka SUN Me (dla stylu „Nagłówek 1”: SUN Display) → OK."
     },
     {
       "index": 36,
@@ -2301,7 +2404,8 @@
         "snippet": "PAGE \\* MERGEFORMAT (Calibri, 12 pt, #000000)"
       },
       "occurrence": 1,
-      "occurrenceCount": 2
+      "occurrenceCount": 2,
+      "fix": "1. Kliknij dwukrotnie stopkę. 2. Zaznacz jej tekst, usuń formatowanie ręczne skrótem Ctrl+Spacja i wybierz Narzędzia główne → Style → „Stopka”. 3. Styl „Stopka” ma mieć czcionkę SUN Me, 8 pt, bez pogrubienia, kolor 696969 i interlinię 1,2 (prawy przycisk myszy na stylu → Modyfikuj)."
     },
     {
       "index": 37,
@@ -2323,7 +2427,8 @@
         "snippet": "2 (Calibri, 12 pt, #000000)"
       },
       "occurrence": 2,
-      "occurrenceCount": 2
+      "occurrenceCount": 2,
+      "fix": "1. Kliknij dwukrotnie stopkę. 2. Zaznacz jej tekst, usuń formatowanie ręczne skrótem Ctrl+Spacja i wybierz Narzędzia główne → Style → „Stopka”. 3. Styl „Stopka” ma mieć czcionkę SUN Me, 8 pt, bez pogrubienia, kolor 696969 i interlinię 1,2 (prawy przycisk myszy na stylu → Modyfikuj)."
     },
     {
       "index": 38,
@@ -2347,7 +2452,8 @@
       "occurrence": 1,
       "occurrenceCount": 1,
       "status": "Required",
-      "statusLabel": "WYMAGANE"
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Układ → Marginesy → Marginesy niestandardowe. 2. W polach Górny, Dolny, Lewy i Prawy wpisz 1,27 cm. 3. Zastosuj do: Cały dokument → OK."
     },
     {
       "index": 39,
@@ -2371,7 +2477,8 @@
       "occurrence": 1,
       "occurrenceCount": 1,
       "status": "Required",
-      "statusLabel": "WYMAGANE"
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Układ → Marginesy → Marginesy niestandardowe. 2. W polach Górny, Dolny, Lewy i Prawy wpisz 1,27 cm. 3. Zastosuj do: Cały dokument → OK."
     },
     {
       "index": 40,
@@ -2395,7 +2502,8 @@
       "occurrence": 1,
       "occurrenceCount": 1,
       "status": "Required",
-      "statusLabel": "WYMAGANE"
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Układ → Marginesy → Marginesy niestandardowe. 2. W polach Górny, Dolny, Lewy i Prawy wpisz 1,27 cm. 3. Zastosuj do: Cały dokument → OK."
     },
     {
       "index": 41,
@@ -2419,7 +2527,8 @@
       "occurrence": 1,
       "occurrenceCount": 1,
       "status": "Required",
-      "statusLabel": "WYMAGANE"
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Układ → Marginesy → Marginesy niestandardowe. 2. W polach Górny, Dolny, Lewy i Prawy wpisz 1,27 cm. 3. Zastosuj do: Cały dokument → OK."
     },
     {
       "index": 42,
@@ -2441,7 +2550,10 @@
         "snippet": "Jebać TEKOM (interlinia 1)"
       },
       "occurrence": 1,
-      "occurrenceCount": 14
+      "occurrenceCount": 14,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Zaznacz akapit. 2. Narzędzia główne → Akapit (strzałka w rogu grupy) → Interlinia: Wielokrotne, Co: 1,2 → OK. 3. Najlepiej ustaw to w stylu: prawy przycisk myszy na stylu → Modyfikuj → Format → Akapit."
     },
     {
       "index": 43,
@@ -2463,7 +2575,10 @@
         "snippet": "Lubię pierdolić głupoty (interlinia 1,2)"
       },
       "occurrence": 2,
-      "occurrenceCount": 14
+      "occurrenceCount": 14,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Zaznacz akapit. 2. Narzędzia główne → Akapit (strzałka w rogu grupy) → Interlinia: Wielokrotne, Co: 1,2 → OK. 3. Najlepiej ustaw to w stylu: prawy przycisk myszy na stylu → Modyfikuj → Format → Akapit."
     },
     {
       "index": 44,
@@ -2485,7 +2600,10 @@
         "snippet": "Kutas boko też jest spoko (interlinia 1)"
       },
       "occurrence": 3,
-      "occurrenceCount": 14
+      "occurrenceCount": 14,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Zaznacz akapit. 2. Narzędzia główne → Akapit (strzałka w rogu grupy) → Interlinia: Wielokrotne, Co: 1,2 → OK. 3. Najlepiej ustaw to w stylu: prawy przycisk myszy na stylu → Modyfikuj → Format → Akapit."
     },
     {
       "index": 45,
@@ -2507,7 +2625,10 @@
         "snippet": "Jestem sobie dokumentem i mam wszystko w… (interlinia 1,2)"
       },
       "occurrence": 4,
-      "occurrenceCount": 14
+      "occurrenceCount": 14,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Zaznacz akapit. 2. Narzędzia główne → Akapit (strzałka w rogu grupy) → Interlinia: Wielokrotne, Co: 1,2 → OK. 3. Najlepiej ustaw to w stylu: prawy przycisk myszy na stylu → Modyfikuj → Format → Akapit."
     },
     {
       "index": 46,
@@ -2529,7 +2650,10 @@
         "snippet": "Lubię jak mi żona ssie kutango. (interlinia 1,2)"
       },
       "occurrence": 5,
-      "occurrenceCount": 14
+      "occurrenceCount": 14,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Zaznacz akapit. 2. Narzędzia główne → Akapit (strzałka w rogu grupy) → Interlinia: Wielokrotne, Co: 1,2 → OK. 3. Najlepiej ustaw to w stylu: prawy przycisk myszy na stylu → Modyfikuj → Format → Akapit."
     },
     {
       "index": 47,
@@ -2551,7 +2675,10 @@
         "snippet": "www.dupeczki.pl (interlinia 1,2)"
       },
       "occurrence": 6,
-      "occurrenceCount": 14
+      "occurrenceCount": 14,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Zaznacz akapit. 2. Narzędzia główne → Akapit (strzałka w rogu grupy) → Interlinia: Wielokrotne, Co: 1,2 → OK. 3. Najlepiej ustaw to w stylu: prawy przycisk myszy na stylu → Modyfikuj → Format → Akapit."
     },
     {
       "index": 48,
@@ -2573,7 +2700,10 @@
         "snippet": "Kobieta (interlinia 1,2)"
       },
       "occurrence": 7,
-      "occurrenceCount": 14
+      "occurrenceCount": 14,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Zaznacz akapit. 2. Narzędzia główne → Akapit (strzałka w rogu grupy) → Interlinia: Wielokrotne, Co: 1,2 → OK. 3. Najlepiej ustaw to w stylu: prawy przycisk myszy na stylu → Modyfikuj → Format → Akapit."
     },
     {
       "index": 49,
@@ -2595,7 +2725,10 @@
         "snippet": "Robi mi (interlinia 1,2)"
       },
       "occurrence": 8,
-      "occurrenceCount": 14
+      "occurrenceCount": 14,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Zaznacz akapit. 2. Narzędzia główne → Akapit (strzałka w rogu grupy) → Interlinia: Wielokrotne, Co: 1,2 → OK. 3. Najlepiej ustaw to w stylu: prawy przycisk myszy na stylu → Modyfikuj → Format → Akapit."
     },
     {
       "index": 50,
@@ -2617,7 +2750,10 @@
         "snippet": "Laskę (interlinia 1,2)"
       },
       "occurrence": 9,
-      "occurrenceCount": 14
+      "occurrenceCount": 14,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Zaznacz akapit. 2. Narzędzia główne → Akapit (strzałka w rogu grupy) → Interlinia: Wielokrotne, Co: 1,2 → OK. 3. Najlepiej ustaw to w stylu: prawy przycisk myszy na stylu → Modyfikuj → Format → Akapit."
     },
     {
       "index": 51,
@@ -2639,7 +2775,10 @@
         "snippet": "Śniadanie (interlinia 1,2)"
       },
       "occurrence": 10,
-      "occurrenceCount": 14
+      "occurrenceCount": 14,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Zaznacz akapit. 2. Narzędzia główne → Akapit (strzałka w rogu grupy) → Interlinia: Wielokrotne, Co: 1,2 → OK. 3. Najlepiej ustaw to w stylu: prawy przycisk myszy na stylu → Modyfikuj → Format → Akapit."
     },
     {
       "index": 52,
@@ -2661,7 +2800,10 @@
         "snippet": "Kawkę (interlinia 1,2)"
       },
       "occurrence": 11,
-      "occurrenceCount": 14
+      "occurrenceCount": 14,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Zaznacz akapit. 2. Narzędzia główne → Akapit (strzałka w rogu grupy) → Interlinia: Wielokrotne, Co: 1,2 → OK. 3. Najlepiej ustaw to w stylu: prawy przycisk myszy na stylu → Modyfikuj → Format → Akapit."
     },
     {
       "index": 53,
@@ -2683,7 +2825,10 @@
         "snippet": "Pierdoli (interlinia 1,2)"
       },
       "occurrence": 12,
-      "occurrenceCount": 14
+      "occurrenceCount": 14,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Zaznacz akapit. 2. Narzędzia główne → Akapit (strzałka w rogu grupy) → Interlinia: Wielokrotne, Co: 1,2 → OK. 3. Najlepiej ustaw to w stylu: prawy przycisk myszy na stylu → Modyfikuj → Format → Akapit."
     },
     {
       "index": 54,
@@ -2705,7 +2850,10 @@
         "snippet": "głupoty (interlinia 1,2)"
       },
       "occurrence": 13,
-      "occurrenceCount": 14
+      "occurrenceCount": 14,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Zaznacz akapit. 2. Narzędzia główne → Akapit (strzałka w rogu grupy) → Interlinia: Wielokrotne, Co: 1,2 → OK. 3. Najlepiej ustaw to w stylu: prawy przycisk myszy na stylu → Modyfikuj → Format → Akapit."
     },
     {
       "index": 55,
@@ -2727,7 +2875,10 @@
         "snippet": "PAGE \\* MERGEFORMAT2 (interlinia 1)"
       },
       "occurrence": 14,
-      "occurrenceCount": 14
+      "occurrenceCount": 14,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Zaznacz akapit. 2. Narzędzia główne → Akapit (strzałka w rogu grupy) → Interlinia: Wielokrotne, Co: 1,2 → OK. 3. Najlepiej ustaw to w stylu: prawy przycisk myszy na stylu → Modyfikuj → Format → Akapit."
     },
     {
       "index": 56,
@@ -2749,7 +2900,8 @@
         "snippet": "Obraz 1: tekst alternatywny „Logo Google” zamiast „Example Company S. A. logo”; rozmiar 84 × 34,5 mm zamiast 44 × 10 mm"
       },
       "occurrence": 1,
-      "occurrenceCount": 1
+      "occurrenceCount": 1,
+      "fix": "1. Prawy przycisk myszy na grafice → Wyświetl tekst alternatywny. 2. Wpisz „Example Company S. A. logo” (logo poziome) albo „Symbol graficzny Example Company S. A.” (identyfikator graficzny). 3. Formatowanie obrazu → Rozmiar: logo 4,4 cm × 1 cm, symbol 2,2 cm × 2,2 cm."
     },
     {
       "index": 57,
@@ -2843,7 +2995,8 @@
         "snippet": "tabela 1"
       },
       "occurrence": 1,
-      "occurrenceCount": 1
+      "occurrenceCount": 1,
+      "fix": "1. Prawy przycisk myszy na tabeli → Właściwości tabeli → Tekst alternatywny. 2. W polu Tytuł wpisz krótką nazwę tabeli → OK."
     },
     {
       "index": 61,
@@ -2913,7 +3066,8 @@
         "snippet": "Lubię (12 pt)"
       },
       "occurrence": 1,
-      "occurrenceCount": 12
+      "occurrenceCount": 12,
+      "fix": "1. Zaznacz fragment. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja albo ustaw Narzędzia główne → Rozmiar czcionki: 10. 3. Rozmiar 12 albo 14 pt zostaw tylko tam, gdzie wymaga tego potrzeba biznesowa."
     },
     {
       "index": 64,
@@ -2935,7 +3089,8 @@
         "snippet": "pierdolić głupoty (12 pt)"
       },
       "occurrence": 2,
-      "occurrenceCount": 12
+      "occurrenceCount": 12,
+      "fix": "1. Zaznacz fragment. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja albo ustaw Narzędzia główne → Rozmiar czcionki: 10. 3. Rozmiar 12 albo 14 pt zostaw tylko tam, gdzie wymaga tego potrzeba biznesowa."
     },
     {
       "index": 65,
@@ -2957,7 +3112,8 @@
         "snippet": "Jestem sobie dokumentem i mam wszystko w… (12 pt)"
       },
       "occurrence": 3,
-      "occurrenceCount": 12
+      "occurrenceCount": 12,
+      "fix": "1. Zaznacz fragment. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja albo ustaw Narzędzia główne → Rozmiar czcionki: 10. 3. Rozmiar 12 albo 14 pt zostaw tylko tam, gdzie wymaga tego potrzeba biznesowa."
     },
     {
       "index": 66,
@@ -2979,7 +3135,8 @@
         "snippet": "Lubię jak mi żona ssie kutango. (12 pt)"
       },
       "occurrence": 4,
-      "occurrenceCount": 12
+      "occurrenceCount": 12,
+      "fix": "1. Zaznacz fragment. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja albo ustaw Narzędzia główne → Rozmiar czcionki: 10. 3. Rozmiar 12 albo 14 pt zostaw tylko tam, gdzie wymaga tego potrzeba biznesowa."
     },
     {
       "index": 67,
@@ -3001,7 +3158,8 @@
         "snippet": "www.dupeczki.pl (12 pt)"
       },
       "occurrence": 5,
-      "occurrenceCount": 12
+      "occurrenceCount": 12,
+      "fix": "1. Zaznacz fragment. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja albo ustaw Narzędzia główne → Rozmiar czcionki: 10. 3. Rozmiar 12 albo 14 pt zostaw tylko tam, gdzie wymaga tego potrzeba biznesowa."
     },
     {
       "index": 68,
@@ -3023,7 +3181,8 @@
         "snippet": "Kobieta (12 pt)"
       },
       "occurrence": 6,
-      "occurrenceCount": 12
+      "occurrenceCount": 12,
+      "fix": "1. Zaznacz fragment. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja albo ustaw Narzędzia główne → Rozmiar czcionki: 10. 3. Rozmiar 12 albo 14 pt zostaw tylko tam, gdzie wymaga tego potrzeba biznesowa."
     },
     {
       "index": 69,
@@ -3045,7 +3204,8 @@
         "snippet": "Robi mi (12 pt)"
       },
       "occurrence": 7,
-      "occurrenceCount": 12
+      "occurrenceCount": 12,
+      "fix": "1. Zaznacz fragment. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja albo ustaw Narzędzia główne → Rozmiar czcionki: 10. 3. Rozmiar 12 albo 14 pt zostaw tylko tam, gdzie wymaga tego potrzeba biznesowa."
     },
     {
       "index": 70,
@@ -3067,7 +3227,8 @@
         "snippet": "Laskę (12 pt)"
       },
       "occurrence": 8,
-      "occurrenceCount": 12
+      "occurrenceCount": 12,
+      "fix": "1. Zaznacz fragment. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja albo ustaw Narzędzia główne → Rozmiar czcionki: 10. 3. Rozmiar 12 albo 14 pt zostaw tylko tam, gdzie wymaga tego potrzeba biznesowa."
     },
     {
       "index": 71,
@@ -3089,7 +3250,8 @@
         "snippet": "Śniadanie (12 pt)"
       },
       "occurrence": 9,
-      "occurrenceCount": 12
+      "occurrenceCount": 12,
+      "fix": "1. Zaznacz fragment. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja albo ustaw Narzędzia główne → Rozmiar czcionki: 10. 3. Rozmiar 12 albo 14 pt zostaw tylko tam, gdzie wymaga tego potrzeba biznesowa."
     },
     {
       "index": 72,
@@ -3111,7 +3273,8 @@
         "snippet": "Kawkę (12 pt)"
       },
       "occurrence": 10,
-      "occurrenceCount": 12
+      "occurrenceCount": 12,
+      "fix": "1. Zaznacz fragment. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja albo ustaw Narzędzia główne → Rozmiar czcionki: 10. 3. Rozmiar 12 albo 14 pt zostaw tylko tam, gdzie wymaga tego potrzeba biznesowa."
     },
     {
       "index": 73,
@@ -3133,7 +3296,8 @@
         "snippet": "Pierdoli (12 pt)"
       },
       "occurrence": 11,
-      "occurrenceCount": 12
+      "occurrenceCount": 12,
+      "fix": "1. Zaznacz fragment. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja albo ustaw Narzędzia główne → Rozmiar czcionki: 10. 3. Rozmiar 12 albo 14 pt zostaw tylko tam, gdzie wymaga tego potrzeba biznesowa."
     },
     {
       "index": 74,
@@ -3155,7 +3319,8 @@
         "snippet": "głupoty (12 pt)"
       },
       "occurrence": 12,
-      "occurrenceCount": 12
+      "occurrenceCount": 12,
+      "fix": "1. Zaznacz fragment. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja albo ustaw Narzędzia główne → Rozmiar czcionki: 10. 3. Rozmiar 12 albo 14 pt zostaw tylko tam, gdzie wymaga tego potrzeba biznesowa."
     },
     {
       "index": 75,
@@ -3177,7 +3342,8 @@
         "snippet": "Jebać TEKOM (#ED7D31)"
       },
       "occurrence": 1,
-      "occurrenceCount": 3
+      "occurrenceCount": 3,
+      "fix": "1. Zaznacz fragment. 2. Narzędzia główne → Kolor czcionki → Więcej kolorów → Niestandardowy → wpisz kod koloru z palety (dla zwykłego tekstu 000000) → OK. 3. Albo usuń kolor nadany ręcznie skrótem Ctrl+Spacja, żeby kolor nadał styl."
     },
     {
       "index": 76,
@@ -3199,7 +3365,8 @@
         "snippet": "Kutas boko też jest spoko (#ED7D31)"
       },
       "occurrence": 2,
-      "occurrenceCount": 3
+      "occurrenceCount": 3,
+      "fix": "1. Zaznacz fragment. 2. Narzędzia główne → Kolor czcionki → Więcej kolorów → Niestandardowy → wpisz kod koloru z palety (dla zwykłego tekstu 000000) → OK. 3. Albo usuń kolor nadany ręcznie skrótem Ctrl+Spacja, żeby kolor nadał styl."
     },
     {
       "index": 77,
@@ -3221,7 +3388,8 @@
         "snippet": "www.dupeczki.pl (#0563C1)"
       },
       "occurrence": 3,
-      "occurrenceCount": 3
+      "occurrenceCount": 3,
+      "fix": "1. Zaznacz fragment. 2. Narzędzia główne → Kolor czcionki → Więcej kolorów → Niestandardowy → wpisz kod koloru z palety (dla zwykłego tekstu 000000) → OK. 3. Albo usuń kolor nadany ręcznie skrótem Ctrl+Spacja, żeby kolor nadał styl."
     },
     {
       "index": 78,
@@ -3265,7 +3433,8 @@
         "snippet": "tabela 1"
       },
       "occurrence": 1,
-      "occurrenceCount": 1
+      "occurrenceCount": 1,
+      "fix": "1. Prawy przycisk myszy na tabeli → Właściwości tabeli → Tekst alternatywny. 2. W polu Opis napisz, co tabela przedstawia (dłużej niż w tytule) → OK."
     }
   ],
   "structure": [

@@ -34,7 +34,8 @@
       "category": "Quality",
       "message": "1 fragment tekstu jest powiększony do 12 albo 14 pt; dopuszczalne tylko z potrzeby biznesowej.",
       "standard": "firmowy/2.0",
-      "fixable": false
+      "fixable": false,
+      "fix": "1. Zaznacz fragment. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja albo ustaw Narzędzia główne → Rozmiar czcionki: 10. 3. Rozmiar 12 albo 14 pt zostaw tylko tam, gdzie wymaga tego potrzeba biznesowa."
     }
   ],
   "outline": [
@@ -354,7 +355,8 @@
         "snippet": "Warunki dodatkowe (14 pt)"
       },
       "occurrence": 1,
-      "occurrenceCount": 1
+      "occurrenceCount": 1,
+      "fix": "1. Zaznacz fragment. 2. Usuń formatowanie ręczne skrótem Ctrl+Spacja albo ustaw Narzędzia główne → Rozmiar czcionki: 10. 3. Rozmiar 12 albo 14 pt zostaw tylko tam, gdzie wymaga tego potrzeba biznesowa."
     }
   ],
   "structure": [
