@@ -1,6 +1,6 @@
 {
   "status": "Invalid",
-  "summary": "8 błędów, 7 ostrzeżeń, 1 informacja.",
+  "summary": "12 błędów, 10 ostrzeżeń, 1 informacja.",
   "standards": [
     {
       "key": "wcag/2.1",
@@ -22,16 +22,16 @@
   "document": {
     "fileName": "audit20-gaps.docx",
     "title": null,
-    "author": "Example Company S. A.",
+    "author": null,
     "language": "pl-PL",
-    "paragraphs": 23,
-    "headings": 4,
-    "tables": 1,
+    "paragraphs": 54,
+    "headings": 7,
+    "tables": 3,
     "images": 0
   },
   "counts": {
-    "errors": 8,
-    "warnings": 7,
+    "errors": 12,
+    "warnings": 10,
     "infos": 1
   },
   "issues": [
@@ -41,6 +41,24 @@
       "severity": "Error",
       "category": "Tables",
       "message": "Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
+      "standard": "firmowy/2.0",
+      "fixable": false
+    },
+    {
+      "code": "TABLE_ALIGNMENT_MISMATCH",
+      "label": "Wyrównanie w tabeli niezgodne ze standardem",
+      "severity": "Error",
+      "category": "Tables",
+      "message": "Tabela 2: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
+      "standard": "firmowy/2.0",
+      "fixable": false
+    },
+    {
+      "code": "TABLE_BORDER_MISMATCH",
+      "label": "Krawędzie tabeli inne niż 1 pt czarne",
+      "severity": "Error",
+      "category": "Tables",
+      "message": "Tabela 3 nie ma wszystkich krawędzi 1 pt w kolorze #000000.",
       "standard": "firmowy/2.0",
       "fixable": false
     },
@@ -63,11 +81,29 @@
       "fixable": false
     },
     {
+      "code": "TABLE_HEADER_NOT_BOLD",
+      "label": "Nagłówek tabeli bez pogrubienia",
+      "severity": "Error",
+      "category": "Tables",
+      "message": "Tabela 2: 2 komórki nagłówka nie są pogrubione.",
+      "standard": "firmowy/2.0",
+      "fixable": false
+    },
+    {
       "code": "TABLE_ROW_CAN_SPLIT",
       "label": "Wiersz tabeli może dzielić się między strony",
       "severity": "Error",
       "category": "Tables",
       "message": "Tabela 1: 1 wiersz może dzielić się między strony (brak „Nie dziel wiersza między stronami”).",
+      "standard": "firmowy/2.0",
+      "fixable": true
+    },
+    {
+      "code": "TABLE_ROW_CAN_SPLIT",
+      "label": "Wiersz tabeli może dzielić się między strony",
+      "severity": "Error",
+      "category": "Tables",
+      "message": "Tabela 2: 3 wiersze mogą dzielić się między strony (brak „Nie dziel wiersza między stronami”).",
       "standard": "firmowy/2.0",
       "fixable": true
     },
@@ -94,7 +130,7 @@
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Error",
       "category": "Quality",
-      "message": "1 fragment tekstu podstawowego ma rozmiar spoza standardu; wymagane 10 pt (dopuszczalnie 12 albo 14 pt).",
+      "message": "2 fragmenty tekstu podstawowego mają rozmiar spoza standardu; wymagane 10 pt (dopuszczalnie 12 albo 14 pt).",
       "standard": "firmowy/2.0",
       "fixable": false
     },
@@ -103,7 +139,7 @@
       "label": "Interlinia inna niż 1,2",
       "severity": "Error",
       "category": "Quality",
-      "message": "1 akapit ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288).",
+      "message": "3 akapity mają interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288).",
       "standard": "firmowy/2.0",
       "fixable": false
     },
@@ -126,11 +162,20 @@
       "fixable": false
     },
     {
-      "code": "PAGE_NUMBERS_MISSING",
-      "label": "Brak numeru strony",
+      "code": "FOOTER_TITLE_MISSING",
+      "label": "Stopka bez tytułu dokumentu",
       "severity": "Warning",
       "category": "Structure",
-      "message": "Ani stopka, ani nagłówek strony nie zawiera numeru strony (pole PAGE).",
+      "message": "Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”.",
+      "standard": "firmowy/2.0",
+      "fixable": false
+    },
+    {
+      "code": "AUTHOR_MISSING",
+      "label": "Brak autora dokumentu",
+      "severity": "Warning",
+      "category": "Metadata",
+      "message": "Dokument nie ma autora w metadanych.",
       "standard": "wcag/2.1",
       "fixable": true
     },
@@ -171,6 +216,24 @@
       "fixable": true
     },
     {
+      "code": "PAGE_FORMAT_NOT_A4",
+      "label": "Strona inna niż A4",
+      "severity": "Warning",
+      "category": "Quality",
+      "message": "Strona ma 216 × 279 mm, a wymagany jest format A4 (210 × 297 mm).",
+      "standard": "firmowy/2.0",
+      "fixable": false
+    },
+    {
+      "code": "TEXT_COLOR_USAGE_MISMATCH",
+      "label": "Kolor z palety użyty niezgodnie z przeznaczeniem",
+      "severity": "Warning",
+      "category": "Quality",
+      "message": "1 fragment tekstu ma kolor z palety użyty niezgodnie z przeznaczeniem (rozdz. 2 guidebooka).",
+      "standard": "firmowy/2.0",
+      "fixable": false
+    },
+    {
       "code": "MANUAL_CHECK_SUGGESTED",
       "label": "Zalecane sprawdzenie ręczne",
       "severity": "Info",
@@ -196,6 +259,18 @@
     {
       "level": 2,
       "text": "Dane rejestrowe"
+    },
+    {
+      "level": 2,
+      "text": "Stopka i format strony"
+    },
+    {
+      "level": 2,
+      "text": "Stopka w innej postaci"
+    },
+    {
+      "level": 2,
+      "text": "Stopka wzorcowa"
     }
   ],
   "wcag": {
@@ -384,17 +459,7 @@
           "PAGE_NUMBERS_MISSING"
         ],
         "note": "Spis treści w długim dokumencie i numery stron.",
-        "issues": [
-          {
-            "code": "PAGE_NUMBERS_MISSING",
-            "label": "Brak numeru strony",
-            "severity": "Warning",
-            "category": "Structure",
-            "message": "Ani stopka, ani nagłówek strony nie zawiera numeru strony (pole PAGE).",
-            "standard": "wcag/2.1",
-            "fixable": true
-          }
-        ]
+        "issues": []
       },
       {
         "id": "2.4.6",
@@ -503,8 +568,16 @@
         {
           "id": "author",
           "name": "Autor w metadanych",
-          "status": "Passed",
-          "details": [],
+          "status": "Warning",
+          "details": [
+            {
+              "code": "AUTHOR_MISSING",
+              "label": "Brak autora dokumentu",
+              "message": "Dokument nie ma autora w metadanych.",
+              "occurrences": 1,
+              "severity": "Warning"
+            }
+          ],
           "note": null
         },
         {
@@ -531,16 +604,8 @@
         {
           "id": "page-numbers",
           "name": "Numer strony w stopce albo nagłówku",
-          "status": "Warning",
-          "details": [
-            {
-              "code": "PAGE_NUMBERS_MISSING",
-              "label": "Brak numeru strony",
-              "message": "Ani stopka, ani nagłówek strony nie zawiera numeru strony (pole PAGE).",
-              "occurrences": 1,
-              "severity": "Warning"
-            }
-          ],
+          "status": "Passed",
+          "details": [],
           "note": null
         },
         {
@@ -836,6 +901,13 @@
               "message": "Margines prawy ma 70,9 pt, a wymagane jest 36 pt.",
               "occurrences": 1,
               "severity": "Warning"
+            },
+            {
+              "code": "PAGE_FORMAT_NOT_A4",
+              "label": "Strona inna niż A4",
+              "message": "Strona ma 216 × 279 mm, a wymagany jest format A4 (210 × 297 mm).",
+              "occurrences": 1,
+              "severity": "Warning"
             }
           ],
           "note": null
@@ -862,8 +934,8 @@
             {
               "code": "LINE_SPACING_MISMATCH",
               "label": "Interlinia inna niż 1,2",
-              "message": "1 akapit ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288).",
-              "occurrences": 1,
+              "message": "3 akapity mają interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288).",
+              "occurrences": 3,
               "severity": "Error"
             }
           ],
@@ -879,8 +951,16 @@
         {
           "id": "g02",
           "name": "G-02 Kolory tylko z palety, użyte zgodnie z przeznaczeniem",
-          "status": "Passed",
-          "details": [],
+          "status": "Warning",
+          "details": [
+            {
+              "code": "TEXT_COLOR_USAGE_MISMATCH",
+              "label": "Kolor z palety użyty niezgodnie z przeznaczeniem",
+              "message": "1 fragment tekstu ma kolor z palety użyty niezgodnie z przeznaczeniem (rozdz. 2 guidebooka).",
+              "occurrences": 1,
+              "severity": "Warning"
+            }
+          ],
           "note": null
         }
       ]
@@ -905,8 +985,8 @@
             {
               "code": "BODY_TEXT_SIZE_MISMATCH",
               "label": "Rozmiar tekstu podstawowego spoza standardu",
-              "message": "1 fragment tekstu podstawowego ma rozmiar spoza standardu; wymagane 10 pt (dopuszczalnie 12 albo 14 pt).",
-              "occurrences": 1,
+              "message": "2 fragmenty tekstu podstawowego mają rozmiar spoza standardu; wymagane 10 pt (dopuszczalnie 12 albo 14 pt).",
+              "occurrences": 2,
               "severity": "Error"
             }
           ],
@@ -994,6 +1074,13 @@
               "message": "Tabela 1: 1 wiersz może dzielić się między strony (brak „Nie dziel wiersza między stronami”).",
               "occurrences": 1,
               "severity": "Error"
+            },
+            {
+              "code": "TABLE_ROW_CAN_SPLIT",
+              "label": "Wiersz tabeli może dzielić się między strony",
+              "message": "Tabela 2: 3 wiersze mogą dzielić się między strony (brak „Nie dziel wiersza między stronami”).",
+              "occurrences": 1,
+              "severity": "Error"
             }
           ],
           "note": null
@@ -1011,9 +1098,30 @@
               "severity": "Error"
             },
             {
+              "code": "TABLE_ALIGNMENT_MISMATCH",
+              "label": "Wyrównanie w tabeli niezgodne ze standardem",
+              "message": "Tabela 2: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
+              "occurrences": 6,
+              "severity": "Error"
+            },
+            {
+              "code": "TABLE_BORDER_MISMATCH",
+              "label": "Krawędzie tabeli inne niż 1 pt czarne",
+              "message": "Tabela 3 nie ma wszystkich krawędzi 1 pt w kolorze #000000.",
+              "occurrences": 1,
+              "severity": "Error"
+            },
+            {
               "code": "TABLE_HEADER_NOT_BOLD",
               "label": "Nagłówek tabeli bez pogrubienia",
               "message": "Tabela 1: 2 komórki nagłówka nie są pogrubione.",
+              "occurrences": 2,
+              "severity": "Error"
+            },
+            {
+              "code": "TABLE_HEADER_NOT_BOLD",
+              "label": "Nagłówek tabeli bez pogrubienia",
+              "message": "Tabela 2: 2 komórki nagłówka nie są pogrubione.",
               "occurrences": 2,
               "severity": "Error"
             }
@@ -1051,8 +1159,16 @@
         {
           "id": "g11",
           "name": "G-11 Stopka SUN Me 8 pt #696969 interlinia 1,2, numer i tytuł, bez stopki na stronie tytułowej",
-          "status": "Passed",
-          "details": [],
+          "status": "Warning",
+          "details": [
+            {
+              "code": "FOOTER_TITLE_MISSING",
+              "label": "Stopka bez tytułu dokumentu",
+              "message": "Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”.",
+              "occurrences": 1,
+              "severity": "Warning"
+            }
+          ],
           "note": null
         },
         {
@@ -1285,6 +1401,160 @@
     },
     {
       "index": 6,
+      "code": "TABLE_ALIGNMENT_MISMATCH",
+      "label": "Wyrównanie w tabeli niezgodne ze standardem",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Tabela 2: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:TableCell:1:0",
+        "kind": "TableCell",
+        "story": "body",
+        "index": 1,
+        "subIndex": 0,
+        "snippet": "Rodzaj prowizji"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 6
+    },
+    {
+      "index": 7,
+      "code": "TABLE_ALIGNMENT_MISMATCH",
+      "label": "Wyrównanie w tabeli niezgodne ze standardem",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Tabela 2: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:TableCell:1:1",
+        "kind": "TableCell",
+        "story": "body",
+        "index": 1,
+        "subIndex": 1,
+        "snippet": "Stawka"
+      },
+      "occurrence": 2,
+      "occurrenceCount": 6
+    },
+    {
+      "index": 8,
+      "code": "TABLE_ALIGNMENT_MISMATCH",
+      "label": "Wyrównanie w tabeli niezgodne ze standardem",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Tabela 2: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:TableCell:1:2",
+        "kind": "TableCell",
+        "story": "body",
+        "index": 1,
+        "subIndex": 2,
+        "snippet": "Za udzielenie kredytu"
+      },
+      "occurrence": 3,
+      "occurrenceCount": 6
+    },
+    {
+      "index": 9,
+      "code": "TABLE_ALIGNMENT_MISMATCH",
+      "label": "Wyrównanie w tabeli niezgodne ze standardem",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Tabela 2: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:TableCell:1:3",
+        "kind": "TableCell",
+        "story": "body",
+        "index": 1,
+        "subIndex": 3,
+        "snippet": "1,5%"
+      },
+      "occurrence": 4,
+      "occurrenceCount": 6
+    },
+    {
+      "index": 10,
+      "code": "TABLE_ALIGNMENT_MISMATCH",
+      "label": "Wyrównanie w tabeli niezgodne ze standardem",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Tabela 2: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:TableCell:1:4",
+        "kind": "TableCell",
+        "story": "body",
+        "index": 1,
+        "subIndex": 4,
+        "snippet": "Za wcześniejszą spłatę"
+      },
+      "occurrence": 5,
+      "occurrenceCount": 6
+    },
+    {
+      "index": 11,
+      "code": "TABLE_ALIGNMENT_MISMATCH",
+      "label": "Wyrównanie w tabeli niezgodne ze standardem",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Tabela 2: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:TableCell:1:5",
+        "kind": "TableCell",
+        "story": "body",
+        "index": 1,
+        "subIndex": 5,
+        "snippet": "0,5%"
+      },
+      "occurrence": 6,
+      "occurrenceCount": 6
+    },
+    {
+      "index": 12,
+      "code": "TABLE_BORDER_MISMATCH",
+      "label": "Krawędzie tabeli inne niż 1 pt czarne",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Tabela 3 nie ma wszystkich krawędzi 1 pt w kolorze #000000.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Table:2",
+        "kind": "Table",
+        "story": "body",
+        "index": 2,
+        "subIndex": null,
+        "snippet": "tabela 3"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1
+    },
+    {
+      "index": 13,
       "code": "TABLE_EMPTY_CELL",
       "label": "Pusta komórka tabeli",
       "severity": "Error",
@@ -1306,7 +1576,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 7,
+      "index": 14,
       "code": "TABLE_HEADER_NOT_BOLD",
       "label": "Nagłówek tabeli bez pogrubienia",
       "severity": "Error",
@@ -1328,7 +1598,7 @@
       "occurrenceCount": 2
     },
     {
-      "index": 8,
+      "index": 15,
       "code": "TABLE_HEADER_NOT_BOLD",
       "label": "Nagłówek tabeli bez pogrubienia",
       "severity": "Error",
@@ -1350,7 +1620,51 @@
       "occurrenceCount": 2
     },
     {
-      "index": 9,
+      "index": 16,
+      "code": "TABLE_HEADER_NOT_BOLD",
+      "label": "Nagłówek tabeli bez pogrubienia",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Tabela 2: 2 komórki nagłówka nie są pogrubione.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:TableCell:1:0",
+        "kind": "TableCell",
+        "story": "body",
+        "index": 1,
+        "subIndex": 0,
+        "snippet": "Rodzaj prowizji"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 2
+    },
+    {
+      "index": 17,
+      "code": "TABLE_HEADER_NOT_BOLD",
+      "label": "Nagłówek tabeli bez pogrubienia",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Tabela 2: 2 komórki nagłówka nie są pogrubione.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:TableCell:1:1",
+        "kind": "TableCell",
+        "story": "body",
+        "index": 1,
+        "subIndex": 1,
+        "snippet": "Stawka"
+      },
+      "occurrence": 2,
+      "occurrenceCount": 2
+    },
+    {
+      "index": 18,
       "code": "TABLE_ROW_CAN_SPLIT",
       "label": "Wiersz tabeli może dzielić się między strony",
       "severity": "Error",
@@ -1372,7 +1686,29 @@
       "occurrenceCount": 1
     },
     {
-      "index": 10,
+      "index": 19,
+      "code": "TABLE_ROW_CAN_SPLIT",
+      "label": "Wiersz tabeli może dzielić się między strony",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Tabela 2: 3 wiersze mogą dzielić się między strony (brak „Nie dziel wiersza między stronami”).",
+      "fixable": true,
+      "criteria": [],
+      "location": {
+        "key": "body:Table:1",
+        "kind": "Table",
+        "story": "body",
+        "index": 1,
+        "subIndex": null,
+        "snippet": "tabela 2"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1
+    },
+    {
+      "index": 20,
       "code": "LIST_BULLET_COLOR_MISMATCH",
       "label": "Punktor w niedozwolonym kolorze",
       "severity": "Error",
@@ -1383,10 +1719,10 @@
       "fixable": false,
       "criteria": [],
       "location": {
-        "key": "body:Paragraph:10",
+        "key": "body:Paragraph:12",
         "kind": "Paragraph",
         "story": "body",
-        "index": 10,
+        "index": 12,
         "subIndex": null,
         "snippet": "pozycja z zielonym punktorem, (punktor #00AA00)"
       },
@@ -1394,7 +1730,7 @@
       "occurrenceCount": 2
     },
     {
-      "index": 11,
+      "index": 21,
       "code": "LIST_BULLET_COLOR_MISMATCH",
       "label": "Punktor w niedozwolonym kolorze",
       "severity": "Error",
@@ -1405,10 +1741,10 @@
       "fixable": false,
       "criteria": [],
       "location": {
-        "key": "body:Paragraph:11",
+        "key": "body:Paragraph:13",
         "kind": "Paragraph",
         "story": "body",
-        "index": 11,
+        "index": 13,
         "subIndex": null,
         "snippet": "druga pozycja z zielonym punktorem. (punktor #00AA00)"
       },
@@ -1416,7 +1752,7 @@
       "occurrenceCount": 2
     },
     {
-      "index": 12,
+      "index": 22,
       "code": "TITLE_MISSING",
       "label": "Brak tytułu dokumentu",
       "severity": "Error",
@@ -1440,51 +1776,117 @@
       "occurrenceCount": 1
     },
     {
-      "index": 13,
+      "index": 23,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Error",
       "category": "Quality",
       "standard": "firmowy/2.0",
       "standardName": "Standard pism firmowych 2.0",
-      "message": "1 fragment tekstu podstawowego ma rozmiar spoza standardu; wymagane 10 pt (dopuszczalnie 12 albo 14 pt).",
+      "message": "2 fragmenty tekstu podstawowego mają rozmiar spoza standardu; wymagane 10 pt (dopuszczalnie 12 albo 14 pt).",
       "fixable": false,
       "criteria": [],
       "location": {
-        "key": "body:Run:22:0",
+        "key": "body:Run:42:0",
         "kind": "Run",
         "story": "body",
-        "index": 22,
+        "index": 42,
         "subIndex": 0,
         "snippet": "Example Company S. A. z siedzibą w Warsz… (8 pt)"
       },
       "occurrence": 1,
-      "occurrenceCount": 1
+      "occurrenceCount": 2
     },
     {
-      "index": 14,
+      "index": 24,
+      "code": "BODY_TEXT_SIZE_MISMATCH",
+      "label": "Rozmiar tekstu podstawowego spoza standardu",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "2 fragmenty tekstu podstawowego mają rozmiar spoza standardu; wymagane 10 pt (dopuszczalnie 12 albo 14 pt).",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Run:43:0",
+        "kind": "Run",
+        "story": "body",
+        "index": 43,
+        "subIndex": 0,
+        "snippet": "Example Company S. A., oddział w Krakowi… (9 pt)"
+      },
+      "occurrence": 2,
+      "occurrenceCount": 2
+    },
+    {
+      "index": 25,
       "code": "LINE_SPACING_MISMATCH",
       "label": "Interlinia inna niż 1,2",
       "severity": "Error",
       "category": "Quality",
       "standard": "firmowy/2.0",
       "standardName": "Standard pism firmowych 2.0",
-      "message": "1 akapit ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288).",
+      "message": "3 akapity mają interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288).",
       "fixable": false,
       "criteria": [],
       "location": {
-        "key": "body:Paragraph:22",
+        "key": "body:Paragraph:42",
         "kind": "Paragraph",
         "story": "body",
-        "index": 22,
+        "index": 42,
         "subIndex": null,
         "snippet": "Example Company S. A. z siedzibą w Warsz… (interlinia 1,5)"
       },
       "occurrence": 1,
-      "occurrenceCount": 1
+      "occurrenceCount": 3
     },
     {
-      "index": 15,
+      "index": 26,
+      "code": "LINE_SPACING_MISMATCH",
+      "label": "Interlinia inna niż 1,2",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "3 akapity mają interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288).",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:43",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 43,
+        "subIndex": null,
+        "snippet": "Example Company S. A., oddział w Krakowi… (interlinia 1,5)"
+      },
+      "occurrence": 2,
+      "occurrenceCount": 3
+    },
+    {
+      "index": 27,
+      "code": "LINE_SPACING_MISMATCH",
+      "label": "Interlinia inna niż 1,2",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "3 akapity mają interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288).",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "footer/3:Paragraph:1",
+        "kind": "Paragraph",
+        "story": "footer/3",
+        "index": 1,
+        "subIndex": null,
+        "snippet": "Example Company S. A. z siedzibą w Warsz… (interlinia 1,5)"
+      },
+      "occurrence": 3,
+      "occurrenceCount": 3
+    },
+    {
+      "index": 28,
       "code": "HEADING_LEVEL_SKIPPED",
       "label": "Pominięty poziom nagłówka",
       "severity": "Warning",
@@ -1497,10 +1899,10 @@
         "1.3.1"
       ],
       "location": {
-        "key": "body:Paragraph:5",
+        "key": "body:Paragraph:7",
         "kind": "Paragraph",
         "story": "body",
-        "index": 5,
+        "index": 7,
         "subIndex": null,
         "snippet": "Listy z nadpisaniami"
       },
@@ -1508,7 +1910,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 16,
+      "index": 29,
       "code": "VARIANT_SLASH_ALTERNATIVE",
       "label": "Alternatywa z ukośnikiem zamiast [lub]",
       "severity": "Warning",
@@ -1530,22 +1932,20 @@
       "occurrenceCount": 1
     },
     {
-      "index": 17,
-      "code": "PAGE_NUMBERS_MISSING",
-      "label": "Brak numeru strony",
+      "index": 30,
+      "code": "FOOTER_TITLE_MISSING",
+      "label": "Stopka bez tytułu dokumentu",
       "severity": "Warning",
       "category": "Structure",
-      "standard": "wcag/2.1",
-      "standardName": "WCAG 2.1 AA (dokument Word)",
-      "message": "Ani stopka, ani nagłówek strony nie zawiera numeru strony (pole PAGE).",
-      "fixable": true,
-      "criteria": [
-        "2.4.5"
-      ],
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”.",
+      "fixable": false,
+      "criteria": [],
       "location": {
-        "key": "body:Document:0",
-        "kind": "Document",
-        "story": "body",
+        "key": "footer/1:Paragraph:0",
+        "kind": "Paragraph",
+        "story": "footer/1",
         "index": 0,
         "subIndex": null,
         "snippet": "(stopka)"
@@ -1554,7 +1954,29 @@
       "occurrenceCount": 1
     },
     {
-      "index": 18,
+      "index": 31,
+      "code": "AUTHOR_MISSING",
+      "label": "Brak autora dokumentu",
+      "severity": "Warning",
+      "category": "Metadata",
+      "standard": "wcag/2.1",
+      "standardName": "WCAG 2.1 AA (dokument Word)",
+      "message": "Dokument nie ma autora w metadanych.",
+      "fixable": true,
+      "criteria": [],
+      "location": {
+        "key": "body:Document:0",
+        "kind": "Document",
+        "story": "body",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "(metadane dokumentu)"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1
+    },
+    {
+      "index": 32,
       "code": "INVALID_MARGINS",
       "label": "Marginesy inne niż wymagane",
       "severity": "Warning",
@@ -1576,7 +1998,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 19,
+      "index": 33,
       "code": "INVALID_MARGINS",
       "label": "Marginesy inne niż wymagane",
       "severity": "Warning",
@@ -1598,7 +2020,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 20,
+      "index": 34,
       "code": "INVALID_MARGINS",
       "label": "Marginesy inne niż wymagane",
       "severity": "Warning",
@@ -1620,7 +2042,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 21,
+      "index": 35,
       "code": "INVALID_MARGINS",
       "label": "Marginesy inne niż wymagane",
       "severity": "Warning",
@@ -1642,7 +2064,51 @@
       "occurrenceCount": 1
     },
     {
-      "index": 22,
+      "index": 36,
+      "code": "PAGE_FORMAT_NOT_A4",
+      "label": "Strona inna niż A4",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Strona ma 216 × 279 mm, a wymagany jest format A4 (210 × 297 mm).",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Document:0",
+        "kind": "Document",
+        "story": "body",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "(ustawienia strony)"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1
+    },
+    {
+      "index": 37,
+      "code": "TEXT_COLOR_USAGE_MISMATCH",
+      "label": "Kolor z palety użyty niezgodnie z przeznaczeniem",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "1 fragment tekstu ma kolor z palety użyty niezgodnie z przeznaczeniem (rozdz. 2 guidebooka).",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Run:43:0",
+        "kind": "Run",
+        "story": "body",
+        "index": 43,
+        "subIndex": 0,
+        "snippet": "Example Company S. A., oddział w Krakowi… (szary #696969 jest zarezerwowany dla stopki i danych rejestrowych (8 pt))"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1
+    },
+    {
+      "index": 38,
       "code": "MANUAL_CHECK_SUGGESTED",
       "label": "Zalecane sprawdzenie ręczne",
       "severity": "Info",

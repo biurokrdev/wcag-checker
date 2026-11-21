@@ -1,6 +1,6 @@
 {
   "status": "Invalid",
-  "summary": "1 błąd, 7 ostrzeżeń, 1 informacja.",
+  "summary": "1 błąd, 6 ostrzeżeń, 1 informacja.",
   "standards": [
     {
       "key": "wcag/2.1",
@@ -22,16 +22,16 @@
   "document": {
     "fileName": "audit20-gaps.docx",
     "title": null,
-    "author": "Example Company S. A.",
+    "author": null,
     "language": "pl-PL",
-    "paragraphs": 23,
-    "headings": 4,
-    "tables": 1,
+    "paragraphs": 54,
+    "headings": 7,
+    "tables": 3,
     "images": 0
   },
   "counts": {
     "errors": 1,
-    "warnings": 7,
+    "warnings": 6,
     "infos": 1
   },
   "issues": [
@@ -54,21 +54,12 @@
       "fixable": false
     },
     {
-      "code": "PAGE_NUMBERS_MISSING",
-      "label": "Brak numeru strony",
-      "severity": "Warning",
-      "category": "Structure",
-      "message": "Ani stopka, ani nagłówek strony nie zawiera numeru strony (pole PAGE).",
-      "standard": "wcag/2.1",
-      "fixable": true
-    },
-    {
-      "code": "AUTHOR_PHRASE_MISSING",
-      "label": "Autor bez wymaganej nazwy instytucji",
+      "code": "AUTHOR_MISSING",
+      "label": "Brak autora dokumentu",
       "severity": "Warning",
       "category": "Metadata",
-      "message": "Autor „Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”.",
-      "standard": "firmowy/1.9",
+      "message": "Dokument nie ma autora w metadanych.",
+      "standard": "wcag/2.1",
       "fixable": true
     },
     {
@@ -133,6 +124,18 @@
     {
       "level": 2,
       "text": "Dane rejestrowe"
+    },
+    {
+      "level": 2,
+      "text": "Stopka i format strony"
+    },
+    {
+      "level": 2,
+      "text": "Stopka w innej postaci"
+    },
+    {
+      "level": 2,
+      "text": "Stopka wzorcowa"
     }
   ],
   "wcag": {
@@ -321,17 +324,7 @@
           "PAGE_NUMBERS_MISSING"
         ],
         "note": "Spis treści w długim dokumencie i numery stron.",
-        "issues": [
-          {
-            "code": "PAGE_NUMBERS_MISSING",
-            "label": "Brak numeru strony",
-            "severity": "Warning",
-            "category": "Structure",
-            "message": "Ani stopka, ani nagłówek strony nie zawiera numeru strony (pole PAGE).",
-            "standard": "wcag/2.1",
-            "fixable": true
-          }
-        ]
+        "issues": []
       },
       {
         "id": "2.4.6",
@@ -440,8 +433,16 @@
         {
           "id": "author",
           "name": "Autor w metadanych",
-          "status": "Passed",
-          "details": [],
+          "status": "Warning",
+          "details": [
+            {
+              "code": "AUTHOR_MISSING",
+              "label": "Brak autora dokumentu",
+              "message": "Dokument nie ma autora w metadanych.",
+              "occurrences": 1,
+              "severity": "Warning"
+            }
+          ],
           "note": null
         },
         {
@@ -468,16 +469,8 @@
         {
           "id": "page-numbers",
           "name": "Numer strony w stopce albo nagłówku",
-          "status": "Warning",
-          "details": [
-            {
-              "code": "PAGE_NUMBERS_MISSING",
-              "label": "Brak numeru strony",
-              "message": "Ani stopka, ani nagłówek strony nie zawiera numeru strony (pole PAGE).",
-              "occurrences": 1,
-              "severity": "Warning"
-            }
-          ],
+          "status": "Passed",
+          "details": [],
           "note": null
         },
         {
@@ -744,16 +737,8 @@
         {
           "id": "phrase",
           "name": "Fraza „SUN Example Company S. A.” w tytule i autorze",
-          "status": "Warning",
-          "details": [
-            {
-              "code": "AUTHOR_PHRASE_MISSING",
-              "label": "Autor bez wymaganej nazwy instytucji",
-              "message": "Autor „Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”.",
-              "occurrences": 1,
-              "severity": "Warning"
-            }
-          ],
+          "status": "Passed",
+          "details": [],
           "note": null
         },
         {
@@ -834,10 +819,10 @@
         "1.3.1"
       ],
       "location": {
-        "key": "body:Paragraph:5",
+        "key": "body:Paragraph:7",
         "kind": "Paragraph",
         "story": "body",
-        "index": 5,
+        "index": 7,
         "subIndex": null,
         "snippet": "Listy z nadpisaniami"
       },
@@ -846,37 +831,13 @@
     },
     {
       "index": 2,
-      "code": "PAGE_NUMBERS_MISSING",
-      "label": "Brak numeru strony",
-      "severity": "Warning",
-      "category": "Structure",
-      "standard": "wcag/2.1",
-      "standardName": "WCAG 2.1 AA (dokument Word)",
-      "message": "Ani stopka, ani nagłówek strony nie zawiera numeru strony (pole PAGE).",
-      "fixable": true,
-      "criteria": [
-        "2.4.5"
-      ],
-      "location": {
-        "key": "body:Document:0",
-        "kind": "Document",
-        "story": "body",
-        "index": 0,
-        "subIndex": null,
-        "snippet": "(stopka)"
-      },
-      "occurrence": 1,
-      "occurrenceCount": 1
-    },
-    {
-      "index": 3,
-      "code": "AUTHOR_PHRASE_MISSING",
-      "label": "Autor bez wymaganej nazwy instytucji",
+      "code": "AUTHOR_MISSING",
+      "label": "Brak autora dokumentu",
       "severity": "Warning",
       "category": "Metadata",
-      "standard": "firmowy/1.9",
-      "standardName": "Standard pism firmowych 1.9",
-      "message": "Autor „Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”.",
+      "standard": "wcag/2.1",
+      "standardName": "WCAG 2.1 AA (dokument Word)",
+      "message": "Dokument nie ma autora w metadanych.",
       "fixable": true,
       "criteria": [],
       "location": {
@@ -891,7 +852,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 4,
+      "index": 3,
       "code": "INVALID_MARGINS",
       "label": "Marginesy inne niż wymagane",
       "severity": "Warning",
@@ -913,7 +874,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 5,
+      "index": 4,
       "code": "INVALID_MARGINS",
       "label": "Marginesy inne niż wymagane",
       "severity": "Warning",
@@ -935,7 +896,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 6,
+      "index": 5,
       "code": "INVALID_MARGINS",
       "label": "Marginesy inne niż wymagane",
       "severity": "Warning",
@@ -957,7 +918,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 7,
+      "index": 6,
       "code": "INVALID_MARGINS",
       "label": "Marginesy inne niż wymagane",
       "severity": "Warning",
@@ -979,7 +940,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 8,
+      "index": 7,
       "code": "MANUAL_CHECK_SUGGESTED",
       "label": "Zalecane sprawdzenie ręczne",
       "severity": "Info",

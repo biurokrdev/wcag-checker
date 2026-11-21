@@ -14,11 +14,11 @@
   "document": {
     "fileName": "audit20-gaps.docx",
     "title": null,
-    "author": "Example Company S. A.",
+    "author": null,
     "language": "pl-PL",
-    "paragraphs": 23,
-    "headings": 4,
-    "tables": 1,
+    "paragraphs": 54,
+    "headings": 7,
+    "tables": 3,
     "images": 0
   },
   "counts": {
@@ -46,11 +46,11 @@
       "fixable": false
     },
     {
-      "code": "PAGE_NUMBERS_MISSING",
-      "label": "Brak numeru strony",
+      "code": "AUTHOR_MISSING",
+      "label": "Brak autora dokumentu",
       "severity": "Warning",
-      "category": "Structure",
-      "message": "Ani stopka, ani nagłówek strony nie zawiera numeru strony (pole PAGE).",
+      "category": "Metadata",
+      "message": "Dokument nie ma autora w metadanych.",
       "standard": "wcag/2.1",
       "fixable": true
     },
@@ -80,6 +80,18 @@
     {
       "level": 2,
       "text": "Dane rejestrowe"
+    },
+    {
+      "level": 2,
+      "text": "Stopka i format strony"
+    },
+    {
+      "level": 2,
+      "text": "Stopka w innej postaci"
+    },
+    {
+      "level": 2,
+      "text": "Stopka wzorcowa"
     }
   ],
   "wcag": {
@@ -268,17 +280,7 @@
           "PAGE_NUMBERS_MISSING"
         ],
         "note": "Spis treści w długim dokumencie i numery stron.",
-        "issues": [
-          {
-            "code": "PAGE_NUMBERS_MISSING",
-            "label": "Brak numeru strony",
-            "severity": "Warning",
-            "category": "Structure",
-            "message": "Ani stopka, ani nagłówek strony nie zawiera numeru strony (pole PAGE).",
-            "standard": "wcag/2.1",
-            "fixable": true
-          }
-        ]
+        "issues": []
       },
       {
         "id": "2.4.6",
@@ -387,8 +389,16 @@
         {
           "id": "author",
           "name": "Autor w metadanych",
-          "status": "Passed",
-          "details": [],
+          "status": "Warning",
+          "details": [
+            {
+              "code": "AUTHOR_MISSING",
+              "label": "Brak autora dokumentu",
+              "message": "Dokument nie ma autora w metadanych.",
+              "occurrences": 1,
+              "severity": "Warning"
+            }
+          ],
           "note": null
         },
         {
@@ -415,16 +425,8 @@
         {
           "id": "page-numbers",
           "name": "Numer strony w stopce albo nagłówku",
-          "status": "Warning",
-          "details": [
-            {
-              "code": "PAGE_NUMBERS_MISSING",
-              "label": "Brak numeru strony",
-              "message": "Ani stopka, ani nagłówek strony nie zawiera numeru strony (pole PAGE).",
-              "occurrences": 1,
-              "severity": "Warning"
-            }
-          ],
+          "status": "Passed",
+          "details": [],
           "note": null
         },
         {
@@ -723,10 +725,10 @@
         "1.3.1"
       ],
       "location": {
-        "key": "body:Paragraph:5",
+        "key": "body:Paragraph:7",
         "kind": "Paragraph",
         "story": "body",
-        "index": 5,
+        "index": 7,
         "subIndex": null,
         "snippet": "Listy z nadpisaniami"
       },
@@ -735,24 +737,22 @@
     },
     {
       "index": 2,
-      "code": "PAGE_NUMBERS_MISSING",
-      "label": "Brak numeru strony",
+      "code": "AUTHOR_MISSING",
+      "label": "Brak autora dokumentu",
       "severity": "Warning",
-      "category": "Structure",
+      "category": "Metadata",
       "standard": "wcag/2.1",
       "standardName": "WCAG 2.1 AA (dokument Word)",
-      "message": "Ani stopka, ani nagłówek strony nie zawiera numeru strony (pole PAGE).",
+      "message": "Dokument nie ma autora w metadanych.",
       "fixable": true,
-      "criteria": [
-        "2.4.5"
-      ],
+      "criteria": [],
       "location": {
         "key": "body:Document:0",
         "kind": "Document",
         "story": "body",
         "index": 0,
         "subIndex": null,
-        "snippet": "(stopka)"
+        "snippet": "(metadane dokumentu)"
       },
       "occurrence": 1,
       "occurrenceCount": 1

@@ -1,6 +1,6 @@
 {
   "outcome": "Invalid",
-  "summary": "7 błędów, 6 ostrzeżeń.",
+  "summary": "11 błędów, 9 ostrzeżeń.",
   "standards": [
     {
       "key": "firmowy/2.0",
@@ -12,11 +12,10 @@
     }
   ],
   "document": {
-    "author": "Example Company S. A.",
     "language": "pl-PL",
-    "paragraphs": 23,
-    "headings": 4,
-    "tables": 1,
+    "paragraphs": 54,
+    "headings": 7,
+    "tables": 3,
     "images": 0
   },
   "outline": [
@@ -35,6 +34,18 @@
     {
       "level": 2,
       "text": "Dane rejestrowe"
+    },
+    {
+      "level": 2,
+      "text": "Stopka i format strony"
+    },
+    {
+      "level": 2,
+      "text": "Stopka w innej postaci"
+    },
+    {
+      "level": 2,
+      "text": "Stopka wzorcowa"
     }
   ],
   "issues": [
@@ -72,6 +83,52 @@
       ]
     },
     {
+      "code": "TABLE_ALIGNMENT_MISMATCH",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "message": "Tabela 2: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
+      "locations": [
+        {
+          "key": "body:TableCell:1:0",
+          "snippet": "Rodzaj prowizji"
+        },
+        {
+          "key": "body:TableCell:1:1",
+          "snippet": "Stawka"
+        },
+        {
+          "key": "body:TableCell:1:2",
+          "snippet": "Za udzielenie kredytu"
+        },
+        {
+          "key": "body:TableCell:1:3",
+          "snippet": "1,5%"
+        },
+        {
+          "key": "body:TableCell:1:4",
+          "snippet": "Za wcześniejszą spłatę"
+        },
+        {
+          "key": "body:TableCell:1:5",
+          "snippet": "0,5%"
+        }
+      ]
+    },
+    {
+      "code": "TABLE_BORDER_MISMATCH",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "message": "Tabela 3 nie ma wszystkich krawędzi 1 pt w kolorze #000000.",
+      "locations": [
+        {
+          "key": "body:Table:2",
+          "snippet": "tabela 3"
+        }
+      ]
+    },
+    {
       "code": "TABLE_EMPTY_CELL",
       "severity": "Error",
       "category": "Tables",
@@ -102,6 +159,23 @@
       ]
     },
     {
+      "code": "TABLE_HEADER_NOT_BOLD",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "message": "Tabela 2: 2 komórki nagłówka nie są pogrubione.",
+      "locations": [
+        {
+          "key": "body:TableCell:1:0",
+          "snippet": "Rodzaj prowizji"
+        },
+        {
+          "key": "body:TableCell:1:1",
+          "snippet": "Stawka"
+        }
+      ]
+    },
+    {
       "code": "TABLE_ROW_CAN_SPLIT",
       "severity": "Error",
       "category": "Tables",
@@ -115,6 +189,19 @@
       ]
     },
     {
+      "code": "TABLE_ROW_CAN_SPLIT",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "message": "Tabela 2: 3 wiersze mogą dzielić się między strony (brak „Nie dziel wiersza między stronami”).",
+      "locations": [
+        {
+          "key": "body:Table:1",
+          "snippet": "tabela 2"
+        }
+      ]
+    },
+    {
       "code": "LIST_BULLET_COLOR_MISMATCH",
       "severity": "Error",
       "category": "Lists",
@@ -122,11 +209,11 @@
       "message": "2 pozycje listy mają punktor w kolorze spoza #FF6200 i #000000.",
       "locations": [
         {
-          "key": "body:Paragraph:10",
+          "key": "body:Paragraph:12",
           "snippet": "pozycja z zielonym punktorem, (punktor #00AA00)"
         },
         {
-          "key": "body:Paragraph:11",
+          "key": "body:Paragraph:13",
           "snippet": "druga pozycja z zielonym punktorem. (punktor #00AA00)"
         }
       ]
@@ -136,11 +223,15 @@
       "severity": "Error",
       "category": "Quality",
       "standard": "firmowy/2.0",
-      "message": "1 fragment tekstu podstawowego ma rozmiar spoza standardu; wymagane 10 pt (dopuszczalnie 12 albo 14 pt).",
+      "message": "2 fragmenty tekstu podstawowego mają rozmiar spoza standardu; wymagane 10 pt (dopuszczalnie 12 albo 14 pt).",
       "locations": [
         {
-          "key": "body:Run:22:0",
+          "key": "body:Run:42:0",
           "snippet": "Example Company S. A. z siedzibą w Warsz… (8 pt)"
+        },
+        {
+          "key": "body:Run:43:0",
+          "snippet": "Example Company S. A., oddział w Krakowi… (9 pt)"
         }
       ]
     },
@@ -149,10 +240,18 @@
       "severity": "Error",
       "category": "Quality",
       "standard": "firmowy/2.0",
-      "message": "1 akapit ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288).",
+      "message": "3 akapity mają interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288).",
       "locations": [
         {
-          "key": "body:Paragraph:22",
+          "key": "body:Paragraph:42",
+          "snippet": "Example Company S. A. z siedzibą w Warsz… (interlinia 1,5)"
+        },
+        {
+          "key": "body:Paragraph:43",
+          "snippet": "Example Company S. A., oddział w Krakowi… (interlinia 1,5)"
+        },
+        {
+          "key": "footer/3:Paragraph:1",
           "snippet": "Example Company S. A. z siedzibą w Warsz… (interlinia 1,5)"
         }
       ]
@@ -165,7 +264,7 @@
       "message": "Nagłówek „Listy z nadpisaniami” ma poziom 3 zaraz po poziomie 1; pominięto poziom 2.",
       "locations": [
         {
-          "key": "body:Paragraph:5",
+          "key": "body:Paragraph:7",
           "snippet": "Listy z nadpisaniami"
         }
       ]
@@ -180,6 +279,19 @@
         {
           "key": "body:Paragraph:3",
           "snippet": "PLN / EUR"
+        }
+      ]
+    },
+    {
+      "code": "FOOTER_TITLE_MISSING",
+      "severity": "Warning",
+      "category": "Structure",
+      "standard": "firmowy/2.0",
+      "message": "Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”.",
+      "locations": [
+        {
+          "key": "footer/1:Paragraph:0",
+          "snippet": "(stopka)"
         }
       ]
     },
@@ -232,6 +344,32 @@
         {
           "key": "body:Document:0",
           "snippet": "(ustawienia strony)"
+        }
+      ]
+    },
+    {
+      "code": "PAGE_FORMAT_NOT_A4",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "message": "Strona ma 216 × 279 mm, a wymagany jest format A4 (210 × 297 mm).",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": "(ustawienia strony)"
+        }
+      ]
+    },
+    {
+      "code": "TEXT_COLOR_USAGE_MISMATCH",
+      "severity": "Warning",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "message": "1 fragment tekstu ma kolor z palety użyty niezgodnie z przeznaczeniem (rozdz. 2 guidebooka).",
+      "locations": [
+        {
+          "key": "body:Run:43:0",
+          "snippet": "Example Company S. A., oddział w Krakowi… (szary #696969 jest zarezerwowany dla stopki i danych rejestrowych (8 pt))"
         }
       ]
     }

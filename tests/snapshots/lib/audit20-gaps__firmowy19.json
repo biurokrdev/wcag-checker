@@ -1,6 +1,6 @@
 {
   "outcome": "Valid",
-  "summary": "5 ostrzeżeń.",
+  "summary": "4 ostrzeżenia.",
   "standards": [
     {
       "key": "firmowy/1.9",
@@ -11,11 +11,10 @@
     }
   ],
   "document": {
-    "author": "Example Company S. A.",
     "language": "pl-PL",
-    "paragraphs": 23,
-    "headings": 4,
-    "tables": 1,
+    "paragraphs": 54,
+    "headings": 7,
+    "tables": 3,
     "images": 0
   },
   "outline": [
@@ -34,22 +33,21 @@
     {
       "level": 2,
       "text": "Dane rejestrowe"
+    },
+    {
+      "level": 2,
+      "text": "Stopka i format strony"
+    },
+    {
+      "level": 2,
+      "text": "Stopka w innej postaci"
+    },
+    {
+      "level": 2,
+      "text": "Stopka wzorcowa"
     }
   ],
   "issues": [
-    {
-      "code": "AUTHOR_PHRASE_MISSING",
-      "severity": "Warning",
-      "category": "Metadata",
-      "standard": "firmowy/1.9",
-      "message": "Autor „Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”.",
-      "locations": [
-        {
-          "key": "body:Document:0",
-          "snippet": "(metadane dokumentu)"
-        }
-      ]
-    },
     {
       "code": "INVALID_MARGINS",
       "severity": "Warning",

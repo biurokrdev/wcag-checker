@@ -1,6 +1,6 @@
 {
   "status": "Valid",
-  "summary": "5 ostrzeżeń.",
+  "summary": "4 ostrzeżenia.",
   "standards": [
     {
       "key": "firmowy/1.9",
@@ -14,28 +14,19 @@
   "document": {
     "fileName": "audit20-gaps.docx",
     "title": null,
-    "author": "Example Company S. A.",
+    "author": null,
     "language": "pl-PL",
-    "paragraphs": 23,
-    "headings": 4,
-    "tables": 1,
+    "paragraphs": 54,
+    "headings": 7,
+    "tables": 3,
     "images": 0
   },
   "counts": {
     "errors": 0,
-    "warnings": 5,
+    "warnings": 4,
     "infos": 0
   },
   "issues": [
-    {
-      "code": "AUTHOR_PHRASE_MISSING",
-      "label": "Autor bez wymaganej nazwy instytucji",
-      "severity": "Warning",
-      "category": "Metadata",
-      "message": "Autor „Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”.",
-      "standard": "firmowy/1.9",
-      "fixable": true
-    },
     {
       "code": "INVALID_MARGINS",
       "label": "Marginesy inne niż wymagane",
@@ -89,6 +80,18 @@
     {
       "level": 2,
       "text": "Dane rejestrowe"
+    },
+    {
+      "level": 2,
+      "text": "Stopka i format strony"
+    },
+    {
+      "level": 2,
+      "text": "Stopka w innej postaci"
+    },
+    {
+      "level": 2,
+      "text": "Stopka wzorcowa"
     }
   ],
   "wcag": null,
@@ -102,16 +105,8 @@
         {
           "id": "phrase",
           "name": "Fraza „SUN Example Company S. A.” w tytule i autorze",
-          "status": "Warning",
-          "details": [
-            {
-              "code": "AUTHOR_PHRASE_MISSING",
-              "label": "Autor bez wymaganej nazwy instytucji",
-              "message": "Autor „Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”.",
-              "occurrences": 1,
-              "severity": "Warning"
-            }
-          ],
+          "status": "Passed",
+          "details": [],
           "note": null
         },
         {
@@ -156,28 +151,6 @@
   "findings": [
     {
       "index": 0,
-      "code": "AUTHOR_PHRASE_MISSING",
-      "label": "Autor bez wymaganej nazwy instytucji",
-      "severity": "Warning",
-      "category": "Metadata",
-      "standard": "firmowy/1.9",
-      "standardName": "Standard pism firmowych 1.9",
-      "message": "Autor „Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”.",
-      "fixable": true,
-      "criteria": [],
-      "location": {
-        "key": "body:Document:0",
-        "kind": "Document",
-        "story": "body",
-        "index": 0,
-        "subIndex": null,
-        "snippet": "(metadane dokumentu)"
-      },
-      "occurrence": 1,
-      "occurrenceCount": 1
-    },
-    {
-      "index": 1,
       "code": "INVALID_MARGINS",
       "label": "Marginesy inne niż wymagane",
       "severity": "Warning",
@@ -199,7 +172,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 2,
+      "index": 1,
       "code": "INVALID_MARGINS",
       "label": "Marginesy inne niż wymagane",
       "severity": "Warning",
@@ -221,7 +194,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 3,
+      "index": 2,
       "code": "INVALID_MARGINS",
       "label": "Marginesy inne niż wymagane",
       "severity": "Warning",
@@ -243,7 +216,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 4,
+      "index": 3,
       "code": "INVALID_MARGINS",
       "label": "Marginesy inne niż wymagane",
       "severity": "Warning",
