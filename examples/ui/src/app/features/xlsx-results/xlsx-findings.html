@@ -39,7 +39,7 @@
                   </span>
                   <span class="soft" data-testid="finding-check-type">· {{ checkTypeText(f) }}</span>
                   @if (f.bestPractice) {
-                    <span class="chip" data-testid="finding-best-practice">{{ bestPracticeLabel }}</span>
+                    <span class="chip" data-testid="finding-best-practice">{{ f.categoryLabel ?? bestPracticeLabel }}</span>
                   }
                 </p>
                 <dl class="facts">

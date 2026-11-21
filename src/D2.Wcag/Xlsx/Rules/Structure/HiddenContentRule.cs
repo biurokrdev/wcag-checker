@@ -16,8 +16,6 @@ internal sealed class HiddenContentRule : IXlsxRule
 {
     public const string Code = "XL-HIDDEN";
 
-    private const string Label = "Informacja (" + XlsxFinding.BestPracticeLabel + "): ";
-
     private const string FixSheet =
         "Jeśli dane mają być dostępne dla odbiorcy: kliknij prawym przyciskiem myszy dowolną kartę arkusza → Odkryj… → wybierz arkusz → OK (arkusz „bardzo ukryty” odkryjesz tylko w edytorze Visual Basic: Alt+F11 → okno Właściwości → Visible). "
         + "Jeśli dane są pomocnicze albo zbędne, zostaw arkusz ukryty lub usuń go i sprawdź, czy formuły, listy i wykresy nadal działają.";
@@ -103,7 +101,7 @@ internal sealed class HiddenContentRule : IXlsxRule
         }
 
         return new XlsxRuleHit(Code,
-            $"{Label}arkusz „{sheet.Name}” jest {(veryHidden ? "bardzo ukryty" : "ukryty")}, a zawiera dane. Sprawdź, czy odbiorca nie potrzebuje tej treści i czy widoczne arkusze są zrozumiałe bez niej.",
+            $"Arkusz „{sheet.Name}” jest {(veryHidden ? "bardzo ukryty" : "ukryty")}, a zawiera dane. Sprawdź, czy odbiorca nie potrzebuje tej treści i czy widoczne arkusze są zrozumiałe bez niej.",
             XlsxLocation.OfSheet(sheet))
         {
             Evidence = evidence,
@@ -187,7 +185,7 @@ internal sealed class HiddenContentRule : IXlsxRule
             var range = new RangeRef(new CellRef(first, min), new CellRef(last, max));
             var rows = first == last ? Number(first) : $"{Number(first)}–{Number(last)}";
             hits.Add(new XlsxRuleHit(Code,
-                $"{Label}{(first == last ? $"ukryty wiersz {rows} zawiera" : $"ukryte wiersze {rows} zawierają")} dane. Sprawdź, czy odbiorca nie potrzebuje tej treści.",
+                $"{(first == last ? $"Ukryty wiersz {rows} zawiera" : $"Ukryte wiersze {rows} zawierają")} dane. Sprawdź, czy odbiorca nie potrzebuje tej treści.",
                 XlsxLocation.OfRange(sheet, range))
             {
                 Evidence = [new XlsxEvidence("Ukryte wiersze z treścią", rows), new XlsxEvidence("Komórki z treścią", Number(count))],
@@ -201,7 +199,7 @@ internal sealed class HiddenContentRule : IXlsxRule
             var range = new RangeRef(new CellRef(min, first), new CellRef(max, last));
             var columns = first == last ? CellRef.ColumnName(first) : $"{CellRef.ColumnName(first)}–{CellRef.ColumnName(last)}";
             hits.Add(new XlsxRuleHit(Code,
-                $"{Label}{(first == last ? $"ukryta kolumna {columns} zawiera" : $"ukryte kolumny {columns} zawierają")} dane. Sprawdź, czy odbiorca nie potrzebuje tej treści.",
+                $"{(first == last ? $"Ukryta kolumna {columns} zawiera" : $"Ukryte kolumny {columns} zawierają")} dane. Sprawdź, czy odbiorca nie potrzebuje tej treści.",
                 XlsxLocation.OfRange(sheet, range))
             {
                 Evidence = [new XlsxEvidence("Ukryte kolumny z treścią", columns), new XlsxEvidence("Komórki z treścią", Number(count))],
@@ -213,7 +211,7 @@ internal sealed class HiddenContentRule : IXlsxRule
         foreach (var range in XlsxRanges.Group(invisibleCells))
         {
             hits.Add(new XlsxRuleHit(Code,
-                $"{Label}{(range.IsSingleCell ? "komórka ma" : "komórki mają")} treść ukrytą formatem liczbowym „;;;” – wartość jest w pliku, ale nie widać jej w arkuszu.",
+                $"{(range.IsSingleCell ? "Komórka ma" : "Komórki mają")} treść ukrytą formatem liczbowym „;;;” – wartość jest w pliku, ale nie widać jej w arkuszu.",
                 XlsxLocation.OfRange(sheet, range, sheet.TextAt(range.From)))
             {
                 Evidence = [new XlsxEvidence("Format liczbowy", StructureOptions.InvisibleNumberFormat), new XlsxEvidence("Komórki z treścią", Number(range.Cells))],

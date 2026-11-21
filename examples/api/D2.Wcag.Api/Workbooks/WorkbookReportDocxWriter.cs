@@ -91,7 +91,7 @@ public static class WorkbookReportDocxWriter
             ["Błędy (kontrola automatyczna, kryterium poziomu A lub AA)", Number(r.Counts.Errors)],
             ["Ostrzeżenia (heurystyka o wysokiej pewności)", Number(r.Counts.Warnings)],
             ["Do weryfikacji (heurystyka o niższej pewności)", Number(r.Counts.NeedsReview)],
-            ["Informacje (dobre praktyki, nie wymóg WCAG)", Number(r.Counts.Info)],
+            ["Informacje poza WCAG (dobre praktyki i informacje, np. o makrach)", Number(r.Counts.Info)],
             ["Pozycje checklisty do oceny ręcznej", $"{r.ManualChecks.Count} (odhaczono {checkedManual.Count} z {r.ManualChecks.Count})"],
         ], [7000, 2360]));
     }
@@ -129,7 +129,7 @@ public static class WorkbookReportDocxWriter
             + (f.Confidence is { } confidence ? $" (pewność {confidence.ToString("P0", CultureInfo.GetCultureInfo("pl-PL"))})" : "")
             + "\nKod: " + f.Code;
         var criteria = f.BestPractice || f.Wcag.Count == 0
-            ? XlsxFinding.BestPracticeLabel
+            ? f.CategoryLabel ?? XlsxFinding.BestPracticeLabel
             : string.Join("\n", f.Wcag.Select(Criterion));
         var place = f.Location.Display + (f.Location.Snippet is null ? "" : $"\n„{f.Location.Snippet}”");
         var description = f.Message

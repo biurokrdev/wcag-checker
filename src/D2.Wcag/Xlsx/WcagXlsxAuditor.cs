@@ -190,6 +190,7 @@ public sealed class WcagXlsxAuditor : IWcagXlsxAuditor
                     Location = hit.Location,
                     Evidence = hit.Evidence,
                     BestPractice = descriptor.BestPractice || wcag.Count == 0,
+                    CategoryLabel = descriptor.BestPractice || wcag.Count == 0 ? descriptor.CategoryLabel ?? XlsxFinding.BestPracticeLabel : null,
                 }, Math.Max(1, hit.Weight)));
             }
 

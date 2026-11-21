@@ -31,7 +31,7 @@ describe('XlsxFindings', () => {
       'Skoroszyt – 1 zgłoszenie',
       'Arkusz „Dane” – 1 zgłoszenie',
       'Arkusz „Sprzedaż” – 2 zgłoszenia',
-      'Dobre praktyki (dobra praktyka, nie wymóg WCAG) – 1 zgłoszenie',
+      'Poza WCAG – dobre praktyki i informacje – 1 zgłoszenie',
     ]);
     expect(groups().map((g) => g.dataset['kind'])).toEqual(['workbook', 'sheet', 'sheet', 'best-practice']);
     expect(cardsIn(groups()[2]).map((c) => c.dataset['code'])).toEqual(['XL-CONTRAST', 'XL-WARN']);
@@ -46,7 +46,7 @@ describe('XlsxFindings', () => {
       'Kryterium 1.4.3 Kontrast (minimum) (AA) – 1 zgłoszenie',
       'Kryterium 1.4.11 Kontrast elementów nietekstowych (AA) – 1 zgłoszenie',
       'Kryterium 2.4.2 Tytuł strony (A) – 1 zgłoszenie',
-      'Dobre praktyki (dobra praktyka, nie wymóg WCAG) – 1 zgłoszenie',
+      'Poza WCAG – dobre praktyki i informacje – 1 zgłoszenie',
     ]);
     expect(cardsIn(groups()[2])[0].dataset['code']).toBe('XL-CONTRAST');
     expect(cardsIn(groups()[3])[0].dataset['code']).toBe('XL-CONTRAST');
@@ -129,6 +129,31 @@ describe('XlsxFindings', () => {
     expect(text(best.querySelector('[data-testid="finding-best-practice"]'))).toBe('dobra praktyka, nie wymóg WCAG');
     expect(best.querySelector('[data-testid="finding-wcag"]')).toBeNull();
     expect(all('[data-testid="finding-best-practice"]').length).toBe(1);
+  });
+
+  it('takes the label of a finding outside WCAG from the API, e.g. macros as information', () => {
+    const { all, text } = render(
+      workbookResult({
+        findings: [
+          finding({
+            index: 0,
+            code: 'XL-MACROS',
+            title: 'Skoroszyt zawiera makra',
+            severity: 'Info',
+            severityLabel: 'Informacja',
+            wcag: [],
+            bestPractice: true,
+            categoryLabel: 'informacja, poza WCAG',
+            message: 'Skoroszyt zawiera makra; makra nie są oceniane.',
+            location: { kind: 'Workbook', display: 'Skoroszyt', key: '~w' },
+          }),
+        ],
+      }),
+    );
+    const card = all('[data-code="XL-MACROS"]')[0];
+    expect(text(card.querySelector('[data-testid="finding-best-practice"]'))).toBe('informacja, poza WCAG');
+    // Etykieta stoi raz – komunikat jej nie powtarza.
+    expect(text(card.querySelector('[data-testid="finding-message"]'))).not.toContain('poza WCAG');
   });
 
   it('shows long groups in pages with "Pokaż kolejne" and moves the focus to the first added finding', () => {

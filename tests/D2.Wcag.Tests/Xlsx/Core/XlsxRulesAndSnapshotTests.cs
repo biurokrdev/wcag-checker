@@ -323,6 +323,7 @@ public class XlsxSnapshotTests
             title = f.Title,
             wcag = f.Wcag.Count == 0 ? null : f.Wcag.Select(r => r.Sc).ToList(),
             bestPractice = f.BestPractice ? true : (bool?)null,
+            categoryLabel = f.CategoryLabel,
             message = f.Message,
             fixInstruction = f.FixInstruction,
             location = f.Location.Display,

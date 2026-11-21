@@ -339,7 +339,7 @@ internal sealed class StartA1Rule : IXlsxRule
             var blocks = DataBlocks.For(sheet, workbook, context).Blocks;
             var first = blocks.Count > 0 ? blocks[0].Range.From : used.From;
             yield return new XlsxRuleHit(Code,
-                $"Informacja ({XlsxFinding.BestPracticeLabel}): treść arkusza zaczyna się w komórce {first}, a czytniki ekranu rozpoczynają odczyt od A1. Użytkownik trafia najpierw na puste komórki i może uznać arkusz za pusty.",
+                $"Treść arkusza zaczyna się w komórce {first}, a czytniki ekranu rozpoczynają odczyt od A1. Użytkownik trafia najpierw na puste komórki i może uznać arkusz za pusty.",
                 XlsxLocation.OfCell(sheet, first, sheet.TextAt(first)))
             {
                 Evidence =

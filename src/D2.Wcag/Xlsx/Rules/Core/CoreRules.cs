@@ -21,7 +21,9 @@ internal sealed class MacrosRule : IXlsxRule
         XlsxCheckType.Auto,
         "Makra nie są uruchamiane ani oceniane przez audyt. Jeśli makra pokazują formularze, okna dialogowe albo zmieniają treść arkuszy, sprawdź ich dostępność ręcznie (obsługa z klawiatury, etykiety kontrolek, komunikaty) albo udostępnij wersję skoroszytu bez makr (Plik → Zapisz jako → Skoroszyt programu Excel (*.xlsx)).")
     {
+        // Brak zgłoszenia powiązanego z WCAG; to informacja o zakresie analizy, a nie zalecenie – stąd własna etykieta.
         BestPractice = true,
+        CategoryLabel = XlsxFinding.OutsideWcagInfoLabel,
     };
 
     public IReadOnlyList<XlsxRuleDescriptor> Descriptors { get; } = [Descriptor];

@@ -105,7 +105,10 @@ public sealed record WorkbookFindingDto(
     WorkbookLocationDto Location,
     IReadOnlyList<WorkbookEvidenceDto> Evidence,
     bool BestPractice,
-    int MoreCount)
+    int MoreCount,
+    // Etykieta zgłoszenia spoza WCAG („dobra praktyka, nie wymóg WCAG” / „informacja, poza WCAG”); komunikat jej nie powtarza.
+    // Pomijana dla zgłoszeń powiązanych z kryterium.
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? CategoryLabel = null)
 {
     public static WorkbookFindingDto From(XlsxFinding f, int index) => new(
         index,
@@ -123,7 +126,8 @@ public sealed record WorkbookFindingDto(
         f.Evidence.Select(e => new WorkbookEvidenceDto(e.Name, e.Value)).ToList(),
         // Zgłoszenie bez powiązania z kryterium to zawsze dobra praktyka, także gdy reguła nie ustawiła znacznika.
         f.BestPractice || f.Wcag.Count == 0,
-        f.MoreCount);
+        f.MoreCount,
+        f.BestPractice || f.Wcag.Count == 0 ? f.CategoryLabel ?? XlsxFinding.BestPracticeLabel : null);
 }
 
 public sealed record WorkbookManualCheckDto(

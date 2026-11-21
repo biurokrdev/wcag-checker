@@ -2,6 +2,7 @@ import { Component, ElementRef, Injector, afterNextRender, computed, inject, inp
 import {
   XLSX_BEST_PRACTICE_LABEL,
   XLSX_NEW_TAB_HINT,
+  XLSX_OUTSIDE_WCAG_GROUP_TITLE,
   XLSX_SEVERITY_ICON,
   XLSX_SEVERITY_TONE,
   XlsxFinding,
@@ -25,8 +26,8 @@ export interface XlsxFindingGroup {
 let nextId = 0;
 
 // Zgłoszenia audytu XLSX z przełączanym grupowaniem: po arkuszu (najpierw grupa „Skoroszyt” – zgłoszenia bez arkusza)
-// albo po kryterium WCAG (zgłoszenie z kilkoma kryteriami jest w każdej ze swoich grup). Dobre praktyki spoza WCAG
-// zawsze w osobnej grupie na końcu. Długie grupy pokazują po PAGE zgłoszeń z przyciskiem „Pokaż kolejne”, który
+// albo po kryterium WCAG (zgłoszenie z kilkoma kryteriami jest w każdej ze swoich grup). Zgłoszenia spoza WCAG (dobre
+// praktyki i informacje, np. o makrach) zawsze w osobnej grupie na końcu, z etykietą z API (categoryLabel). Długie grupy pokazują po PAGE zgłoszeń z przyciskiem „Pokaż kolejne”, który
 // przenosi fokus na pierwsze dołożone zgłoszenie.
 @Component({
   selector: 'app-xlsx-findings',
@@ -60,7 +61,7 @@ export class XlsxFindings {
     const best = all.filter((f) => f.bestPractice);
     const groups = this.grouping() === 'sheet' ? XlsxFindings.bySheet(wcag, this.result().sheets) : XlsxFindings.byCriterion(wcag);
     if (best.length > 0) {
-      groups.push({ id: 'best-practice', kind: 'best-practice', title: `Dobre praktyki (${XLSX_BEST_PRACTICE_LABEL})`, findings: best });
+      groups.push({ id: 'best-practice', kind: 'best-practice', title: XLSX_OUTSIDE_WCAG_GROUP_TITLE, findings: best });
     }
     return groups;
   });

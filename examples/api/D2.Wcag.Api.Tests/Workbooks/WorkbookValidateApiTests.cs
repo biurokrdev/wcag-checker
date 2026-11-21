@@ -84,6 +84,12 @@ public class WorkbookValidateApiTests : IClassFixture<DefaultApiTestHost>
                 Assert.Equal(XlsxSeverity.Info, f.Severity);
             }
 
+            // Etykieta spoza WCAG tylko przy zgłoszeniach spoza WCAG; komunikat jej nie dubluje.
+            Assert.Equal(f.BestPractice, f.CategoryLabel is not null);
+            Assert.Contains(f.CategoryLabel ?? XlsxFinding.BestPracticeLabel, new[] { XlsxFinding.BestPracticeLabel, XlsxFinding.OutsideWcagInfoLabel });
+            Assert.DoesNotContain(XlsxFinding.BestPracticeLabel, f.Message);
+            Assert.Equal(f.Code == "XL-MACROS", f.CategoryLabel == XlsxFinding.OutsideWcagInfoLabel);
+
             if (f.Location.Sheet is { } sheet)
             {
                 Assert.Contains(sheet, result.Sheets);

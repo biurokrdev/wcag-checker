@@ -585,6 +585,8 @@ public class XlsxAuditorTests
         var finding = Assert.Single(result.Findings, f => f.Code == "XL-MACROS");
         Assert.Equal((XlsxSeverity.Info, true, "Skoroszyt", "Skoroszyt zawiera makra; makra nie są oceniane."),
             (finding.Severity, finding.BestPractice, finding.Location.Display, finding.Message));
+        // Informacja o zakresie analizy, nie zalecenie – etykieta „informacja, poza WCAG”, nie „dobra praktyka”.
+        Assert.Equal("informacja, poza WCAG", finding.CategoryLabel);
         Assert.Empty(finding.Wcag);
         Assert.Equal(1, result.Workbook.Tables);
         Assert.DoesNotContain(new WcagXlsxAuditor().Audit(Clean).Findings, f => f.Code == "XL-MACROS");

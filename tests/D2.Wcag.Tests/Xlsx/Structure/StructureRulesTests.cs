@@ -140,7 +140,9 @@ public class StructureFixtureTests
         {
             Assert.True(f.BestPractice);
             Assert.Empty(f.Wcag);
-            Assert.Single(System.Text.RegularExpressions.Regex.Matches(f.Message, XlsxFinding.BestPracticeLabel));
+            // Etykieta stoi raz – w polu CategoryLabel (API, UI i raport biorą ją stąd); komunikat jej nie powtarza.
+            Assert.Equal(XlsxFinding.BestPracticeLabel, f.CategoryLabel);
+            Assert.DoesNotContain(XlsxFinding.BestPracticeLabel, f.Message);
         });
         var veryHidden = hidden.Single(f => f.Location.Display == "Arkusz „Słownik”");
         Assert.Equal("bardzo ukryty (veryHidden)", veryHidden.Evidence("Stan arkusza"));

@@ -9,6 +9,12 @@ public sealed record XlsxRuleDescriptor(string Code, string Title, IReadOnlyList
     /// <summary>Dobra praktyka spoza WCAG: bez kryteriów, zawsze waga Info.</summary>
     public bool BestPractice { get; init; }
 
+    /// <summary>
+    /// Etykieta zgłoszenia spoza WCAG (<see cref="XlsxFinding.CategoryLabel"/>); <c>null</c> = „<see cref="XlsxFinding.BestPracticeLabel"/>”.
+    /// Informacja, która nie jest zaleceniem (np. „skoroszyt zawiera makra”), ma <see cref="XlsxFinding.OutsideWcagInfoLabel"/>.
+    /// </summary>
+    public string? CategoryLabel { get; init; }
+
     /// <summary>Domyślna pewność heurystyki (0–1), gdy trafienie nie poda własnej.</summary>
     public double? DefaultConfidence { get; init; }
 

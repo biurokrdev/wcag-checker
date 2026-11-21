@@ -32,6 +32,7 @@
       "checkType": "Auto",
       "title": "Skoroszyt zawiera makra",
       "bestPractice": true,
+      "categoryLabel": "informacja, poza WCAG",
       "message": "Skoroszyt zawiera makra; makra nie są oceniane.",
       "fixInstruction": "Makra nie są uruchamiane ani oceniane przez audyt. Jeśli makra pokazują formularze, okna dialogowe albo zmieniają treść arkuszy, sprawdź ich dostępność ręcznie (obsługa z klawiatury, etykiety kontrolek, komunikaty) albo udostępnij wersję skoroszytu bez makr (Plik → Zapisz jako → Skoroszyt programu Excel (*.xlsx)).",
       "location": "Skoroszyt",

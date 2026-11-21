@@ -31,6 +31,15 @@ public sealed record XlsxFinding
 {
     public const string BestPracticeLabel = "dobra praktyka, nie wymóg WCAG";
 
+    /// <summary>Etykieta informacji spoza WCAG, która nie jest zaleceniem (np. makra – nie są oceniane).</summary>
+    public const string OutsideWcagInfoLabel = "informacja, poza WCAG";
+
+    /// <summary>
+    /// Etykieta zgłoszenia spoza WCAG – jedyne źródło etykiety dla API, UI i raportu („dobra praktyka, nie wymóg WCAG” albo
+    /// „informacja, poza WCAG”); komunikat (<see cref="Message"/>) jej nie powtarza. <c>null</c> dla zgłoszeń powiązanych z kryterium.
+    /// </summary>
+    public string? CategoryLabel { get; init; }
+
     /// <summary>Kod reguły, np. „XL-CONTRAST”.</summary>
     public required string Code { get; init; }
 

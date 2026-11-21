@@ -52,6 +52,8 @@ export interface XlsxFinding {
   bestPractice: boolean;
   // „+N kolejnych”: ile dalszych wystąpień reguły na arkuszu pominięto po przekroczeniu limitu.
   moreCount: number;
+  // Etykieta zgłoszenia spoza WCAG z API („dobra praktyka, nie wymóg WCAG” / „informacja, poza WCAG”); komunikat jej nie powtarza.
+  categoryLabel?: string;
 }
 
 export interface XlsxManualCheck {
@@ -152,7 +154,11 @@ export interface XlsxReportFile {
 // Stałe zastrzeżenie raportu (UI i eksport). Wynik automatyczny nigdy nie stwierdza zgodności.
 export const XLSX_DISCLAIMER = 'Wynik automatyczny nie potwierdza zgodności z WCAG';
 
+// Etykieta zastępcza, gdy API nie podało categoryLabel (zgłoszenie spoza WCAG).
 export const XLSX_BEST_PRACTICE_LABEL = 'dobra praktyka, nie wymóg WCAG';
+
+// Tytuł grupy zgłoszeń spoza WCAG (dobre praktyki i informacje, np. o makrach).
+export const XLSX_OUTSIDE_WCAG_GROUP_TITLE = 'Poza WCAG – dobre praktyki i informacje';
 
 export const XLSX_SEVERITIES: readonly XlsxSeverity[] = ['Error', 'Warning', 'NeedsReview', 'Info'];
 
