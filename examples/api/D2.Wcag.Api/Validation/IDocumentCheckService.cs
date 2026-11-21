@@ -31,4 +31,6 @@ public static class WcagProfileSection
     public const string CorporateStandards = "Wcag:CorporateStandards";
 
     public const string StyleGallery = "Wcag:StyleGallery";
+
+    public const string Corporate20 = "Wcag:Corporate20";
 }

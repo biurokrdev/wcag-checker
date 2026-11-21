@@ -12,6 +12,12 @@ using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Parametry standardu pism firmowych 2.0 (firmowy/2.0) z "Wcag:Corporate20": instytucja, układ dokumentu, style danych
+// rejestrowych. Brak sekcji albo same wartości null = standard wbudowany bez zmian. Rejestracja przed wpisami
+// z "Wcag:CorporateStandards", więc jawnie opisana tam wersja 2.0 nadal zastępuje tę.
+builder.Services.Configure<CorporateStandard20Options>(builder.Configuration.GetSection(WcagProfileSection.Corporate20));
+builder.Services.AddSingleton<IDocumentStandard>(sp => new CorporateStandard20(sp.GetRequiredService<IOptions<CorporateStandard20Options>>().Value));
+
 // Profil (które standardy domyślnie) z sekcji "Wcag"; dodatkowe wersje standardu firmowego z "Wcag:CorporateStandards"
 // trafiają do katalogu obok wbudowanych 1.9 i 2.0. AddD2Wcag rejestruje katalog, walidator i naprawę jako singletony.
 builder.Services.Configure<WcagValidationProfile>(builder.Configuration.GetSection(WcagProfileSection.Name));

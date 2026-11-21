@@ -39,6 +39,8 @@ Sekcja `Wcag` jest bindowana na `D2.Wcag.WcagValidationProfile` (`services.Confi
 | `Standards` | klucze standardów stosowane, gdy żądanie nie wskaże innych; domyślnie `wcag/2.1`, `firmowy/1.9` |
 | `DefaultLanguage` | język wpisywany przy naprawie, gdy dokument go nie ma (domyślnie `pl-PL`) |
 | `CorporateStandards[]` | kolejne wersje standardu pism firmowych opisane parametrami, bez zmian w kodzie: `Version`, `Name`, `Confirmed`, `Note`, `RequiredMetadataPhrase`, `RequiredMarginPt`, `MarginTolerancePt`, `EnforceA4Format`, `RequiredFontName`, `MinFontSizePt` (`null` wyłącza regułę). Ten sam `Version` co wbudowany (1.9) podmienia wbudowaną definicję. Domyślnie pusta lista; przykład wpisu poniżej |
+| `Corporate20` | parametry standardu `firmowy/2.0` (bindowane na `D2.Wcag.Standards.CorporateStandard20Options`): `Layout` – układ dokumentu (`WithoutRegistrationData`, `WithRegistrationData`, `TitlePage`, `AddressField`; `null` = bez wyboru, dotychczasowe heurystyki), `Institution` – nazwa instytucji w tytule i autorze (`null` = „Example Company S. A.”), `RegistrationDataStyles` – style akapitu z danymi rejestrowymi (`null` = lista domyślna). Brak sekcji = standard wbudowany bez zmian. Układu nie wybiera się na ekranie |
+| `StyleGallery` | parametry standardu `style/1.0` (bindowane na `D2.Wcag.Standards.StyleGalleryOptions`): `IgnoredProperties`, `AllowedStylesOutsideGallery`, `IncludeTables`, `IncludeHeadersAndFooters` i statusy reguł – opis w głównym README |
 | `Cors:Origins` | adresy ekranu (domyślnie `http://localhost:4310`) |
 | `Reports:LifetimeMinutes`, `Reports:MaxTotalMegabytes` | jak długo i ile dokumentów API trzyma w pamięci na potrzeby podglądów wystąpień (domyślnie 30 min, 256 MB); nic nie trafia na dysk ani do GCS |
 
