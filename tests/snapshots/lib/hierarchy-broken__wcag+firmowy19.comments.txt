@@ -8,7 +8,7 @@
     [MANUAL_CHECK_SUGGESTED] Zalecane sprawdzenie ręczne  ·  informacja
     Problem: Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie.
     [TOC_MISSING] Brak spisu treści  ·  informacja
-    Problem: Dokument ma 8 nagłówków, a nie ma spisu treści (pole TOC); spis ułatwia nawigację czytnikiem ekranu.
+    Problem: Dokument ma 11 nagłówków, a nie ma spisu treści (pole TOC); spis ułatwia nawigację czytnikiem ekranu.
 
 #1 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 1: „Ten akapit stoi przed pierwszym nagłówkiem dokumentu.”
     [CONTENT_BEFORE_HEADING] Treść przed pierwszym nagłówkiem  ·  ostrzeżenie

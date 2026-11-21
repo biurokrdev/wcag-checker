@@ -7,63 +7,49 @@
     [MANUAL_CHECK_SUGGESTED] Zalecane sprawdzenie ręczne  ·  informacja
     Problem: Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie.
 
-#2 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 1: „Ten akapit ma fragment z istniejącym komentarzem recenzenta.”
+#2 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 0: „Przypadki brzegowe”
+    Dotyczy stopki (sekcja 1, strona: pierwsza): Stopka pierwszej strony
+    [F20-FOOTER-PAGE-NUMBER-MISSING] Brak pola numeru strony w stopce  ·  WYMAGANE → błąd
+    Problem: Brak pola numeru strony (PAGE) w treści stopki (sekcja 1, strona: pierwsza); numer ma wstawiać pole, a nie tekst wpisany z klawiatury.
+    Jak naprawić: 1. Kliknij dwukrotnie stopkę. 2. Ustaw kursor w miejscu numeru i wybierz Wstawianie → Szybkie części → Pole → Page (albo Nagłówek i stopka → Numer strony → Bieżąca pozycja → Zwykły numer). 3. Numer wpisany z klawiatury usuń – ma go zastąpić pole. 4. Docelowa postać stopki: „Strona: X z Y. Tytuł dokumentu”.
+
+#3 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 0: „Przypadki brzegowe”
+    Dotyczy stopki (sekcja 1, strony: parzyste): Stopka stron parzystych: 2
+    [F20-FOOTER-FORMAT] Stopka w innej postaci niż „Strona: X z Y. Tytuł”  ·  REKOMENDOWANE → ostrzeżenie
+    Problem: Stopka ma postać „Stopka stron parzystych: X” (X = pole PAGE, Y = pole NUMPAGES); standard: „Strona: X z Y. Tytuł dokumentu”.
+    Jak naprawić: 1. Kliknij dwukrotnie stopkę. 2. Ułóż treść w jednym akapicie: „Strona: ”, pole Page, „ z ”, pole NumPages, „. ” i tytuł dokumentu, np. „Strona: 2 z 3. Regulamin promocji”. 3. Pola wstawia się przez Wstawianie → Szybkie części → Pole (Page i NumPages).
+
+#4 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 1: „Ten akapit ma fragment z istniejącym komentarzem recenzenta.”
     [COMMENTS_PRESENT] Komentarze w dokumencie  ·  ostrzeżenie
     Problem: Dokument zawiera 1 komentarz; usuń je przed publikacją.
 
-#3 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 3: „rozjaśniony akcent”
+#5 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 3: „rozjaśniony akcent”
     [TEXT_LOW_CONTRAST] Za mały kontrast tekstu  ·  błąd
     Problem: 1 fragment tekstu ma za mały kontrast z tłem (najgorszy 2,4:1, wymagane 4,5:1 albo 3:1 dla dużego tekstu); pierwszy: „rozjaśniony akcent”.
 
-#4 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 3: „rozjaśniony akcent”
+#6 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 3: „rozjaśniony akcent”
     [TEXT_COLOR_NOT_ALLOWED] Kolor tekstu spoza palety  ·  ostrzeżenie
     Problem: 2 fragmenty tekstu mają kolor spoza dozwolonej palety (#8EAADB, #2F5496); dozwolone: #000000, #FF6200, #0000FF, #AB0066, #7724FF, #696969, #4D0020.
 
-#5 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 3: „przyciemniony akcent”
+#7 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 3: „przyciemniony akcent”
     [TEXT_COLOR_NOT_ALLOWED] Kolor tekstu spoza palety  ·  ostrzeżenie
     Problem: 2 fragmenty tekstu mają kolor spoza dozwolonej palety (#8EAADB, #2F5496); dozwolone: #000000, #FF6200, #0000FF, #AB0066, #7724FF, #696969, #4D0020.
 
-#6 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 6: „Uwaga w polu tekstowym.”
+#8 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 6: „Uwaga w polu tekstowym.”
     [IMAGE_MISSING_ALT_TEXT] Obraz bez tekstu alternatywnego  ·  błąd
     Problem: Obraz nr 2 (obiekt VML) nie ma tekstu alternatywnego.
 
-#7 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 6: „Uwaga w polu tekstowym.”
+#9 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 6: „Uwaga w polu tekstowym.”
     [FLOATING_ELEMENTS_PRESENT] Elementy pływające poza kolejnością odczytu  ·  ostrzeżenie
     Problem: Dokument zawiera 1 element pływający, 2 pola tekstowe; ich położenie w kolejności odczytu nie wynika z treści.
 
-#8 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 6: „Uwaga w polu tekstowym.”
+#10 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 6: „Uwaga w polu tekstowym.”
     [FLOATING_ELEMENTS_PRESENT] Elementy pływające poza kolejnością odczytu  ·  ostrzeżenie
     Problem: Dokument zawiera 1 element pływający, 2 pola tekstowe; ich położenie w kolejności odczytu nie wynika z treści.
 
-#9 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 11: „Etap”
-    [TABLE_ALIGNMENT_MISMATCH] Wyrównanie w tabeli niezgodne ze standardem  ·  błąd
-    Problem: Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.
-
-#10 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 11: „Etap”
-    [TABLE_HEADER_NOT_BOLD] Nagłówek tabeli bez pogrubienia  ·  błąd
-    Problem: Tabela 1: 2 komórki nagłówka nie są pogrubione.
-
-#11 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 12: „Termin”
-    [TABLE_ALIGNMENT_MISMATCH] Wyrównanie w tabeli niezgodne ze standardem  ·  błąd
-    Problem: Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.
-
-#12 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 12: „Termin”
-    [TABLE_HEADER_NOT_BOLD] Nagłówek tabeli bez pogrubienia  ·  błąd
-    Problem: Tabela 1: 2 komórki nagłówka nie są pogrubione.
-
-#13 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 13: „Złożenie wniosku”
-    [TABLE_ALIGNMENT_MISMATCH] Wyrównanie w tabeli niezgodne ze standardem  ·  błąd
-    Problem: Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.
-
-#14 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 14: „do 30 dni”
-    [TABLE_ALIGNMENT_MISMATCH] Wyrównanie w tabeli niezgodne ze standardem  ·  błąd
-    Problem: Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.
-
-#15 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 15: „Decyzja”
-    [TABLE_ALIGNMENT_MISMATCH] Wyrównanie w tabeli niezgodne ze standardem  ·  błąd
-    Problem: Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.
-
-#16 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 16: „do 14 dni”
-    [TABLE_ALIGNMENT_MISMATCH] Wyrównanie w tabeli niezgodne ze standardem  ·  błąd
-    Problem: Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.
+#11 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 18: „Druga sekcja”
+    Dotyczy stopki (sekcja 2, strony: nieparzyste): Sekcja 2. Strona: 3. Przypadki brzegowe
+    [F20-FOOTER-FORMAT] Stopka w innej postaci niż „Strona: X z Y. Tytuł”  ·  REKOMENDOWANE → ostrzeżenie
+    Problem: Stopka ma postać „Sekcja 2. Strona: X. Przypadki brzegowe” (X = pole PAGE, Y = pole NUMPAGES); standard: „Strona: X z Y. Tytuł dokumentu”.
+    Jak naprawić: 1. Kliknij dwukrotnie stopkę. 2. Ułóż treść w jednym akapicie: „Strona: ”, pole Page, „ z ”, pole NumPages, „. ” i tytuł dokumentu, np. „Strona: 2 z 3. Regulamin promocji”. 3. Pola wstawia się przez Wstawianie → Szybkie części → Pole (Page i NumPages).
 

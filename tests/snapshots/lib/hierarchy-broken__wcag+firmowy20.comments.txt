@@ -4,45 +4,53 @@
     [MANUAL_CHECK_SUGGESTED] Zalecane sprawdzenie ręczne  ·  informacja
     Problem: Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie.
     [TOC_MISSING] Brak spisu treści  ·  informacja
-    Problem: Dokument ma 8 nagłówków, a nie ma spisu treści (pole TOC); spis ułatwia nawigację czytnikiem ekranu.
+    Problem: Dokument ma 11 nagłówków, a nie ma spisu treści (pole TOC); spis ułatwia nawigację czytnikiem ekranu.
 
 #1 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 1: „Ten akapit stoi przed pierwszym nagłówkiem dokumentu.”
     [CONTENT_BEFORE_HEADING] Treść przed pierwszym nagłówkiem  ·  ostrzeżenie
     Problem: Treść zaczyna się przed pierwszym nagłówkiem: „Ten akapit stoi przed pierwszym nagłówkiem dokumentu.”.
 
 #2 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 2: „Zakres dokumentu”
+    [HEADING_LEVEL_SKIPPED] Pominięty poziom nagłówka  ·  WYMAGANE → błąd
+    Problem: Pierwszy nagłówek „Zakres dokumentu” ma poziom 2; dokument powinien zaczynać się od nagłówka poziomu 1.
+
+#3 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 2: „Zakres dokumentu”
     [HEADING_LEVEL_SKIPPED] Pominięty poziom nagłówka  ·  ostrzeżenie
     Problem: Pierwszy nagłówek „Zakres dokumentu” ma poziom 2; dokument powinien zaczynać się od nagłówka poziomu 1.
 
-#3 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 4: „Szczegóły zakresu”
+#4 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 4: „Szczegóły zakresu”
+    [HEADING_LEVEL_SKIPPED] Pominięty poziom nagłówka  ·  WYMAGANE → błąd
+    Problem: Nagłówek „Szczegóły zakresu” ma poziom 4 zaraz po poziomie 2; pominięto poziom 3.
+
+#5 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 4: „Szczegóły zakresu”
     [HEADING_LEVEL_SKIPPED] Pominięty poziom nagłówka  ·  ostrzeżenie
     Problem: Nagłówek „Szczegóły zakresu” ma poziom 4 zaraz po poziomie 2; pominięto poziom 3.
 
-#4 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 6: „”
+#6 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 6: „”
     [EMPTY_HEADING] Pusty nagłówek  ·  błąd
     Problem: Nagłówek poziomu 3 w akapicie 7 jest pusty.
 
-#5 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 8: „Postanowienia ogólne”
+#7 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 8: „Postanowienia ogólne”
     [FAKE_HEADING] Nagłówek zrobiony formatowaniem  ·  ostrzeżenie
     Problem: 1 akapit wygląda na nagłówek (krótki, pogrubiony albo dużą czcionką), ale bez stylu nagłówka, więc poza konspektem dokumentu; pierwszy: „Postanowienia ogólne”.
 
-#6 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 10: „Nagłówek z poziomu konspektu”
+#8 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 10: „Nagłówek z poziomu konspektu”
     [HEADING_STYLE_MISMATCH] Nagłówek niezgodny z typografią standardu  ·  błąd
     Problem: Nagłówek H3 „Nagłówek z poziomu konspektu”: rozmiar 10 pt zamiast 14 pt; brak pogrubienia.
 
-#7 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 12: „Ten nagłówek jest zdecydowanie za długi, ponieważ zawiera całe zdanie opisujące zawartość sekcji zamiast krótkiego tytułu, a do tego ciągnie się dalej i dalej”
+#9 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 12: „Ten nagłówek jest zdecydowanie za długi, ponieważ zawiera całe zdanie opisujące zawartość sekcji zamiast krótkiego tytułu, a do tego ciągnie się dalej i dalej”
     [HEADING_TOO_LONG] Za długi nagłówek  ·  ostrzeżenie
     Problem: Nagłówek „Ten nagłówek jest zdecydowanie za długi, ponieważ zawiera ca…” ma 158 znaków; to raczej akapit treści ze stylem nagłówka niż tytuł sekcji.
 
-#8 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 22: „- pierwsza pozycja,”
+#10 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 22: „- pierwsza pozycja,”
     [LIST_MISSING_SEMANTIC] Lista zrobiona ręcznie  ·  błąd
     Problem: 3 akapity wyglądają na element listy (znak wypunktowania albo numer wpisany w tekst), ale bez właściwości listy; pierwszy: „- pierwsza pozycja,”.
 
-#9 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 23: „- druga pozycja,”
+#11 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 23: „- druga pozycja,”
     [LIST_MISSING_SEMANTIC] Lista zrobiona ręcznie  ·  błąd
     Problem: 3 akapity wyglądają na element listy (znak wypunktowania albo numer wpisany w tekst), ale bez właściwości listy; pierwszy: „- pierwsza pozycja,”.
 
-#10 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 24: „- trzecia pozycja.”
+#12 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 24: „- trzecia pozycja.”
     [LIST_MISSING_SEMANTIC] Lista zrobiona ręcznie  ·  błąd
     Problem: 3 akapity wyglądają na element listy (znak wypunktowania albo numer wpisany w tekst), ale bez właściwości listy; pierwszy: „- pierwsza pozycja,”.
 
