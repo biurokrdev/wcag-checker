@@ -1,0 +1,149 @@
+// Sekcja „Typ pliku”. Wszystkie kolory pochodzą ze zmiennych --ftp-* ustawianych przez komponent
+// z file-type-picker.colors.ts (te same wartości sprawdza test kontrastu). Bez opacity i bez globalnych tokenów.
+:host {
+  display: block;
+}
+
+.file-type {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+// Legenda wygląda jak nagłówki pozostałych sekcji (.field-label) i jest nagłówkiem tego samego poziomu.
+.legend {
+  padding: 0;
+  margin: 0 0 0.6rem;
+}
+
+.title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--ftp-accent);
+  margin: 0;
+}
+
+.tiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  background: var(--ftp-panel);
+  padding: 1.25rem 1.5rem 1.4rem;
+  margin: 0 0 1.5rem;
+}
+
+.tile {
+  position: relative;
+  flex: 1 1 11rem;
+  max-width: 18rem;
+  min-height: 4.75rem;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--ftp-tile-border);
+  background: var(--ftp-tile);
+  color: var(--ftp-text);
+
+  &:not(.unavailable):not(.selected):hover {
+    border-color: var(--ftp-accent);
+  }
+
+  // Zaznaczenie: obramowanie 4 px (2 px ramki + 2 px cienia do środka) w kolorze akcentu oraz znacznik ✓.
+  &.selected {
+    border-color: var(--ftp-accent);
+    background: var(--ftp-tile-selected);
+    box-shadow: inset 0 0 0 2px var(--ftp-accent);
+  }
+
+  // Niedostępny: szare tło i przerywane obramowanie; tekst zostaje w pełnym kolorze.
+  &.unavailable {
+    border-style: dashed;
+    background: var(--ftp-tile-unavailable);
+    cursor: not-allowed;
+  }
+
+  // Fokus klawiatury na polu radio pokazuje cały kafelek: 3 px w kolorze akcentu, odsunięte na szary panel.
+  &:has(input:focus-visible) {
+    outline: 3px solid var(--ftp-accent);
+    outline-offset: 2px;
+  }
+}
+
+// Etykieta wypełnia kafelek, więc cały jest celem kliknięcia (dużo ponad 24 × 24 px).
+.choice {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  padding: 0.85rem 1rem;
+  cursor: pointer;
+
+  .unavailable & {
+    cursor: not-allowed;
+    padding-bottom: 0.35rem;
+  }
+}
+
+// Natywne pole zostaje w drzewie dostępności i w kolejności tabulacji; wizualnie zastępuje je znacznik.
+input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.mark {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 2px solid var(--ftp-tile-border);
+  border-radius: 50%;
+  background: var(--ftp-tile);
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1;
+
+  .selected & {
+    border-color: var(--ftp-accent);
+    background: var(--ftp-accent);
+    color: var(--ftp-on-accent);
+  }
+
+  .unavailable & {
+    border-style: dashed;
+    background: transparent;
+  }
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  font-weight: 600;
+}
+
+.ext {
+  font-size: 0.93rem;
+}
+
+.badge {
+  align-self: flex-start;
+  margin: 0 1rem 0.75rem 3.2rem;
+  padding: 0.1rem 0.5rem;
+  background: var(--ftp-badge);
+  color: var(--ftp-on-badge);
+  font-size: 0.85rem;
+  font-weight: 600;
+}

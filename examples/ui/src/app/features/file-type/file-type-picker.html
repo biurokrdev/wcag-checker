@@ -1,0 +1,28 @@
+<fieldset class="file-type" data-testid="file-type">
+  <legend class="legend"><h2 class="title">Typ pliku</h2></legend>
+  <div class="tiles">
+    @for (t of types(); track t.id) {
+      <div class="tile" [class.selected]="t.id === selected()" [class.unavailable]="!t.enabled" [attr.data-testid]="'file-type-tile-' + t.id">
+        <label class="choice">
+          <input
+            type="radio"
+            [name]="group"
+            [value]="t.id"
+            [checked]="t.id === selected()"
+            [disabled]="!t.enabled"
+            [attr.aria-describedby]="t.comingSoon ? badgeId(t) : null"
+            (change)="choose(t)"
+            [attr.data-testid]="'file-type-' + t.id"
+          />
+          <span class="mark" aria-hidden="true">@if (t.id === selected()) {✓}</span>
+          <span class="text">
+            <span class="name">{{ t.label }}</span>&ngsp;<span class="ext">({{ t.extensions[0] }})</span>
+          </span>
+        </label>
+        @if (t.comingSoon) {
+          <span class="badge" [id]="badgeId(t)" [attr.data-testid]="'file-type-badge-' + t.id">{{ comingSoonLabel }}</span>
+        }
+      </div>
+    }
+  </div>
+</fieldset>
