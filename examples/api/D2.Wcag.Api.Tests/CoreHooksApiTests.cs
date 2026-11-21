@@ -71,6 +71,8 @@ public class CoreHooksApiTests : IClassFixture<DefaultApiTestHost>
         var response = await _client.GetAsync($"/api/wcag-documents/reports/{result.ReportId}/locations/preview?key={Uri.EscapeDataString(key)}");
 
         Assert.Equal(expected, response.StatusCode);
+        var problem = System.Text.Json.Nodes.JsonNode.Parse(await response.Content.ReadAsStringAsync())!;
+        Assert.Equal("Nieprawidłowe miejsce w dokumencie.", problem["title"]!.GetValue<string>());
     }
 
     [Fact]

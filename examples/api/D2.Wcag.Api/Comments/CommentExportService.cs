@@ -6,11 +6,17 @@ using D2.Wcag.Docx;
 
 namespace D2.Wcag.Api.Comments;
 
+// Kopii z komentarzami nie da się przygotować (format Strict Open XML, dokument bez akapitu, w którym Word przyjmuje
+// komentarz, plik uszkodzony): dokument został odczytany i sprawdzony, odmowa dotyczy tylko tego eksportu.
+public sealed class CommentExportRejectedException(string message) : Exception(message);
+
 public interface ICommentExportService
 {
     /// <summary>
     /// Kopia dokumentu z raportu w pamięci z komentarzami Worda przy wystąpieniach zgłoszeń:
-    /// <c>&lt;oryginalna_nazwa&gt;_z_komentarzami.docx</c>. Wygasły raport = <see cref="ReportNotFoundException"/>.
+    /// <c>&lt;oryginalna_nazwa&gt;_z_komentarzami.docx</c> – albo <c>.dotx</c>, <c>.docm</c>, <c>.dotm</c>, gdy sprawdzono
+    /// szablon lub plik z makrami (kopia ma typ oryginału). Wygasły raport = <see cref="ReportNotFoundException"/>,
+    /// odmowa eksportu = <see cref="CommentExportRejectedException"/>.
     /// </summary>
     ExportedReport Export(string reportId);
 }
@@ -20,9 +26,9 @@ public interface ICommentExportService
 // zgłoszenie z jednym miejscem), więc komentarzy jest dokładnie tyle, ile pozycji na liście wyników.
 public sealed class CommentExportService(IReportStore reports, IWcagCommentWriter writer) : ICommentExportService
 {
-    public const string DocxContentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+    public const string FileNameSuffix = "_z_komentarzami";
 
-    public const string FileNameSuffix = "_z_komentarzami.docx";
+    private static readonly string[] WordExtensions = [".docx", ".dotx", ".docm", ".dotm"];
 
     public ExportedReport Export(string reportId)
     {
@@ -37,13 +43,23 @@ public sealed class CommentExportService(IReportStore reports, IWcagCommentWrite
         try
         {
             var annotated = writer.Annotate(report.Document, report.Findings.Select(ToIssue), options);
-            return new ExportedReport(Path.GetFileNameWithoutExtension(report.FileName) + FileNameSuffix, DocxContentType, annotated.Content);
+            return new ExportedReport(BaseName(report.FileName) + FileNameSuffix + annotated.FileExtension, annotated.MediaType, annotated.Content);
         }
         catch (CommentExportException ex)
         {
-            // Szablon, plik z makrami, dokument bez akapitów…: problem z plikiem, nie błąd serwera (422 z wyjaśnieniem).
-            throw new UnreadableDocumentException(ex.Message);
+            // Problem z plikiem, nie błąd serwera: 422 „Nie można przygotować kopii z komentarzami.” z wyjaśnieniem.
+            throw new CommentExportRejectedException(ex.Message);
         }
+    }
+
+    // Nazwa w raporcie zawsze kończy się na .docx (API dokleja je przy przyjęciu pliku, więc „szablon.dotx” to tam
+    // „szablon.dotx.docx”). Kopia dostaje rozszerzenie według faktycznego typu pliku, dlatego z nazwy schodzi
+    // doklejone .docx i – jeśli jest – oryginalne rozszerzenie Worda: „szablon_z_komentarzami.dotx”.
+    public static string BaseName(string fileName)
+    {
+        var name = Path.GetFileNameWithoutExtension(fileName);
+        var original = Path.GetExtension(name);
+        return WordExtensions.Contains(original, StringComparer.OrdinalIgnoreCase) && name.Length > original.Length ? name[..^original.Length] : name;
     }
 
     internal static WcagIssue ToIssue(FindingDto finding) => new(finding.Code, finding.Severity, finding.Category, finding.Message)
