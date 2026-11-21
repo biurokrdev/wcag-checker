@@ -699,7 +699,7 @@
         },
         {
           "id": "g05",
-          "name": "G-05 Odstępy H1: 42,5 pt nad, 34 pt pod",
+          "name": "G-05 Odstępy H1: 42,5 pt nad, 34 pt pod; układ dokumentu",
           "status": "Passed",
           "details": [],
           "note": null
@@ -790,7 +790,14 @@
       "rows": [
         {
           "id": "g11",
-          "name": "G-11 Stopka SUN Me 8 pt #696969 interlinia 1,2, numer i tytuł, bez stopki na stronie tytułowej",
+          "name": "G-11 Stopka SUN Me 8 pt #696969 interlinia 1,2, numer i tytuł („Strona: X z Y. Tytuł”), bez stopki na stronie tytułowej",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "registration",
+          "name": "Dane rejestrowe SUN Me 8 pt #696969, interlinia 1,5",
           "status": "Passed",
           "details": [],
           "note": null
@@ -870,7 +877,7 @@
           "name": "Wariant układu (dane rejestrowe, strona tytułowa, pole adresowe)",
           "status": "ManualReview",
           "details": [],
-          "note": "Dane rejestrowe SUN Me 8 pt #696969 interlinia 1,5; strona tytułowa bez stopki; pole adresowe najlepiej puste."
+          "note": "Dobór układu do rodzaju pisma i położenie danych rejestrowych na stronie ocenić na wydruku; pole adresowe najlepiej puste. Format danych rejestrowych i reguły wybranego układu są sprawdzane automatycznie."
         },
         {
           "id": "manual-signatures",

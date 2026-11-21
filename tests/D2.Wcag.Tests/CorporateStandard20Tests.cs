@@ -16,72 +16,13 @@ public class CorporateStandard20Tests
 
     private static WcagValidationResult Validate(byte[] document) => new WcagDocxValidator().Validate(document, Only20);
 
-    // Szablon zgodny ze standardem: docDefaults SUN Me 10 pt, interlinia 1,2, nagłówki według tabeli 3.1, H1 z odstępami
-    // 42,5/34 pt, stopka „Strona: N. Tytuł” 8 pt #696969, metadane „[Tytuł]. Bank”, autor = bank.
-    private static DocxBuilder Compliant() => new() { Title = $"Regulamin promocji. {Bank}", Author = Bank };
+    // Szablon zgodny ze standardem (DocxBuilder.Corporate20.cs): docDefaults SUN Me 10 pt, interlinia 1,2, nagłówki
+    // według tabeli 3.1, H1 z odstępami 42,5/34 pt, stopka „Strona: X z Y. Tytuł” 8 pt #696969, metadane „[Tytuł]. Bank”.
+    private static DocxBuilder Compliant() => DocxBuilder.Compliant20();
 
-    private static byte[] Build(DocxBuilder builder, Action<MainDocumentPart>? tweak = null)
-    {
-        var bytes = builder.Build();
-        using var stream = new MemoryStream();
-        stream.Write(bytes);
-        stream.Position = 0;
-        using (var package = WordprocessingDocument.Open(stream, true))
-        {
-            var main = package.MainDocumentPart!;
-            var styles = main.StyleDefinitionsPart!.Styles!;
-            styles.DocDefaults = new DocDefaults(
-                new RunPropertiesDefault(new RunPropertiesBaseStyle(
-                    new RunFonts { Ascii = "SUN Me", HighAnsi = "SUN Me" }, new Color { Val = "000000" }, new FontSize { Val = "20" }, new Languages { Val = "pl-PL" })),
-                new ParagraphPropertiesDefault(new ParagraphPropertiesBaseStyle(new SpacingBetweenLines { Line = "288", LineRule = LineSpacingRuleValues.Auto })));
+    private static byte[] Build(DocxBuilder builder, Action<MainDocumentPart>? tweak = null) => builder.Build20(tweak);
 
-            void HeadingRun(int level, string font, string size, string color, SpacingBetweenLines? spacing = null)
-            {
-                var style = styles.Elements<Style>().Single(s => s.StyleId == $"Nagwek{level}");
-                style.Append(new StyleRunProperties(new RunFonts { Ascii = font, HighAnsi = font }, new Bold(), new Color { Val = color }, new FontSize { Val = size }));
-                if (spacing is not null)
-                {
-                    style.StyleParagraphProperties!.Append(spacing);
-                }
-            }
-
-            HeadingRun(1, "SUN Display", "48", "FF6200", new SpacingBetweenLines { Before = "850", After = "680", Line = "288", LineRule = LineSpacingRuleValues.Auto });
-            HeadingRun(2, "SUN Me", "32", "000000");
-            HeadingRun(3, "SUN Me", "28", "0000FF");
-            HeadingRun(4, "SUN Me", "24", "000000");
-
-            var footer = main.FooterParts.Single();
-            footer.Footer = new Footer(new Paragraph(
-                new Run(new RunProperties(new Color { Val = "696969" }, new FontSize { Val = "16" }), new Text("Strona: ") { Space = SpaceProcessingModeValues.Preserve }),
-                new SimpleField(new Run(new RunProperties(new Color { Val = "696969" }, new FontSize { Val = "16" }), new Text("1"))) { Instruction = " PAGE " },
-                new Run(new RunProperties(new Color { Val = "696969" }, new FontSize { Val = "16" }), new Text(". Regulamin promocji") { Space = SpaceProcessingModeValues.Preserve })));
-
-            tweak?.Invoke(main);
-            package.Save();
-        }
-
-        return stream.ToArray();
-    }
-
-    private static Table DataTable(Action<Table>? tweak = null)
-    {
-        static TableCell Cell(string text, bool bold) => new(
-            new TableCellProperties(new TableCellVerticalAlignment { Val = TableVerticalAlignmentValues.Center }),
-            new Paragraph(new Run(bold ? new RunProperties(new Bold()) : new RunProperties(), new Text(text))));
-
-        var table = new Table(
-            new TableProperties(
-                new TableBorders(
-                    new TopBorder { Val = BorderValues.Single, Size = 8, Color = "000000" }, new BottomBorder { Val = BorderValues.Single, Size = 8, Color = "000000" },
-                    new LeftBorder { Val = BorderValues.Single, Size = 8, Color = "000000" }, new RightBorder { Val = BorderValues.Single, Size = 8, Color = "000000" },
-                    new InsideHorizontalBorder { Val = BorderValues.Single, Size = 8, Color = "000000" }, new InsideVerticalBorder { Val = BorderValues.Single, Size = 8, Color = "000000" }),
-                new TableCaption { Val = "Opłaty" },
-                new TableDescription { Val = "Nazwa opłaty i jej kwota." }),
-            new TableRow(new TableRowProperties(new CantSplit(), new TableHeader()), Cell("Nazwa", true), Cell("Kwota", true)),
-            new TableRow(new TableRowProperties(new CantSplit()), Cell("Opłata", false), Cell("10 zł", false)));
-        tweak?.Invoke(table);
-        return table;
-    }
+    private static Table DataTable(Action<Table>? tweak = null) => DocxBuilder.DataTable20(tweak);
 
     [Fact]
     public void Standard20_IsInTheCatalog_WithChecksAndNote()
@@ -94,7 +35,15 @@ public class CorporateStandard20Tests
         Assert.Contains(standard.Checks, c => c.Manual && c.Name.StartsWith("G-15"));
         var codes = standard.Checks.SelectMany(c => c.Codes).ToHashSet();
         Assert.All(new[] { IssueCodes.JustificationForbidden, IssueCodes.HeadingStyleMismatch, IssueCodes.TableEmptyCell, IssueCodes.VariantMarkerUnbalanced }, c => Assert.Contains(c, codes));
-        Assert.All(codes, c => Assert.NotEqual(c.ToLowerInvariant().Replace('_', ' '), IssueLabels.Of(c)));
+        // Kody sprzed rejestru reguł mają etykietę w IssueLabels; nowe (F20-…) niosą tytuł w deskryptorze reguły.
+        var described = Enum.GetValues<DocumentLayout20>()
+            .SelectMany(layout => new CorporateStandard20(new CorporateStandard20Options { Layout = layout }).Descriptors)
+            .Select(d => d.Code)
+            .ToHashSet();
+        Assert.All(codes, c => Assert.True(
+            c.StartsWith("F20-", StringComparison.Ordinal) ? described.Contains(c) : c.ToLowerInvariant().Replace('_', ' ') != IssueLabels.Of(c),
+            $"Kod {c} nie ma etykiety ani deskryptora."));
+        Assert.All(described, c => Assert.Contains(c, codes));
     }
 
     // Standard 2.0 ma obejmować wszystko, co sprawdza 1.9: ten sam kod kontroli albo kod, który go zastąpił ściślejszym
@@ -255,7 +204,7 @@ public class CorporateStandard20Tests
             main.FooterParts.Single().Footer = new Footer(new Paragraph(new SimpleField(new Run(new Text("1"))) { Instruction = " PAGE " }))));
 
         Assert.Contains(result.Errors, i => i.Code == IssueCodes.FooterStyleMismatch);
-        Assert.Contains(result.Warnings, i => i.Code == IssueCodes.FooterTitleMissing);
+        Assert.Contains(result.Errors, i => i.Code == IssueCodes.FooterTitleMissing);
     }
 
     [Fact]

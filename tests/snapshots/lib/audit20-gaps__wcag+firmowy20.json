@@ -1,6 +1,6 @@
 {
   "outcome": "Invalid",
-  "summary": "16 błędów, 5 ostrzeżeń, 1 informacja.",
+  "summary": "21 błędów, 4 ostrzeżenia, 1 informacja.",
   "standards": [
     {
       "key": "wcag/2.1",
@@ -183,6 +183,68 @@
       "status": "Required"
     },
     {
+      "code": "F20-FOOTER-MISSING",
+      "severity": "Error",
+      "category": "Structure",
+      "standard": "firmowy/2.0",
+      "message": "Sekcja 1 nie ma stopki (własnej ani odziedziczonej z poprzedniej sekcji); standard wymaga stopki z numerem strony i tytułem dokumentu („Strona: X z Y. Tytuł dokumentu”).",
+      "locations": [
+        {
+          "key": "body:Paragraph:0",
+          "snippet": "Luki audytu 2.0"
+        }
+      ],
+      "status": "Required",
+      "title": "Brak stopki",
+      "fix": "1. Wstawianie → Stopka → Edytuj stopkę. 2. Nadaj akapitowi styl „Stopka” (SUN Me 8 pt, #696969, interlinia 1,2). 3. Wpisz „Strona: ”, wstaw pole numeru strony (Wstawianie → Szybkie części → Pole → Page), wpisz „ z ”, wstaw pole NumPages, a po nim „. ” i tytuł dokumentu. 4. Jeśli stopki brakuje tylko w jednej sekcji, włącz w niej Nagłówek i stopka → Połącz z poprzednią. 5. Zamknij stopkę klawiszem Esc.",
+      "scope": "Section"
+    },
+    {
+      "code": "F20-FOOTER-PAGE-NUMBER-MISSING",
+      "severity": "Error",
+      "category": "Structure",
+      "standard": "firmowy/2.0",
+      "message": "Brak pola numeru strony (PAGE) w treści stopki (sekcja 2, strony: wszystkie); numer ma wstawiać pole, a nie tekst wpisany z klawiatury.",
+      "locations": [
+        {
+          "key": "footer/0:Paragraph:0",
+          "snippet": "Dokument wewnętrzny"
+        }
+      ],
+      "status": "Required",
+      "title": "Brak pola numeru strony w stopce",
+      "fix": "1. Kliknij dwukrotnie stopkę. 2. Ustaw kursor w miejscu numeru i wybierz Wstawianie → Szybkie części → Pole → Page (albo Nagłówek i stopka → Numer strony → Bieżąca pozycja → Zwykły numer). 3. Numer wpisany z klawiatury usuń – ma go zastąpić pole. 4. Docelowa postać stopki: „Strona: X z Y. Tytuł dokumentu”.",
+      "scope": "HeaderFooter"
+    },
+    {
+      "code": "FOOTER_TITLE_MISSING",
+      "severity": "Error",
+      "category": "Structure",
+      "standard": "firmowy/2.0",
+      "message": "Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”.",
+      "locations": [
+        {
+          "key": "footer/1:Paragraph:0",
+          "snippet": "(stopka)"
+        }
+      ],
+      "status": "Required"
+    },
+    {
+      "code": "AUTHOR_MISSING",
+      "severity": "Error",
+      "category": "Metadata",
+      "standard": "firmowy/2.0",
+      "message": "Dokument nie ma autora w metadanych.",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": "(metadane dokumentu)"
+        }
+      ],
+      "status": "Required"
+    },
+    {
       "code": "TITLE_MISSING",
       "severity": "Error",
       "category": "Metadata",
@@ -196,19 +258,87 @@
       ]
     },
     {
-      "code": "BODY_TEXT_SIZE_MISMATCH",
+      "code": "F20-REGISTRATION-DATA-FORMAT",
       "severity": "Error",
       "category": "Quality",
       "standard": "firmowy/2.0",
-      "message": "2 fragmenty tekstu podstawowego mają rozmiar spoza standardu; wymagane 10 pt (dopuszczalnie 12 albo 14 pt).",
+      "message": "Dane rejestrowe „Example Company S. A., oddział w Krakowie, wpisany…”: rozmiar 9 pt zamiast 8 pt; pogrubienie zamiast grubości Regular; wymagane SUN Me Regular 8 pt #696969, interlinia 1,5.",
       "locations": [
         {
-          "key": "body:Run:42:0",
-          "snippet": "Example Company S. A. z siedzibą w Warsz… (8 pt)"
+          "key": "body:Paragraph:43",
+          "snippet": "Example Company S. A., oddział w Krakowi…"
+        }
+      ],
+      "status": "Required",
+      "title": "Dane rejestrowe w niewłaściwym formacie",
+      "fix": "1. Zaznacz akapit z danymi rejestrowymi (KRS, NIP, REGON, kapitał zakładowy). 2. Narzędzia główne → Style → wybierz styl „Dane rejestrowe”. 3. Jeśli szablon nie ma tego stylu: Narzędzia główne → Style → Utwórz styl, nazwa „Dane rejestrowe”, czcionka SUN Me, 8 pt, bez pogrubienia i kursywy, kolor #696969; Format → Akapit → Interlinia: Wielokrotne 1,5. 4. Formatowanie nadane ręcznie usuń skrótem Ctrl+Spacja (znaki) i Ctrl+Q (akapit).",
+      "scope": "Paragraph",
+      "details": [
+        {
+          "property": "sz",
+          "actual": "9",
+          "expected": "8",
+          "source": "formatowanie bezpośrednie"
         },
         {
-          "key": "body:Run:43:0",
-          "snippet": "Example Company S. A., oddział w Krakowi… (9 pt)"
+          "property": "b",
+          "actual": "1",
+          "expected": "0",
+          "source": "formatowanie bezpośrednie"
+        }
+      ]
+    },
+    {
+      "code": "F20-REGISTRATION-DATA-FORMAT",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "message": "Dane rejestrowe „Example Company S. A., Sąd Rejonowy dla m.st. Wars…”: rozmiar 10 pt zamiast 8 pt; kolor #000000 zamiast #696969; interlinia 1,2 zamiast 1,5; wymagane SUN Me Regular 8 pt #696969, interlinia 1,5.",
+      "locations": [
+        {
+          "key": "body:Paragraph:44",
+          "snippet": "Example Company S. A., Sąd Rejonowy dla…"
+        }
+      ],
+      "status": "Required",
+      "title": "Dane rejestrowe w niewłaściwym formacie",
+      "fix": "1. Zaznacz akapit z danymi rejestrowymi (KRS, NIP, REGON, kapitał zakładowy). 2. Narzędzia główne → Style → wybierz styl „Dane rejestrowe”. 3. Jeśli szablon nie ma tego stylu: Narzędzia główne → Style → Utwórz styl, nazwa „Dane rejestrowe”, czcionka SUN Me, 8 pt, bez pogrubienia i kursywy, kolor #696969; Format → Akapit → Interlinia: Wielokrotne 1,5. 4. Formatowanie nadane ręcznie usuń skrótem Ctrl+Spacja (znaki) i Ctrl+Q (akapit).",
+      "scope": "Paragraph",
+      "details": [
+        {
+          "property": "sz",
+          "actual": "10",
+          "expected": "8",
+          "source": "ustawienia domyślne dokumentu"
+        },
+        {
+          "property": "color",
+          "actual": "000000",
+          "expected": "696969",
+          "source": "ustawienia domyślne dokumentu"
+        },
+        {
+          "property": "p.spacing.line",
+          "actual": "14.4",
+          "expected": "18",
+          "source": "ustawienia domyślne dokumentu"
+        }
+      ]
+    },
+    {
+      "code": "FOOTER_STYLE_MISMATCH",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "message": "2 fragmenty stopki mają styl inny niż SUN Me 8 pt #696969.",
+      "locations": [
+        {
+          "key": "footer/1:Run:0:0",
+          "snippet": "Strona: (Arial, pogrubienie)"
+        },
+        {
+          "key": "footer/1:Run:0:1",
+          "snippet": "3 (Arial, pogrubienie)"
         }
       ]
     },
@@ -269,27 +399,6 @@
       "status": "Required"
     },
     {
-      "code": "LINE_SPACING_MISMATCH",
-      "severity": "Error",
-      "category": "Quality",
-      "standard": "firmowy/2.0",
-      "message": "3 akapity mają interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288).",
-      "locations": [
-        {
-          "key": "body:Paragraph:42",
-          "snippet": "Example Company S. A. z siedzibą w Warsz… (interlinia 1,5)"
-        },
-        {
-          "key": "body:Paragraph:43",
-          "snippet": "Example Company S. A., oddział w Krakowi… (interlinia 1,5)"
-        },
-        {
-          "key": "footer/3:Paragraph:1",
-          "snippet": "Example Company S. A. z siedzibą w Warsz… (interlinia 1,5)"
-        }
-      ]
-    },
-    {
       "code": "PAGE_FORMAT_NOT_A4",
       "severity": "Error",
       "category": "Quality",
@@ -334,17 +443,21 @@
       ]
     },
     {
-      "code": "FOOTER_TITLE_MISSING",
+      "code": "F20-FOOTER-FORMAT",
       "severity": "Warning",
       "category": "Structure",
       "standard": "firmowy/2.0",
-      "message": "Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”.",
+      "message": "Stopka ma postać „X / Y – Luki audytu 2.0” (X = pole PAGE, Y = pole NUMPAGES); standard: „Strona: X z Y. Tytuł dokumentu”.",
       "locations": [
         {
-          "key": "footer/1:Paragraph:0",
-          "snippet": "(stopka)"
+          "key": "footer/2:Paragraph:0",
+          "snippet": "PAGE 4 / 5 – Luki audytu 2.0"
         }
-      ]
+      ],
+      "status": "Recommended",
+      "title": "Stopka w innej postaci niż „Strona: X z Y. Tytuł”",
+      "fix": "1. Kliknij dwukrotnie stopkę. 2. Ułóż treść w jednym akapicie: „Strona: ”, pole Page, „ z ”, pole NumPages, „. ” i tytuł dokumentu, np. „Strona: 2 z 3. Regulamin promocji”. 3. Pola wstawia się przez Wstawianie → Szybkie części → Pole (Page i NumPages).",
+      "scope": "HeaderFooter"
     },
     {
       "code": "AUTHOR_MISSING",
@@ -356,19 +469,6 @@
         {
           "key": "body:Document:0",
           "snippet": "(metadane dokumentu)"
-        }
-      ]
-    },
-    {
-      "code": "TEXT_COLOR_USAGE_MISMATCH",
-      "severity": "Warning",
-      "category": "Quality",
-      "standard": "firmowy/2.0",
-      "message": "1 fragment tekstu ma kolor z palety użyty niezgodnie z przeznaczeniem (rozdz. 2 guidebooka).",
-      "locations": [
-        {
-          "key": "body:Run:43:0",
-          "snippet": "Example Company S. A., oddział w Krakowi… (szary #696969 jest zarezerwowany dla stopki i danych rejestrowych (8 pt))"
         }
       ]
     },

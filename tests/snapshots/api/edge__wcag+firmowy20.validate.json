@@ -1,6 +1,6 @@
 {
   "status": "Invalid",
-  "summary": "2 błędy, 3 ostrzeżenia, 1 informacja.",
+  "summary": "3 błędy, 5 ostrzeżeń, 1 informacja.",
   "standards": [
     {
       "key": "wcag/2.1",
@@ -30,8 +30,8 @@
     "images": 1
   },
   "counts": {
-    "errors": 2,
-    "warnings": 3,
+    "errors": 3,
+    "warnings": 5,
     "infos": 1
   },
   "issues": [
@@ -54,6 +54,17 @@
       "fixable": false
     },
     {
+      "code": "F20-FOOTER-PAGE-NUMBER-MISSING",
+      "label": "Brak pola numeru strony w stopce",
+      "severity": "Error",
+      "category": "Structure",
+      "message": "Brak pola numeru strony (PAGE) w treści stopki (sekcja 1, strona: pierwsza); numer ma wstawiać pole, a nie tekst wpisany z klawiatury.",
+      "standard": "firmowy/2.0",
+      "fixable": false,
+      "status": "Required",
+      "fix": "1. Kliknij dwukrotnie stopkę. 2. Ustaw kursor w miejscu numeru i wybierz Wstawianie → Szybkie części → Pole → Page (albo Nagłówek i stopka → Numer strony → Bieżąca pozycja → Zwykły numer). 3. Numer wpisany z klawiatury usuń – ma go zastąpić pole. 4. Docelowa postać stopki: „Strona: X z Y. Tytuł dokumentu”."
+    },
+    {
       "code": "COMMENTS_PRESENT",
       "label": "Komentarze w dokumencie",
       "severity": "Warning",
@@ -61,6 +72,28 @@
       "message": "Dokument zawiera 1 komentarz; usuń je przed publikacją.",
       "standard": "wcag/2.1",
       "fixable": false
+    },
+    {
+      "code": "F20-FOOTER-FORMAT",
+      "label": "Stopka w innej postaci niż „Strona: X z Y. Tytuł”",
+      "severity": "Warning",
+      "category": "Structure",
+      "message": "Stopka ma postać „Stopka stron parzystych: X” (X = pole PAGE, Y = pole NUMPAGES); standard: „Strona: X z Y. Tytuł dokumentu”.",
+      "standard": "firmowy/2.0",
+      "fixable": false,
+      "status": "Recommended",
+      "fix": "1. Kliknij dwukrotnie stopkę. 2. Ułóż treść w jednym akapicie: „Strona: ”, pole Page, „ z ”, pole NumPages, „. ” i tytuł dokumentu, np. „Strona: 2 z 3. Regulamin promocji”. 3. Pola wstawia się przez Wstawianie → Szybkie części → Pole (Page i NumPages)."
+    },
+    {
+      "code": "F20-FOOTER-FORMAT",
+      "label": "Stopka w innej postaci niż „Strona: X z Y. Tytuł”",
+      "severity": "Warning",
+      "category": "Structure",
+      "message": "Stopka ma postać „Sekcja 2. Strona: X. Przypadki brzegowe” (X = pole PAGE, Y = pole NUMPAGES); standard: „Strona: X z Y. Tytuł dokumentu”.",
+      "standard": "firmowy/2.0",
+      "fixable": false,
+      "status": "Recommended",
+      "fix": "1. Kliknij dwukrotnie stopkę. 2. Ułóż treść w jednym akapicie: „Strona: ”, pole Page, „ z ”, pole NumPages, „. ” i tytuł dokumentu, np. „Strona: 2 z 3. Regulamin promocji”. 3. Pola wstawia się przez Wstawianie → Szybkie części → Pole (Page i NumPages)."
     },
     {
       "code": "FLOATING_ELEMENTS_PRESENT",
@@ -798,7 +831,7 @@
         },
         {
           "id": "g05",
-          "name": "G-05 Odstępy H1: 42,5 pt nad, 34 pt pod",
+          "name": "G-05 Odstępy H1: 42,5 pt nad, 34 pt pod; układ dokumentu",
           "status": "Passed",
           "details": [],
           "note": null
@@ -889,7 +922,36 @@
       "rows": [
         {
           "id": "g11",
-          "name": "G-11 Stopka SUN Me 8 pt #696969 interlinia 1,2, numer i tytuł, bez stopki na stronie tytułowej",
+          "name": "G-11 Stopka SUN Me 8 pt #696969 interlinia 1,2, numer i tytuł („Strona: X z Y. Tytuł”), bez stopki na stronie tytułowej",
+          "status": "Error",
+          "details": [
+            {
+              "code": "F20-FOOTER-PAGE-NUMBER-MISSING",
+              "label": "Brak pola numeru strony w stopce",
+              "message": "Brak pola numeru strony (PAGE) w treści stopki (sekcja 1, strona: pierwsza); numer ma wstawiać pole, a nie tekst wpisany z klawiatury.",
+              "occurrences": 1,
+              "severity": "Error"
+            },
+            {
+              "code": "F20-FOOTER-FORMAT",
+              "label": "Stopka w innej postaci niż „Strona: X z Y. Tytuł”",
+              "message": "Stopka ma postać „Stopka stron parzystych: X” (X = pole PAGE, Y = pole NUMPAGES); standard: „Strona: X z Y. Tytuł dokumentu”.",
+              "occurrences": 1,
+              "severity": "Warning"
+            },
+            {
+              "code": "F20-FOOTER-FORMAT",
+              "label": "Stopka w innej postaci niż „Strona: X z Y. Tytuł”",
+              "message": "Stopka ma postać „Sekcja 2. Strona: X. Przypadki brzegowe” (X = pole PAGE, Y = pole NUMPAGES); standard: „Strona: X z Y. Tytuł dokumentu”.",
+              "occurrences": 1,
+              "severity": "Warning"
+            }
+          ],
+          "note": null
+        },
+        {
+          "id": "registration",
+          "name": "Dane rejestrowe SUN Me 8 pt #696969, interlinia 1,5",
           "status": "Passed",
           "details": [],
           "note": null
@@ -969,7 +1031,7 @@
           "name": "Wariant układu (dane rejestrowe, strona tytułowa, pole adresowe)",
           "status": "ManualReview",
           "details": [],
-          "note": "Dane rejestrowe SUN Me 8 pt #696969 interlinia 1,5; strona tytułowa bez stopki; pole adresowe najlepiej puste."
+          "note": "Dobór układu do rodzaju pisma i położenie danych rejestrowych na stronie ocenić na wydruku; pole adresowe najlepiej puste. Format danych rejestrowych i reguły wybranego układu są sprawdzane automatycznie."
         },
         {
           "id": "manual-signatures",
@@ -1032,6 +1094,32 @@
     },
     {
       "index": 2,
+      "code": "F20-FOOTER-PAGE-NUMBER-MISSING",
+      "label": "Brak pola numeru strony w stopce",
+      "severity": "Error",
+      "category": "Structure",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Brak pola numeru strony (PAGE) w treści stopki (sekcja 1, strona: pierwsza); numer ma wstawiać pole, a nie tekst wpisany z klawiatury.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "footer/1:Paragraph:0",
+        "kind": "Paragraph",
+        "story": "footer/1",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "Stopka pierwszej strony"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "1. Kliknij dwukrotnie stopkę. 2. Ustaw kursor w miejscu numeru i wybierz Wstawianie → Szybkie części → Pole → Page (albo Nagłówek i stopka → Numer strony → Bieżąca pozycja → Zwykły numer). 3. Numer wpisany z klawiatury usuń – ma go zastąpić pole. 4. Docelowa postać stopki: „Strona: X z Y. Tytuł dokumentu”.",
+      "scope": "HeaderFooter"
+    },
+    {
+      "index": 3,
       "code": "COMMENTS_PRESENT",
       "label": "Komentarze w dokumencie",
       "severity": "Warning",
@@ -1053,7 +1141,59 @@
       "occurrenceCount": 1
     },
     {
-      "index": 3,
+      "index": 4,
+      "code": "F20-FOOTER-FORMAT",
+      "label": "Stopka w innej postaci niż „Strona: X z Y. Tytuł”",
+      "severity": "Warning",
+      "category": "Structure",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Stopka ma postać „Stopka stron parzystych: X” (X = pole PAGE, Y = pole NUMPAGES); standard: „Strona: X z Y. Tytuł dokumentu”.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "footer/2:Paragraph:0",
+        "kind": "Paragraph",
+        "story": "footer/2",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "Stopka stron parzystych: 2"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Recommended",
+      "statusLabel": "REKOMENDOWANE",
+      "fix": "1. Kliknij dwukrotnie stopkę. 2. Ułóż treść w jednym akapicie: „Strona: ”, pole Page, „ z ”, pole NumPages, „. ” i tytuł dokumentu, np. „Strona: 2 z 3. Regulamin promocji”. 3. Pola wstawia się przez Wstawianie → Szybkie części → Pole (Page i NumPages).",
+      "scope": "HeaderFooter"
+    },
+    {
+      "index": 5,
+      "code": "F20-FOOTER-FORMAT",
+      "label": "Stopka w innej postaci niż „Strona: X z Y. Tytuł”",
+      "severity": "Warning",
+      "category": "Structure",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Stopka ma postać „Sekcja 2. Strona: X. Przypadki brzegowe” (X = pole PAGE, Y = pole NUMPAGES); standard: „Strona: X z Y. Tytuł dokumentu”.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "footer/3:Paragraph:0",
+        "kind": "Paragraph",
+        "story": "footer/3",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "Sekcja 2. Strona: 3. Przypadki brzegowe"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Recommended",
+      "statusLabel": "REKOMENDOWANE",
+      "fix": "1. Kliknij dwukrotnie stopkę. 2. Ułóż treść w jednym akapicie: „Strona: ”, pole Page, „ z ”, pole NumPages, „. ” i tytuł dokumentu, np. „Strona: 2 z 3. Regulamin promocji”. 3. Pola wstawia się przez Wstawianie → Szybkie części → Pole (Page i NumPages).",
+      "scope": "HeaderFooter"
+    },
+    {
+      "index": 6,
       "code": "FLOATING_ELEMENTS_PRESENT",
       "label": "Elementy pływające poza kolejnością odczytu",
       "severity": "Warning",
@@ -1077,7 +1217,7 @@
       "occurrenceCount": 2
     },
     {
-      "index": 4,
+      "index": 7,
       "code": "FLOATING_ELEMENTS_PRESENT",
       "label": "Elementy pływające poza kolejnością odczytu",
       "severity": "Warning",
@@ -1101,7 +1241,7 @@
       "occurrenceCount": 2
     },
     {
-      "index": 5,
+      "index": 8,
       "code": "TEXT_COLOR_NOT_ALLOWED",
       "label": "Kolor tekstu spoza palety",
       "severity": "Warning",
@@ -1123,7 +1263,7 @@
       "occurrenceCount": 2
     },
     {
-      "index": 6,
+      "index": 9,
       "code": "TEXT_COLOR_NOT_ALLOWED",
       "label": "Kolor tekstu spoza palety",
       "severity": "Warning",
@@ -1145,7 +1285,7 @@
       "occurrenceCount": 2
     },
     {
-      "index": 7,
+      "index": 10,
       "code": "MANUAL_CHECK_SUGGESTED",
       "label": "Zalecane sprawdzenie ręczne",
       "severity": "Info",

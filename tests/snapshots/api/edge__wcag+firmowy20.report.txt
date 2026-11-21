@@ -4,7 +4,7 @@ Język: pl-PL
 Obrazy: 0
 
 Raport walidacji dokumentu „edge.docx”
-Wynik: niepoprawny. 2 błędy, 3 ostrzeżenia, 1 informacja.
+Wynik: niepoprawny. 3 błędy, 5 ostrzeżeń, 1 informacja.
 Data sprawdzenia: <data>. Standardy: WCAG 2.1 AA (dokument Word); Standard pism firmowych 2.0.
 Dokument: tytuł „Przypadki brzegowe. Example Company S. A.”, autor „Example Company S. A.”, język pl-PL, 21 akapitów, 3 nagłówków, 1 tabel, 1 obrazów.
 Podsumowanie kontroli
@@ -75,7 +75,7 @@ Sekcja „Typografia”
 | Zatwierdzono | G-03 Style H1–H5 zgodne z tabelą typografii | – |
 | Zatwierdzono | Tekst podstawowy 10 pt (12/14 pt warunkowo) | – |
 | Zatwierdzono | Łącza #7724FF z podkreśleniem | – |
-| Zatwierdzono | G-05 Odstępy H1: 42,5 pt nad, 34 pt pod | – |
+| Zatwierdzono | G-05 Odstępy H1: 42,5 pt nad, 34 pt pod; układ dokumentu | – |
 | Zatwierdzono | G-07 Hierarchia nagłówków: start od H1, bez przeskoków | – |
 Sekcja „Spis treści i listy”
 | Status | Kontrola | Szczegóły |
@@ -92,7 +92,8 @@ Sekcja „Grafika”
 | Zatwierdzono | G-10 Logo 44 × 10 mm i symbol 22 × 22 mm z tekstem alternatywnym z guidebooka | – |
 Sekcja „Stopka i metadane”
 | Status | Kontrola | Szczegóły |
-| Zatwierdzono | G-11 Stopka SUN Me 8 pt #696969 interlinia 1,2, numer i tytuł, bez stopki na stronie tytułowej | – |
+| Błąd | G-11 Stopka SUN Me 8 pt #696969 interlinia 1,2, numer i tytuł („Strona: X z Y. Tytuł”), bez stopki na stronie tytułowej | Brak pola numeru strony w stopce: Brak pola numeru strony (PAGE) w treści stopki (sekcja 1, strona: pierwsza); numer ma wstawiać pole, a nie tekst wpisany z klawiatury. ⏎ Stopka w innej postaci niż „Strona: X z Y. Tytuł”: Stopka ma postać „Stopka stron parzystych: X” (X = pole PAGE, Y = pole NUMPAGES); standard: „Strona: X z Y. Tytuł dokumentu”. ⏎ Stopka w innej postaci niż „Strona: X z Y. Tytuł”: Stopka ma postać „Sekcja 2. Strona: X. Przypadki brzegowe” (X = pole PAGE, Y = pole NUMPAGES); standard: „Strona: X z Y. Tytuł dokumentu”. |
+| Zatwierdzono | Dane rejestrowe SUN Me 8 pt #696969, interlinia 1,5 | – |
 | Zatwierdzono | G-12 Title „[Tytuł]. Bank”, Author = bank | – |
 | Zatwierdzono | G-13 Język dokumentu ustawiony | – |
 Sekcja „Warianty i oznaczenia”
@@ -105,7 +106,7 @@ Sekcja „Weryfikacja ręczna”
 | Ręczna weryfikacja | G-10 Alt text ikon i QR zależny od kontekstu, dekoracje wyłączone | Ikony „tak/nie” i informacji z opisem z kontekstu; QR z przeznaczeniem; pole na naklejkę barcode dekoracyjne; zasoby z OrangeSharing, nie ze zdjęć. |
 | Ręczna weryfikacja | G-13 Znaczniki językowe fragmentów w innym języku | Cytaty, tytuły i rozwinięcia skrótów w innym języku oznaczone miejscowo. |
 | Ręczna weryfikacja | G-15 Sygnatura (SUN Me 8 pt, 270°, prawy dolny róg) i SIGNOTEK | Zgodność z integracją; biały identyfikator SIGNOTEK ocenić osobno pod kątem dostępności. |
-| Ręczna weryfikacja | Wariant układu (dane rejestrowe, strona tytułowa, pole adresowe) | Dane rejestrowe SUN Me 8 pt #696969 interlinia 1,5; strona tytułowa bez stopki; pole adresowe najlepiej puste. |
+| Ręczna weryfikacja | Wariant układu (dane rejestrowe, strona tytułowa, pole adresowe) | Dobór układu do rodzaju pisma i położenie danych rejestrowych na stronie ocenić na wydruku; pole adresowe najlepiej puste. Format danych rejestrowych i reguły wybranego układu są sprawdzane automatycznie. |
 | Ręczna weryfikacja | Pola podpisów, separatory i kontrolki formularza | Linia podpisu 1 px #000000 60 mm; inputy 1 px #696969, 24 px wysokości; checkbox 20 × 20 px. |
 Kryteria WCAG 2.1
 3 kryteria spełnione, 2 niespełnione, 13 do przeglądu ręcznego.
@@ -130,16 +131,19 @@ Tabela stanu kryteriów WCAG 2.1
 | 4.1.1 Poprawność kodu | A | automatycznie | spełnione | Pakiet DOCX otwiera się i ma część główną. |
 | 4.1.2 Nazwa, rola, wartość | A | częściowo | do przeglądu | Formanty mają nazwę (etykietę albo tytuł); rola i wartość wynikają z typu formantu w Wordzie. |
 Wyniki walidacji
-8 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
+11 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
 Tabela wystąpień
 | Nr | Waga | Zgłoszenie | Standard | Miejsce | Komunikat | Zweryfikowano |
 | 1 | błąd | Obraz bez tekstu alternatywnego | WCAG 2.1 AA (dokument Word) | fragment tekstu: „(obiekt VML)” | Obraz nr 2 (obiekt VML) nie ma tekstu alternatywnego. | nie |
 | 2 | błąd | Za mały kontrast tekstu | WCAG 2.1 AA (dokument Word) | fragment tekstu: „rozjaśniony akcent (2,4:1)” | 1 fragment tekstu ma za mały kontrast z tłem (najgorszy 2,4:1, wymagane 4,5:1 albo 3:1 dla dużego tekstu); pierwszy: „rozjaśniony akcent”. | nie |
-| 3 | ostrzeżenie | Komentarze w dokumencie | WCAG 2.1 AA (dokument Word) | akapit: „(komentarz)” | Dokument zawiera 1 komentarz; usuń je przed publikacją. | nie |
-| 4 | ostrzeżenie | Elementy pływające poza kolejnością odczytu | WCAG 2.1 AA (dokument Word) | obraz: „(element pływający)” (1/2) | Dokument zawiera 1 element pływający, 2 pola tekstowe; ich położenie w kolejności odczytu nie wynika z treści. | nie |
-| 5 | ostrzeżenie | Elementy pływające poza kolejnością odczytu | WCAG 2.1 AA (dokument Word) | fragment tekstu: „(pole tekstowe)” (2/2) | Dokument zawiera 1 element pływający, 2 pola tekstowe; ich położenie w kolejności odczytu nie wynika z treści. | nie |
-| 6 | ostrzeżenie | Kolor tekstu spoza palety | Standard pism firmowych 2.0 | fragment tekstu: „rozjaśniony akcent (#8EAADB)” (1/2) | 2 fragmenty tekstu mają kolor spoza dozwolonej palety (#8EAADB, #2F5496); dozwolone: #000000, #FF6200, #0000FF, #AB0066, #7724FF, #696969, #4D0020. | nie |
-| 7 | ostrzeżenie | Kolor tekstu spoza palety | Standard pism firmowych 2.0 | fragment tekstu: „przyciemniony akcent (#2F5496)” (2/2) | 2 fragmenty tekstu mają kolor spoza dozwolonej palety (#8EAADB, #2F5496); dozwolone: #000000, #FF6200, #0000FF, #AB0066, #7724FF, #696969, #4D0020. | nie |
-| 8 | informacja | Zalecane sprawdzenie ręczne | WCAG 2.1 AA (dokument Word) | dokument: „” | Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie. | nie |
+| 3 | błąd | Brak pola numeru strony w stopce | Standard pism firmowych 2.0 | akapit: „Stopka pierwszej strony” | Brak pola numeru strony (PAGE) w treści stopki (sekcja 1, strona: pierwsza); numer ma wstawiać pole, a nie tekst wpisany z klawiatury. | nie |
+| 4 | ostrzeżenie | Komentarze w dokumencie | WCAG 2.1 AA (dokument Word) | akapit: „(komentarz)” | Dokument zawiera 1 komentarz; usuń je przed publikacją. | nie |
+| 5 | ostrzeżenie | Stopka w innej postaci niż „Strona: X z Y. Tytuł” | Standard pism firmowych 2.0 | akapit: „Stopka stron parzystych: 2” | Stopka ma postać „Stopka stron parzystych: X” (X = pole PAGE, Y = pole NUMPAGES); standard: „Strona: X z Y. Tytuł dokumentu”. | nie |
+| 6 | ostrzeżenie | Stopka w innej postaci niż „Strona: X z Y. Tytuł” | Standard pism firmowych 2.0 | akapit: „Sekcja 2. Strona: 3. Przypadki brzegowe” | Stopka ma postać „Sekcja 2. Strona: X. Przypadki brzegowe” (X = pole PAGE, Y = pole NUMPAGES); standard: „Strona: X z Y. Tytuł dokumentu”. | nie |
+| 7 | ostrzeżenie | Elementy pływające poza kolejnością odczytu | WCAG 2.1 AA (dokument Word) | obraz: „(element pływający)” (1/2) | Dokument zawiera 1 element pływający, 2 pola tekstowe; ich położenie w kolejności odczytu nie wynika z treści. | nie |
+| 8 | ostrzeżenie | Elementy pływające poza kolejnością odczytu | WCAG 2.1 AA (dokument Word) | fragment tekstu: „(pole tekstowe)” (2/2) | Dokument zawiera 1 element pływający, 2 pola tekstowe; ich położenie w kolejności odczytu nie wynika z treści. | nie |
+| 9 | ostrzeżenie | Kolor tekstu spoza palety | Standard pism firmowych 2.0 | fragment tekstu: „rozjaśniony akcent (#8EAADB)” (1/2) | 2 fragmenty tekstu mają kolor spoza dozwolonej palety (#8EAADB, #2F5496); dozwolone: #000000, #FF6200, #0000FF, #AB0066, #7724FF, #696969, #4D0020. | nie |
+| 10 | ostrzeżenie | Kolor tekstu spoza palety | Standard pism firmowych 2.0 | fragment tekstu: „przyciemniony akcent (#2F5496)” (2/2) | 2 fragmenty tekstu mają kolor spoza dozwolonej palety (#8EAADB, #2F5496); dozwolone: #000000, #FF6200, #0000FF, #AB0066, #7724FF, #696969, #4D0020. | nie |
+| 11 | informacja | Zalecane sprawdzenie ręczne | WCAG 2.1 AA (dokument Word) | dokument: „” | Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie. | nie |
 
-PDF: %PDF-, strony: 9
+PDF: %PDF-, strony: 10

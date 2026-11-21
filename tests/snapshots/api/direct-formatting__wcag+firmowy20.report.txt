@@ -75,7 +75,7 @@ Sekcja „Typografia”
 | Zatwierdzono | G-03 Style H1–H5 zgodne z tabelą typografii | – |
 | Ostrzeżenie | Tekst podstawowy 10 pt (12/14 pt warunkowo) | Rozmiar tekstu podstawowego spoza standardu: 1 fragment tekstu jest powiększony do 12 albo 14 pt; dopuszczalne tylko z potrzeby biznesowej. |
 | Zatwierdzono | Łącza #7724FF z podkreśleniem | – |
-| Zatwierdzono | G-05 Odstępy H1: 42,5 pt nad, 34 pt pod | – |
+| Zatwierdzono | G-05 Odstępy H1: 42,5 pt nad, 34 pt pod; układ dokumentu | – |
 | Zatwierdzono | G-07 Hierarchia nagłówków: start od H1, bez przeskoków | – |
 Sekcja „Spis treści i listy”
 | Status | Kontrola | Szczegóły |
@@ -92,7 +92,8 @@ Sekcja „Grafika”
 | Zatwierdzono | G-10 Logo 44 × 10 mm i symbol 22 × 22 mm z tekstem alternatywnym z guidebooka | – |
 Sekcja „Stopka i metadane”
 | Status | Kontrola | Szczegóły |
-| Zatwierdzono | G-11 Stopka SUN Me 8 pt #696969 interlinia 1,2, numer i tytuł, bez stopki na stronie tytułowej | – |
+| Zatwierdzono | G-11 Stopka SUN Me 8 pt #696969 interlinia 1,2, numer i tytuł („Strona: X z Y. Tytuł”), bez stopki na stronie tytułowej | – |
+| Zatwierdzono | Dane rejestrowe SUN Me 8 pt #696969, interlinia 1,5 | – |
 | Zatwierdzono | G-12 Title „[Tytuł]. Bank”, Author = bank | – |
 | Zatwierdzono | G-13 Język dokumentu ustawiony | – |
 Sekcja „Warianty i oznaczenia”
@@ -105,7 +106,7 @@ Sekcja „Weryfikacja ręczna”
 | Ręczna weryfikacja | G-10 Alt text ikon i QR zależny od kontekstu, dekoracje wyłączone | Ikony „tak/nie” i informacji z opisem z kontekstu; QR z przeznaczeniem; pole na naklejkę barcode dekoracyjne; zasoby z OrangeSharing, nie ze zdjęć. |
 | Ręczna weryfikacja | G-13 Znaczniki językowe fragmentów w innym języku | Cytaty, tytuły i rozwinięcia skrótów w innym języku oznaczone miejscowo. |
 | Ręczna weryfikacja | G-15 Sygnatura (SUN Me 8 pt, 270°, prawy dolny róg) i SIGNOTEK | Zgodność z integracją; biały identyfikator SIGNOTEK ocenić osobno pod kątem dostępności. |
-| Ręczna weryfikacja | Wariant układu (dane rejestrowe, strona tytułowa, pole adresowe) | Dane rejestrowe SUN Me 8 pt #696969 interlinia 1,5; strona tytułowa bez stopki; pole adresowe najlepiej puste. |
+| Ręczna weryfikacja | Wariant układu (dane rejestrowe, strona tytułowa, pole adresowe) | Dobór układu do rodzaju pisma i położenie danych rejestrowych na stronie ocenić na wydruku; pole adresowe najlepiej puste. Format danych rejestrowych i reguły wybranego układu są sprawdzane automatycznie. |
 | Ręczna weryfikacja | Pola podpisów, separatory i kontrolki formularza | Linia podpisu 1 px #000000 60 mm; inputy 1 px #696969, 24 px wysokości; checkbox 20 × 20 px. |
 Kryteria WCAG 2.1
 3 kryteria spełnione, 0 niespełnionych, 15 do przeglądu ręcznego.

@@ -4,7 +4,7 @@ Język: pl-PL
 Obrazy: 0
 
 Raport walidacji dokumentu „przyklad_v1.docx”
-Wynik: niepoprawny. 20 błędów, 9 ostrzeżeń, 2 informacje.
+Wynik: niepoprawny. 21 błędów, 8 ostrzeżeń, 2 informacje.
 Data sprawdzenia: <data>. Standardy: WCAG 2.1 AA (dokument Word); Standard pism firmowych 2.0.
 Dokument: tytuł „brak”, autor „Krzysztof Rybka”, język pl-PL, 13 akapitów, 0 nagłówków, 1 tabel, 2 obrazów.
 Podsumowanie kontroli
@@ -75,7 +75,7 @@ Sekcja „Typografia”
 | Zatwierdzono | G-03 Style H1–H5 zgodne z tabelą typografii | – |
 | Błąd | Tekst podstawowy 10 pt (12/14 pt warunkowo) | Rozmiar tekstu podstawowego spoza standardu: 2 fragmenty tekstu podstawowego mają rozmiar spoza standardu; wymagane 10 pt (dopuszczalnie 12 albo 14 pt). (2 wystąpień) ⏎ Rozmiar tekstu podstawowego spoza standardu: 12 fragmentów tekstu jest powiększonych do 12 albo 14 pt; dopuszczalne tylko z potrzeby biznesowej. (12 wystąpień) |
 | Błąd | Łącza #7724FF z podkreśleniem | Łącze w niewłaściwym stylu: 1 fragment łącza nie ma stylu łącza: kolor #7724FF z podkreśleniem. |
-| Zatwierdzono | G-05 Odstępy H1: 42,5 pt nad, 34 pt pod | – |
+| Zatwierdzono | G-05 Odstępy H1: 42,5 pt nad, 34 pt pod; układ dokumentu | – |
 | Zatwierdzono | G-07 Hierarchia nagłówków: start od H1, bez przeskoków | – |
 Sekcja „Spis treści i listy”
 | Status | Kontrola | Szczegóły |
@@ -92,7 +92,8 @@ Sekcja „Grafika”
 | Ostrzeżenie | G-10 Logo 44 × 10 mm i symbol 22 × 22 mm z tekstem alternatywnym z guidebooka | Logo lub symbol niezgodny z guidebookiem: 1 logo lub symbol graficzny jest niezgodny z rozdz. 5 guidebooka (tekst alternatywny, wymiary). |
 Sekcja „Stopka i metadane”
 | Status | Kontrola | Szczegóły |
-| Błąd | G-11 Stopka SUN Me 8 pt #696969 interlinia 1,2, numer i tytuł, bez stopki na stronie tytułowej | Stopka niezgodna ze stylem: 2 fragmenty stopki mają styl inny niż SUN Me 8 pt #696969. (2 wystąpień) ⏎ Stopka bez tytułu dokumentu: Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”. |
+| Błąd | G-11 Stopka SUN Me 8 pt #696969 interlinia 1,2, numer i tytuł („Strona: X z Y. Tytuł”), bez stopki na stronie tytułowej | Stopka bez tytułu dokumentu: Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”. ⏎ Stopka niezgodna ze stylem: 2 fragmenty stopki mają styl inny niż SUN Me 8 pt #696969. (2 wystąpień) |
+| Zatwierdzono | Dane rejestrowe SUN Me 8 pt #696969, interlinia 1,5 | – |
 | Błąd | G-12 Title „[Tytuł]. Bank”, Author = bank | Autor inny niż nazwa banku: Autor „Krzysztof Rybka” ma być zastąpiony nazwą banku „Example Company S. A.”. |
 | Zatwierdzono | G-13 Język dokumentu ustawiony | – |
 Sekcja „Warianty i oznaczenia”
@@ -105,7 +106,7 @@ Sekcja „Weryfikacja ręczna”
 | Ręczna weryfikacja | G-10 Alt text ikon i QR zależny od kontekstu, dekoracje wyłączone | Ikony „tak/nie” i informacji z opisem z kontekstu; QR z przeznaczeniem; pole na naklejkę barcode dekoracyjne; zasoby z OrangeSharing, nie ze zdjęć. |
 | Ręczna weryfikacja | G-13 Znaczniki językowe fragmentów w innym języku | Cytaty, tytuły i rozwinięcia skrótów w innym języku oznaczone miejscowo. |
 | Ręczna weryfikacja | G-15 Sygnatura (SUN Me 8 pt, 270°, prawy dolny róg) i SIGNOTEK | Zgodność z integracją; biały identyfikator SIGNOTEK ocenić osobno pod kątem dostępności. |
-| Ręczna weryfikacja | Wariant układu (dane rejestrowe, strona tytułowa, pole adresowe) | Dane rejestrowe SUN Me 8 pt #696969 interlinia 1,5; strona tytułowa bez stopki; pole adresowe najlepiej puste. |
+| Ręczna weryfikacja | Wariant układu (dane rejestrowe, strona tytułowa, pole adresowe) | Dobór układu do rodzaju pisma i położenie danych rejestrowych na stronie ocenić na wydruku; pole adresowe najlepiej puste. Format danych rejestrowych i reguły wybranego układu są sprawdzane automatycznie. |
 | Ręczna weryfikacja | Pola podpisów, separatory i kontrolki formularza | Linia podpisu 1 px #000000 60 mm; inputy 1 px #696969, 24 px wysokości; checkbox 20 × 20 px. |
 Kryteria WCAG 2.1
 2 kryteria spełnione, 6 niespełnionych, 10 do przeglądu ręcznego.
@@ -150,51 +151,51 @@ Tabela wystąpień
 | 15 | błąd | Łącze w niewłaściwym stylu | Standard pism firmowych 2.0 | fragment tekstu: „www.dupeczki.pl (kolor #0563C1)” | 1 fragment łącza nie ma stylu łącza: kolor #7724FF z podkreśleniem. | nie |
 | 16 | błąd | Za mały kontrast tekstu | WCAG 2.1 AA (dokument Word) | fragment tekstu: „Jebać TEKOM (2,8:1)” (1/2) | 2 fragmenty tekstu mają za mały kontrast z tłem (najgorszy 2,8:1, wymagane 4,5:1 albo 3:1 dla dużego tekstu); pierwszy: „Jebać TEKOM”. | nie |
 | 17 | błąd | Za mały kontrast tekstu | WCAG 2.1 AA (dokument Word) | fragment tekstu: „Kutas boko też jest spoko (2,8:1)” (2/2) | 2 fragmenty tekstu mają za mały kontrast z tłem (najgorszy 2,8:1, wymagane 4,5:1 albo 3:1 dla dużego tekstu); pierwszy: „Jebać TEKOM”. | nie |
-| 18 | błąd | Autor inny niż nazwa banku | Standard pism firmowych 2.0 | dokument: „(metadane dokumentu)” | Autor „Krzysztof Rybka” ma być zastąpiony nazwą banku „Example Company S. A.”. | nie |
-| 19 | błąd | Brak tytułu dokumentu | WCAG 2.1 AA (dokument Word) | dokument: „(metadane dokumentu)” | Dokument nie ma tytułu w metadanych (Plik → Informacje → Tytuł). | nie |
-| 20 | błąd | Rozmiar tekstu podstawowego spoza standardu | Standard pism firmowych 2.0 | fragment tekstu: „Jebać TEKOM (28 pt)” (1/2) | 2 fragmenty tekstu podstawowego mają rozmiar spoza standardu; wymagane 10 pt (dopuszczalnie 12 albo 14 pt). | nie |
-| 21 | błąd | Rozmiar tekstu podstawowego spoza standardu | Standard pism firmowych 2.0 | fragment tekstu: „Kutas boko też jest spoko (28 pt)” (2/2) | 2 fragmenty tekstu podstawowego mają rozmiar spoza standardu; wymagane 10 pt (dopuszczalnie 12 albo 14 pt). | nie |
-| 22 | błąd | Niedozwolona rodzina czcionki | Standard pism firmowych 2.0 | fragment tekstu: „Jebać TEKOM (Calibri Light, oczekiwano SUN Me)” (1/14) | 14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display. | nie |
-| 23 | błąd | Niedozwolona rodzina czcionki | Standard pism firmowych 2.0 | fragment tekstu: „Lubię (Arial, oczekiwano SUN Me)” (2/14) | 14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display. | nie |
-| 24 | błąd | Niedozwolona rodzina czcionki | Standard pism firmowych 2.0 | fragment tekstu: „pierdolić głupoty (Arial, oczekiwano SUN Me)” (3/14) | 14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display. | nie |
-| 25 | błąd | Niedozwolona rodzina czcionki | Standard pism firmowych 2.0 | fragment tekstu: „Kutas boko też jest spoko (Calibri Light, oczekiwano SUN Me)” (4/14) | 14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display. | nie |
-| 26 | błąd | Niedozwolona rodzina czcionki | Standard pism firmowych 2.0 | fragment tekstu: „Jestem sobie dokumentem i mam wszystko w… (Arial, oczekiwano SUN Me)” (5/14) | 14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display. | nie |
-| 27 | błąd | Niedozwolona rodzina czcionki | Standard pism firmowych 2.0 | fragment tekstu: „Lubię jak mi żona ssie kutango. (Arial, oczekiwano SUN Me)” (6/14) | 14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display. | nie |
-| 28 | błąd | Niedozwolona rodzina czcionki | Standard pism firmowych 2.0 | fragment tekstu: „www.dupeczki.pl (Calibri, oczekiwano SUN Me)” (7/14) | 14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display. | nie |
-| 29 | błąd | Niedozwolona rodzina czcionki | Standard pism firmowych 2.0 | fragment tekstu: „Kobieta (Calibri, oczekiwano SUN Me)” (8/14) | 14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display. | nie |
-| 30 | błąd | Niedozwolona rodzina czcionki | Standard pism firmowych 2.0 | fragment tekstu: „Robi mi (Calibri, oczekiwano SUN Me)” (9/14) | 14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display. | nie |
-| 31 | błąd | Niedozwolona rodzina czcionki | Standard pism firmowych 2.0 | fragment tekstu: „Laskę (Calibri, oczekiwano SUN Me)” (10/14) | 14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display. | nie |
-| 32 | błąd | Niedozwolona rodzina czcionki | Standard pism firmowych 2.0 | fragment tekstu: „Śniadanie (Calibri, oczekiwano SUN Me)” (11/14) | 14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display. | nie |
-| 33 | błąd | Niedozwolona rodzina czcionki | Standard pism firmowych 2.0 | fragment tekstu: „Kawkę (Calibri, oczekiwano SUN Me)” (12/14) | 14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display. | nie |
-| 34 | błąd | Niedozwolona rodzina czcionki | Standard pism firmowych 2.0 | fragment tekstu: „Pierdoli (Calibri, oczekiwano SUN Me)” (13/14) | 14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display. | nie |
-| 35 | błąd | Niedozwolona rodzina czcionki | Standard pism firmowych 2.0 | fragment tekstu: „głupoty (Calibri, oczekiwano SUN Me)” (14/14) | 14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display. | nie |
-| 36 | błąd | Stopka niezgodna ze stylem | Standard pism firmowych 2.0 | fragment tekstu: „PAGE \* MERGEFORMAT (12 pt, #000000)” (1/2) | 2 fragmenty stopki mają styl inny niż SUN Me 8 pt #696969. | nie |
-| 37 | błąd | Stopka niezgodna ze stylem | Standard pism firmowych 2.0 | fragment tekstu: „2 (12 pt, #000000)” (2/2) | 2 fragmenty stopki mają styl inny niż SUN Me 8 pt #696969. | nie |
-| 38 | błąd | Marginesy inne niż wymagane | Standard pism firmowych 2.0 | dokument: „(ustawienia strony)” | Margines górny ma 70,9 pt, a wymagane jest 36 pt. | nie |
-| 39 | błąd | Marginesy inne niż wymagane | Standard pism firmowych 2.0 | dokument: „(ustawienia strony)” | Margines dolny ma 70,9 pt, a wymagane jest 36 pt. | nie |
-| 40 | błąd | Marginesy inne niż wymagane | Standard pism firmowych 2.0 | dokument: „(ustawienia strony)” | Margines lewy ma 70,9 pt, a wymagane jest 36 pt. | nie |
-| 41 | błąd | Marginesy inne niż wymagane | Standard pism firmowych 2.0 | dokument: „(ustawienia strony)” | Margines prawy ma 70,9 pt, a wymagane jest 36 pt. | nie |
-| 42 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „Jebać TEKOM (interlinia 1)” (1/14) | 14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
-| 43 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „Lubię pierdolić głupoty (interlinia 1,2)” (2/14) | 14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
-| 44 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „Kutas boko też jest spoko (interlinia 1)” (3/14) | 14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
-| 45 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „Jestem sobie dokumentem i mam wszystko w… (interlinia 1,2)” (4/14) | 14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
-| 46 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „Lubię jak mi żona ssie kutango. (interlinia 1,2)” (5/14) | 14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
-| 47 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „www.dupeczki.pl (interlinia 1,2)” (6/14) | 14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
-| 48 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „Kobieta (interlinia 1,2)” (7/14) | 14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
-| 49 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „Robi mi (interlinia 1,2)” (8/14) | 14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
-| 50 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „Laskę (interlinia 1,2)” (9/14) | 14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
-| 51 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „Śniadanie (interlinia 1,2)” (10/14) | 14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
-| 52 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „Kawkę (interlinia 1,2)” (11/14) | 14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
-| 53 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „Pierdoli (interlinia 1,2)” (12/14) | 14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
-| 54 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „głupoty (interlinia 1,2)” (13/14) | 14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
-| 55 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „PAGE \* MERGEFORMAT2 (interlinia 1)” (14/14) | 14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
-| 56 | ostrzeżenie | Logo lub symbol niezgodny z guidebookiem | Standard pism firmowych 2.0 | obraz: „Obraz 1: tekst alternatywny „Logo Google” zamiast „Example Company S. A. logo”; rozmiar 84 × 34,5 mm zamiast 44 × 10 mm” | 1 logo lub symbol graficzny jest niezgodny z rozdz. 5 guidebooka (tekst alternatywny, wymiary). | nie |
-| 57 | ostrzeżenie | Treść przed pierwszym nagłówkiem | WCAG 2.1 AA (dokument Word) | akapit: „Jebać TEKOM” | Treść zaczyna się przed pierwszym nagłówkiem: „Jebać TEKOM”. | nie |
-| 58 | ostrzeżenie | Nagłówek zrobiony formatowaniem | WCAG 2.1 AA (dokument Word) | akapit: „Jebać TEKOM” (1/2) | 2 akapity wyglądają na nagłówek (krótki, pogrubiony albo dużą czcionką), ale bez stylu nagłówka, więc poza konspektem dokumentu; pierwszy: „Jebać TEKOM”. | nie |
-| 59 | ostrzeżenie | Nagłówek zrobiony formatowaniem | WCAG 2.1 AA (dokument Word) | akapit: „Kutas boko też jest spoko” (2/2) | 2 akapity wyglądają na nagłówek (krótki, pogrubiony albo dużą czcionką), ale bez stylu nagłówka, więc poza konspektem dokumentu; pierwszy: „Jebać TEKOM”. | nie |
-| 60 | ostrzeżenie | Tabela bez tytułu w tekście alternatywnym | Standard pism firmowych 2.0 | tabela: „tabela 1” | Tabela 1 nie ma tytułu w tekście alternatywnym (Właściwości tabeli → Tekst alternatywny → Tytuł); decyzja biznesowa. | nie |
-| 61 | ostrzeżenie | Odstępy zrobione pustymi znakami | WCAG 2.1 AA (dokument Word) | akapit: „(puste akapity)” | Odstępy robione pustymi znakami: 1 ciąg co najmniej dwóch pustych akapitów; czytnik ekranu czyta je jako „pusty”. Odstępy ustawia się w formatowaniu akapitu. | nie |
-| 62 | ostrzeżenie | Stopka bez tytułu dokumentu | Standard pism firmowych 2.0 | akapit: „(stopka)” | Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”. | nie |
+| 18 | błąd | Stopka bez tytułu dokumentu | Standard pism firmowych 2.0 | akapit: „(stopka)” | Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”. | nie |
+| 19 | błąd | Autor inny niż nazwa banku | Standard pism firmowych 2.0 | dokument: „(metadane dokumentu)” | Autor „Krzysztof Rybka” ma być zastąpiony nazwą banku „Example Company S. A.”. | nie |
+| 20 | błąd | Brak tytułu dokumentu | WCAG 2.1 AA (dokument Word) | dokument: „(metadane dokumentu)” | Dokument nie ma tytułu w metadanych (Plik → Informacje → Tytuł). | nie |
+| 21 | błąd | Rozmiar tekstu podstawowego spoza standardu | Standard pism firmowych 2.0 | fragment tekstu: „Jebać TEKOM (28 pt)” (1/2) | 2 fragmenty tekstu podstawowego mają rozmiar spoza standardu; wymagane 10 pt (dopuszczalnie 12 albo 14 pt). | nie |
+| 22 | błąd | Rozmiar tekstu podstawowego spoza standardu | Standard pism firmowych 2.0 | fragment tekstu: „Kutas boko też jest spoko (28 pt)” (2/2) | 2 fragmenty tekstu podstawowego mają rozmiar spoza standardu; wymagane 10 pt (dopuszczalnie 12 albo 14 pt). | nie |
+| 23 | błąd | Niedozwolona rodzina czcionki | Standard pism firmowych 2.0 | fragment tekstu: „Jebać TEKOM (Calibri Light, oczekiwano SUN Me)” (1/14) | 14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display. | nie |
+| 24 | błąd | Niedozwolona rodzina czcionki | Standard pism firmowych 2.0 | fragment tekstu: „Lubię (Arial, oczekiwano SUN Me)” (2/14) | 14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display. | nie |
+| 25 | błąd | Niedozwolona rodzina czcionki | Standard pism firmowych 2.0 | fragment tekstu: „pierdolić głupoty (Arial, oczekiwano SUN Me)” (3/14) | 14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display. | nie |
+| 26 | błąd | Niedozwolona rodzina czcionki | Standard pism firmowych 2.0 | fragment tekstu: „Kutas boko też jest spoko (Calibri Light, oczekiwano SUN Me)” (4/14) | 14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display. | nie |
+| 27 | błąd | Niedozwolona rodzina czcionki | Standard pism firmowych 2.0 | fragment tekstu: „Jestem sobie dokumentem i mam wszystko w… (Arial, oczekiwano SUN Me)” (5/14) | 14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display. | nie |
+| 28 | błąd | Niedozwolona rodzina czcionki | Standard pism firmowych 2.0 | fragment tekstu: „Lubię jak mi żona ssie kutango. (Arial, oczekiwano SUN Me)” (6/14) | 14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display. | nie |
+| 29 | błąd | Niedozwolona rodzina czcionki | Standard pism firmowych 2.0 | fragment tekstu: „www.dupeczki.pl (Calibri, oczekiwano SUN Me)” (7/14) | 14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display. | nie |
+| 30 | błąd | Niedozwolona rodzina czcionki | Standard pism firmowych 2.0 | fragment tekstu: „Kobieta (Calibri, oczekiwano SUN Me)” (8/14) | 14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display. | nie |
+| 31 | błąd | Niedozwolona rodzina czcionki | Standard pism firmowych 2.0 | fragment tekstu: „Robi mi (Calibri, oczekiwano SUN Me)” (9/14) | 14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display. | nie |
+| 32 | błąd | Niedozwolona rodzina czcionki | Standard pism firmowych 2.0 | fragment tekstu: „Laskę (Calibri, oczekiwano SUN Me)” (10/14) | 14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display. | nie |
+| 33 | błąd | Niedozwolona rodzina czcionki | Standard pism firmowych 2.0 | fragment tekstu: „Śniadanie (Calibri, oczekiwano SUN Me)” (11/14) | 14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display. | nie |
+| 34 | błąd | Niedozwolona rodzina czcionki | Standard pism firmowych 2.0 | fragment tekstu: „Kawkę (Calibri, oczekiwano SUN Me)” (12/14) | 14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display. | nie |
+| 35 | błąd | Niedozwolona rodzina czcionki | Standard pism firmowych 2.0 | fragment tekstu: „Pierdoli (Calibri, oczekiwano SUN Me)” (13/14) | 14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display. | nie |
+| 36 | błąd | Niedozwolona rodzina czcionki | Standard pism firmowych 2.0 | fragment tekstu: „głupoty (Calibri, oczekiwano SUN Me)” (14/14) | 14 fragmentów tekstu ma czcionkę spoza standardu (Calibri Light, Arial, Calibri); tekst: SUN Me, H1: SUN Display. | nie |
+| 37 | błąd | Stopka niezgodna ze stylem | Standard pism firmowych 2.0 | fragment tekstu: „PAGE \* MERGEFORMAT (Calibri, 12 pt, #000000)” (1/2) | 2 fragmenty stopki mają styl inny niż SUN Me 8 pt #696969. | nie |
+| 38 | błąd | Stopka niezgodna ze stylem | Standard pism firmowych 2.0 | fragment tekstu: „2 (Calibri, 12 pt, #000000)” (2/2) | 2 fragmenty stopki mają styl inny niż SUN Me 8 pt #696969. | nie |
+| 39 | błąd | Marginesy inne niż wymagane | Standard pism firmowych 2.0 | dokument: „(ustawienia strony)” | Margines górny ma 70,9 pt, a wymagane jest 36 pt. | nie |
+| 40 | błąd | Marginesy inne niż wymagane | Standard pism firmowych 2.0 | dokument: „(ustawienia strony)” | Margines dolny ma 70,9 pt, a wymagane jest 36 pt. | nie |
+| 41 | błąd | Marginesy inne niż wymagane | Standard pism firmowych 2.0 | dokument: „(ustawienia strony)” | Margines lewy ma 70,9 pt, a wymagane jest 36 pt. | nie |
+| 42 | błąd | Marginesy inne niż wymagane | Standard pism firmowych 2.0 | dokument: „(ustawienia strony)” | Margines prawy ma 70,9 pt, a wymagane jest 36 pt. | nie |
+| 43 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „Jebać TEKOM (interlinia 1)” (1/14) | 14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
+| 44 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „Lubię pierdolić głupoty (interlinia 1,2)” (2/14) | 14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
+| 45 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „Kutas boko też jest spoko (interlinia 1)” (3/14) | 14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
+| 46 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „Jestem sobie dokumentem i mam wszystko w… (interlinia 1,2)” (4/14) | 14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
+| 47 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „Lubię jak mi żona ssie kutango. (interlinia 1,2)” (5/14) | 14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
+| 48 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „www.dupeczki.pl (interlinia 1,2)” (6/14) | 14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
+| 49 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „Kobieta (interlinia 1,2)” (7/14) | 14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
+| 50 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „Robi mi (interlinia 1,2)” (8/14) | 14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
+| 51 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „Laskę (interlinia 1,2)” (9/14) | 14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
+| 52 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „Śniadanie (interlinia 1,2)” (10/14) | 14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
+| 53 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „Kawkę (interlinia 1,2)” (11/14) | 14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
+| 54 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „Pierdoli (interlinia 1,2)” (12/14) | 14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
+| 55 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „głupoty (interlinia 1,2)” (13/14) | 14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
+| 56 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „PAGE \* MERGEFORMAT2 (interlinia 1)” (14/14) | 14 akapitów ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
+| 57 | ostrzeżenie | Logo lub symbol niezgodny z guidebookiem | Standard pism firmowych 2.0 | obraz: „Obraz 1: tekst alternatywny „Logo Google” zamiast „Example Company S. A. logo”; rozmiar 84 × 34,5 mm zamiast 44 × 10 mm” | 1 logo lub symbol graficzny jest niezgodny z rozdz. 5 guidebooka (tekst alternatywny, wymiary). | nie |
+| 58 | ostrzeżenie | Treść przed pierwszym nagłówkiem | WCAG 2.1 AA (dokument Word) | akapit: „Jebać TEKOM” | Treść zaczyna się przed pierwszym nagłówkiem: „Jebać TEKOM”. | nie |
+| 59 | ostrzeżenie | Nagłówek zrobiony formatowaniem | WCAG 2.1 AA (dokument Word) | akapit: „Jebać TEKOM” (1/2) | 2 akapity wyglądają na nagłówek (krótki, pogrubiony albo dużą czcionką), ale bez stylu nagłówka, więc poza konspektem dokumentu; pierwszy: „Jebać TEKOM”. | nie |
+| 60 | ostrzeżenie | Nagłówek zrobiony formatowaniem | WCAG 2.1 AA (dokument Word) | akapit: „Kutas boko też jest spoko” (2/2) | 2 akapity wyglądają na nagłówek (krótki, pogrubiony albo dużą czcionką), ale bez stylu nagłówka, więc poza konspektem dokumentu; pierwszy: „Jebać TEKOM”. | nie |
+| 61 | ostrzeżenie | Tabela bez tytułu w tekście alternatywnym | Standard pism firmowych 2.0 | tabela: „tabela 1” | Tabela 1 nie ma tytułu w tekście alternatywnym (Właściwości tabeli → Tekst alternatywny → Tytuł); decyzja biznesowa. | nie |
+| 62 | ostrzeżenie | Odstępy zrobione pustymi znakami | WCAG 2.1 AA (dokument Word) | akapit: „(puste akapity)” | Odstępy robione pustymi znakami: 1 ciąg co najmniej dwóch pustych akapitów; czytnik ekranu czyta je jako „pusty”. Odstępy ustawia się w formatowaniu akapitu. | nie |
 | 63 | ostrzeżenie | Brak nagłówków w dokumencie | WCAG 2.1 AA (dokument Word) | dokument: „” | Dokument nie ma żadnego nagłówka, więc nie da się po nim nawigować ani ustalić logicznej kolejności odczytu. | nie |
 | 64 | ostrzeżenie | Rozmiar tekstu podstawowego spoza standardu | Standard pism firmowych 2.0 | fragment tekstu: „Lubię (12 pt)” (1/12) | 12 fragmentów tekstu jest powiększonych do 12 albo 14 pt; dopuszczalne tylko z potrzeby biznesowej. | nie |
 | 65 | ostrzeżenie | Rozmiar tekstu podstawowego spoza standardu | Standard pism firmowych 2.0 | fragment tekstu: „pierdolić głupoty (12 pt)” (2/12) | 12 fragmentów tekstu jest powiększonych do 12 albo 14 pt; dopuszczalne tylko z potrzeby biznesowej. | nie |
@@ -214,4 +215,4 @@ Tabela wystąpień
 | 79 | informacja | Zalecane sprawdzenie ręczne | WCAG 2.1 AA (dokument Word) | dokument: „” | Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie. | nie |
 | 80 | informacja | Tabela bez opisu w tekście alternatywnym | Standard pism firmowych 2.0 | tabela: „tabela 1” | Tabela 1 nie ma opisu w tekście alternatywnym (dłuższego od tytułu); guidebook go rekomenduje. | nie |
 
-PDF: %PDF-, strony: 21
+PDF: %PDF-, strony: 20

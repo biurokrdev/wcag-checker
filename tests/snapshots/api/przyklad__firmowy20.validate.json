@@ -1,6 +1,6 @@
 {
   "status": "Invalid",
-  "summary": "15 błędów, 5 ostrzeżeń, 1 informacja.",
+  "summary": "17 błędów, 4 ostrzeżenia, 1 informacja.",
   "standards": [
     {
       "key": "firmowy/2.0",
@@ -22,8 +22,8 @@
     "images": 2
   },
   "counts": {
-    "errors": 15,
-    "warnings": 5,
+    "errors": 17,
+    "warnings": 4,
     "infos": 1
   },
   "issues": [
@@ -82,6 +82,16 @@
       "fixable": false
     },
     {
+      "code": "FOOTER_TITLE_MISSING",
+      "label": "Stopka bez tytułu dokumentu",
+      "severity": "Error",
+      "category": "Structure",
+      "message": "Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”.",
+      "standard": "firmowy/2.0",
+      "fixable": false,
+      "status": "Required"
+    },
+    {
       "code": "AUTHOR_NOT_INSTITUTION",
       "label": "Autor inny niż nazwa banku",
       "severity": "Error",
@@ -89,6 +99,16 @@
       "message": "Autor „Krzysztof Rybka” ma być zastąpiony nazwą banku „Example Company S. A.”.",
       "standard": "firmowy/2.0",
       "fixable": true
+    },
+    {
+      "code": "TITLE_MISSING",
+      "label": "Brak tytułu dokumentu",
+      "severity": "Error",
+      "category": "Metadata",
+      "message": "Dokument nie ma tytułu w metadanych (Plik → Informacje → Tytuł).",
+      "standard": "firmowy/2.0",
+      "fixable": true,
+      "status": "Required"
     },
     {
       "code": "BODY_TEXT_SIZE_MISMATCH",
@@ -181,15 +201,6 @@
       "severity": "Warning",
       "category": "Tables",
       "message": "Tabela 1 nie ma tytułu w tekście alternatywnym (Właściwości tabeli → Tekst alternatywny → Tytuł); decyzja biznesowa.",
-      "standard": "firmowy/2.0",
-      "fixable": false
-    },
-    {
-      "code": "FOOTER_TITLE_MISSING",
-      "label": "Stopka bez tytułu dokumentu",
-      "severity": "Warning",
-      "category": "Structure",
-      "message": "Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”.",
       "standard": "firmowy/2.0",
       "fixable": false
     },
@@ -378,7 +389,7 @@
         },
         {
           "id": "g05",
-          "name": "G-05 Odstępy H1: 42,5 pt nad, 34 pt pod",
+          "name": "G-05 Odstępy H1: 42,5 pt nad, 34 pt pod; układ dokumentu",
           "status": "Passed",
           "details": [],
           "note": null
@@ -529,24 +540,31 @@
       "rows": [
         {
           "id": "g11",
-          "name": "G-11 Stopka SUN Me 8 pt #696969 interlinia 1,2, numer i tytuł, bez stopki na stronie tytułowej",
+          "name": "G-11 Stopka SUN Me 8 pt #696969 interlinia 1,2, numer i tytuł („Strona: X z Y. Tytuł”), bez stopki na stronie tytułowej",
           "status": "Error",
           "details": [
+            {
+              "code": "FOOTER_TITLE_MISSING",
+              "label": "Stopka bez tytułu dokumentu",
+              "message": "Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”.",
+              "occurrences": 1,
+              "severity": "Error"
+            },
             {
               "code": "FOOTER_STYLE_MISMATCH",
               "label": "Stopka niezgodna ze stylem",
               "message": "2 fragmenty stopki mają styl inny niż SUN Me 8 pt #696969.",
               "occurrences": 2,
               "severity": "Error"
-            },
-            {
-              "code": "FOOTER_TITLE_MISSING",
-              "label": "Stopka bez tytułu dokumentu",
-              "message": "Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”.",
-              "occurrences": 1,
-              "severity": "Warning"
             }
           ],
+          "note": null
+        },
+        {
+          "id": "registration",
+          "name": "Dane rejestrowe SUN Me 8 pt #696969, interlinia 1,5",
+          "status": "Passed",
+          "details": [],
           "note": null
         },
         {
@@ -558,6 +576,13 @@
               "code": "AUTHOR_NOT_INSTITUTION",
               "label": "Autor inny niż nazwa banku",
               "message": "Autor „Krzysztof Rybka” ma być zastąpiony nazwą banku „Example Company S. A.”.",
+              "occurrences": 1,
+              "severity": "Error"
+            },
+            {
+              "code": "TITLE_MISSING",
+              "label": "Brak tytułu dokumentu",
+              "message": "Dokument nie ma tytułu w metadanych (Plik → Informacje → Tytuł).",
               "occurrences": 1,
               "severity": "Error"
             }
@@ -632,7 +657,7 @@
           "name": "Wariant układu (dane rejestrowe, strona tytułowa, pole adresowe)",
           "status": "ManualReview",
           "details": [],
-          "note": "Dane rejestrowe SUN Me 8 pt #696969 interlinia 1,5; strona tytułowa bez stopki; pole adresowe najlepiej puste."
+          "note": "Dobór układu do rodzaju pisma i położenie danych rejestrowych na stronie ocenić na wydruku; pole adresowe najlepiej puste. Format danych rejestrowych i reguły wybranego układu są sprawdzane automatycznie."
         },
         {
           "id": "manual-signatures",
@@ -913,6 +938,30 @@
     },
     {
       "index": 12,
+      "code": "FOOTER_TITLE_MISSING",
+      "label": "Stopka bez tytułu dokumentu",
+      "severity": "Error",
+      "category": "Structure",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "footer/0:Paragraph:0",
+        "kind": "Paragraph",
+        "story": "footer/0",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "(stopka)"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE"
+    },
+    {
+      "index": 13,
       "code": "AUTHOR_NOT_INSTITUTION",
       "label": "Autor inny niż nazwa banku",
       "severity": "Error",
@@ -934,7 +983,33 @@
       "occurrenceCount": 1
     },
     {
-      "index": 13,
+      "index": 14,
+      "code": "TITLE_MISSING",
+      "label": "Brak tytułu dokumentu",
+      "severity": "Error",
+      "category": "Metadata",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Dokument nie ma tytułu w metadanych (Plik → Informacje → Tytuł).",
+      "fixable": true,
+      "criteria": [
+        "2.4.2"
+      ],
+      "location": {
+        "key": "body:Document:0",
+        "kind": "Document",
+        "story": "body",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "(metadane dokumentu)"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE"
+    },
+    {
+      "index": 15,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Error",
@@ -956,7 +1031,7 @@
       "occurrenceCount": 4
     },
     {
-      "index": 14,
+      "index": 16,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Error",
@@ -978,7 +1053,7 @@
       "occurrenceCount": 4
     },
     {
-      "index": 15,
+      "index": 17,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Error",
@@ -1000,7 +1075,7 @@
       "occurrenceCount": 4
     },
     {
-      "index": 16,
+      "index": 18,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Error",
@@ -1022,7 +1097,7 @@
       "occurrenceCount": 4
     },
     {
-      "index": 17,
+      "index": 19,
       "code": "FONT_FAMILY_MISMATCH",
       "label": "Niedozwolona rodzina czcionki",
       "severity": "Error",
@@ -1044,7 +1119,7 @@
       "occurrenceCount": 18
     },
     {
-      "index": 18,
+      "index": 20,
       "code": "FONT_FAMILY_MISMATCH",
       "label": "Niedozwolona rodzina czcionki",
       "severity": "Error",
@@ -1066,7 +1141,7 @@
       "occurrenceCount": 18
     },
     {
-      "index": 19,
+      "index": 21,
       "code": "FONT_FAMILY_MISMATCH",
       "label": "Niedozwolona rodzina czcionki",
       "severity": "Error",
@@ -1088,7 +1163,7 @@
       "occurrenceCount": 18
     },
     {
-      "index": 20,
+      "index": 22,
       "code": "FONT_FAMILY_MISMATCH",
       "label": "Niedozwolona rodzina czcionki",
       "severity": "Error",
@@ -1110,7 +1185,7 @@
       "occurrenceCount": 18
     },
     {
-      "index": 21,
+      "index": 23,
       "code": "FONT_FAMILY_MISMATCH",
       "label": "Niedozwolona rodzina czcionki",
       "severity": "Error",
@@ -1132,7 +1207,7 @@
       "occurrenceCount": 18
     },
     {
-      "index": 22,
+      "index": 24,
       "code": "FONT_FAMILY_MISMATCH",
       "label": "Niedozwolona rodzina czcionki",
       "severity": "Error",
@@ -1154,7 +1229,7 @@
       "occurrenceCount": 18
     },
     {
-      "index": 23,
+      "index": 25,
       "code": "FONT_FAMILY_MISMATCH",
       "label": "Niedozwolona rodzina czcionki",
       "severity": "Error",
@@ -1176,7 +1251,7 @@
       "occurrenceCount": 18
     },
     {
-      "index": 24,
+      "index": 26,
       "code": "FONT_FAMILY_MISMATCH",
       "label": "Niedozwolona rodzina czcionki",
       "severity": "Error",
@@ -1198,7 +1273,7 @@
       "occurrenceCount": 18
     },
     {
-      "index": 25,
+      "index": 27,
       "code": "FONT_FAMILY_MISMATCH",
       "label": "Niedozwolona rodzina czcionki",
       "severity": "Error",
@@ -1220,7 +1295,7 @@
       "occurrenceCount": 18
     },
     {
-      "index": 26,
+      "index": 28,
       "code": "FONT_FAMILY_MISMATCH",
       "label": "Niedozwolona rodzina czcionki",
       "severity": "Error",
@@ -1242,7 +1317,7 @@
       "occurrenceCount": 18
     },
     {
-      "index": 27,
+      "index": 29,
       "code": "FONT_FAMILY_MISMATCH",
       "label": "Niedozwolona rodzina czcionki",
       "severity": "Error",
@@ -1264,7 +1339,7 @@
       "occurrenceCount": 18
     },
     {
-      "index": 28,
+      "index": 30,
       "code": "FONT_FAMILY_MISMATCH",
       "label": "Niedozwolona rodzina czcionki",
       "severity": "Error",
@@ -1286,7 +1361,7 @@
       "occurrenceCount": 18
     },
     {
-      "index": 29,
+      "index": 31,
       "code": "FONT_FAMILY_MISMATCH",
       "label": "Niedozwolona rodzina czcionki",
       "severity": "Error",
@@ -1308,7 +1383,7 @@
       "occurrenceCount": 18
     },
     {
-      "index": 30,
+      "index": 32,
       "code": "FONT_FAMILY_MISMATCH",
       "label": "Niedozwolona rodzina czcionki",
       "severity": "Error",
@@ -1330,7 +1405,7 @@
       "occurrenceCount": 18
     },
     {
-      "index": 31,
+      "index": 33,
       "code": "FONT_FAMILY_MISMATCH",
       "label": "Niedozwolona rodzina czcionki",
       "severity": "Error",
@@ -1352,7 +1427,7 @@
       "occurrenceCount": 18
     },
     {
-      "index": 32,
+      "index": 34,
       "code": "FONT_FAMILY_MISMATCH",
       "label": "Niedozwolona rodzina czcionki",
       "severity": "Error",
@@ -1374,7 +1449,7 @@
       "occurrenceCount": 18
     },
     {
-      "index": 33,
+      "index": 35,
       "code": "FONT_FAMILY_MISMATCH",
       "label": "Niedozwolona rodzina czcionki",
       "severity": "Error",
@@ -1396,7 +1471,7 @@
       "occurrenceCount": 18
     },
     {
-      "index": 34,
+      "index": 36,
       "code": "FONT_FAMILY_MISMATCH",
       "label": "Niedozwolona rodzina czcionki",
       "severity": "Error",
@@ -1418,7 +1493,7 @@
       "occurrenceCount": 18
     },
     {
-      "index": 35,
+      "index": 37,
       "code": "FOOTER_STYLE_MISMATCH",
       "label": "Stopka niezgodna ze stylem",
       "severity": "Error",
@@ -1434,13 +1509,13 @@
         "story": "footer/0",
         "index": 0,
         "subIndex": 1,
-        "snippet": "PAGE \\* MERGEFORMAT (12 pt, #000000)"
+        "snippet": "PAGE \\* MERGEFORMAT (Calibri, 12 pt, #000000)"
       },
       "occurrence": 1,
       "occurrenceCount": 2
     },
     {
-      "index": 36,
+      "index": 38,
       "code": "FOOTER_STYLE_MISMATCH",
       "label": "Stopka niezgodna ze stylem",
       "severity": "Error",
@@ -1456,13 +1531,13 @@
         "story": "footer/0",
         "index": 0,
         "subIndex": 3,
-        "snippet": "2 (12 pt, #000000)"
+        "snippet": "2 (Calibri, 12 pt, #000000)"
       },
       "occurrence": 2,
       "occurrenceCount": 2
     },
     {
-      "index": 37,
+      "index": 39,
       "code": "INVALID_MARGINS",
       "label": "Marginesy inne niż wymagane",
       "severity": "Error",
@@ -1486,7 +1561,7 @@
       "statusLabel": "WYMAGANE"
     },
     {
-      "index": 38,
+      "index": 40,
       "code": "INVALID_MARGINS",
       "label": "Marginesy inne niż wymagane",
       "severity": "Error",
@@ -1510,7 +1585,7 @@
       "statusLabel": "WYMAGANE"
     },
     {
-      "index": 39,
+      "index": 41,
       "code": "INVALID_MARGINS",
       "label": "Marginesy inne niż wymagane",
       "severity": "Error",
@@ -1534,7 +1609,7 @@
       "statusLabel": "WYMAGANE"
     },
     {
-      "index": 40,
+      "index": 42,
       "code": "INVALID_MARGINS",
       "label": "Marginesy inne niż wymagane",
       "severity": "Error",
@@ -1558,7 +1633,7 @@
       "statusLabel": "WYMAGANE"
     },
     {
-      "index": 41,
+      "index": 43,
       "code": "LINE_SPACING_MISMATCH",
       "label": "Interlinia inna niż 1,2",
       "severity": "Error",
@@ -1580,7 +1655,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 42,
+      "index": 44,
       "code": "LINE_SPACING_MISMATCH",
       "label": "Interlinia inna niż 1,2",
       "severity": "Error",
@@ -1602,7 +1677,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 43,
+      "index": 45,
       "code": "LINE_SPACING_MISMATCH",
       "label": "Interlinia inna niż 1,2",
       "severity": "Error",
@@ -1624,7 +1699,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 44,
+      "index": 46,
       "code": "LINE_SPACING_MISMATCH",
       "label": "Interlinia inna niż 1,2",
       "severity": "Error",
@@ -1646,7 +1721,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 45,
+      "index": 47,
       "code": "LINE_SPACING_MISMATCH",
       "label": "Interlinia inna niż 1,2",
       "severity": "Error",
@@ -1668,7 +1743,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 46,
+      "index": 48,
       "code": "LINE_SPACING_MISMATCH",
       "label": "Interlinia inna niż 1,2",
       "severity": "Error",
@@ -1690,7 +1765,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 47,
+      "index": 49,
       "code": "LINE_SPACING_MISMATCH",
       "label": "Interlinia inna niż 1,2",
       "severity": "Error",
@@ -1712,7 +1787,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 48,
+      "index": 50,
       "code": "LINE_SPACING_MISMATCH",
       "label": "Interlinia inna niż 1,2",
       "severity": "Error",
@@ -1734,7 +1809,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 49,
+      "index": 51,
       "code": "LINE_SPACING_MISMATCH",
       "label": "Interlinia inna niż 1,2",
       "severity": "Error",
@@ -1756,7 +1831,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 50,
+      "index": 52,
       "code": "LINE_SPACING_MISMATCH",
       "label": "Interlinia inna niż 1,2",
       "severity": "Error",
@@ -1778,7 +1853,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 51,
+      "index": 53,
       "code": "LINE_SPACING_MISMATCH",
       "label": "Interlinia inna niż 1,2",
       "severity": "Error",
@@ -1800,7 +1875,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 52,
+      "index": 54,
       "code": "LINE_SPACING_MISMATCH",
       "label": "Interlinia inna niż 1,2",
       "severity": "Error",
@@ -1822,7 +1897,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 53,
+      "index": 55,
       "code": "LINE_SPACING_MISMATCH",
       "label": "Interlinia inna niż 1,2",
       "severity": "Error",
@@ -1844,7 +1919,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 54,
+      "index": 56,
       "code": "LINE_SPACING_MISMATCH",
       "label": "Interlinia inna niż 1,2",
       "severity": "Error",
@@ -1866,7 +1941,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 55,
+      "index": 57,
       "code": "BRAND_IMAGE_MISMATCH",
       "label": "Logo lub symbol niezgodny z guidebookiem",
       "severity": "Warning",
@@ -1888,7 +1963,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 56,
+      "index": 58,
       "code": "TABLE_TITLE_MISSING",
       "label": "Tabela bez tytułu w tekście alternatywnym",
       "severity": "Warning",
@@ -1910,29 +1985,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 57,
-      "code": "FOOTER_TITLE_MISSING",
-      "label": "Stopka bez tytułu dokumentu",
-      "severity": "Warning",
-      "category": "Structure",
-      "standard": "firmowy/2.0",
-      "standardName": "Standard pism firmowych 2.0",
-      "message": "Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”.",
-      "fixable": false,
-      "criteria": [],
-      "location": {
-        "key": "footer/0:Paragraph:0",
-        "kind": "Paragraph",
-        "story": "footer/0",
-        "index": 0,
-        "subIndex": null,
-        "snippet": "(stopka)"
-      },
-      "occurrence": 1,
-      "occurrenceCount": 1
-    },
-    {
-      "index": 58,
+      "index": 59,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Warning",
@@ -1954,7 +2007,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 59,
+      "index": 60,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Warning",
@@ -1976,7 +2029,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 60,
+      "index": 61,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Warning",
@@ -1998,7 +2051,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 61,
+      "index": 62,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Warning",
@@ -2020,7 +2073,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 62,
+      "index": 63,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Warning",
@@ -2042,7 +2095,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 63,
+      "index": 64,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Warning",
@@ -2064,7 +2117,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 64,
+      "index": 65,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Warning",
@@ -2086,7 +2139,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 65,
+      "index": 66,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Warning",
@@ -2108,7 +2161,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 66,
+      "index": 67,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Warning",
@@ -2130,7 +2183,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 67,
+      "index": 68,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Warning",
@@ -2152,7 +2205,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 68,
+      "index": 69,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Warning",
@@ -2174,7 +2227,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 69,
+      "index": 70,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Warning",
@@ -2196,7 +2249,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 70,
+      "index": 71,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Warning",
@@ -2218,7 +2271,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 71,
+      "index": 72,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Warning",
@@ -2240,7 +2293,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 72,
+      "index": 73,
       "code": "TEXT_COLOR_NOT_ALLOWED",
       "label": "Kolor tekstu spoza palety",
       "severity": "Warning",
@@ -2262,7 +2315,7 @@
       "occurrenceCount": 8
     },
     {
-      "index": 73,
+      "index": 74,
       "code": "TEXT_COLOR_NOT_ALLOWED",
       "label": "Kolor tekstu spoza palety",
       "severity": "Warning",
@@ -2284,7 +2337,7 @@
       "occurrenceCount": 8
     },
     {
-      "index": 74,
+      "index": 75,
       "code": "TEXT_COLOR_NOT_ALLOWED",
       "label": "Kolor tekstu spoza palety",
       "severity": "Warning",
@@ -2306,7 +2359,7 @@
       "occurrenceCount": 8
     },
     {
-      "index": 75,
+      "index": 76,
       "code": "TEXT_COLOR_NOT_ALLOWED",
       "label": "Kolor tekstu spoza palety",
       "severity": "Warning",
@@ -2328,7 +2381,7 @@
       "occurrenceCount": 8
     },
     {
-      "index": 76,
+      "index": 77,
       "code": "TEXT_COLOR_NOT_ALLOWED",
       "label": "Kolor tekstu spoza palety",
       "severity": "Warning",
@@ -2350,7 +2403,7 @@
       "occurrenceCount": 8
     },
     {
-      "index": 77,
+      "index": 78,
       "code": "TEXT_COLOR_NOT_ALLOWED",
       "label": "Kolor tekstu spoza palety",
       "severity": "Warning",
@@ -2372,7 +2425,7 @@
       "occurrenceCount": 8
     },
     {
-      "index": 78,
+      "index": 79,
       "code": "TEXT_COLOR_NOT_ALLOWED",
       "label": "Kolor tekstu spoza palety",
       "severity": "Warning",
@@ -2394,7 +2447,7 @@
       "occurrenceCount": 8
     },
     {
-      "index": 79,
+      "index": 80,
       "code": "TEXT_COLOR_NOT_ALLOWED",
       "label": "Kolor tekstu spoza palety",
       "severity": "Warning",
@@ -2416,7 +2469,7 @@
       "occurrenceCount": 8
     },
     {
-      "index": 80,
+      "index": 81,
       "code": "TABLE_DESCRIPTION_MISSING",
       "label": "Tabela bez opisu w tekście alternatywnym",
       "severity": "Info",

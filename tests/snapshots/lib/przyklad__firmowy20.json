@@ -1,6 +1,6 @@
 {
   "outcome": "Invalid",
-  "summary": "15 błędów, 5 ostrzeżeń, 1 informacja.",
+  "summary": "17 błędów, 4 ostrzeżenia, 1 informacja.",
   "standards": [
     {
       "key": "firmowy/2.0",
@@ -124,6 +124,20 @@
       ]
     },
     {
+      "code": "FOOTER_TITLE_MISSING",
+      "severity": "Error",
+      "category": "Structure",
+      "standard": "firmowy/2.0",
+      "message": "Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”.",
+      "locations": [
+        {
+          "key": "footer/0:Paragraph:0",
+          "snippet": "(stopka)"
+        }
+      ],
+      "status": "Required"
+    },
+    {
       "code": "AUTHOR_NOT_INSTITUTION",
       "severity": "Error",
       "category": "Metadata",
@@ -135,6 +149,20 @@
           "snippet": "(metadane dokumentu)"
         }
       ]
+    },
+    {
+      "code": "TITLE_MISSING",
+      "severity": "Error",
+      "category": "Metadata",
+      "standard": "firmowy/2.0",
+      "message": "Dokument nie ma tytułu w metadanych (Plik → Informacje → Tytuł).",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": "(metadane dokumentu)"
+        }
+      ],
+      "status": "Required"
     },
     {
       "code": "BODY_TEXT_SIZE_MISMATCH",
@@ -251,11 +279,11 @@
       "locations": [
         {
           "key": "footer/0:Run:0:1",
-          "snippet": "PAGE \\* MERGEFORMAT (12 pt, #000000)"
+          "snippet": "PAGE \\* MERGEFORMAT (Calibri, 12 pt, #000000)"
         },
         {
           "key": "footer/0:Run:0:3",
-          "snippet": "2 (12 pt, #000000)"
+          "snippet": "2 (Calibri, 12 pt, #000000)"
         }
       ]
     },
@@ -403,19 +431,6 @@
         {
           "key": "body:Table:0",
           "snippet": "tabela 1"
-        }
-      ]
-    },
-    {
-      "code": "FOOTER_TITLE_MISSING",
-      "severity": "Warning",
-      "category": "Structure",
-      "standard": "firmowy/2.0",
-      "message": "Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”.",
-      "locations": [
-        {
-          "key": "footer/0:Paragraph:0",
-          "snippet": "(stopka)"
         }
       ]
     },

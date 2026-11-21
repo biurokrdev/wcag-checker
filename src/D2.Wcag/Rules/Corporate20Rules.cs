@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
 using D2.Wcag.Docx;
+using D2.Wcag.Standards;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Wordprocessing;
 
@@ -45,6 +46,22 @@ internal static class Spec20
 
     public static IEnumerable<Run> TextRuns(OpenXmlElement root) =>
         root.Descendants<Run>().Where(r => !string.IsNullOrWhiteSpace(r.InnerText));
+
+    /// <summary>
+    /// Heurystyka strony tytułowej (gdy układu dokumentu nie wybrano): pierwszy nagłówek z tekstem to H1 w całości 32 pt.
+    /// Zwraca ten nagłówek albo <c>null</c>.
+    /// </summary>
+    public static Paragraph? TitlePageHeading(DocxDocument document)
+    {
+        var first = document.Paragraphs.FirstOrDefault(p => document.HeadingLevel(p) is not null && p.InnerText.Trim().Length > 0);
+        if (first is null || document.HeadingLevel(first) != 1)
+        {
+            return null;
+        }
+
+        var sizes = TextRuns(first).Select(r => document.ResolveRun(r).SizePt).ToList();
+        return sizes.Count == 0 || sizes.Any(s => Math.Abs(s - 32) > 0.01) ? null : first;
+    }
 }
 
 /// <summary>G-04: akapity wyrównane do lewej; justowanie zabronione.</summary>
@@ -67,7 +84,7 @@ internal sealed class Justification20Rule : IDocumentRule
 /// Rodzina czcionki: „SUN Me” dla tekstu, „SUN Display” dla H1. Grubość ustawia się atrybutem (Regular/Bold),
 /// więc nazwa rodziny w rodzaju „SUN Me Bold” to błąd zapisu.
 /// </summary>
-internal sealed class FontFamily20Rule : IDocumentRule
+internal sealed class FontFamily20Rule(RegistrationData20 registration) : IDocumentRule
 {
     private static readonly Regex WeightInName = new(@"^SUN (Me|Display)\s+(Bold|Regular|Light|Medium|Semibold|Black|Italic)\b", RegexOptions.IgnoreCase);
 
@@ -80,6 +97,12 @@ internal sealed class FontFamily20Rule : IDocumentRule
         foreach (var run in Spec20.TextRuns(document.Body))
         {
             var paragraph = run.Ancestors<Paragraph>().FirstOrDefault();
+            if (paragraph is not null && registration.IsBlock(paragraph, document))
+            {
+                // Blok danych rejestrowych ocenia w całości reguła danych rejestrowych (rozdz. 10).
+                continue;
+            }
+
             var expected = paragraph is not null && document.HeadingLevel(paragraph) == 1 ? Spec20.DisplayFont : Spec20.TextFont;
             var font = document.ResolveRun(run).FontName;
             if (font is null)
@@ -114,8 +137,11 @@ internal sealed class FontFamily20Rule : IDocumentRule
     }
 }
 
-/// <summary>Interlinia tekstu podstawowego, nagłówków i stopki 1,2 (lineRule=auto, line=288); rozdz. 1, 3 i 11.</summary>
-internal sealed class LineSpacing20Rule : IDocumentRule
+/// <summary>
+/// Interlinia tekstu podstawowego, nagłówków i stopki 1,2 (lineRule=auto, line=288); rozdz. 1, 3 i 11.
+/// Dane rejestrowe mają własną interlinię 1,5 (rozdz. 10) i własną regułę, więc są tu pomijane.
+/// </summary>
+internal sealed class LineSpacing20Rule(RegistrationData20 registration) : IDocumentRule
 {
     private const double Expected = 1.2;
     private const double Tolerance = 0.02;
@@ -126,7 +152,8 @@ internal sealed class LineSpacing20Rule : IDocumentRule
         var footers = document.HeadersAndFooters().Where(s => s.Part is DocumentFormat.OpenXml.Packaging.FooterPart).Select(s => s.Root);
         foreach (var paragraph in document.Body.Descendants<Paragraph>().Concat(footers.SelectMany(f => f.Descendants<Paragraph>())))
         {
-            if (paragraph.InnerText.Trim().Length == 0 || paragraph.Ancestors<TableCell>().Any() || Spec20.IsTocParagraph(paragraph, document))
+            if (paragraph.InnerText.Trim().Length == 0 || paragraph.Ancestors<TableCell>().Any() || Spec20.IsTocParagraph(paragraph, document)
+                || registration.IsBlock(paragraph, document))
             {
                 continue;
             }
@@ -149,9 +176,11 @@ internal sealed class LineSpacing20Rule : IDocumentRule
 
 /// <summary>
 /// Tekst podstawowy 10 pt; powiększenie do 12 albo 14 pt dopuszczalne z potrzeby biznesowej (ostrzeżenie).
-/// Zwrot grzecznościowy („Szanowni Państwo”) w układzie z polem adresowym ma 14 albo 16 pt (rozdz. 4).
+/// Zwrot grzecznościowy („Szanowni Państwo”) w układzie z polem adresowym ma 14 albo 16 pt (rozdz. 4): bez wybranego
+/// układu wyjątek działa zawsze, po wyborze – tylko w układzie „pole adresowe”. W układzie „strona tytułowa” zapis
+/// „Obowiązuje od” (12 pt) ocenia reguła układu. Dane rejestrowe (8 pt) mają własną regułę.
 /// </summary>
-internal sealed partial class BodyText20Rule : IDocumentRule
+internal sealed partial class BodyText20Rule(RegistrationData20 registration, DocumentLayout20? layout) : IDocumentRule
 {
     public IEnumerable<WcagIssue> Check(DocxDocument document)
     {
@@ -159,7 +188,12 @@ internal sealed partial class BodyText20Rule : IDocumentRule
         var enlarged = new List<IssueLocation?>();
         foreach (var paragraph in document.Body.Descendants<Paragraph>().Where(p => Spec20.IsBodyParagraph(p, document) && !p.Ancestors<TableCell>().Any()))
         {
-            var salutation = Salutation().IsMatch(paragraph.InnerText.Trim());
+            if (registration.IsBlock(paragraph, document) || layout == DocumentLayout20.TitlePage && Layout20Rules.IsEffectiveDate(paragraph))
+            {
+                continue;
+            }
+
+            var salutation = layout is null or DocumentLayout20.AddressField && Salutation().IsMatch(paragraph.InnerText.Trim());
             foreach (var run in Spec20.TextRuns(paragraph))
             {
                 var size = document.ResolveRun(run).SizePt;
@@ -204,7 +238,7 @@ internal sealed partial class BodyText20Rule : IDocumentRule
 /// szary tylko w stopce i danych rejestrowych (8 pt), bordo tylko w grafice. Czarny, niebieski i fuksja (komentarze)
 /// mogą być w każdym tekście.
 /// </summary>
-internal sealed class ColorUsage20Rule : IDocumentRule
+internal sealed class ColorUsage20Rule(RegistrationData20 registration) : IDocumentRule
 {
     public IEnumerable<WcagIssue> Check(DocxDocument document)
     {
@@ -214,6 +248,11 @@ internal sealed class ColorUsage20Rule : IDocumentRule
             var format = document.ResolveRun(run);
             var color = Spec20.Color(format);
             var paragraph = run.Ancestors<Paragraph>().FirstOrDefault();
+            if (paragraph is not null && registration.IsBlock(paragraph, document))
+            {
+                continue;
+            }
+
             var level = paragraph is null ? null : document.HeadingLevel(paragraph);
             var problem = color switch
             {
@@ -239,25 +278,27 @@ internal sealed class ColorUsage20Rule : IDocumentRule
 }
 
 /// <summary>
-/// Rozdz. 4 i 11: dokument ze stroną tytułową (pierwszy nagłówek to H1 32 pt) nie ma na niej stopki z tytułem
-/// i numerem strony, czyli sekcja ma „Inna na pierwszej stronie” z pustą stopką pierwszej strony.
+/// Rozdz. 4 i 11: dokument ze stroną tytułową nie ma na niej stopki z tytułem i numerem strony, czyli sekcja ma
+/// „Inna na pierwszej stronie” z pustą stopką pierwszej strony. Strona tytułowa: wybrany układ „strona tytułowa”,
+/// a bez wyboru układu – pierwszy nagłówek to H1 32 pt. Przy innym wybranym układzie reguła nie działa.
 /// </summary>
-internal sealed class TitlePage20Rule : IDocumentRule
+internal sealed class TitlePage20Rule(DocumentLayout20? layout) : IDocumentRule
 {
     public IEnumerable<WcagIssue> Check(DocxDocument document)
     {
-        var first = document.Paragraphs.FirstOrDefault(p => document.HeadingLevel(p) is not null && p.InnerText.Trim().Length > 0);
-        if (first is null || document.HeadingLevel(first) != 1)
+        var first = layout switch
+        {
+            null => Spec20.TitlePageHeading(document),
+            DocumentLayout20.TitlePage => document.Paragraphs.FirstOrDefault(p => document.HeadingLevel(p) is not null && p.InnerText.Trim().Length > 0)
+                ?? document.Paragraphs.FirstOrDefault(p => p.InnerText.Trim().Length > 0),
+            _ => null,
+        };
+        if (first is null)
         {
             yield break;
         }
 
-        var sizes = Spec20.TextRuns(first).Select(r => document.ResolveRun(r).SizePt).ToList();
-        if (sizes.Count == 0 || sizes.Any(s => Math.Abs(s - 32) > 0.01))
-        {
-            yield break;
-        }
-
+        var kind = layout is null ? "Dokument ze stroną tytułową (H1 32 pt)" : "Dokument w układzie „strona tytułowa”";
         var location = document.Locate(first);
         var section = document.Body.Descendants<SectionProperties>().FirstOrDefault();
         var titlePage = section?.GetFirstChild<TitlePage>() is { } flag && (flag.Val?.Value ?? true);
@@ -265,7 +306,7 @@ internal sealed class TitlePage20Rule : IDocumentRule
         {
             yield return new WcagIssue(
                 IssueCodes.TitlePageFooterPresent, IssueSeverity.Warning, IssueCategory.Structure,
-                "Dokument ze stroną tytułową (H1 32 pt) ma na niej zwykłą stopkę; standard: bez stopki z tytułem i numerem strony na stronie tytułowej (Układ → Inna na pierwszej stronie).").At(location);
+                $"{kind} ma na niej zwykłą stopkę; standard: bez stopki z tytułem i numerem strony na stronie tytułowej (Układ → Inna na pierwszej stronie).").At(location);
             yield break;
         }
 
@@ -449,28 +490,48 @@ internal sealed class HeadingTypography20Rule : IDocumentRule
     }
 }
 
-/// <summary>G-05: odstęp nad H1 42,5 pt (15 mm), pod H1 34 pt (12 mm); w układzie z polem adresowym nad H1 ok. 210 pt.</summary>
-internal sealed class HeadingSpacing20Rule : IDocumentRule
+/// <summary>
+/// G-05: odstęp nad H1 42,5 pt (15 mm), pod H1 34 pt (12 mm); w układzie z polem adresowym nad H1 ok. 210 pt.
+/// Bez wybranego układu oba odstępy nad H1 są dopuszczalne. Po wyborze: „pole adresowe” wymaga ok. 210 pt nad
+/// pierwszym H1 (kolejne: 42,5 albo 210 pt), pozostałe układy – 42,5 pt.
+/// </summary>
+internal sealed class HeadingSpacing20Rule(DocumentLayout20? layout) : IDocumentRule
 {
     private const double Before = 42.5;
     private const double BeforeAddressLayout = 210;
     private const double After = 34;
     private const double Tolerance = 1;
+    private const double AddressTolerance = 10;
 
     public IEnumerable<WcagIssue> Check(DocxDocument document)
     {
+        var first = true;
         foreach (var paragraph in document.Paragraphs.Where(p => document.HeadingLevel(p) == 1 && p.InnerText.Trim().Length > 0))
         {
             var format = document.ResolveParagraph(paragraph);
             var before = format.SpacingBeforePt ?? 0;
             var after = format.SpacingAfterPt ?? 0;
-            var beforeOk = Math.Abs(before - Before) <= Tolerance || Math.Abs(before - BeforeAddressLayout) <= 10;
+            var standard = Math.Abs(before - Before) <= Tolerance;
+            var address = Math.Abs(before - BeforeAddressLayout) <= AddressTolerance;
+            var beforeOk = layout switch
+            {
+                null => standard || address,
+                DocumentLayout20.AddressField => first ? address : standard || address,
+                _ => standard,
+            };
+            first = false;
             var afterOk = Math.Abs(after - After) <= Tolerance;
             if (!beforeOk || !afterOk)
             {
+                var expected = layout switch
+                {
+                    null => "standard: 42,5 pt (15 mm) nad, 34 pt (12 mm) pod, w piśmie z polem adresowym ok. 210 pt nad",
+                    DocumentLayout20.AddressField => "układ „pole adresowe”: ok. 210 pt nad pierwszym H1, 34 pt (12 mm) pod",
+                    { } chosen => $"układ „{CorporateStandard20.LayoutName(chosen)}”: 42,5 pt (15 mm) nad, 34 pt (12 mm) pod",
+                };
                 yield return new WcagIssue(
                     IssueCodes.HeadingSpacingMismatch, IssueSeverity.Warning, IssueCategory.Headings,
-                    $"H1 „{DocxDocument.Snippet(paragraph.InnerText, 50)}” ma odstęp {Spec20.Pt(before)} pt nad i {Spec20.Pt(after)} pt pod; standard: 42,5 pt (15 mm) nad, 34 pt (12 mm) pod, w piśmie z polem adresowym ok. 210 pt nad.")
+                    $"H1 „{DocxDocument.Snippet(paragraph.InnerText, 50)}” ma odstęp {Spec20.Pt(before)} pt nad i {Spec20.Pt(after)} pt pod; {expected}.")
                     .At(document.Locate(paragraph));
             }
         }
@@ -515,23 +576,44 @@ internal sealed class LinkStyle20Rule : IDocumentRule
     }
 }
 
-/// <summary>G-11: stopka SUN Me 8 pt, #696969, interlinia 1,2; treść: numer strony i tytuł dokumentu.</summary>
-internal sealed class Footer20Rule : IDocumentRule
+/// <summary>
+/// G-11: stopka SUN Me Regular 8 pt, #696969 (interlinię 1,2 sprawdza <see cref="LineSpacing20Rule"/>); treść: numer
+/// strony i tytuł dokumentu. Brak stopki, brak pola PAGE i dosłowny format sprawdzają <see cref="Footer20Rules"/>.
+/// Dane rejestrowe w stopce ocenia reguła danych rejestrowych.
+/// </summary>
+internal sealed class Footer20Rule(RegistrationData20 registration, DocumentLayout20? layout) : IDocumentRule
 {
     public IEnumerable<WcagIssue> Check(DocxDocument document)
     {
         var wrong = new List<IssueLocation?>();
+        var numberOnly = new List<IssueLocation?>();
         var withoutTitle = new List<IssueLocation?>();
+        var required = Footers20.Required(document, layout).Select(f => f.Root).ToHashSet<OpenXmlElement>(ReferenceEqualityComparer.Instance);
 
         foreach (var story in document.HeadersAndFooters().Where(s => s.Part is DocumentFormat.OpenXml.Packaging.FooterPart))
         {
             foreach (var run in Spec20.TextRuns(story.Root))
             {
+                if (run.Ancestors<Paragraph>().FirstOrDefault() is { } paragraph && registration.IsBlock(paragraph, document))
+                {
+                    continue;
+                }
+
                 var format = document.ResolveRun(run);
                 var problems = new List<string>();
+                if (format.FontName is { } font && !string.Equals(font, Spec20.TextFont, StringComparison.OrdinalIgnoreCase))
+                {
+                    problems.Add(font);
+                }
+
                 if (Math.Abs(format.SizePt - 8) > 0.01)
                 {
                     problems.Add($"{Spec20.Pt(format.SizePt)} pt");
+                }
+
+                if (format.Bold)
+                {
+                    problems.Add("pogrubienie");
                 }
 
                 if (!string.Equals(Spec20.Color(format), Spec20.Gray, StringComparison.OrdinalIgnoreCase))
@@ -545,11 +627,20 @@ internal sealed class Footer20Rule : IDocumentRule
                 }
             }
 
-            var hasPageNumber = PageNumberRules.HasPageNumber(story.Root);
-            var text = Regex.Replace(string.Concat(story.Root.Descendants<Text>().Select(t => t.Text)), @"(?i)strona|z|\d|[:.\s]", "");
-            if (hasPageNumber && text.Length < 3)
+            if (Footers20.HasTitle(story.Root, document, registration))
             {
-                withoutTitle.Add(document.Locate(story.Root.Descendants<Paragraph>().First(), "(stopka)"));
+                continue;
+            }
+
+            // Stopka z numerem, ale bez tytułu – także wtedy, gdy numer wpisano z klawiatury zamiast pola PAGE.
+            var location = document.Locate(story.Root.Descendants<Paragraph>().First(), "(stopka)");
+            if (PageNumberRules.HasPageNumber(story.Root))
+            {
+                numberOnly.Add(location);
+            }
+            else if (required.Contains(story.Root) && !Footers20.IsEmpty(story.Root))
+            {
+                withoutTitle.Add(location);
             }
         }
 
@@ -560,11 +651,18 @@ internal sealed class Footer20Rule : IDocumentRule
                 $"{Polish.Count(wrong.Count, "fragment stopki ma", "fragmenty stopki mają", "fragmentów stopki ma")} styl inny niż SUN Me 8 pt #{Spec20.Gray}.").At(wrong);
         }
 
+        if (numberOnly.Count > 0)
+        {
+            yield return new WcagIssue(
+                IssueCodes.FooterTitleMissing, IssueSeverity.Warning, IssueCategory.Structure,
+                "Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”.").At(numberOnly);
+        }
+
         if (withoutTitle.Count > 0)
         {
             yield return new WcagIssue(
                 IssueCodes.FooterTitleMissing, IssueSeverity.Warning, IssueCategory.Structure,
-                "Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”.").At(withoutTitle);
+                "Stopka nie zawiera tytułu dokumentu; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”.").At(withoutTitle);
         }
     }
 }

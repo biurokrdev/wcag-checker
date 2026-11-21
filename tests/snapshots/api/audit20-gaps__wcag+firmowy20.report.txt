@@ -4,7 +4,7 @@ Język: pl-PL
 Obrazy: 0
 
 Raport walidacji dokumentu „audit20-gaps.docx”
-Wynik: niepoprawny. 16 błędów, 5 ostrzeżeń, 1 informacja.
+Wynik: niepoprawny. 21 błędów, 4 ostrzeżenia, 1 informacja.
 Data sprawdzenia: <data>. Standardy: WCAG 2.1 AA (dokument Word); Standard pism firmowych 2.0.
 Dokument: tytuł „brak”, autor „brak”, język pl-PL, 54 akapitów, 7 nagłówków, 3 tabel, 0 obrazów.
 Podsumowanie kontroli
@@ -66,16 +66,16 @@ Sekcja „Format strony i ustawienia bazowe”
 | Błąd | G-01 A4 210 × 297 mm, marginesy 12,7 mm | Marginesy inne niż wymagane: Margines górny ma 70,9 pt, a wymagane jest 36 pt. ⏎ Marginesy inne niż wymagane: Margines dolny ma 70,9 pt, a wymagane jest 36 pt. ⏎ Marginesy inne niż wymagane: Margines lewy ma 70,9 pt, a wymagane jest 36 pt. ⏎ Marginesy inne niż wymagane: Margines prawy ma 70,9 pt, a wymagane jest 36 pt. ⏎ Strona inna niż A4: Strona ma 216 × 279 mm, a wymagany jest format A4 (210 × 297 mm). |
 | Zatwierdzono | G-04 Wyrównanie do lewej, bez justowania | – |
 | Zatwierdzono | Czcionka SUN Me (H1: SUN Display), grubość osobno | – |
-| Błąd | Interlinia 1,2 | Interlinia inna niż 1,2: 3 akapity mają interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). (3 wystąpień) |
+| Zatwierdzono | Interlinia 1,2 | – |
 Sekcja „Paleta kolorów”
 | Status | Kontrola | Szczegóły |
-| Ostrzeżenie | G-02 Kolory tylko z palety, użyte zgodnie z przeznaczeniem | Kolor z palety użyty niezgodnie z przeznaczeniem: 1 fragment tekstu ma kolor z palety użyty niezgodnie z przeznaczeniem (rozdz. 2 guidebooka). |
+| Zatwierdzono | G-02 Kolory tylko z palety, użyte zgodnie z przeznaczeniem | – |
 Sekcja „Typografia”
 | Status | Kontrola | Szczegóły |
 | Zatwierdzono | G-03 Style H1–H5 zgodne z tabelą typografii | – |
-| Błąd | Tekst podstawowy 10 pt (12/14 pt warunkowo) | Rozmiar tekstu podstawowego spoza standardu: 2 fragmenty tekstu podstawowego mają rozmiar spoza standardu; wymagane 10 pt (dopuszczalnie 12 albo 14 pt). (2 wystąpień) |
+| Zatwierdzono | Tekst podstawowy 10 pt (12/14 pt warunkowo) | – |
 | Zatwierdzono | Łącza #7724FF z podkreśleniem | – |
-| Zatwierdzono | G-05 Odstępy H1: 42,5 pt nad, 34 pt pod | – |
+| Zatwierdzono | G-05 Odstępy H1: 42,5 pt nad, 34 pt pod; układ dokumentu | – |
 | Błąd | G-07 Hierarchia nagłówków: start od H1, bez przeskoków | Pominięty poziom nagłówka: Nagłówek „Listy z nadpisaniami” ma poziom 3 zaraz po poziomie 1; pominięto poziom 2. |
 Sekcja „Spis treści i listy”
 | Status | Kontrola | Szczegóły |
@@ -92,8 +92,9 @@ Sekcja „Grafika”
 | Zatwierdzono | G-10 Logo 44 × 10 mm i symbol 22 × 22 mm z tekstem alternatywnym z guidebooka | – |
 Sekcja „Stopka i metadane”
 | Status | Kontrola | Szczegóły |
-| Ostrzeżenie | G-11 Stopka SUN Me 8 pt #696969 interlinia 1,2, numer i tytuł, bez stopki na stronie tytułowej | Stopka bez tytułu dokumentu: Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”. |
-| Zatwierdzono | G-12 Title „[Tytuł]. Bank”, Author = bank | – |
+| Błąd | G-11 Stopka SUN Me 8 pt #696969 interlinia 1,2, numer i tytuł („Strona: X z Y. Tytuł”), bez stopki na stronie tytułowej | Brak stopki: Sekcja 1 nie ma stopki (własnej ani odziedziczonej z poprzedniej sekcji); standard wymaga stopki z numerem strony i tytułem dokumentu („Strona: X z Y. Tytuł dokumentu”). ⏎ Brak pola numeru strony w stopce: Brak pola numeru strony (PAGE) w treści stopki (sekcja 2, strony: wszystkie); numer ma wstawiać pole, a nie tekst wpisany z klawiatury. ⏎ Stopka bez tytułu dokumentu: Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”. ⏎ Stopka niezgodna ze stylem: 2 fragmenty stopki mają styl inny niż SUN Me 8 pt #696969. (2 wystąpień) ⏎ Stopka w innej postaci niż „Strona: X z Y. Tytuł”: Stopka ma postać „X / Y – Luki audytu 2.0” (X = pole PAGE, Y = pole NUMPAGES); standard: „Strona: X z Y. Tytuł dokumentu”. |
+| Błąd | Dane rejestrowe SUN Me 8 pt #696969, interlinia 1,5 | Dane rejestrowe w niewłaściwym formacie: Dane rejestrowe „Example Company S. A., oddział w Krakowie, wpisany…”: rozmiar 9 pt zamiast 8 pt; pogrubienie zamiast grubości Regular; wymagane SUN Me Regular 8 pt #696969, interlinia 1,5. ⏎ Dane rejestrowe w niewłaściwym formacie: Dane rejestrowe „Example Company S. A., Sąd Rejonowy dla m.st. Wars…”: rozmiar 10 pt zamiast 8 pt; kolor #000000 zamiast #696969; interlinia 1,2 zamiast 1,5; wymagane SUN Me Regular 8 pt #696969, interlinia 1,5. |
+| Błąd | G-12 Title „[Tytuł]. Bank”, Author = bank | Brak autora dokumentu: Dokument nie ma autora w metadanych. |
 | Zatwierdzono | G-13 Język dokumentu ustawiony | – |
 Sekcja „Warianty i oznaczenia”
 | Status | Kontrola | Szczegóły |
@@ -105,7 +106,7 @@ Sekcja „Weryfikacja ręczna”
 | Ręczna weryfikacja | G-10 Alt text ikon i QR zależny od kontekstu, dekoracje wyłączone | Ikony „tak/nie” i informacji z opisem z kontekstu; QR z przeznaczeniem; pole na naklejkę barcode dekoracyjne; zasoby z OrangeSharing, nie ze zdjęć. |
 | Ręczna weryfikacja | G-13 Znaczniki językowe fragmentów w innym języku | Cytaty, tytuły i rozwinięcia skrótów w innym języku oznaczone miejscowo. |
 | Ręczna weryfikacja | G-15 Sygnatura (SUN Me 8 pt, 270°, prawy dolny róg) i SIGNOTEK | Zgodność z integracją; biały identyfikator SIGNOTEK ocenić osobno pod kątem dostępności. |
-| Ręczna weryfikacja | Wariant układu (dane rejestrowe, strona tytułowa, pole adresowe) | Dane rejestrowe SUN Me 8 pt #696969 interlinia 1,5; strona tytułowa bez stopki; pole adresowe najlepiej puste. |
+| Ręczna weryfikacja | Wariant układu (dane rejestrowe, strona tytułowa, pole adresowe) | Dobór układu do rodzaju pisma i położenie danych rejestrowych na stronie ocenić na wydruku; pole adresowe najlepiej puste. Format danych rejestrowych i reguły wybranego układu są sprawdzane automatycznie. |
 | Ręczna weryfikacja | Pola podpisów, separatory i kontrolki formularza | Linia podpisu 1 px #000000 60 mm; inputy 1 px #696969, 24 px wysokości; checkbox 20 × 20 px. |
 Kryteria WCAG 2.1
 2 kryteria spełnione, 1 niespełnione, 15 do przeglądu ręcznego.
@@ -130,7 +131,7 @@ Tabela stanu kryteriów WCAG 2.1
 | 4.1.1 Poprawność kodu | A | automatycznie | spełnione | Pakiet DOCX otwiera się i ma część główną. |
 | 4.1.2 Nazwa, rola, wartość | A | częściowo | do przeglądu | Formanty mają nazwę (etykietę albo tytuł); rola i wartość wynikają z typu formantu w Wordzie. |
 Wyniki walidacji
-29 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
+31 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
 Tabela wystąpień
 | Nr | Waga | Zgłoszenie | Standard | Miejsce | Komunikat | Zweryfikowano |
 | 1 | błąd | Pominięty poziom nagłówka | Standard pism firmowych 2.0 | akapit: „Listy z nadpisaniami” | Nagłówek „Listy z nadpisaniami” ma poziom 3 zaraz po poziomie 1; pominięto poziom 2. | nie |
@@ -144,23 +145,25 @@ Tabela wystąpień
 | 9 | błąd | Punktor w niedozwolonym kolorze | Standard pism firmowych 2.0 | akapit: „druga pozycja z zielonym punktorem. (punktor #00AA00)” (2/2) | 2 pozycje listy mają punktor w kolorze spoza #FF6200 i #000000. | nie |
 | 10 | błąd | Alternatywa z ukośnikiem zamiast [lub] | Standard pism firmowych 2.0 | akapit: „Pani/Pan” (1/2) | 2 akapity wewnątrz wariantu mają alternatywę z ukośnikiem (np. „PLN / EUR”); w wariantach separator zastępuje się znacznikiem [lub] w kolorze #AB0066. | nie |
 | 11 | błąd | Alternatywa z ukośnikiem zamiast [lub] | Standard pism firmowych 2.0 | akapit: „PLN / EUR” (2/2) | 2 akapity wewnątrz wariantu mają alternatywę z ukośnikiem (np. „PLN / EUR”); w wariantach separator zastępuje się znacznikiem [lub] w kolorze #AB0066. | nie |
-| 12 | błąd | Brak tytułu dokumentu | WCAG 2.1 AA (dokument Word) | dokument: „(metadane dokumentu)” | Dokument nie ma tytułu w metadanych (Plik → Informacje → Tytuł). | nie |
-| 13 | błąd | Rozmiar tekstu podstawowego spoza standardu | Standard pism firmowych 2.0 | fragment tekstu: „Example Company S. A. z siedzibą w Warsz… (8 pt)” (1/2) | 2 fragmenty tekstu podstawowego mają rozmiar spoza standardu; wymagane 10 pt (dopuszczalnie 12 albo 14 pt). | nie |
-| 14 | błąd | Rozmiar tekstu podstawowego spoza standardu | Standard pism firmowych 2.0 | fragment tekstu: „Example Company S. A., oddział w Krakowi… (9 pt)” (2/2) | 2 fragmenty tekstu podstawowego mają rozmiar spoza standardu; wymagane 10 pt (dopuszczalnie 12 albo 14 pt). | nie |
-| 15 | błąd | Marginesy inne niż wymagane | Standard pism firmowych 2.0 | dokument: „(ustawienia strony)” | Margines górny ma 70,9 pt, a wymagane jest 36 pt. | nie |
-| 16 | błąd | Marginesy inne niż wymagane | Standard pism firmowych 2.0 | dokument: „(ustawienia strony)” | Margines dolny ma 70,9 pt, a wymagane jest 36 pt. | nie |
-| 17 | błąd | Marginesy inne niż wymagane | Standard pism firmowych 2.0 | dokument: „(ustawienia strony)” | Margines lewy ma 70,9 pt, a wymagane jest 36 pt. | nie |
-| 18 | błąd | Marginesy inne niż wymagane | Standard pism firmowych 2.0 | dokument: „(ustawienia strony)” | Margines prawy ma 70,9 pt, a wymagane jest 36 pt. | nie |
-| 19 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „Example Company S. A. z siedzibą w Warsz… (interlinia 1,5)” (1/3) | 3 akapity mają interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
-| 20 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „Example Company S. A., oddział w Krakowi… (interlinia 1,5)” (2/3) | 3 akapity mają interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
-| 21 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „Example Company S. A. z siedzibą w Warsz… (interlinia 1,5)” (3/3) | 3 akapity mają interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
-| 22 | błąd | Strona inna niż A4 | Standard pism firmowych 2.0 | dokument: „(ustawienia strony)” | Strona ma 216 × 279 mm, a wymagany jest format A4 (210 × 297 mm). | nie |
-| 23 | ostrzeżenie | Pominięty poziom nagłówka | WCAG 2.1 AA (dokument Word) | akapit: „Listy z nadpisaniami” | Nagłówek „Listy z nadpisaniami” ma poziom 3 zaraz po poziomie 1; pominięto poziom 2. | nie |
-| 24 | ostrzeżenie | Numer listy bez pogrubienia | Standard pism firmowych 2.0 | akapit: „Pierwszy krok z numerem bez pogrubienia.” (1/2) | 2 pozycje listy numerowanej mają niepogrubiony numer; guidebook: „Lista numerowana: bold”. | nie |
-| 25 | ostrzeżenie | Numer listy bez pogrubienia | Standard pism firmowych 2.0 | akapit: „Drugi krok z numerem bez pogrubienia.” (2/2) | 2 pozycje listy numerowanej mają niepogrubiony numer; guidebook: „Lista numerowana: bold”. | nie |
-| 26 | ostrzeżenie | Stopka bez tytułu dokumentu | Standard pism firmowych 2.0 | akapit: „(stopka)” | Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”. | nie |
-| 27 | ostrzeżenie | Brak autora dokumentu | WCAG 2.1 AA (dokument Word) | dokument: „(metadane dokumentu)” | Dokument nie ma autora w metadanych. | nie |
-| 28 | ostrzeżenie | Kolor z palety użyty niezgodnie z przeznaczeniem | Standard pism firmowych 2.0 | fragment tekstu: „Example Company S. A., oddział w Krakowi… (szary #696969 jest zarezerwowany dla stopki i danych rejestrowych (8 pt))” | 1 fragment tekstu ma kolor z palety użyty niezgodnie z przeznaczeniem (rozdz. 2 guidebooka). | nie |
-| 29 | informacja | Zalecane sprawdzenie ręczne | WCAG 2.1 AA (dokument Word) | dokument: „” | Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie. | nie |
+| 12 | błąd | Brak stopki | Standard pism firmowych 2.0 | akapit: „Luki audytu 2.0” | Sekcja 1 nie ma stopki (własnej ani odziedziczonej z poprzedniej sekcji); standard wymaga stopki z numerem strony i tytułem dokumentu („Strona: X z Y. Tytuł dokumentu”). | nie |
+| 13 | błąd | Brak pola numeru strony w stopce | Standard pism firmowych 2.0 | akapit: „Dokument wewnętrzny” | Brak pola numeru strony (PAGE) w treści stopki (sekcja 2, strony: wszystkie); numer ma wstawiać pole, a nie tekst wpisany z klawiatury. | nie |
+| 14 | błąd | Stopka bez tytułu dokumentu | Standard pism firmowych 2.0 | akapit: „(stopka)” | Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”. | nie |
+| 15 | błąd | Brak autora dokumentu | Standard pism firmowych 2.0 | dokument: „(metadane dokumentu)” | Dokument nie ma autora w metadanych. | nie |
+| 16 | błąd | Brak tytułu dokumentu | WCAG 2.1 AA (dokument Word) | dokument: „(metadane dokumentu)” | Dokument nie ma tytułu w metadanych (Plik → Informacje → Tytuł). | nie |
+| 17 | błąd | Dane rejestrowe w niewłaściwym formacie | Standard pism firmowych 2.0 | akapit: „Example Company S. A., oddział w Krakowi…” | Dane rejestrowe „Example Company S. A., oddział w Krakowie, wpisany…”: rozmiar 9 pt zamiast 8 pt; pogrubienie zamiast grubości Regular; wymagane SUN Me Regular 8 pt #696969, interlinia 1,5. | nie |
+| 18 | błąd | Dane rejestrowe w niewłaściwym formacie | Standard pism firmowych 2.0 | akapit: „Example Company S. A., Sąd Rejonowy dla…” | Dane rejestrowe „Example Company S. A., Sąd Rejonowy dla m.st. Wars…”: rozmiar 10 pt zamiast 8 pt; kolor #000000 zamiast #696969; interlinia 1,2 zamiast 1,5; wymagane SUN Me Regular 8 pt #696969, interlinia 1,5. | nie |
+| 19 | błąd | Stopka niezgodna ze stylem | Standard pism firmowych 2.0 | fragment tekstu: „Strona: (Arial, pogrubienie)” (1/2) | 2 fragmenty stopki mają styl inny niż SUN Me 8 pt #696969. | nie |
+| 20 | błąd | Stopka niezgodna ze stylem | Standard pism firmowych 2.0 | fragment tekstu: „3 (Arial, pogrubienie)” (2/2) | 2 fragmenty stopki mają styl inny niż SUN Me 8 pt #696969. | nie |
+| 21 | błąd | Marginesy inne niż wymagane | Standard pism firmowych 2.0 | dokument: „(ustawienia strony)” | Margines górny ma 70,9 pt, a wymagane jest 36 pt. | nie |
+| 22 | błąd | Marginesy inne niż wymagane | Standard pism firmowych 2.0 | dokument: „(ustawienia strony)” | Margines dolny ma 70,9 pt, a wymagane jest 36 pt. | nie |
+| 23 | błąd | Marginesy inne niż wymagane | Standard pism firmowych 2.0 | dokument: „(ustawienia strony)” | Margines lewy ma 70,9 pt, a wymagane jest 36 pt. | nie |
+| 24 | błąd | Marginesy inne niż wymagane | Standard pism firmowych 2.0 | dokument: „(ustawienia strony)” | Margines prawy ma 70,9 pt, a wymagane jest 36 pt. | nie |
+| 25 | błąd | Strona inna niż A4 | Standard pism firmowych 2.0 | dokument: „(ustawienia strony)” | Strona ma 216 × 279 mm, a wymagany jest format A4 (210 × 297 mm). | nie |
+| 26 | ostrzeżenie | Pominięty poziom nagłówka | WCAG 2.1 AA (dokument Word) | akapit: „Listy z nadpisaniami” | Nagłówek „Listy z nadpisaniami” ma poziom 3 zaraz po poziomie 1; pominięto poziom 2. | nie |
+| 27 | ostrzeżenie | Numer listy bez pogrubienia | Standard pism firmowych 2.0 | akapit: „Pierwszy krok z numerem bez pogrubienia.” (1/2) | 2 pozycje listy numerowanej mają niepogrubiony numer; guidebook: „Lista numerowana: bold”. | nie |
+| 28 | ostrzeżenie | Numer listy bez pogrubienia | Standard pism firmowych 2.0 | akapit: „Drugi krok z numerem bez pogrubienia.” (2/2) | 2 pozycje listy numerowanej mają niepogrubiony numer; guidebook: „Lista numerowana: bold”. | nie |
+| 29 | ostrzeżenie | Stopka w innej postaci niż „Strona: X z Y. Tytuł” | Standard pism firmowych 2.0 | akapit: „PAGE 4 / 5 – Luki audytu 2.0” | Stopka ma postać „X / Y – Luki audytu 2.0” (X = pole PAGE, Y = pole NUMPAGES); standard: „Strona: X z Y. Tytuł dokumentu”. | nie |
+| 30 | ostrzeżenie | Brak autora dokumentu | WCAG 2.1 AA (dokument Word) | dokument: „(metadane dokumentu)” | Dokument nie ma autora w metadanych. | nie |
+| 31 | informacja | Zalecane sprawdzenie ręczne | WCAG 2.1 AA (dokument Word) | dokument: „” | Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie. | nie |
 
-PDF: %PDF-, strony: 12
+PDF: %PDF-, strony: 14

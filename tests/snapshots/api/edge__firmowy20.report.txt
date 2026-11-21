@@ -4,7 +4,7 @@ Język: pl-PL
 Obrazy: 0
 
 Raport walidacji dokumentu „edge.docx”
-Wynik: poprawny. 1 ostrzeżenie.
+Wynik: niepoprawny. 1 błąd, 3 ostrzeżenia.
 Data sprawdzenia: <data>. Standardy: Standard pism firmowych 2.0.
 Dokument: tytuł „Przypadki brzegowe. Example Company S. A.”, autor „Example Company S. A.”, język pl-PL, 21 akapitów, 3 nagłówków, 1 tabel, 1 obrazów.
 Podsumowanie kontroli
@@ -23,7 +23,7 @@ Sekcja „Typografia”
 | Zatwierdzono | G-03 Style H1–H5 zgodne z tabelą typografii | – |
 | Zatwierdzono | Tekst podstawowy 10 pt (12/14 pt warunkowo) | – |
 | Zatwierdzono | Łącza #7724FF z podkreśleniem | – |
-| Zatwierdzono | G-05 Odstępy H1: 42,5 pt nad, 34 pt pod | – |
+| Zatwierdzono | G-05 Odstępy H1: 42,5 pt nad, 34 pt pod; układ dokumentu | – |
 | Zatwierdzono | G-07 Hierarchia nagłówków: start od H1, bez przeskoków | – |
 Sekcja „Spis treści i listy”
 | Status | Kontrola | Szczegóły |
@@ -40,7 +40,8 @@ Sekcja „Grafika”
 | Zatwierdzono | G-10 Logo 44 × 10 mm i symbol 22 × 22 mm z tekstem alternatywnym z guidebooka | – |
 Sekcja „Stopka i metadane”
 | Status | Kontrola | Szczegóły |
-| Zatwierdzono | G-11 Stopka SUN Me 8 pt #696969 interlinia 1,2, numer i tytuł, bez stopki na stronie tytułowej | – |
+| Błąd | G-11 Stopka SUN Me 8 pt #696969 interlinia 1,2, numer i tytuł („Strona: X z Y. Tytuł”), bez stopki na stronie tytułowej | Brak pola numeru strony w stopce: Brak pola numeru strony (PAGE) w treści stopki (sekcja 1, strona: pierwsza); numer ma wstawiać pole, a nie tekst wpisany z klawiatury. ⏎ Stopka w innej postaci niż „Strona: X z Y. Tytuł”: Stopka ma postać „Stopka stron parzystych: X” (X = pole PAGE, Y = pole NUMPAGES); standard: „Strona: X z Y. Tytuł dokumentu”. ⏎ Stopka w innej postaci niż „Strona: X z Y. Tytuł”: Stopka ma postać „Sekcja 2. Strona: X. Przypadki brzegowe” (X = pole PAGE, Y = pole NUMPAGES); standard: „Strona: X z Y. Tytuł dokumentu”. |
+| Zatwierdzono | Dane rejestrowe SUN Me 8 pt #696969, interlinia 1,5 | – |
 | Zatwierdzono | G-12 Title „[Tytuł]. Bank”, Author = bank | – |
 | Zatwierdzono | G-13 Język dokumentu ustawiony | – |
 Sekcja „Warianty i oznaczenia”
@@ -53,13 +54,16 @@ Sekcja „Weryfikacja ręczna”
 | Ręczna weryfikacja | G-10 Alt text ikon i QR zależny od kontekstu, dekoracje wyłączone | Ikony „tak/nie” i informacji z opisem z kontekstu; QR z przeznaczeniem; pole na naklejkę barcode dekoracyjne; zasoby z OrangeSharing, nie ze zdjęć. |
 | Ręczna weryfikacja | G-13 Znaczniki językowe fragmentów w innym języku | Cytaty, tytuły i rozwinięcia skrótów w innym języku oznaczone miejscowo. |
 | Ręczna weryfikacja | G-15 Sygnatura (SUN Me 8 pt, 270°, prawy dolny róg) i SIGNOTEK | Zgodność z integracją; biały identyfikator SIGNOTEK ocenić osobno pod kątem dostępności. |
-| Ręczna weryfikacja | Wariant układu (dane rejestrowe, strona tytułowa, pole adresowe) | Dane rejestrowe SUN Me 8 pt #696969 interlinia 1,5; strona tytułowa bez stopki; pole adresowe najlepiej puste. |
+| Ręczna weryfikacja | Wariant układu (dane rejestrowe, strona tytułowa, pole adresowe) | Dobór układu do rodzaju pisma i położenie danych rejestrowych na stronie ocenić na wydruku; pole adresowe najlepiej puste. Format danych rejestrowych i reguły wybranego układu są sprawdzane automatycznie. |
 | Ręczna weryfikacja | Pola podpisów, separatory i kontrolki formularza | Linia podpisu 1 px #000000 60 mm; inputy 1 px #696969, 24 px wysokości; checkbox 20 × 20 px. |
 Wyniki walidacji
-2 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
+5 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
 Tabela wystąpień
 | Nr | Waga | Zgłoszenie | Standard | Miejsce | Komunikat | Zweryfikowano |
-| 1 | ostrzeżenie | Kolor tekstu spoza palety | Standard pism firmowych 2.0 | fragment tekstu: „rozjaśniony akcent (#8EAADB)” (1/2) | 2 fragmenty tekstu mają kolor spoza dozwolonej palety (#8EAADB, #2F5496); dozwolone: #000000, #FF6200, #0000FF, #AB0066, #7724FF, #696969, #4D0020. | nie |
-| 2 | ostrzeżenie | Kolor tekstu spoza palety | Standard pism firmowych 2.0 | fragment tekstu: „przyciemniony akcent (#2F5496)” (2/2) | 2 fragmenty tekstu mają kolor spoza dozwolonej palety (#8EAADB, #2F5496); dozwolone: #000000, #FF6200, #0000FF, #AB0066, #7724FF, #696969, #4D0020. | nie |
+| 1 | błąd | Brak pola numeru strony w stopce | Standard pism firmowych 2.0 | akapit: „Stopka pierwszej strony” | Brak pola numeru strony (PAGE) w treści stopki (sekcja 1, strona: pierwsza); numer ma wstawiać pole, a nie tekst wpisany z klawiatury. | nie |
+| 2 | ostrzeżenie | Stopka w innej postaci niż „Strona: X z Y. Tytuł” | Standard pism firmowych 2.0 | akapit: „Stopka stron parzystych: 2” | Stopka ma postać „Stopka stron parzystych: X” (X = pole PAGE, Y = pole NUMPAGES); standard: „Strona: X z Y. Tytuł dokumentu”. | nie |
+| 3 | ostrzeżenie | Stopka w innej postaci niż „Strona: X z Y. Tytuł” | Standard pism firmowych 2.0 | akapit: „Sekcja 2. Strona: 3. Przypadki brzegowe” | Stopka ma postać „Sekcja 2. Strona: X. Przypadki brzegowe” (X = pole PAGE, Y = pole NUMPAGES); standard: „Strona: X z Y. Tytuł dokumentu”. | nie |
+| 4 | ostrzeżenie | Kolor tekstu spoza palety | Standard pism firmowych 2.0 | fragment tekstu: „rozjaśniony akcent (#8EAADB)” (1/2) | 2 fragmenty tekstu mają kolor spoza dozwolonej palety (#8EAADB, #2F5496); dozwolone: #000000, #FF6200, #0000FF, #AB0066, #7724FF, #696969, #4D0020. | nie |
+| 5 | ostrzeżenie | Kolor tekstu spoza palety | Standard pism firmowych 2.0 | fragment tekstu: „przyciemniony akcent (#2F5496)” (2/2) | 2 fragmenty tekstu mają kolor spoza dozwolonej palety (#8EAADB, #2F5496); dozwolone: #000000, #FF6200, #0000FF, #AB0066, #7724FF, #696969, #4D0020. | nie |
 
-PDF: %PDF-, strony: 4
+PDF: %PDF-, strony: 5
