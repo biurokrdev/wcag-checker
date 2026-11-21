@@ -4,14 +4,14 @@ Język: pl-PL
 Obrazy: 0
 
 Raport walidacji dokumentu „audit20-gaps.docx”
-Wynik: poprawny. Dokument spełnia wszystkie automatycznie sprawdzane wymagania.
+Wynik: niepoprawny. 1 błąd.
 Data sprawdzenia: <data>. Standardy: Formatowanie z Galerii stylów.
 Dokument: tytuł „brak”, autor „brak”, język pl-PL, 54 akapitów, 7 nagłówków, 3 tabel, 0 obrazów.
 Podsumowanie kontroli
 Formatowanie z Galerii stylów
 Sekcja „Formatowanie bezpośrednie”
 | Status | Kontrola | Szczegóły |
-| Zatwierdzono | Brak formatowania ręcznego innego niż w stylu | – |
+| Błąd | Brak formatowania ręcznego innego niż w stylu | Formatowanie ręczne inne niż w stylu: Akapit w stylu „Dane rejestrowe” ma formatowanie nadane ręcznie, inne niż w stylu: pogrubienie (tak, w stylu: nie), rozmiar czcionki (9 pt, w stylu: 8 pt). |
 | Zatwierdzono | Brak formatowania ręcznego powtarzającego styl | – |
 Sekcja „Style”
 | Status | Kontrola | Szczegóły |
@@ -19,8 +19,9 @@ Sekcja „Style”
 | Zatwierdzono | Użyte style są w Galerii stylów | – |
 | Zatwierdzono | Brak kopii stylów po wklejeniu z innego dokumentu | – |
 Wyniki walidacji
-0 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
+1 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
 Tabela wystąpień
 | Nr | Waga | Zgłoszenie | Standard | Miejsce | Komunikat | Zweryfikowano |
+| 1 | błąd | Formatowanie ręczne inne niż w stylu | Formatowanie z Galerii stylów | akapit: „Example Company S. A., oddział w Krakowi…” | Akapit w stylu „Dane rejestrowe” ma formatowanie nadane ręcznie, inne niż w stylu: pogrubienie (tak, w stylu: nie), rozmiar czcionki (9 pt, w stylu: 8 pt). | nie |
 
 PDF: %PDF-, strony: 1

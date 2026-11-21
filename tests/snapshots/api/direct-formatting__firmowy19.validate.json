@@ -149,5 +149,150 @@
       "occurrence": 1,
       "occurrenceCount": 1
     }
+  ],
+  "structure": [
+    {
+      "kind": "Heading",
+      "text": "Formatowanie bezpośrednie",
+      "count": 1,
+      "children": [
+        {
+          "kind": "Paragraphs",
+          "text": "Ten akapit ma rozmiar i czcionkę nadane ręcznie, choć są tak…",
+          "count": 3,
+          "children": [],
+          "key": "body:Paragraph:1",
+          "styleName": "Normalny"
+        },
+        {
+          "kind": "Heading",
+          "text": "Akapity",
+          "count": 1,
+          "children": [
+            {
+              "kind": "Paragraphs",
+              "text": "Akapit wyśrodkowany, z odstępami i wcięciem ustawionymi ręcz…",
+              "count": 4,
+              "children": [],
+              "key": "body:Paragraph:5",
+              "styleName": "Normalny"
+            },
+            {
+              "kind": "Paragraphs",
+              "text": "Akapit we własnym stylu, którego nie ma w Galerii stylów.",
+              "count": 1,
+              "children": [],
+              "key": "body:Paragraph:9",
+              "styleName": "Mój styl"
+            }
+          ],
+          "key": "body:Paragraph:4",
+          "level": 2,
+          "styleName": "Nagłówek 2"
+        },
+        {
+          "kind": "Heading",
+          "text": "Style znakowe",
+          "count": 1,
+          "children": [
+            {
+              "kind": "Paragraphs",
+              "text": "Styl znakowy z ręcznym wyłączeniem pogrubienia: niepogrubion…",
+              "count": 1,
+              "children": [],
+              "key": "body:Paragraph:11",
+              "styleName": "Normalny"
+            },
+            {
+              "kind": "Paragraphs",
+              "text": "Akapit pogrubiony stylem, a to słowo odwrócone przez drugi s…",
+              "count": 1,
+              "children": [],
+              "key": "body:Paragraph:12",
+              "styleName": "Mocny"
+            }
+          ],
+          "key": "body:Paragraph:10",
+          "level": 2,
+          "styleName": "Nagłówek 2"
+        },
+        {
+          "kind": "Heading",
+          "text": "Lista i tabela",
+          "count": 1,
+          "children": [
+            {
+              "kind": "List",
+              "text": "Lista punktowana",
+              "count": 2,
+              "children": [
+                {
+                  "kind": "ListItem",
+                  "text": "pozycja listy 1 z ręcznym wcięciem,",
+                  "count": 1,
+                  "children": [],
+                  "key": "body:Paragraph:14",
+                  "level": 0,
+                  "label": "•",
+                  "styleName": "Normalny"
+                },
+                {
+                  "kind": "ListItem",
+                  "text": "pozycja listy 2 z ręcznym wcięciem,",
+                  "count": 1,
+                  "children": [],
+                  "key": "body:Paragraph:15",
+                  "level": 0,
+                  "label": "•",
+                  "styleName": "Normalny"
+                }
+              ],
+              "key": "body:Paragraph:14",
+              "styleName": "Normalny"
+            },
+            {
+              "kind": "Paragraphs",
+              "text": "Tabela 1. Formatowanie w komórkach.",
+              "count": 1,
+              "children": [],
+              "key": "body:Paragraph:16",
+              "styleName": "Normalny"
+            },
+            {
+              "kind": "Table",
+              "text": "Tabela 2 × 2",
+              "count": 2,
+              "children": [
+                {
+                  "kind": "Paragraphs",
+                  "text": "Element",
+                  "count": 4,
+                  "children": [],
+                  "key": "body:Paragraph:17",
+                  "styleName": "Normalny"
+                }
+              ],
+              "key": "body:Table:0",
+              "label": "2 × 2",
+              "styleName": "Tabela standardowa"
+            },
+            {
+              "kind": "Paragraphs",
+              "text": "Koniec dokumentu.",
+              "count": 1,
+              "children": [],
+              "key": "body:Paragraph:21",
+              "styleName": "Normalny1"
+            }
+          ],
+          "key": "body:Paragraph:13",
+          "level": 2,
+          "styleName": "Nagłówek 2"
+        }
+      ],
+      "key": "body:Paragraph:0",
+      "level": 1,
+      "styleName": "Nagłówek 1"
+    }
   ]
 }

@@ -19,6 +19,148 @@
     "images": 2
   },
   "outline": [],
+  "structure": [
+    {
+      "kind": "Paragraphs",
+      "text": "Jebać TEKOM",
+      "key": "body:Paragraph:0",
+      "count": 1,
+      "styleName": "Header1",
+      "children": []
+    },
+    {
+      "kind": "Paragraphs",
+      "text": "Lubię pierdolić głupoty",
+      "key": "body:Paragraph:1",
+      "count": 1,
+      "styleName": "Text",
+      "children": []
+    },
+    {
+      "kind": "Paragraphs",
+      "text": "Kutas boko też jest spoko",
+      "key": "body:Paragraph:2",
+      "count": 1,
+      "styleName": "Header1",
+      "children": []
+    },
+    {
+      "kind": "Paragraphs",
+      "text": "Jestem sobie dokumentem i mam wszystko w piździe.",
+      "key": "body:Paragraph:3",
+      "count": 2,
+      "styleName": "Text",
+      "children": []
+    },
+    {
+      "kind": "Paragraphs",
+      "text": "www.dupeczki.pl",
+      "key": "body:Paragraph:6",
+      "count": 1,
+      "styleName": "Normalny",
+      "children": []
+    },
+    {
+      "kind": "List",
+      "text": "Lista punktowana",
+      "key": "body:Paragraph:7",
+      "count": 7,
+      "styleName": "Akapit z listą",
+      "children": [
+        {
+          "kind": "ListItem",
+          "text": "Kobieta",
+          "key": "body:Paragraph:7",
+          "level": 0,
+          "count": 1,
+          "label": "•",
+          "styleName": "Akapit z listą",
+          "children": [
+            {
+              "kind": "ListItem",
+              "text": "Robi mi",
+              "key": "body:Paragraph:8",
+              "level": 1,
+              "count": 1,
+              "label": "o",
+              "styleName": "Akapit z listą",
+              "children": [
+                {
+                  "kind": "ListItem",
+                  "text": "Laskę",
+                  "key": "body:Paragraph:9",
+                  "level": 2,
+                  "count": 1,
+                  "label": "•",
+                  "styleName": "Akapit z listą",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "ListItem",
+          "text": "Śniadanie",
+          "key": "body:Paragraph:10",
+          "level": 0,
+          "count": 1,
+          "label": "•",
+          "styleName": "Akapit z listą",
+          "children": []
+        },
+        {
+          "kind": "ListItem",
+          "text": "Kawkę",
+          "key": "body:Paragraph:11",
+          "level": 0,
+          "count": 1,
+          "label": "•",
+          "styleName": "Akapit z listą",
+          "children": []
+        },
+        {
+          "kind": "ListItem",
+          "text": "Pierdoli",
+          "key": "body:Paragraph:12",
+          "level": 0,
+          "count": 1,
+          "label": "•",
+          "styleName": "Akapit z listą",
+          "children": []
+        },
+        {
+          "kind": "ListItem",
+          "text": "głupoty",
+          "key": "body:Paragraph:13",
+          "level": 0,
+          "count": 1,
+          "label": "•",
+          "styleName": "Akapit z listą",
+          "children": []
+        }
+      ]
+    },
+    {
+      "kind": "Heading",
+      "text": "",
+      "key": "body:Paragraph:14",
+      "level": 1,
+      "count": 1,
+      "styleName": "Nagłówek 1",
+      "children": [
+        {
+          "kind": "Table",
+          "text": "Tabela 2 × 2",
+          "key": "body:Table:0",
+          "count": 2,
+          "label": "2 × 2",
+          "styleName": "Tabela - Siatka",
+          "children": []
+        }
+      ]
+    }
+  ],
   "issues": [
     {
       "code": "STY-FAKE-HEADING",

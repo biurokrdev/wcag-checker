@@ -1,11 +1,13 @@
 using D2.Wcag.Rules;
+using D2.Wcag.Rules.Hierarchy;
 
 namespace D2.Wcag.Standards;
 
 /// <summary>
 /// Standard „Hierarchia treści”: nagłówki, listy i tabele tworzą poprawną strukturę dokumentu. Poza profilem
 /// domyślnym – wybierany jawnie kluczem <c>hierarchia/1.0</c>. Reguły (kody <c>HIER-…</c>) dokłada się przez
-/// <see cref="Rule"/> z deskryptorem; na razie zestaw reguł jest pusty.
+/// <see cref="Rule"/> z deskryptorem: przeskok poziomu nagłówka, treść albo nagłówek bez nagłówka nadrzędnego,
+/// pusty i fałszywy nagłówek (WYMAGANE) oraz skok poziomu listy i numer nagłówka niezgodny z poziomem (REKOMENDOWANE).
 /// </summary>
 public sealed class HierarchyStandard : DocumentStandard
 {
@@ -17,7 +19,7 @@ public sealed class HierarchyStandard : DocumentStandard
 
     public HierarchyStandard()
     {
-        Rules = [];
+        Rules = HierarchyRules.All;
     }
 
     public override string Id => StandardId;

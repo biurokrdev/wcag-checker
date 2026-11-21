@@ -9,11 +9,13 @@ namespace D2.Wcag.Fixtures;
 // przeskok H2 → H4, pusty nagłówek H3, „fałszywy nagłówek” (pogrubiony akapit), nagłówek zrobiony poziomem konspektu
 // na akapicie w stylu Normalny, nagłówek dłuższy niż 120 znaków, lista wielopoziomowa z przeskokiem poziomu 0 → 2,
 // lista numerowana ze stylu akapitu (numPr w stylu), lista zrobiona myślnikami, tabela z nagłówkiem w komórce,
-// późny H1 i drugi H1.
+// późny H1 i drugi H1, a na końcu nagłówki numerowane listą wielopoziomową: H1 z poziomu 1, H2 z poziomu 2 i H2
+// z poziomu 3 (numer niezgodny z poziomem nagłówka).
 public static class HierarchyBrokenFixture
 {
     public const int MultiLevelNumId = 3;
     public const int StyleListNumId = 4;
+    public const int HeadingNumId = 5;
 
     public static byte[] Build()
     {
@@ -35,7 +37,16 @@ public static class HierarchyBrokenFixture
             Level(0, NumberFormatValues.Decimal, "%1.", new NumberingSymbolRunProperties(new Bold(), new Color { Val = Black }), "Listanumerowana"))
         { AbstractNumberId = 3 });
         docx.ExtraNums.Add(new NumberingInstance(new AbstractNumId { Val = 2 }) { NumberID = MultiLevelNumId });
+        var headings = new AbstractNum(new MultiLevelType { Val = MultiLevelValues.Multilevel }) { AbstractNumberId = 4 };
+        string[] headingTexts = ["%1.", "%1.%2.", "%1.%2.%3."];
+        for (var level = 0; level < headingTexts.Length; level++)
+        {
+            headings.Append(Level(level, NumberFormatValues.Decimal, headingTexts[level], new NumberingSymbolRunProperties(new Bold(), new Color { Val = Black })));
+        }
+
+        docx.ExtraAbstractNums.Add(headings);
         docx.ExtraNums.Add(new NumberingInstance(new AbstractNumId { Val = 3 }) { NumberID = StyleListNumId });
+        docx.ExtraNums.Add(new NumberingInstance(new AbstractNumId { Val = 4 }) { NumberID = HeadingNumId });
         return docx.Build();
     }
 
@@ -90,5 +101,18 @@ public static class HierarchyBrokenFixture
         body.Append(Para("Treść podsumowania."));
         body.Append(Heading(1, "Załączniki"));
         body.Append(Para("Lista załączników jest pusta."));
+
+        body.Append(NumberedHeading(1, "Zasady numeracji", 0));
+        body.Append(Para("Nagłówki tej części numeruje lista wielopoziomowa."));
+        body.Append(NumberedHeading(2, "Numer zgodny z poziomem", 1));
+        body.Append(Para("Nagłówek poziomu 2 ma numer z drugiego poziomu listy."));
+        body.Append(NumberedHeading(2, "Numer z niewłaściwego poziomu", 2));
+        body.Append(Para("Ten nagłówek poziomu 2 dostał numer z trzeciego poziomu listy."));
     }
+
+    private static Paragraph NumberedHeading(int level, string text, int listLevel) => new(
+        new ParagraphProperties(
+            new ParagraphStyleId { Val = $"Nagwek{level}" },
+            new NumberingProperties(new NumberingLevelReference { Val = listLevel }, new NumberingId { Val = HeadingNumId })),
+        Text(text));
 }

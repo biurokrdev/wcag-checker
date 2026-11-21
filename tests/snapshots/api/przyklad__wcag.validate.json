@@ -1317,5 +1317,147 @@
       "occurrence": 1,
       "occurrenceCount": 1
     }
+  ],
+  "structure": [
+    {
+      "kind": "Paragraphs",
+      "text": "Jebać TEKOM",
+      "count": 1,
+      "children": [],
+      "key": "body:Paragraph:0",
+      "styleName": "Header1"
+    },
+    {
+      "kind": "Paragraphs",
+      "text": "Lubię pierdolić głupoty",
+      "count": 1,
+      "children": [],
+      "key": "body:Paragraph:1",
+      "styleName": "Text"
+    },
+    {
+      "kind": "Paragraphs",
+      "text": "Kutas boko też jest spoko",
+      "count": 1,
+      "children": [],
+      "key": "body:Paragraph:2",
+      "styleName": "Header1"
+    },
+    {
+      "kind": "Paragraphs",
+      "text": "Jestem sobie dokumentem i mam wszystko w piździe.",
+      "count": 2,
+      "children": [],
+      "key": "body:Paragraph:3",
+      "styleName": "Text"
+    },
+    {
+      "kind": "Paragraphs",
+      "text": "www.dupeczki.pl",
+      "count": 1,
+      "children": [],
+      "key": "body:Paragraph:6",
+      "styleName": "Normalny"
+    },
+    {
+      "kind": "List",
+      "text": "Lista punktowana",
+      "count": 7,
+      "children": [
+        {
+          "kind": "ListItem",
+          "text": "Kobieta",
+          "count": 1,
+          "children": [
+            {
+              "kind": "ListItem",
+              "text": "Robi mi",
+              "count": 1,
+              "children": [
+                {
+                  "kind": "ListItem",
+                  "text": "Laskę",
+                  "count": 1,
+                  "children": [],
+                  "key": "body:Paragraph:9",
+                  "level": 2,
+                  "label": "•",
+                  "styleName": "Akapit z listą"
+                }
+              ],
+              "key": "body:Paragraph:8",
+              "level": 1,
+              "label": "o",
+              "styleName": "Akapit z listą"
+            }
+          ],
+          "key": "body:Paragraph:7",
+          "level": 0,
+          "label": "•",
+          "styleName": "Akapit z listą"
+        },
+        {
+          "kind": "ListItem",
+          "text": "Śniadanie",
+          "count": 1,
+          "children": [],
+          "key": "body:Paragraph:10",
+          "level": 0,
+          "label": "•",
+          "styleName": "Akapit z listą"
+        },
+        {
+          "kind": "ListItem",
+          "text": "Kawkę",
+          "count": 1,
+          "children": [],
+          "key": "body:Paragraph:11",
+          "level": 0,
+          "label": "•",
+          "styleName": "Akapit z listą"
+        },
+        {
+          "kind": "ListItem",
+          "text": "Pierdoli",
+          "count": 1,
+          "children": [],
+          "key": "body:Paragraph:12",
+          "level": 0,
+          "label": "•",
+          "styleName": "Akapit z listą"
+        },
+        {
+          "kind": "ListItem",
+          "text": "głupoty",
+          "count": 1,
+          "children": [],
+          "key": "body:Paragraph:13",
+          "level": 0,
+          "label": "•",
+          "styleName": "Akapit z listą"
+        }
+      ],
+      "key": "body:Paragraph:7",
+      "styleName": "Akapit z listą"
+    },
+    {
+      "kind": "Heading",
+      "text": "",
+      "count": 1,
+      "children": [
+        {
+          "kind": "Table",
+          "text": "Tabela 2 × 2",
+          "count": 2,
+          "children": [],
+          "key": "body:Table:0",
+          "label": "2 × 2",
+          "styleName": "Tabela - Siatka"
+        }
+      ],
+      "key": "body:Paragraph:14",
+      "level": 1,
+      "styleName": "Nagłówek 1"
+    }
   ]
 }

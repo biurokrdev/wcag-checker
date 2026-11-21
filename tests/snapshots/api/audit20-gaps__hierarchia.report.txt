@@ -4,13 +4,18 @@ Język: pl-PL
 Obrazy: 0
 
 Raport walidacji dokumentu „audit20-gaps.docx”
-Wynik: poprawny. Dokument spełnia wszystkie automatycznie sprawdzane wymagania.
+Wynik: niepoprawny. 1 błąd.
 Data sprawdzenia: <data>. Standardy: Hierarchia treści.
 Dokument: tytuł „brak”, autor „brak”, język pl-PL, 54 akapitów, 7 nagłówków, 3 tabel, 0 obrazów.
 Podsumowanie kontroli
+Hierarchia treści
+Sekcja „Hierarchia treści”
+| Status | Kontrola | Szczegóły |
+| Błąd | Przeskok poziomu nagłówka | Przeskok poziomu nagłówka: Nagłówek „Listy z nadpisaniami” ma poziom 3 zaraz po nagłówku poziomu 1; pominięto poziom 2. |
 Wyniki walidacji
-0 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
+1 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
 Tabela wystąpień
 | Nr | Waga | Zgłoszenie | Standard | Miejsce | Komunikat | Zweryfikowano |
+| 1 | błąd | Przeskok poziomu nagłówka | Hierarchia treści | akapit: „Listy z nadpisaniami” | Nagłówek „Listy z nadpisaniami” ma poziom 3 zaraz po nagłówku poziomu 1; pominięto poziom 2. | nie |
 
 PDF: %PDF-, strony: 1

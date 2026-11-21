@@ -1,6 +1,6 @@
 {
-  "status": "Valid",
-  "summary": "Dokument spełnia wszystkie automatycznie sprawdzane wymagania.",
+  "status": "Invalid",
+  "summary": "5 błędów, 2 ostrzeżenia.",
   "standards": [
     {
       "key": "hierarchia/1.0",
@@ -16,17 +16,95 @@
     "title": "Hierarchia treści. Example Company S. A.",
     "author": "Example Company S. A.",
     "language": "pl-PL",
-    "paragraphs": 38,
-    "headings": 8,
+    "paragraphs": 44,
+    "headings": 11,
     "tables": 1,
     "images": 0
   },
   "counts": {
-    "errors": 0,
-    "warnings": 0,
+    "errors": 5,
+    "warnings": 2,
     "infos": 0
   },
-  "issues": [],
+  "issues": [
+    {
+      "code": "HIER-EMPTY",
+      "label": "Pusty nagłówek",
+      "severity": "Error",
+      "category": "Headings",
+      "message": "Nagłówek poziomu 3 w akapicie 7 jest pusty (styl „Nagłówek 3”).",
+      "standard": "hierarchia/1.0",
+      "fixable": false,
+      "status": "Required",
+      "fix": "W Wordzie wpisz w tym akapicie tytuł sekcji albo usuń pusty akapit. Jeśli ma zostać jako odstęp, zmień jego styl na „Normalny” (Narzędzia główne → Style), a odstęp ustaw w stylu sąsiedniego akapitu (Akapit → Odstępy)."
+    },
+    {
+      "code": "HIER-FAKE",
+      "label": "Fałszywy nagłówek",
+      "severity": "Error",
+      "category": "Headings",
+      "message": "Akapit „Postanowienia ogólne” wygląda jak nagłówek (krótki, pogrubiony albo dużą czcionką), ale ma styl „Normalny”, więc nie należy do struktury dokumentu.",
+      "standard": "hierarchia/1.0",
+      "fixable": false,
+      "status": "Required",
+      "fix": "W Wordzie zaznacz ten akapit i nadaj mu styl nagłówka właściwego poziomu (Narzędzia główne → Style → „Nagłówek 2”, „Nagłówek 3”…), a ręczne pogrubienie i powiększenie czcionki usuń (Ctrl+Spacja). Strukturę sprawdzisz w okienku nawigacji (Widok → Okienko nawigacji → Nagłówki)."
+    },
+    {
+      "code": "HIER-NO-PARENT",
+      "label": "Treść albo nagłówek bez nagłówka nadrzędnego",
+      "severity": "Error",
+      "category": "Headings",
+      "message": "Treść zaczyna się przed pierwszym nagłówkiem: „Ten akapit stoi przed pierwszym nagłówkiem dokumentu.”.",
+      "standard": "hierarchia/1.0",
+      "fixable": false,
+      "status": "Required",
+      "fix": "W Wordzie dodaj przed tym miejscem nagłówek nadrzędny: wpisz tytuł sekcji i nadaj mu styl „Nagłówek 1” (Narzędzia główne → Style) albo zmień styl tego akapitu na nagłówek właściwego poziomu. Dokument powinien zaczynać się od nagłówka poziomu 1. Strukturę sprawdzisz w okienku nawigacji (Widok → Okienko nawigacji → Nagłówki)."
+    },
+    {
+      "code": "HIER-NO-PARENT",
+      "label": "Treść albo nagłówek bez nagłówka nadrzędnego",
+      "severity": "Error",
+      "category": "Headings",
+      "message": "Nagłówek „Zakres dokumentu” ma poziom 2, ale nie ma nad nim nagłówka wyższego rzędu; struktura powinna zaczynać się od nagłówka poziomu 1.",
+      "standard": "hierarchia/1.0",
+      "fixable": false,
+      "status": "Required",
+      "fix": "W Wordzie dodaj przed tym miejscem nagłówek nadrzędny: wpisz tytuł sekcji i nadaj mu styl „Nagłówek 1” (Narzędzia główne → Style) albo zmień styl tego akapitu na nagłówek właściwego poziomu. Dokument powinien zaczynać się od nagłówka poziomu 1. Strukturę sprawdzisz w okienku nawigacji (Widok → Okienko nawigacji → Nagłówki)."
+    },
+    {
+      "code": "HIER-SKIP",
+      "label": "Przeskok poziomu nagłówka",
+      "severity": "Error",
+      "category": "Headings",
+      "message": "Nagłówek „Szczegóły zakresu” ma poziom 4 zaraz po nagłówku poziomu 2; pominięto poziom 3.",
+      "standard": "hierarchia/1.0",
+      "fixable": false,
+      "status": "Required",
+      "fix": "W Wordzie ustaw kursor w tym nagłówku i na karcie Narzędzia główne w galerii Style wybierz „Nagłówek 3” albo dodaj przed nim brakujący nagłówek poziomu 3. Strukturę sprawdzisz w okienku nawigacji (Widok → Okienko nawigacji → Nagłówki)."
+    },
+    {
+      "code": "HIER-NUM-MISMATCH",
+      "label": "Numer nagłówka niezgodny z poziomem",
+      "severity": "Warning",
+      "category": "Headings",
+      "message": "Nagłówek „Numer z niewłaściwego poziomu” ma poziom 2, ale jego numer pochodzi z poziomu 3 listy wielopoziomowej; pozostałe nagłówki poziomu 2 numeruje poziom 2.",
+      "standard": "hierarchia/1.0",
+      "fixable": false,
+      "status": "Recommended",
+      "fix": "W Wordzie ustaw kursor w tym nagłówku i wybierz Narzędzia główne → Lista wielopoziomowa → Zmień poziom listy → poziom 2. Najtrwalej jest połączyć poziomy listy ze stylami nagłówków: Lista wielopoziomowa → Zdefiniuj nową listę wielopoziomową → Więcej → „Połącz poziom ze stylem”."
+    },
+    {
+      "code": "HIER-LIST-SKIP",
+      "label": "Skok poziomu listy",
+      "severity": "Warning",
+      "category": "Lists",
+      "message": "Pozycja listy „pozycja od razu na poziomie trzecim.” jest na poziomie 3 zaraz po pozycji poziomu 1; pominięto poziom 2.",
+      "standard": "hierarchia/1.0",
+      "fixable": false,
+      "status": "Recommended",
+      "fix": "W Wordzie ustaw kursor w tej pozycji i zmień poziom listy na 2: Shift+Tab albo Narzędzia główne → Punktory / Numerowanie → Zmień poziom listy. Pozycja może być najwyżej o jeden poziom głębiej niż poprzednia."
+    }
+  ],
   "outline": [
     {
       "level": 2,
@@ -59,10 +137,661 @@
     {
       "level": 1,
       "text": "Załączniki"
+    },
+    {
+      "level": 1,
+      "text": "Zasady numeracji"
+    },
+    {
+      "level": 2,
+      "text": "Numer zgodny z poziomem"
+    },
+    {
+      "level": 2,
+      "text": "Numer z niewłaściwego poziomu"
     }
   ],
   "wcag": null,
   "reportId": "<id>",
-  "summaryTable": [],
-  "findings": []
+  "summaryTable": [
+    {
+      "standard": "hierarchia/1.0",
+      "standardName": "Hierarchia treści",
+      "section": "Hierarchia treści",
+      "rows": [
+        {
+          "id": "HIER-EMPTY",
+          "name": "Pusty nagłówek",
+          "status": "Error",
+          "details": [
+            {
+              "code": "HIER-EMPTY",
+              "label": "Pusty nagłówek",
+              "message": "Nagłówek poziomu 3 w akapicie 7 jest pusty (styl „Nagłówek 3”).",
+              "occurrences": 1,
+              "severity": "Error"
+            }
+          ],
+          "note": null
+        },
+        {
+          "id": "HIER-FAKE",
+          "name": "Fałszywy nagłówek",
+          "status": "Error",
+          "details": [
+            {
+              "code": "HIER-FAKE",
+              "label": "Fałszywy nagłówek",
+              "message": "Akapit „Postanowienia ogólne” wygląda jak nagłówek (krótki, pogrubiony albo dużą czcionką), ale ma styl „Normalny”, więc nie należy do struktury dokumentu.",
+              "occurrences": 1,
+              "severity": "Error"
+            }
+          ],
+          "note": null
+        },
+        {
+          "id": "HIER-NO-PARENT",
+          "name": "Treść albo nagłówek bez nagłówka nadrzędnego",
+          "status": "Error",
+          "details": [
+            {
+              "code": "HIER-NO-PARENT",
+              "label": "Treść albo nagłówek bez nagłówka nadrzędnego",
+              "message": "Treść zaczyna się przed pierwszym nagłówkiem: „Ten akapit stoi przed pierwszym nagłówkiem dokumentu.”.",
+              "occurrences": 1,
+              "severity": "Error"
+            },
+            {
+              "code": "HIER-NO-PARENT",
+              "label": "Treść albo nagłówek bez nagłówka nadrzędnego",
+              "message": "Nagłówek „Zakres dokumentu” ma poziom 2, ale nie ma nad nim nagłówka wyższego rzędu; struktura powinna zaczynać się od nagłówka poziomu 1.",
+              "occurrences": 1,
+              "severity": "Error"
+            }
+          ],
+          "note": null
+        },
+        {
+          "id": "HIER-SKIP",
+          "name": "Przeskok poziomu nagłówka",
+          "status": "Error",
+          "details": [
+            {
+              "code": "HIER-SKIP",
+              "label": "Przeskok poziomu nagłówka",
+              "message": "Nagłówek „Szczegóły zakresu” ma poziom 4 zaraz po nagłówku poziomu 2; pominięto poziom 3.",
+              "occurrences": 1,
+              "severity": "Error"
+            }
+          ],
+          "note": null
+        },
+        {
+          "id": "HIER-NUM-MISMATCH",
+          "name": "Numer nagłówka niezgodny z poziomem",
+          "status": "Warning",
+          "details": [
+            {
+              "code": "HIER-NUM-MISMATCH",
+              "label": "Numer nagłówka niezgodny z poziomem",
+              "message": "Nagłówek „Numer z niewłaściwego poziomu” ma poziom 2, ale jego numer pochodzi z poziomu 3 listy wielopoziomowej; pozostałe nagłówki poziomu 2 numeruje poziom 2.",
+              "occurrences": 1,
+              "severity": "Warning"
+            }
+          ],
+          "note": null
+        },
+        {
+          "id": "HIER-LIST-SKIP",
+          "name": "Skok poziomu listy",
+          "status": "Warning",
+          "details": [
+            {
+              "code": "HIER-LIST-SKIP",
+              "label": "Skok poziomu listy",
+              "message": "Pozycja listy „pozycja od razu na poziomie trzecim.” jest na poziomie 3 zaraz po pozycji poziomu 1; pominięto poziom 2.",
+              "occurrences": 1,
+              "severity": "Warning"
+            }
+          ],
+          "note": null
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "index": 0,
+      "code": "HIER-EMPTY",
+      "label": "Pusty nagłówek",
+      "severity": "Error",
+      "category": "Headings",
+      "standard": "hierarchia/1.0",
+      "standardName": "Hierarchia treści",
+      "message": "Nagłówek poziomu 3 w akapicie 7 jest pusty (styl „Nagłówek 3”).",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:6",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 6,
+        "subIndex": null,
+        "snippet": ""
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "W Wordzie wpisz w tym akapicie tytuł sekcji albo usuń pusty akapit. Jeśli ma zostać jako odstęp, zmień jego styl na „Normalny” (Narzędzia główne → Style), a odstęp ustaw w stylu sąsiedniego akapitu (Akapit → Odstępy).",
+      "scope": "Paragraph"
+    },
+    {
+      "index": 1,
+      "code": "HIER-FAKE",
+      "label": "Fałszywy nagłówek",
+      "severity": "Error",
+      "category": "Headings",
+      "standard": "hierarchia/1.0",
+      "standardName": "Hierarchia treści",
+      "message": "Akapit „Postanowienia ogólne” wygląda jak nagłówek (krótki, pogrubiony albo dużą czcionką), ale ma styl „Normalny”, więc nie należy do struktury dokumentu.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:8",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 8,
+        "subIndex": null,
+        "snippet": "Postanowienia ogólne"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "W Wordzie zaznacz ten akapit i nadaj mu styl nagłówka właściwego poziomu (Narzędzia główne → Style → „Nagłówek 2”, „Nagłówek 3”…), a ręczne pogrubienie i powiększenie czcionki usuń (Ctrl+Spacja). Strukturę sprawdzisz w okienku nawigacji (Widok → Okienko nawigacji → Nagłówki).",
+      "scope": "Paragraph"
+    },
+    {
+      "index": 2,
+      "code": "HIER-NO-PARENT",
+      "label": "Treść albo nagłówek bez nagłówka nadrzędnego",
+      "severity": "Error",
+      "category": "Headings",
+      "standard": "hierarchia/1.0",
+      "standardName": "Hierarchia treści",
+      "message": "Treść zaczyna się przed pierwszym nagłówkiem: „Ten akapit stoi przed pierwszym nagłówkiem dokumentu.”.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:1",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 1,
+        "subIndex": null,
+        "snippet": "Ten akapit stoi przed pierwszym nagłówki…"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "W Wordzie dodaj przed tym miejscem nagłówek nadrzędny: wpisz tytuł sekcji i nadaj mu styl „Nagłówek 1” (Narzędzia główne → Style) albo zmień styl tego akapitu na nagłówek właściwego poziomu. Dokument powinien zaczynać się od nagłówka poziomu 1. Strukturę sprawdzisz w okienku nawigacji (Widok → Okienko nawigacji → Nagłówki).",
+      "scope": "Paragraph"
+    },
+    {
+      "index": 3,
+      "code": "HIER-NO-PARENT",
+      "label": "Treść albo nagłówek bez nagłówka nadrzędnego",
+      "severity": "Error",
+      "category": "Headings",
+      "standard": "hierarchia/1.0",
+      "standardName": "Hierarchia treści",
+      "message": "Nagłówek „Zakres dokumentu” ma poziom 2, ale nie ma nad nim nagłówka wyższego rzędu; struktura powinna zaczynać się od nagłówka poziomu 1.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:2",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 2,
+        "subIndex": null,
+        "snippet": "Zakres dokumentu"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "W Wordzie dodaj przed tym miejscem nagłówek nadrzędny: wpisz tytuł sekcji i nadaj mu styl „Nagłówek 1” (Narzędzia główne → Style) albo zmień styl tego akapitu na nagłówek właściwego poziomu. Dokument powinien zaczynać się od nagłówka poziomu 1. Strukturę sprawdzisz w okienku nawigacji (Widok → Okienko nawigacji → Nagłówki).",
+      "scope": "Paragraph"
+    },
+    {
+      "index": 4,
+      "code": "HIER-SKIP",
+      "label": "Przeskok poziomu nagłówka",
+      "severity": "Error",
+      "category": "Headings",
+      "standard": "hierarchia/1.0",
+      "standardName": "Hierarchia treści",
+      "message": "Nagłówek „Szczegóły zakresu” ma poziom 4 zaraz po nagłówku poziomu 2; pominięto poziom 3.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:4",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 4,
+        "subIndex": null,
+        "snippet": "Szczegóły zakresu"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "W Wordzie ustaw kursor w tym nagłówku i na karcie Narzędzia główne w galerii Style wybierz „Nagłówek 3” albo dodaj przed nim brakujący nagłówek poziomu 3. Strukturę sprawdzisz w okienku nawigacji (Widok → Okienko nawigacji → Nagłówki).",
+      "scope": "Paragraph"
+    },
+    {
+      "index": 5,
+      "code": "HIER-NUM-MISMATCH",
+      "label": "Numer nagłówka niezgodny z poziomem",
+      "severity": "Warning",
+      "category": "Headings",
+      "standard": "hierarchia/1.0",
+      "standardName": "Hierarchia treści",
+      "message": "Nagłówek „Numer z niewłaściwego poziomu” ma poziom 2, ale jego numer pochodzi z poziomu 3 listy wielopoziomowej; pozostałe nagłówki poziomu 2 numeruje poziom 2.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:43",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 43,
+        "subIndex": null,
+        "snippet": "Numer z niewłaściwego poziomu"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Recommended",
+      "statusLabel": "REKOMENDOWANE",
+      "fix": "W Wordzie ustaw kursor w tym nagłówku i wybierz Narzędzia główne → Lista wielopoziomowa → Zmień poziom listy → poziom 2. Najtrwalej jest połączyć poziomy listy ze stylami nagłówków: Lista wielopoziomowa → Zdefiniuj nową listę wielopoziomową → Więcej → „Połącz poziom ze stylem”.",
+      "scope": "Paragraph"
+    },
+    {
+      "index": 6,
+      "code": "HIER-LIST-SKIP",
+      "label": "Skok poziomu listy",
+      "severity": "Warning",
+      "category": "Lists",
+      "standard": "hierarchia/1.0",
+      "standardName": "Hierarchia treści",
+      "message": "Pozycja listy „pozycja od razu na poziomie trzecim.” jest na poziomie 3 zaraz po pozycji poziomu 1; pominięto poziom 2.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:17",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 17,
+        "subIndex": null,
+        "snippet": "pozycja od razu na poziomie trzecim."
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Recommended",
+      "statusLabel": "REKOMENDOWANE",
+      "fix": "W Wordzie ustaw kursor w tej pozycji i zmień poziom listy na 2: Shift+Tab albo Narzędzia główne → Punktory / Numerowanie → Zmień poziom listy. Pozycja może być najwyżej o jeden poziom głębiej niż poprzednia.",
+      "scope": "Paragraph"
+    }
+  ],
+  "structure": [
+    {
+      "kind": "Paragraphs",
+      "text": "Hierarchia treści",
+      "count": 1,
+      "children": [],
+      "key": "body:Paragraph:0",
+      "styleName": "Tytuł"
+    },
+    {
+      "kind": "Paragraphs",
+      "text": "Ten akapit stoi przed pierwszym nagłówkiem dokumentu.",
+      "count": 1,
+      "children": [],
+      "key": "body:Paragraph:1",
+      "styleName": "Normalny"
+    },
+    {
+      "kind": "Heading",
+      "text": "Zakres dokumentu",
+      "count": 1,
+      "children": [
+        {
+          "kind": "Paragraphs",
+          "text": "Dokument zaczyna się od nagłówka poziomu 2, bo nagłówka pozi…",
+          "count": 1,
+          "children": [],
+          "key": "body:Paragraph:3",
+          "styleName": "Normalny"
+        },
+        {
+          "kind": "Heading",
+          "text": "Szczegóły zakresu",
+          "count": 1,
+          "children": [
+            {
+              "kind": "Paragraphs",
+              "text": "Ten nagłówek przeskakuje z poziomu 2 od razu na poziom 4.",
+              "count": 1,
+              "children": [],
+              "key": "body:Paragraph:5",
+              "styleName": "Normalny"
+            }
+          ],
+          "key": "body:Paragraph:4",
+          "level": 4,
+          "styleName": "Nagłówek 4"
+        },
+        {
+          "kind": "Heading",
+          "text": "",
+          "count": 1,
+          "children": [
+            {
+              "kind": "Paragraphs",
+              "text": "Powyżej jest pusty nagłówek poziomu 3.",
+              "count": 3,
+              "children": [],
+              "key": "body:Paragraph:7",
+              "styleName": "Normalny"
+            }
+          ],
+          "key": "body:Paragraph:6",
+          "level": 3,
+          "styleName": "Nagłówek 3"
+        },
+        {
+          "kind": "Heading",
+          "text": "Nagłówek z poziomu konspektu",
+          "count": 1,
+          "children": [
+            {
+              "kind": "Paragraphs",
+              "text": "Akapit powyżej jest nagłówkiem tylko przez poziom konspektu…",
+              "count": 1,
+              "children": [],
+              "key": "body:Paragraph:11",
+              "styleName": "Normalny"
+            }
+          ],
+          "key": "body:Paragraph:10",
+          "level": 3,
+          "styleName": "Normalny"
+        },
+        {
+          "kind": "Heading",
+          "text": "Ten nagłówek jest zdecydowanie za długi, ponieważ zawiera ca…",
+          "count": 1,
+          "children": [
+            {
+              "kind": "Paragraphs",
+              "text": "Lista wielopoziomowa z przeskokiem poziomu:",
+              "count": 1,
+              "children": [],
+              "key": "body:Paragraph:13",
+              "styleName": "Normalny"
+            },
+            {
+              "kind": "List",
+              "text": "Lista punktowana",
+              "count": 4,
+              "children": [
+                {
+                  "kind": "ListItem",
+                  "text": "pozycja poziomu pierwszego,",
+                  "count": 1,
+                  "children": [
+                    {
+                      "kind": "ListItem",
+                      "text": "pozycja poziomu drugiego,",
+                      "count": 1,
+                      "children": [],
+                      "key": "body:Paragraph:15",
+                      "level": 1,
+                      "label": "–",
+                      "styleName": "Akapit z listą"
+                    }
+                  ],
+                  "key": "body:Paragraph:14",
+                  "level": 0,
+                  "label": "•",
+                  "styleName": "Akapit z listą"
+                },
+                {
+                  "kind": "ListItem",
+                  "text": "druga pozycja poziomu pierwszego,",
+                  "count": 1,
+                  "children": [
+                    {
+                      "kind": "ListItem",
+                      "text": "pozycja od razu na poziomie trzecim.",
+                      "count": 1,
+                      "children": [],
+                      "key": "body:Paragraph:17",
+                      "level": 2,
+                      "label": "–",
+                      "styleName": "Akapit z listą"
+                    }
+                  ],
+                  "key": "body:Paragraph:16",
+                  "level": 0,
+                  "label": "•",
+                  "styleName": "Akapit z listą"
+                }
+              ],
+              "key": "body:Paragraph:14",
+              "styleName": "Akapit z listą"
+            },
+            {
+              "kind": "Paragraphs",
+              "text": "Lista numerowana ze stylu akapitu:",
+              "count": 1,
+              "children": [],
+              "key": "body:Paragraph:18",
+              "styleName": "Normalny"
+            },
+            {
+              "kind": "List",
+              "text": "Lista numerowana",
+              "count": 2,
+              "children": [
+                {
+                  "kind": "ListItem",
+                  "text": "Pierwszy krok.",
+                  "count": 1,
+                  "children": [],
+                  "key": "body:Paragraph:19",
+                  "level": 0,
+                  "label": "1.",
+                  "styleName": "Lista numerowana"
+                },
+                {
+                  "kind": "ListItem",
+                  "text": "Drugi krok.",
+                  "count": 1,
+                  "children": [],
+                  "key": "body:Paragraph:20",
+                  "level": 0,
+                  "label": "2.",
+                  "styleName": "Lista numerowana"
+                }
+              ],
+              "key": "body:Paragraph:19",
+              "styleName": "Lista numerowana"
+            },
+            {
+              "kind": "Paragraphs",
+              "text": "Lista zrobiona ręcznie:",
+              "count": 5,
+              "children": [],
+              "key": "body:Paragraph:21",
+              "styleName": "Normalny"
+            },
+            {
+              "kind": "Table",
+              "text": "Tabela 3 × 2",
+              "count": 3,
+              "children": [
+                {
+                  "kind": "Paragraphs",
+                  "text": "Pozycja",
+                  "count": 5,
+                  "children": [],
+                  "key": "body:Paragraph:26",
+                  "styleName": "Normalny"
+                },
+                {
+                  "kind": "Heading",
+                  "text": "Nagłówek w komórce",
+                  "count": 1,
+                  "children": [
+                    {
+                      "kind": "Paragraphs",
+                      "text": "Opis drugiej pozycji",
+                      "count": 1,
+                      "children": [],
+                      "key": "body:Paragraph:32",
+                      "styleName": "Normalny"
+                    }
+                  ],
+                  "key": "body:Paragraph:31",
+                  "level": 3,
+                  "styleName": "Nagłówek 3"
+                }
+              ],
+              "key": "body:Table:0",
+              "label": "3 × 2",
+              "styleName": "Tabela standardowa"
+            }
+          ],
+          "key": "body:Paragraph:12",
+          "level": 3,
+          "styleName": "Nagłówek 3"
+        }
+      ],
+      "key": "body:Paragraph:2",
+      "level": 2,
+      "styleName": "Nagłówek 2"
+    },
+    {
+      "kind": "Heading",
+      "text": "Część główna",
+      "count": 1,
+      "children": [
+        {
+          "kind": "Paragraphs",
+          "text": "Nagłówek poziomu 1 pojawia się dopiero tutaj.",
+          "count": 1,
+          "children": [],
+          "key": "body:Paragraph:34",
+          "styleName": "Normalny"
+        },
+        {
+          "kind": "Heading",
+          "text": "Podsumowanie",
+          "count": 1,
+          "children": [
+            {
+              "kind": "Paragraphs",
+              "text": "Treść podsumowania.",
+              "count": 1,
+              "children": [],
+              "key": "body:Paragraph:36",
+              "styleName": "Normalny"
+            }
+          ],
+          "key": "body:Paragraph:35",
+          "level": 2,
+          "styleName": "Nagłówek 2"
+        }
+      ],
+      "key": "body:Paragraph:33",
+      "level": 1,
+      "styleName": "Nagłówek 1"
+    },
+    {
+      "kind": "Heading",
+      "text": "Załączniki",
+      "count": 1,
+      "children": [
+        {
+          "kind": "Paragraphs",
+          "text": "Lista załączników jest pusta.",
+          "count": 1,
+          "children": [],
+          "key": "body:Paragraph:38",
+          "styleName": "Normalny"
+        }
+      ],
+      "key": "body:Paragraph:37",
+      "level": 1,
+      "styleName": "Nagłówek 1"
+    },
+    {
+      "kind": "Heading",
+      "text": "Zasady numeracji",
+      "count": 1,
+      "children": [
+        {
+          "kind": "Paragraphs",
+          "text": "Nagłówki tej części numeruje lista wielopoziomowa.",
+          "count": 1,
+          "children": [],
+          "key": "body:Paragraph:40",
+          "styleName": "Normalny"
+        },
+        {
+          "kind": "Heading",
+          "text": "Numer zgodny z poziomem",
+          "count": 1,
+          "children": [
+            {
+              "kind": "Paragraphs",
+              "text": "Nagłówek poziomu 2 ma numer z drugiego poziomu listy.",
+              "count": 1,
+              "children": [],
+              "key": "body:Paragraph:42",
+              "styleName": "Normalny"
+            }
+          ],
+          "key": "body:Paragraph:41",
+          "level": 2,
+          "label": "1.1.",
+          "styleName": "Nagłówek 2"
+        },
+        {
+          "kind": "Heading",
+          "text": "Numer z niewłaściwego poziomu",
+          "count": 1,
+          "children": [
+            {
+              "kind": "Paragraphs",
+              "text": "Ten nagłówek poziomu 2 dostał numer z trzeciego poziomu list…",
+              "count": 1,
+              "children": [],
+              "key": "body:Paragraph:44",
+              "styleName": "Normalny"
+            }
+          ],
+          "key": "body:Paragraph:43",
+          "level": 2,
+          "label": "1.1.1.",
+          "styleName": "Nagłówek 2"
+        }
+      ],
+      "key": "body:Paragraph:39",
+      "level": 1,
+      "label": "1.",
+      "styleName": "Nagłówek 1"
+    }
+  ]
 }

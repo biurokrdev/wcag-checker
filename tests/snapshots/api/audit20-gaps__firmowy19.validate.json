@@ -237,5 +237,329 @@
       "occurrence": 1,
       "occurrenceCount": 1
     }
+  ],
+  "structure": [
+    {
+      "kind": "Heading",
+      "text": "Luki audytu 2.0",
+      "count": 1,
+      "children": [
+        {
+          "kind": "Paragraphs",
+          "text": "Dokument zbiera przypadki, których standard pism firmowych 2…",
+          "count": 6,
+          "children": [],
+          "key": "body:Paragraph:1",
+          "styleName": "Normalny"
+        },
+        {
+          "kind": "Heading",
+          "text": "Listy z nadpisaniami",
+          "count": 1,
+          "children": [
+            {
+              "kind": "Paragraphs",
+              "text": "Numeracja z nadpisanym poziomem:",
+              "count": 1,
+              "children": [],
+              "key": "body:Paragraph:8",
+              "styleName": "Normalny"
+            },
+            {
+              "kind": "List",
+              "text": "Lista numerowana",
+              "count": 2,
+              "children": [
+                {
+                  "kind": "ListItem",
+                  "text": "Pierwszy krok z numerem bez pogrubienia.",
+                  "count": 1,
+                  "children": [],
+                  "key": "body:Paragraph:9",
+                  "level": 0,
+                  "label": "1)",
+                  "styleName": "Akapit z listą"
+                },
+                {
+                  "kind": "ListItem",
+                  "text": "Drugi krok z numerem bez pogrubienia.",
+                  "count": 1,
+                  "children": [],
+                  "key": "body:Paragraph:10",
+                  "level": 0,
+                  "label": "2)",
+                  "styleName": "Akapit z listą"
+                }
+              ],
+              "key": "body:Paragraph:9",
+              "styleName": "Akapit z listą"
+            },
+            {
+              "kind": "Paragraphs",
+              "text": "Lista, której numeracja pochodzi ze stylu akapitu:",
+              "count": 1,
+              "children": [],
+              "key": "body:Paragraph:11",
+              "styleName": "Normalny"
+            },
+            {
+              "kind": "List",
+              "text": "Lista punktowana",
+              "count": 2,
+              "children": [
+                {
+                  "kind": "ListItem",
+                  "text": "pozycja z zielonym punktorem,",
+                  "count": 1,
+                  "children": [],
+                  "key": "body:Paragraph:12",
+                  "level": 0,
+                  "label": "•",
+                  "styleName": "Lista punktowana"
+                },
+                {
+                  "kind": "ListItem",
+                  "text": "druga pozycja z zielonym punktorem.",
+                  "count": 1,
+                  "children": [],
+                  "key": "body:Paragraph:13",
+                  "level": 0,
+                  "label": "•",
+                  "styleName": "Lista punktowana"
+                }
+              ],
+              "key": "body:Paragraph:12",
+              "styleName": "Lista punktowana"
+            },
+            {
+              "kind": "Paragraphs",
+              "text": "Numeracja z nadpisaniem, które zachowuje pogrubienie numeru:",
+              "count": 1,
+              "children": [],
+              "key": "body:Paragraph:14",
+              "styleName": "Normalny"
+            },
+            {
+              "kind": "List",
+              "text": "Lista numerowana",
+              "count": 2,
+              "children": [
+                {
+                  "kind": "ListItem",
+                  "text": "Pierwszy krok z pogrubionym numerem.",
+                  "count": 1,
+                  "children": [],
+                  "key": "body:Paragraph:15",
+                  "level": 0,
+                  "label": "1.",
+                  "styleName": "Akapit z listą"
+                },
+                {
+                  "kind": "ListItem",
+                  "text": "Drugi krok z pogrubionym numerem.",
+                  "count": 1,
+                  "children": [],
+                  "key": "body:Paragraph:16",
+                  "level": 0,
+                  "label": "2.",
+                  "styleName": "Akapit z listą"
+                }
+              ],
+              "key": "body:Paragraph:15",
+              "styleName": "Akapit z listą"
+            }
+          ],
+          "key": "body:Paragraph:7",
+          "level": 3,
+          "styleName": "Nagłówek 3"
+        },
+        {
+          "kind": "Heading",
+          "text": "Tabela z nadpisaniami",
+          "count": 1,
+          "children": [
+            {
+              "kind": "Paragraphs",
+              "text": "Tabela 1. Opłaty.",
+              "count": 1,
+              "children": [],
+              "key": "body:Paragraph:18",
+              "styleName": "Normalny"
+            },
+            {
+              "kind": "Table",
+              "text": "Tabela 3 × 2",
+              "count": 3,
+              "children": [
+                {
+                  "kind": "Paragraphs",
+                  "text": "Rodzaj opłaty",
+                  "count": 5,
+                  "children": [],
+                  "key": "body:Paragraph:19",
+                  "styleName": "Normalny"
+                }
+              ],
+              "key": "body:Table:0",
+              "label": "3 × 2",
+              "styleName": "Tabela z nagłówkiem"
+            },
+            {
+              "kind": "Paragraphs",
+              "text": "Tabela 2. Prowizje – nadpisania w komórkach.",
+              "count": 1,
+              "children": [],
+              "key": "body:Paragraph:25",
+              "styleName": "Normalny"
+            },
+            {
+              "kind": "Table",
+              "text": "Tabela 3 × 2",
+              "count": 3,
+              "children": [
+                {
+                  "kind": "Paragraphs",
+                  "text": "Rodzaj prowizji",
+                  "count": 6,
+                  "children": [],
+                  "key": "body:Paragraph:26",
+                  "styleName": "Normalny"
+                }
+              ],
+              "key": "body:Table:1",
+              "label": "3 × 2",
+              "styleName": "Tabela niepodzielna"
+            },
+            {
+              "kind": "Paragraphs",
+              "text": "Tabela 3. Limity – krawędzie nadane w komórkach.",
+              "count": 1,
+              "children": [],
+              "key": "body:Paragraph:32",
+              "styleName": "Normalny"
+            },
+            {
+              "kind": "Table",
+              "text": "Tabela 3 × 2",
+              "count": 3,
+              "children": [
+                {
+                  "kind": "Paragraphs",
+                  "text": "Rodzaj limitu",
+                  "count": 6,
+                  "children": [],
+                  "key": "body:Paragraph:33",
+                  "styleName": "Normalny"
+                }
+              ],
+              "key": "body:Table:2",
+              "label": "3 × 2"
+            },
+            {
+              "kind": "Paragraphs",
+              "text": "Koniec pierwszej sekcji, która nie ma stopki.",
+              "count": 1,
+              "children": [],
+              "key": "body:Paragraph:39",
+              "styleName": "Normalny"
+            }
+          ],
+          "key": "body:Paragraph:17",
+          "level": 2,
+          "styleName": "Nagłówek 2"
+        },
+        {
+          "kind": "Heading",
+          "text": "Dane rejestrowe",
+          "count": 1,
+          "children": [
+            {
+              "kind": "Paragraphs",
+              "text": "Poniżej bloki danych rejestrowych: pierwszy w dedykowanym st…",
+              "count": 1,
+              "children": [],
+              "key": "body:Paragraph:41",
+              "styleName": "Normalny"
+            },
+            {
+              "kind": "Paragraphs",
+              "text": "Example Company S. A. z siedzibą w Warszawie, ul. Przykładow…",
+              "count": 2,
+              "children": [],
+              "key": "body:Paragraph:42",
+              "styleName": "Dane rejestrowe"
+            },
+            {
+              "kind": "Paragraphs",
+              "text": "Example Company S. A., Sąd Rejonowy dla m.st. Warszawy, KRS…",
+              "count": 3,
+              "children": [],
+              "key": "body:Paragraph:44",
+              "styleName": "Normalny"
+            }
+          ],
+          "key": "body:Paragraph:40",
+          "level": 2,
+          "styleName": "Nagłówek 2"
+        },
+        {
+          "kind": "Heading",
+          "text": "Stopka i format strony",
+          "count": 1,
+          "children": [
+            {
+              "kind": "Paragraphs",
+              "text": "Ta sekcja ma stronę w formacie Letter, a w stopce sam numer…",
+              "count": 2,
+              "children": [],
+              "key": "body:Paragraph:48",
+              "styleName": "Normalny"
+            }
+          ],
+          "key": "body:Paragraph:47",
+          "level": 2,
+          "styleName": "Nagłówek 2"
+        },
+        {
+          "kind": "Heading",
+          "text": "Stopka w innej postaci",
+          "count": 1,
+          "children": [
+            {
+              "kind": "Paragraphs",
+              "text": "Stopka tej sekcji ma numer strony i tytuł, ale nie w postaci…",
+              "count": 2,
+              "children": [],
+              "key": "body:Paragraph:51",
+              "styleName": "Normalny"
+            }
+          ],
+          "key": "body:Paragraph:50",
+          "level": 2,
+          "styleName": "Nagłówek 2"
+        },
+        {
+          "kind": "Heading",
+          "text": "Stopka wzorcowa",
+          "count": 1,
+          "children": [
+            {
+              "kind": "Paragraphs",
+              "text": "Ostatnia sekcja ma stopkę w postaci „Strona: X z Y. Tytuł”,…",
+              "count": 1,
+              "children": [],
+              "key": "body:Paragraph:54",
+              "styleName": "Normalny"
+            }
+          ],
+          "key": "body:Paragraph:53",
+          "level": 2,
+          "styleName": "Nagłówek 2"
+        }
+      ],
+      "key": "body:Paragraph:0",
+      "level": 1,
+      "styleName": "Nagłówek 1"
+    }
   ]
 }

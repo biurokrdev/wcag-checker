@@ -1,6 +1,6 @@
 {
-  "status": "Valid",
-  "summary": "Dokument spełnia wszystkie automatycznie sprawdzane wymagania.",
+  "status": "Invalid",
+  "summary": "1 błąd.",
   "standards": [
     {
       "key": "hierarchia/1.0",
@@ -22,11 +22,23 @@
     "images": 0
   },
   "counts": {
-    "errors": 0,
+    "errors": 1,
     "warnings": 0,
     "infos": 0
   },
-  "issues": [],
+  "issues": [
+    {
+      "code": "HIER-FAKE",
+      "label": "Fałszywy nagłówek",
+      "severity": "Error",
+      "category": "Headings",
+      "message": "Akapit „Warunki dodatkowe” wygląda jak nagłówek (krótki, pogrubiony albo dużą czcionką), ale ma styl „Normalny”, więc nie należy do struktury dokumentu.",
+      "standard": "hierarchia/1.0",
+      "fixable": false,
+      "status": "Required",
+      "fix": "W Wordzie zaznacz ten akapit i nadaj mu styl nagłówka właściwego poziomu (Narzędzia główne → Style → „Nagłówek 2”, „Nagłówek 3”…), a ręczne pogrubienie i powiększenie czcionki usuń (Ctrl+Spacja). Strukturę sprawdzisz w okienku nawigacji (Widok → Okienko nawigacji → Nagłówki)."
+    }
+  ],
   "outline": [
     {
       "level": 1,
@@ -47,6 +59,201 @@
   ],
   "wcag": null,
   "reportId": "<id>",
-  "summaryTable": [],
-  "findings": []
+  "summaryTable": [
+    {
+      "standard": "hierarchia/1.0",
+      "standardName": "Hierarchia treści",
+      "section": "Hierarchia treści",
+      "rows": [
+        {
+          "id": "HIER-FAKE",
+          "name": "Fałszywy nagłówek",
+          "status": "Error",
+          "details": [
+            {
+              "code": "HIER-FAKE",
+              "label": "Fałszywy nagłówek",
+              "message": "Akapit „Warunki dodatkowe” wygląda jak nagłówek (krótki, pogrubiony albo dużą czcionką), ale ma styl „Normalny”, więc nie należy do struktury dokumentu.",
+              "occurrences": 1,
+              "severity": "Error"
+            }
+          ],
+          "note": null
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "index": 0,
+      "code": "HIER-FAKE",
+      "label": "Fałszywy nagłówek",
+      "severity": "Error",
+      "category": "Headings",
+      "standard": "hierarchia/1.0",
+      "standardName": "Hierarchia treści",
+      "message": "Akapit „Warunki dodatkowe” wygląda jak nagłówek (krótki, pogrubiony albo dużą czcionką), ale ma styl „Normalny”, więc nie należy do struktury dokumentu.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:7",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 7,
+        "subIndex": null,
+        "snippet": "Warunki dodatkowe"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "W Wordzie zaznacz ten akapit i nadaj mu styl nagłówka właściwego poziomu (Narzędzia główne → Style → „Nagłówek 2”, „Nagłówek 3”…), a ręczne pogrubienie i powiększenie czcionki usuń (Ctrl+Spacja). Strukturę sprawdzisz w okienku nawigacji (Widok → Okienko nawigacji → Nagłówki).",
+      "scope": "Paragraph"
+    }
+  ],
+  "structure": [
+    {
+      "kind": "Heading",
+      "text": "Formatowanie bezpośrednie",
+      "count": 1,
+      "children": [
+        {
+          "kind": "Paragraphs",
+          "text": "Ten akapit ma rozmiar i czcionkę nadane ręcznie, choć są tak…",
+          "count": 3,
+          "children": [],
+          "key": "body:Paragraph:1",
+          "styleName": "Normalny"
+        },
+        {
+          "kind": "Heading",
+          "text": "Akapity",
+          "count": 1,
+          "children": [
+            {
+              "kind": "Paragraphs",
+              "text": "Akapit wyśrodkowany, z odstępami i wcięciem ustawionymi ręcz…",
+              "count": 4,
+              "children": [],
+              "key": "body:Paragraph:5",
+              "styleName": "Normalny"
+            },
+            {
+              "kind": "Paragraphs",
+              "text": "Akapit we własnym stylu, którego nie ma w Galerii stylów.",
+              "count": 1,
+              "children": [],
+              "key": "body:Paragraph:9",
+              "styleName": "Mój styl"
+            }
+          ],
+          "key": "body:Paragraph:4",
+          "level": 2,
+          "styleName": "Nagłówek 2"
+        },
+        {
+          "kind": "Heading",
+          "text": "Style znakowe",
+          "count": 1,
+          "children": [
+            {
+              "kind": "Paragraphs",
+              "text": "Styl znakowy z ręcznym wyłączeniem pogrubienia: niepogrubion…",
+              "count": 1,
+              "children": [],
+              "key": "body:Paragraph:11",
+              "styleName": "Normalny"
+            },
+            {
+              "kind": "Paragraphs",
+              "text": "Akapit pogrubiony stylem, a to słowo odwrócone przez drugi s…",
+              "count": 1,
+              "children": [],
+              "key": "body:Paragraph:12",
+              "styleName": "Mocny"
+            }
+          ],
+          "key": "body:Paragraph:10",
+          "level": 2,
+          "styleName": "Nagłówek 2"
+        },
+        {
+          "kind": "Heading",
+          "text": "Lista i tabela",
+          "count": 1,
+          "children": [
+            {
+              "kind": "List",
+              "text": "Lista punktowana",
+              "count": 2,
+              "children": [
+                {
+                  "kind": "ListItem",
+                  "text": "pozycja listy 1 z ręcznym wcięciem,",
+                  "count": 1,
+                  "children": [],
+                  "key": "body:Paragraph:14",
+                  "level": 0,
+                  "label": "•",
+                  "styleName": "Normalny"
+                },
+                {
+                  "kind": "ListItem",
+                  "text": "pozycja listy 2 z ręcznym wcięciem,",
+                  "count": 1,
+                  "children": [],
+                  "key": "body:Paragraph:15",
+                  "level": 0,
+                  "label": "•",
+                  "styleName": "Normalny"
+                }
+              ],
+              "key": "body:Paragraph:14",
+              "styleName": "Normalny"
+            },
+            {
+              "kind": "Paragraphs",
+              "text": "Tabela 1. Formatowanie w komórkach.",
+              "count": 1,
+              "children": [],
+              "key": "body:Paragraph:16",
+              "styleName": "Normalny"
+            },
+            {
+              "kind": "Table",
+              "text": "Tabela 2 × 2",
+              "count": 2,
+              "children": [
+                {
+                  "kind": "Paragraphs",
+                  "text": "Element",
+                  "count": 4,
+                  "children": [],
+                  "key": "body:Paragraph:17",
+                  "styleName": "Normalny"
+                }
+              ],
+              "key": "body:Table:0",
+              "label": "2 × 2",
+              "styleName": "Tabela standardowa"
+            },
+            {
+              "kind": "Paragraphs",
+              "text": "Koniec dokumentu.",
+              "count": 1,
+              "children": [],
+              "key": "body:Paragraph:21",
+              "styleName": "Normalny1"
+            }
+          ],
+          "key": "body:Paragraph:13",
+          "level": 2,
+          "styleName": "Nagłówek 2"
+        }
+      ],
+      "key": "body:Paragraph:0",
+      "level": 1,
+      "styleName": "Nagłówek 1"
+    }
+  ]
 }

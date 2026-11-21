@@ -49,6 +49,238 @@
       "text": "Podpis"
     }
   ],
+  "structure": [
+    {
+      "kind": "Heading",
+      "text": "Wzór pisma firmowego",
+      "key": "body:Paragraph:0",
+      "level": 1,
+      "count": 1,
+      "styleName": "Nagłówek 1",
+      "children": [
+        {
+          "kind": "Paragraphs",
+          "text": "To jest wzorcowy szablon pisma. Każdy element ma styl zgodny…",
+          "key": "body:Paragraph:1",
+          "count": 2,
+          "styleName": "Normalny",
+          "children": []
+        },
+        {
+          "kind": "Heading",
+          "text": "Dane umowy",
+          "key": "body:Paragraph:3",
+          "level": 2,
+          "count": 1,
+          "styleName": "Nagłówek 2",
+          "children": [
+            {
+              "kind": "Paragraphs",
+              "text": "Umowa nr <numer umowy> z dnia <data zawarcia umowy> obowiązu…",
+              "key": "body:Paragraph:4",
+              "count": 1,
+              "styleName": "Normalny",
+              "children": []
+            }
+          ]
+        },
+        {
+          "kind": "Heading",
+          "text": "Wykaz opłat",
+          "key": "body:Paragraph:5",
+          "level": 2,
+          "count": 1,
+          "styleName": "Nagłówek 2",
+          "children": [
+            {
+              "kind": "Paragraphs",
+              "text": "Tabela 1. Opłaty i prowizje w złotych.",
+              "key": "body:Paragraph:6",
+              "count": 1,
+              "styleName": "Normalny",
+              "children": []
+            },
+            {
+              "kind": "Table",
+              "text": "Tabela 4 × 2",
+              "key": "body:Table:0",
+              "count": 4,
+              "label": "4 × 2",
+              "styleName": "Tabela standardowa",
+              "children": [
+                {
+                  "kind": "Paragraphs",
+                  "text": "Rodzaj opłaty",
+                  "key": "body:Paragraph:7",
+                  "count": 8,
+                  "styleName": "Normalny",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "Heading",
+          "text": "Warunki promocji",
+          "key": "body:Paragraph:15",
+          "level": 2,
+          "count": 1,
+          "styleName": "Nagłówek 2",
+          "children": [
+            {
+              "kind": "Paragraphs",
+              "text": "Aby skorzystać z promocji, należy spełnić warunki:",
+              "key": "body:Paragraph:16",
+              "count": 1,
+              "styleName": "Normalny",
+              "children": []
+            },
+            {
+              "kind": "List",
+              "text": "Lista punktowana",
+              "key": "body:Paragraph:17",
+              "count": 3,
+              "styleName": "Akapit z listą",
+              "children": [
+                {
+                  "kind": "ListItem",
+                  "text": "mieć aktywne konto osobiste,",
+                  "key": "body:Paragraph:17",
+                  "level": 0,
+                  "count": 1,
+                  "label": "•",
+                  "styleName": "Akapit z listą",
+                  "children": []
+                },
+                {
+                  "kind": "ListItem",
+                  "text": "zalogować się do bankowości internetowej,",
+                  "key": "body:Paragraph:18",
+                  "level": 0,
+                  "count": 1,
+                  "label": "•",
+                  "styleName": "Akapit z listą",
+                  "children": []
+                },
+                {
+                  "kind": "ListItem",
+                  "text": "zaakceptować regulamin promocji.",
+                  "key": "body:Paragraph:19",
+                  "level": 0,
+                  "count": 1,
+                  "label": "•",
+                  "styleName": "Akapit z listą",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "kind": "Paragraphs",
+              "text": "Kolejność działań:",
+              "key": "body:Paragraph:20",
+              "count": 1,
+              "styleName": "Normalny",
+              "children": []
+            },
+            {
+              "kind": "List",
+              "text": "Lista numerowana",
+              "key": "body:Paragraph:21",
+              "count": 3,
+              "styleName": "Akapit z listą",
+              "children": [
+                {
+                  "kind": "ListItem",
+                  "text": "Złóż wniosek w aplikacji.",
+                  "key": "body:Paragraph:21",
+                  "level": 0,
+                  "count": 1,
+                  "label": "1)",
+                  "styleName": "Akapit z listą",
+                  "children": []
+                },
+                {
+                  "kind": "ListItem",
+                  "text": "Potwierdź dane kodem SMS.",
+                  "key": "body:Paragraph:22",
+                  "level": 0,
+                  "count": 1,
+                  "label": "2)",
+                  "styleName": "Akapit z listą",
+                  "children": []
+                },
+                {
+                  "kind": "ListItem",
+                  "text": "Odbierz potwierdzenie na adres e-mail.",
+                  "key": "body:Paragraph:23",
+                  "level": 0,
+                  "count": 1,
+                  "label": "3)",
+                  "styleName": "Akapit z listą",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "kind": "Heading",
+              "text": "Dokumenty do pobrania",
+              "key": "body:Paragraph:24",
+              "level": 3,
+              "count": 1,
+              "styleName": "Nagłówek 3",
+              "children": [
+                {
+                  "kind": "Paragraphs",
+                  "text": "Pełne warunki opisuje Regulamin promocji (PDF).",
+                  "key": "body:Paragraph:25",
+                  "count": 1,
+                  "styleName": "Normalny",
+                  "children": []
+                },
+                {
+                  "kind": "Heading",
+                  "text": "Kontakt",
+                  "key": "body:Paragraph:26",
+                  "level": 4,
+                  "count": 1,
+                  "styleName": "Nagłówek 4",
+                  "children": [
+                    {
+                      "kind": "Paragraphs",
+                      "text": "W razie pytań skontaktuj się z doradcą w oddziale albo przez…",
+                      "key": "body:Paragraph:27",
+                      "count": 1,
+                      "styleName": "Normalny",
+                      "children": []
+                    },
+                    {
+                      "kind": "Heading",
+                      "text": "Podpis",
+                      "key": "body:Paragraph:28",
+                      "level": 5,
+                      "count": 1,
+                      "styleName": "Nagłówek 5",
+                      "children": [
+                        {
+                          "kind": "Paragraphs",
+                          "text": "Z poważaniem, <imię i nazwisko pracownika>.",
+                          "key": "body:Paragraph:29",
+                          "count": 1,
+                          "styleName": "Normalny",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
   "issues": [
     {
       "code": "TITLE_PHRASE_MISSING",

@@ -4,13 +4,23 @@ Język: pl-PL
 Obrazy: 0
 
 Raport walidacji dokumentu „przyklad_v1.docx”
-Wynik: poprawny. Dokument spełnia wszystkie automatycznie sprawdzane wymagania.
+Wynik: niepoprawny. 4 błędy.
 Data sprawdzenia: <data>. Standardy: Hierarchia treści.
 Dokument: tytuł „brak”, autor „Krzysztof Rybka”, język pl-PL, 13 akapitów, 0 nagłówków, 1 tabel, 2 obrazów.
 Podsumowanie kontroli
+Hierarchia treści
+Sekcja „Hierarchia treści”
+| Status | Kontrola | Szczegóły |
+| Błąd | Pusty nagłówek | Pusty nagłówek: Nagłówek poziomu 1 w akapicie 15 jest pusty (styl „Nagłówek 1”). |
+| Błąd | Fałszywy nagłówek | Fałszywy nagłówek: Akapit „Jebać TEKOM” wygląda jak nagłówek (krótki, pogrubiony albo dużą czcionką), ale ma styl „Header1”, więc nie należy do struktury dokumentu. ⏎ Fałszywy nagłówek: Akapit „Kutas boko też jest spoko” wygląda jak nagłówek (krótki, pogrubiony albo dużą czcionką), ale ma styl „Header1”, więc nie należy do struktury dokumentu. |
+| Błąd | Treść albo nagłówek bez nagłówka nadrzędnego | Treść albo nagłówek bez nagłówka nadrzędnego: Treść zaczyna się przed pierwszym nagłówkiem: „Jebać TEKOM”. |
 Wyniki walidacji
-0 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
+4 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
 Tabela wystąpień
 | Nr | Waga | Zgłoszenie | Standard | Miejsce | Komunikat | Zweryfikowano |
+| 1 | błąd | Pusty nagłówek | Hierarchia treści | akapit: „” | Nagłówek poziomu 1 w akapicie 15 jest pusty (styl „Nagłówek 1”). | nie |
+| 2 | błąd | Fałszywy nagłówek | Hierarchia treści | akapit: „Jebać TEKOM” | Akapit „Jebać TEKOM” wygląda jak nagłówek (krótki, pogrubiony albo dużą czcionką), ale ma styl „Header1”, więc nie należy do struktury dokumentu. | nie |
+| 3 | błąd | Fałszywy nagłówek | Hierarchia treści | akapit: „Kutas boko też jest spoko” | Akapit „Kutas boko też jest spoko” wygląda jak nagłówek (krótki, pogrubiony albo dużą czcionką), ale ma styl „Header1”, więc nie należy do struktury dokumentu. | nie |
+| 4 | błąd | Treść albo nagłówek bez nagłówka nadrzędnego | Hierarchia treści | akapit: „Jebać TEKOM” | Treść zaczyna się przed pierwszym nagłówkiem: „Jebać TEKOM”. | nie |
 
-PDF: %PDF-, strony: 1
+PDF: %PDF-, strony: 2
