@@ -1,0 +1,14 @@
+#0 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 0: „Formatowanie bezpośrednie”
+    Uwagi bez wskazanego miejsca w treści (3 uwagi)
+    Dokument i metadane
+    [TITLE_PHRASE_MISSING] Tytuł bez wymaganej nazwy instytucji  ·  błąd
+    Problem: Tytuł „Formatowanie bezpośrednie. Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”.
+    [AUTHOR_PHRASE_MISSING] Autor bez wymaganej nazwy instytucji  ·  ostrzeżenie
+    Problem: Autor „Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”.
+    [MANUAL_CHECK_SUGGESTED] Zalecane sprawdzenie ręczne  ·  informacja
+    Problem: Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie.
+
+#1 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 7: „Warunki dodatkowe”
+    [FAKE_HEADING] Nagłówek zrobiony formatowaniem  ·  ostrzeżenie
+    Problem: 1 akapit wygląda na nagłówek (krótki, pogrubiony albo dużą czcionką), ale bez stylu nagłówka, więc poza konspektem dokumentu; pierwszy: „Warunki dodatkowe”.
+

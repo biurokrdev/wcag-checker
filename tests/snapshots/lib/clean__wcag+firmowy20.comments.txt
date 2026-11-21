@@ -1,0 +1,6 @@
+#0 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 0: „Wzór pisma firmowego”
+    Uwagi bez wskazanego miejsca w treści (1 uwaga)
+    Dokument i metadane
+    [MANUAL_CHECK_SUGGESTED] Zalecane sprawdzenie ręczne  ·  informacja
+    Problem: Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie.
+

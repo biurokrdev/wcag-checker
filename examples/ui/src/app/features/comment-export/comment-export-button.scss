@@ -1,4 +1,12 @@
-// Element hosta nie zajmuje miejsca w rzędzie przycisków raportu, dopóki nie ma własnej treści.
+// Element hosta nie tworzy własnego pudełka: przycisk staje w rzędzie przycisków raportu jak jego sąsiedzi
+// (styl przycisku pochodzi ze stylów globalnych, tak jak dla „Pobierz raport (docx)”).
 :host {
   display: contents;
+}
+
+// Komunikat o błędzie zajmuje osobny wiersz pod przyciskami.
+.comment-export-error {
+  order: 99;
+  flex-basis: 100%;
+  font-size: 0.93rem;
 }

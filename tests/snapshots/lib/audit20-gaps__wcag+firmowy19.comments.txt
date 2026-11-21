@@ -1,0 +1,24 @@
+#0 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 0: „Luki audytu 2.0”
+    Uwagi bez wskazanego miejsca w treści (8 uwag)
+    Dokument i metadane
+    [TITLE_MISSING] Brak tytułu dokumentu  ·  błąd
+    Problem: Dokument nie ma tytułu w metadanych (Plik → Informacje → Tytuł).
+    [AUTHOR_PHRASE_MISSING] Autor bez wymaganej nazwy instytucji  ·  ostrzeżenie
+    Problem: Autor „Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”.
+    [INVALID_MARGINS] Marginesy inne niż wymagane  ·  ostrzeżenie
+    Problem: Margines górny ma 70,9 pt, a wymagane jest 36 pt.
+    [INVALID_MARGINS] Marginesy inne niż wymagane  ·  ostrzeżenie
+    Problem: Margines dolny ma 70,9 pt, a wymagane jest 36 pt.
+    [INVALID_MARGINS] Marginesy inne niż wymagane  ·  ostrzeżenie
+    Problem: Margines lewy ma 70,9 pt, a wymagane jest 36 pt.
+    [INVALID_MARGINS] Marginesy inne niż wymagane  ·  ostrzeżenie
+    Problem: Margines prawy ma 70,9 pt, a wymagane jest 36 pt.
+    [PAGE_NUMBERS_MISSING] Brak numeru strony  ·  ostrzeżenie
+    Problem: Ani stopka, ani nagłówek strony nie zawiera numeru strony (pole PAGE).
+    [MANUAL_CHECK_SUGGESTED] Zalecane sprawdzenie ręczne  ·  informacja
+    Problem: Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie.
+
+#1 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 5: „Listy z nadpisaniami”
+    [HEADING_LEVEL_SKIPPED] Pominięty poziom nagłówka  ·  ostrzeżenie
+    Problem: Nagłówek „Listy z nadpisaniami” ma poziom 3 zaraz po poziomie 1; pominięto poziom 2.
+

@@ -1,1 +1,12 @@
-<!-- Przycisk eksportu kopii dokumentu z komentarzami pojawi się tutaj; na razie komponent nic nie renderuje. -->
+<button
+  type="button"
+  (click)="download()"
+  [disabled]="busy() || !reportId()"
+  title="Kopia sprawdzonego dokumentu z komentarzami Worda w miejscach uwag"
+  data-testid="export-comments"
+>
+  {{ busy() ? 'Przygotowanie pliku…' : 'Pobierz z komentarzami' }}
+</button>
+@if (error()) {
+  <span class="status-bad comment-export-error" role="alert" data-testid="export-comments-error">{{ error() }}</span>
+}

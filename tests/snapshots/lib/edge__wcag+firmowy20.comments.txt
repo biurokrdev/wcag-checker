@@ -1,0 +1,69 @@
+#0 [Jan Kowalski / JK / 2024-05-06T10:00:00Z] akapit 1: „fragment z istniejącym komentarzem”
+    Proszę doprecyzować ten fragment.
+
+#1 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 0: „Przypadki brzegowe”
+    Uwagi bez wskazanego miejsca w treści (1 uwaga)
+    Dokument i metadane
+    [MANUAL_CHECK_SUGGESTED] Zalecane sprawdzenie ręczne  ·  informacja
+    Problem: Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie.
+
+#2 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 1: „Ten akapit ma fragment z istniejącym komentarzem recenzenta.”
+    [COMMENTS_PRESENT] Komentarze w dokumencie  ·  ostrzeżenie
+    Problem: Dokument zawiera 1 komentarz; usuń je przed publikacją.
+
+#3 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 3: „rozjaśniony akcent”
+    [TEXT_LOW_CONTRAST] Za mały kontrast tekstu  ·  błąd
+    Problem: 1 fragment tekstu ma za mały kontrast z tłem (najgorszy 2,4:1, wymagane 4,5:1 albo 3:1 dla dużego tekstu); pierwszy: „rozjaśniony akcent”.
+
+#4 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 3: „rozjaśniony akcent”
+    [TEXT_COLOR_NOT_ALLOWED] Kolor tekstu spoza palety  ·  ostrzeżenie
+    Problem: 2 fragmenty tekstu mają kolor spoza dozwolonej palety (#8EAADB, #2F5496); dozwolone: #000000, #FF6200, #0000FF, #AB0066, #7724FF, #696969, #4D0020.
+
+#5 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 3: „przyciemniony akcent”
+    [TEXT_COLOR_NOT_ALLOWED] Kolor tekstu spoza palety  ·  ostrzeżenie
+    Problem: 2 fragmenty tekstu mają kolor spoza dozwolonej palety (#8EAADB, #2F5496); dozwolone: #000000, #FF6200, #0000FF, #AB0066, #7724FF, #696969, #4D0020.
+
+#6 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 6: „Uwaga w polu tekstowym.”
+    [IMAGE_MISSING_ALT_TEXT] Obraz bez tekstu alternatywnego  ·  błąd
+    Problem: Obraz nr 2 (obiekt VML) nie ma tekstu alternatywnego.
+
+#7 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 6: „Uwaga w polu tekstowym.”
+    [FLOATING_ELEMENTS_PRESENT] Elementy pływające poza kolejnością odczytu  ·  ostrzeżenie
+    Problem: Dokument zawiera 1 element pływający, 2 pola tekstowe; ich położenie w kolejności odczytu nie wynika z treści.
+
+#8 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 6: „Uwaga w polu tekstowym.”
+    [FLOATING_ELEMENTS_PRESENT] Elementy pływające poza kolejnością odczytu  ·  ostrzeżenie
+    Problem: Dokument zawiera 1 element pływający, 2 pola tekstowe; ich położenie w kolejności odczytu nie wynika z treści.
+
+#9 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 11: „Etap”
+    [TABLE_ALIGNMENT_MISMATCH] Wyrównanie w tabeli niezgodne ze standardem  ·  błąd
+    Problem: Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.
+
+#10 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 11: „Etap”
+    [TABLE_HEADER_NOT_BOLD] Nagłówek tabeli bez pogrubienia  ·  błąd
+    Problem: Tabela 1: 2 komórki nagłówka nie są pogrubione.
+
+#11 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 12: „Termin”
+    [TABLE_ALIGNMENT_MISMATCH] Wyrównanie w tabeli niezgodne ze standardem  ·  błąd
+    Problem: Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.
+
+#12 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 12: „Termin”
+    [TABLE_HEADER_NOT_BOLD] Nagłówek tabeli bez pogrubienia  ·  błąd
+    Problem: Tabela 1: 2 komórki nagłówka nie są pogrubione.
+
+#13 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 13: „Złożenie wniosku”
+    [TABLE_ALIGNMENT_MISMATCH] Wyrównanie w tabeli niezgodne ze standardem  ·  błąd
+    Problem: Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.
+
+#14 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 14: „do 30 dni”
+    [TABLE_ALIGNMENT_MISMATCH] Wyrównanie w tabeli niezgodne ze standardem  ·  błąd
+    Problem: Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.
+
+#15 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 15: „Decyzja”
+    [TABLE_ALIGNMENT_MISMATCH] Wyrównanie w tabeli niezgodne ze standardem  ·  błąd
+    Problem: Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.
+
+#16 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 16: „do 14 dni”
+    [TABLE_ALIGNMENT_MISMATCH] Wyrównanie w tabeli niezgodne ze standardem  ·  błąd
+    Problem: Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.
+
