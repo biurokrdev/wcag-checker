@@ -23,12 +23,12 @@
     "warnings": 0,
     "needsReview": 0,
     "info": 0,
-    "manualChecks": 20
+    "manualChecks": 21
   },
   "findings": [],
   "manualChecks": [
     {
-      "id": "manual-1.1.1",
+      "id": "manual-1.1.1:nontext",
       "wcag": [
         "1.1.1"
       ],
@@ -44,7 +44,7 @@
       "hint": "Zaznacz komórkę w danych: karta Projekt tabeli pojawia się tylko dla Tabeli Excela; pole „Wiersz nagłówka” pokazuje, czy tabela ma nagłówki."
     },
     {
-      "id": "manual-1.3.2",
+      "id": "manual-1.3.2:nontext",
       "wcag": [
         "1.3.2"
       ],
@@ -79,6 +79,16 @@
       "question": "Czy obrazy nie zawierają tekstu, który można było zapisać jako tekst w komórce lub kształcie (z wyjątkiem logotypów)?"
     },
     {
+      "id": "XL-TEXT-IN-IMAGE:0000|Drawing|0000002|00006|Logo|2",
+      "wcag": [
+        "1.4.5"
+      ],
+      "code": "XL-TEXT-IN-IMAGE",
+      "question": "Czy obraz „Logo” nie zawiera tekstu, który można było zapisać jako tekst w komórce lub kształcie (z wyjątkiem logotypów)?",
+      "hint": "Obejrzyj obraz. Jeśli zawiera tekst niosący informację (tabelę, zrzut ekranu, napis), wpisz ten tekst w komórkach albo w kształcie zamiast obrazu, a co najmniej powtórz go w tekście alternatywnym (prawy przycisk myszy → Wyświetl tekst alternatywny). Logotypy i tekst będący nieistotną częścią zdjęcia są wyjątkiem.",
+      "location": "Obraz „Logo” na arkuszu „Budżet 2026” (przy komórce F2)"
+    },
+    {
       "id": "manual-1.4.10",
       "wcag": [
         "1.4.10"
@@ -108,7 +118,7 @@
       "question": "Czy przechodzenie klawiszem Tab po kontrolkach, obiektach i polach do wypełnienia odbywa się w kolejności zgodnej z logiką arkusza?"
     },
     {
-      "id": "manual-2.4.4",
+      "id": "manual-2.4.4:nontext",
       "wcag": [
         "2.4.4"
       ],
@@ -151,7 +161,7 @@
       "hint": "Dane → Poprawność danych → karta Alert o błędzie."
     },
     {
-      "id": "manual-3.3.2",
+      "id": "manual-3.3.2:nontext",
       "wcag": [
         "3.3.2"
       ],
@@ -159,7 +169,7 @@
       "hint": "Dane → Poprawność danych → karta Komunikat wejściowy."
     },
     {
-      "id": "manual-3.3.3",
+      "id": "manual-3.3.3:nontext",
       "wcag": [
         "3.3.3"
       ],
@@ -292,7 +302,7 @@
       "level": "AA",
       "status": "ManualReview",
       "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. Dotyczy, gdy skoroszyt zawiera obrazy. WCAG2ICT: stosuje się wprost. Wyjątki: prezentacja istotna (logotypy), obraz dostosowywalny.",
-      "manualChecks": 1
+      "manualChecks": 2
     },
     {
       "sc": "1.4.10",
