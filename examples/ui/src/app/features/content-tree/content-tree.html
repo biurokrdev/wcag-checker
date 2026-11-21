@@ -1,0 +1,17 @@
+<section class="standard-block" data-testid="content-tree">
+  <h3 class="standard-bar">Struktura dokumentu</h3>
+  <div class="standard-body">
+    <details class="section" open>
+      <summary class="section-bar">Struktura nagłówków <span class="muted">({{ outline().length }})</span></summary>
+      @if (outline().length === 0) {
+        <p class="muted empty" data-testid="outline-empty">Dokument nie zawiera nagłówków.</p>
+      } @else {
+        <ol class="outline" data-testid="outline">
+          @for (h of outline(); track $index) {
+            <li [style.margin-left.rem]="(h.level - 1) * 1.2"><span class="level">H{{ h.level }}</span> {{ h.text }}</li>
+          }
+        </ol>
+      }
+    </details>
+  </div>
+</section>

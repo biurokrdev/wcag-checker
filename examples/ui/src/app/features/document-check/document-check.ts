@@ -1,6 +1,9 @@
 import { Component, OnDestroy, OnInit, computed, inject, signal } from '@angular/core';
 import { Subscription, finalize } from 'rxjs';
+import { saveBlob } from '../../core/download';
 import { WcagDocumentsService } from '../../core/wcag-documents.service';
+import { CommentExportButton } from '../comment-export/comment-export-button';
+import { ContentTree } from '../content-tree/content-tree';
 import {
   CATEGORY_LABEL,
   CHECK_STATUS_LABEL,
@@ -11,11 +14,13 @@ import {
   Finding,
   FindingPreview,
   IssueSeverity,
+  ISSUE_SCOPE_LABEL,
   issueLabel,
   LOCATION_KIND_LABEL,
   MAX_FILE_SIZE_BYTES,
   OUTCOME_LABEL,
   SEVERITY_LABEL,
+  SPEC_STATUS_LABEL,
   Standard,
   SummarySection,
   ValidationResult,
@@ -27,8 +32,10 @@ export type ReportTab = 'summary' | 'findings';
 // „Podsumowanie”: bloki standardów z zwijanymi sekcjami i tabelą Status | Kontrola | Szczegóły, raport kryteriów WCAG.
 // „Wyniki walidacji”: po lewej lista wystąpień (każde osobno, po 30 na stronę), po prawej opis, weryfikacja ręczna
 // i podgląd strony z zaznaczeniem dociągany po kliknięciu. Raport do pobrania jako DOCX ze stanem weryfikacji.
+// Nad zakładkami zawsze widoczny jest panel struktury dokumentu (app-content-tree), niezależnie od wybranych standardów.
 @Component({
   selector: 'app-document-check',
+  imports: [ContentTree, CommentExportButton],
   templateUrl: './document-check.html',
   styleUrl: './document-check.scss',
 })
@@ -44,6 +51,8 @@ export class DocumentCheck implements OnInit, OnDestroy {
   protected readonly coverageLabel = CRITERION_COVERAGE_LABEL;
   protected readonly checkStatusLabel = CHECK_STATUS_LABEL;
   protected readonly locationKindLabel = LOCATION_KIND_LABEL;
+  protected readonly specStatusLabel = SPEC_STATUS_LABEL;
+  protected readonly scopeLabel = ISSUE_SCOPE_LABEL;
   protected readonly issueLabel = issueLabel;
 
   protected readonly catalog = signal<Standard[]>([]);
@@ -63,6 +72,12 @@ export class DocumentCheck implements OnInit, OnDestroy {
   protected readonly preview = signal<FindingPreview | null>(null);
   protected readonly previewBusy = signal(false);
   protected readonly previewError = signal<string | null>(null);
+
+  // Podgląd miejsca wskazanego w panelu struktury, gdy nie ma dla niego zgłoszenia.
+  protected readonly locationKey = signal<string | null>(null);
+  protected readonly locationPreview = signal<FindingPreview | null>(null);
+  protected readonly locationBusy = signal(false);
+  protected readonly locationError = signal<string | null>(null);
 
   // Weryfikacja ręczna: indeksy wystąpień oznaczonych przyciskiem; pamiętane w przeglądarce per raport.
   protected readonly verified = signal<ReadonlySet<number>>(new Set());
@@ -101,6 +116,7 @@ export class DocumentCheck implements OnInit, OnDestroy {
   private request?: Subscription;
   private catalogRequest?: Subscription;
   private previewRequest?: Subscription;
+  private locationRequest?: Subscription;
 
   ngOnInit(): void {
     this.catalogRequest = this.api.standards().subscribe({
@@ -116,6 +132,7 @@ export class DocumentCheck implements OnInit, OnDestroy {
     this.request?.unsubscribe();
     this.catalogRequest?.unsubscribe();
     this.previewRequest?.unsubscribe();
+    this.locationRequest?.unsubscribe();
   }
 
   protected isSelected(key: string): boolean {
@@ -189,6 +206,47 @@ export class DocumentCheck implements OnInit, OnDestroy {
       });
   }
 
+  // Wskazanie miejsca z panelu struktury: jeśli jest zgłoszenie dla tego klucza, otwiera je w „Wynikach walidacji”;
+  // inaczej dociąga podgląd samego miejsca i pokazuje go pod panelem struktury.
+  protected locate(key: string): void {
+    const finding = this.findings().find((f) => f.location?.key === key);
+    if (finding) {
+      this.closeLocation();
+      this.tab.set('findings');
+      this.page.set(Math.floor(finding.index / DocumentCheck.PAGE_SIZE) + 1);
+      this.select(finding);
+      return;
+    }
+
+    this.locationRequest?.unsubscribe();
+    this.locationKey.set(key);
+    this.locationPreview.set(null);
+    this.locationError.set(null);
+
+    const reportId = this.result()?.reportId;
+    if (!reportId) {
+      this.locationError.set('Podgląd niedostępny: raport nie ma identyfikatora (wczytaj dokument ponownie).');
+      return;
+    }
+
+    this.locationBusy.set(true);
+    this.locationRequest = this.api
+      .previewLocation(reportId, key)
+      .pipe(finalize(() => this.locationBusy.set(false)))
+      .subscribe({
+        next: (p) => this.locationPreview.set(p),
+        error: (e) => this.locationError.set(WcagDocumentsService.errorMessage(e)),
+      });
+  }
+
+  protected closeLocation(): void {
+    this.locationRequest?.unsubscribe();
+    this.locationKey.set(null);
+    this.locationPreview.set(null);
+    this.locationError.set(null);
+    this.locationBusy.set(false);
+  }
+
   protected hasPrevious(): boolean {
     const current = this.selectedFinding();
     return current !== null && current.index > 0;
@@ -251,7 +309,7 @@ export class DocumentCheck implements OnInit, OnDestroy {
       .export(reportId, { verified: [...this.verified()].sort((a, b) => a - b), includePreviews: true, reviewer: null }, 'docx')
       .pipe(finalize(() => this.exporting.set(false)))
       .subscribe({
-        next: (blob) => DocumentCheck.saveBlob(blob, `${this.result()!.document.fileName.replace(/\.docx$/i, '')}_raport.docx`),
+        next: (blob) => saveBlob(blob, `${this.result()!.document.fileName.replace(/\.docx$/i, '')}_raport.docx`),
         error: (e) => this.exportError.set(WcagDocumentsService.errorMessage(e)),
       });
   }
@@ -376,6 +434,7 @@ export class DocumentCheck implements OnInit, OnDestroy {
     this.preview.set(null);
     this.previewError.set(null);
     this.previewBusy.set(false);
+    this.closeLocation();
     this.verified.set(new Set());
     this.exporting.set(false);
     this.exportError.set(null);
@@ -399,16 +458,6 @@ export class DocumentCheck implements OnInit, OnDestroy {
     } catch {
       return new Set();
     }
-  }
-
-  private static saveBlob(blob: Blob, fileName: string): void {
-    if (typeof URL.createObjectURL !== 'function') return;
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = fileName;
-    link.click();
-    setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
 
   private static rejectionReason(file: File): string | null {

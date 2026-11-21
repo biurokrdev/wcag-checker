@@ -77,6 +77,7 @@
           <button type="button" (click)="exportReport()" [disabled]="exporting() || !r.reportId" data-testid="export-docx">
             {{ exporting() ? 'Przygotowanie raportu…' : 'Pobierz raport (docx)' }}
           </button>
+          <app-comment-export-button [reportId]="r.reportId" [fileName]="r.document.fileName" />
           <button type="button" class="secondary" (click)="next()" [disabled]="busy()" data-testid="next-button">Zakończ</button>
         </div>
       </div>
@@ -92,6 +93,38 @@
         @if (exportError()) { <span class="status-bad" role="alert" data-testid="export-error">{{ exportError() }}</span> }
       </p>
     </div>
+
+    <app-content-tree [nodes]="r.structure ?? []" [outline]="r.outline" [findings]="findings()" (locate)="locate($event)" />
+
+    @if (locationKey()) {
+      <section class="location-preview" data-testid="location-preview" aria-label="Podgląd miejsca w dokumencie">
+        <div class="detail-head">
+          <h3>Miejsce w dokumencie</h3>
+          <button type="button" class="secondary small" (click)="closeLocation()" data-testid="location-close">Zamknij podgląd</button>
+        </div>
+        @if (locationBusy()) {
+          <p class="status" role="status" aria-live="polite" data-testid="location-stage">Przygotowanie podglądu…</p>
+        }
+        @if (locationError()) {
+          <div class="box error" role="alert" data-testid="location-error">{{ locationError() }}</div>
+        }
+        @if (locationPreview(); as p) {
+          <div class="preview">
+            <p class="muted">{{ p.note }}</p>
+            @if (p.zoomDataUri) {
+              <figure>
+                <img [src]="p.zoomDataUri" alt="Powiększenie wskazanego miejsca z łososiową ramką" data-testid="location-zoom" />
+                <figcaption class="muted">Powiększenie</figcaption>
+              </figure>
+            }
+            <figure>
+              <img [src]="p.pageDataUri" [width]="p.widthPx" [height]="p.heightPx" alt="Strona {{ p.page }} z {{ p.pageCount }} ze schematu dokumentu z zaznaczonym miejscem" data-testid="location-page" />
+              <figcaption class="muted">Strona {{ p.page }} z {{ p.pageCount }} (schemat układu, nie wierny wygląd Worda)</figcaption>
+            </figure>
+          </div>
+        }
+      </section>
+    }
 
     <div class="tabs" role="tablist" aria-label="Raport">
       <button type="button" role="tab" [attr.aria-selected]="tab() === 'summary'" [class.active]="tab() === 'summary'" (click)="showTab('summary')" data-testid="tab-summary">Podsumowanie</button>
@@ -173,16 +206,6 @@
                   </tbody>
                 </table>
               </details>
-              @if (r.outline.length > 0) {
-                <details class="section">
-                  <summary class="section-bar">Struktura nagłówków <span class="muted">({{ r.outline.length }})</span></summary>
-                  <ol class="outline" data-testid="outline">
-                    @for (h of r.outline; track $index) {
-                      <li [style.margin-left.rem]="(h.level - 1) * 1.2"><span class="level">H{{ h.level }}</span> {{ h.text }}</li>
-                    }
-                  </ol>
-                </details>
-              }
             </div>
           </section>
         }
@@ -238,10 +261,36 @@
             </div>
             <p class="muted finding-meta">Pozycja {{ f.index + 1 }} z {{ findings().length }} · kod {{ f.code }}</p>
             <p class="message" data-testid="finding-message">{{ f.message }}</p>
+            @if (f.fix) {
+              <div class="fix" data-testid="finding-fix">
+                <h5>Jak naprawić</h5>
+                <p>{{ f.fix }}</p>
+              </div>
+            }
+            @if (f.details && f.details.length > 0) {
+              <table class="properties" data-testid="finding-details">
+                <caption class="visually-hidden">Właściwości, których dotyczy zgłoszenie</caption>
+                <thead>
+                  <tr><th>Właściwość</th><th>W dokumencie</th><th>Oczekiwana</th><th>Źródło</th></tr>
+                </thead>
+                <tbody>
+                  @for (d of f.details; track $index) {
+                    <tr [attr.data-property]="d.property">
+                      <td>{{ d.label }}</td>
+                      <td>{{ d.actual ?? '–' }}</td>
+                      <td>{{ d.expected ?? '–' }}</td>
+                      <td>{{ d.source ?? '–' }}</td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            }
             <dl class="facts">
+              @if (f.status) { <dt>Status w specyfikacji</dt><dd data-testid="finding-status">{{ f.statusLabel ?? specStatusLabel[f.status] }}</dd> }
               <dt>Standard</dt><dd>{{ f.standardName ?? f.standard }}</dd>
               @if (f.criteria.length > 0) { <dt>Kryteria WCAG</dt><dd>{{ f.criteria.join(', ') }}</dd> }
               <dt>Kategoria</dt><dd>{{ categoryLabel[f.category] }}</dd>
+              @if (f.scope) { <dt>Zakres</dt><dd data-testid="finding-scope">{{ scopeLabel[f.scope] }}</dd> }
               <dt>Miejsce</dt>
               <dd>
                 @if (f.location; as l) {

@@ -129,6 +129,63 @@ export interface Issue {
   standard: string | null;
   // true = automatyczna naprawa potrafi usunąć to zgłoszenie.
   fixable: boolean;
+  // Status wymagania w specyfikacji i instrukcja naprawy; tylko dla reguł, które je podają.
+  status?: SpecStatus | null;
+  fix?: string | null;
+}
+
+// Status wymagania w specyfikacji standardu; z niego wynika waga zgłoszenia.
+export type SpecStatus = 'Required' | 'Recommended' | 'Conditional' | 'ToVerify';
+
+export const SPEC_STATUS_LABEL: Record<SpecStatus, string> = {
+  Required: 'WYMAGANE',
+  Recommended: 'REKOMENDOWANE',
+  Conditional: 'WARUNKOWE',
+  ToVerify: 'DO WERYFIKACJI',
+};
+
+// Czego dotyczy zgłoszenie; podawane tylko, gdy reguła określiła to wprost.
+export type IssueScope = 'Range' | 'Paragraph' | 'Document' | 'Styles' | 'HeaderFooter' | 'Section';
+
+export const ISSUE_SCOPE_LABEL: Record<IssueScope, string> = {
+  Range: 'fragment tekstu',
+  Paragraph: 'akapit',
+  Document: 'cały dokument',
+  Styles: 'style dokumentu',
+  HeaderFooter: 'nagłówek albo stopka',
+  Section: 'sekcja',
+};
+
+// Zakres znaków w tekście akapitu (gdy zgłoszenie dotyczy części akapitu).
+export interface TextRange {
+  start: number;
+  length: number;
+}
+
+// Właściwość, której dotyczy zgłoszenie: wartość w dokumencie, oczekiwana i źródło (styl, formatowanie bezpośrednie).
+export interface FindingDetail {
+  property: string;
+  label: string;
+  actual: string | null;
+  expected: string | null;
+  source: string | null;
+}
+
+// Węzeł drzewa treści dokumentu: nagłówek z treścią pod nim, grupa akapitów, lista z pozycjami, tabela.
+export type StructureNodeKind = 'Heading' | 'Paragraphs' | 'List' | 'ListItem' | 'Table';
+
+export interface StructureNode {
+  kind: StructureNodeKind;
+  text: string;
+  // Liczba akapitów w grupie albo wierszy tabeli.
+  count: number;
+  children: StructureNode[];
+  // Klucz pierwszego elementu węzła (jak FindingLocation.key), do wskazania miejsca w dokumencie.
+  key?: string | null;
+  // Nagłówek: poziom 1–9; pozycja listy: poziom 0–8.
+  level?: number | null;
+  label?: string | null;
+  styleName?: string | null;
 }
 
 export interface OutlineEntry {
@@ -247,6 +304,7 @@ export interface FindingLocation {
   index: number;
   subIndex: number | null;
   snippet: string;
+  range?: TextRange | null;
 }
 
 export interface Finding {
@@ -263,6 +321,12 @@ export interface Finding {
   location: FindingLocation | null;
   occurrence: number;
   occurrenceCount: number;
+  // Pola nowych reguł; API pomija je, gdy puste.
+  status?: SpecStatus | null;
+  statusLabel?: string | null;
+  fix?: string | null;
+  scope?: IssueScope | null;
+  details?: FindingDetail[] | null;
 }
 
 export interface PreviewFrame {
@@ -300,6 +364,8 @@ export interface ValidationResult {
   reportId: string | null;
   summaryTable: SummarySection[];
   findings: Finding[];
+  // Drzewo treści dokumentu; API pomija je, gdy puste.
+  structure?: StructureNode[] | null;
 }
 
 export interface AppliedFix {

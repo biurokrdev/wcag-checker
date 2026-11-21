@@ -1,12 +1,15 @@
 import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { ContentTree } from '../content-tree/content-tree';
 import { Finding, FindingPreview, Issue, Standard, StandardsCatalog, ValidationResult } from '../../core/models';
 import { DocumentCheck } from './document-check';
 
 const STANDARDS = '/api/wcag-documents/standards';
 const VALIDATE = '/api/wcag-documents/validate';
 const previewUrl = (reportId: string, index: number) => `/api/wcag-documents/reports/${reportId}/findings/${index}/preview`;
+const locationUrl = (reportId: string) => `/api/wcag-documents/reports/${reportId}/locations/preview`;
 
 const WCAG: Standard = { key: 'wcag/2.1', id: 'wcag', version: '2.1', name: 'WCAG 2.1 (dokument Word)', confirmed: true, note: null };
 const V19: Standard = { key: 'firmowy/1.9', id: 'firmowy', version: '1.9', name: 'Standard pism firmowych 1.9', confirmed: true, note: null };
@@ -449,4 +452,119 @@ describe('DocumentCheck', () => {
     expect(q<HTMLInputElement>('standard-firmowy/1.9')!.checked).toBe(true);
   });
 
+  it('shows the document structure also when the WCAG standard was not selected', () => {
+    const { q, validated } = render();
+    validated(validation({ standards: [V20], wcag: null, outline: [{ level: 1, text: 'Wstęp' }, { level: 2, text: 'Zakres' }] }));
+
+    expect(q('wcag-report')).toBeNull();
+    expect(q('content-tree')).toBeTruthy();
+    expect(q('outline')!.querySelectorAll('li').length).toBe(2);
+    expect(q('outline')!.textContent).toContain('Zakres');
+    // Panel jest nad zakładkami, więc widać go także w „Wynikach walidacji”.
+    expect(q('panel-summary')!.contains(q('content-tree'))).toBe(false);
+  });
+
+  it('keeps the structure panel with a message when the document has no headings', () => {
+    const { q, click, validated } = render();
+    validated(validation({ wcag: null, outline: [], findings: [] }));
+
+    expect(q('content-tree')).toBeTruthy();
+    expect(q('outline')).toBeNull();
+    expect(q('outline-empty')!.textContent).toContain('Dokument nie zawiera nagłówków');
+    click('tab-findings');
+    expect(q('content-tree')).toBeTruthy();
+  });
+
+  it('shows the structure panel once, outside the WCAG criteria block, when WCAG was selected', () => {
+    const { fixture, q, validated } = render();
+    validated();
+
+    expect(q('wcag-report')).toBeTruthy();
+    expect((fixture.nativeElement as HTMLElement).querySelectorAll('[data-testid="outline"]').length).toBe(1);
+    expect(q('panel-summary')!.contains(q('outline'))).toBe(false);
+  });
+
+  it('shows the spec status, the fix and the property table only for findings that carry them', () => {
+    const rich = finding(0, {
+      code: 'STY-DIRECT',
+      label: 'Formatowanie bezpośrednie zamiast stylu',
+      severity: 'Warning',
+      status: 'Recommended',
+      statusLabel: 'REKOMENDOWANE',
+      fix: 'Zastosuj styl „Normalny” i usuń formatowanie ręczne.',
+      scope: 'Range',
+      details: [
+        { property: 'sz', label: 'rozmiar czcionki', actual: '12 pt', expected: '10 pt', source: 'formatowanie bezpośrednie' },
+        { property: 'b', label: 'pogrubienie', actual: 'tak', expected: null, source: null },
+      ],
+      occurrence: 1,
+      occurrenceCount: 1,
+    });
+    const { fixture, q, click, validated } = render();
+    validated(validation({ findings: [rich, finding(1, { occurrence: 1, occurrenceCount: 1 })] }));
+
+    click('tab-findings');
+    http.expectOne(previewUrl('r1', 0)).flush(preview());
+    fixture.detectChanges();
+
+    expect(q('finding-0')!.textContent).toContain('Formatowanie bezpośrednie zamiast stylu');
+    expect(q('finding-status')!.textContent).toContain('REKOMENDOWANE');
+    expect(q('finding-fix')!.textContent).toContain('Jak naprawić');
+    expect(q('finding-fix')!.textContent).toContain('Zastosuj styl „Normalny”');
+    expect(q('finding-scope')!.textContent).toContain('fragment tekstu');
+    const rows = q('finding-details')!.querySelectorAll('tbody tr');
+    expect(rows.length).toBe(2);
+    expect(rows[0].textContent).toContain('rozmiar czcionki');
+    expect(rows[0].textContent).toContain('12 pt');
+    expect(rows[0].textContent).toContain('10 pt');
+    expect(rows[0].textContent).toContain('formatowanie bezpośrednie');
+    expect(rows[1].textContent).toContain('–');
+
+    click('finding-1');
+    http.expectOne(previewUrl('r1', 1)).flush(preview());
+    fixture.detectChanges();
+    expect(q('finding-status')).toBeNull();
+    expect(q('finding-fix')).toBeNull();
+    expect(q('finding-scope')).toBeNull();
+    expect(q('finding-details')).toBeNull();
+  });
+
+  it('opens the finding for a place chosen in the structure panel, or loads a preview of the place itself', () => {
+    const { fixture, q, click, validated } = render();
+    validated();
+    const tree = fixture.debugElement.query(By.directive(ContentTree)).componentInstance as ContentTree;
+
+    // Klucz, dla którego jest zgłoszenie: zakładka wyników i zaznaczone wystąpienie.
+    tree.locate.emit('body:Run:4:1');
+    fixture.detectChanges();
+    expect(q('panel-findings')).toBeTruthy();
+    expect(q('finding-1')!.classList).toContain('selected');
+    expect(q('location-preview')).toBeNull();
+    http.expectOne(previewUrl('r1', 1)).flush(preview());
+    fixture.detectChanges();
+
+    // Klucz bez zgłoszenia: podgląd samego miejsca pod panelem struktury.
+    tree.locate.emit('body:Paragraph:7');
+    fixture.detectChanges();
+    expect(q('location-stage')).toBeTruthy();
+    const req = http.expectOne((r) => r.url === locationUrl('r1'));
+    expect(req.request.method).toBe('GET');
+    expect(req.request.params.get('key')).toBe('body:Paragraph:7');
+    req.flush(preview({ note: 'Strona 1 z 1, zaznaczony element: Akapit.' }));
+    fixture.detectChanges();
+    expect(q('location-preview')!.textContent).toContain('zaznaczony element: Akapit.');
+    expect(q<HTMLImageElement>('location-zoom')!.getAttribute('src')).toBe('data:image/jpeg;base64,BBBB');
+    expect(q<HTMLImageElement>('location-page')!.getAttribute('src')).toBe('data:image/jpeg;base64,AAAA');
+    expect(q('finding-1')!.classList).toContain('selected');
+
+    click('location-close');
+    expect(q('location-preview')).toBeNull();
+
+    // Raport wygasł: komunikat zamiast podglądu.
+    tree.locate.emit('body:Table:0');
+    fixture.detectChanges();
+    http.expectOne((r) => r.url === locationUrl('r1')).flush({ title: 'Raport wygasł.' }, { status: 404, statusText: 'Not Found' });
+    fixture.detectChanges();
+    expect(q('location-error')!.textContent).toContain('Raport wygasł.');
+  });
 });

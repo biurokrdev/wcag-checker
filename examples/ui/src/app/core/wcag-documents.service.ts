@@ -37,6 +37,11 @@ export class WcagDocumentsService {
     return this.http.get<FindingPreview>(`${WcagDocumentsService.BASE}/reports/${encodeURIComponent(reportId)}/findings/${findingIndex}/preview`);
   }
 
+  // Podgląd dowolnego miejsca dokumentu po kluczu (np. body:Paragraph:12), także bez zgłoszenia.
+  previewLocation(reportId: string, key: string): Observable<FindingPreview> {
+    return this.http.get<FindingPreview>(`${WcagDocumentsService.BASE}/reports/${encodeURIComponent(reportId)}/locations/preview`, { params: { key } });
+  }
+
   // Raport do pobrania (docx albo pdf) z raportu w pamięci API, ze stanem weryfikacji ręcznej.
   export(reportId: string, request: ExportRequest, format: ReportFormat): Observable<Blob> {
     return this.http.post(`${WcagDocumentsService.BASE}/reports/${encodeURIComponent(reportId)}/export?format=${format}`, request, { responseType: 'blob' });

@@ -1,0 +1,4 @@
+// Element hosta nie zajmuje miejsca w rzędzie przycisków raportu, dopóki nie ma własnej treści.
+:host {
+  display: contents;
+}
