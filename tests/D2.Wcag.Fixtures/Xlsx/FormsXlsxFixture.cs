@@ -16,6 +16,7 @@ namespace D2.Wcag.Fixtures.Xlsx;
 //   A7 | B7  etykieta „Rodzaj urlopu” | walidacja lista z innego arkusza zapisana w rozszerzeniu x14 (extLst), bez komunikatów
 //   D10:D12  trzy pola do wypełnienia BEZ etykiet (C10:C12, D9 i E10:E12 puste) z walidacją decimal ≥ 0 bez komunikatów
 //   A14 | B14 etykieta „Uwagi” | pole bez walidacji → poprawne
+//   F3:F4    dwa pola do wypełnienia BEZ etykiet i BEZ walidacji (E3:E4 i F2 puste) → XL-FIELD-LABEL
 // Arkusz 2 „Słowniki”:
 //   A1:A4    tabela „TabelaRodzaje”: nagłówek „Rodzaj urlopu”, wartości Wypoczynkowy, Na żądanie, Okolicznościowy
 public static class FormsXlsxFixture
@@ -37,6 +38,7 @@ public static class FormsXlsxFixture
         form.Text("A7", "Rodzaj urlopu").Styled("B7", input);
         form.Styled("D10", input).Styled("D11", input).Styled("D12", input);
         form.Text("A14", "Uwagi").Styled("B14", input);
+        form.Styled("F3", input).Styled("F4", input);
 
         form.DataValidations.Add("<dataValidation type=\"list\" allowBlank=\"1\" sqref=\"B4\"><formula1>\"Tak,Nie\"</formula1></dataValidation>");
         form.DataValidations.Add(
