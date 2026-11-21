@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using D2.Wcag;
+using D2.Wcag.Api.Comments;
 using D2.Wcag.Api.Documents;
 using D2.Wcag.Api.Reports;
 using D2.Wcag.Api.Validation;
@@ -7,6 +8,7 @@ using D2.Wcag.DependencyInjection;
 using D2.Wcag.Standards;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +20,12 @@ foreach (var standard in builder.Configuration.GetSection(WcagProfileSection.Cor
     builder.Services.AddDocumentStandard(standard);
 }
 
+// Parametry standardu „Formatowanie z Galerii stylów” (style/1.0) z "Wcag:StyleGallery"; ten sam klucz zastępuje wbudowany.
+builder.Services.Configure<StyleGalleryOptions>(builder.Configuration.GetSection(WcagProfileSection.StyleGallery));
+builder.Services.AddSingleton<IDocumentStandard>(sp => new StyleGalleryStandard(sp.GetRequiredService<IOptions<StyleGalleryOptions>>().Value));
+
 builder.Services.AddD2Wcag();
+builder.Services.AddCommentExport();
 builder.Services.Configure<ReportStoreOptions>(builder.Configuration.GetSection(ReportStoreOptions.Section));
 builder.Services.AddSingleton<IReportStore, ReportStore>();
 builder.Services.AddScoped<IDocumentCheckService, DocumentCheckService>();

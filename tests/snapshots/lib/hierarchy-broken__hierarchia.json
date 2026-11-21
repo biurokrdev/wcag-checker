@@ -1,0 +1,57 @@
+{
+  "outcome": "Valid",
+  "summary": "Dokument spełnia wszystkie automatycznie sprawdzane wymagania.",
+  "standards": [
+    {
+      "key": "hierarchia/1.0",
+      "id": "hierarchia",
+      "version": "1.0",
+      "name": "Hierarchia treści",
+      "confirmed": true
+    }
+  ],
+  "document": {
+    "title": "Hierarchia treści. Example Company S. A.",
+    "author": "Example Company S. A.",
+    "language": "pl-PL",
+    "paragraphs": 38,
+    "headings": 8,
+    "tables": 1,
+    "images": 0
+  },
+  "outline": [
+    {
+      "level": 2,
+      "text": "Zakres dokumentu"
+    },
+    {
+      "level": 4,
+      "text": "Szczegóły zakresu"
+    },
+    {
+      "level": 3,
+      "text": "Nagłówek z poziomu konspektu"
+    },
+    {
+      "level": 3,
+      "text": "Ten nagłówek jest zdecydowanie za długi, ponieważ zawiera całe zdanie opisujące zawartość sekcji zamiast krótkiego tytuł…"
+    },
+    {
+      "level": 3,
+      "text": "Nagłówek w komórce"
+    },
+    {
+      "level": 1,
+      "text": "Część główna"
+    },
+    {
+      "level": 2,
+      "text": "Podsumowanie"
+    },
+    {
+      "level": 1,
+      "text": "Załączniki"
+    }
+  ],
+  "issues": []
+}

@@ -23,6 +23,22 @@
       "name": "Standard pism firmowych 2.0",
       "confirmed": true,
       "note": ""
+    },
+    {
+      "key": "style/1.0",
+      "id": "style",
+      "version": "1.0",
+      "name": "Formatowanie z Galerii stylów",
+      "confirmed": true,
+      "note": null
+    },
+    {
+      "key": "hierarchia/1.0",
+      "id": "hierarchia",
+      "version": "1.0",
+      "name": "Hierarchia treści",
+      "confirmed": true,
+      "note": null
     }
   ],
   "default": [

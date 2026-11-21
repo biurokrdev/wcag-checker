@@ -52,7 +52,7 @@ public class DependencyInjectionTests
         using var provider = services.BuildServiceProvider();
 
         var catalog = provider.GetRequiredService<StandardCatalog>();
-        Assert.Equal(["wcag/2.1", "firmowy/1.9", "firmowy/2.0", "firmowy/3.0"], catalog.All.Select(s => s.Key()));
+        Assert.Equal(["wcag/2.1", "firmowy/1.9", "firmowy/2.0", "style/1.0", "hierarchia/1.0", "firmowy/3.0"], catalog.All.Select(s => s.Key()));
 
         var result = provider.GetRequiredService<IWcagDocxValidator>().Validate(new DocxBuilder { MarginTwips = 1440 }.Heading(1, "A").Build());
         Assert.Equal("Standard pism 3.0 (z konfiguracji)", result.Standards[1].Name);

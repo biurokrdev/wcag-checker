@@ -10,7 +10,7 @@ namespace D2.Wcag.Tests;
 // Minimalny DOCX budowany w pamięci. Domyślnie dokument jest „czysty”: style nagłówków z polskimi identyfikatorami
 // (Nagwek1, jak zapisuje polski Word) i angielskimi nazwami (heading 1), tytuł, autor, język, stopka z numerem
 // strony, A4 i marginesy 36 pt. Każdy test psuje tylko to, co sprawdza.
-internal sealed class DocxBuilder
+internal sealed partial class DocxBuilder
 {
     private static readonly byte[] OnePixelPng = Convert.FromBase64String(
         "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==");

@@ -1,0 +1,48 @@
+{
+  "status": "Valid",
+  "summary": "Dokument spełnia wszystkie automatycznie sprawdzane wymagania.",
+  "standards": [
+    {
+      "key": "hierarchia/1.0",
+      "id": "hierarchia",
+      "version": "1.0",
+      "name": "Hierarchia treści",
+      "confirmed": true,
+      "note": null
+    }
+  ],
+  "document": {
+    "fileName": "edge.docx",
+    "title": "Przypadki brzegowe. Example Company S. A.",
+    "author": "Example Company S. A.",
+    "language": "pl-PL",
+    "paragraphs": 21,
+    "headings": 3,
+    "tables": 1,
+    "images": 1
+  },
+  "counts": {
+    "errors": 0,
+    "warnings": 0,
+    "infos": 0
+  },
+  "issues": [],
+  "outline": [
+    {
+      "level": 1,
+      "text": "Przypadki brzegowe"
+    },
+    {
+      "level": 2,
+      "text": "Tabela ze stylem tabeli"
+    },
+    {
+      "level": 2,
+      "text": "Druga sekcja"
+    }
+  ],
+  "wcag": null,
+  "reportId": "<id>",
+  "summaryTable": [],
+  "findings": []
+}

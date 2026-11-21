@@ -1,0 +1,52 @@
+{
+  "status": "Valid",
+  "summary": "Dokument spełnia wszystkie automatycznie sprawdzane wymagania.",
+  "standards": [
+    {
+      "key": "hierarchia/1.0",
+      "id": "hierarchia",
+      "version": "1.0",
+      "name": "Hierarchia treści",
+      "confirmed": true,
+      "note": null
+    }
+  ],
+  "document": {
+    "fileName": "audit20-gaps.docx",
+    "title": null,
+    "author": "Example Company S. A.",
+    "language": "pl-PL",
+    "paragraphs": 23,
+    "headings": 4,
+    "tables": 1,
+    "images": 0
+  },
+  "counts": {
+    "errors": 0,
+    "warnings": 0,
+    "infos": 0
+  },
+  "issues": [],
+  "outline": [
+    {
+      "level": 1,
+      "text": "Luki audytu 2.0"
+    },
+    {
+      "level": 3,
+      "text": "Listy z nadpisaniami"
+    },
+    {
+      "level": 2,
+      "text": "Tabela z nadpisaniami"
+    },
+    {
+      "level": 2,
+      "text": "Dane rejestrowe"
+    }
+  ],
+  "wcag": null,
+  "reportId": "<id>",
+  "summaryTable": [],
+  "findings": []
+}

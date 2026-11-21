@@ -27,6 +27,7 @@ public class LibrarySnapshotTests
         standards = result.Standards,
         document = result.Document,
         outline = result.Outline,
+        structure = result.Structure.Count == 0 ? null : result.Structure,
         issues = result.Issues.Select(ProjectIssue).ToList(),
     };
 

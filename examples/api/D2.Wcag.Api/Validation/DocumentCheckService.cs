@@ -75,8 +75,40 @@ public sealed class DocumentCheckService(
         }
 
         var finding = report.Findings[findingIndex];
-        var location = finding.Location?.ToLocation();
+        return Preview(report, finding.Location?.ToLocation());
+    }
 
+    public FindingPreviewDto PreviewLocation(string reportId, string key)
+    {
+        var report = reports.Get(reportId);
+        if (!IssueLocation.TryParseKey(key, out _, out var kind, out _, out _))
+        {
+            throw new DocumentRejectedException($"„{key}” nie jest kluczem miejsca w dokumencie (np. body:Paragraph:12).");
+        }
+
+        if (kind == LocationKind.Document)
+        {
+            return Preview(report, IssueLocation.Document());
+        }
+
+        // Klucz rozwiązywany na tych samych bajtach, które walidowano; opis miejsca (snippet) z samego elementu.
+        IssueLocation? location;
+        using (var package = DocumentFormat.OpenXml.Packaging.WordprocessingDocument.Open(new MemoryStream(report.Document, writable: false), false))
+        {
+            var document = new DocxDocument(package);
+            location = document.Resolve(key) is { } element ? document.Locate(element) : null;
+        }
+
+        if (location is null)
+        {
+            throw new DocumentRejectedException($"W dokumencie nie ma elementu o kluczu „{key}”.");
+        }
+
+        return Preview(report, location);
+    }
+
+    private static FindingPreviewDto Preview(StoredReport report, IssueLocation? location)
+    {
         using var renderer = new SchematicDocxRenderer(report.Document);
         var preview = IssuePreviewRenderer.Render(renderer, location);
         var original = location is { Kind: LocationKind.Drawing } ? renderer.OriginalImageOf(location.Key) : null;

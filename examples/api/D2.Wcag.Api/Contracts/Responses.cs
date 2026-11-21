@@ -35,6 +35,30 @@ public sealed record IssueDto(string Code, string Label, IssueSeverity Severity,
 
 public sealed record OutlineEntryDto(int Level, string Text);
 
+// Węzeł drzewa treści (D2.Wcag.StructureNode): pola opcjonalne są pomijane w JSON, gdy puste.
+public sealed record StructureNodeDto(StructureNodeKind Kind, string Text, int Count, IReadOnlyList<StructureNodeDto> Children)
+{
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string? Key { get; init; }
+
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public int? Level { get; init; }
+
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string? Label { get; init; }
+
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string? StyleName { get; init; }
+
+    public static StructureNodeDto From(StructureNode node) => new(node.Kind, node.Text, node.Count, node.Children.Select(From).ToList())
+    {
+        Key = node.Key,
+        Level = node.Level,
+        Label = node.Label,
+        StyleName = node.StyleName,
+    };
+}
+
 public sealed record DocumentDto(string FileName, string? Title, string? Author, string? Language, int Paragraphs, int Headings, int Tables, int Images);
 
 public sealed record CountsDto(int Errors, int Warnings, int Infos);
@@ -69,6 +93,10 @@ public sealed record ValidationResponse(
     // Każde wystąpienie zgłoszenia osobno, do listy wyników i podglądów.
     IReadOnlyList<FindingDto> Findings)
 {
+    // Drzewo treści dokumentu (panel „Hierarchia treści”); pomijane w JSON, gdy puste.
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public IReadOnlyList<StructureNodeDto>? Structure { get; init; }
+
     public static ValidationResponse From(WcagValidationResult result, string fileName, IReadOnlySet<string> fixable, StandardCatalog catalog, string? reportId = null)
     {
         var document = result.Document!;
@@ -84,7 +112,10 @@ public sealed record ValidationResponse(
             wcagApplied ? WcagReportDto.From(WcagStandard.Report(result), fixable) : null,
             reportId,
             ReportBuilder.Summary(result, catalog),
-            ReportBuilder.Findings(result, fixable));
+            ReportBuilder.Findings(result, fixable))
+        {
+            Structure = result.Structure.Count == 0 ? null : result.Structure.Select(StructureNodeDto.From).ToList(),
+        };
     }
 
     public ValidationResponse WithReportId(string reportId) => this with { ReportId = reportId };

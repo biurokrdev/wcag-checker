@@ -1,0 +1,37 @@
+{
+  "outcome": "Valid",
+  "summary": "Dokument spełnia wszystkie automatycznie sprawdzane wymagania.",
+  "standards": [
+    {
+      "key": "style/1.0",
+      "id": "style",
+      "version": "1.0",
+      "name": "Formatowanie z Galerii stylów",
+      "confirmed": true
+    }
+  ],
+  "document": {
+    "title": "Przypadki brzegowe. Example Company S. A.",
+    "author": "Example Company S. A.",
+    "language": "pl-PL",
+    "paragraphs": 21,
+    "headings": 3,
+    "tables": 1,
+    "images": 1
+  },
+  "outline": [
+    {
+      "level": 1,
+      "text": "Przypadki brzegowe"
+    },
+    {
+      "level": 2,
+      "text": "Tabela ze stylem tabeli"
+    },
+    {
+      "level": 2,
+      "text": "Druga sekcja"
+    }
+  ],
+  "issues": []
+}

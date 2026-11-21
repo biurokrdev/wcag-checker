@@ -1,0 +1,16 @@
+Tytuł: Raport walidacji: clean.docx
+Autor: D2.Wcag
+Język: pl-PL
+Obrazy: 0
+
+Raport walidacji dokumentu „clean.docx”
+Wynik: poprawny. Dokument spełnia wszystkie automatycznie sprawdzane wymagania.
+Data sprawdzenia: <data>. Standardy: Formatowanie z Galerii stylów.
+Dokument: tytuł „Wzór pisma firmowego. Example Company S. A.”, autor „Example Company S. A.”, język pl-PL, 30 akapitów, 7 nagłówków, 1 tabel, 0 obrazów.
+Podsumowanie kontroli
+Wyniki walidacji
+0 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
+Tabela wystąpień
+| Nr | Waga | Zgłoszenie | Standard | Miejsce | Komunikat | Zweryfikowano |
+
+PDF: %PDF-, strony: 1

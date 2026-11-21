@@ -127,6 +127,8 @@ internal static class SnapshotCases
         ("firmowy20", ["firmowy/2.0"]),
         ("wcag+firmowy19", ["wcag/2.1", "firmowy/1.9"]),
         ("wcag+firmowy20", ["wcag/2.1", "firmowy/2.0"]),
+        ("style", ["style/1.0"]),
+        ("hierarchia", ["hierarchia/1.0"]),
     ];
 
     public static IEnumerable<string> Documents => Samples.Concat(Fixtures);

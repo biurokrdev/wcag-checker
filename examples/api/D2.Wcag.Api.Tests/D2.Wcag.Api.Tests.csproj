@@ -26,7 +26,7 @@
 
   <ItemGroup>
     <!-- Ten sam generator minimalnych DOCX co w testach biblioteki. -->
-    <Compile Include="..\..\..\tests\D2.Wcag.Tests\DocxBuilder.cs" Link="DocxBuilder.cs" />
+    <Compile Include="..\..\..\tests\D2.Wcag.Tests\DocxBuilder*.cs" Link="%(Filename)%(Extension)" />
     <!-- Snapshoty i ścieżki repozytorium wspólne z testami biblioteki. -->
     <Compile Include="..\..\..\tests\Shared\*.cs" Link="Shared\%(Filename)%(Extension)" />
     <None Include="..\..\..\tests\fixtures\*.docx" Link="fixtures\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />

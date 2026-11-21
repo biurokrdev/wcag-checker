@@ -1,0 +1,16 @@
+Tytuł: Raport walidacji: przyklad_v1.docx
+Autor: D2.Wcag
+Język: pl-PL
+Obrazy: 0
+
+Raport walidacji dokumentu „przyklad_v1.docx”
+Wynik: poprawny. Dokument spełnia wszystkie automatycznie sprawdzane wymagania.
+Data sprawdzenia: <data>. Standardy: Formatowanie z Galerii stylów.
+Dokument: tytuł „brak”, autor „Krzysztof Rybka”, język pl-PL, 13 akapitów, 0 nagłówków, 1 tabel, 2 obrazów.
+Podsumowanie kontroli
+Wyniki walidacji
+0 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
+Tabela wystąpień
+| Nr | Waga | Zgłoszenie | Standard | Miejsce | Komunikat | Zweryfikowano |
+
+PDF: %PDF-, strony: 1

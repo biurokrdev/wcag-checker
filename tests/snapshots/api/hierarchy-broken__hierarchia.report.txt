@@ -1,0 +1,16 @@
+Tytuł: Raport walidacji: hierarchy-broken.docx
+Autor: D2.Wcag
+Język: pl-PL
+Obrazy: 0
+
+Raport walidacji dokumentu „hierarchy-broken.docx”
+Wynik: poprawny. Dokument spełnia wszystkie automatycznie sprawdzane wymagania.
+Data sprawdzenia: <data>. Standardy: Hierarchia treści.
+Dokument: tytuł „Hierarchia treści. Example Company S. A.”, autor „Example Company S. A.”, język pl-PL, 38 akapitów, 8 nagłówków, 1 tabel, 0 obrazów.
+Podsumowanie kontroli
+Wyniki walidacji
+0 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
+Tabela wystąpień
+| Nr | Waga | Zgłoszenie | Standard | Miejsce | Komunikat | Zweryfikowano |
+
+PDF: %PDF-, strony: 1

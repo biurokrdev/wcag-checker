@@ -1,0 +1,23 @@
+{
+  "outcome": "Valid",
+  "summary": "Dokument spełnia wszystkie automatycznie sprawdzane wymagania.",
+  "standards": [
+    {
+      "key": "style/1.0",
+      "id": "style",
+      "version": "1.0",
+      "name": "Formatowanie z Galerii stylów",
+      "confirmed": true
+    }
+  ],
+  "document": {
+    "author": "Krzysztof Rybka",
+    "language": "pl-PL",
+    "paragraphs": 13,
+    "headings": 0,
+    "tables": 1,
+    "images": 2
+  },
+  "outline": [],
+  "issues": []
+}

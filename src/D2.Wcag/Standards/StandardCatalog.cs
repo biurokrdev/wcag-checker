@@ -34,8 +34,11 @@ public sealed class StandardCatalog
         }
     }
 
-    /// <summary>WCAG 2.1 i wbudowane wersje standardu firmowego: 1.9 i 2.0 (ze specyfikacji guidebooka).</summary>
-    public static StandardCatalog Default { get; } = new([new WcagStandard(), CorporateStandards.V19, new CorporateStandard20()]);
+    /// <summary>
+    /// WCAG 2.1, wbudowane wersje standardu firmowego (1.9 i 2.0 ze specyfikacji guidebooka) oraz standardy
+    /// „Formatowanie z Galerii stylów” i „Hierarchia treści” (poza profilem domyślnym).
+    /// </summary>
+    public static StandardCatalog Default { get; } = new([new WcagStandard(), CorporateStandards.V19, new CorporateStandard20(), new StyleGalleryStandard(), new HierarchyStandard()]);
 
     public IReadOnlyList<IDocumentStandard> All => _ordered;
 

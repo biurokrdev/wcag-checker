@@ -31,7 +31,7 @@ public class WcagDocumentsApiTests : IClassFixture<DefaultApiTestHost>
     {
         var result = await Body<StandardsResponse>(await _client.GetAsync(Standards));
 
-        Assert.Equal(["wcag/2.1", "firmowy/1.9", "firmowy/2.0"], result.Standards.Select(s => s.Key));
+        Assert.Equal(["wcag/2.1", "firmowy/1.9", "firmowy/2.0", "style/1.0", "hierarchia/1.0"], result.Standards.Select(s => s.Key));
         Assert.Equal(["wcag/2.1", "firmowy/1.9"], result.Default);
         Assert.True(result.Standards.Single(s => s.Key == "firmowy/1.9").Confirmed);
         Assert.True(result.Standards.Single(s => s.Key == "firmowy/2.0").Confirmed);

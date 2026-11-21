@@ -60,6 +60,13 @@ public sealed class WcagDocumentsController(IDocumentCheckService service) : Con
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
     public ActionResult<FindingPreviewDto> Preview(string reportId, int index) => Ok(service.Preview(reportId, index));
 
+    // Podgląd dowolnego miejsca dokumentu po kluczu (np. body:Paragraph:12): węzeł drzewa treści nie musi mieć zgłoszenia.
+    [HttpGet("reports/{reportId}/locations/preview")]
+    [ProducesResponseType(typeof(FindingPreviewDto), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+    public ActionResult<FindingPreviewDto> PreviewLocation(string reportId, [FromQuery] string? key) => Ok(service.PreviewLocation(reportId, key ?? ""));
+
     // Raport do pobrania: docx (domyślnie) albo pdf; w treści JSON lista wystąpień oznaczonych jako zweryfikowane.
     [HttpPost("reports/{reportId}/export")]
     [Consumes("application/json")]

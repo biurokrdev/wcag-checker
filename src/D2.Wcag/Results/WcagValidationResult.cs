@@ -49,8 +49,10 @@ public sealed class WcagValidationResult
         IReadOnlyList<StandardInfo> standards,
         IReadOnlyList<WcagIssue> issues,
         IReadOnlyList<OutlineEntry> outline,
-        DocumentInfo? document)
+        DocumentInfo? document,
+        IReadOnlyList<StructureNode>? structure = null)
     {
+        Structure = structure ?? [];
         IsDocumentReadable = isDocumentReadable;
         Standards = standards;
         Issues = issues;
@@ -90,6 +92,9 @@ public sealed class WcagValidationResult
 
     /// <summary>Nagłówki dokumentu w kolejności występowania.</summary>
     public IReadOnlyList<OutlineEntry> Outline { get; }
+
+    /// <summary>Drzewo treści dokumentu (nagłówki, grupy akapitów, listy, tabele); puste, gdy dokumentu nie dało się odczytać.</summary>
+    public IReadOnlyList<StructureNode> Structure { get; }
 
     /// <summary>Metadane i liczniki; <c>null</c>, gdy dokumentu nie dało się odczytać.</summary>
     public DocumentInfo? Document { get; }

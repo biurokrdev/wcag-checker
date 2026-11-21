@@ -1,0 +1,52 @@
+{
+  "status": "Valid",
+  "summary": "Dokument spełnia wszystkie automatycznie sprawdzane wymagania.",
+  "standards": [
+    {
+      "key": "style/1.0",
+      "id": "style",
+      "version": "1.0",
+      "name": "Formatowanie z Galerii stylów",
+      "confirmed": true,
+      "note": null
+    }
+  ],
+  "document": {
+    "fileName": "direct-formatting.docx",
+    "title": "Formatowanie bezpośrednie. Example Company S. A.",
+    "author": "Example Company S. A.",
+    "language": "pl-PL",
+    "paragraphs": 22,
+    "headings": 4,
+    "tables": 1,
+    "images": 0
+  },
+  "counts": {
+    "errors": 0,
+    "warnings": 0,
+    "infos": 0
+  },
+  "issues": [],
+  "outline": [
+    {
+      "level": 1,
+      "text": "Formatowanie bezpośrednie"
+    },
+    {
+      "level": 2,
+      "text": "Akapity"
+    },
+    {
+      "level": 2,
+      "text": "Style znakowe"
+    },
+    {
+      "level": 2,
+      "text": "Lista i tabela"
+    }
+  ],
+  "wcag": null,
+  "reportId": "<id>",
+  "summaryTable": [],
+  "findings": []
+}

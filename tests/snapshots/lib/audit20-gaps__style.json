@@ -1,0 +1,40 @@
+{
+  "outcome": "Valid",
+  "summary": "Dokument spełnia wszystkie automatycznie sprawdzane wymagania.",
+  "standards": [
+    {
+      "key": "style/1.0",
+      "id": "style",
+      "version": "1.0",
+      "name": "Formatowanie z Galerii stylów",
+      "confirmed": true
+    }
+  ],
+  "document": {
+    "author": "Example Company S. A.",
+    "language": "pl-PL",
+    "paragraphs": 23,
+    "headings": 4,
+    "tables": 1,
+    "images": 0
+  },
+  "outline": [
+    {
+      "level": 1,
+      "text": "Luki audytu 2.0"
+    },
+    {
+      "level": 3,
+      "text": "Listy z nadpisaniami"
+    },
+    {
+      "level": 2,
+      "text": "Tabela z nadpisaniami"
+    },
+    {
+      "level": 2,
+      "text": "Dane rejestrowe"
+    }
+  ],
+  "issues": []
+}

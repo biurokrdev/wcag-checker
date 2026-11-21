@@ -13,7 +13,7 @@ public class StandardsTests
     [Fact]
     public void DefaultCatalog_HasWcagAndBuiltInCorporateVersions()
     {
-        Assert.Equal(["wcag/2.1", "firmowy/1.9", "firmowy/2.0"], StandardCatalog.Default.All.Select(s => s.Key()));
+        Assert.Equal(["wcag/2.1", "firmowy/1.9", "firmowy/2.0", "style/1.0", "hierarchia/1.0"], StandardCatalog.Default.All.Select(s => s.Key()));
         Assert.True(StandardCatalog.Default.Get("firmowy/1.9").Confirmed);
         Assert.True(StandardCatalog.Default.Get("FIRMOWY/2.0").Confirmed);
         Assert.Equal(["wcag/2.1", "firmowy/1.9"], WcagValidationProfile.DefaultStandards);
@@ -98,7 +98,7 @@ public class StandardsTests
 
         var catalog = StandardCatalog.Default.With(replaced);
 
-        Assert.Equal(3, catalog.All.Count);
+        Assert.Equal(5, catalog.All.Count);
         Assert.Same(replaced, catalog.Get("firmowy/1.9"));
     }
 

@@ -1,5 +1,6 @@
 using D2.Wcag.Rules;
 using D2.Wcag.Standards;
+using D2.Wcag.Structure;
 using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace D2.Wcag.Docx;
@@ -114,7 +115,7 @@ public sealed class WcagDocxValidator : IWcagDocxValidator
             document.Tables.Count(),
             document.Body.Descendants<Drawing>().Count());
 
-        return new WcagValidationResult(isDocumentReadable: true, standards.Select(StandardInfo.From).ToList(), issues, outline, info);
+        return new WcagValidationResult(isDocumentReadable: true, standards.Select(StandardInfo.From).ToList(), issues, outline, info, ContentStructure.Build(document));
     }
 
     // Stemplowanie zgłoszeń standardu: klucz standardu, status i waga dla istniejących kodów (LegacyStatuses),
