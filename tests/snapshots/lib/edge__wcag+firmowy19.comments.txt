@@ -1,0 +1,33 @@
+#0 [Jan Kowalski / JK / 2024-05-06T10:00:00Z] akapit 1: „fragment z istniejącym komentarzem”
+    Proszę doprecyzować ten fragment.
+
+#1 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 0: „Przypadki brzegowe”
+    Uwagi bez wskazanego miejsca w treści (3 uwagi)
+    Dokument i metadane
+    [TITLE_PHRASE_MISSING] Tytuł bez wymaganej nazwy instytucji  ·  błąd
+    Problem: Tytuł „Przypadki brzegowe. Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”.
+    [AUTHOR_PHRASE_MISSING] Autor bez wymaganej nazwy instytucji  ·  ostrzeżenie
+    Problem: Autor „Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”.
+    [MANUAL_CHECK_SUGGESTED] Zalecane sprawdzenie ręczne  ·  informacja
+    Problem: Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie.
+
+#2 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 1: „Ten akapit ma fragment z istniejącym komentarzem recenzenta.”
+    [COMMENTS_PRESENT] Komentarze w dokumencie  ·  ostrzeżenie
+    Problem: Dokument zawiera 1 komentarz; usuń je przed publikacją.
+
+#3 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 3: „rozjaśniony akcent”
+    [TEXT_LOW_CONTRAST] Za mały kontrast tekstu  ·  błąd
+    Problem: 1 fragment tekstu ma za mały kontrast z tłem (najgorszy 2,4:1, wymagane 4,5:1 albo 3:1 dla dużego tekstu); pierwszy: „rozjaśniony akcent”.
+
+#4 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 6: „Uwaga w polu tekstowym.”
+    [IMAGE_MISSING_ALT_TEXT] Obraz bez tekstu alternatywnego  ·  błąd
+    Problem: Obraz nr 2 (obiekt VML) nie ma tekstu alternatywnego.
+
+#5 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 6: „Uwaga w polu tekstowym.”
+    [FLOATING_ELEMENTS_PRESENT] Elementy pływające poza kolejnością odczytu  ·  ostrzeżenie
+    Problem: Dokument zawiera 1 element pływający, 2 pola tekstowe; ich położenie w kolejności odczytu nie wynika z treści.
+
+#6 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 6: „Uwaga w polu tekstowym.”
+    [FLOATING_ELEMENTS_PRESENT] Elementy pływające poza kolejnością odczytu  ·  ostrzeżenie
+    Problem: Dokument zawiera 1 element pływający, 2 pola tekstowe; ich położenie w kolejności odczytu nie wynika z treści.
+
