@@ -4,13 +4,27 @@ Język: pl-PL
 Obrazy: 0
 
 Raport walidacji dokumentu „przyklad.docx”
-Wynik: poprawny. Dokument spełnia wszystkie automatycznie sprawdzane wymagania.
+Wynik: niepoprawny. 3 błędy, 1 ostrzeżenie.
 Data sprawdzenia: <data>. Standardy: Formatowanie z Galerii stylów.
 Dokument: tytuł „brak”, autor „Krzysztof Rybka”, język pl-PL, 13 akapitów, 0 nagłówków, 1 tabel, 2 obrazów.
 Podsumowanie kontroli
+Formatowanie z Galerii stylów
+Sekcja „Formatowanie bezpośrednie”
+| Status | Kontrola | Szczegóły |
+| Błąd | Brak formatowania ręcznego innego niż w stylu | Formatowanie ręczne inne niż w stylu: Akapit w stylu „Text” ma formatowanie nadane ręcznie, inne niż w stylu: kolor czcionki (#FFFFFF, w stylu: automatyczny). |
+| Zatwierdzono | Brak formatowania ręcznego powtarzającego styl | – |
+Sekcja „Style”
+| Status | Kontrola | Szczegóły |
+| Błąd | Nagłówki mają styl nagłówka, a nie tylko wygląd | Akapit udaje nagłówek: Akapit „Jebać TEKOM” wygląda jak nagłówek (krótki, w osobnym wierszu, pogrubiony, 28 pt), ale ma styl „Header1” bez poziomu konspektu, więc nie należy do struktury dokumentu. Sugerowany styl: Nagłówek 1. ⏎ Akapit udaje nagłówek: Akapit „Kutas boko też jest spoko” wygląda jak nagłówek (krótki, w osobnym wierszu, pogrubiony, 28 pt), ale ma styl „Header1” bez poziomu konspektu, więc nie należy do struktury dokumentu. Sugerowany styl: Nagłówek 1. |
+| Zatwierdzono | Użyte style są w Galerii stylów | – |
+| Ostrzeżenie | Brak kopii stylów po wklejeniu z innego dokumentu | Kopia stylu: Styl akapitowy „Header1” ma takie samo formatowanie jak styl „Nagłówki” – wygląda na jego kopię (np. po wklejeniu treści z innego dokumentu); użyty w 2 akapitach. |
 Wyniki walidacji
-0 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
+4 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
 Tabela wystąpień
 | Nr | Waga | Zgłoszenie | Standard | Miejsce | Komunikat | Zweryfikowano |
+| 1 | błąd | Akapit udaje nagłówek | Formatowanie z Galerii stylów | akapit: „Jebać TEKOM” | Akapit „Jebać TEKOM” wygląda jak nagłówek (krótki, w osobnym wierszu, pogrubiony, 28 pt), ale ma styl „Header1” bez poziomu konspektu, więc nie należy do struktury dokumentu. Sugerowany styl: Nagłówek 1. | nie |
+| 2 | błąd | Akapit udaje nagłówek | Formatowanie z Galerii stylów | akapit: „Kutas boko też jest spoko” | Akapit „Kutas boko też jest spoko” wygląda jak nagłówek (krótki, w osobnym wierszu, pogrubiony, 28 pt), ale ma styl „Header1” bez poziomu konspektu, więc nie należy do struktury dokumentu. Sugerowany styl: Nagłówek 1. | nie |
+| 3 | błąd | Formatowanie ręczne inne niż w stylu | Formatowanie z Galerii stylów | akapit: „Lubię jak mi żona ssie kutango.” | Akapit w stylu „Text” ma formatowanie nadane ręcznie, inne niż w stylu: kolor czcionki (#FFFFFF, w stylu: automatyczny). | nie |
+| 4 | ostrzeżenie | Kopia stylu | Formatowanie z Galerii stylów | akapit: „Jebać TEKOM” | Styl akapitowy „Header1” ma takie samo formatowanie jak styl „Nagłówki” – wygląda na jego kopię (np. po wklejeniu treści z innego dokumentu); użyty w 2 akapitach. | nie |
 
-PDF: %PDF-, strony: 1
+PDF: %PDF-, strony: 3

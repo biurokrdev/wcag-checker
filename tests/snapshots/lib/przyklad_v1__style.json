@@ -1,6 +1,6 @@
 {
-  "outcome": "Valid",
-  "summary": "Dokument spełnia wszystkie automatycznie sprawdzane wymagania.",
+  "outcome": "Invalid",
+  "summary": "2 błędy, 1 ostrzeżenie.",
   "standards": [
     {
       "key": "style/1.0",
@@ -19,5 +19,100 @@
     "images": 2
   },
   "outline": [],
-  "issues": []
+  "issues": [
+    {
+      "code": "STY-FAKE-HEADING",
+      "severity": "Error",
+      "category": "Headings",
+      "standard": "style/1.0",
+      "message": "Akapit „Jebać TEKOM” wygląda jak nagłówek (krótki, w osobnym wierszu, pogrubiony, 28 pt), ale ma styl „Header1” bez poziomu konspektu, więc nie należy do struktury dokumentu. Sugerowany styl: Nagłówek 1.",
+      "locations": [
+        {
+          "key": "body:Paragraph:0",
+          "snippet": "Jebać TEKOM"
+        }
+      ],
+      "status": "Required",
+      "title": "Akapit udaje nagłówek",
+      "fix": "Zaznacz akapit → Ctrl+Spacja (wyczyść formatowanie znaków) → wybierz styl „Nagłówek 1” z Galerii stylów (Narzędzia główne → Style). Wygląd nagłówków zmieniaj w stylu, nie w akapicie.",
+      "scope": "Paragraph",
+      "details": [
+        {
+          "property": "p.pStyle",
+          "actual": "Header1",
+          "expected": "Nagłówek 1"
+        },
+        {
+          "property": "b",
+          "actual": "1",
+          "source": "wygląd nagłówka"
+        },
+        {
+          "property": "sz",
+          "actual": "28",
+          "source": "wygląd nagłówka"
+        }
+      ],
+      "dedupGroup": "fake-heading"
+    },
+    {
+      "code": "STY-FAKE-HEADING",
+      "severity": "Error",
+      "category": "Headings",
+      "standard": "style/1.0",
+      "message": "Akapit „Kutas boko też jest spoko” wygląda jak nagłówek (krótki, w osobnym wierszu, pogrubiony, 28 pt), ale ma styl „Header1” bez poziomu konspektu, więc nie należy do struktury dokumentu. Sugerowany styl: Nagłówek 1.",
+      "locations": [
+        {
+          "key": "body:Paragraph:2",
+          "snippet": "Kutas boko też jest spoko"
+        }
+      ],
+      "status": "Required",
+      "title": "Akapit udaje nagłówek",
+      "fix": "Zaznacz akapit → Ctrl+Spacja (wyczyść formatowanie znaków) → wybierz styl „Nagłówek 1” z Galerii stylów (Narzędzia główne → Style). Wygląd nagłówków zmieniaj w stylu, nie w akapicie.",
+      "scope": "Paragraph",
+      "details": [
+        {
+          "property": "p.pStyle",
+          "actual": "Header1",
+          "expected": "Nagłówek 1"
+        },
+        {
+          "property": "b",
+          "actual": "1",
+          "source": "wygląd nagłówka"
+        },
+        {
+          "property": "sz",
+          "actual": "28",
+          "source": "wygląd nagłówka"
+        }
+      ],
+      "dedupGroup": "fake-heading"
+    },
+    {
+      "code": "STY-DUPLICATE",
+      "severity": "Warning",
+      "category": "Structure",
+      "standard": "style/1.0",
+      "message": "Styl akapitowy „Header1” ma takie samo formatowanie jak styl „Nagłówki” – wygląda na jego kopię (np. po wklejeniu treści z innego dokumentu); użyty w 2 akapitach.",
+      "locations": [
+        {
+          "key": "body:Paragraph:0",
+          "snippet": "Jebać TEKOM"
+        }
+      ],
+      "status": "Recommended",
+      "title": "Kopia stylu",
+      "fix": "Zaznacz tekst w stylu „Header1” (okienko Style, Alt+Ctrl+Shift+S → menu stylu → Zaznacz wszystkie wystąpienia) → wybierz z Galerii stylów styl „Nagłówki” → usuń zbędny styl „Header1” (menu stylu → Usuń).",
+      "scope": "Styles",
+      "details": [
+        {
+          "property": "p.pStyle",
+          "actual": "Header1",
+          "expected": "Nagłówki"
+        }
+      ]
+    }
+  ]
 }

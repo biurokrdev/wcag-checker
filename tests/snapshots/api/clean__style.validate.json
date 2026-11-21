@@ -59,6 +59,56 @@
   ],
   "wcag": null,
   "reportId": "<id>",
-  "summaryTable": [],
+  "summaryTable": [
+    {
+      "standard": "style/1.0",
+      "standardName": "Formatowanie z Galerii stylów",
+      "section": "Formatowanie bezpośrednie",
+      "rows": [
+        {
+          "id": "sty-override",
+          "name": "Brak formatowania ręcznego innego niż w stylu",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "sty-redundant",
+          "name": "Brak formatowania ręcznego powtarzającego styl",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        }
+      ]
+    },
+    {
+      "standard": "style/1.0",
+      "standardName": "Formatowanie z Galerii stylów",
+      "section": "Style",
+      "rows": [
+        {
+          "id": "sty-fake-heading",
+          "name": "Nagłówki mają styl nagłówka, a nie tylko wygląd",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "sty-gallery",
+          "name": "Użyte style są w Galerii stylów",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "sty-duplicate",
+          "name": "Brak kopii stylów po wklejeniu z innego dokumentu",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        }
+      ]
+    }
+  ],
   "findings": []
 }

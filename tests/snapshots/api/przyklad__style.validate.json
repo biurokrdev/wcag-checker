@@ -1,6 +1,6 @@
 {
-  "status": "Valid",
-  "summary": "Dokument spełnia wszystkie automatycznie sprawdzane wymagania.",
+  "status": "Invalid",
+  "summary": "3 błędy, 1 ostrzeżenie.",
   "standards": [
     {
       "key": "style/1.0",
@@ -22,14 +22,309 @@
     "images": 2
   },
   "counts": {
-    "errors": 0,
-    "warnings": 0,
+    "errors": 3,
+    "warnings": 1,
     "infos": 0
   },
-  "issues": [],
+  "issues": [
+    {
+      "code": "STY-FAKE-HEADING",
+      "label": "Akapit udaje nagłówek",
+      "severity": "Error",
+      "category": "Headings",
+      "message": "Akapit „Jebać TEKOM” wygląda jak nagłówek (krótki, w osobnym wierszu, pogrubiony, 28 pt), ale ma styl „Header1” bez poziomu konspektu, więc nie należy do struktury dokumentu. Sugerowany styl: Nagłówek 1.",
+      "standard": "style/1.0",
+      "fixable": false,
+      "status": "Required",
+      "fix": "Zaznacz akapit → Ctrl+Spacja (wyczyść formatowanie znaków) → wybierz styl „Nagłówek 1” z Galerii stylów (Narzędzia główne → Style). Wygląd nagłówków zmieniaj w stylu, nie w akapicie."
+    },
+    {
+      "code": "STY-FAKE-HEADING",
+      "label": "Akapit udaje nagłówek",
+      "severity": "Error",
+      "category": "Headings",
+      "message": "Akapit „Kutas boko też jest spoko” wygląda jak nagłówek (krótki, w osobnym wierszu, pogrubiony, 28 pt), ale ma styl „Header1” bez poziomu konspektu, więc nie należy do struktury dokumentu. Sugerowany styl: Nagłówek 1.",
+      "standard": "style/1.0",
+      "fixable": false,
+      "status": "Required",
+      "fix": "Zaznacz akapit → Ctrl+Spacja (wyczyść formatowanie znaków) → wybierz styl „Nagłówek 1” z Galerii stylów (Narzędzia główne → Style). Wygląd nagłówków zmieniaj w stylu, nie w akapicie."
+    },
+    {
+      "code": "STY-DIRECT-OVERRIDE",
+      "label": "Formatowanie ręczne inne niż w stylu",
+      "severity": "Error",
+      "category": "Text",
+      "message": "Akapit w stylu „Text” ma formatowanie nadane ręcznie, inne niż w stylu: kolor czcionki (#FFFFFF, w stylu: automatyczny).",
+      "standard": "style/1.0",
+      "fixable": false,
+      "status": "Required",
+      "fix": "Zaznacz akapit → Ctrl+Spacja (wyczyść formatowanie znaków) → wybierz styl „Text” z Galerii stylów (Narzędzia główne → Style). Jeśli odstępstwo od stylu jest zamierzone, użyj innego stylu z Galerii (np. znakowego „Pogrubienie”) albo zmień sam styl – nie formatuj ręcznie."
+    },
+    {
+      "code": "STY-DUPLICATE",
+      "label": "Kopia stylu",
+      "severity": "Warning",
+      "category": "Structure",
+      "message": "Styl akapitowy „Header1” ma takie samo formatowanie jak styl „Nagłówki” – wygląda na jego kopię (np. po wklejeniu treści z innego dokumentu); użyty w 2 akapitach.",
+      "standard": "style/1.0",
+      "fixable": false,
+      "status": "Recommended",
+      "fix": "Zaznacz tekst w stylu „Header1” (okienko Style, Alt+Ctrl+Shift+S → menu stylu → Zaznacz wszystkie wystąpienia) → wybierz z Galerii stylów styl „Nagłówki” → usuń zbędny styl „Header1” (menu stylu → Usuń)."
+    }
+  ],
   "outline": [],
   "wcag": null,
   "reportId": "<id>",
-  "summaryTable": [],
-  "findings": []
+  "summaryTable": [
+    {
+      "standard": "style/1.0",
+      "standardName": "Formatowanie z Galerii stylów",
+      "section": "Formatowanie bezpośrednie",
+      "rows": [
+        {
+          "id": "sty-override",
+          "name": "Brak formatowania ręcznego innego niż w stylu",
+          "status": "Error",
+          "details": [
+            {
+              "code": "STY-DIRECT-OVERRIDE",
+              "label": "Formatowanie ręczne inne niż w stylu",
+              "message": "Akapit w stylu „Text” ma formatowanie nadane ręcznie, inne niż w stylu: kolor czcionki (#FFFFFF, w stylu: automatyczny).",
+              "occurrences": 1,
+              "severity": "Error"
+            }
+          ],
+          "note": null
+        },
+        {
+          "id": "sty-redundant",
+          "name": "Brak formatowania ręcznego powtarzającego styl",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        }
+      ]
+    },
+    {
+      "standard": "style/1.0",
+      "standardName": "Formatowanie z Galerii stylów",
+      "section": "Style",
+      "rows": [
+        {
+          "id": "sty-fake-heading",
+          "name": "Nagłówki mają styl nagłówka, a nie tylko wygląd",
+          "status": "Error",
+          "details": [
+            {
+              "code": "STY-FAKE-HEADING",
+              "label": "Akapit udaje nagłówek",
+              "message": "Akapit „Jebać TEKOM” wygląda jak nagłówek (krótki, w osobnym wierszu, pogrubiony, 28 pt), ale ma styl „Header1” bez poziomu konspektu, więc nie należy do struktury dokumentu. Sugerowany styl: Nagłówek 1.",
+              "occurrences": 1,
+              "severity": "Error"
+            },
+            {
+              "code": "STY-FAKE-HEADING",
+              "label": "Akapit udaje nagłówek",
+              "message": "Akapit „Kutas boko też jest spoko” wygląda jak nagłówek (krótki, w osobnym wierszu, pogrubiony, 28 pt), ale ma styl „Header1” bez poziomu konspektu, więc nie należy do struktury dokumentu. Sugerowany styl: Nagłówek 1.",
+              "occurrences": 1,
+              "severity": "Error"
+            }
+          ],
+          "note": null
+        },
+        {
+          "id": "sty-gallery",
+          "name": "Użyte style są w Galerii stylów",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "sty-duplicate",
+          "name": "Brak kopii stylów po wklejeniu z innego dokumentu",
+          "status": "Warning",
+          "details": [
+            {
+              "code": "STY-DUPLICATE",
+              "label": "Kopia stylu",
+              "message": "Styl akapitowy „Header1” ma takie samo formatowanie jak styl „Nagłówki” – wygląda na jego kopię (np. po wklejeniu treści z innego dokumentu); użyty w 2 akapitach.",
+              "occurrences": 1,
+              "severity": "Warning"
+            }
+          ],
+          "note": null
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "index": 0,
+      "code": "STY-FAKE-HEADING",
+      "label": "Akapit udaje nagłówek",
+      "severity": "Error",
+      "category": "Headings",
+      "standard": "style/1.0",
+      "standardName": "Formatowanie z Galerii stylów",
+      "message": "Akapit „Jebać TEKOM” wygląda jak nagłówek (krótki, w osobnym wierszu, pogrubiony, 28 pt), ale ma styl „Header1” bez poziomu konspektu, więc nie należy do struktury dokumentu. Sugerowany styl: Nagłówek 1.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:0",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "Jebać TEKOM"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "Zaznacz akapit → Ctrl+Spacja (wyczyść formatowanie znaków) → wybierz styl „Nagłówek 1” z Galerii stylów (Narzędzia główne → Style). Wygląd nagłówków zmieniaj w stylu, nie w akapicie.",
+      "scope": "Paragraph",
+      "details": [
+        {
+          "property": "p.pStyle",
+          "label": "styl akapitu",
+          "actual": "Header1",
+          "expected": "Nagłówek 1",
+          "source": null
+        },
+        {
+          "property": "b",
+          "label": "pogrubienie",
+          "actual": "tak",
+          "expected": null,
+          "source": "wygląd nagłówka"
+        },
+        {
+          "property": "sz",
+          "label": "rozmiar czcionki",
+          "actual": "28 pt",
+          "expected": null,
+          "source": "wygląd nagłówka"
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "code": "STY-FAKE-HEADING",
+      "label": "Akapit udaje nagłówek",
+      "severity": "Error",
+      "category": "Headings",
+      "standard": "style/1.0",
+      "standardName": "Formatowanie z Galerii stylów",
+      "message": "Akapit „Kutas boko też jest spoko” wygląda jak nagłówek (krótki, w osobnym wierszu, pogrubiony, 28 pt), ale ma styl „Header1” bez poziomu konspektu, więc nie należy do struktury dokumentu. Sugerowany styl: Nagłówek 1.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:2",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 2,
+        "subIndex": null,
+        "snippet": "Kutas boko też jest spoko"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "Zaznacz akapit → Ctrl+Spacja (wyczyść formatowanie znaków) → wybierz styl „Nagłówek 1” z Galerii stylów (Narzędzia główne → Style). Wygląd nagłówków zmieniaj w stylu, nie w akapicie.",
+      "scope": "Paragraph",
+      "details": [
+        {
+          "property": "p.pStyle",
+          "label": "styl akapitu",
+          "actual": "Header1",
+          "expected": "Nagłówek 1",
+          "source": null
+        },
+        {
+          "property": "b",
+          "label": "pogrubienie",
+          "actual": "tak",
+          "expected": null,
+          "source": "wygląd nagłówka"
+        },
+        {
+          "property": "sz",
+          "label": "rozmiar czcionki",
+          "actual": "28 pt",
+          "expected": null,
+          "source": "wygląd nagłówka"
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "code": "STY-DIRECT-OVERRIDE",
+      "label": "Formatowanie ręczne inne niż w stylu",
+      "severity": "Error",
+      "category": "Text",
+      "standard": "style/1.0",
+      "standardName": "Formatowanie z Galerii stylów",
+      "message": "Akapit w stylu „Text” ma formatowanie nadane ręcznie, inne niż w stylu: kolor czcionki (#FFFFFF, w stylu: automatyczny).",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:5",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 5,
+        "subIndex": null,
+        "snippet": "Lubię jak mi żona ssie kutango."
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "Zaznacz akapit → Ctrl+Spacja (wyczyść formatowanie znaków) → wybierz styl „Text” z Galerii stylów (Narzędzia główne → Style). Jeśli odstępstwo od stylu jest zamierzone, użyj innego stylu z Galerii (np. znakowego „Pogrubienie”) albo zmień sam styl – nie formatuj ręcznie.",
+      "scope": "Paragraph",
+      "details": [
+        {
+          "property": "color",
+          "label": "kolor czcionki",
+          "actual": "#FFFFFF",
+          "expected": "automatyczny",
+          "source": "cały tekst akapitu"
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "code": "STY-DUPLICATE",
+      "label": "Kopia stylu",
+      "severity": "Warning",
+      "category": "Structure",
+      "standard": "style/1.0",
+      "standardName": "Formatowanie z Galerii stylów",
+      "message": "Styl akapitowy „Header1” ma takie samo formatowanie jak styl „Nagłówki” – wygląda na jego kopię (np. po wklejeniu treści z innego dokumentu); użyty w 2 akapitach.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:0",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "Jebać TEKOM"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Recommended",
+      "statusLabel": "REKOMENDOWANE",
+      "fix": "Zaznacz tekst w stylu „Header1” (okienko Style, Alt+Ctrl+Shift+S → menu stylu → Zaznacz wszystkie wystąpienia) → wybierz z Galerii stylów styl „Nagłówki” → usuń zbędny styl „Header1” (menu stylu → Usuń).",
+      "scope": "Styles",
+      "details": [
+        {
+          "property": "p.pStyle",
+          "label": "styl akapitu",
+          "actual": "Header1",
+          "expected": "Nagłówki",
+          "source": null
+        }
+      ]
+    }
+  ]
 }
