@@ -296,7 +296,7 @@
       "wcag": [
         "1.3.1"
       ],
-      "message": "Pusty wiersz 6 rozdziela dane, które ciągną się dalej w tych samych kolumnach (blok A1:D8). Czytnik ekranu może potraktować pusty wiersz jak koniec danych – możliwy problem z kryterium 1.3.1, wymaga weryfikacji przez człowieka.",
+      "message": "Pusty wiersz 6 rozdziela dane, które ciągną się dalej w tych samych kolumnach (blok A2:D8). Czytnik ekranu może potraktować pusty wiersz jak koniec danych – możliwy problem z kryterium 1.3.1, wymaga weryfikacji przez człowieka.",
       "fixInstruction": "1. Zaznacz puste wiersze (kolumny), klikając ich nagłówki. 2. Kliknij prawym przyciskiem myszy → Usuń (albo Narzędzia główne → Usuń → Usuń wiersze arkusza / Usuń kolumny arkusza). 3. Odstęp między częściami danych uzyskaj wysokością wiersza lub szerokością kolumny (Narzędzia główne → Format → Wysokość wiersza / Szerokość kolumny), a nie pustymi komórkami. Jeśli to osobne zestawienia, nadaj każdemu własny wiersz nagłówka albo przenieś je na osobne arkusze.",
       "location": "Sheet2!A6:D6",
       "key": "0001|Range|0000006|00001|A6:D6|",
@@ -307,7 +307,7 @@
         },
         {
           "name": "Blok danych",
-          "value": "A1:D8"
+          "value": "A2:D8"
         }
       ]
     },

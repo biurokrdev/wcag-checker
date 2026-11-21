@@ -195,15 +195,17 @@ internal sealed class BlankLayoutRule : IXlsxRule
             {
                 foreach (var gap in block.RowGaps)
                 {
+                    // Blok podawany jak w XL-TABLE-MISSING i XL-MERGED: od wiersza nagłówkowego, bez wierszy tytułu nad nim.
+                    var area = Area(block);
                     yield return new XlsxRuleHit(Code,
-                        $"{Rows(gap)} dane, które ciągną się dalej w tych samych kolumnach (blok {block.Range}). Czytnik ekranu może potraktować pusty wiersz jak koniec danych – możliwy problem z kryterium 1.3.1, wymaga weryfikacji przez człowieka.",
+                        $"{Rows(gap)} dane, które ciągną się dalej w tych samych kolumnach (blok {area}). Czytnik ekranu może potraktować pusty wiersz jak koniec danych – możliwy problem z kryterium 1.3.1, wymaga weryfikacji przez człowieka.",
                         XlsxLocation.OfRange(sheet, gap))
                     {
                         Confidence = StructureOptions.BlankRowConfidence,
                         Evidence =
                         [
                             new XlsxEvidence("Puste wiersze", gap.RowCount.ToString(CultureInfo.InvariantCulture)),
-                            new XlsxEvidence("Blok danych", block.Range.ToString()),
+                            new XlsxEvidence("Blok danych", area.ToString()),
                         ],
                         Weight = gap.RowCount,
                     };
@@ -213,14 +215,14 @@ internal sealed class BlankLayoutRule : IXlsxRule
             foreach (var gap in layout.ColumnGaps)
             {
                 yield return new XlsxRuleHit(Code,
-                    $"{Columns(gap.Gap)} bloki {gap.Left.Range} i {gap.Right.Range} o wspólnym wierszu nagłówkowym. Jeśli to jeden zestaw danych, pusta kolumna utrudnia jego odczytanie – możliwy problem z kryterium 1.3.1, wymaga weryfikacji przez człowieka.",
+                    $"{Columns(gap.Gap)} bloki {Area(gap.Left)} i {Area(gap.Right)} o wspólnym wierszu nagłówkowym. Jeśli to jeden zestaw danych, pusta kolumna utrudnia jego odczytanie – możliwy problem z kryterium 1.3.1, wymaga weryfikacji przez człowieka.",
                     XlsxLocation.OfRange(sheet, gap.Gap))
                 {
                     Confidence = StructureOptions.BlankColumnConfidence,
                     Evidence =
                     [
                         new XlsxEvidence("Puste kolumny", gap.Gap.ColumnCount.ToString(CultureInfo.InvariantCulture)),
-                        new XlsxEvidence("Bloki danych", $"{gap.Left.Range}, {gap.Right.Range}"),
+                        new XlsxEvidence("Bloki danych", $"{Area(gap.Left)}, {Area(gap.Right)}"),
                     ],
                     Weight = gap.Gap.ColumnCount,
                 };
@@ -247,6 +249,9 @@ internal sealed class BlankLayoutRule : IXlsxRule
             }
         }
     }
+
+    /// <summary>Obszar danych bloku: od wiersza nagłówkowego do końca (bez scalonego tytułu nad nim); blok bez nagłówka – cały.</summary>
+    private static RangeRef Area(DataBlock block) => block.TableRange ?? block.Range;
 
     private static string Rows(RangeRef gap) => gap.RowCount == 1
         ? $"Pusty wiersz {gap.From.Row.ToString(CultureInfo.InvariantCulture)} rozdziela"
