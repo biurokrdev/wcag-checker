@@ -5,10 +5,10 @@
     Problem: Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie.
 
 #1 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 7: „Warunki dodatkowe”
-    [FAKE_HEADING] Nagłówek zrobiony formatowaniem  ·  ostrzeżenie
-    Problem: 1 akapit wygląda na nagłówek (krótki, pogrubiony albo dużą czcionką), ale bez stylu nagłówka, więc poza konspektem dokumentu; pierwszy: „Warunki dodatkowe”.
-
-#2 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 7: „Warunki dodatkowe”
     [BODY_TEXT_SIZE_MISMATCH] Rozmiar tekstu podstawowego spoza standardu  ·  ostrzeżenie
     Problem: 1 fragment tekstu jest powiększony do 12 albo 14 pt; dopuszczalne tylko z potrzeby biznesowej.
+
+#2 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 7: „Warunki dodatkowe”
+    [FAKE_HEADING] Nagłówek zrobiony formatowaniem  ·  ostrzeżenie
+    Problem: 1 akapit wygląda na nagłówek (krótki, pogrubiony albo dużą czcionką), ale bez stylu nagłówka, więc poza konspektem dokumentu; pierwszy: „Warunki dodatkowe”.
 

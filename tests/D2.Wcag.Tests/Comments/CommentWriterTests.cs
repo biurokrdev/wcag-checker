@@ -416,36 +416,20 @@ public class CommentWriterTests
         Assert.True(before["[Content_Types].xml"].AsSpan().SequenceEqual(after["[Content_Types].xml"]));
     }
 
-    // ------------------------------------------------------------ pliki, których nie da się opatrzyć komentarzami
+    // ------------------------------------------------------------ szablony i pliki z makrami: kopia tego samego typu
 
-    [Theory]
-    [InlineData(WordprocessingDocumentType.MacroEnabledDocument, "dokumentem z makrami (.docm)")]
-    [InlineData(WordprocessingDocumentType.Template, "szablonem programu Word (.dotx)")]
-    [InlineData(WordprocessingDocumentType.MacroEnabledTemplate, "szablonem z makrami (.dotm)")]
-    public void MacroDocumentsAndTemplates_AreRejectedWithExplanation(WordprocessingDocumentType type, string expected)
+    public static TheoryData<string, WordprocessingDocumentType, string, string> OtherWordTypes() => new()
     {
-        using var stream = new MemoryStream();
-        stream.Write(new DocxBuilder().Paragraph("Treść.").Build());
-        using (var package = WordprocessingDocument.Open(stream, true))
-        {
-            package.ChangeDocumentType(type);
-        }
-
-        var ex = Assert.Throws<CommentExportException>(() => Writer.Annotate(stream.ToArray(), [], Options));
-
-        Assert.Contains(expected, ex.Message);
-        Assert.Contains("zapisz plik w Wordzie jako „Dokument programu Word (*.docx)”", ex.Message);
-    }
+        { "application/vnd.openxmlformats-officedocument.wordprocessingml.template.main+xml", WordprocessingDocumentType.Template, ".dotx", "application/vnd.openxmlformats-officedocument.wordprocessingml.template" },
+        { "application/vnd.ms-word.document.macroEnabled.main+xml", WordprocessingDocumentType.MacroEnabledDocument, ".docm", "application/vnd.ms-word.document.macroEnabled.12" },
+        { "application/vnd.ms-word.template.macroEnabledTemplate.main+xml", WordprocessingDocumentType.MacroEnabledTemplate, ".dotm", "application/vnd.ms-word.template.macroEnabled.12" },
+    };
 
     // Plik prosto z Worda: budowa pakietu jak w .docx (word/document.xml), różni się tylko typ zawartości części głównej.
-    [Theory]
-    [InlineData("application/vnd.ms-word.document.macroEnabled.main+xml", "dokumentem z makrami (.docm)")]
-    [InlineData("application/vnd.openxmlformats-officedocument.wordprocessingml.template.main+xml", "szablonem programu Word (.dotx)")]
-    [InlineData("application/vnd.ms-word.template.macroEnabledTemplate.main+xml", "szablonem z makrami (.dotm)")]
-    public void WordFilesWithOtherMainContentType_AreRejected_InsteadOfBecomingABrokenDocx(string contentType, string expected)
+    internal static byte[] WithMainContentType(byte[] docx, string contentType)
     {
         using var stream = new MemoryStream();
-        stream.Write(Edge);
+        stream.Write(docx);
         using (var zip = new ZipArchive(stream, ZipArchiveMode.Update, leaveOpen: true))
         {
             var entry = zip.GetEntry("[Content_Types].xml")!;
@@ -461,10 +445,77 @@ public class CommentWriterTests
             writer.Write(types.Replace("application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml", contentType));
         }
 
-        var ex = Assert.Throws<CommentExportException>(() => Writer.Annotate(stream.ToArray(), [], Options));
-
-        Assert.Contains(expected, ex.Message);
+        return stream.ToArray();
     }
+
+    [Theory]
+    [MemberData(nameof(OtherWordTypes))]
+    public void TemplatesAndMacroFiles_GetACopyOfTheSameType(string contentType, WordprocessingDocumentType type, string extension, string mediaType)
+    {
+        var original = WithMainContentType(Edge, contentType);
+        var result = Validate(original, "wcag/2.1", "firmowy/2.0");
+        Assert.True(result.IsDocumentReadable);
+
+        var annotated = Writer.Annotate(original, result, Options);
+
+        Assert.Equal(extension, annotated.FileExtension);
+        Assert.Equal(mediaType, annotated.MediaType);
+        Assert.True(annotated.Comments.Count > 1);
+
+        // COMMENT_TEST_DUMP=<katalog>: kopia do ręcznego otwarcia w Wordzie pod właściwym rozszerzeniem.
+        if (Environment.GetEnvironmentVariable("COMMENT_TEST_DUMP") is { Length: > 0 } folder)
+        {
+            Directory.CreateDirectory(folder);
+            File.WriteAllBytes(Path.Combine(folder, "edge_z_komentarzami" + annotated.FileExtension), annotated.Content);
+        }
+
+        // Typ zawartości części głównej zostaje: spis typów jest bajt w bajt taki sam, a pakiet otwiera się jako ten sam typ.
+        var before = FixtureDocx.Parts(original);
+        var after = FixtureDocx.Parts(annotated.Content);
+        Assert.True(before["[Content_Types].xml"].AsSpan().SequenceEqual(after["[Content_Types].xml"]));
+        using (var package = WordprocessingDocument.Open(new MemoryStream(annotated.Content), false))
+        {
+            Assert.Equal(type, package.DocumentType);
+            Assert.Equal(contentType, package.MainDocumentPart!.ContentType);
+        }
+
+        Assert.Equal(annotated.Comments.Count, Added(annotated.Content).Count);
+        Assert.Equal(MainXml(original), MainXmlWithoutComments(annotated.Content));
+        Assert.Empty(SchemaErrors(annotated.Content).Except(SchemaErrors(original)));
+    }
+
+    [Theory]
+    [InlineData(WordprocessingDocumentType.MacroEnabledDocument, ".docm")]
+    [InlineData(WordprocessingDocumentType.Template, ".dotx")]
+    [InlineData(WordprocessingDocumentType.MacroEnabledTemplate, ".dotm")]
+    public void TemplatesAndMacroFiles_WithoutCommentsPart_GetItRegistered_AndKeepTheirType(WordprocessingDocumentType type, string extension)
+    {
+        // Zmiana typu w SDK: część główna pod inną nazwą, komentarzy jeszcze nie ma.
+        using var stream = new MemoryStream();
+        stream.Write(new DocxBuilder().Paragraph("Treść.").Build());
+        using (var package = WordprocessingDocument.Open(stream, true))
+        {
+            package.ChangeDocumentType(type);
+        }
+
+        var annotated = Writer.Annotate(stream.ToArray(), [], Options);
+
+        Assert.Equal(extension, annotated.FileExtension);
+        using var reopened = WordprocessingDocument.Open(new MemoryStream(annotated.Content), false);
+        Assert.Equal(type, reopened.DocumentType);
+        Assert.Single(reopened.MainDocumentPart!.WordprocessingCommentsPart!.Comments.Elements<Comment>());
+    }
+
+    [Fact]
+    public void OrdinaryDocument_IsDocx()
+    {
+        var annotated = Writer.Annotate(Edge, [], Options);
+
+        Assert.Equal(".docx", annotated.FileExtension);
+        Assert.Equal("application/vnd.openxmlformats-officedocument.wordprocessingml.document", annotated.MediaType);
+    }
+
+    // ------------------------------------------------------------ pliki, których nie da się opatrzyć komentarzami
 
     [Fact]
     public void EmptyCorruptedAndEncryptedFiles_AreRejectedWithPolishMessage()
@@ -507,7 +558,7 @@ public class CommentWriterTests
 
         var ex = Assert.Throws<CommentExportException>(() => Writer.Annotate(stream.ToArray(), [], Options));
 
-        Assert.Equal("Dokument nie ma w treści żadnego akapitu, więc nie ma gdzie umieścić komentarzy.", ex.Message);
+        Assert.Equal("Dokument nie ma w treści żadnego akapitu, w którym Word pozwala umieścić komentarz.", ex.Message);
     }
 
     [Fact]

@@ -68,39 +68,35 @@ public sealed class WcagCommentWriter : IWcagCommentWriter
         }
     }
 
-    // Wynik ma nazwę i typ dokumentu .docx. Szablon albo plik z makrami ma inny typ zawartości części głównej i Word
-    // odrzuca go pod rozszerzeniem .docx, a zmiana typu to już konwersja pliku, nie kopia – stąd odmowa z wyjaśnieniem.
+    // Kopia zachowuje typ oryginału (dokument, szablon, z makrami): typ zawartości części głównej nie jest zmieniany,
+    // a wynik niesie rozszerzenie i typ MIME, pod którymi Word go otworzy. Strict Open XML zostaje odmową, bo SDK
+    // tłumaczy przestrzenie nazw przy odczycie i część główna po zapisie nie pasowałaby do reszty pakietu.
     private static void EnsureSupported(WordprocessingDocument package)
     {
-        var kind = package.DocumentType switch
-        {
-            WordprocessingDocumentType.Template => "szablonem programu Word (.dotx)",
-            WordprocessingDocumentType.MacroEnabledDocument => "dokumentem z makrami (.docm)",
-            WordprocessingDocumentType.MacroEnabledTemplate => "szablonem z makrami (.dotm)",
-            _ => null,
-        };
-        if (kind is not null)
-        {
-            throw new CommentExportException(
-                $"Plik jest {kind}. Kopię z komentarzami można przygotować tylko dla dokumentu .docx – zapisz plik w Wordzie jako „Dokument programu Word (*.docx)” i sprawdź go ponownie.");
-        }
-
         if (package.StrictRelationshipFound)
         {
             throw new CommentExportException(
-                "Plik jest zapisany w formacie Strict Open XML. Kopię z komentarzami można przygotować tylko dla zwykłego dokumentu .docx – zapisz plik w Wordzie jako „Dokument programu Word (*.docx)” i sprawdź go ponownie.");
+                "Plik jest zapisany w formacie Strict Open XML. Kopię z komentarzami można przygotować tylko dla pliku w zwykłym formacie Worda – zapisz plik w Wordzie jako „Dokument programu Word (*.docx)” albo „Szablon programu Word (*.dotx)” i sprawdź go ponownie.");
         }
     }
+
+    private static (string Extension, string MediaType) FileType(WordprocessingDocument package) => package.DocumentType switch
+    {
+        WordprocessingDocumentType.Template => (".dotx", "application/vnd.openxmlformats-officedocument.wordprocessingml.template"),
+        WordprocessingDocumentType.MacroEnabledDocument => (".docm", "application/vnd.ms-word.document.macroEnabled.12"),
+        WordprocessingDocumentType.MacroEnabledTemplate => (".dotm", "application/vnd.ms-word.template.macroEnabled.12"),
+        _ => (".docx", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"),
+    };
 
     private static CommentedDocument Annotate(byte[] docx, DocxDocument document, List<WcagIssue> issues, CommentOptions options)
     {
         var main = document.Main;
         var body = document.Body;
-        var firstParagraph = body.Descendants<Paragraph>().FirstOrDefault()
-            ?? throw new CommentExportException("Dokument nie ma w treści żadnego akapitu, więc nie ma gdzie umieścić komentarzy.");
 
         // ---- 1. Plan: wszystkie wystąpienia rozwiązane do elementów, zanim cokolwiek zostanie zmienione.
         var locator = new AnchorLocator(document);
+        var whole = locator.FirstCommentable()
+            ?? throw new CommentExportException("Dokument nie ma w treści żadnego akapitu, w którym Word pozwala umieścić komentarz.");
         var placements = new List<Placement>();
         var collected = new List<CollectedIssue>();
         foreach (var issue in issues)
@@ -125,7 +121,8 @@ public sealed class WcagCommentWriter : IWcagCommentWriter
             }
         }
 
-        // Kolejność: miejsce w dokumencie, w jednym miejscu waga malejąco, potem kod. Zbiorczy zawsze pierwszy.
+        // Kolejność: początek zakresu w dokumencie; komentarze zaczynające się w tym samym miejscu (także akapit
+        // i jego pierwszy fragment) – waga malejąco, potem kod; dalej koniec zakresu. Zbiorczy zawsze pierwszy.
         var order = new Dictionary<OpenXmlElement, int>(ReferenceEqualityComparer.Instance);
         foreach (var element in body.Descendants())
         {
@@ -134,13 +131,12 @@ public sealed class WcagCommentWriter : IWcagCommentWriter
 
         var ordered = placements
             .OrderBy(p => order.GetValueOrDefault(p.Anchor.First ?? p.Anchor.StartParagraph, int.MaxValue))
-            .ThenBy(p => order.GetValueOrDefault(p.Anchor.Last ?? p.Anchor.EndParagraph, int.MaxValue))
             .ThenByDescending(p => p.Issue!.Severity)
             .ThenBy(p => p.Issue!.Code, StringComparer.Ordinal)
+            .ThenBy(p => order.GetValueOrDefault(p.Anchor.Last ?? p.Anchor.EndParagraph, int.MaxValue))
             .ThenBy(p => p.Sequence)
             .ToList();
 
-        var whole = new Anchor(firstParagraph, null, firstParagraph, null);
         if (collected.Count > 0)
         {
             ordered.Insert(0, new Placement(whole, CommentKind.Collective, null, null, CommentText.Collective(collected), -1));
@@ -172,7 +168,8 @@ public sealed class WcagCommentWriter : IWcagCommentWriter
 
         // ---- 3. Nowy pakiet: oryginalne wpisy + podmieniona część główna i komentarze.
         var content = CommentPackage.Write(docx, main.Uri, Serialize(main.Document), commentsPart?.Uri, Serialize(comments), date);
-        return new CommentedDocument(content, written, collected.Count);
+        var (extension, mediaType) = FileType(document.Package);
+        return new CommentedDocument(content, written, collected.Count, extension, mediaType);
     }
 
     private static byte[] Serialize(OpenXmlPartRootElement root)
@@ -261,7 +258,8 @@ public sealed class WcagCommentWriter : IWcagCommentWriter
 
     /// <summary>
     /// Kotwica komentarza w treści głównej. <paramref name="First"/> / <paramref name="Last"/>: element, przed którym
-    /// staje początek zakresu i za którym staje koniec; <c>null</c> = początek / koniec akapitu.
+    /// staje początek zakresu i za którym staje koniec; <c>null</c> = początek / koniec akapitu (początek tylko
+    /// w akapicie bez treści – inaczej cały akapit zaczyna się przed swoim pierwszym elementem treści).
     /// </summary>
     private sealed record Anchor(Paragraph StartParagraph, OpenXmlElement? First, Paragraph EndParagraph, OpenXmlElement? Last);
 
@@ -270,7 +268,79 @@ public sealed class WcagCommentWriter : IWcagCommentWriter
     // Wystąpienie → kotwica w treści głównej (albo brak kotwicy = komentarz zbiorczy) i dopisek o miejscu.
     private sealed class AnchorLocator(DocxDocument document)
     {
+        // Właściwości kontrolki treści (dzieci w:sdtPr), przy których Word pozwala komentować jej wnętrze: kontrolka
+        // tekstu sformatowanego, grupa, blok konstrukcyjny, cytat, równanie, bibliografia. Każda inna właściwość
+        // (w:text, w:date, w:dropDownList, w:comboBox, w:picture, w14:checkbox, powiązanie danych, symbol zastępczy,
+        // nieznane rozszerzenie) oznacza kontrolkę „zamkniętą”: znacznik komentarza w jej w:sdtContent daje plik,
+        // którego Word nie otwiera („Plik jest prawdopodobnie uszkodzony”).
+        private static readonly HashSet<string> OpenControlProperties = new(StringComparer.Ordinal)
+        {
+            "rPr", "alias", "tag", "id", "lock", "placeholder", "temporary", "color", "appearance", "label", "tabIndex",
+            "richText", "group", "citation", "equation", "bibliography", "docPartObj", "docPartList",
+        };
+
+        private List<Paragraph>? _paragraphs;
+        private Dictionary<Paragraph, int>? _paragraphIndex;
+
+        /// <summary>Kotwica „cały pierwszy akapit dokumentu, w którym można umieścić komentarz” (zbiorczy, „Brak uwag”).</summary>
+        public Anchor? FirstCommentable() => Paragraphs().FirstOrDefault(IsCommentable) is { } first ? Whole(first) : null;
+
         public (Anchor? Anchor, string? Note) Locate(WcagIssue issue, IssueLocation location)
+        {
+            var (anchor, note) = Find(issue, location);
+            if (anchor is null || (IsCommentable(anchor.StartParagraph) && IsCommentable(anchor.EndParagraph)))
+            {
+                return (anchor, note);
+            }
+
+            // Akapit leży w zamkniętej kontrolce treści na poziomie bloku: komentarz staje na najbliższym akapicie
+            // poza nią – przed kontrolką, a gdy takiego nie ma, za nią.
+            var snippet = string.IsNullOrWhiteSpace(location.Snippet) ? "" : ": " + location.Snippet.Trim();
+            var index = ParagraphIndex()[anchor.StartParagraph];
+            var paragraphs = Paragraphs();
+            for (var i = index - 1; i >= 0; i--)
+            {
+                if (IsCommentable(paragraphs[i]))
+                {
+                    return (Whole(paragraphs[i]), note ?? $"Dotyczy kontrolki treści za tym akapitem (Word nie pozwala komentować wnętrza kontrolki tego typu){snippet}");
+                }
+            }
+
+            for (var i = index + 1; i < paragraphs.Count; i++)
+            {
+                if (IsCommentable(paragraphs[i]))
+                {
+                    return (Whole(paragraphs[i]), note ?? $"Dotyczy kontrolki treści przed tym akapitem (Word nie pozwala komentować wnętrza kontrolki tego typu){snippet}");
+                }
+            }
+
+            return (null, note ?? (snippet.Length == 0 ? null : "Miejsce" + snippet));
+        }
+
+        private List<Paragraph> Paragraphs() => _paragraphs ??= document.Body.Descendants<Paragraph>().ToList();
+
+        private Dictionary<Paragraph, int> ParagraphIndex()
+        {
+            if (_paragraphIndex is null)
+            {
+                _paragraphIndex = new Dictionary<Paragraph, int>(ReferenceEqualityComparer.Instance);
+                foreach (var paragraph in Paragraphs())
+                {
+                    _paragraphIndex[paragraph] = _paragraphIndex.Count;
+                }
+            }
+
+            return _paragraphIndex;
+        }
+
+        private static bool IsClosedControl(SdtElement control) =>
+            control.GetFirstChild<SdtProperties>() is { } properties && properties.ChildElements.Any(p => !OpenControlProperties.Contains(p.LocalName));
+
+        // Akapit, w którym znaczniki komentarza mogą stanąć jako jego dzieci.
+        private static bool IsCommentable(Paragraph paragraph) =>
+            !IsEmbedded(paragraph) && !paragraph.Ancestors<SdtElement>().Any(IsClosedControl);
+
+        private (Anchor? Anchor, string? Note) Find(WcagIssue issue, IssueLocation location)
         {
             if (location.Kind == LocationKind.Document)
             {
@@ -363,10 +433,11 @@ public sealed class WcagCommentWriter : IWcagCommentWriter
                         paragraphs = cell.Descendants<Paragraph>().Where(p => !IsEmbedded(p)).ToList();
                     }
 
-                    return paragraphs.Count == 0 ? (null, null) : (new Anchor(paragraphs[0], null, paragraphs[^1], null), null);
+                    return paragraphs.Count == 0 ? (null, null) : (new Anchor(paragraphs[0], Whole(paragraphs[0]).First, paragraphs[^1], null), null);
 
                 default:
-                    // Run, łącze albo inny element w akapicie: zakres obejmuje ten element.
+                    // Run, łącze albo inny element w akapicie: zakres obejmuje ten element (albo kontener, do którego
+                    // środka znaczników wstawiać nie wolno – patrz Hoist).
                     if (element.Ancestors<Paragraph>().FirstOrDefault() is not { } owner)
                     {
                         return (null, null);
@@ -409,22 +480,42 @@ public sealed class WcagCommentWriter : IWcagCommentWriter
             return new Anchor(paragraph, Hoist(first, paragraph), paragraph, Hoist(last, paragraph));
         }
 
-        private static Anchor Whole(Paragraph paragraph) => new(paragraph, null, paragraph, null);
+        // Cały akapit: początek przed pierwszym elementem treści (po w:pPr i po znacznikach zakładek, zakresów
+        // i sprawdzania pisowni), koniec na końcu akapitu. Dzięki temu komentarz do akapitu i komentarz do jego
+        // pierwszego fragmentu zaczynają się w tym samym miejscu i porządkuje je waga, nie rodzaj kotwicy.
+        private static Anchor Whole(Paragraph paragraph) =>
+            new(paragraph, paragraph.ChildElements.FirstOrDefault(c => c is not ParagraphProperties && !IsMarker(c)), paragraph, null);
+
+        private static bool IsMarker(OpenXmlElement element) =>
+            element is BookmarkStart or BookmarkEnd or ProofError or PermStart or PermEnd or CommentRangeStart or CommentRangeEnd
+            || element.LocalName.EndsWith("RangeStart", StringComparison.Ordinal) || element.LocalName.EndsWith("RangeEnd", StringComparison.Ordinal);
 
         private static Paragraph Outermost(Paragraph paragraph) => paragraph.Ancestors<Paragraph>().LastOrDefault() ?? paragraph;
 
         private static bool IsEmbedded(OpenXmlElement element, OpenXmlElement? until = null) =>
             element.Ancestors().TakeWhile(a => !ReferenceEquals(a, until)).Any(a => a is AlternateContent || a.LocalName == "txbxContent");
 
-        // Znaczniki zakresu i run z odwołaniem stają obok elementu tylko w kontenerach, w których Word sam je zapisuje
-        // (akapit, łącze, treść formantu, wstawienie śledzone). W innych (pole proste, usunięcie śledzone, ruby…)
-        // kotwicą staje się cały kontener.
+        // Znaczniki zakresu i run z odwołaniem stają obok elementu tylko w kontenerach, w których Word je przyjmuje:
+        // akapit, łącze, wstawienie śledzone i wierszowa kontrolka treści „otwarta” (tekst sformatowany – patrz
+        // OpenControlProperties). Każdy inny kontener między elementem a akapitem (kontrolka zwykłego tekstu, daty,
+        // listy, obrazu, pole proste, usunięcie śledzone, ruby…) staje się kotwicą w całości – znaczniki lądują
+        // poza nim, tak jak zapisuje je sam Word.
         private static OpenXmlElement Hoist(OpenXmlElement element, Paragraph owner)
         {
             var current = element;
-            while (current.Parent is { } parent && !ReferenceEquals(parent, owner) && parent is not (Hyperlink or SdtContentRun or InsertedRun))
+            foreach (var ancestor in element.Ancestors().TakeWhile(a => !ReferenceEquals(a, owner)))
             {
-                current = parent;
+                var transparent = ancestor switch
+                {
+                    Hyperlink or InsertedRun => true,
+                    SdtRun control => !IsClosedControl(control),
+                    SdtContentRun content => content.Parent is SdtRun control && !IsClosedControl(control),
+                    _ => false,
+                };
+                if (!transparent)
+                {
+                    current = ancestor;
+                }
             }
 
             return current;
