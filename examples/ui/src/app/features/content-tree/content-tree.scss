@@ -1,4 +1,5 @@
 // Panel struktury dokumentu: ten sam wygląd co bloki standardów w podsumowaniu (pomarańczowy pasek, zwijana sekcja).
+// Drzewo to płaska lista wierszy z wcięciem według głębokości; stan węzła pokazuje kolorowy znak i pasek z lewej.
 :host {
   display: block;
 }
@@ -67,5 +68,175 @@
     min-width: 2rem;
     font-weight: 600;
     color: var(--muted);
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 0.9rem;
+  margin: 0.7rem 1rem 0.5rem;
+
+  .filter {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+}
+
+.tree {
+  margin: 0.4rem 0 0.4rem;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+
+.node {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.5rem;
+  padding: 0.3rem 0.6rem 0.3rem 0.4rem;
+  border-bottom: 1px solid var(--line);
+  border-left: 3px solid transparent;
+  cursor: pointer;
+
+  &:hover {
+    background: #fafafa;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--orange);
+    outline-offset: -2px;
+  }
+
+  &.state-warning {
+    border-left-color: var(--warn);
+  }
+
+  &.state-error {
+    border-left-color: var(--bad);
+  }
+
+  &.selected {
+    background: var(--select-bg);
+  }
+
+  .toggle {
+    display: inline-block;
+    width: 1.1rem;
+    flex: none;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.9rem;
+    user-select: none;
+
+    &:not(.none):hover {
+      color: var(--ink);
+    }
+  }
+
+  .state {
+    display: inline-block;
+    width: 1.1rem;
+    flex: none;
+    text-align: center;
+    font-weight: 700;
+  }
+
+  .badge {
+    flex: none;
+    min-width: 1.6rem;
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: var(--muted);
+
+    &.heading {
+      color: var(--indigo);
+    }
+  }
+
+  .text {
+    flex: 1 1 14rem;
+    min-width: 0;
+    overflow-wrap: anywhere;
+
+    &.blank {
+      color: var(--bad);
+      font-style: italic;
+    }
+  }
+
+  .meta {
+    color: var(--muted);
+    font-size: 0.86rem;
+  }
+
+  .inside {
+    font-size: 0.86rem;
+    font-weight: 600;
+  }
+}
+
+.state-ok {
+  color: var(--ok);
+}
+
+.state-warning {
+  color: var(--warn);
+}
+
+.state-error {
+  color: var(--bad);
+}
+
+// Kolor stanu dotyczy znaku i dopisków, nie całego wiersza.
+.node.state-warning,
+.node.state-error {
+  color: var(--ink);
+}
+
+.more {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0.6rem 1rem 0;
+}
+
+.node-detail {
+  margin: 0.8rem 1rem 0;
+  padding: 0.6rem 0.9rem;
+  background: var(--surface-2);
+  border-left: 4px solid var(--orange);
+
+  p {
+    margin: 0 0 0.3rem;
+  }
+
+  .fragment {
+    overflow-wrap: anywhere;
+  }
+
+  .plain {
+    margin: 0.3rem 0 0;
+    padding-left: 1.1rem;
+
+    li {
+      margin: 0.15rem 0;
+    }
   }
 }
