@@ -1,2 +1,4 @@
 *.docx binary
+*.xlsx binary
+*.xlsm binary
 tests/snapshots/** text eol=lf

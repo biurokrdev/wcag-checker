@@ -30,6 +30,7 @@
     <!-- Snapshoty i ścieżki repozytorium wspólne z testami biblioteki. -->
     <Compile Include="..\..\..\tests\Shared\*.cs" Link="Shared\%(Filename)%(Extension)" />
     <None Include="..\..\..\tests\fixtures\*.docx" Link="fixtures\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\..\tests\fixtures\xlsx\**\*" Link="fixtures\xlsx\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
     <None Include="..\..\..\samples\*.docx" Link="samples\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
     <None Include="images\*" Link="images\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
