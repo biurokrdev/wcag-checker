@@ -10,6 +10,8 @@ Biblioteka .NET 8 do sprawdzania dokumentów Word (DOCX) według **wersjonowanyc
 | `wcag/2.1` | dostępność dokumentu Word (poziom AA): nagłówki i fałszywe nagłówki, listy, tabele, obrazy (także w nagłówkach i stopkach), łącza, kontrast, puste znaki, numer strony, spis treści, tytuł, język | potwierdzony; pokrycie kryteriów w sekcji [Pokrycie kryteriów WCAG 2.1](#pokrycie-kryteriów-wcag-21) |
 | `firmowy/1.9` | standard pism firmowych obowiązujący dotąd: fraza instytucji w tytule i autorze, marginesy 36 pt | potwierdzony |
 | `firmowy/2.0` | standard pism firmowych według „Specyfikacji technicznej guidebooka” 1.0: A4 i marginesy 12,7 mm, wyrównanie do lewej, SUN Me / SUN Display, interlinia 1,2, typografia H1–H5, paleta 7 kolorów, łącza, stopka, spis treści, listy, tabele, metadane, warianty, WZÓR (reguły G-01…G-16) | potwierdzony; sekcja [Standard pism firmowych 2.0](#standard-pism-firmowych-20) |
+| `style/1.0` | „Formatowanie z Galerii stylów”: formatowanie nadane ręcznie zamiast stylem, akapity udające nagłówki, style spoza Galerii i kopie stylów (kody `STY-…`) | poza profilem domyślnym; sekcja [Galeria stylów i hierarchia treści](#galeria-stylów-i-hierarchia-treści) |
+| `hierarchia/1.0` | „Hierarchia treści”: przeskoki poziomów nagłówków, treść bez nagłówka nadrzędnego, puste i fałszywe nagłówki, skoki poziomów list, numeracja nagłówków (kody `HIER-…`) | poza profilem domyślnym; ta sama sekcja |
 
 Profil walidacji tylko wybiera standardy (domyślnie `wcag/2.1` + `firmowy/1.9`); parametry reguł są w samych standardach. Wersję 3.0, 4.0, … dokłada się bez zmian w bibliotece: jako nową instancję `CorporateStandard` w kodzie albo w konfiguracji aplikacji, a wymaganie, którego nie da się opisać parametrem, jako własną implementację `IDocumentStandard` (sekcja [Standardy i wersje](#standardy-i-wersje)).
 
@@ -111,6 +113,23 @@ var validator = new WcagDocxValidator(catalog: StandardCatalog.Default.With(stan
 // albo w DI: builder.Services.AddDocumentStandard(standard);
 ```
 
+W przykładowym API te same parametry bierze się z konfiguracji – sekcja `Wcag:Corporate20` jest bindowana na `CorporateStandard20Options`; brak sekcji albo `Layout: null` to standard wbudowany, bez wybranego układu. Układu nie wybiera się na ekranie.
+
+```json
+"Wcag": {
+  "Corporate20": { "Layout": "TitlePage", "Institution": null, "RegistrationDataStyles": [ "Dane rejestrowe", "Stopka firmowa" ] }
+}
+```
+
+Status ze specyfikacji przekłada się na wagę zgłoszenia w jednym miejscu (`SpecStatuses.Severity`), wspólnym dla `firmowy/2.0`, `style/1.0` i `hierarchia/1.0`:
+
+| Status (`SpecStatus`) | Etykieta | Waga |
+|---|---|---|
+| `Required` | WYMAGANE | błąd |
+| `Recommended` | REKOMENDOWANE („ZALECANE”) | ostrzeżenie |
+| `Conditional` | WARUNKOWE | informacja |
+| `ToVerify` | DO WERYFIKACJI | informacja |
+
 | Reguła | Co sprawdza w DOCX | Kody |
 |---|---|---|
 | G-01 | A4 210 × 297 mm, marginesy 12,7 mm (36 pt) z każdej strony | `PAGE_FORMAT_NOT_A4`, `INVALID_MARGINS`, `MARGINS_MISSING` |
@@ -150,6 +169,76 @@ Gdy profil łączy `wcag/2.1` z `firmowy/2.0`, zgłoszenia identyczne co do kodu
 
 Uwaga do G-15: biały identyfikator SIGNOTEK, którego wymaga specyfikacja, standard WCAG zgłosi jako `HIDDEN_TEXT_LOW_CONTRAST`; specyfikacja sama każe ocenić to osobno.
 
+## Galeria stylów i hierarchia treści
+
+Dwa standardy poza profilem domyślnym – wybiera się je jawnie (`WithStandards("style/1.0", "hierarchia/1.0")`, pole `standards` w API, pola wyboru na ekranie). Zgłoszenia niosą tytuł, status, instrukcję naprawy w Wordzie i – gdzie to ma sens – tabelę właściwości (`WcagIssue.Title`, `Status`, `Fix`, `Details`); kodów `STY-…` i `HIER-…` nie ma w `IssueCodes`.
+
+**`style/1.0` – „Formatowanie z Galerii stylów”** (`StyleGalleryStandard`). Ocenia treść główną i przypisy na rozwiązanym modelu akapitu (`DocxDocument.ResolvedParagraphs`): każda wartość ma źródło (styl, numeracja, formatowanie bezpośrednie) i wartość, która obowiązywałaby bez ręcznej zmiany.
+
+| Kod | Status domyślny | Co zgłasza |
+|---|---|---|
+| `STY-DIRECT-OVERRIDE` | WYMAGANE | formatowanie nadane ręcznie, inne niż wynika ze stylu (np. pogrubienie, kolor, wcięcie), z listą właściwości |
+| `STY-DIRECT-REDUNDANT` | REKOMENDOWANE | formatowanie ręczne, które tylko powtarza styl (także równe wartości domyślnej Worda) |
+| `STY-FAKE-HEADING` | WYMAGANE | akapit, który wygląda jak nagłówek, a nie ma stylu nagłówka; zamiast listy właściwości jedno zgłoszenie z sugerowanym stylem |
+| `STY-NOT-IN-GALLERY` | REKOMENDOWANE | użyty styl, którego nie ma w Galerii stylów (`w:qFormat`) |
+| `STY-DUPLICATE` | REKOMENDOWANE | użyty styl, który jest kopią innego stylu |
+
+Parametry (`StyleGalleryOptions`; w przykładowym API sekcja `Wcag:StyleGallery`):
+
+| Właściwość | Domyślnie | Znaczenie |
+|---|---|---|
+| `IgnoredProperties` | `null` = `DefaultIgnoredProperties` | właściwości formatowania bezpośredniego, których standard nie zgłasza – nazwy z `FormatProps` (np. `lang`, `noProof`, `p.numPr.numId`), gwiazdka na końcu = prefiks; podana lista zastępuje domyślną |
+| `AllowedStylesOutsideGallery` | `null` = `DefaultAllowedStylesOutsideGallery` | style (`w:name`), które wolno stosować, choć nie ma ich w Galerii: te, które Word nadaje sam (listy, łącza, przypisy, spis treści, nagłówek i stopka strony); podana lista zastępuje domyślną |
+| `IncludeTables` | `false` | czy formatowanie bezpośrednie sprawdzać też w akapitach tabel (style użyte w tabelach są sprawdzane zawsze) |
+| `IncludeHeadersAndFooters` | `false` | czy sprawdzać też nagłówki i stopki stron |
+| `DirectRedundantStatus`, `DirectOverrideStatus`, `FakeHeadingStatus`, `NotInGalleryStatus`, `DuplicateStatus` | jak w tabeli wyżej | status reguły; waga wynika z tabeli status → waga |
+
+```csharp
+var style = new StyleGalleryStandard(new StyleGalleryOptions { IncludeTables = true, NotInGalleryStatus = SpecStatus.Required });
+var validator = new WcagDocxValidator(catalog: StandardCatalog.Default.With(style));   // ten sam klucz zastępuje wbudowany
+```
+
+**`hierarchia/1.0` – „Hierarchia treści”** (`HierarchyStandard`, bez parametrów). Idzie po akapitach treści głównej; poziom nagłówka jest ten sam, co w `Outline`.
+
+| Kod | Status | Co zgłasza |
+|---|---|---|
+| `HIER-SKIP` | WYMAGANE | poziom nagłówka większy o więcej niż 1 od poprzedniego (H1 → H3); powrót na wyższy poziom jest poprawny |
+| `HIER-NO-PARENT` | WYMAGANE | treść przed pierwszym nagłówkiem (poza stylem „Tytuł”), dokument z treścią bez nagłówków, nagłówek poziomu 2 i niższego bez nagłówka wyższego rzędu |
+| `HIER-EMPTY` | WYMAGANE | nagłówek bez tekstu |
+| `HIER-FAKE` | WYMAGANE | akapit udający nagłówek (ten sam detektor co `STY-FAKE-HEADING`) |
+| `HIER-LIST-SKIP` | REKOMENDOWANE | pozycja listy głębiej o więcej niż jeden poziom niż poprzednia albo lista zaczynająca się poniżej pierwszego poziomu |
+| `HIER-NUM-MISMATCH` | REKOMENDOWANE | numer nagłówka z listy wielopoziomowej niezgodny z poziomem nagłówka |
+
+Łączenie standardów: `STY-FAKE-HEADING` i `HIER-FAKE` mają wspólną grupę deduplikacji (`WcagIssue.DedupGroup` = `fake-heading`) i ten sam detektor (`DocxDocument.FakeHeadingCandidates()`), więc przy obu standardach każdy taki akapit dostaje jedno zgłoszenie – od standardu, który jest pierwszy w profilu (test `FakeHeadingDedupTests`). Kody WCAG nie należą do grup: gdy profil zawiera też `wcag/2.1`, obok zostają `FAKE_HEADING` i `HEADING_LEVEL_SKIPPED`, żeby wynik i raport kryteriów WCAG się nie zmieniały.
+
+### Panel hierarchii treści
+
+`WcagValidationResult.Structure` to drzewo treści (`StructureNode`: nagłówek, grupa akapitów, lista, pozycja listy, tabela; z kluczem pierwszego elementu, poziomem, liczbą akapitów albo wierszy i nazwą stylu), budowane zawsze, niezależnie od wybranych standardów. Przykładowe API zwraca je w polu `structure`, a ekran pokazuje w panelu „Struktura dokumentu” nad zakładkami wyników: drzewo z oznaczeniem węzłów, w których są błędy albo ostrzeżenia, filtr „Pokaż tylko problemy”, zwijanie i rozwijanie, obsługa klawiaturą, a po wybraniu węzła – jego zgłoszenia i przejście do miejsca w dokumencie (podgląd po kluczu: `GET /api/wcag-documents/reports/{reportId}/locations/preview?key=`). Gdy drzewa nie ma, panel pokazuje listę nagłówków z `Outline`.
+
+## Eksport z komentarzami
+
+`IWcagCommentWriter` (`WcagCommentWriter`, `D2.Wcag.Docx`) zapisuje zgłoszenia jako natywne komentarze Worda w **kopii** dokumentu; bajty wejściowe pozostają nietknięte, a z pakietu zmieniają się tylko część główna i część komentarzy (reszta przechodzi bajt w bajt, wynik jest deterministyczny).
+
+```csharp
+var result = validator.Validate(docxBytes, profile);
+IWcagCommentWriter writer = new WcagCommentWriter();
+var copy = writer.Annotate(docxBytes, result, new CommentOptions { Date = DateTimeOffset.UtcNow });   // te same bajty, które walidowano
+File.WriteAllBytes("regulamin_z_komentarzami.docx", copy.Content);
+Console.WriteLine($"{copy.Comments.Count} komentarzy, w zbiorczym: {copy.CollectedIssues}");
+```
+
+- Jedno wystąpienie zgłoszenia = jeden komentarz w miejscu wystąpienia: `[KOD] Tytuł  ·  STATUS → waga`, `Problem: …`, `Jak naprawić: …` (gdy zgłoszenie niesie instrukcję). Komentarz obejmuje akapit, fragment albo zakres znaków zaokrąglony do granic fragmentów (fragmentów nie dzieli się); kilka komentarzy w jednym miejscu jest ułożonych według wagi, potem kodu.
+- Zgłoszenia bez miejsca w treści (metadane, marginesy, style, nieużywana stopka) trafiają do jednego komentarza zbiorczego na pierwszym akapicie. Word nie pokazuje komentarzy w nagłówkach, stopkach i przypisach, więc takie zgłoszenie jest kotwiczone w treści (początek sekcji, odwołanie do przypisu) z dopiskiem „Dotyczy stopki (sekcja 1, …)”.
+- Dokument bez zgłoszeń dostaje jeden komentarz „Brak uwag po walidacji” z nazwami standardów.
+- Autor „Audytor szablonów”, inicjały „AS”, data = data analizy (`CommentOptions`). Istniejące komentarze zostają, nowe mają kolejne identyfikatory.
+
+Przykładowa aplikacja: `POST /api/wcag-documents/reports/{reportId}/commented-document` zwraca plik `<nazwa>_z_komentarzami.docx` zbudowany z dokumentu i wystąpień raportu trzymanego w pamięci (404, gdy raport wygasł), a ekran ma przy wyniku przycisk „Pobierz z komentarzami”.
+
+Ograniczenia:
+
+- tylko zwykły `.docx`: szablon (`.dotx`), dokument i szablon z makrami (`.docm`, `.dotm`) oraz format Strict Open XML dają `CommentExportException` z wyjaśnieniem po polsku (w API odpowiedź 422); tak samo plik zaszyfrowany i dokument bez akapitów w treści;
+- kopia z komentarzami, sprawdzona ponownie z `wcag/2.1`, dostaje ostrzeżenie `COMMENTS_PRESENT` – reguła celowo nie odróżnia komentarzy audytora od innych; pozostałe zgłoszenia są takie same jak dla oryginału.
+
 ## Wynik
 
 `WcagValidationResult`:
@@ -161,6 +250,7 @@ Uwaga do G-15: biały identyfikator SIGNOTEK, którego wymaga specyfikacja, stan
 | `Outcome`, `IsValid` | `Invalid`, gdy jest choć jeden błąd; ostrzeżenia i informacje nie zmieniają werdyktu |
 | `Issues`, `Errors`, `Warnings`, `Infos`, `For(key)` | zgłoszenia: `Code` (stały), `Severity`, `Category`, `Message` po polsku, `Standard` (klucz), `Locations` (wystąpienia); najpierw błędy, potem ostrzeżenia, na końcu informacje |
 | `Outline` | nagłówki (poziom, tekst) w kolejności występowania |
+| `Structure` | drzewo treści: nagłówki, grupy akapitów, listy i tabele (sekcja [Panel hierarchii treści](#panel-hierarchii-treści)) |
 | `Document` | tytuł, autor, język, liczba akapitów, nagłówków, tabel i obrazów |
 | `Summary` | jedno zdanie, np. „3 błędy, 2 ostrzeżenia, 1 informacja.” |
 
@@ -280,7 +370,7 @@ foreach (var c in report.Criteria.Where(c => c.Status == CriterionStatus.Failed)
 
 `WcagFixOptions`: `FileName` (tytuł z nazwy pliku), `Title`, `Author`, `Language`.
 
-Parametry reguł są w standardach: `WcagStandardOptions` (`CapsTextMinLetters` = 8, `SuggestManualCheck` = true) i właściwości `CorporateStandard` (sekcja wyżej).
+Parametry reguł są w standardach: `WcagStandardOptions` (`CapsTextMinLetters` = 8, `SuggestManualCheck` = true), właściwości `CorporateStandard`, `CorporateStandard20Options` (układ dokumentu, instytucja, style danych rejestrowych) i `StyleGalleryOptions` (sekcje wyżej).
 
 ## Jak to działa
 
@@ -304,12 +394,16 @@ wcag-checker/
 ├─ src/D2.Wcag/
 │  ├─ Model/                           WcagValidationProfile (wybór standardów), WcagFixOptions
 │  ├─ Results/                         WcagIssue (+ Locations), IssueLocation, IssueCodes, IssueSeverity, IssueCategory, WcagValidationResult, WcagFixResult
-│  ├─ Standards/                       IDocumentStandard, DocumentStandard, WcagStandard (reguły, macierz kryteriów, raport zgodności), CorporateStandard + CorporateStandards (V19, V25), StandardCatalog
-│  ├─ Rules/                           IDocumentRule; reguły WCAG po jednej na obszar; CorporateRules: fraza, marginesy, A4, czcionka, rozmiar
+│  ├─ Standards/                       IDocumentStandard, DocumentStandard, WcagStandard (reguły, macierz kryteriów, raport zgodności), CorporateStandard + CorporateStandards (V19), CorporateStandard20 (+ Options), StyleGalleryStandard (+ Options), HierarchyStandard, StandardCatalog
+│  ├─ Rules/                           IDocumentRule; reguły WCAG po jednej na obszar; CorporateRules: fraza, marginesy, A4, czcionka, rozmiar; Rule + RuleDescriptor (nowe reguły); Corporate20/, Style/, Hierarchy/
 │  ├─ Fixes/                           IDocumentFix; naprawy WCAG (alt, pusty nagłówek, listy, nagłówek tabeli, stopka, tytuł/autor, język) i firmowe (fraza, marginesy)
 │  ├─ Docx/                            IWcagDocxValidator, WcagDocxValidator, IWcagDocxFixer, WcagDocxFixer; DocxDocument (widok pakietu dla reguł: historie, style, formatowanie efektywne, DocxLocator: numerowanie elementów), DocxOpener
+│  ├─ Comments/                        IWcagCommentWriter, WcagCommentWriter, CommentOptions: kopia dokumentu z komentarzami
+│  ├─ Structure/                       ContentStructure: drzewo treści (WcagValidationResult.Structure)
 │  └─ DependencyInjection/             AddD2Wcag, AddDocumentStandard
 ├─ tests/D2.Wcag.Tests/                xUnit; minimalne DOCX generowane w kodzie (DocxBuilder) + pliki z Worda z samples/
+├─ tests/D2.Wcag.Fixtures/             generator fixtur; tests/fixtures/*.docx (wynik generatora), tests/snapshots/ (wzorce wyników)
+├─ eng/update-fixtures.ps1             regeneracja fixtur
 ├─ samples/                            dokumenty do prób, D2.Wcag.Console, TemplateGenerator (wzorcowy szablon 2.0; patrz samples/README.md)
 └─ examples/                           przykładowa aplikacja: API .NET i ekran Angular (examples/README.md)
 ```
@@ -319,3 +413,20 @@ dotnet test D2.Wcag.sln                       # biblioteka
 dotnet test examples/D2.Wcag.Examples.sln     # przykładowe API
 cd examples/ui && npm test                    # ekran
 ```
+
+### Fixtury i snapshoty
+
+Fixtury to pięć dokumentów budowanych w kodzie (`tests/D2.Wcag.Fixtures`: `clean`, `direct-formatting`, `hierarchy-broken`, `audit20-gaps`, `edge`) i zapisanych jako binaria w `tests/fixtures/*.docx`; test `Fixtures_AreUpToDate` porównuje plik z generatorem część po części. Po zmianie generatora:
+
+```
+$env:UPDATE_FIXTURES = '1'; dotnet test tests/D2.Wcag.Tests --filter Fixtures    # albo: eng/update-fixtures.ps1 (PowerShell 5.1 i 7)
+```
+
+Snapshoty (`tests/snapshots`, bez dodatkowych bibliotek – `tests/Shared/Snapshot.cs`) utrwalają wyniki dla 3 plików z `samples/` i 5 fixtur w profilach `wcag`, `firmowy19`, `firmowy20`, `wcag+firmowy19`, `wcag+firmowy20`, `style`, `hierarchia`: `lib/{dokument}__{profil}.json` (wynik biblioteki), `lib/{dokument}.structure.json` (drzewo treści), `lib/*.comments.txt` (komentarze eksportu), `api/*.validate.json` (odpowiedź API), `api/*.report.txt` (raport DOCX jako tekst i liczba stron PDF), `api/standards.json`. Rozbieżność kończy test błędem i zapisuje obok plik `*.received.*` (ignorowany przez git). Celową zmianę akceptuje się tak:
+
+```
+$env:UPDATE_SNAPSHOTS = '1'; dotnet test D2.Wcag.sln; dotnet test examples/D2.Wcag.Examples.sln
+git diff tests/snapshots                                                         # przegląd każdej zmiany przed commitem
+```
+
+Po zmianie fixtury trzeba odświeżyć jedno i drugie. Liczba stron w `api/*.report.txt` zależy od czcionek systemu, więc na innej maszynie te pliki mogą wymagać odświeżenia.
