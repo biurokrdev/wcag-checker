@@ -1,5 +1,6 @@
-# Odtwarza tests/fixtures/*.docx z generatora (tests/D2.Wcag.Fixtures), a potem sprawdza, czy pliki są aktualne.
+﻿# Odtwarza tests/fixtures/*.docx z generatora (tests/D2.Wcag.Fixtures), a potem sprawdza, czy pliki są aktualne.
 # Po zmianie fixtury zaktualizuj też snapshoty: $env:UPDATE_SNAPSHOTS = '1'; dotnet test; przejrzyj git diff tests/snapshots.
+# Plik musi pozostać w UTF-8 z BOM: Windows PowerShell 5.1 czyta skrypt bez BOM jako ANSI i polskie znaki psują parsowanie.
 $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent $PSScriptRoot
 $project = Join-Path $root 'tests/D2.Wcag.Tests'
