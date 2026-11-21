@@ -3,7 +3,7 @@
   "failure": "None",
   "wcagVersion": "2.1",
   "profileName": "WCAG 2.1 AA (arkusz Excel)",
-  "summary": "Nie wykryto automatycznie niezgodności. 16 kryteriów wymaga oceny ręcznej.",
+  "summary": "Nie wykryto automatycznie niezgodności. 15 kryteriów wymaga oceny ręcznej.",
   "disclaimer": "Wynik automatyczny nie potwierdza zgodności z WCAG",
   "workbook": {
     "title": "Formularz zgłoszenia urlopu",
@@ -23,7 +23,7 @@
     "warnings": 0,
     "needsReview": 0,
     "info": 0,
-    "manualChecks": 16
+    "manualChecks": 15
   },
   "findings": [],
   "manualChecks": [
@@ -58,18 +58,22 @@
       "question": "Czy instrukcje w skoroszycie są zrozumiałe bez odwoływania się wyłącznie do koloru, kształtu, rozmiaru lub położenia (np. „wypełnij żółte pola”, „tabela po prawej”)?"
     },
     {
-      "id": "manual-1.4.1",
+      "id": "manual-1.4.1:color",
       "wcag": [
         "1.4.1"
       ],
-      "question": "Czy każda informacja przekazana kolorem (statusy, wartości ujemne, serie wykresu, wyróżnienia) jest dostępna także w inny widoczny sposób: tekstem, znakiem, wzorem, etykietą?"
+      "code": "XL-COLOR-ONLY",
+      "question": "Czy każda informacja przekazana kolorem (statusy, wartości ujemne, serie wykresu, wyróżnienia), także kolorem wypełnienia albo czcionki nadanym komórkom ręcznie, jest dostępna także w inny widoczny sposób: tekstem, znakiem, wzorem, etykietą?",
+      "hint": "Skoroszyt ma komórki z ręcznie nadanym kolorem wypełnienia albo czcionki (np. pokolorowane wiersze, statusy, pola do wypełnienia) – narzędzie nie rozpoznaje znaczenia takich kolorów. Obejrzyj arkusz bez kolorów, np. w podglądzie wydruku czarno-białego (Układ strony → Ustawienia strony → Arkusz → Czarno-biały): jeżeli jakaś informacja znika, dopisz ją tekstem w komórce albo obok."
     },
     {
-      "id": "manual-1.4.3",
+      "id": "manual-1.4.3:color",
       "wcag": [
         "1.4.3"
       ],
-      "question": "Czy tekst na tle z obrazu, gradientu, wzoru lub w kolorach automatycznych jest wyraźnie czytelny (kontrast co najmniej 4,5:1, dla dużego tekstu 3:1)?"
+      "code": "XL-CONTRAST",
+      "question": "Czy tekst na tle z obrazu, gradientu, wzoru lub w kolorach automatycznych, a także tekst w tabelach ze stylem tabeli, w kształtach i na wykresach, jest wyraźnie czytelny (kontrast co najmniej 4,5:1, dla dużego tekstu 3:1)?",
+      "hint": "Narzędzie ocenia kontrast tylko z formatowania komórek; nie ocenia stylów tabel, obrazów tła arkusza (Układ strony → Tło) ani tekstu w obiektach. W tym skoroszycie: tabele ze stylem tabeli (wiersz nagłówka, pasy wierszy i kolumn, wiersz sumy) – zaznacz komórkę tabeli i sprawdź Projekt tabeli → Style tabeli. Kolory oceń też w Recenzja → Sprawdź ułatwienia dostępu."
     },
     {
       "id": "manual-1.4.10",
@@ -77,13 +81,6 @@
         "1.4.10"
       ],
       "question": "Czy przy dużym powiększeniu treść pojedynczych komórek (zwłaszcza długie teksty) da się przeczytać bez przewijania w dwóch kierunkach?"
-    },
-    {
-      "id": "manual-1.4.11",
-      "wcag": [
-        "1.4.11"
-      ],
-      "question": "Czy elementy wykresów i grafik niezbędne do zrozumienia treści (linie, słupki, wycinki, ikony) odróżniają się od tła i od siebie kontrastem co najmniej 3:1 albo mają etykiety tekstowe niosące tę samą informację?"
     },
     {
       "id": "manual-2.4.2",
@@ -278,9 +275,8 @@
       "sc": "1.4.11",
       "name": "Kontrast elementów nietekstowych",
       "level": "AA",
-      "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: kryterium stosuje się wprost. Obejmuje serie wykresów, ikony i kształty niosące informację; wygląd standardowych kontrolek i siatki ustala oprogramowanie (wyjątek).",
-      "manualChecks": 1
+      "status": "NoIssuesDetected",
+      "reason": "Kontrole automatyczne nie wykryły problemów w zakresie: XL-CHART-CONTRAST. Do oceny ręcznej pozostaje: Czy elementy wykresów i grafik niezbędne do zrozumienia treści (linie, słupki, wycinki, ikony) odróżniają się od tła i od siebie kontrastem co najmniej 3:1 albo mają etykiety tekstowe niosące tę samą informację?"
     },
     {
       "sc": "1.4.12",

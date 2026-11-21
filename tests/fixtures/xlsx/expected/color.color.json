@@ -1,0 +1,28 @@
+{
+  "fixture": "color",
+  "group": "color",
+  "wcagVersion": "2.2",
+  "findings": [
+    { "code": "XL-CONTRAST", "severity": "Error", "location": "Kontrast!B2" },
+    { "code": "XL-CONTRAST", "severity": "Warning", "location": "Kontrast!B3" },
+    { "code": "XL-CONTRAST", "severity": "Error", "location": "Kontrast!B5" },
+    { "code": "XL-CONTRAST", "severity": "Error", "location": "Kontrast!B8" },
+    { "code": "XL-CONTRAST", "severity": "Error", "location": "Kontrast!B9" },
+    { "code": "XL-CONTRAST", "severity": "Error", "location": "Kontrast!B12" },
+    { "code": "XL-CONTRAST", "severity": "Error", "location": "Kontrast!B13" },
+    { "code": "XL-CONTRAST", "severity": "Error", "location": "Kontrast!B17" },
+    { "code": "XL-CONTRAST", "severity": "Error", "location": "Kontrast!B18" },
+    { "code": "XL-CONTRAST", "severity": "NeedsReview", "location": "Kontrast!B19" },
+    { "code": "XL-CONTRAST", "severity": "Error", "location": "'Zakres szarości'!A2:C39" },
+    { "code": "XL-CONTRAST-CF", "severity": "Warning", "location": "'Formatowanie warunkowe'!B2:B6" },
+    { "code": "XL-CONTRAST-CF", "severity": "Warning", "location": "'Formatowanie warunkowe'!D2:D6" },
+    { "code": "XL-COLOR-ONLY", "severity": "NeedsReview", "location": "'Formatowanie warunkowe'!B2:B6" },
+    { "code": "XL-COLOR-ONLY", "severity": "NeedsReview", "location": "'Formatowanie warunkowe'!C2:C6" },
+    { "code": "XL-COLOR-ONLY", "severity": "NeedsReview", "location": "'Formatowanie warunkowe'!D2:D6" },
+    { "code": "XL-CHART-COLOR", "severity": "Warning", "location": "Wykres „Wykres 1” na arkuszu „Wykresy kolorów”" },
+    { "code": "XL-CHART-CONTRAST", "severity": "Warning", "location": "Wykres „Wykres 1” na arkuszu „Wykresy kolorów”" },
+    { "code": "XL-CHART-COLOR", "severity": "Warning", "location": "Wykres „Wykres 2” na arkuszu „Wykresy kolorów”" },
+    { "code": "XL-CHART-CONTRAST", "severity": "Warning", "location": "Wykres „Wykres 2” na arkuszu „Wykresy kolorów”" }
+  ],
+  "manualChecks": [ "XL-COLOR-ONLY", "XL-CONTRAST", "XL-CHART-CONTRAST" ]
+}

@@ -1,0 +1,7 @@
+{
+  "fixture": "structure",
+  "group": "color",
+  "wcagVersion": "2.2",
+  "findings": [],
+  "manualChecks": [ "XL-CONTRAST" ]
+}

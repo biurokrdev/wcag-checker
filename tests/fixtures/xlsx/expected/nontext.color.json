@@ -1,0 +1,10 @@
+{
+  "fixture": "nontext",
+  "group": "color",
+  "wcagVersion": "2.2",
+  "findings": [
+    { "code": "XL-CHART-COLOR", "severity": "NeedsReview", "location": "Wykres „Wykres 1” na arkuszu „Wykresy”" },
+    { "code": "XL-CHART-COLOR", "severity": "NeedsReview", "location": "Wykres „Wykres 2” na arkuszu „Wykresy”" }
+  ],
+  "manualChecks": [ "XL-CONTRAST", "XL-CHART-CONTRAST" ]
+}

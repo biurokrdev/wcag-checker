@@ -3,7 +3,7 @@
   "failure": "None",
   "wcagVersion": "2.2",
   "profileName": "WCAG 2.2 AA (arkusz Excel)",
-  "summary": "Nie wykryto automatycznie niezgodności. 26 kryteriów wymaga oceny ręcznej.",
+  "summary": "Nie wykryto automatycznie niezgodności; do potwierdzenia przez człowieka pozostają zgłoszenia (do weryfikacji: 2). 26 kryteriów wymaga oceny ręcznej.",
   "disclaimer": "Wynik automatyczny nie potwierdza zgodności z WCAG",
   "workbook": {
     "title": "Raport sprzedaży – obiekty i łącza",
@@ -21,11 +21,77 @@
   "counts": {
     "errors": 0,
     "warnings": 0,
-    "needsReview": 0,
+    "needsReview": 2,
     "info": 0,
-    "manualChecks": 26
+    "manualChecks": 25
   },
-  "findings": [],
+  "findings": [
+    {
+      "code": "XL-CHART-COLOR",
+      "severity": "NeedsReview",
+      "checkType": "Heuristic",
+      "confidence": 0.5,
+      "title": "Serie wykresu rozróżnione wyłącznie kolorem",
+      "wcag": [
+        "1.4.1"
+      ],
+      "message": "Serie wykresu są rozróżnione wyłącznie kolorem: „Sprzedaż 2025” (kolor automatyczny) i „Sprzedaż 2026” (kolor automatyczny). Serie nie mają wypełnienia deseniem, różnych znaczników, różnych stylów linii ani etykiet danych. Kolory serii są automatyczne (nieznane) – wymaga weryfikacji.",
+      "fixInstruction": "Dodaj wyróżnik inny niż kolor: zaznacz serię i wybierz Formatuj serię danych → Wypełnienie → Wypełnienie deseniem (wykres liniowy: Formatuj serię danych → Znacznik oraz Typ kreski) albo włącz Dodaj element wykresu → Etykiety danych. Kolory o wyraźnie różnej jasności ustawisz w Projekt wykresu → Zmień kolory. Wynik sprawdź w Recenzja → Sprawdź ułatwienia dostępu.",
+      "location": "Wykres „Wykres 1” na arkuszu „Wykresy”",
+      "key": "0001|Chart|0000001|00005|Wykres 1|2",
+      "evidence": [
+        {
+          "name": "Typ wykresu",
+          "value": "bar"
+        },
+        {
+          "name": "Liczba serii",
+          "value": "2"
+        },
+        {
+          "name": "Liczba par bez wyróżnika innego niż kolor",
+          "value": "1"
+        },
+        {
+          "name": "Para serii",
+          "value": "„Sprzedaż 2025” (kolor automatyczny) i „Sprzedaż 2026” (kolor automatyczny)"
+        }
+      ]
+    },
+    {
+      "code": "XL-CHART-COLOR",
+      "severity": "NeedsReview",
+      "checkType": "Heuristic",
+      "confidence": 0.5,
+      "title": "Serie wykresu rozróżnione wyłącznie kolorem",
+      "wcag": [
+        "1.4.1"
+      ],
+      "message": "Serie wykresu są rozróżnione wyłącznie kolorem: „Sprzedaż 2025” (kolor automatyczny) i „Sprzedaż 2026” (kolor automatyczny). Serie nie mają wypełnienia deseniem, różnych znaczników, różnych stylów linii ani etykiet danych. Kolory serii są automatyczne (nieznane) – wymaga weryfikacji.",
+      "fixInstruction": "Dodaj wyróżnik inny niż kolor: zaznacz serię i wybierz Formatuj serię danych → Wypełnienie → Wypełnienie deseniem (wykres liniowy: Formatuj serię danych → Znacznik oraz Typ kreski) albo włącz Dodaj element wykresu → Etykiety danych. Kolory o wyraźnie różnej jasności ustawisz w Projekt wykresu → Zmień kolory. Wynik sprawdź w Recenzja → Sprawdź ułatwienia dostępu.",
+      "location": "Wykres „Wykres 2” na arkuszu „Wykresy”",
+      "key": "0001|Chart|0000017|00005|Wykres 2|3",
+      "snippet": "Sprzedaż kwartalna",
+      "evidence": [
+        {
+          "name": "Typ wykresu",
+          "value": "bar"
+        },
+        {
+          "name": "Liczba serii",
+          "value": "2"
+        },
+        {
+          "name": "Liczba par bez wyróżnika innego niż kolor",
+          "value": "1"
+        },
+        {
+          "name": "Para serii",
+          "value": "„Sprzedaż 2025” (kolor automatyczny) i „Sprzedaż 2026” (kolor automatyczny)"
+        }
+      ]
+    }
+  ],
   "manualChecks": [
     {
       "id": "manual-1.1.1",
@@ -58,18 +124,13 @@
       "question": "Czy instrukcje w skoroszycie są zrozumiałe bez odwoływania się wyłącznie do koloru, kształtu, rozmiaru lub położenia (np. „wypełnij żółte pola”, „tabela po prawej”)?"
     },
     {
-      "id": "manual-1.4.1",
-      "wcag": [
-        "1.4.1"
-      ],
-      "question": "Czy każda informacja przekazana kolorem (statusy, wartości ujemne, serie wykresu, wyróżnienia) jest dostępna także w inny widoczny sposób: tekstem, znakiem, wzorem, etykietą?"
-    },
-    {
-      "id": "manual-1.4.3",
+      "id": "manual-1.4.3:color",
       "wcag": [
         "1.4.3"
       ],
-      "question": "Czy tekst na tle z obrazu, gradientu, wzoru lub w kolorach automatycznych jest wyraźnie czytelny (kontrast co najmniej 4,5:1, dla dużego tekstu 3:1)?"
+      "code": "XL-CONTRAST",
+      "question": "Czy tekst na tle z obrazu, gradientu, wzoru lub w kolorach automatycznych, a także tekst w tabelach ze stylem tabeli, w kształtach i na wykresach, jest wyraźnie czytelny (kontrast co najmniej 4,5:1, dla dużego tekstu 3:1)?",
+      "hint": "Narzędzie ocenia kontrast tylko z formatowania komórek; nie ocenia stylów tabel, obrazów tła arkusza (Układ strony → Tło) ani tekstu w obiektach. W tym skoroszycie: tabele ze stylem tabeli (wiersz nagłówka, pasy wierszy i kolumn, wiersz sumy) – zaznacz komórkę tabeli i sprawdź Projekt tabeli → Style tabeli; tekst w kształtach, polach tekstowych i na wykresach (tytuły, etykiety osi i danych, legenda) – zaznacz obiekt i sprawdź Formatuj kształt → Opcje tekstu → Wypełnienie tekstu oraz wypełnienie kształtu lub obszaru wykresu. Kolory oceń też w Recenzja → Sprawdź ułatwienia dostępu."
     },
     {
       "id": "manual-1.4.5",
@@ -86,11 +147,13 @@
       "question": "Czy przy dużym powiększeniu treść pojedynczych komórek (zwłaszcza długie teksty) da się przeczytać bez przewijania w dwóch kierunkach?"
     },
     {
-      "id": "manual-1.4.11",
+      "id": "manual-1.4.11:color",
       "wcag": [
         "1.4.11"
       ],
-      "question": "Czy elementy wykresów i grafik niezbędne do zrozumienia treści (linie, słupki, wycinki, ikony) odróżniają się od tła i od siebie kontrastem co najmniej 3:1 albo mają etykiety tekstowe niosące tę samą informację?"
+      "code": "XL-CHART-CONTRAST",
+      "question": "Czy elementy wykresów i grafik niezbędne do zrozumienia treści (linie, słupki, wycinki, ikony) odróżniają się od tła i od siebie kontrastem co najmniej 3:1 albo mają etykiety tekstowe niosące tę samą informację?",
+      "hint": "Narzędzie ocenia tylko serie wykresów o kolorach zapisanych w pliku (względem tła obszaru kreślenia i serii sąsiednich). Sprawdź ręcznie wycinki wykresów kołowych, serie w kolorach automatycznych, znaczniki, linie i osie, kształty oraz ikony i paski danych formatowania warunkowego: zaznacz element i porównaj jego kolory z sąsiednimi w Formatuj kształt albo Formatuj serię danych → Wypełnienie i linia."
     },
     {
       "id": "manual-2.1.1",
@@ -301,8 +364,10 @@
       "name": "Użycie koloru",
       "level": "A",
       "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: kryterium stosuje się wprost. Kolor nie może być jedynym wizualnym nośnikiem informacji (statusy, liczby ujemne, serie wykresu, łącza).",
-      "manualChecks": 1
+      "reason": "Możliwy problem – wymaga weryfikacji przez człowieka: XL-CHART-COLOR. WCAG2ICT: kryterium stosuje się wprost. Kolor nie może być jedynym wizualnym nośnikiem informacji (statusy, liczby ujemne, serie wykresu, łącza).",
+      "findingCodes": [
+        "XL-CHART-COLOR"
+      ]
     },
     {
       "sc": "1.4.2",

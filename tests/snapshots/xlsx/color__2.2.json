@@ -3,7 +3,7 @@
   "failure": "None",
   "wcagVersion": "2.2",
   "profileName": "WCAG 2.2 AA (arkusz Excel)",
-  "summary": "Nie wykryto automatycznie niezgodności. 14 kryteriów wymaga oceny ręcznej.",
+  "summary": "Wykryto automatycznie problemy (błędy: 9, ostrzeżenia: 7, do weryfikacji: 4). 13 kryteriów wymaga oceny ręcznej.",
   "disclaimer": "Wynik automatyczny nie potwierdza zgodności z WCAG",
   "workbook": {
     "title": "Paleta kolorów – przypadki kontrastu",
@@ -19,13 +19,1075 @@
     "isEmpty": false
   },
   "counts": {
-    "errors": 0,
-    "warnings": 0,
-    "needsReview": 0,
+    "errors": 9,
+    "warnings": 7,
+    "needsReview": 4,
     "info": 0,
-    "manualChecks": 14
+    "manualChecks": 15
   },
-  "findings": [],
+  "findings": [
+    {
+      "code": "XL-CONTRAST",
+      "severity": "Error",
+      "checkType": "Auto",
+      "title": "Za niski kontrast tekstu względem tła komórki",
+      "wcag": [
+        "1.4.3"
+      ],
+      "message": "Tekst #999999 na tle #FFFFFF ma kontrast 2,8:1, a wymagane jest co najmniej 4,5:1 (tekst 11 pt). Para kolorów jest pewna: oba kolory są zapisane w pliku wprost.",
+      "fixInstruction": "Zmień kolor czcionki albo wypełnienia tak, aby kontrast wynosił co najmniej 4,5:1 (3:1 dla tekstu od 18 pt albo od 14 pt pogrubionego): zaznacz komórki i użyj Narzędzia główne → Kolor czcionki albo Narzędzia główne → Kolor wypełnienia. Wynik sprawdź w Recenzja → Sprawdź ułatwienia dostępu. Najbliższy kolor czcionki spełniający próg na tym tle: #767676 (kontrast 4,5:1).",
+      "location": "Kontrast!B2",
+      "key": "0000|Cell|0000002|00002|B2|",
+      "snippet": "Szary tekst na białym tle",
+      "evidence": [
+        {
+          "name": "Kontrast",
+          "value": "2,8:1"
+        },
+        {
+          "name": "Wymagany kontrast",
+          "value": "4,5:1"
+        },
+        {
+          "name": "Kolor tekstu",
+          "value": "#999999"
+        },
+        {
+          "name": "Kolor tła",
+          "value": "#FFFFFF"
+        },
+        {
+          "name": "Zapis koloru tekstu",
+          "value": "RGB"
+        },
+        {
+          "name": "Zapis koloru tła",
+          "value": "brak wypełnienia (przyjęto białe tło)"
+        },
+        {
+          "name": "Rozmiar czcionki",
+          "value": "11 pt"
+        },
+        {
+          "name": "Pogrubienie",
+          "value": "nie"
+        },
+        {
+          "name": "Para kolorów",
+          "value": "pewna"
+        },
+        {
+          "name": "Liczba komórek",
+          "value": "1"
+        },
+        {
+          "name": "Proponowany kolor tekstu",
+          "value": "#767676"
+        }
+      ]
+    },
+    {
+      "code": "XL-CONTRAST",
+      "severity": "Error",
+      "checkType": "Auto",
+      "title": "Za niski kontrast tekstu względem tła komórki",
+      "wcag": [
+        "1.4.3"
+      ],
+      "message": "Tekst #C0C0C0 na tle #FFFFFF ma kontrast 1,8:1, a wymagane jest co najmniej 4,5:1 (tekst 11 pt). Para kolorów jest pewna: oba kolory są zapisane w pliku wprost.",
+      "fixInstruction": "Zmień kolor czcionki albo wypełnienia tak, aby kontrast wynosił co najmniej 4,5:1 (3:1 dla tekstu od 18 pt albo od 14 pt pogrubionego): zaznacz komórki i użyj Narzędzia główne → Kolor czcionki albo Narzędzia główne → Kolor wypełnienia. Wynik sprawdź w Recenzja → Sprawdź ułatwienia dostępu. Najbliższy kolor czcionki spełniający próg na tym tle: #757575 (kontrast 4,6:1).",
+      "location": "Kontrast!B5",
+      "key": "0000|Cell|0000005|00002|B5|",
+      "snippet": "Srebrny z palety indeksowanej",
+      "evidence": [
+        {
+          "name": "Kontrast",
+          "value": "1,8:1"
+        },
+        {
+          "name": "Wymagany kontrast",
+          "value": "4,5:1"
+        },
+        {
+          "name": "Kolor tekstu",
+          "value": "#C0C0C0"
+        },
+        {
+          "name": "Kolor tła",
+          "value": "#FFFFFF"
+        },
+        {
+          "name": "Zapis koloru tekstu",
+          "value": "indeks 22"
+        },
+        {
+          "name": "Zapis koloru tła",
+          "value": "brak wypełnienia (przyjęto białe tło)"
+        },
+        {
+          "name": "Rozmiar czcionki",
+          "value": "11 pt"
+        },
+        {
+          "name": "Pogrubienie",
+          "value": "nie"
+        },
+        {
+          "name": "Para kolorów",
+          "value": "pewna"
+        },
+        {
+          "name": "Liczba komórek",
+          "value": "1"
+        },
+        {
+          "name": "Proponowany kolor tekstu",
+          "value": "#757575"
+        }
+      ]
+    },
+    {
+      "code": "XL-CONTRAST",
+      "severity": "Error",
+      "checkType": "Auto",
+      "title": "Za niski kontrast tekstu względem tła komórki",
+      "wcag": [
+        "1.4.3"
+      ],
+      "message": "Tekst #959595 na tle #FFFFFF ma kontrast 2,9:1, a wymagane jest co najmniej 3:1 (duży tekst: 14 pt, pogrubiony). Para kolorów jest pewna: oba kolory są zapisane w pliku wprost.",
+      "fixInstruction": "Zmień kolor czcionki albo wypełnienia tak, aby kontrast wynosił co najmniej 4,5:1 (3:1 dla tekstu od 18 pt albo od 14 pt pogrubionego): zaznacz komórki i użyj Narzędzia główne → Kolor czcionki albo Narzędzia główne → Kolor wypełnienia. Wynik sprawdź w Recenzja → Sprawdź ułatwienia dostępu. Najbliższy kolor czcionki spełniający próg na tym tle: #949494 (kontrast 3,0:1).",
+      "location": "Kontrast!B8",
+      "key": "0000|Cell|0000008|00002|B8|",
+      "snippet": "Duży tekst pod progiem",
+      "evidence": [
+        {
+          "name": "Kontrast",
+          "value": "2,9:1"
+        },
+        {
+          "name": "Wymagany kontrast",
+          "value": "3:1"
+        },
+        {
+          "name": "Kolor tekstu",
+          "value": "#959595"
+        },
+        {
+          "name": "Kolor tła",
+          "value": "#FFFFFF"
+        },
+        {
+          "name": "Zapis koloru tekstu",
+          "value": "RGB"
+        },
+        {
+          "name": "Zapis koloru tła",
+          "value": "brak wypełnienia (przyjęto białe tło)"
+        },
+        {
+          "name": "Rozmiar czcionki",
+          "value": "14 pt"
+        },
+        {
+          "name": "Pogrubienie",
+          "value": "tak"
+        },
+        {
+          "name": "Para kolorów",
+          "value": "pewna"
+        },
+        {
+          "name": "Liczba komórek",
+          "value": "1"
+        },
+        {
+          "name": "Proponowany kolor tekstu",
+          "value": "#949494"
+        }
+      ]
+    },
+    {
+      "code": "XL-CONTRAST",
+      "severity": "Error",
+      "checkType": "Auto",
+      "title": "Za niski kontrast tekstu względem tła komórki",
+      "wcag": [
+        "1.4.3"
+      ],
+      "message": "Tekst #949494 na tle #FFFFFF ma kontrast 3,0:1, a wymagane jest co najmniej 4,5:1 (tekst 14 pt). Para kolorów jest pewna: oba kolory są zapisane w pliku wprost.",
+      "fixInstruction": "Zmień kolor czcionki albo wypełnienia tak, aby kontrast wynosił co najmniej 4,5:1 (3:1 dla tekstu od 18 pt albo od 14 pt pogrubionego): zaznacz komórki i użyj Narzędzia główne → Kolor czcionki albo Narzędzia główne → Kolor wypełnienia. Wynik sprawdź w Recenzja → Sprawdź ułatwienia dostępu. Najbliższy kolor czcionki spełniający próg na tym tle: #767676 (kontrast 4,5:1).",
+      "location": "Kontrast!B9",
+      "key": "0000|Cell|0000009|00002|B9|",
+      "snippet": "Tekst 14 pt bez pogrubienia",
+      "evidence": [
+        {
+          "name": "Kontrast",
+          "value": "3,0:1"
+        },
+        {
+          "name": "Wymagany kontrast",
+          "value": "4,5:1"
+        },
+        {
+          "name": "Kolor tekstu",
+          "value": "#949494"
+        },
+        {
+          "name": "Kolor tła",
+          "value": "#FFFFFF"
+        },
+        {
+          "name": "Zapis koloru tekstu",
+          "value": "RGB"
+        },
+        {
+          "name": "Zapis koloru tła",
+          "value": "brak wypełnienia (przyjęto białe tło)"
+        },
+        {
+          "name": "Rozmiar czcionki",
+          "value": "14 pt"
+        },
+        {
+          "name": "Pogrubienie",
+          "value": "nie"
+        },
+        {
+          "name": "Para kolorów",
+          "value": "pewna"
+        },
+        {
+          "name": "Liczba komórek",
+          "value": "1"
+        },
+        {
+          "name": "Proponowany kolor tekstu",
+          "value": "#767676"
+        }
+      ]
+    },
+    {
+      "code": "XL-CONTRAST",
+      "severity": "Error",
+      "checkType": "Auto",
+      "title": "Za niski kontrast tekstu względem tła komórki",
+      "wcag": [
+        "1.4.3"
+      ],
+      "message": "Tekst #777777 na tle #FFFFFF ma kontrast 4,4:1, a wymagane jest co najmniej 4,5:1 (tekst 11 pt). Para kolorów jest pewna: oba kolory są zapisane w pliku wprost.",
+      "fixInstruction": "Zmień kolor czcionki albo wypełnienia tak, aby kontrast wynosił co najmniej 4,5:1 (3:1 dla tekstu od 18 pt albo od 14 pt pogrubionego): zaznacz komórki i użyj Narzędzia główne → Kolor czcionki albo Narzędzia główne → Kolor wypełnienia. Wynik sprawdź w Recenzja → Sprawdź ułatwienia dostępu. Najbliższy kolor czcionki spełniający próg na tym tle: #767676 (kontrast 4,5:1).",
+      "location": "Kontrast!B12",
+      "key": "0000|Cell|0000012|00002|B12|",
+      "snippet": "Tekst tuż pod progiem",
+      "evidence": [
+        {
+          "name": "Kontrast",
+          "value": "4,4:1"
+        },
+        {
+          "name": "Wymagany kontrast",
+          "value": "4,5:1"
+        },
+        {
+          "name": "Kolor tekstu",
+          "value": "#777777"
+        },
+        {
+          "name": "Kolor tła",
+          "value": "#FFFFFF"
+        },
+        {
+          "name": "Zapis koloru tekstu",
+          "value": "RGB"
+        },
+        {
+          "name": "Zapis koloru tła",
+          "value": "brak wypełnienia (przyjęto białe tło)"
+        },
+        {
+          "name": "Rozmiar czcionki",
+          "value": "11 pt"
+        },
+        {
+          "name": "Pogrubienie",
+          "value": "nie"
+        },
+        {
+          "name": "Para kolorów",
+          "value": "pewna"
+        },
+        {
+          "name": "Liczba komórek",
+          "value": "1"
+        },
+        {
+          "name": "Proponowany kolor tekstu",
+          "value": "#767676"
+        }
+      ]
+    },
+    {
+      "code": "XL-CONTRAST",
+      "severity": "Error",
+      "checkType": "Auto",
+      "title": "Za niski kontrast tekstu względem tła komórki",
+      "wcag": [
+        "1.4.3"
+      ],
+      "message": "Tekst #FFFFFF na tle #FFC000 ma kontrast 1,6:1, a wymagane jest co najmniej 4,5:1 (tekst 11 pt). Para kolorów jest pewna: oba kolory są zapisane w pliku wprost.",
+      "fixInstruction": "Zmień kolor czcionki albo wypełnienia tak, aby kontrast wynosił co najmniej 4,5:1 (3:1 dla tekstu od 18 pt albo od 14 pt pogrubionego): zaznacz komórki i użyj Narzędzia główne → Kolor czcionki albo Narzędzia główne → Kolor wypełnienia. Wynik sprawdź w Recenzja → Sprawdź ułatwienia dostępu. Najbliższy kolor czcionki spełniający próg na tym tle: #545454 (kontrast 4,6:1).",
+      "location": "Kontrast!B13",
+      "key": "0000|Cell|0000013|00002|B13|",
+      "snippet": "Biały tekst na jasnym wypełnieniu",
+      "evidence": [
+        {
+          "name": "Kontrast",
+          "value": "1,6:1"
+        },
+        {
+          "name": "Wymagany kontrast",
+          "value": "4,5:1"
+        },
+        {
+          "name": "Kolor tekstu",
+          "value": "#FFFFFF"
+        },
+        {
+          "name": "Kolor tła",
+          "value": "#FFC000"
+        },
+        {
+          "name": "Zapis koloru tekstu",
+          "value": "RGB"
+        },
+        {
+          "name": "Zapis koloru tła",
+          "value": "RGB"
+        },
+        {
+          "name": "Rozmiar czcionki",
+          "value": "11 pt"
+        },
+        {
+          "name": "Pogrubienie",
+          "value": "nie"
+        },
+        {
+          "name": "Para kolorów",
+          "value": "pewna"
+        },
+        {
+          "name": "Liczba komórek",
+          "value": "1"
+        },
+        {
+          "name": "Proponowany kolor tekstu",
+          "value": "#545454"
+        }
+      ]
+    },
+    {
+      "code": "XL-CONTRAST",
+      "severity": "Error",
+      "checkType": "Auto",
+      "title": "Za niski kontrast tekstu względem tła komórki",
+      "wcag": [
+        "1.4.3"
+      ],
+      "message": "Fragment tekstu „pilne” #FF0000 na tle #FFFFFF ma kontrast 3,9:1, a wymagane jest co najmniej 4,5:1 (tekst 11 pt). Para kolorów jest pewna: oba kolory są zapisane w pliku wprost.",
+      "fixInstruction": "Zmień kolor czcionki albo wypełnienia tak, aby kontrast wynosił co najmniej 4,5:1 (3:1 dla tekstu od 18 pt albo od 14 pt pogrubionego): zaznacz komórki i użyj Narzędzia główne → Kolor czcionki albo Narzędzia główne → Kolor wypełnienia. Wynik sprawdź w Recenzja → Sprawdź ułatwienia dostępu. Najbliższy kolor czcionki spełniający próg na tym tle: #ED0000 (kontrast 4,5:1).",
+      "location": "Kontrast!B17",
+      "key": "0000|Cell|0000017|00002|B17|",
+      "snippet": "pilne",
+      "evidence": [
+        {
+          "name": "Kontrast",
+          "value": "3,9:1"
+        },
+        {
+          "name": "Wymagany kontrast",
+          "value": "4,5:1"
+        },
+        {
+          "name": "Kolor tekstu",
+          "value": "#FF0000"
+        },
+        {
+          "name": "Kolor tła",
+          "value": "#FFFFFF"
+        },
+        {
+          "name": "Zapis koloru tekstu",
+          "value": "RGB"
+        },
+        {
+          "name": "Zapis koloru tła",
+          "value": "brak wypełnienia (przyjęto białe tło)"
+        },
+        {
+          "name": "Rozmiar czcionki",
+          "value": "11 pt"
+        },
+        {
+          "name": "Pogrubienie",
+          "value": "nie"
+        },
+        {
+          "name": "Para kolorów",
+          "value": "pewna"
+        },
+        {
+          "name": "Liczba komórek",
+          "value": "1"
+        },
+        {
+          "name": "Fragment tekstu",
+          "value": "pilne"
+        },
+        {
+          "name": "Proponowany kolor tekstu",
+          "value": "#ED0000"
+        }
+      ]
+    },
+    {
+      "code": "XL-CONTRAST",
+      "severity": "Error",
+      "checkType": "Auto",
+      "title": "Za niski kontrast tekstu względem tła komórki",
+      "wcag": [
+        "1.4.3"
+      ],
+      "message": "Tekst #1F3864 na tle #203764 ma kontrast 1,0:1, a wymagane jest co najmniej 4,5:1 (tekst 11 pt). Para kolorów jest pewna: oba kolory są zapisane w pliku wprost.",
+      "fixInstruction": "Zmień kolor czcionki albo wypełnienia tak, aby kontrast wynosił co najmniej 4,5:1 (3:1 dla tekstu od 18 pt albo od 14 pt pogrubionego): zaznacz komórki i użyj Narzędzia główne → Kolor czcionki albo Narzędzia główne → Kolor wypełnienia. Wynik sprawdź w Recenzja → Sprawdź ułatwienia dostępu. Najbliższy kolor czcionki spełniający próg na tym tle: #96A1B6 (kontrast 4,5:1).",
+      "location": "Kontrast!B18",
+      "key": "0000|Cell|0000018|00002|B18|",
+      "snippet": "Ciemny tekst na ciemnym tle",
+      "evidence": [
+        {
+          "name": "Kontrast",
+          "value": "1,0:1"
+        },
+        {
+          "name": "Wymagany kontrast",
+          "value": "4,5:1"
+        },
+        {
+          "name": "Kolor tekstu",
+          "value": "#1F3864"
+        },
+        {
+          "name": "Kolor tła",
+          "value": "#203764"
+        },
+        {
+          "name": "Zapis koloru tekstu",
+          "value": "RGB"
+        },
+        {
+          "name": "Zapis koloru tła",
+          "value": "RGB"
+        },
+        {
+          "name": "Rozmiar czcionki",
+          "value": "11 pt"
+        },
+        {
+          "name": "Pogrubienie",
+          "value": "nie"
+        },
+        {
+          "name": "Para kolorów",
+          "value": "pewna"
+        },
+        {
+          "name": "Liczba komórek",
+          "value": "1"
+        },
+        {
+          "name": "Proponowany kolor tekstu",
+          "value": "#96A1B6"
+        }
+      ]
+    },
+    {
+      "code": "XL-CONTRAST",
+      "severity": "Error",
+      "checkType": "Auto",
+      "title": "Za niski kontrast tekstu względem tła komórki",
+      "wcag": [
+        "1.4.3"
+      ],
+      "message": "Tekst #999999 na tle #FFFFFF ma kontrast 2,8:1, a wymagane jest co najmniej 4,5:1 (tekst 11 pt). Para kolorów jest pewna: oba kolory są zapisane w pliku wprost.",
+      "fixInstruction": "Zmień kolor czcionki albo wypełnienia tak, aby kontrast wynosił co najmniej 4,5:1 (3:1 dla tekstu od 18 pt albo od 14 pt pogrubionego): zaznacz komórki i użyj Narzędzia główne → Kolor czcionki albo Narzędzia główne → Kolor wypełnienia. Wynik sprawdź w Recenzja → Sprawdź ułatwienia dostępu. Najbliższy kolor czcionki spełniający próg na tym tle: #767676 (kontrast 4,5:1).",
+      "location": "'Zakres szarości'!A2:C39",
+      "key": "0001|Range|0000002|00001|A2:C39|",
+      "evidence": [
+        {
+          "name": "Kontrast",
+          "value": "2,8:1"
+        },
+        {
+          "name": "Wymagany kontrast",
+          "value": "4,5:1"
+        },
+        {
+          "name": "Kolor tekstu",
+          "value": "#999999"
+        },
+        {
+          "name": "Kolor tła",
+          "value": "#FFFFFF"
+        },
+        {
+          "name": "Zapis koloru tekstu",
+          "value": "RGB"
+        },
+        {
+          "name": "Zapis koloru tła",
+          "value": "brak wypełnienia (przyjęto białe tło)"
+        },
+        {
+          "name": "Rozmiar czcionki",
+          "value": "11 pt"
+        },
+        {
+          "name": "Pogrubienie",
+          "value": "nie"
+        },
+        {
+          "name": "Para kolorów",
+          "value": "pewna"
+        },
+        {
+          "name": "Liczba komórek",
+          "value": "114"
+        },
+        {
+          "name": "Proponowany kolor tekstu",
+          "value": "#767676"
+        }
+      ]
+    },
+    {
+      "code": "XL-CONTRAST",
+      "severity": "Warning",
+      "checkType": "Heuristic",
+      "confidence": 0.9,
+      "title": "Za niski kontrast tekstu względem tła komórki",
+      "wcag": [
+        "1.4.3"
+      ],
+      "message": "Tekst #8EA9DB na tle #FFFFFF ma kontrast 2,3:1, a wymagane jest co najmniej 4,5:1 (tekst 11 pt). Para kolorów jest przybliżona – wymaga potwierdzenia: kolor motywu albo kolor z odcieniem jest przeliczany i może nieznacznie różnić się od koloru wyświetlanego w Excelu.",
+      "fixInstruction": "Zmień kolor czcionki albo wypełnienia tak, aby kontrast wynosił co najmniej 4,5:1 (3:1 dla tekstu od 18 pt albo od 14 pt pogrubionego): zaznacz komórki i użyj Narzędzia główne → Kolor czcionki albo Narzędzia główne → Kolor wypełnienia. Wynik sprawdź w Recenzja → Sprawdź ułatwienia dostępu. Najbliższy kolor czcionki spełniający próg na tym tle: #637699 (kontrast 4,5:1).",
+      "location": "Kontrast!B3",
+      "key": "0000|Cell|0000003|00002|B3|",
+      "snippet": "Tekst w kolorze motywu z tint",
+      "evidence": [
+        {
+          "name": "Kontrast",
+          "value": "2,3:1"
+        },
+        {
+          "name": "Wymagany kontrast",
+          "value": "4,5:1"
+        },
+        {
+          "name": "Kolor tekstu",
+          "value": "#8EA9DB"
+        },
+        {
+          "name": "Kolor tła",
+          "value": "#FFFFFF"
+        },
+        {
+          "name": "Zapis koloru tekstu",
+          "value": "motyw 4 (akcent 1) z odcieniem +40%"
+        },
+        {
+          "name": "Zapis koloru tła",
+          "value": "brak wypełnienia (przyjęto białe tło)"
+        },
+        {
+          "name": "Rozmiar czcionki",
+          "value": "11 pt"
+        },
+        {
+          "name": "Pogrubienie",
+          "value": "nie"
+        },
+        {
+          "name": "Para kolorów",
+          "value": "przybliżona"
+        },
+        {
+          "name": "Liczba komórek",
+          "value": "1"
+        },
+        {
+          "name": "Proponowany kolor tekstu",
+          "value": "#637699"
+        }
+      ]
+    },
+    {
+      "code": "XL-CONTRAST-CF",
+      "severity": "Warning",
+      "checkType": "Heuristic",
+      "confidence": 0.8,
+      "title": "Za niski kontrast tekstu po zadziałaniu formatowania warunkowego",
+      "wcag": [
+        "1.4.3"
+      ],
+      "message": "Gdy zadziała reguła formatowania warunkowego (wartość komórki mniejsza niż próg, priorytet 1), tekst #FF0000 na tle #FFFFFF ma kontrast 3,9:1, a wymagane jest co najmniej 4,5:1 (tekst 11 pt). Kolor czcionki nadaje reguła, a tło pochodzi ze stylu komórek zakresu (najgorszy przypadek). Wynik jest warunkowy – zależy od danych w komórkach.",
+      "fixInstruction": "Zmień format nadawany przez regułę: Narzędzia główne → Formatowanie warunkowe → Zarządzaj regułami → Edytuj regułę → Formatuj, a potem wybierz kolor czcionki i wypełnienia o kontraście co najmniej 4,5:1 (3:1 dla tekstu od 18 pt albo od 14 pt pogrubionego). Jeżeli reguła zmienia tylko jeden z kolorów, ustaw w niej oba, żeby wynik nie zależał od stylu komórki. Wynik sprawdź w Recenzja → Sprawdź ułatwienia dostępu. Najbliższy kolor czcionki spełniający próg na tym tle: #ED0000 (kontrast 4,5:1).",
+      "location": "'Formatowanie warunkowe'!B2:B6",
+      "key": "0002|Range|0000002|00002|B2:B6|",
+      "evidence": [
+        {
+          "name": "Kontrast",
+          "value": "3,9:1"
+        },
+        {
+          "name": "Wymagany kontrast",
+          "value": "4,5:1"
+        },
+        {
+          "name": "Kolor tekstu",
+          "value": "#FF0000"
+        },
+        {
+          "name": "Kolor tła",
+          "value": "#FFFFFF"
+        },
+        {
+          "name": "Zapis koloru tekstu",
+          "value": "styl różnicowy reguły: RGB"
+        },
+        {
+          "name": "Zapis koloru tła",
+          "value": "styl komórki: brak wypełnienia (przyjęto białe tło)"
+        },
+        {
+          "name": "Rozmiar czcionki",
+          "value": "11 pt"
+        },
+        {
+          "name": "Pogrubienie",
+          "value": "nie"
+        },
+        {
+          "name": "Reguła",
+          "value": "wartość komórki mniejsza niż próg, priorytet 1"
+        },
+        {
+          "name": "Zakres reguły",
+          "value": "B2:B6"
+        },
+        {
+          "name": "Liczba komórek",
+          "value": "5 z 5 komórek z treścią"
+        },
+        {
+          "name": "Proponowany kolor tekstu",
+          "value": "#ED0000"
+        }
+      ]
+    },
+    {
+      "code": "XL-CONTRAST-CF",
+      "severity": "Warning",
+      "checkType": "Heuristic",
+      "confidence": 0.8,
+      "title": "Za niski kontrast tekstu po zadziałaniu formatowania warunkowego",
+      "wcag": [
+        "1.4.3"
+      ],
+      "message": "Gdy zadziała reguła formatowania warunkowego (tekst zawiera „błąd”, priorytet 4), tekst #FFFFFF na tle #FFFF00 ma kontrast 1,0:1, a wymagane jest co najmniej 4,5:1 (tekst 11 pt). Oba kolory nadaje reguła. Wynik jest warunkowy – zależy od danych w komórkach.",
+      "fixInstruction": "Zmień format nadawany przez regułę: Narzędzia główne → Formatowanie warunkowe → Zarządzaj regułami → Edytuj regułę → Formatuj, a potem wybierz kolor czcionki i wypełnienia o kontraście co najmniej 4,5:1 (3:1 dla tekstu od 18 pt albo od 14 pt pogrubionego). Jeżeli reguła zmienia tylko jeden z kolorów, ustaw w niej oba, żeby wynik nie zależał od stylu komórki. Wynik sprawdź w Recenzja → Sprawdź ułatwienia dostępu. Najbliższy kolor czcionki spełniający próg na tym tle: #707070 (kontrast 4,6:1).",
+      "location": "'Formatowanie warunkowe'!D2:D6",
+      "key": "0002|Range|0000002|00004|D2:D6|",
+      "evidence": [
+        {
+          "name": "Kontrast",
+          "value": "1,0:1"
+        },
+        {
+          "name": "Wymagany kontrast",
+          "value": "4,5:1"
+        },
+        {
+          "name": "Kolor tekstu",
+          "value": "#FFFFFF"
+        },
+        {
+          "name": "Kolor tła",
+          "value": "#FFFF00"
+        },
+        {
+          "name": "Zapis koloru tekstu",
+          "value": "styl różnicowy reguły: RGB"
+        },
+        {
+          "name": "Zapis koloru tła",
+          "value": "styl różnicowy reguły: RGB"
+        },
+        {
+          "name": "Rozmiar czcionki",
+          "value": "11 pt"
+        },
+        {
+          "name": "Pogrubienie",
+          "value": "nie"
+        },
+        {
+          "name": "Reguła",
+          "value": "tekst zawiera „błąd”, priorytet 4"
+        },
+        {
+          "name": "Zakres reguły",
+          "value": "D2:D6"
+        },
+        {
+          "name": "Liczba komórek",
+          "value": "5 z 5 komórek z treścią"
+        },
+        {
+          "name": "Proponowany kolor tekstu",
+          "value": "#707070"
+        }
+      ]
+    },
+    {
+      "code": "XL-CHART-COLOR",
+      "severity": "Warning",
+      "checkType": "Heuristic",
+      "confidence": 0.8,
+      "title": "Serie wykresu rozróżnione wyłącznie kolorem",
+      "wcag": [
+        "1.4.1"
+      ],
+      "message": "Serie wykresu są rozróżnione wyłącznie kolorem: „Produkt A” (#FF0000) i „Produkt B” (#00B050) – kontrast 1,3:1; „Produkt B” (#00B050) i „Produkt C” (#FFFF00) – kontrast 2,6:1. Serie nie mają wypełnienia deseniem, różnych znaczników, różnych stylów linii ani etykiet danych, a ich kolory różnią się jasnością mniej niż 3:1.",
+      "fixInstruction": "Dodaj wyróżnik inny niż kolor: zaznacz serię i wybierz Formatuj serię danych → Wypełnienie → Wypełnienie deseniem (wykres liniowy: Formatuj serię danych → Znacznik oraz Typ kreski) albo włącz Dodaj element wykresu → Etykiety danych. Kolory o wyraźnie różnej jasności ustawisz w Projekt wykresu → Zmień kolory. Wynik sprawdź w Recenzja → Sprawdź ułatwienia dostępu.",
+      "location": "Wykres „Wykres 1” na arkuszu „Wykresy kolorów”",
+      "key": "0003|Chart|0000001|00006|Wykres 1|2",
+      "snippet": "Sprzedaż produktów – kolumny",
+      "evidence": [
+        {
+          "name": "Typ wykresu",
+          "value": "bar"
+        },
+        {
+          "name": "Liczba serii",
+          "value": "3"
+        },
+        {
+          "name": "Liczba par bez wyróżnika innego niż kolor",
+          "value": "2"
+        },
+        {
+          "name": "Para serii",
+          "value": "„Produkt A” (#FF0000) i „Produkt B” (#00B050) – kontrast 1,3:1"
+        },
+        {
+          "name": "Para serii",
+          "value": "„Produkt B” (#00B050) i „Produkt C” (#FFFF00) – kontrast 2,6:1"
+        }
+      ]
+    },
+    {
+      "code": "XL-CHART-CONTRAST",
+      "severity": "Warning",
+      "checkType": "Heuristic",
+      "confidence": 0.8,
+      "title": "Za niski kontrast serii wykresu",
+      "wcag": [
+        "1.4.11"
+      ],
+      "message": "Kontrast serii wykresu jest niższy od 3:1: „Produkt B” #00B050 względem tła #FFFFFF: 2,8:1; „Produkt C” #FFFF00 względem tła #FFFFFF: 1,0:1; „Produkt A” #FF0000 względem sąsiedniej serii „Produkt B” #00B050: 1,3:1; „Produkt B” #00B050 względem sąsiedniej serii „Produkt C” #FFFF00: 2,6:1. Serie te nie mają etykiet danych niosących tę samą informację. Wymaga potwierdzenia, czy elementy te są niezbędne do zrozumienia wykresu.",
+      "fixInstruction": "Zmień kolory serii tak, aby każda miała kontrast co najmniej 3:1 względem tła obszaru kreślenia i sąsiedniej serii: Projekt wykresu → Zmień kolory albo Formatuj serię danych → Wypełnienie (na wykresie liniowym: Linia). Zamiast tego możesz dodać obramowanie serii (Formatuj serię danych → Obramowanie), Wypełnienie deseniem albo Dodaj element wykresu → Etykiety danych. Wynik sprawdź w Recenzja → Sprawdź ułatwienia dostępu.",
+      "location": "Wykres „Wykres 1” na arkuszu „Wykresy kolorów”",
+      "key": "0003|Chart|0000001|00006|Wykres 1|2",
+      "snippet": "Sprzedaż produktów – kolumny",
+      "evidence": [
+        {
+          "name": "Najniższy kontrast",
+          "value": "1,0:1"
+        },
+        {
+          "name": "Wymagany kontrast",
+          "value": "3:1"
+        },
+        {
+          "name": "Tło obszaru kreślenia",
+          "value": "#FFFFFF"
+        },
+        {
+          "name": "Typ wykresu",
+          "value": "bar"
+        },
+        {
+          "name": "Liczba elementów poniżej progu",
+          "value": "4"
+        },
+        {
+          "name": "Element",
+          "value": "„Produkt B” #00B050 względem tła #FFFFFF: 2,8:1"
+        },
+        {
+          "name": "Element",
+          "value": "„Produkt C” #FFFF00 względem tła #FFFFFF: 1,0:1"
+        },
+        {
+          "name": "Element",
+          "value": "„Produkt A” #FF0000 względem sąsiedniej serii „Produkt B” #00B050: 1,3:1"
+        },
+        {
+          "name": "Element",
+          "value": "„Produkt B” #00B050 względem sąsiedniej serii „Produkt C” #FFFF00: 2,6:1"
+        }
+      ]
+    },
+    {
+      "code": "XL-CHART-COLOR",
+      "severity": "Warning",
+      "checkType": "Heuristic",
+      "confidence": 0.8,
+      "title": "Serie wykresu rozróżnione wyłącznie kolorem",
+      "wcag": [
+        "1.4.1"
+      ],
+      "message": "Serie wykresu są rozróżnione wyłącznie kolorem: „Produkt A” (#FF0000) i „Produkt B” (#00B050) – kontrast 1,3:1; „Produkt A” (#FF0000) i „Produkt C” (#0070C0) – kontrast 1,2:1; „Produkt B” (#00B050) i „Produkt C” (#0070C0) – kontrast 1,7:1. Serie nie mają wypełnienia deseniem, różnych znaczników, różnych stylów linii ani etykiet danych, a ich kolory różnią się jasnością mniej niż 3:1.",
+      "fixInstruction": "Dodaj wyróżnik inny niż kolor: zaznacz serię i wybierz Formatuj serię danych → Wypełnienie → Wypełnienie deseniem (wykres liniowy: Formatuj serię danych → Znacznik oraz Typ kreski) albo włącz Dodaj element wykresu → Etykiety danych. Kolory o wyraźnie różnej jasności ustawisz w Projekt wykresu → Zmień kolory. Wynik sprawdź w Recenzja → Sprawdź ułatwienia dostępu.",
+      "location": "Wykres „Wykres 2” na arkuszu „Wykresy kolorów”",
+      "key": "0003|Chart|0000017|00006|Wykres 2|3",
+      "snippet": "Sprzedaż produktów – linie",
+      "evidence": [
+        {
+          "name": "Typ wykresu",
+          "value": "line"
+        },
+        {
+          "name": "Liczba serii",
+          "value": "3"
+        },
+        {
+          "name": "Liczba par bez wyróżnika innego niż kolor",
+          "value": "3"
+        },
+        {
+          "name": "Para serii",
+          "value": "„Produkt A” (#FF0000) i „Produkt B” (#00B050) – kontrast 1,3:1"
+        },
+        {
+          "name": "Para serii",
+          "value": "„Produkt A” (#FF0000) i „Produkt C” (#0070C0) – kontrast 1,2:1"
+        },
+        {
+          "name": "Para serii",
+          "value": "„Produkt B” (#00B050) i „Produkt C” (#0070C0) – kontrast 1,7:1"
+        }
+      ]
+    },
+    {
+      "code": "XL-CHART-CONTRAST",
+      "severity": "Warning",
+      "checkType": "Heuristic",
+      "confidence": 0.8,
+      "title": "Za niski kontrast serii wykresu",
+      "wcag": [
+        "1.4.11"
+      ],
+      "message": "Kontrast serii wykresu jest niższy od 3:1: „Produkt B” #00B050 względem tła #FFFFFF: 2,8:1. Serie te nie mają etykiet danych niosących tę samą informację. Wymaga potwierdzenia, czy elementy te są niezbędne do zrozumienia wykresu.",
+      "fixInstruction": "Zmień kolory serii tak, aby każda miała kontrast co najmniej 3:1 względem tła obszaru kreślenia i sąsiedniej serii: Projekt wykresu → Zmień kolory albo Formatuj serię danych → Wypełnienie (na wykresie liniowym: Linia). Zamiast tego możesz dodać obramowanie serii (Formatuj serię danych → Obramowanie), Wypełnienie deseniem albo Dodaj element wykresu → Etykiety danych. Wynik sprawdź w Recenzja → Sprawdź ułatwienia dostępu.",
+      "location": "Wykres „Wykres 2” na arkuszu „Wykresy kolorów”",
+      "key": "0003|Chart|0000017|00006|Wykres 2|3",
+      "snippet": "Sprzedaż produktów – linie",
+      "evidence": [
+        {
+          "name": "Najniższy kontrast",
+          "value": "2,8:1"
+        },
+        {
+          "name": "Wymagany kontrast",
+          "value": "3:1"
+        },
+        {
+          "name": "Tło obszaru kreślenia",
+          "value": "#FFFFFF"
+        },
+        {
+          "name": "Typ wykresu",
+          "value": "line"
+        },
+        {
+          "name": "Liczba elementów poniżej progu",
+          "value": "1"
+        },
+        {
+          "name": "Element",
+          "value": "„Produkt B” #00B050 względem tła #FFFFFF: 2,8:1"
+        }
+      ]
+    },
+    {
+      "code": "XL-CONTRAST",
+      "severity": "NeedsReview",
+      "checkType": "Heuristic",
+      "confidence": 0.5,
+      "title": "Za niski kontrast tekstu względem tła komórki",
+      "wcag": [
+        "1.4.3"
+      ],
+      "message": "Tekst ma ten sam kolor co tło komórki (#FFFFFF, kontrast 1:1) – treść jest niewidoczna. Jeżeli ukryto ją celowo (np. instrukcję przeznaczoną dla czytników ekranu), kryterium 1.4.3 jej nie dotyczy; w przeciwnym razie zmień kolor czcionki.",
+      "fixInstruction": "Jeżeli tekst ma być widoczny, nadaj mu kolor kontrastujący z tłem: Narzędzia główne → Kolor czcionki (np. Automatyczny). Jeżeli jest ukryty celowo, nic nie zmieniaj. Wynik sprawdź w Recenzja → Sprawdź ułatwienia dostępu.",
+      "location": "Kontrast!B19",
+      "key": "0000|Cell|0000019|00002|B19|",
+      "snippet": "Tekst niewidoczny",
+      "evidence": [
+        {
+          "name": "Kontrast",
+          "value": "1,0:1"
+        },
+        {
+          "name": "Wymagany kontrast",
+          "value": "4,5:1"
+        },
+        {
+          "name": "Kolor tekstu",
+          "value": "#FFFFFF"
+        },
+        {
+          "name": "Kolor tła",
+          "value": "#FFFFFF"
+        },
+        {
+          "name": "Zapis koloru tekstu",
+          "value": "RGB"
+        },
+        {
+          "name": "Zapis koloru tła",
+          "value": "brak wypełnienia (przyjęto białe tło)"
+        },
+        {
+          "name": "Rozmiar czcionki",
+          "value": "11 pt"
+        },
+        {
+          "name": "Pogrubienie",
+          "value": "nie"
+        },
+        {
+          "name": "Para kolorów",
+          "value": "tekst w kolorze tła"
+        },
+        {
+          "name": "Liczba komórek",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "code": "XL-COLOR-ONLY",
+      "severity": "NeedsReview",
+      "checkType": "Heuristic",
+      "confidence": 0.6,
+      "title": "Informacja może być przekazywana wyłącznie kolorem",
+      "wcag": [
+        "1.4.1"
+      ],
+      "message": "Reguła formatowania warunkowego (wartość komórki mniejsza niż próg, priorytet 1) zmienia wyłącznie kolor czcionki (#FF0000). Jeżeli kolor niesie tu informację, której nie ma w tekście komórki ani obok, osoby nierozróżniające kolorów jej nie odbiorą – wymaga oceny człowieka.",
+      "fixInstruction": "Dodaj wyróżnik inny niż kolor: Narzędzia główne → Formatowanie warunkowe → Zarządzaj regułami → Edytuj regułę → Formatuj (np. pogrubienie, obramowanie albo format liczbowy z dopiskiem) albo zastąp regułę zestawem ikon o różnych kształtach; możesz też podać tę samą informację tekstem w sąsiedniej kolumnie. Wynik sprawdź w Recenzja → Sprawdź ułatwienia dostępu.",
+      "location": "'Formatowanie warunkowe'!B2:B6",
+      "key": "0002|Range|0000002|00002|B2:B6|",
+      "evidence": [
+        {
+          "name": "Sposób użycia koloru",
+          "value": "formatowanie warunkowe zmieniające tylko kolor"
+        },
+        {
+          "name": "Reguła",
+          "value": "wartość komórki mniejsza niż próg, priorytet 1"
+        },
+        {
+          "name": "Zakres reguły",
+          "value": "B2:B6"
+        },
+        {
+          "name": "Kolor czcionki reguły",
+          "value": "#FF0000"
+        }
+      ]
+    },
+    {
+      "code": "XL-COLOR-ONLY",
+      "severity": "NeedsReview",
+      "checkType": "Heuristic",
+      "confidence": 0.5,
+      "title": "Informacja może być przekazywana wyłącznie kolorem",
+      "wcag": [
+        "1.4.1"
+      ],
+      "message": "Reguła formatowania warunkowego (skala kolorów, priorytet 3) koloruje komórki skalą kolorów (#F8696B, #FFEB84, #63BE7B) – jedynym wyróżnikiem jest kolor tła. Jeżeli kolor niesie tu informację, której nie ma w tekście komórki ani obok, osoby nierozróżniające kolorów jej nie odbiorą – wymaga oceny człowieka.",
+      "fixInstruction": "Dodaj wyróżnik inny niż kolor: Narzędzia główne → Formatowanie warunkowe → Zarządzaj regułami → Edytuj regułę → Formatuj (np. pogrubienie, obramowanie albo format liczbowy z dopiskiem) albo zastąp regułę zestawem ikon o różnych kształtach; możesz też podać tę samą informację tekstem w sąsiedniej kolumnie. Wynik sprawdź w Recenzja → Sprawdź ułatwienia dostępu.",
+      "location": "'Formatowanie warunkowe'!C2:C6",
+      "key": "0002|Range|0000002|00003|C2:C6|",
+      "evidence": [
+        {
+          "name": "Sposób użycia koloru",
+          "value": "skala kolorów"
+        },
+        {
+          "name": "Reguła",
+          "value": "skala kolorów, priorytet 3"
+        },
+        {
+          "name": "Zakres reguły",
+          "value": "C2:C6"
+        },
+        {
+          "name": "Kolory skali",
+          "value": "#F8696B, #FFEB84, #63BE7B"
+        }
+      ]
+    },
+    {
+      "code": "XL-COLOR-ONLY",
+      "severity": "NeedsReview",
+      "checkType": "Heuristic",
+      "confidence": 0.6,
+      "title": "Informacja może być przekazywana wyłącznie kolorem",
+      "wcag": [
+        "1.4.1"
+      ],
+      "message": "Reguła formatowania warunkowego (tekst zawiera „błąd”, priorytet 4) zmienia wyłącznie kolor czcionki (#FFFFFF) i kolor wypełnienia (#FFFF00). Jeżeli kolor niesie tu informację, której nie ma w tekście komórki ani obok, osoby nierozróżniające kolorów jej nie odbiorą – wymaga oceny człowieka.",
+      "fixInstruction": "Dodaj wyróżnik inny niż kolor: Narzędzia główne → Formatowanie warunkowe → Zarządzaj regułami → Edytuj regułę → Formatuj (np. pogrubienie, obramowanie albo format liczbowy z dopiskiem) albo zastąp regułę zestawem ikon o różnych kształtach; możesz też podać tę samą informację tekstem w sąsiedniej kolumnie. Wynik sprawdź w Recenzja → Sprawdź ułatwienia dostępu.",
+      "location": "'Formatowanie warunkowe'!D2:D6",
+      "key": "0002|Range|0000002|00004|D2:D6|",
+      "evidence": [
+        {
+          "name": "Sposób użycia koloru",
+          "value": "formatowanie warunkowe zmieniające tylko kolor"
+        },
+        {
+          "name": "Reguła",
+          "value": "tekst zawiera „błąd”, priorytet 4"
+        },
+        {
+          "name": "Zakres reguły",
+          "value": "D2:D6"
+        },
+        {
+          "name": "Kolor czcionki reguły",
+          "value": "#FFFFFF"
+        },
+        {
+          "name": "Kolor wypełnienia reguły",
+          "value": "#FFFF00"
+        }
+      ]
+    }
+  ],
   "manualChecks": [
     {
       "id": "manual-1.1.1",
@@ -58,18 +1120,31 @@
       "question": "Czy instrukcje w skoroszycie są zrozumiałe bez odwoływania się wyłącznie do koloru, kształtu, rozmiaru lub położenia (np. „wypełnij żółte pola”, „tabela po prawej”)?"
     },
     {
-      "id": "manual-1.4.1",
+      "id": "manual-1.4.1:color",
       "wcag": [
         "1.4.1"
       ],
-      "question": "Czy każda informacja przekazana kolorem (statusy, wartości ujemne, serie wykresu, wyróżnienia) jest dostępna także w inny widoczny sposób: tekstem, znakiem, wzorem, etykietą?"
+      "code": "XL-COLOR-ONLY",
+      "question": "Czy każda informacja przekazana kolorem (statusy, wartości ujemne, serie wykresu, wyróżnienia), także kolorem wypełnienia albo czcionki nadanym komórkom ręcznie, jest dostępna także w inny widoczny sposób: tekstem, znakiem, wzorem, etykietą?",
+      "hint": "Skoroszyt ma komórki z ręcznie nadanym kolorem wypełnienia albo czcionki (np. pokolorowane wiersze, statusy, pola do wypełnienia) – narzędzie nie rozpoznaje znaczenia takich kolorów. Obejrzyj arkusz bez kolorów, np. w podglądzie wydruku czarno-białego (Układ strony → Ustawienia strony → Arkusz → Czarno-biały): jeżeli jakaś informacja znika, dopisz ją tekstem w komórce albo obok."
     },
     {
-      "id": "manual-1.4.3",
+      "id": "manual-1.4.3:color",
       "wcag": [
         "1.4.3"
       ],
-      "question": "Czy tekst na tle z obrazu, gradientu, wzoru lub w kolorach automatycznych jest wyraźnie czytelny (kontrast co najmniej 4,5:1, dla dużego tekstu 3:1)?"
+      "code": "XL-CONTRAST",
+      "question": "Czy tekst na tle z obrazu, gradientu, wzoru lub w kolorach automatycznych, a także tekst w tabelach ze stylem tabeli, w kształtach i na wykresach, jest wyraźnie czytelny (kontrast co najmniej 4,5:1, dla dużego tekstu 3:1)?",
+      "hint": "Narzędzie ocenia kontrast tylko z formatowania komórek; nie ocenia stylów tabel, obrazów tła arkusza (Układ strony → Tło) ani tekstu w obiektach. W tym skoroszycie: tekst w kształtach, polach tekstowych i na wykresach (tytuły, etykiety osi i danych, legenda) – zaznacz obiekt i sprawdź Formatuj kształt → Opcje tekstu → Wypełnienie tekstu oraz wypełnienie kształtu lub obszaru wykresu; komórki z wypełnieniem deseniem albo gradientem, ocenione w przybliżeniu – sprawdź Formatuj komórki → Wypełnienie (Kolor deseniu, Styl deseniu, Efekty wypełnienia). Kolory oceń też w Recenzja → Sprawdź ułatwienia dostępu."
+    },
+    {
+      "id": "manual-1.4.3:exceptions",
+      "wcag": [
+        "1.4.3"
+      ],
+      "code": "XL-CONTRAST",
+      "question": "Czy teksty zgłoszone jako mające za niski kontrast są objęte wyjątkiem z kryterium 1.4.3: należą do nieaktywnego elementu, są czystą dekoracją, logotypem albo treścią celowo niewidoczną? Narzędzie nie rozpoznaje tych wyjątków – pozostałe zgłoszone teksty wymagają poprawy kolorów.",
+      "hint": "Przejrzyj zgłoszenia XL-CONTRAST i XL-CONTRAST-CF. Tekst, który ma być czytany, musi mieć kontrast co najmniej 4,5:1 (duży tekst 3:1)."
     },
     {
       "id": "manual-1.4.10",
@@ -79,11 +1154,13 @@
       "question": "Czy przy dużym powiększeniu treść pojedynczych komórek (zwłaszcza długie teksty) da się przeczytać bez przewijania w dwóch kierunkach?"
     },
     {
-      "id": "manual-1.4.11",
+      "id": "manual-1.4.11:color",
       "wcag": [
         "1.4.11"
       ],
-      "question": "Czy elementy wykresów i grafik niezbędne do zrozumienia treści (linie, słupki, wycinki, ikony) odróżniają się od tła i od siebie kontrastem co najmniej 3:1 albo mają etykiety tekstowe niosące tę samą informację?"
+      "code": "XL-CHART-CONTRAST",
+      "question": "Czy elementy wykresów i grafik niezbędne do zrozumienia treści (linie, słupki, wycinki, ikony) odróżniają się od tła i od siebie kontrastem co najmniej 3:1 albo mają etykiety tekstowe niosące tę samą informację?",
+      "hint": "Narzędzie ocenia tylko serie wykresów o kolorach zapisanych w pliku (względem tła obszaru kreślenia i serii sąsiednich). Sprawdź ręcznie wycinki wykresów kołowych, serie w kolorach automatycznych, znaczniki, linie i osie, kształty oraz ikony i paski danych formatowania warunkowego: zaznacz element i porównaj jego kolory z sąsiednimi w Formatuj kształt albo Formatuj serię danych → Wypełnienie i linia."
     },
     {
       "id": "manual-2.4.2",
@@ -216,7 +1293,11 @@
       "name": "Użycie koloru",
       "level": "A",
       "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: kryterium stosuje się wprost. Kolor nie może być jedynym wizualnym nośnikiem informacji (statusy, liczby ujemne, serie wykresu, łącza).",
+      "reason": "Możliwy problem – wymaga weryfikacji przez człowieka: XL-CHART-COLOR, XL-COLOR-ONLY. WCAG2ICT: kryterium stosuje się wprost. Kolor nie może być jedynym wizualnym nośnikiem informacji (statusy, liczby ujemne, serie wykresu, łącza).",
+      "findingCodes": [
+        "XL-CHART-COLOR",
+        "XL-COLOR-ONLY"
+      ],
       "manualChecks": 1
     },
     {
@@ -230,9 +1311,13 @@
       "sc": "1.4.3",
       "name": "Kontrast (minimum)",
       "level": "AA",
-      "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: kryterium stosuje się wprost. Kolory tekstu i tła komórek, kształtów i wykresów ustala autor.",
-      "manualChecks": 1
+      "status": "Failed",
+      "reason": "Wykryto niespełnienie kryterium (kontrola automatyczna): XL-CONTRAST.",
+      "findingCodes": [
+        "XL-CONTRAST",
+        "XL-CONTRAST-CF"
+      ],
+      "manualChecks": 2
     },
     {
       "sc": "1.4.4",
@@ -263,7 +1348,10 @@
       "name": "Kontrast elementów nietekstowych",
       "level": "AA",
       "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: kryterium stosuje się wprost. Obejmuje serie wykresów, ikony i kształty niosące informację; wygląd standardowych kontrolek i siatki ustala oprogramowanie (wyjątek).",
+      "reason": "Możliwy problem – wymaga weryfikacji przez człowieka: XL-CHART-CONTRAST. WCAG2ICT: kryterium stosuje się wprost. Obejmuje serie wykresów, ikony i kształty niosące informację; wygląd standardowych kontrolek i siatki ustala oprogramowanie (wyjątek).",
+      "findingCodes": [
+        "XL-CHART-CONTRAST"
+      ],
       "manualChecks": 1
     },
     {
