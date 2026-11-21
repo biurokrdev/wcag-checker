@@ -4,7 +4,7 @@ Język: pl-PL
 Obrazy: 0
 
 Raport walidacji dokumentu „audit20-gaps.docx”
-Wynik: niepoprawny. 11 błędów, 9 ostrzeżeń.
+Wynik: niepoprawny. 8 błędów, 10 ostrzeżeń.
 Data sprawdzenia: <data>. Standardy: Standard pism firmowych 2.0.
 Dokument: tytuł „brak”, autor „brak”, język pl-PL, 54 akapitów, 7 nagłówków, 3 tabel, 0 obrazów.
 Podsumowanie kontroli
@@ -29,11 +29,11 @@ Sekcja „Spis treści i listy”
 | Status | Kontrola | Szczegóły |
 | Zatwierdzono | G-06 Automatyczny spis treści powyżej 9 stron | – |
 | Zatwierdzono | Nagłówek „Spis treści” poza spisem, SUN Me Bold 10 pt | – |
-| Błąd | Punktory #FF6200/#000000, numery pogrubione | Punktor w niedozwolonym kolorze: 2 pozycje listy mają punktor w kolorze spoza #FF6200 i #000000. (2 wystąpień) |
+| Błąd | Punktory #FF6200/#000000, numery pogrubione | Punktor w niedozwolonym kolorze: 2 pozycje listy mają punktor w kolorze spoza #FF6200 i #000000. (2 wystąpień) ⏎ Numer listy bez pogrubienia: 2 pozycje listy numerowanej mają niepogrubiony numer; guidebook: „Lista numerowana: bold”. (2 wystąpień) |
 Sekcja „Tabele”
 | Status | Kontrola | Szczegóły |
-| Błąd | G-08 Wiersz nagłówkowy powtarzany, bez pustych komórek, wiersze niepodzielne | Pusta komórka tabeli: Tabela 1: 1 pusta komórka; wpisz „Brak danych”, „0” albo inną wartość słowną. ⏎ Wiersz tabeli może dzielić się między strony: Tabela 1: 1 wiersz może dzielić się między strony (brak „Nie dziel wiersza między stronami”). ⏎ Wiersz tabeli może dzielić się między strony: Tabela 2: 3 wiersze mogą dzielić się między strony (brak „Nie dziel wiersza między stronami”). |
-| Błąd | G-09 Krawędzie 1 pt #000000, nagłówki Bold, lewo/środek w pionie | Wyrównanie w tabeli niezgodne ze standardem: Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie. (6 wystąpień) ⏎ Wyrównanie w tabeli niezgodne ze standardem: Tabela 2: 6 komórek nie jest wyrównanych do lewej i do środka w pionie. (6 wystąpień) ⏎ Krawędzie tabeli inne niż 1 pt czarne: Tabela 3 nie ma wszystkich krawędzi 1 pt w kolorze #000000. ⏎ Nagłówek tabeli bez pogrubienia: Tabela 1: 2 komórki nagłówka nie są pogrubione. (2 wystąpień) ⏎ Nagłówek tabeli bez pogrubienia: Tabela 2: 2 komórki nagłówka nie są pogrubione. (2 wystąpień) |
+| Błąd | G-08 Wiersz nagłówkowy powtarzany, bez pustych komórek, wiersze niepodzielne | Pusta komórka tabeli: Tabela 1: 1 pusta komórka; wpisz „Brak danych”, „0” albo inną wartość słowną. ⏎ Wiersz tabeli może dzielić się między strony: Tabela 1: 1 wiersz może dzielić się między strony (brak „Nie dziel wiersza między stronami”). |
+| Błąd | G-09 Krawędzie 1 pt #000000, nagłówki Bold, lewo/środek w pionie | Wyrównanie w tabeli niezgodne ze standardem: Tabela 2: 2 komórki nie są wyrównane do lewej i do środka w pionie. (2 wystąpień) ⏎ Krawędzie tabeli inne niż 1 pt czarne: Tabela 1: 1 komórka ma krawędzie inne niż 1 pt w kolorze #000000 (nadpisane w komórce albo w stylu tabeli). ⏎ Nagłówek tabeli bez pogrubienia: Tabela 2: 1 komórka nagłówka nie jest pogrubiona. |
 | Zatwierdzono | Tytuł i opis tabeli w tekście alternatywnym | – |
 Sekcja „Grafika”
 | Status | Kontrola | Szczegóły |
@@ -45,7 +45,7 @@ Sekcja „Stopka i metadane”
 | Zatwierdzono | G-13 Język dokumentu ustawiony | – |
 Sekcja „Warianty i oznaczenia”
 | Status | Kontrola | Szczegóły |
-| Ostrzeżenie | G-14 Warianty zagnieżdżone i domknięte, kolory znaczników, [lub] zamiast ukośnika | Alternatywa z ukośnikiem zamiast [lub]: 1 akapit wewnątrz wariantu ma alternatywę z ukośnikiem (np. „PLN / EUR”); w wariantach separator zastępuje się znacznikiem [lub] w kolorze #AB0066. |
+| Ostrzeżenie | G-14 Warianty zagnieżdżone i domknięte, kolory znaczników, [lub] zamiast ukośnika | Alternatywa z ukośnikiem zamiast [lub]: 2 akapity wewnątrz wariantu mają alternatywę z ukośnikiem (np. „PLN / EUR”); w wariantach separator zastępuje się znacznikiem [lub] w kolorze #AB0066. (2 wystąpień) |
 | Zatwierdzono | G-16 Napis WZÓR na każdej stronie, SUN Me Bold 28 pt | – |
 Sekcja „Weryfikacja ręczna”
 | Status | Kontrola | Szczegóły |
@@ -56,44 +56,33 @@ Sekcja „Weryfikacja ręczna”
 | Ręczna weryfikacja | Wariant układu (dane rejestrowe, strona tytułowa, pole adresowe) | Dane rejestrowe SUN Me 8 pt #696969 interlinia 1,5; strona tytułowa bez stopki; pole adresowe najlepiej puste. |
 | Ręczna weryfikacja | Pola podpisów, separatory i kontrolki formularza | Linia podpisu 1 px #000000 60 mm; inputy 1 px #696969, 24 px wysokości; checkbox 20 × 20 px. |
 Wyniki walidacji
-36 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
+25 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
 Tabela wystąpień
 | Nr | Waga | Zgłoszenie | Standard | Miejsce | Komunikat | Zweryfikowano |
-| 1 | błąd | Wyrównanie w tabeli niezgodne ze standardem | Standard pism firmowych 2.0 | komórka tabeli: „Rodzaj opłaty” (1/6) | Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie. | nie |
-| 2 | błąd | Wyrównanie w tabeli niezgodne ze standardem | Standard pism firmowych 2.0 | komórka tabeli: „Kwota” (2/6) | Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie. | nie |
-| 3 | błąd | Wyrównanie w tabeli niezgodne ze standardem | Standard pism firmowych 2.0 | komórka tabeli: „Prowadzenie konta” (3/6) | Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie. | nie |
-| 4 | błąd | Wyrównanie w tabeli niezgodne ze standardem | Standard pism firmowych 2.0 | komórka tabeli: „0 zł” (4/6) | Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie. | nie |
-| 5 | błąd | Wyrównanie w tabeli niezgodne ze standardem | Standard pism firmowych 2.0 | komórka tabeli: „Karta debetowa” (5/6) | Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie. | nie |
-| 6 | błąd | Wyrównanie w tabeli niezgodne ze standardem | Standard pism firmowych 2.0 | komórka tabeli: „” (6/6) | Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie. | nie |
-| 7 | błąd | Wyrównanie w tabeli niezgodne ze standardem | Standard pism firmowych 2.0 | komórka tabeli: „Rodzaj prowizji” (1/6) | Tabela 2: 6 komórek nie jest wyrównanych do lewej i do środka w pionie. | nie |
-| 8 | błąd | Wyrównanie w tabeli niezgodne ze standardem | Standard pism firmowych 2.0 | komórka tabeli: „Stawka” (2/6) | Tabela 2: 6 komórek nie jest wyrównanych do lewej i do środka w pionie. | nie |
-| 9 | błąd | Wyrównanie w tabeli niezgodne ze standardem | Standard pism firmowych 2.0 | komórka tabeli: „Za udzielenie kredytu” (3/6) | Tabela 2: 6 komórek nie jest wyrównanych do lewej i do środka w pionie. | nie |
-| 10 | błąd | Wyrównanie w tabeli niezgodne ze standardem | Standard pism firmowych 2.0 | komórka tabeli: „1,5%” (4/6) | Tabela 2: 6 komórek nie jest wyrównanych do lewej i do środka w pionie. | nie |
-| 11 | błąd | Wyrównanie w tabeli niezgodne ze standardem | Standard pism firmowych 2.0 | komórka tabeli: „Za wcześniejszą spłatę” (5/6) | Tabela 2: 6 komórek nie jest wyrównanych do lewej i do środka w pionie. | nie |
-| 12 | błąd | Wyrównanie w tabeli niezgodne ze standardem | Standard pism firmowych 2.0 | komórka tabeli: „0,5%” (6/6) | Tabela 2: 6 komórek nie jest wyrównanych do lewej i do środka w pionie. | nie |
-| 13 | błąd | Krawędzie tabeli inne niż 1 pt czarne | Standard pism firmowych 2.0 | tabela: „tabela 3” | Tabela 3 nie ma wszystkich krawędzi 1 pt w kolorze #000000. | nie |
-| 14 | błąd | Pusta komórka tabeli | Standard pism firmowych 2.0 | komórka tabeli: „(pusta komórka)” | Tabela 1: 1 pusta komórka; wpisz „Brak danych”, „0” albo inną wartość słowną. | nie |
-| 15 | błąd | Nagłówek tabeli bez pogrubienia | Standard pism firmowych 2.0 | komórka tabeli: „Rodzaj opłaty” (1/2) | Tabela 1: 2 komórki nagłówka nie są pogrubione. | nie |
-| 16 | błąd | Nagłówek tabeli bez pogrubienia | Standard pism firmowych 2.0 | komórka tabeli: „Kwota” (2/2) | Tabela 1: 2 komórki nagłówka nie są pogrubione. | nie |
-| 17 | błąd | Nagłówek tabeli bez pogrubienia | Standard pism firmowych 2.0 | komórka tabeli: „Rodzaj prowizji” (1/2) | Tabela 2: 2 komórki nagłówka nie są pogrubione. | nie |
-| 18 | błąd | Nagłówek tabeli bez pogrubienia | Standard pism firmowych 2.0 | komórka tabeli: „Stawka” (2/2) | Tabela 2: 2 komórki nagłówka nie są pogrubione. | nie |
-| 19 | błąd | Wiersz tabeli może dzielić się między strony | Standard pism firmowych 2.0 | tabela: „tabela 1” | Tabela 1: 1 wiersz może dzielić się między strony (brak „Nie dziel wiersza między stronami”). | nie |
-| 20 | błąd | Wiersz tabeli może dzielić się między strony | Standard pism firmowych 2.0 | tabela: „tabela 2” | Tabela 2: 3 wiersze mogą dzielić się między strony (brak „Nie dziel wiersza między stronami”). | nie |
-| 21 | błąd | Punktor w niedozwolonym kolorze | Standard pism firmowych 2.0 | akapit: „pozycja z zielonym punktorem, (punktor #00AA00)” (1/2) | 2 pozycje listy mają punktor w kolorze spoza #FF6200 i #000000. | nie |
-| 22 | błąd | Punktor w niedozwolonym kolorze | Standard pism firmowych 2.0 | akapit: „druga pozycja z zielonym punktorem. (punktor #00AA00)” (2/2) | 2 pozycje listy mają punktor w kolorze spoza #FF6200 i #000000. | nie |
-| 23 | błąd | Rozmiar tekstu podstawowego spoza standardu | Standard pism firmowych 2.0 | fragment tekstu: „Example Company S. A. z siedzibą w Warsz… (8 pt)” (1/2) | 2 fragmenty tekstu podstawowego mają rozmiar spoza standardu; wymagane 10 pt (dopuszczalnie 12 albo 14 pt). | nie |
-| 24 | błąd | Rozmiar tekstu podstawowego spoza standardu | Standard pism firmowych 2.0 | fragment tekstu: „Example Company S. A., oddział w Krakowi… (9 pt)” (2/2) | 2 fragmenty tekstu podstawowego mają rozmiar spoza standardu; wymagane 10 pt (dopuszczalnie 12 albo 14 pt). | nie |
-| 25 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „Example Company S. A. z siedzibą w Warsz… (interlinia 1,5)” (1/3) | 3 akapity mają interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
-| 26 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „Example Company S. A., oddział w Krakowi… (interlinia 1,5)” (2/3) | 3 akapity mają interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
-| 27 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „Example Company S. A. z siedzibą w Warsz… (interlinia 1,5)” (3/3) | 3 akapity mają interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
-| 28 | ostrzeżenie | Pominięty poziom nagłówka | Standard pism firmowych 2.0 | akapit: „Listy z nadpisaniami” | Nagłówek „Listy z nadpisaniami” ma poziom 3 zaraz po poziomie 1; pominięto poziom 2. | nie |
-| 29 | ostrzeżenie | Alternatywa z ukośnikiem zamiast [lub] | Standard pism firmowych 2.0 | akapit: „PLN / EUR” | 1 akapit wewnątrz wariantu ma alternatywę z ukośnikiem (np. „PLN / EUR”); w wariantach separator zastępuje się znacznikiem [lub] w kolorze #AB0066. | nie |
-| 30 | ostrzeżenie | Stopka bez tytułu dokumentu | Standard pism firmowych 2.0 | akapit: „(stopka)” | Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”. | nie |
-| 31 | ostrzeżenie | Marginesy inne niż wymagane | Standard pism firmowych 2.0 | dokument: „(ustawienia strony)” | Margines górny ma 70,9 pt, a wymagane jest 36 pt. | nie |
-| 32 | ostrzeżenie | Marginesy inne niż wymagane | Standard pism firmowych 2.0 | dokument: „(ustawienia strony)” | Margines dolny ma 70,9 pt, a wymagane jest 36 pt. | nie |
-| 33 | ostrzeżenie | Marginesy inne niż wymagane | Standard pism firmowych 2.0 | dokument: „(ustawienia strony)” | Margines lewy ma 70,9 pt, a wymagane jest 36 pt. | nie |
-| 34 | ostrzeżenie | Marginesy inne niż wymagane | Standard pism firmowych 2.0 | dokument: „(ustawienia strony)” | Margines prawy ma 70,9 pt, a wymagane jest 36 pt. | nie |
-| 35 | ostrzeżenie | Strona inna niż A4 | Standard pism firmowych 2.0 | dokument: „(ustawienia strony)” | Strona ma 216 × 279 mm, a wymagany jest format A4 (210 × 297 mm). | nie |
-| 36 | ostrzeżenie | Kolor z palety użyty niezgodnie z przeznaczeniem | Standard pism firmowych 2.0 | fragment tekstu: „Example Company S. A., oddział w Krakowi… (szary #696969 jest zarezerwowany dla stopki i danych rejestrowych (8 pt))” | 1 fragment tekstu ma kolor z palety użyty niezgodnie z przeznaczeniem (rozdz. 2 guidebooka). | nie |
+| 1 | błąd | Wyrównanie w tabeli niezgodne ze standardem | Standard pism firmowych 2.0 | komórka tabeli: „1,5%” (1/2) | Tabela 2: 2 komórki nie są wyrównane do lewej i do środka w pionie. | nie |
+| 2 | błąd | Wyrównanie w tabeli niezgodne ze standardem | Standard pism firmowych 2.0 | komórka tabeli: „0,5%” (2/2) | Tabela 2: 2 komórki nie są wyrównane do lewej i do środka w pionie. | nie |
+| 3 | błąd | Krawędzie tabeli inne niż 1 pt czarne | Standard pism firmowych 2.0 | komórka tabeli: „0 zł (krawędzie: górna 0,5 pt #FF0000, lewa 0,5 pt #FF0000, dolna 0,5 pt #FF0000, prawa 0,5 pt #FF0000)” | Tabela 1: 1 komórka ma krawędzie inne niż 1 pt w kolorze #000000 (nadpisane w komórce albo w stylu tabeli). | nie |
+| 4 | błąd | Pusta komórka tabeli | Standard pism firmowych 2.0 | komórka tabeli: „(pusta komórka)” | Tabela 1: 1 pusta komórka; wpisz „Brak danych”, „0” albo inną wartość słowną. | nie |
+| 5 | błąd | Nagłówek tabeli bez pogrubienia | Standard pism firmowych 2.0 | komórka tabeli: „Stawka” | Tabela 2: 1 komórka nagłówka nie jest pogrubiona. | nie |
+| 6 | błąd | Wiersz tabeli może dzielić się między strony | Standard pism firmowych 2.0 | tabela: „tabela 1” | Tabela 1: 1 wiersz może dzielić się między strony (brak „Nie dziel wiersza między stronami”). | nie |
+| 7 | błąd | Punktor w niedozwolonym kolorze | Standard pism firmowych 2.0 | akapit: „pozycja z zielonym punktorem, (punktor #00AA00)” (1/2) | 2 pozycje listy mają punktor w kolorze spoza #FF6200 i #000000. | nie |
+| 8 | błąd | Punktor w niedozwolonym kolorze | Standard pism firmowych 2.0 | akapit: „druga pozycja z zielonym punktorem. (punktor #00AA00)” (2/2) | 2 pozycje listy mają punktor w kolorze spoza #FF6200 i #000000. | nie |
+| 9 | błąd | Rozmiar tekstu podstawowego spoza standardu | Standard pism firmowych 2.0 | fragment tekstu: „Example Company S. A. z siedzibą w Warsz… (8 pt)” (1/2) | 2 fragmenty tekstu podstawowego mają rozmiar spoza standardu; wymagane 10 pt (dopuszczalnie 12 albo 14 pt). | nie |
+| 10 | błąd | Rozmiar tekstu podstawowego spoza standardu | Standard pism firmowych 2.0 | fragment tekstu: „Example Company S. A., oddział w Krakowi… (9 pt)” (2/2) | 2 fragmenty tekstu podstawowego mają rozmiar spoza standardu; wymagane 10 pt (dopuszczalnie 12 albo 14 pt). | nie |
+| 11 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „Example Company S. A. z siedzibą w Warsz… (interlinia 1,5)” (1/3) | 3 akapity mają interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
+| 12 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „Example Company S. A., oddział w Krakowi… (interlinia 1,5)” (2/3) | 3 akapity mają interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
+| 13 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „Example Company S. A. z siedzibą w Warsz… (interlinia 1,5)” (3/3) | 3 akapity mają interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
+| 14 | ostrzeżenie | Pominięty poziom nagłówka | Standard pism firmowych 2.0 | akapit: „Listy z nadpisaniami” | Nagłówek „Listy z nadpisaniami” ma poziom 3 zaraz po poziomie 1; pominięto poziom 2. | nie |
+| 15 | ostrzeżenie | Numer listy bez pogrubienia | Standard pism firmowych 2.0 | akapit: „Pierwszy krok z numerem bez pogrubienia.” (1/2) | 2 pozycje listy numerowanej mają niepogrubiony numer; guidebook: „Lista numerowana: bold”. | nie |
+| 16 | ostrzeżenie | Numer listy bez pogrubienia | Standard pism firmowych 2.0 | akapit: „Drugi krok z numerem bez pogrubienia.” (2/2) | 2 pozycje listy numerowanej mają niepogrubiony numer; guidebook: „Lista numerowana: bold”. | nie |
+| 17 | ostrzeżenie | Alternatywa z ukośnikiem zamiast [lub] | Standard pism firmowych 2.0 | akapit: „Pani/Pan” (1/2) | 2 akapity wewnątrz wariantu mają alternatywę z ukośnikiem (np. „PLN / EUR”); w wariantach separator zastępuje się znacznikiem [lub] w kolorze #AB0066. | nie |
+| 18 | ostrzeżenie | Alternatywa z ukośnikiem zamiast [lub] | Standard pism firmowych 2.0 | akapit: „PLN / EUR” (2/2) | 2 akapity wewnątrz wariantu mają alternatywę z ukośnikiem (np. „PLN / EUR”); w wariantach separator zastępuje się znacznikiem [lub] w kolorze #AB0066. | nie |
+| 19 | ostrzeżenie | Stopka bez tytułu dokumentu | Standard pism firmowych 2.0 | akapit: „(stopka)” | Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”. | nie |
+| 20 | ostrzeżenie | Marginesy inne niż wymagane | Standard pism firmowych 2.0 | dokument: „(ustawienia strony)” | Margines górny ma 70,9 pt, a wymagane jest 36 pt. | nie |
+| 21 | ostrzeżenie | Marginesy inne niż wymagane | Standard pism firmowych 2.0 | dokument: „(ustawienia strony)” | Margines dolny ma 70,9 pt, a wymagane jest 36 pt. | nie |
+| 22 | ostrzeżenie | Marginesy inne niż wymagane | Standard pism firmowych 2.0 | dokument: „(ustawienia strony)” | Margines lewy ma 70,9 pt, a wymagane jest 36 pt. | nie |
+| 23 | ostrzeżenie | Marginesy inne niż wymagane | Standard pism firmowych 2.0 | dokument: „(ustawienia strony)” | Margines prawy ma 70,9 pt, a wymagane jest 36 pt. | nie |
+| 24 | ostrzeżenie | Strona inna niż A4 | Standard pism firmowych 2.0 | dokument: „(ustawienia strony)” | Strona ma 216 × 279 mm, a wymagany jest format A4 (210 × 297 mm). | nie |
+| 25 | ostrzeżenie | Kolor z palety użyty niezgodnie z przeznaczeniem | Standard pism firmowych 2.0 | fragment tekstu: „Example Company S. A., oddział w Krakowi… (szary #696969 jest zarezerwowany dla stopki i danych rejestrowych (8 pt))” | 1 fragment tekstu ma kolor z palety użyty niezgodnie z przeznaczeniem (rozdz. 2 guidebooka). | nie |
 
-PDF: %PDF-, strony: 8
+PDF: %PDF-, strony: 7

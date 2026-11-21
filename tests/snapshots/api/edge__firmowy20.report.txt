@@ -4,7 +4,7 @@ Język: pl-PL
 Obrazy: 0
 
 Raport walidacji dokumentu „edge.docx”
-Wynik: niepoprawny. 2 błędy, 1 ostrzeżenie.
+Wynik: poprawny. 1 ostrzeżenie.
 Data sprawdzenia: <data>. Standardy: Standard pism firmowych 2.0.
 Dokument: tytuł „Przypadki brzegowe. Example Company S. A.”, autor „Example Company S. A.”, język pl-PL, 21 akapitów, 3 nagłówków, 1 tabel, 1 obrazów.
 Podsumowanie kontroli
@@ -33,7 +33,7 @@ Sekcja „Spis treści i listy”
 Sekcja „Tabele”
 | Status | Kontrola | Szczegóły |
 | Zatwierdzono | G-08 Wiersz nagłówkowy powtarzany, bez pustych komórek, wiersze niepodzielne | – |
-| Błąd | G-09 Krawędzie 1 pt #000000, nagłówki Bold, lewo/środek w pionie | Wyrównanie w tabeli niezgodne ze standardem: Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie. (6 wystąpień) ⏎ Nagłówek tabeli bez pogrubienia: Tabela 1: 2 komórki nagłówka nie są pogrubione. (2 wystąpień) |
+| Zatwierdzono | G-09 Krawędzie 1 pt #000000, nagłówki Bold, lewo/środek w pionie | – |
 | Zatwierdzono | Tytuł i opis tabeli w tekście alternatywnym | – |
 Sekcja „Grafika”
 | Status | Kontrola | Szczegóły |
@@ -56,18 +56,10 @@ Sekcja „Weryfikacja ręczna”
 | Ręczna weryfikacja | Wariant układu (dane rejestrowe, strona tytułowa, pole adresowe) | Dane rejestrowe SUN Me 8 pt #696969 interlinia 1,5; strona tytułowa bez stopki; pole adresowe najlepiej puste. |
 | Ręczna weryfikacja | Pola podpisów, separatory i kontrolki formularza | Linia podpisu 1 px #000000 60 mm; inputy 1 px #696969, 24 px wysokości; checkbox 20 × 20 px. |
 Wyniki walidacji
-10 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
+2 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
 Tabela wystąpień
 | Nr | Waga | Zgłoszenie | Standard | Miejsce | Komunikat | Zweryfikowano |
-| 1 | błąd | Wyrównanie w tabeli niezgodne ze standardem | Standard pism firmowych 2.0 | komórka tabeli: „Etap” (1/6) | Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie. | nie |
-| 2 | błąd | Wyrównanie w tabeli niezgodne ze standardem | Standard pism firmowych 2.0 | komórka tabeli: „Termin” (2/6) | Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie. | nie |
-| 3 | błąd | Wyrównanie w tabeli niezgodne ze standardem | Standard pism firmowych 2.0 | komórka tabeli: „Złożenie wniosku” (3/6) | Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie. | nie |
-| 4 | błąd | Wyrównanie w tabeli niezgodne ze standardem | Standard pism firmowych 2.0 | komórka tabeli: „do 30 dni” (4/6) | Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie. | nie |
-| 5 | błąd | Wyrównanie w tabeli niezgodne ze standardem | Standard pism firmowych 2.0 | komórka tabeli: „Decyzja” (5/6) | Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie. | nie |
-| 6 | błąd | Wyrównanie w tabeli niezgodne ze standardem | Standard pism firmowych 2.0 | komórka tabeli: „do 14 dni” (6/6) | Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie. | nie |
-| 7 | błąd | Nagłówek tabeli bez pogrubienia | Standard pism firmowych 2.0 | komórka tabeli: „Etap” (1/2) | Tabela 1: 2 komórki nagłówka nie są pogrubione. | nie |
-| 8 | błąd | Nagłówek tabeli bez pogrubienia | Standard pism firmowych 2.0 | komórka tabeli: „Termin” (2/2) | Tabela 1: 2 komórki nagłówka nie są pogrubione. | nie |
-| 9 | ostrzeżenie | Kolor tekstu spoza palety | Standard pism firmowych 2.0 | fragment tekstu: „rozjaśniony akcent (#8EAADB)” (1/2) | 2 fragmenty tekstu mają kolor spoza dozwolonej palety (#8EAADB, #2F5496); dozwolone: #000000, #FF6200, #0000FF, #AB0066, #7724FF, #696969, #4D0020. | nie |
-| 10 | ostrzeżenie | Kolor tekstu spoza palety | Standard pism firmowych 2.0 | fragment tekstu: „przyciemniony akcent (#2F5496)” (2/2) | 2 fragmenty tekstu mają kolor spoza dozwolonej palety (#8EAADB, #2F5496); dozwolone: #000000, #FF6200, #0000FF, #AB0066, #7724FF, #696969, #4D0020. | nie |
+| 1 | ostrzeżenie | Kolor tekstu spoza palety | Standard pism firmowych 2.0 | fragment tekstu: „rozjaśniony akcent (#8EAADB)” (1/2) | 2 fragmenty tekstu mają kolor spoza dozwolonej palety (#8EAADB, #2F5496); dozwolone: #000000, #FF6200, #0000FF, #AB0066, #7724FF, #696969, #4D0020. | nie |
+| 2 | ostrzeżenie | Kolor tekstu spoza palety | Standard pism firmowych 2.0 | fragment tekstu: „przyciemniony akcent (#2F5496)” (2/2) | 2 fragmenty tekstu mają kolor spoza dozwolonej palety (#8EAADB, #2F5496); dozwolone: #000000, #FF6200, #0000FF, #AB0066, #7724FF, #696969, #4D0020. | nie |
 
-PDF: %PDF-, strony: 5
+PDF: %PDF-, strony: 4

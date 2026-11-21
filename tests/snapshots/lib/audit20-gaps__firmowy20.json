@@ -1,6 +1,6 @@
 {
   "outcome": "Invalid",
-  "summary": "11 błędów, 9 ostrzeżeń.",
+  "summary": "8 błędów, 10 ostrzeżeń.",
   "standards": [
     {
       "key": "firmowy/2.0",
@@ -54,60 +54,11 @@
       "severity": "Error",
       "category": "Tables",
       "standard": "firmowy/2.0",
-      "message": "Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
+      "message": "Tabela 2: 2 komórki nie są wyrównane do lewej i do środka w pionie.",
       "locations": [
-        {
-          "key": "body:TableCell:0:0",
-          "snippet": "Rodzaj opłaty"
-        },
-        {
-          "key": "body:TableCell:0:1",
-          "snippet": "Kwota"
-        },
-        {
-          "key": "body:TableCell:0:2",
-          "snippet": "Prowadzenie konta"
-        },
-        {
-          "key": "body:TableCell:0:3",
-          "snippet": "0 zł"
-        },
-        {
-          "key": "body:TableCell:0:4",
-          "snippet": "Karta debetowa"
-        },
-        {
-          "key": "body:TableCell:0:5",
-          "snippet": ""
-        }
-      ]
-    },
-    {
-      "code": "TABLE_ALIGNMENT_MISMATCH",
-      "severity": "Error",
-      "category": "Tables",
-      "standard": "firmowy/2.0",
-      "message": "Tabela 2: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
-      "locations": [
-        {
-          "key": "body:TableCell:1:0",
-          "snippet": "Rodzaj prowizji"
-        },
-        {
-          "key": "body:TableCell:1:1",
-          "snippet": "Stawka"
-        },
-        {
-          "key": "body:TableCell:1:2",
-          "snippet": "Za udzielenie kredytu"
-        },
         {
           "key": "body:TableCell:1:3",
           "snippet": "1,5%"
-        },
-        {
-          "key": "body:TableCell:1:4",
-          "snippet": "Za wcześniejszą spłatę"
         },
         {
           "key": "body:TableCell:1:5",
@@ -120,11 +71,11 @@
       "severity": "Error",
       "category": "Tables",
       "standard": "firmowy/2.0",
-      "message": "Tabela 3 nie ma wszystkich krawędzi 1 pt w kolorze #000000.",
+      "message": "Tabela 1: 1 komórka ma krawędzie inne niż 1 pt w kolorze #000000 (nadpisane w komórce albo w stylu tabeli).",
       "locations": [
         {
-          "key": "body:Table:2",
-          "snippet": "tabela 3"
+          "key": "body:TableCell:0:3",
+          "snippet": "0 zł (krawędzie: górna 0,5 pt #FF0000, lewa 0,5 pt #FF0000, dolna 0,5 pt #FF0000, prawa 0,5 pt #FF0000)"
         }
       ]
     },
@@ -146,29 +97,8 @@
       "severity": "Error",
       "category": "Tables",
       "standard": "firmowy/2.0",
-      "message": "Tabela 1: 2 komórki nagłówka nie są pogrubione.",
+      "message": "Tabela 2: 1 komórka nagłówka nie jest pogrubiona.",
       "locations": [
-        {
-          "key": "body:TableCell:0:0",
-          "snippet": "Rodzaj opłaty"
-        },
-        {
-          "key": "body:TableCell:0:1",
-          "snippet": "Kwota"
-        }
-      ]
-    },
-    {
-      "code": "TABLE_HEADER_NOT_BOLD",
-      "severity": "Error",
-      "category": "Tables",
-      "standard": "firmowy/2.0",
-      "message": "Tabela 2: 2 komórki nagłówka nie są pogrubione.",
-      "locations": [
-        {
-          "key": "body:TableCell:1:0",
-          "snippet": "Rodzaj prowizji"
-        },
         {
           "key": "body:TableCell:1:1",
           "snippet": "Stawka"
@@ -185,19 +115,6 @@
         {
           "key": "body:Table:0",
           "snippet": "tabela 1"
-        }
-      ]
-    },
-    {
-      "code": "TABLE_ROW_CAN_SPLIT",
-      "severity": "Error",
-      "category": "Tables",
-      "standard": "firmowy/2.0",
-      "message": "Tabela 2: 3 wiersze mogą dzielić się między strony (brak „Nie dziel wiersza między stronami”).",
-      "locations": [
-        {
-          "key": "body:Table:1",
-          "snippet": "tabela 2"
         }
       ]
     },
@@ -270,15 +187,44 @@
       ]
     },
     {
+      "code": "LIST_NUMBER_NOT_BOLD",
+      "severity": "Warning",
+      "category": "Lists",
+      "standard": "firmowy/2.0",
+      "message": "2 pozycje listy numerowanej mają niepogrubiony numer; guidebook: „Lista numerowana: bold”.",
+      "locations": [
+        {
+          "key": "body:Paragraph:9",
+          "snippet": "Pierwszy krok z numerem bez pogrubienia."
+        },
+        {
+          "key": "body:Paragraph:10",
+          "snippet": "Drugi krok z numerem bez pogrubienia."
+        }
+      ]
+    },
+    {
       "code": "VARIANT_SLASH_ALTERNATIVE",
       "severity": "Warning",
       "category": "Text",
       "standard": "firmowy/2.0",
-      "message": "1 akapit wewnątrz wariantu ma alternatywę z ukośnikiem (np. „PLN / EUR”); w wariantach separator zastępuje się znacznikiem [lub] w kolorze #AB0066.",
+      "message": "2 akapity wewnątrz wariantu mają alternatywę z ukośnikiem (np. „PLN / EUR”); w wariantach separator zastępuje się znacznikiem [lub] w kolorze #AB0066.",
       "locations": [
         {
+          "key": "body:Paragraph:2",
+          "snippet": "Pani/Pan",
+          "range": {
+            "start": 21,
+            "length": 8
+          }
+        },
+        {
           "key": "body:Paragraph:3",
-          "snippet": "PLN / EUR"
+          "snippet": "PLN / EUR",
+          "range": {
+            "start": 44,
+            "length": 9
+          }
         }
       ]
     },

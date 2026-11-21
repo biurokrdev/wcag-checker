@@ -1,6 +1,6 @@
 {
   "status": "Invalid",
-  "summary": "12 błędów, 10 ostrzeżeń, 1 informacja.",
+  "summary": "9 błędów, 11 ostrzeżeń, 1 informacja.",
   "standards": [
     {
       "key": "wcag/2.1",
@@ -30,8 +30,8 @@
     "images": 0
   },
   "counts": {
-    "errors": 12,
-    "warnings": 10,
+    "errors": 9,
+    "warnings": 11,
     "infos": 1
   },
   "issues": [
@@ -40,16 +40,7 @@
       "label": "Wyrównanie w tabeli niezgodne ze standardem",
       "severity": "Error",
       "category": "Tables",
-      "message": "Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
-      "standard": "firmowy/2.0",
-      "fixable": false
-    },
-    {
-      "code": "TABLE_ALIGNMENT_MISMATCH",
-      "label": "Wyrównanie w tabeli niezgodne ze standardem",
-      "severity": "Error",
-      "category": "Tables",
-      "message": "Tabela 2: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
+      "message": "Tabela 2: 2 komórki nie są wyrównane do lewej i do środka w pionie.",
       "standard": "firmowy/2.0",
       "fixable": false
     },
@@ -58,7 +49,7 @@
       "label": "Krawędzie tabeli inne niż 1 pt czarne",
       "severity": "Error",
       "category": "Tables",
-      "message": "Tabela 3 nie ma wszystkich krawędzi 1 pt w kolorze #000000.",
+      "message": "Tabela 1: 1 komórka ma krawędzie inne niż 1 pt w kolorze #000000 (nadpisane w komórce albo w stylu tabeli).",
       "standard": "firmowy/2.0",
       "fixable": false
     },
@@ -76,16 +67,7 @@
       "label": "Nagłówek tabeli bez pogrubienia",
       "severity": "Error",
       "category": "Tables",
-      "message": "Tabela 1: 2 komórki nagłówka nie są pogrubione.",
-      "standard": "firmowy/2.0",
-      "fixable": false
-    },
-    {
-      "code": "TABLE_HEADER_NOT_BOLD",
-      "label": "Nagłówek tabeli bez pogrubienia",
-      "severity": "Error",
-      "category": "Tables",
-      "message": "Tabela 2: 2 komórki nagłówka nie są pogrubione.",
+      "message": "Tabela 2: 1 komórka nagłówka nie jest pogrubiona.",
       "standard": "firmowy/2.0",
       "fixable": false
     },
@@ -95,15 +77,6 @@
       "severity": "Error",
       "category": "Tables",
       "message": "Tabela 1: 1 wiersz może dzielić się między strony (brak „Nie dziel wiersza między stronami”).",
-      "standard": "firmowy/2.0",
-      "fixable": true
-    },
-    {
-      "code": "TABLE_ROW_CAN_SPLIT",
-      "label": "Wiersz tabeli może dzielić się między strony",
-      "severity": "Error",
-      "category": "Tables",
-      "message": "Tabela 2: 3 wiersze mogą dzielić się między strony (brak „Nie dziel wiersza między stronami”).",
       "standard": "firmowy/2.0",
       "fixable": true
     },
@@ -153,11 +126,20 @@
       "fixable": false
     },
     {
+      "code": "LIST_NUMBER_NOT_BOLD",
+      "label": "Numer listy bez pogrubienia",
+      "severity": "Warning",
+      "category": "Lists",
+      "message": "2 pozycje listy numerowanej mają niepogrubiony numer; guidebook: „Lista numerowana: bold”.",
+      "standard": "firmowy/2.0",
+      "fixable": false
+    },
+    {
       "code": "VARIANT_SLASH_ALTERNATIVE",
       "label": "Alternatywa z ukośnikiem zamiast [lub]",
       "severity": "Warning",
       "category": "Text",
-      "message": "1 akapit wewnątrz wariantu ma alternatywę z ukośnikiem (np. „PLN / EUR”); w wariantach separator zastępuje się znacznikiem [lub] w kolorze #AB0066.",
+      "message": "2 akapity wewnątrz wariantu mają alternatywę z ukośnikiem (np. „PLN / EUR”); w wariantach separator zastępuje się znacznikiem [lub] w kolorze #AB0066.",
       "standard": "firmowy/2.0",
       "fixable": false
     },
@@ -1045,6 +1027,13 @@
               "message": "2 pozycje listy mają punktor w kolorze spoza #FF6200 i #000000.",
               "occurrences": 2,
               "severity": "Error"
+            },
+            {
+              "code": "LIST_NUMBER_NOT_BOLD",
+              "label": "Numer listy bez pogrubienia",
+              "message": "2 pozycje listy numerowanej mają niepogrubiony numer; guidebook: „Lista numerowana: bold”.",
+              "occurrences": 2,
+              "severity": "Warning"
             }
           ],
           "note": null
@@ -1074,13 +1063,6 @@
               "message": "Tabela 1: 1 wiersz może dzielić się między strony (brak „Nie dziel wiersza między stronami”).",
               "occurrences": 1,
               "severity": "Error"
-            },
-            {
-              "code": "TABLE_ROW_CAN_SPLIT",
-              "label": "Wiersz tabeli może dzielić się między strony",
-              "message": "Tabela 2: 3 wiersze mogą dzielić się między strony (brak „Nie dziel wiersza między stronami”).",
-              "occurrences": 1,
-              "severity": "Error"
             }
           ],
           "note": null
@@ -1093,36 +1075,22 @@
             {
               "code": "TABLE_ALIGNMENT_MISMATCH",
               "label": "Wyrównanie w tabeli niezgodne ze standardem",
-              "message": "Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
-              "occurrences": 6,
-              "severity": "Error"
-            },
-            {
-              "code": "TABLE_ALIGNMENT_MISMATCH",
-              "label": "Wyrównanie w tabeli niezgodne ze standardem",
-              "message": "Tabela 2: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
-              "occurrences": 6,
+              "message": "Tabela 2: 2 komórki nie są wyrównane do lewej i do środka w pionie.",
+              "occurrences": 2,
               "severity": "Error"
             },
             {
               "code": "TABLE_BORDER_MISMATCH",
               "label": "Krawędzie tabeli inne niż 1 pt czarne",
-              "message": "Tabela 3 nie ma wszystkich krawędzi 1 pt w kolorze #000000.",
+              "message": "Tabela 1: 1 komórka ma krawędzie inne niż 1 pt w kolorze #000000 (nadpisane w komórce albo w stylu tabeli).",
               "occurrences": 1,
               "severity": "Error"
             },
             {
               "code": "TABLE_HEADER_NOT_BOLD",
               "label": "Nagłówek tabeli bez pogrubienia",
-              "message": "Tabela 1: 2 komórki nagłówka nie są pogrubione.",
-              "occurrences": 2,
-              "severity": "Error"
-            },
-            {
-              "code": "TABLE_HEADER_NOT_BOLD",
-              "label": "Nagłówek tabeli bez pogrubienia",
-              "message": "Tabela 2: 2 komórki nagłówka nie są pogrubione.",
-              "occurrences": 2,
+              "message": "Tabela 2: 1 komórka nagłówka nie jest pogrubiona.",
+              "occurrences": 1,
               "severity": "Error"
             }
           ],
@@ -1200,8 +1168,8 @@
             {
               "code": "VARIANT_SLASH_ALTERNATIVE",
               "label": "Alternatywa z ukośnikiem zamiast [lub]",
-              "message": "1 akapit wewnątrz wariantu ma alternatywę z ukośnikiem (np. „PLN / EUR”); w wariantach separator zastępuje się znacznikiem [lub] w kolorze #AB0066.",
-              "occurrences": 1,
+              "message": "2 akapity wewnątrz wariantu mają alternatywę z ukośnikiem (np. „PLN / EUR”); w wariantach separator zastępuje się znacznikiem [lub] w kolorze #AB0066.",
+              "occurrences": 2,
               "severity": "Warning"
             }
           ],
@@ -1275,205 +1243,7 @@
       "category": "Tables",
       "standard": "firmowy/2.0",
       "standardName": "Standard pism firmowych 2.0",
-      "message": "Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
-      "fixable": false,
-      "criteria": [],
-      "location": {
-        "key": "body:TableCell:0:0",
-        "kind": "TableCell",
-        "story": "body",
-        "index": 0,
-        "subIndex": 0,
-        "snippet": "Rodzaj opłaty"
-      },
-      "occurrence": 1,
-      "occurrenceCount": 6
-    },
-    {
-      "index": 1,
-      "code": "TABLE_ALIGNMENT_MISMATCH",
-      "label": "Wyrównanie w tabeli niezgodne ze standardem",
-      "severity": "Error",
-      "category": "Tables",
-      "standard": "firmowy/2.0",
-      "standardName": "Standard pism firmowych 2.0",
-      "message": "Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
-      "fixable": false,
-      "criteria": [],
-      "location": {
-        "key": "body:TableCell:0:1",
-        "kind": "TableCell",
-        "story": "body",
-        "index": 0,
-        "subIndex": 1,
-        "snippet": "Kwota"
-      },
-      "occurrence": 2,
-      "occurrenceCount": 6
-    },
-    {
-      "index": 2,
-      "code": "TABLE_ALIGNMENT_MISMATCH",
-      "label": "Wyrównanie w tabeli niezgodne ze standardem",
-      "severity": "Error",
-      "category": "Tables",
-      "standard": "firmowy/2.0",
-      "standardName": "Standard pism firmowych 2.0",
-      "message": "Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
-      "fixable": false,
-      "criteria": [],
-      "location": {
-        "key": "body:TableCell:0:2",
-        "kind": "TableCell",
-        "story": "body",
-        "index": 0,
-        "subIndex": 2,
-        "snippet": "Prowadzenie konta"
-      },
-      "occurrence": 3,
-      "occurrenceCount": 6
-    },
-    {
-      "index": 3,
-      "code": "TABLE_ALIGNMENT_MISMATCH",
-      "label": "Wyrównanie w tabeli niezgodne ze standardem",
-      "severity": "Error",
-      "category": "Tables",
-      "standard": "firmowy/2.0",
-      "standardName": "Standard pism firmowych 2.0",
-      "message": "Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
-      "fixable": false,
-      "criteria": [],
-      "location": {
-        "key": "body:TableCell:0:3",
-        "kind": "TableCell",
-        "story": "body",
-        "index": 0,
-        "subIndex": 3,
-        "snippet": "0 zł"
-      },
-      "occurrence": 4,
-      "occurrenceCount": 6
-    },
-    {
-      "index": 4,
-      "code": "TABLE_ALIGNMENT_MISMATCH",
-      "label": "Wyrównanie w tabeli niezgodne ze standardem",
-      "severity": "Error",
-      "category": "Tables",
-      "standard": "firmowy/2.0",
-      "standardName": "Standard pism firmowych 2.0",
-      "message": "Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
-      "fixable": false,
-      "criteria": [],
-      "location": {
-        "key": "body:TableCell:0:4",
-        "kind": "TableCell",
-        "story": "body",
-        "index": 0,
-        "subIndex": 4,
-        "snippet": "Karta debetowa"
-      },
-      "occurrence": 5,
-      "occurrenceCount": 6
-    },
-    {
-      "index": 5,
-      "code": "TABLE_ALIGNMENT_MISMATCH",
-      "label": "Wyrównanie w tabeli niezgodne ze standardem",
-      "severity": "Error",
-      "category": "Tables",
-      "standard": "firmowy/2.0",
-      "standardName": "Standard pism firmowych 2.0",
-      "message": "Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
-      "fixable": false,
-      "criteria": [],
-      "location": {
-        "key": "body:TableCell:0:5",
-        "kind": "TableCell",
-        "story": "body",
-        "index": 0,
-        "subIndex": 5,
-        "snippet": ""
-      },
-      "occurrence": 6,
-      "occurrenceCount": 6
-    },
-    {
-      "index": 6,
-      "code": "TABLE_ALIGNMENT_MISMATCH",
-      "label": "Wyrównanie w tabeli niezgodne ze standardem",
-      "severity": "Error",
-      "category": "Tables",
-      "standard": "firmowy/2.0",
-      "standardName": "Standard pism firmowych 2.0",
-      "message": "Tabela 2: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
-      "fixable": false,
-      "criteria": [],
-      "location": {
-        "key": "body:TableCell:1:0",
-        "kind": "TableCell",
-        "story": "body",
-        "index": 1,
-        "subIndex": 0,
-        "snippet": "Rodzaj prowizji"
-      },
-      "occurrence": 1,
-      "occurrenceCount": 6
-    },
-    {
-      "index": 7,
-      "code": "TABLE_ALIGNMENT_MISMATCH",
-      "label": "Wyrównanie w tabeli niezgodne ze standardem",
-      "severity": "Error",
-      "category": "Tables",
-      "standard": "firmowy/2.0",
-      "standardName": "Standard pism firmowych 2.0",
-      "message": "Tabela 2: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
-      "fixable": false,
-      "criteria": [],
-      "location": {
-        "key": "body:TableCell:1:1",
-        "kind": "TableCell",
-        "story": "body",
-        "index": 1,
-        "subIndex": 1,
-        "snippet": "Stawka"
-      },
-      "occurrence": 2,
-      "occurrenceCount": 6
-    },
-    {
-      "index": 8,
-      "code": "TABLE_ALIGNMENT_MISMATCH",
-      "label": "Wyrównanie w tabeli niezgodne ze standardem",
-      "severity": "Error",
-      "category": "Tables",
-      "standard": "firmowy/2.0",
-      "standardName": "Standard pism firmowych 2.0",
-      "message": "Tabela 2: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
-      "fixable": false,
-      "criteria": [],
-      "location": {
-        "key": "body:TableCell:1:2",
-        "kind": "TableCell",
-        "story": "body",
-        "index": 1,
-        "subIndex": 2,
-        "snippet": "Za udzielenie kredytu"
-      },
-      "occurrence": 3,
-      "occurrenceCount": 6
-    },
-    {
-      "index": 9,
-      "code": "TABLE_ALIGNMENT_MISMATCH",
-      "label": "Wyrównanie w tabeli niezgodne ze standardem",
-      "severity": "Error",
-      "category": "Tables",
-      "standard": "firmowy/2.0",
-      "standardName": "Standard pism firmowych 2.0",
-      "message": "Tabela 2: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
+      "message": "Tabela 2: 2 komórki nie są wyrównane do lewej i do środka w pionie.",
       "fixable": false,
       "criteria": [],
       "location": {
@@ -1484,40 +1254,18 @@
         "subIndex": 3,
         "snippet": "1,5%"
       },
-      "occurrence": 4,
-      "occurrenceCount": 6
+      "occurrence": 1,
+      "occurrenceCount": 2
     },
     {
-      "index": 10,
+      "index": 1,
       "code": "TABLE_ALIGNMENT_MISMATCH",
       "label": "Wyrównanie w tabeli niezgodne ze standardem",
       "severity": "Error",
       "category": "Tables",
       "standard": "firmowy/2.0",
       "standardName": "Standard pism firmowych 2.0",
-      "message": "Tabela 2: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
-      "fixable": false,
-      "criteria": [],
-      "location": {
-        "key": "body:TableCell:1:4",
-        "kind": "TableCell",
-        "story": "body",
-        "index": 1,
-        "subIndex": 4,
-        "snippet": "Za wcześniejszą spłatę"
-      },
-      "occurrence": 5,
-      "occurrenceCount": 6
-    },
-    {
-      "index": 11,
-      "code": "TABLE_ALIGNMENT_MISMATCH",
-      "label": "Wyrównanie w tabeli niezgodne ze standardem",
-      "severity": "Error",
-      "category": "Tables",
-      "standard": "firmowy/2.0",
-      "standardName": "Standard pism firmowych 2.0",
-      "message": "Tabela 2: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
+      "message": "Tabela 2: 2 komórki nie są wyrównane do lewej i do środka w pionie.",
       "fixable": false,
       "criteria": [],
       "location": {
@@ -1528,33 +1276,33 @@
         "subIndex": 5,
         "snippet": "0,5%"
       },
-      "occurrence": 6,
-      "occurrenceCount": 6
+      "occurrence": 2,
+      "occurrenceCount": 2
     },
     {
-      "index": 12,
+      "index": 2,
       "code": "TABLE_BORDER_MISMATCH",
       "label": "Krawędzie tabeli inne niż 1 pt czarne",
       "severity": "Error",
       "category": "Tables",
       "standard": "firmowy/2.0",
       "standardName": "Standard pism firmowych 2.0",
-      "message": "Tabela 3 nie ma wszystkich krawędzi 1 pt w kolorze #000000.",
+      "message": "Tabela 1: 1 komórka ma krawędzie inne niż 1 pt w kolorze #000000 (nadpisane w komórce albo w stylu tabeli).",
       "fixable": false,
       "criteria": [],
       "location": {
-        "key": "body:Table:2",
-        "kind": "Table",
+        "key": "body:TableCell:0:3",
+        "kind": "TableCell",
         "story": "body",
-        "index": 2,
-        "subIndex": null,
-        "snippet": "tabela 3"
+        "index": 0,
+        "subIndex": 3,
+        "snippet": "0 zł (krawędzie: górna 0,5 pt #FF0000, lewa 0,5 pt #FF0000, dolna 0,5 pt #FF0000, prawa 0,5 pt #FF0000)"
       },
       "occurrence": 1,
       "occurrenceCount": 1
     },
     {
-      "index": 13,
+      "index": 3,
       "code": "TABLE_EMPTY_CELL",
       "label": "Pusta komórka tabeli",
       "severity": "Error",
@@ -1576,80 +1324,14 @@
       "occurrenceCount": 1
     },
     {
-      "index": 14,
+      "index": 4,
       "code": "TABLE_HEADER_NOT_BOLD",
       "label": "Nagłówek tabeli bez pogrubienia",
       "severity": "Error",
       "category": "Tables",
       "standard": "firmowy/2.0",
       "standardName": "Standard pism firmowych 2.0",
-      "message": "Tabela 1: 2 komórki nagłówka nie są pogrubione.",
-      "fixable": false,
-      "criteria": [],
-      "location": {
-        "key": "body:TableCell:0:0",
-        "kind": "TableCell",
-        "story": "body",
-        "index": 0,
-        "subIndex": 0,
-        "snippet": "Rodzaj opłaty"
-      },
-      "occurrence": 1,
-      "occurrenceCount": 2
-    },
-    {
-      "index": 15,
-      "code": "TABLE_HEADER_NOT_BOLD",
-      "label": "Nagłówek tabeli bez pogrubienia",
-      "severity": "Error",
-      "category": "Tables",
-      "standard": "firmowy/2.0",
-      "standardName": "Standard pism firmowych 2.0",
-      "message": "Tabela 1: 2 komórki nagłówka nie są pogrubione.",
-      "fixable": false,
-      "criteria": [],
-      "location": {
-        "key": "body:TableCell:0:1",
-        "kind": "TableCell",
-        "story": "body",
-        "index": 0,
-        "subIndex": 1,
-        "snippet": "Kwota"
-      },
-      "occurrence": 2,
-      "occurrenceCount": 2
-    },
-    {
-      "index": 16,
-      "code": "TABLE_HEADER_NOT_BOLD",
-      "label": "Nagłówek tabeli bez pogrubienia",
-      "severity": "Error",
-      "category": "Tables",
-      "standard": "firmowy/2.0",
-      "standardName": "Standard pism firmowych 2.0",
-      "message": "Tabela 2: 2 komórki nagłówka nie są pogrubione.",
-      "fixable": false,
-      "criteria": [],
-      "location": {
-        "key": "body:TableCell:1:0",
-        "kind": "TableCell",
-        "story": "body",
-        "index": 1,
-        "subIndex": 0,
-        "snippet": "Rodzaj prowizji"
-      },
-      "occurrence": 1,
-      "occurrenceCount": 2
-    },
-    {
-      "index": 17,
-      "code": "TABLE_HEADER_NOT_BOLD",
-      "label": "Nagłówek tabeli bez pogrubienia",
-      "severity": "Error",
-      "category": "Tables",
-      "standard": "firmowy/2.0",
-      "standardName": "Standard pism firmowych 2.0",
-      "message": "Tabela 2: 2 komórki nagłówka nie są pogrubione.",
+      "message": "Tabela 2: 1 komórka nagłówka nie jest pogrubiona.",
       "fixable": false,
       "criteria": [],
       "location": {
@@ -1660,11 +1342,11 @@
         "subIndex": 1,
         "snippet": "Stawka"
       },
-      "occurrence": 2,
-      "occurrenceCount": 2
+      "occurrence": 1,
+      "occurrenceCount": 1
     },
     {
-      "index": 18,
+      "index": 5,
       "code": "TABLE_ROW_CAN_SPLIT",
       "label": "Wiersz tabeli może dzielić się między strony",
       "severity": "Error",
@@ -1686,29 +1368,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 19,
-      "code": "TABLE_ROW_CAN_SPLIT",
-      "label": "Wiersz tabeli może dzielić się między strony",
-      "severity": "Error",
-      "category": "Tables",
-      "standard": "firmowy/2.0",
-      "standardName": "Standard pism firmowych 2.0",
-      "message": "Tabela 2: 3 wiersze mogą dzielić się między strony (brak „Nie dziel wiersza między stronami”).",
-      "fixable": true,
-      "criteria": [],
-      "location": {
-        "key": "body:Table:1",
-        "kind": "Table",
-        "story": "body",
-        "index": 1,
-        "subIndex": null,
-        "snippet": "tabela 2"
-      },
-      "occurrence": 1,
-      "occurrenceCount": 1
-    },
-    {
-      "index": 20,
+      "index": 6,
       "code": "LIST_BULLET_COLOR_MISMATCH",
       "label": "Punktor w niedozwolonym kolorze",
       "severity": "Error",
@@ -1730,7 +1390,7 @@
       "occurrenceCount": 2
     },
     {
-      "index": 21,
+      "index": 7,
       "code": "LIST_BULLET_COLOR_MISMATCH",
       "label": "Punktor w niedozwolonym kolorze",
       "severity": "Error",
@@ -1752,7 +1412,7 @@
       "occurrenceCount": 2
     },
     {
-      "index": 22,
+      "index": 8,
       "code": "TITLE_MISSING",
       "label": "Brak tytułu dokumentu",
       "severity": "Error",
@@ -1776,7 +1436,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 23,
+      "index": 9,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Error",
@@ -1798,7 +1458,7 @@
       "occurrenceCount": 2
     },
     {
-      "index": 24,
+      "index": 10,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Error",
@@ -1820,7 +1480,7 @@
       "occurrenceCount": 2
     },
     {
-      "index": 25,
+      "index": 11,
       "code": "LINE_SPACING_MISMATCH",
       "label": "Interlinia inna niż 1,2",
       "severity": "Error",
@@ -1842,7 +1502,7 @@
       "occurrenceCount": 3
     },
     {
-      "index": 26,
+      "index": 12,
       "code": "LINE_SPACING_MISMATCH",
       "label": "Interlinia inna niż 1,2",
       "severity": "Error",
@@ -1864,7 +1524,7 @@
       "occurrenceCount": 3
     },
     {
-      "index": 27,
+      "index": 13,
       "code": "LINE_SPACING_MISMATCH",
       "label": "Interlinia inna niż 1,2",
       "severity": "Error",
@@ -1886,7 +1546,7 @@
       "occurrenceCount": 3
     },
     {
-      "index": 28,
+      "index": 14,
       "code": "HEADING_LEVEL_SKIPPED",
       "label": "Pominięty poziom nagłówka",
       "severity": "Warning",
@@ -1910,14 +1570,84 @@
       "occurrenceCount": 1
     },
     {
-      "index": 29,
+      "index": 15,
+      "code": "LIST_NUMBER_NOT_BOLD",
+      "label": "Numer listy bez pogrubienia",
+      "severity": "Warning",
+      "category": "Lists",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "2 pozycje listy numerowanej mają niepogrubiony numer; guidebook: „Lista numerowana: bold”.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:9",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 9,
+        "subIndex": null,
+        "snippet": "Pierwszy krok z numerem bez pogrubienia."
+      },
+      "occurrence": 1,
+      "occurrenceCount": 2
+    },
+    {
+      "index": 16,
+      "code": "LIST_NUMBER_NOT_BOLD",
+      "label": "Numer listy bez pogrubienia",
+      "severity": "Warning",
+      "category": "Lists",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "2 pozycje listy numerowanej mają niepogrubiony numer; guidebook: „Lista numerowana: bold”.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:10",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 10,
+        "subIndex": null,
+        "snippet": "Drugi krok z numerem bez pogrubienia."
+      },
+      "occurrence": 2,
+      "occurrenceCount": 2
+    },
+    {
+      "index": 17,
       "code": "VARIANT_SLASH_ALTERNATIVE",
       "label": "Alternatywa z ukośnikiem zamiast [lub]",
       "severity": "Warning",
       "category": "Text",
       "standard": "firmowy/2.0",
       "standardName": "Standard pism firmowych 2.0",
-      "message": "1 akapit wewnątrz wariantu ma alternatywę z ukośnikiem (np. „PLN / EUR”); w wariantach separator zastępuje się znacznikiem [lub] w kolorze #AB0066.",
+      "message": "2 akapity wewnątrz wariantu mają alternatywę z ukośnikiem (np. „PLN / EUR”); w wariantach separator zastępuje się znacznikiem [lub] w kolorze #AB0066.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:2",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 2,
+        "subIndex": null,
+        "snippet": "Pani/Pan",
+        "range": {
+          "start": 21,
+          "length": 8
+        }
+      },
+      "occurrence": 1,
+      "occurrenceCount": 2
+    },
+    {
+      "index": 18,
+      "code": "VARIANT_SLASH_ALTERNATIVE",
+      "label": "Alternatywa z ukośnikiem zamiast [lub]",
+      "severity": "Warning",
+      "category": "Text",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "2 akapity wewnątrz wariantu mają alternatywę z ukośnikiem (np. „PLN / EUR”); w wariantach separator zastępuje się znacznikiem [lub] w kolorze #AB0066.",
       "fixable": false,
       "criteria": [],
       "location": {
@@ -1926,13 +1656,17 @@
         "story": "body",
         "index": 3,
         "subIndex": null,
-        "snippet": "PLN / EUR"
+        "snippet": "PLN / EUR",
+        "range": {
+          "start": 44,
+          "length": 9
+        }
       },
-      "occurrence": 1,
-      "occurrenceCount": 1
+      "occurrence": 2,
+      "occurrenceCount": 2
     },
     {
-      "index": 30,
+      "index": 19,
       "code": "FOOTER_TITLE_MISSING",
       "label": "Stopka bez tytułu dokumentu",
       "severity": "Warning",
@@ -1954,7 +1688,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 31,
+      "index": 20,
       "code": "AUTHOR_MISSING",
       "label": "Brak autora dokumentu",
       "severity": "Warning",
@@ -1976,7 +1710,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 32,
+      "index": 21,
       "code": "INVALID_MARGINS",
       "label": "Marginesy inne niż wymagane",
       "severity": "Warning",
@@ -1998,7 +1732,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 33,
+      "index": 22,
       "code": "INVALID_MARGINS",
       "label": "Marginesy inne niż wymagane",
       "severity": "Warning",
@@ -2020,7 +1754,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 34,
+      "index": 23,
       "code": "INVALID_MARGINS",
       "label": "Marginesy inne niż wymagane",
       "severity": "Warning",
@@ -2042,7 +1776,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 35,
+      "index": 24,
       "code": "INVALID_MARGINS",
       "label": "Marginesy inne niż wymagane",
       "severity": "Warning",
@@ -2064,7 +1798,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 36,
+      "index": 25,
       "code": "PAGE_FORMAT_NOT_A4",
       "label": "Strona inna niż A4",
       "severity": "Warning",
@@ -2086,7 +1820,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 37,
+      "index": 26,
       "code": "TEXT_COLOR_USAGE_MISMATCH",
       "label": "Kolor z palety użyty niezgodnie z przeznaczeniem",
       "severity": "Warning",
@@ -2108,7 +1842,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 38,
+      "index": 27,
       "code": "MANUAL_CHECK_SUGGESTED",
       "label": "Zalecane sprawdzenie ręczne",
       "severity": "Info",

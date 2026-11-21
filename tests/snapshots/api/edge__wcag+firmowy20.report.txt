@@ -4,7 +4,7 @@ Język: pl-PL
 Obrazy: 0
 
 Raport walidacji dokumentu „edge.docx”
-Wynik: niepoprawny. 4 błędy, 3 ostrzeżenia, 1 informacja.
+Wynik: niepoprawny. 2 błędy, 3 ostrzeżenia, 1 informacja.
 Data sprawdzenia: <data>. Standardy: WCAG 2.1 AA (dokument Word); Standard pism firmowych 2.0.
 Dokument: tytuł „Przypadki brzegowe. Example Company S. A.”, autor „Example Company S. A.”, język pl-PL, 21 akapitów, 3 nagłówków, 1 tabel, 1 obrazów.
 Podsumowanie kontroli
@@ -85,7 +85,7 @@ Sekcja „Spis treści i listy”
 Sekcja „Tabele”
 | Status | Kontrola | Szczegóły |
 | Zatwierdzono | G-08 Wiersz nagłówkowy powtarzany, bez pustych komórek, wiersze niepodzielne | – |
-| Błąd | G-09 Krawędzie 1 pt #000000, nagłówki Bold, lewo/środek w pionie | Wyrównanie w tabeli niezgodne ze standardem: Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie. (6 wystąpień) ⏎ Nagłówek tabeli bez pogrubienia: Tabela 1: 2 komórki nagłówka nie są pogrubione. (2 wystąpień) |
+| Zatwierdzono | G-09 Krawędzie 1 pt #000000, nagłówki Bold, lewo/środek w pionie | – |
 | Zatwierdzono | Tytuł i opis tabeli w tekście alternatywnym | – |
 Sekcja „Grafika”
 | Status | Kontrola | Szczegóły |
@@ -130,24 +130,16 @@ Tabela stanu kryteriów WCAG 2.1
 | 4.1.1 Poprawność kodu | A | automatycznie | spełnione | Pakiet DOCX otwiera się i ma część główną. |
 | 4.1.2 Nazwa, rola, wartość | A | częściowo | do przeglądu | Formanty mają nazwę (etykietę albo tytuł); rola i wartość wynikają z typu formantu w Wordzie. |
 Wyniki walidacji
-16 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
+8 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
 Tabela wystąpień
 | Nr | Waga | Zgłoszenie | Standard | Miejsce | Komunikat | Zweryfikowano |
 | 1 | błąd | Obraz bez tekstu alternatywnego | WCAG 2.1 AA (dokument Word) | fragment tekstu: „(obiekt VML)” | Obraz nr 2 (obiekt VML) nie ma tekstu alternatywnego. | nie |
-| 2 | błąd | Wyrównanie w tabeli niezgodne ze standardem | Standard pism firmowych 2.0 | komórka tabeli: „Etap” (1/6) | Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie. | nie |
-| 3 | błąd | Wyrównanie w tabeli niezgodne ze standardem | Standard pism firmowych 2.0 | komórka tabeli: „Termin” (2/6) | Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie. | nie |
-| 4 | błąd | Wyrównanie w tabeli niezgodne ze standardem | Standard pism firmowych 2.0 | komórka tabeli: „Złożenie wniosku” (3/6) | Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie. | nie |
-| 5 | błąd | Wyrównanie w tabeli niezgodne ze standardem | Standard pism firmowych 2.0 | komórka tabeli: „do 30 dni” (4/6) | Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie. | nie |
-| 6 | błąd | Wyrównanie w tabeli niezgodne ze standardem | Standard pism firmowych 2.0 | komórka tabeli: „Decyzja” (5/6) | Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie. | nie |
-| 7 | błąd | Wyrównanie w tabeli niezgodne ze standardem | Standard pism firmowych 2.0 | komórka tabeli: „do 14 dni” (6/6) | Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie. | nie |
-| 8 | błąd | Nagłówek tabeli bez pogrubienia | Standard pism firmowych 2.0 | komórka tabeli: „Etap” (1/2) | Tabela 1: 2 komórki nagłówka nie są pogrubione. | nie |
-| 9 | błąd | Nagłówek tabeli bez pogrubienia | Standard pism firmowych 2.0 | komórka tabeli: „Termin” (2/2) | Tabela 1: 2 komórki nagłówka nie są pogrubione. | nie |
-| 10 | błąd | Za mały kontrast tekstu | WCAG 2.1 AA (dokument Word) | fragment tekstu: „rozjaśniony akcent (2,4:1)” | 1 fragment tekstu ma za mały kontrast z tłem (najgorszy 2,4:1, wymagane 4,5:1 albo 3:1 dla dużego tekstu); pierwszy: „rozjaśniony akcent”. | nie |
-| 11 | ostrzeżenie | Komentarze w dokumencie | WCAG 2.1 AA (dokument Word) | akapit: „(komentarz)” | Dokument zawiera 1 komentarz; usuń je przed publikacją. | nie |
-| 12 | ostrzeżenie | Elementy pływające poza kolejnością odczytu | WCAG 2.1 AA (dokument Word) | obraz: „(element pływający)” (1/2) | Dokument zawiera 1 element pływający, 2 pola tekstowe; ich położenie w kolejności odczytu nie wynika z treści. | nie |
-| 13 | ostrzeżenie | Elementy pływające poza kolejnością odczytu | WCAG 2.1 AA (dokument Word) | fragment tekstu: „(pole tekstowe)” (2/2) | Dokument zawiera 1 element pływający, 2 pola tekstowe; ich położenie w kolejności odczytu nie wynika z treści. | nie |
-| 14 | ostrzeżenie | Kolor tekstu spoza palety | Standard pism firmowych 2.0 | fragment tekstu: „rozjaśniony akcent (#8EAADB)” (1/2) | 2 fragmenty tekstu mają kolor spoza dozwolonej palety (#8EAADB, #2F5496); dozwolone: #000000, #FF6200, #0000FF, #AB0066, #7724FF, #696969, #4D0020. | nie |
-| 15 | ostrzeżenie | Kolor tekstu spoza palety | Standard pism firmowych 2.0 | fragment tekstu: „przyciemniony akcent (#2F5496)” (2/2) | 2 fragmenty tekstu mają kolor spoza dozwolonej palety (#8EAADB, #2F5496); dozwolone: #000000, #FF6200, #0000FF, #AB0066, #7724FF, #696969, #4D0020. | nie |
-| 16 | informacja | Zalecane sprawdzenie ręczne | WCAG 2.1 AA (dokument Word) | dokument: „” | Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie. | nie |
+| 2 | błąd | Za mały kontrast tekstu | WCAG 2.1 AA (dokument Word) | fragment tekstu: „rozjaśniony akcent (2,4:1)” | 1 fragment tekstu ma za mały kontrast z tłem (najgorszy 2,4:1, wymagane 4,5:1 albo 3:1 dla dużego tekstu); pierwszy: „rozjaśniony akcent”. | nie |
+| 3 | ostrzeżenie | Komentarze w dokumencie | WCAG 2.1 AA (dokument Word) | akapit: „(komentarz)” | Dokument zawiera 1 komentarz; usuń je przed publikacją. | nie |
+| 4 | ostrzeżenie | Elementy pływające poza kolejnością odczytu | WCAG 2.1 AA (dokument Word) | obraz: „(element pływający)” (1/2) | Dokument zawiera 1 element pływający, 2 pola tekstowe; ich położenie w kolejności odczytu nie wynika z treści. | nie |
+| 5 | ostrzeżenie | Elementy pływające poza kolejnością odczytu | WCAG 2.1 AA (dokument Word) | fragment tekstu: „(pole tekstowe)” (2/2) | Dokument zawiera 1 element pływający, 2 pola tekstowe; ich położenie w kolejności odczytu nie wynika z treści. | nie |
+| 6 | ostrzeżenie | Kolor tekstu spoza palety | Standard pism firmowych 2.0 | fragment tekstu: „rozjaśniony akcent (#8EAADB)” (1/2) | 2 fragmenty tekstu mają kolor spoza dozwolonej palety (#8EAADB, #2F5496); dozwolone: #000000, #FF6200, #0000FF, #AB0066, #7724FF, #696969, #4D0020. | nie |
+| 7 | ostrzeżenie | Kolor tekstu spoza palety | Standard pism firmowych 2.0 | fragment tekstu: „przyciemniony akcent (#2F5496)” (2/2) | 2 fragmenty tekstu mają kolor spoza dozwolonej palety (#8EAADB, #2F5496); dozwolone: #000000, #FF6200, #0000FF, #AB0066, #7724FF, #696969, #4D0020. | nie |
+| 8 | informacja | Zalecane sprawdzenie ręczne | WCAG 2.1 AA (dokument Word) | dokument: „” | Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie. | nie |
 
-PDF: %PDF-, strony: 10
+PDF: %PDF-, strony: 9

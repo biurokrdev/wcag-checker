@@ -1,6 +1,6 @@
 {
-  "outcome": "Invalid",
-  "summary": "2 błędy, 1 ostrzeżenie.",
+  "outcome": "Valid",
+  "summary": "1 ostrzeżenie.",
   "standards": [
     {
       "key": "firmowy/2.0",
@@ -35,56 +35,6 @@
     }
   ],
   "issues": [
-    {
-      "code": "TABLE_ALIGNMENT_MISMATCH",
-      "severity": "Error",
-      "category": "Tables",
-      "standard": "firmowy/2.0",
-      "message": "Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
-      "locations": [
-        {
-          "key": "body:TableCell:0:0",
-          "snippet": "Etap"
-        },
-        {
-          "key": "body:TableCell:0:1",
-          "snippet": "Termin"
-        },
-        {
-          "key": "body:TableCell:0:2",
-          "snippet": "Złożenie wniosku"
-        },
-        {
-          "key": "body:TableCell:0:3",
-          "snippet": "do 30 dni"
-        },
-        {
-          "key": "body:TableCell:0:4",
-          "snippet": "Decyzja"
-        },
-        {
-          "key": "body:TableCell:0:5",
-          "snippet": "do 14 dni"
-        }
-      ]
-    },
-    {
-      "code": "TABLE_HEADER_NOT_BOLD",
-      "severity": "Error",
-      "category": "Tables",
-      "standard": "firmowy/2.0",
-      "message": "Tabela 1: 2 komórki nagłówka nie są pogrubione.",
-      "locations": [
-        {
-          "key": "body:TableCell:0:0",
-          "snippet": "Etap"
-        },
-        {
-          "key": "body:TableCell:0:1",
-          "snippet": "Termin"
-        }
-      ]
-    },
     {
       "code": "TEXT_COLOR_NOT_ALLOWED",
       "severity": "Warning",

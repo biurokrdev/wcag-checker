@@ -610,49 +610,32 @@ internal sealed class Toc20Rule : IDocumentRule
     }
 }
 
-/// <summary>Rozdz. 7: punktory #FF6200 albo #000000; numery list numerowanych pogrubione.</summary>
+/// <summary>
+/// Rozdz. 7: punktory #FF6200 albo #000000; numery list numerowanych pogrubione. Sprawdzany jest efektywny format
+/// znaku listy: poziom po uwzględnieniu w:lvlOverride instancji i poziomu wynikającego ze stylu akapitu, a kolor
+/// i pogrubienie po złożeniu ustawień domyślnych, stylu akapitu, znaku akapitu i w:rPr poziomu.
+/// </summary>
 internal sealed class Lists20Rule : IDocumentRule
 {
     public IEnumerable<WcagIssue> Check(DocxDocument document)
     {
-        var numbering = document.Main.NumberingDefinitionsPart?.Numbering;
-        if (numbering is null)
-        {
-            yield break;
-        }
-
-        var abstractByNum = numbering.Elements<NumberingInstance>()
-            .Where(n => n.NumberID?.Value is not null && n.AbstractNumId?.Val?.Value is not null)
-            .ToDictionary(n => n.NumberID!.Value, n => n.AbstractNumId!.Val!.Value);
-        var abstracts = numbering.Elements<AbstractNum>().Where(a => a.AbstractNumberId?.Value is not null).ToDictionary(a => a.AbstractNumberId!.Value);
-
         var badBullet = new List<IssueLocation?>();
         var notBold = new List<IssueLocation?>();
         foreach (var paragraph in document.Paragraphs.Where(p => p.InnerText.Trim().Length > 0))
         {
-            var format = document.ResolveParagraph(paragraph);
-            if (format.NumberingId is not { } numId || !abstractByNum.TryGetValue(numId, out var abstractId) || !abstracts.TryGetValue(abstractId, out var definition))
+            var resolved = document.Resolved(paragraph);
+            if (resolved.Numbering is not { LevelElement: not null } numbering || resolved.NumberingSymbolFormat is not { } symbol)
             {
                 continue;
             }
 
-            var levelIndex = paragraph.ParagraphProperties?.NumberingProperties?.NumberingLevelReference?.Val?.Value ?? 0;
-            var level = definition.Elements<Level>().FirstOrDefault(l => l.LevelIndex?.Value == levelIndex);
-            if (level is null)
-            {
-                continue;
-            }
-
-            var isBullet = level.NumberingFormat?.Val?.Value == NumberFormatValues.Bullet;
-            var runProps = level.GetFirstChild<NumberingSymbolRunProperties>();
-            var color = (runProps?.GetFirstChild<Color>()?.Val?.Value ?? Spec20.Black).ToUpperInvariant();
-            var bold = runProps?.GetFirstChild<Bold>() is { } b && (b.Val?.Value ?? true);
-
-            if (isBullet && color != Spec20.Orange && color != Spec20.Black && color != "AUTO")
+            var isBullet = string.Equals(numbering.Format, "bullet", StringComparison.Ordinal);
+            var color = Described20.Color(symbol);
+            if (isBullet && color != Spec20.Orange && color != Spec20.Black)
             {
                 badBullet.Add(document.Locate(paragraph, $"{DocxDocument.Snippet(paragraph.InnerText, 40)} (punktor #{color})"));
             }
-            else if (!isBullet && !bold)
+            else if (!isBullet && !symbol.Flag(FormatProps.Bold))
             {
                 notBold.Add(document.Locate(paragraph));
             }
@@ -674,7 +657,12 @@ internal sealed class Lists20Rule : IDocumentRule
     }
 }
 
-/// <summary>G-08, G-09 i rozdz. 9: tabele bez pustych komórek, wiersze niepodzielne, krawędzie 1 pt czarne, nagłówki pogrubione, tekst do lewej i wyśrodkowany w pionie, tytuł w tekście alternatywnym.</summary>
+/// <summary>
+/// G-08, G-09 i rozdz. 9: tabele bez pustych komórek, wiersze niepodzielne, krawędzie 1 pt czarne, nagłówki pogrubione,
+/// tekst do lewej i wyśrodkowany w pionie, tytuł w tekście alternatywnym. Krawędzie, pogrubienie i wyrównanie są
+/// sprawdzane na wartościach efektywnych: z komórki (w:tcPr, w:tcBorders), wiersza, tabeli i stylu tabeli razem
+/// z w:tblStylePr (<see cref="TableCells20"/>).
+/// </summary>
 internal sealed class Tables20Rule : IDocumentRule
 {
     public IEnumerable<WcagIssue> Check(DocxDocument document)
@@ -693,7 +681,8 @@ internal sealed class Tables20Rule : IDocumentRule
             var cells = rows.SelectMany(r => r.Elements<TableCell>()).ToList();
 
             // Wiersz nagłówkowy (w:tblHeader) jest zarazem powtarzany na kolejnych stronach: jedno wymaganie G-08.
-            if (!TableRules.HasHeaderRow(rows[0]))
+            var hasHeader = TableRules.HasHeaderRow(rows[0]);
+            if (!hasHeader)
             {
                 yield return TableRules.MissingHeaderRow(index, location);
             }
@@ -707,7 +696,7 @@ internal sealed class Tables20Rule : IDocumentRule
                     .At(empty.Select(c => document.Locate(c, "(pusta komórka)")));
             }
 
-            var splittable = rows.Where(r => r.TableRowProperties?.GetFirstChild<CantSplit>() is not { } cs || cs.Val?.Value == OnOffOnlyValues.Off).ToList();
+            var splittable = rows.Where(r => !TableCells20.CantSplit(r, document)).ToList();
             if (splittable.Count > 0)
             {
                 yield return new WcagIssue(
@@ -715,17 +704,27 @@ internal sealed class Tables20Rule : IDocumentRule
                     $"Tabela {index}: {Polish.Count(splittable.Count, "wiersz może", "wiersze mogą", "wierszy może")} dzielić się między strony (brak „Nie dziel wiersza między stronami”).").At(location);
             }
 
-            if (!HasRequiredBorders(table, document))
+            // Krawędzie efektywne każdej komórki. Gdy żadna komórka ich nie spełnia, winna jest tabela albo jej styl
+            // (jedno wystąpienie: tabela); gdy tylko część – nadpisanie w komórce albo w formatowaniu warunkowym stylu.
+            var borders = cells.Select(c => (Cell: c, Problems: TableCells20.BorderProblems(c, document))).Where(x => x.Problems.Count > 0).ToList();
+            if (borders.Count == cells.Count)
             {
                 yield return new WcagIssue(
                     IssueCodes.TableBorderMismatch, IssueSeverity.Error, IssueCategory.Tables,
                     $"Tabela {index} nie ma wszystkich krawędzi 1 pt w kolorze #{Spec20.Black}.").At(location);
             }
+            else if (borders.Count > 0)
+            {
+                yield return new WcagIssue(
+                    IssueCodes.TableBorderMismatch, IssueSeverity.Error, IssueCategory.Tables,
+                    $"Tabela {index}: {Polish.Count(borders.Count, "komórka ma krawędzie inne", "komórki mają krawędzie inne", "komórek ma krawędzie inne")} niż 1 pt w kolorze #{Spec20.Black} (nadpisane w komórce albo w stylu tabeli).")
+                    .At(borders.Select(x => document.Locate(x.Cell, $"{DocxDocument.Snippet(x.Cell.InnerText, 30)} (krawędzie: {string.Join(", ", x.Problems)})")));
+            }
 
-            if (TableRules.HasHeaderRow(rows[0]))
+            if (hasHeader)
             {
                 var notBold = rows[0].Elements<TableCell>()
-                    .Where(c => Spec20.TextRuns(c).Select(document.ResolveRun).Any(f => !f.Bold))
+                    .Where(c => Spec20.TextRuns(c).Any(r => !IsBold(r, document)))
                     .ToList();
                 if (notBold.Count > 0)
                 {
@@ -762,37 +761,19 @@ internal sealed class Tables20Rule : IDocumentRule
         }
     }
 
+    // Pogrubienie efektywne fragmentu: także ze stylu tabeli (w:tblStylePr pierwszego wiersza).
+    private static bool IsBold(Run run, DocxDocument document) =>
+        document.Resolved(run)?.Format.Flag(FormatProps.Bold) ?? document.ResolveRun(run).Bold;
+
+    // W pionie do środka (w:vAlign komórki albo stylu tabeli), w poziomie do lewej (akapit, styl akapitu, styl tabeli).
     private static bool IsAligned(TableCell cell, DocxDocument document)
     {
-        var vertical = cell.TableCellProperties?.TableCellVerticalAlignment?.Val?.Value;
-        if (vertical != TableVerticalAlignmentValues.Center)
+        if (TableCells20.VerticalAlignment(cell, document) != "center")
         {
             return false;
         }
 
-        return cell.Elements<Paragraph>().All(p => document.ResolveParagraph(p).Alignment is null or "left" or "start");
-    }
-
-    // Krawędzie z właściwości tabeli albo z jej stylu: góra, dół, lewa, prawa i wewnętrzne, każda single 1 pt (sz=8) czarna.
-    private static bool HasRequiredBorders(Table table, DocxDocument document)
-    {
-        var properties = table.GetFirstChild<TableProperties>();
-        var borders = properties?.TableBorders;
-        if (borders is null && properties?.TableStyle?.Val?.Value is { } styleId)
-        {
-            borders = document.StyleChain(styleId).Select(s => s.StyleTableProperties?.TableBorders).LastOrDefault(b => b is not null);
-        }
-
-        if (borders is null)
-        {
-            return false;
-        }
-
-        BorderType?[] all = [borders.TopBorder, borders.BottomBorder, borders.LeftBorder ?? (BorderType?)borders.StartBorder, borders.RightBorder ?? (BorderType?)borders.EndBorder, borders.InsideHorizontalBorder, borders.InsideVerticalBorder];
-        return all.All(b => b is not null
-            && b.Val?.Value == BorderValues.Single
-            && b.Size?.Value == 8
-            && (b.Color?.Value is null or "auto" || string.Equals(b.Color.Value, Spec20.Black, StringComparison.OrdinalIgnoreCase)));
+        return cell.Elements<Paragraph>().All(p => document.Resolved(p).Format.Text(FormatProps.Alignment) is null or "left" or "start");
     }
 }
 
@@ -839,11 +820,16 @@ internal sealed partial class Variants20Rule : IDocumentRule
         var variableColor = new List<IssueLocation?>();
         var shortcuts = new List<IssueLocation?>();
         var slashes = new List<IssueLocation?>();
+        var slashParagraphs = 0;
 
         foreach (var paragraph in document.Paragraphs)
         {
-            var text = paragraph.InnerText;
-            var insideVariant = stack.Count > 0;
+            // Tekst fragmentów własnych akapitu: te same pozycje znaków, którymi posługuje się zakres wystąpienia.
+            var text = document.TextMap(paragraph).Text;
+            // Zakresy tekstu akapitu leżące wewnątrz wariantu: od początku akapitu, gdy wariant otwarto wcześniej,
+            // i między znacznikami otwarcia i zamknięcia w tym samym akapicie.
+            var inside = new List<(int Start, int End)>();
+            var openedAt = stack.Count > 0 ? 0 : -1;
             foreach (Match match in Marker().Matches(text))
             {
                 var id = match.Groups["id"].Value;
@@ -872,6 +858,21 @@ internal sealed partial class Variants20Rule : IDocumentRule
                 {
                     stack.Push((id, paragraph));
                 }
+
+                if (stack.Count > 0 && openedAt < 0)
+                {
+                    openedAt = match.Index + match.Length;
+                }
+                else if (stack.Count == 0 && openedAt >= 0)
+                {
+                    inside.Add((openedAt, match.Index));
+                    openedAt = -1;
+                }
+            }
+
+            if (openedAt >= 0)
+            {
+                inside.Add((openedAt, text.Length));
             }
 
             if (Inflection().IsMatch(text))
@@ -879,10 +880,30 @@ internal sealed partial class Variants20Rule : IDocumentRule
                 shortcuts.Add(document.Locate(paragraph, DocxDocument.Snippet(Inflection().Match(text).Value, 40)));
             }
 
-            // Wewnątrz wariantu alternatywy pisze się przez [lub], nie przez ukośnik (rozdz. 14); w stałym tekście ukośnik zostaje.
-            if ((insideVariant || stack.Count > 0) && SlashAlternative().Match(text) is { Success: true } slash)
+            // Wewnątrz wariantu alternatywy pisze się przez [lub], nie przez ukośnik (rozdz. 14); w stałym tekście
+            // i w zapisach zmiennych (<…>) ukośnik zostaje. Każdy ukośnik to osobne wystąpienie z zakresem znaków.
+            if (inside.Count > 0)
             {
-                slashes.Add(document.Locate(paragraph, DocxDocument.Snippet(slash.Value, 40)));
+                var variables = Variable().Matches(text);
+                var found = false;
+                foreach (Match slash in SlashAlternative().Matches(text))
+                {
+                    var end = slash.Index + slash.Length;
+                    if (!inside.Any(r => slash.Index >= r.Start && end <= r.End) || variables.Any(v => slash.Index >= v.Index && end <= v.Index + v.Length))
+                    {
+                        continue;
+                    }
+
+                    found = true;
+                    slashes.Add(document.Locate(paragraph, DocxDocument.Snippet(slash.Value, 40)) is { } location
+                        ? location with { Range = new TextRange(slash.Index, slash.Length) }
+                        : null);
+                }
+
+                if (found)
+                {
+                    slashParagraphs++;
+                }
             }
 
             foreach (var run in Spec20.TextRuns(paragraph))
@@ -939,7 +960,7 @@ internal sealed partial class Variants20Rule : IDocumentRule
         {
             yield return new WcagIssue(
                 IssueCodes.VariantSlashAlternative, IssueSeverity.Warning, IssueCategory.Text,
-                $"{Polish.Count(slashes.Count, "akapit wewnątrz wariantu ma", "akapity wewnątrz wariantu mają", "akapitów wewnątrz wariantu ma")} alternatywę z ukośnikiem (np. „PLN / EUR”); w wariantach separator zastępuje się znacznikiem [lub] w kolorze #{Spec20.Fuchsia}.").At(slashes);
+                $"{Polish.Count(slashParagraphs, "akapit wewnątrz wariantu ma", "akapity wewnątrz wariantu mają", "akapitów wewnątrz wariantu ma")} alternatywę z ukośnikiem (np. „PLN / EUR”); w wariantach separator zastępuje się znacznikiem [lub] w kolorze #{Spec20.Fuchsia}.").At(slashes);
         }
     }
 
