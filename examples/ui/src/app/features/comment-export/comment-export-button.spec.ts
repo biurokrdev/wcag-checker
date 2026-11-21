@@ -93,6 +93,28 @@ describe('CommentExportButton', () => {
     expect(error()).toBeNull();
   });
 
+  it('saves the file under the name from Content-Disposition (a template stays a .dotx)', () => {
+    const { fixture, click } = render('r1', 'szablon pisma.dotx.docx');
+
+    click();
+    http.expectOne(url('r1')).flush(new Blob(['dotx']), {
+      headers: { 'Content-Disposition': "attachment; filename=szablon_pisma_z_komentarzami.dotx; filename*=UTF-8''wz%C3%B3r%20pisma_z_komentarzami.dotx" },
+    });
+    fixture.detectChanges();
+
+    expect(downloads).toEqual([{ name: 'wzór pisma_z_komentarzami.dotx', href: 'blob:test' }]);
+  });
+
+  it('derives the extension from the checked file when the header is missing', () => {
+    const { fixture, click } = render('r1', 'szablon pisma.dotx.docx');
+
+    click();
+    http.expectOne(url('r1')).flush(new Blob(['dotx']));
+    fixture.detectChanges();
+
+    expect(downloads).toEqual([{ name: 'szablon pisma_z_komentarzami.dotx', href: 'blob:test' }]);
+  });
+
   it('shows the problem from the API when the report has expired', async () => {
     const { fixture, button, error, click } = render();
 
@@ -153,6 +175,18 @@ describe('CommentExportService', () => {
     expect(CommentExportService.fileName('pismo.docx')).toBe('pismo_z_komentarzami.docx');
     expect(CommentExportService.fileName('wzór v2.0.docx')).toBe('wzór v2.0_z_komentarzami.docx');
     expect(CommentExportService.fileName('')).toBe('dokument_z_komentarzami.docx');
+    expect(CommentExportService.fileName('szablon.dotx.docx')).toBe('szablon_z_komentarzami.dotx');
+    expect(CommentExportService.fileName('Makra.DOCM')).toBe('Makra_z_komentarzami.docm');
+    expect(CommentExportService.fileName('wzór.dotm.docx')).toBe('wzór_z_komentarzami.dotm');
+  });
+
+  it('reads the file name from Content-Disposition', () => {
+    expect(CommentExportService.dispositionFileName(null)).toBeNull();
+    expect(CommentExportService.dispositionFileName('attachment')).toBeNull();
+    expect(CommentExportService.dispositionFileName('attachment; filename="pismo_z_komentarzami.docx"')).toBe('pismo_z_komentarzami.docx');
+    expect(CommentExportService.dispositionFileName('attachment; filename=a.dotx')).toBe('a.dotx');
+    expect(CommentExportService.dispositionFileName("attachment; filename=_.docm; filename*=UTF-8''za%C5%BC%C3%B3%C5%82%C4%87_z_komentarzami.docm")).toBe('zażółć_z_komentarzami.docm');
+    expect(CommentExportService.dispositionFileName("attachment; filename=zapas.docx; filename*=UTF-8''%E0%A4%A")).toBe('zapas.docx');
   });
 
   it('maps connection and unknown failures to Polish messages', async () => {
