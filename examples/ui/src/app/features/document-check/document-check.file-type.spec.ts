@@ -8,6 +8,7 @@ import { DocumentCheck } from './document-check';
 
 const STANDARDS = '/api/wcag-documents/standards';
 const VALIDATE = '/api/wcag-documents/validate';
+const WORKBOOKS_VALIDATE = '/api/wcag-workbooks/validate';
 
 function catalog(): StandardsCatalog {
   return {
@@ -21,7 +22,7 @@ function catalog(): StandardsCatalog {
 }
 
 // Wybór typu pliku na ekranie walidatora: standardy i pole pliku zależne od typu, plik niezgodny z typem,
-// Excel do czasu podłączenia audytu. Ścieżkę Word pilnuje osobno document-check.word-gate.spec.ts.
+// wysłanie skoroszytu do audytu. Ścieżkę Word pilnuje osobno document-check.word-gate.spec.ts.
 describe('DocumentCheck – file type', () => {
   let http: HttpTestingController;
 
@@ -341,20 +342,21 @@ describe('DocumentCheck – file type', () => {
     expect(q('dropzone')!.querySelector('#upload-hint')!.textContent).toContain('Dopuszczalny format pliku: XLSX (Excel), do 20 MB');
   });
 
-  // ------------------------------------------------------------ Excel do czasu podłączenia audytu
+  // ------------------------------------------------------------ Excel: wysłanie do audytu (X4)
 
-  it('accepts a correct XLSX without calling any endpoint and says the Excel audit is in preparation', () => {
+  it('sends a correct XLSX to the workbook endpoint, not to the Word one, and shows the analysis stage', () => {
     const { el, q, chooseType, selectFile, live } = render();
     chooseType('xlsx');
     selectFile(file('budzet.xlsx'));
 
-    http.expectNone(() => true);
-    const notice = q('xlsx-pending')!.textContent!.replace(/\s+/g, ' ').trim();
-    expect(notice).toBe('Audyt plików Excel jest w przygotowaniu. Plik „budzet.xlsx” (WCAG 2.2 AA) nie został wysłany do analizy.');
-    expect(live()).toBe('Audyt plików Excel jest w przygotowaniu. Plik budzet.xlsx nie został wysłany do analizy.');
-    expect(q('file-error')).toBeNull();
-    expect(q('result')).toBeNull();
-    expect(el.querySelector('form.setup')).toBeTruthy();
+    http.expectNone(VALIDATE);
+    const request = http.expectOne(WORKBOOKS_VALIDATE);
+    expect((request.request.body as FormData).get('wcagVersion')).toBe('2.2');
+    expect(q('stage')!.textContent).toBe('Analiza skoroszytu…');
+    expect(live()).toBe('Analiza skoroszytu budzet.xlsx…');
+    expect(q('xlsx-pending')).toBeNull();
+    expect(el.querySelector('form.setup')).toBeNull();
+    request.flush(null, { status: 500, statusText: 'Server Error' });
   });
 
   it('passes the chosen WCAG version on with the XLSX file', () => {
@@ -364,21 +366,23 @@ describe('DocumentCheck – file type', () => {
     fixture.detectChanges();
     dropFile(file('Budżet.XLSX'));
 
-    http.expectNone(() => true);
-    expect(q('xlsx-pending')!.textContent).toContain('Plik „Budżet.XLSX” (WCAG 2.1 AA)');
+    const body = http.expectOne(WORKBOOKS_VALIDATE).request.body as FormData;
+    expect((body.get('file') as File).name).toBe('Budżet.XLSX');
+    expect(body.get('wcagVersion')).toBe('2.1');
   });
 
   it('replaces the previous message when another file is picked', () => {
-    const { q, chooseType, selectFile } = render();
+    const { fixture, q, chooseType, selectFile } = render();
     chooseType('xlsx');
     selectFile(file('raport.docx'));
     selectFile(file('budzet.xlsx'));
     expect(q('file-error')).toBeNull();
-    expect(q('xlsx-pending')).toBeTruthy();
+    http.expectOne(WORKBOOKS_VALIDATE).flush({ title: 'Nie można przyjąć pliku.', detail: 'Plik jest pusty.' }, { status: 400, statusText: 'Bad Request' });
+    fixture.detectChanges();
+    expect(q('file-error')!.textContent).toBe('Plik jest pusty.');
 
     selectFile(file('raport.docx'));
-    expect(q('file-error')).toBeTruthy();
-    expect(q('xlsx-pending')).toBeNull();
+    expect(q('file-error')!.textContent).toContain('a dodany plik to dokument Word (.docx)');
   });
 
   // ------------------------------------------------------------ zmiana typu przy dodanym pliku
@@ -396,34 +400,6 @@ describe('DocumentCheck – file type', () => {
 
     chooseType('xlsx');
     expect(q('file-error')).toBeNull();
-  });
-
-  it('removes a file that does not fit the new type and says so, visibly and in the live region', () => {
-    const { q, chooseType, selectFile, live } = render();
-    chooseType('xlsx');
-    selectFile(file('budzet.xlsx'));
-    chooseType('docx');
-
-    expect(q('xlsx-pending')).toBeNull();
-    expect(q('removed-file-notice')!.textContent).toBe('Usunięto plik budzet.xlsx – nie pasuje do typu Word.');
-    expect(live()).toBe('Pokazano standardy dla plików Word. Usunięto plik budzet.xlsx – nie pasuje do typu Word.');
-
-    // Powrót do Excela nie przywraca usuniętego pliku, a informacja znika.
-    chooseType('xlsx');
-    expect(q('xlsx-pending')).toBeNull();
-    expect(q('removed-file-notice')).toBeNull();
-    expect(live()).toBe('Pokazano standardy dla plików Excel.');
-  });
-
-  it('drops the removal notice when the next file is picked', () => {
-    const { q, chooseType, selectFile } = render();
-    chooseType('xlsx');
-    selectFile(file('budzet.xlsx'));
-    chooseType('docx');
-    selectFile(file('pismo.docx'));
-
-    http.expectOne(VALIDATE).flush(null, { status: 500, statusText: 'Server Error' });
-    expect(q('removed-file-notice')).toBeNull();
   });
 
   it('hides the tiles together with the form while a Word document is analysed and on the Word error screen', () => {
@@ -471,5 +447,7 @@ describe('DocumentCheck – file type', () => {
 
     selectFile(file('budzet.xlsx'));
     expect(await axeViolations(el)).toEqual([]);
+    // X4: przyjęty plik idzie do audytu (wyniki i odrzucenia z serwera sprawdza document-check.xlsx.spec.ts).
+    http.expectOne(WORKBOOKS_VALIDATE);
   });
 });
