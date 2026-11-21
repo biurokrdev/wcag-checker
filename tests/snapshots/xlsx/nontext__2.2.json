@@ -3,7 +3,7 @@
   "failure": "None",
   "wcagVersion": "2.2",
   "profileName": "WCAG 2.2 AA (arkusz Excel)",
-  "summary": "Nie wykryto automatycznie niezgodności. 25 kryteriów wymaga oceny ręcznej.",
+  "summary": "Wykryto automatycznie problemy (błędy: 5, ostrzeżenia: 3, do weryfikacji: 6). 23 kryteria wymagają oceny ręcznej.",
   "disclaimer": "Wynik automatyczny nie potwierdza zgodności z WCAG",
   "workbook": {
     "title": "Raport sprzedaży – obiekty i łącza",
@@ -19,16 +19,498 @@
     "isEmpty": false
   },
   "counts": {
-    "errors": 0,
-    "warnings": 0,
-    "needsReview": 0,
-    "info": 0,
-    "manualChecks": 25
+    "errors": 5,
+    "warnings": 3,
+    "needsReview": 6,
+    "info": 3,
+    "manualChecks": 31
   },
-  "findings": [],
+  "findings": [
+    {
+      "code": "XL-ALT-MISSING",
+      "severity": "Error",
+      "checkType": "Auto",
+      "title": "Obiekt bez tekstu alternatywnego",
+      "wcag": [
+        "1.1.1"
+      ],
+      "message": "Obiekt „Obraz 1” (obraz) nie ma tekstu alternatywnego i nie jest oznaczony jako dekoracyjny.",
+      "fixInstruction": "1. Kliknij obiekt prawym przyciskiem myszy i wybierz Wyświetl tekst alternatywny (w starszych wersjach: Edytuj tekst alternatywny). 2. W okienku wpisz jedno–dwa zdania opisujące treść i funkcję obiektu (nie jego wygląd ani nazwę pliku). 3. Jeśli obiekt jest wyłącznie ozdobą, zamiast opisu zaznacz pole Oznacz jako dekoracyjny. Na koniec uruchom Recenzja → Sprawdź ułatwienia dostępu.",
+      "location": "Obraz „Obraz 1” na arkuszu „Obrazy i obiekty” (przy komórce B3)",
+      "key": "0000|Drawing|0000003|00002|Obraz 1|2",
+      "evidence": [
+        {
+          "name": "Typ obiektu",
+          "value": "obraz"
+        },
+        {
+          "name": "Nazwa obiektu",
+          "value": "Obraz 1"
+        },
+        {
+          "name": "Obecny opis",
+          "value": "(brak)"
+        },
+        {
+          "name": "Plik obrazu",
+          "value": "image1.png"
+        }
+      ]
+    },
+    {
+      "code": "XL-ALT-MISSING",
+      "severity": "Error",
+      "checkType": "Auto",
+      "title": "Obiekt bez tekstu alternatywnego",
+      "wcag": [
+        "1.1.1"
+      ],
+      "message": "Obiekt „Prostokąt 7” (kształt) nie ma tekstu alternatywnego i nie jest oznaczony jako dekoracyjny.",
+      "fixInstruction": "1. Kliknij obiekt prawym przyciskiem myszy i wybierz Wyświetl tekst alternatywny (w starszych wersjach: Edytuj tekst alternatywny). 2. W okienku wpisz jedno–dwa zdania opisujące treść i funkcję obiektu (nie jego wygląd ani nazwę pliku). 3. Jeśli obiekt jest wyłącznie ozdobą, zamiast opisu zaznacz pole Oznacz jako dekoracyjny. Na koniec uruchom Recenzja → Sprawdź ułatwienia dostępu.",
+      "location": "Kształt „Prostokąt 7” na arkuszu „Obrazy i obiekty” (przy komórce E13)",
+      "key": "0000|Drawing|0000013|00005|Prostokąt 7|8",
+      "evidence": [
+        {
+          "name": "Typ obiektu",
+          "value": "kształt"
+        },
+        {
+          "name": "Nazwa obiektu",
+          "value": "Prostokąt 7"
+        },
+        {
+          "name": "Obecny opis",
+          "value": "(brak)"
+        }
+      ]
+    },
+    {
+      "code": "XL-CHART-ALT",
+      "severity": "Error",
+      "checkType": "Auto",
+      "title": "Wykres bez opisu alternatywnego",
+      "wcag": [
+        "1.1.1"
+      ],
+      "message": "Wykres „Wykres 1” nie ma opisu alternatywnego – osoba korzystająca z czytnika ekranu nie dowie się, co wykres przedstawia.",
+      "fixInstruction": "1. Kliknij prawym przyciskiem myszy obszar wykresu (krawędź wykresu) i wybierz Wyświetl tekst alternatywny (w starszych wersjach: Edytuj tekst alternatywny). 2. Opisz, co wykres pokazuje: rodzaj wykresu, porównywane wielkości i najważniejszy wniosek (trend, wartości skrajne). 3. Jeśli dane wykresu są w tabeli na arkuszu, wskaż ją w opisie (np. „dane w tabeli A1:C5”). Na koniec uruchom Recenzja → Sprawdź ułatwienia dostępu.",
+      "location": "Wykres „Wykres 1” na arkuszu „Wykresy”",
+      "key": "0001|Chart|0000001|00005|Wykres 1|2",
+      "evidence": [
+        {
+          "name": "Typ obiektu",
+          "value": "wykres"
+        },
+        {
+          "name": "Nazwa obiektu",
+          "value": "Wykres 1"
+        },
+        {
+          "name": "Obecny opis",
+          "value": "(brak)"
+        }
+      ]
+    },
+    {
+      "code": "XL-CONTROL",
+      "severity": "Error",
+      "checkType": "Auto",
+      "title": "Kontrolka bez nazwy",
+      "wcag": [
+        "4.1.2"
+      ],
+      "message": "Kontrolka formularza „Check Box 1” (pole wyboru) nie ma etykiety ani tekstu alternatywnego – czytnik ekranu nie poda jej nazwy.",
+      "fixInstruction": "1. Kliknij kontrolkę prawym przyciskiem myszy i wybierz Formatuj kontrolkę. 2. Na karcie Tekst alternatywny wpisz krótką nazwę mówiącą, do czego kontrolka służy (np. „Zgoda na przetwarzanie danych”), i zatwierdź OK. 3. Dla pola wyboru, przycisku opcji i przycisku możesz też wpisać widoczny podpis: prawy przycisk myszy → Edytuj tekst. 4. Uruchom Recenzja → Sprawdź ułatwienia dostępu.",
+      "location": "Kontrolka „Check Box 1” na arkuszu „Kontrolki” (przy komórce B3)",
+      "key": "0003|Drawing|0000003|00002|Check Box 1|",
+      "evidence": [
+        {
+          "name": "Rodzaj kontrolki",
+          "value": "pole wyboru"
+        },
+        {
+          "name": "Nazwa obiektu",
+          "value": "Check Box 1"
+        },
+        {
+          "name": "Etykieta",
+          "value": "(brak)"
+        },
+        {
+          "name": "Tekst alternatywny",
+          "value": "(brak)"
+        }
+      ]
+    },
+    {
+      "code": "XL-CONTROL",
+      "severity": "Error",
+      "checkType": "Auto",
+      "title": "Kontrolka bez nazwy",
+      "wcag": [
+        "4.1.2"
+      ],
+      "message": "Kontrolka formularza „Drop Down 3” (pole kombi (lista rozwijana)) nie ma etykiety ani tekstu alternatywnego – czytnik ekranu nie poda jej nazwy.",
+      "fixInstruction": "1. Kliknij kontrolkę prawym przyciskiem myszy i wybierz Formatuj kontrolkę. 2. Na karcie Tekst alternatywny wpisz krótką nazwę mówiącą, do czego kontrolka służy (np. „Zgoda na przetwarzanie danych”), i zatwierdź OK. 3. Dla pola wyboru, przycisku opcji i przycisku możesz też wpisać widoczny podpis: prawy przycisk myszy → Edytuj tekst. 4. Uruchom Recenzja → Sprawdź ułatwienia dostępu.",
+      "location": "Kontrolka „Drop Down 3” na arkuszu „Kontrolki” (przy komórce B9)",
+      "key": "0003|Drawing|0000009|00002|Drop Down 3|",
+      "evidence": [
+        {
+          "name": "Rodzaj kontrolki",
+          "value": "pole kombi (lista rozwijana)"
+        },
+        {
+          "name": "Nazwa obiektu",
+          "value": "Drop Down 3"
+        },
+        {
+          "name": "Etykieta",
+          "value": "(brak)"
+        },
+        {
+          "name": "Tekst alternatywny",
+          "value": "(brak)"
+        },
+        {
+          "name": "Komórka połączona",
+          "value": "$F$9"
+        }
+      ]
+    },
+    {
+      "code": "XL-ALT-POOR",
+      "severity": "Warning",
+      "checkType": "Heuristic",
+      "confidence": 0.85,
+      "title": "Tekst alternatywny nie opisuje obiektu",
+      "wcag": [
+        "1.1.1"
+      ],
+      "message": "Tekst alternatywny obiektu „Obraz 3” (obraz) prawdopodobnie nie opisuje jego treści: opis to słowo ogólne, które nie mówi, co obiekt przedstawia.",
+      "fixInstruction": "1. Kliknij obiekt prawym przyciskiem myszy i wybierz Wyświetl tekst alternatywny (w starszych wersjach: Edytuj tekst alternatywny). 2. Zastąp obecny opis jednym–dwoma zdaniami, które przekazują to samo, co obiekt: co przedstawia i po co jest w arkuszu. Nie wpisuj nazwy pliku, nazwy obiektu ani słów „obraz”, „zdjęcie”, „wykres”. 3. Jeśli obiekt jest wyłącznie ozdobą, zaznacz pole Oznacz jako dekoracyjny. Na koniec uruchom Recenzja → Sprawdź ułatwienia dostępu.",
+      "location": "Obraz „Obraz 3” na arkuszu „Obrazy i obiekty” (przy komórce B13)",
+      "key": "0000|Drawing|0000013|00002|Obraz 3|4",
+      "evidence": [
+        {
+          "name": "Typ obiektu",
+          "value": "obraz"
+        },
+        {
+          "name": "Nazwa obiektu",
+          "value": "Obraz 3"
+        },
+        {
+          "name": "Obecny opis",
+          "value": "Obraz 1"
+        },
+        {
+          "name": "Plik obrazu",
+          "value": "image1.png"
+        }
+      ]
+    },
+    {
+      "code": "XL-ALT-POOR",
+      "severity": "Warning",
+      "checkType": "Heuristic",
+      "confidence": 0.9,
+      "title": "Tekst alternatywny nie opisuje obiektu",
+      "wcag": [
+        "1.1.1"
+      ],
+      "message": "Tekst alternatywny obiektu „Obraz 4” (obraz) prawdopodobnie nie opisuje jego treści: opis jest nazwą pliku.",
+      "fixInstruction": "1. Kliknij obiekt prawym przyciskiem myszy i wybierz Wyświetl tekst alternatywny (w starszych wersjach: Edytuj tekst alternatywny). 2. Zastąp obecny opis jednym–dwoma zdaniami, które przekazują to samo, co obiekt: co przedstawia i po co jest w arkuszu. Nie wpisuj nazwy pliku, nazwy obiektu ani słów „obraz”, „zdjęcie”, „wykres”. 3. Jeśli obiekt jest wyłącznie ozdobą, zaznacz pole Oznacz jako dekoracyjny. Na koniec uruchom Recenzja → Sprawdź ułatwienia dostępu.",
+      "location": "Obraz „Obraz 4” na arkuszu „Obrazy i obiekty” (przy komórce B18)",
+      "key": "0000|Drawing|0000018|00002|Obraz 4|5",
+      "evidence": [
+        {
+          "name": "Typ obiektu",
+          "value": "obraz"
+        },
+        {
+          "name": "Nazwa obiektu",
+          "value": "Obraz 4"
+        },
+        {
+          "name": "Obecny opis",
+          "value": "logo.png"
+        },
+        {
+          "name": "Plik obrazu",
+          "value": "logo.png"
+        }
+      ]
+    },
+    {
+      "code": "XL-LINK-TEXT",
+      "severity": "Warning",
+      "checkType": "Heuristic",
+      "confidence": 0.9,
+      "title": "Tekst łącza nie wskazuje celu",
+      "wcag": [
+        "2.4.4"
+      ],
+      "message": "Łącze nie ma tekstu – komórka z łączem jest pusta, więc nie wiadomo, dokąd łącze prowadzi.",
+      "fixInstruction": "1. Kliknij komórkę z łączem prawym przyciskiem myszy i wybierz Edytuj hiperlink (w nowszych wersjach: Edytuj link). 2. W polu Tekst do wyświetlenia wpisz tekst, który sam mówi, dokąd prowadzi łącze, np. „Regulamin budżetowania (PDF)” zamiast „kliknij tutaj”. 3. Opcjonalnie dodaj wskazówkę przyciskiem Etykietka ekranowa. Jeśli łącze jest na obrazie lub kształcie, wpisz cel łącza w jego tekście alternatywnym (prawy przycisk myszy → Wyświetl tekst alternatywny) i nie oznaczaj obiektu jako dekoracyjny.",
+      "location": "Łącza!A6",
+      "key": "0002|Cell|0000006|00001|A6|",
+      "evidence": [
+        {
+          "name": "Tekst łącza",
+          "value": "(pusty)"
+        },
+        {
+          "name": "Adres docelowy",
+          "value": "https://example.com/pusty"
+        }
+      ]
+    },
+    {
+      "code": "XL-TEXTBOX",
+      "severity": "NeedsReview",
+      "checkType": "Heuristic",
+      "confidence": 0.5,
+      "title": "Treść w polu tekstowym poza siatką komórek",
+      "wcag": [
+        "1.3.2"
+      ],
+      "message": "Pole tekstowe „pole tekstowe 6” zawiera treść (71 znaków), która leży poza siatką komórek – sprawdź, czy czytnik ekranu odczytuje ją we właściwym miejscu.",
+      "fixInstruction": "1. Jeśli to możliwe, przenieś tekst do komórek arkusza (np. do wiersza nad danymi) i usuń pole tekstowe – tekst w komórkach jest czytany w przewidywalnej kolejności. 2. Jeśli pole musi zostać, umieść je tuż przy danych, których dotyczy, i sprawdź kolejność obiektów na liście Układ strony → Okienko zaznaczenia. 3. Sprawdź z czytnikiem ekranu, czy tekst pola jest odczytywany i czy pada we właściwym miejscu.",
+      "location": "Pole tekstowe „pole tekstowe 6” na arkuszu „Obrazy i obiekty” (przy komórce E8)",
+      "key": "0000|Drawing|0000008|00005|pole tekstowe 6|7",
+      "snippet": "Uwaga: dane za grudzień są szacunkowe i zostaną skorygowane w styczniu.",
+      "evidence": [
+        {
+          "name": "Tekst",
+          "value": "Uwaga: dane za grudzień są szacunkowe i zostaną skorygowane w styczniu."
+        },
+        {
+          "name": "Liczba znaków",
+          "value": "71"
+        }
+      ]
+    },
+    {
+      "code": "XL-CHART-COLOR",
+      "severity": "NeedsReview",
+      "checkType": "Heuristic",
+      "confidence": 0.5,
+      "title": "Serie wykresu rozróżnione wyłącznie kolorem",
+      "wcag": [
+        "1.4.1"
+      ],
+      "message": "Serie wykresu są rozróżnione wyłącznie kolorem: „Sprzedaż 2025” (kolor automatyczny) i „Sprzedaż 2026” (kolor automatyczny). Serie nie mają wypełnienia deseniem, różnych znaczników, różnych stylów linii ani etykiet danych. Kolory serii są automatyczne (nieznane) – wymaga weryfikacji.",
+      "fixInstruction": "Dodaj wyróżnik inny niż kolor: zaznacz serię i wybierz Formatuj serię danych → Wypełnienie → Wypełnienie deseniem (wykres liniowy: Formatuj serię danych → Znacznik oraz Typ kreski) albo włącz Dodaj element wykresu → Etykiety danych. Kolory o wyraźnie różnej jasności ustawisz w Projekt wykresu → Zmień kolory. Wynik sprawdź w Recenzja → Sprawdź ułatwienia dostępu.",
+      "location": "Wykres „Wykres 1” na arkuszu „Wykresy”",
+      "key": "0001|Chart|0000001|00005|Wykres 1|2",
+      "evidence": [
+        {
+          "name": "Typ wykresu",
+          "value": "bar"
+        },
+        {
+          "name": "Liczba serii",
+          "value": "2"
+        },
+        {
+          "name": "Liczba par bez wyróżnika innego niż kolor",
+          "value": "1"
+        },
+        {
+          "name": "Para serii",
+          "value": "„Sprzedaż 2025” (kolor automatyczny) i „Sprzedaż 2026” (kolor automatyczny)"
+        }
+      ]
+    },
+    {
+      "code": "XL-CHART-COLOR",
+      "severity": "NeedsReview",
+      "checkType": "Heuristic",
+      "confidence": 0.5,
+      "title": "Serie wykresu rozróżnione wyłącznie kolorem",
+      "wcag": [
+        "1.4.1"
+      ],
+      "message": "Serie wykresu są rozróżnione wyłącznie kolorem: „Sprzedaż 2025” (kolor automatyczny) i „Sprzedaż 2026” (kolor automatyczny). Serie nie mają wypełnienia deseniem, różnych znaczników, różnych stylów linii ani etykiet danych. Kolory serii są automatyczne (nieznane) – wymaga weryfikacji.",
+      "fixInstruction": "Dodaj wyróżnik inny niż kolor: zaznacz serię i wybierz Formatuj serię danych → Wypełnienie → Wypełnienie deseniem (wykres liniowy: Formatuj serię danych → Znacznik oraz Typ kreski) albo włącz Dodaj element wykresu → Etykiety danych. Kolory o wyraźnie różnej jasności ustawisz w Projekt wykresu → Zmień kolory. Wynik sprawdź w Recenzja → Sprawdź ułatwienia dostępu.",
+      "location": "Wykres „Wykres 2” na arkuszu „Wykresy”",
+      "key": "0001|Chart|0000017|00005|Wykres 2|3",
+      "snippet": "Sprzedaż kwartalna",
+      "evidence": [
+        {
+          "name": "Typ wykresu",
+          "value": "bar"
+        },
+        {
+          "name": "Liczba serii",
+          "value": "2"
+        },
+        {
+          "name": "Liczba par bez wyróżnika innego niż kolor",
+          "value": "1"
+        },
+        {
+          "name": "Para serii",
+          "value": "„Sprzedaż 2025” (kolor automatyczny) i „Sprzedaż 2026” (kolor automatyczny)"
+        }
+      ]
+    },
+    {
+      "code": "XL-LINK-TEXT",
+      "severity": "NeedsReview",
+      "checkType": "Heuristic",
+      "confidence": 0.6,
+      "title": "Tekst łącza nie wskazuje celu",
+      "wcag": [
+        "2.4.4"
+      ],
+      "message": "Tekst łącza „kliknij tutaj” nie mówi, dokąd łącze prowadzi. Sprawdź, czy cel wynika z nagłówków wiersza i kolumny; jeśli nie, zmień tekst.",
+      "fixInstruction": "1. Kliknij komórkę z łączem prawym przyciskiem myszy i wybierz Edytuj hiperlink (w nowszych wersjach: Edytuj link). 2. W polu Tekst do wyświetlenia wpisz tekst, który sam mówi, dokąd prowadzi łącze, np. „Regulamin budżetowania (PDF)” zamiast „kliknij tutaj”. 3. Opcjonalnie dodaj wskazówkę przyciskiem Etykietka ekranowa. Jeśli łącze jest na obrazie lub kształcie, wpisz cel łącza w jego tekście alternatywnym (prawy przycisk myszy → Wyświetl tekst alternatywny) i nie oznaczaj obiektu jako dekoracyjny.",
+      "location": "Łącza!A3",
+      "key": "0002|Cell|0000003|00001|A3|",
+      "snippet": "kliknij tutaj",
+      "evidence": [
+        {
+          "name": "Tekst łącza",
+          "value": "kliknij tutaj"
+        },
+        {
+          "name": "Adres docelowy",
+          "value": "https://example.com/regulamin"
+        }
+      ]
+    },
+    {
+      "code": "XL-LINK-TEXT",
+      "severity": "NeedsReview",
+      "checkType": "Heuristic",
+      "confidence": 0.6,
+      "title": "Tekst łącza nie wskazuje celu",
+      "wcag": [
+        "2.4.4"
+      ],
+      "message": "Tekst łącza „tutaj” nie mówi, dokąd łącze prowadzi. Sprawdź, czy cel wynika z nagłówków wiersza i kolumny; jeśli nie, zmień tekst.",
+      "fixInstruction": "1. Kliknij komórkę z łączem prawym przyciskiem myszy i wybierz Edytuj hiperlink (w nowszych wersjach: Edytuj link). 2. W polu Tekst do wyświetlenia wpisz tekst, który sam mówi, dokąd prowadzi łącze, np. „Regulamin budżetowania (PDF)” zamiast „kliknij tutaj”. 3. Opcjonalnie dodaj wskazówkę przyciskiem Etykietka ekranowa. Jeśli łącze jest na obrazie lub kształcie, wpisz cel łącza w jego tekście alternatywnym (prawy przycisk myszy → Wyświetl tekst alternatywny) i nie oznaczaj obiektu jako dekoracyjny.",
+      "location": "Łącza!A4",
+      "key": "0002|Cell|0000004|00001|A4|",
+      "snippet": "tutaj",
+      "evidence": [
+        {
+          "name": "Tekst łącza",
+          "value": "tutaj"
+        },
+        {
+          "name": "Miejsce w dokumencie",
+          "value": "'Wykresy'!A1"
+        }
+      ]
+    },
+    {
+      "code": "XL-LINK-TEXT",
+      "severity": "NeedsReview",
+      "checkType": "Heuristic",
+      "confidence": 0.6,
+      "title": "Tekst łącza nie wskazuje celu",
+      "wcag": [
+        "2.4.4"
+      ],
+      "message": "Tekst łącza „link” nie mówi, dokąd łącze prowadzi. Sprawdź, czy cel wynika z nagłówków wiersza i kolumny; jeśli nie, zmień tekst.",
+      "fixInstruction": "1. Kliknij komórkę z łączem prawym przyciskiem myszy i wybierz Edytuj hiperlink (w nowszych wersjach: Edytuj link). 2. W polu Tekst do wyświetlenia wpisz tekst, który sam mówi, dokąd prowadzi łącze, np. „Regulamin budżetowania (PDF)” zamiast „kliknij tutaj”. 3. Opcjonalnie dodaj wskazówkę przyciskiem Etykietka ekranowa. Jeśli łącze jest na obrazie lub kształcie, wpisz cel łącza w jego tekście alternatywnym (prawy przycisk myszy → Wyświetl tekst alternatywny) i nie oznaczaj obiektu jako dekoracyjny.",
+      "location": "Łącza!A7",
+      "key": "0002|Cell|0000007|00001|A7|",
+      "snippet": "link",
+      "evidence": [
+        {
+          "name": "Tekst łącza",
+          "value": "link"
+        },
+        {
+          "name": "Adres docelowy",
+          "value": "https://example.com/"
+        },
+        {
+          "name": "Etykietka ekranowa",
+          "value": "Strona główna Example Company"
+        }
+      ]
+    },
+    {
+      "code": "XL-CHART-TITLE",
+      "severity": "Info",
+      "checkType": "Auto",
+      "title": "Wykres bez tytułu lub tytułów osi",
+      "bestPractice": true,
+      "message": "Wykres „Wykres 1” nie ma: tytułu wykresu, tytułu osi kategorii, tytułu osi wartości.",
+      "fixInstruction": "1. Kliknij wykres. 2. Na karcie Projekt wykresu wybierz Dodaj element wykresu → Tytuł wykresu → Nad wykresem i wpisz tytuł mówiący, co wykres przedstawia. 3. Dla wykresów z osiami wybierz Dodaj element wykresu → Tytuły osi → Główna pozioma oraz Główna pionowa i nazwij osie (z jednostką, np. „Kwota (zł)”). Tytuły ułatwiają zrozumienie wykresu, ale nie zastępują opisu alternatywnego.",
+      "location": "Wykres „Wykres 1” na arkuszu „Wykresy”",
+      "key": "0001|Chart|0000001|00005|Wykres 1|2",
+      "evidence": [
+        {
+          "name": "Typ wykresu",
+          "value": "bar"
+        },
+        {
+          "name": "Tytuł wykresu",
+          "value": "(brak)"
+        },
+        {
+          "name": "Liczba serii",
+          "value": "2"
+        }
+      ]
+    },
+    {
+      "code": "XL-CHART-TITLE",
+      "severity": "Info",
+      "checkType": "Auto",
+      "title": "Wykres bez tytułu lub tytułów osi",
+      "bestPractice": true,
+      "message": "Wykres „Wykres 2” nie ma: tytułu osi kategorii, tytułu osi wartości.",
+      "fixInstruction": "1. Kliknij wykres. 2. Na karcie Projekt wykresu wybierz Dodaj element wykresu → Tytuł wykresu → Nad wykresem i wpisz tytuł mówiący, co wykres przedstawia. 3. Dla wykresów z osiami wybierz Dodaj element wykresu → Tytuły osi → Główna pozioma oraz Główna pionowa i nazwij osie (z jednostką, np. „Kwota (zł)”). Tytuły ułatwiają zrozumienie wykresu, ale nie zastępują opisu alternatywnego.",
+      "location": "Wykres „Wykres 2” na arkuszu „Wykresy”",
+      "key": "0001|Chart|0000017|00005|Wykres 2|3",
+      "snippet": "Sprzedaż kwartalna",
+      "evidence": [
+        {
+          "name": "Typ wykresu",
+          "value": "bar"
+        },
+        {
+          "name": "Tytuł wykresu",
+          "value": "Sprzedaż kwartalna"
+        },
+        {
+          "name": "Liczba serii",
+          "value": "2"
+        }
+      ]
+    },
+    {
+      "code": "XL-LINK-URL",
+      "severity": "Info",
+      "checkType": "Auto",
+      "title": "Tekst łącza jest surowym adresem",
+      "bestPractice": true,
+      "message": "Tekst łącza jest surowym adresem – lepszy jest krótki opis celu.",
+      "fixInstruction": "1. Kliknij komórkę z łączem prawym przyciskiem myszy i wybierz Edytuj hiperlink (w nowszych wersjach: Edytuj link). 2. W polu Tekst do wyświetlenia zastąp adres krótkim opisem celu, np. „Raport kwartalny Q1 2026”; adres zostaje w polu Adres. Długi adres odczytany przez czytnik ekranu jest mało zrozumiały, dlatego opisowy tekst jest wygodniejszy.",
+      "location": "Łącza!A2",
+      "key": "0002|Cell|0000002|00001|A2|",
+      "snippet": "https://example.com/raporty/2026/q1",
+      "evidence": [
+        {
+          "name": "Tekst łącza",
+          "value": "https://example.com/raporty/2026/q1"
+        },
+        {
+          "name": "Adres docelowy",
+          "value": "https://example.com/raporty/2026/q1"
+        }
+      ]
+    }
+  ],
   "manualChecks": [
     {
-      "id": "manual-1.1.1",
+      "id": "manual-1.1.1:nontext",
       "wcag": [
         "1.1.1"
       ],
@@ -44,7 +526,7 @@
       "hint": "Zaznacz komórkę w danych: karta Projekt tabeli pojawia się tylko dla Tabeli Excela; pole „Wiersz nagłówka” pokazuje, czy tabela ma nagłówki."
     },
     {
-      "id": "manual-1.3.2",
+      "id": "manual-1.3.2:nontext",
       "wcag": [
         "1.3.2"
       ],
@@ -58,18 +540,13 @@
       "question": "Czy instrukcje w skoroszycie są zrozumiałe bez odwoływania się wyłącznie do koloru, kształtu, rozmiaru lub położenia (np. „wypełnij żółte pola”, „tabela po prawej”)?"
     },
     {
-      "id": "manual-1.4.1",
-      "wcag": [
-        "1.4.1"
-      ],
-      "question": "Czy każda informacja przekazana kolorem (statusy, wartości ujemne, serie wykresu, wyróżnienia) jest dostępna także w inny widoczny sposób: tekstem, znakiem, wzorem, etykietą?"
-    },
-    {
-      "id": "manual-1.4.3",
+      "id": "manual-1.4.3:color",
       "wcag": [
         "1.4.3"
       ],
-      "question": "Czy tekst na tle z obrazu, gradientu, wzoru lub w kolorach automatycznych jest wyraźnie czytelny (kontrast co najmniej 4,5:1, dla dużego tekstu 3:1)?"
+      "code": "XL-CONTRAST",
+      "question": "Czy tekst na tle z obrazu, gradientu, wzoru lub w kolorach automatycznych, a także tekst w tabelach ze stylem tabeli, w kształtach i na wykresach, jest wyraźnie czytelny (kontrast co najmniej 4,5:1, dla dużego tekstu 3:1)?",
+      "hint": "Narzędzie ocenia kontrast tylko z formatowania komórek; nie ocenia stylów tabel, obrazów tła arkusza (Układ strony → Tło) ani tekstu w obiektach. W tym skoroszycie: tabele ze stylem tabeli (wiersz nagłówka, pasy wierszy i kolumn, wiersz sumy) – zaznacz komórkę tabeli i sprawdź Projekt tabeli → Style tabeli; tekst w kształtach, polach tekstowych i na wykresach (tytuły, etykiety osi i danych, legenda) – zaznacz obiekt i sprawdź Formatuj kształt → Opcje tekstu → Wypełnienie tekstu oraz wypełnienie kształtu lub obszaru wykresu. Kolory oceń też w Recenzja → Sprawdź ułatwienia dostępu."
     },
     {
       "id": "manual-1.4.5",
@@ -79,6 +556,66 @@
       "question": "Czy obrazy nie zawierają tekstu, który można było zapisać jako tekst w komórce lub kształcie (z wyjątkiem logotypów)?"
     },
     {
+      "id": "XL-TEXT-IN-IMAGE:0000|Drawing|0000003|00002|Obraz 1|2",
+      "wcag": [
+        "1.4.5"
+      ],
+      "code": "XL-TEXT-IN-IMAGE",
+      "question": "Czy obraz „Obraz 1” nie zawiera tekstu, który można było zapisać jako tekst w komórce lub kształcie (z wyjątkiem logotypów)?",
+      "hint": "Obejrzyj obraz. Jeśli zawiera tekst niosący informację (tabelę, zrzut ekranu, napis), wpisz ten tekst w komórkach albo w kształcie zamiast obrazu, a co najmniej powtórz go w tekście alternatywnym (prawy przycisk myszy → Wyświetl tekst alternatywny). Logotypy i tekst będący nieistotną częścią zdjęcia są wyjątkiem.",
+      "location": "Obraz „Obraz 1” na arkuszu „Obrazy i obiekty” (przy komórce B3)"
+    },
+    {
+      "id": "XL-TEXT-IN-IMAGE:0000|Drawing|0000003|00005|Obraz 5|6",
+      "wcag": [
+        "1.4.5"
+      ],
+      "code": "XL-TEXT-IN-IMAGE",
+      "question": "Czy obraz „Obraz 5” nie zawiera tekstu, który można było zapisać jako tekst w komórce lub kształcie (z wyjątkiem logotypów)?",
+      "hint": "Obejrzyj obraz. Jeśli zawiera tekst niosący informację (tabelę, zrzut ekranu, napis), wpisz ten tekst w komórkach albo w kształcie zamiast obrazu, a co najmniej powtórz go w tekście alternatywnym (prawy przycisk myszy → Wyświetl tekst alternatywny). Logotypy i tekst będący nieistotną częścią zdjęcia są wyjątkiem.",
+      "location": "Obraz „Obraz 5” na arkuszu „Obrazy i obiekty” (przy komórce E3)"
+    },
+    {
+      "id": "XL-TEXT-IN-IMAGE:0000|Drawing|0000013|00002|Obraz 3|4",
+      "wcag": [
+        "1.4.5"
+      ],
+      "code": "XL-TEXT-IN-IMAGE",
+      "question": "Czy obraz „Obraz 3” nie zawiera tekstu, który można było zapisać jako tekst w komórce lub kształcie (z wyjątkiem logotypów)?",
+      "hint": "Obejrzyj obraz. Jeśli zawiera tekst niosący informację (tabelę, zrzut ekranu, napis), wpisz ten tekst w komórkach albo w kształcie zamiast obrazu, a co najmniej powtórz go w tekście alternatywnym (prawy przycisk myszy → Wyświetl tekst alternatywny). Logotypy i tekst będący nieistotną częścią zdjęcia są wyjątkiem.",
+      "location": "Obraz „Obraz 3” na arkuszu „Obrazy i obiekty” (przy komórce B13)"
+    },
+    {
+      "id": "XL-TEXT-IN-IMAGE:0000|Drawing|0000018|00002|Obraz 4|5",
+      "wcag": [
+        "1.4.5"
+      ],
+      "code": "XL-TEXT-IN-IMAGE",
+      "question": "Czy obraz „Obraz 4” nie zawiera tekstu, który można było zapisać jako tekst w komórce lub kształcie (z wyjątkiem logotypów)?",
+      "hint": "Obejrzyj obraz. Jeśli zawiera tekst niosący informację (tabelę, zrzut ekranu, napis), wpisz ten tekst w komórkach albo w kształcie zamiast obrazu, a co najmniej powtórz go w tekście alternatywnym (prawy przycisk myszy → Wyświetl tekst alternatywny). Logotypy i tekst będący nieistotną częścią zdjęcia są wyjątkiem.",
+      "location": "Obraz „Obraz 4” na arkuszu „Obrazy i obiekty” (przy komórce B18)"
+    },
+    {
+      "id": "XL-TEXT-IN-IMAGE:0000|Drawing|0000018|00005|Obraz 10|11",
+      "wcag": [
+        "1.4.5"
+      ],
+      "code": "XL-TEXT-IN-IMAGE",
+      "question": "Czy obraz „Obraz 10” nie zawiera tekstu, który można było zapisać jako tekst w komórce lub kształcie (z wyjątkiem logotypów)?",
+      "hint": "Obejrzyj obraz. Jeśli zawiera tekst niosący informację (tabelę, zrzut ekranu, napis), wpisz ten tekst w komórkach albo w kształcie zamiast obrazu, a co najmniej powtórz go w tekście alternatywnym (prawy przycisk myszy → Wyświetl tekst alternatywny). Logotypy i tekst będący nieistotną częścią zdjęcia są wyjątkiem.",
+      "location": "Obraz „Obraz 10” na arkuszu „Obrazy i obiekty” (przy komórce E18)"
+    },
+    {
+      "id": "XL-TEXT-IN-IMAGE:0000|Drawing|0000018|00005|Obraz 9|10",
+      "wcag": [
+        "1.4.5"
+      ],
+      "code": "XL-TEXT-IN-IMAGE",
+      "question": "Czy obraz „Obraz 9” nie zawiera tekstu, który można było zapisać jako tekst w komórce lub kształcie (z wyjątkiem logotypów)?",
+      "hint": "Obejrzyj obraz. Jeśli zawiera tekst niosący informację (tabelę, zrzut ekranu, napis), wpisz ten tekst w komórkach albo w kształcie zamiast obrazu, a co najmniej powtórz go w tekście alternatywnym (prawy przycisk myszy → Wyświetl tekst alternatywny). Logotypy i tekst będący nieistotną częścią zdjęcia są wyjątkiem.",
+      "location": "Obraz „Obraz 9” na arkuszu „Obrazy i obiekty” (przy komórce E18)"
+    },
+    {
       "id": "manual-1.4.10",
       "wcag": [
         "1.4.10"
@@ -86,11 +623,13 @@
       "question": "Czy przy dużym powiększeniu treść pojedynczych komórek (zwłaszcza długie teksty) da się przeczytać bez przewijania w dwóch kierunkach?"
     },
     {
-      "id": "manual-1.4.11",
+      "id": "manual-1.4.11:color",
       "wcag": [
         "1.4.11"
       ],
-      "question": "Czy elementy wykresów i grafik niezbędne do zrozumienia treści (linie, słupki, wycinki, ikony) odróżniają się od tła i od siebie kontrastem co najmniej 3:1 albo mają etykiety tekstowe niosące tę samą informację?"
+      "code": "XL-CHART-CONTRAST",
+      "question": "Czy elementy wykresów i grafik niezbędne do zrozumienia treści (linie, słupki, wycinki, ikony) odróżniają się od tła i od siebie kontrastem co najmniej 3:1 albo mają etykiety tekstowe niosące tę samą informację?",
+      "hint": "Narzędzie ocenia tylko serie wykresów o kolorach zapisanych w pliku (względem tła obszaru kreślenia i serii sąsiednich). Sprawdź ręcznie wycinki wykresów kołowych, serie w kolorach automatycznych, znaczniki, linie i osie, kształty oraz ikony i paski danych formatowania warunkowego: zaznacz element i porównaj jego kolory z sąsiednimi w Formatuj kształt albo Formatuj serię danych → Wypełnienie i linia."
     },
     {
       "id": "manual-2.1.1",
@@ -114,7 +653,7 @@
       "question": "Czy przechodzenie klawiszem Tab po kontrolkach, obiektach i polach do wypełnienia odbywa się w kolejności zgodnej z logiką arkusza?"
     },
     {
-      "id": "manual-2.4.4",
+      "id": "manual-2.4.4:nontext",
       "wcag": [
         "2.4.4"
       ],
@@ -184,7 +723,7 @@
       "question": "Czy zmiana wartości kontrolki lub pola nie powoduje nieoczekiwanej zmiany kontekstu (np. przeniesienia do innego arkusza) bez uprzedzenia?"
     },
     {
-      "id": "manual-3.3.2",
+      "id": "manual-3.3.2:nontext",
       "wcag": [
         "3.3.2"
       ],
@@ -199,11 +738,23 @@
       "question": "Czy użytkownik nie musi ponownie wpisywać danych, które już podał w tym samym procesie?"
     },
     {
-      "id": "manual-4.1.2",
+      "id": "manual-4.1.2:nontext",
       "wcag": [
         "4.1.2"
       ],
       "question": "Czy każda kontrolka ma nazwę odczytywaną przez czytnik ekranu, a jej rola i stan są poprawnie ogłaszane?"
+    },
+    {
+      "id": "XL-CONTROL:0003|Drawing|0000012|00002|CommandButton1|",
+      "wcag": [
+        "4.1.2",
+        "2.1.1",
+        "2.1.2"
+      ],
+      "code": "XL-CONTROL",
+      "question": "Czy kontrolka ActiveX „CommandButton1” ma nazwę, rolę i stan odczytywane przez czytnik ekranu, da się ją obsłużyć samą klawiaturą i da się z niej wyjść klawiaturą?",
+      "hint": "Kontrolek ActiveX audyt nie analizuje. Sprawdź z czytnikiem ekranu i samą klawiaturą: czy kontrolka ma odczytywaną nazwę, rolę i stan, czy da się do niej dojść i ją obsłużyć oraz czy da się z niej wyjść (np. klawiszem Esc). Jeśli nie – zastąp ją kontrolką formularza (Deweloper → Wstaw → Kontrolki formularza) albo listą z poprawności danych (Dane → Poprawność danych).",
+      "location": "Kontrolka „CommandButton1” na arkuszu „Kontrolki” (przy komórce B12)"
     }
   ],
   "criteria": [
@@ -211,8 +762,13 @@
       "sc": "1.1.1",
       "name": "Treść nietekstowa",
       "level": "A",
-      "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: kryterium stosuje się wprost. Każdy obraz, kształt, wykres i obiekt osadzony wymaga alternatywy tekstowej albo oznaczenia jako dekoracyjny.",
+      "status": "Failed",
+      "reason": "Wykryto niespełnienie kryterium (kontrola automatyczna): XL-ALT-MISSING, XL-CHART-ALT.",
+      "findingCodes": [
+        "XL-ALT-MISSING",
+        "XL-ALT-POOR",
+        "XL-CHART-ALT"
+      ],
       "manualChecks": 1
     },
     {
@@ -263,7 +819,10 @@
       "name": "Zrozumiała kolejność",
       "level": "A",
       "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: kryterium stosuje się wprost. Wymagane tylko tam, gdzie kolejność wpływa na znaczenie treści.",
+      "reason": "Możliwy problem – wymaga weryfikacji przez człowieka: XL-TEXTBOX. WCAG2ICT: kryterium stosuje się wprost. Wymagane tylko tam, gdzie kolejność wpływa na znaczenie treści.",
+      "findingCodes": [
+        "XL-TEXTBOX"
+      ],
       "manualChecks": 1
     },
     {
@@ -293,8 +852,10 @@
       "name": "Użycie koloru",
       "level": "A",
       "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: kryterium stosuje się wprost. Kolor nie może być jedynym wizualnym nośnikiem informacji (statusy, liczby ujemne, serie wykresu, łącza).",
-      "manualChecks": 1
+      "reason": "Możliwy problem – wymaga weryfikacji przez człowieka: XL-CHART-COLOR. WCAG2ICT: kryterium stosuje się wprost. Kolor nie może być jedynym wizualnym nośnikiem informacji (statusy, liczby ujemne, serie wykresu, łącza).",
+      "findingCodes": [
+        "XL-CHART-COLOR"
+      ]
     },
     {
       "sc": "1.4.2",
@@ -325,7 +886,7 @@
       "level": "AA",
       "status": "ManualReview",
       "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. Dotyczy, gdy skoroszyt zawiera obrazy. WCAG2ICT: stosuje się wprost. Wyjątki: prezentacja istotna (logotypy), obraz dostosowywalny.",
-      "manualChecks": 1
+      "manualChecks": 7
     },
     {
       "sc": "1.4.10",
@@ -365,7 +926,7 @@
       "level": "A",
       "status": "ManualReview",
       "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. Dotyczy, gdy skoroszyt zawiera kontrolki formularza, ActiveX, obiekty osadzone albo kształty z akcją lub łączem. Nawigację po komórkach zapewnia Excel; ocenie podlega funkcjonalność dodana przez autora.",
-      "manualChecks": 1
+      "manualChecks": 2
     },
     {
       "sc": "2.1.2",
@@ -373,7 +934,7 @@
       "level": "A",
       "status": "ManualReview",
       "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. Dotyczy, gdy skoroszyt zawiera kontrolki ActiveX albo obiekty osadzone – ryzyko jest tylko przy obiektach, które przejmują fokus.",
-      "manualChecks": 1
+      "manualChecks": 2
     },
     {
       "sc": "2.1.4",
@@ -430,7 +991,10 @@
       "name": "Cel łącza (w kontekście)",
       "level": "A",
       "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. Dotyczy, gdy skoroszyt zawiera hiperłącza. WCAG2ICT: stosuje się wprost; łączem jest każdy element zachowujący się jak hiperłącze.",
+      "reason": "Możliwy problem – wymaga weryfikacji przez człowieka: XL-LINK-TEXT. Dotyczy, gdy skoroszyt zawiera hiperłącza. WCAG2ICT: stosuje się wprost; łączem jest każdy element zachowujący się jak hiperłącze.",
+      "findingCodes": [
+        "XL-LINK-TEXT"
+      ],
       "manualChecks": 1
     },
     {
@@ -611,9 +1175,12 @@
       "sc": "4.1.2",
       "name": "Nazwa, rola, wartość",
       "level": "A",
-      "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. Dotyczy kontrolek formularza, ActiveX i obiektów interaktywnych. WCAG2ICT (Note 1): standardowe komponenty formatu zwykle spełniają kryterium; rolę i stan udostępnia oprogramowanie, autor odpowiada za nazwę.",
-      "manualChecks": 1
+      "status": "Failed",
+      "reason": "Wykryto niespełnienie kryterium (kontrola automatyczna): XL-CONTROL.",
+      "findingCodes": [
+        "XL-CONTROL"
+      ],
+      "manualChecks": 2
     },
     {
       "sc": "4.1.3",

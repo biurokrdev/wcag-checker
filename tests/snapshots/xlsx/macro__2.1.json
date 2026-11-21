@@ -3,7 +3,7 @@
   "failure": "None",
   "wcagVersion": "2.1",
   "profileName": "WCAG 2.1 AA (arkusz Excel)",
-  "summary": "Nie wykryto automatycznie niezgodności. 12 kryteriów wymaga oceny ręcznej.",
+  "summary": "Nie wykryto automatycznie niezgodności. 8 kryteriów wymaga oceny ręcznej.",
   "disclaimer": "Wynik automatyczny nie potwierdza zgodności z WCAG",
   "workbook": {
     "title": "Rejestr zamówień z makrami",
@@ -23,7 +23,7 @@
     "warnings": 0,
     "needsReview": 0,
     "info": 1,
-    "manualChecks": 12
+    "manualChecks": 8
   },
   "findings": [
     {
@@ -40,27 +40,12 @@
   ],
   "manualChecks": [
     {
-      "id": "manual-1.1.1",
-      "wcag": [
-        "1.1.1"
-      ],
-      "question": "Czy tekst alternatywny każdego obrazu, kształtu i wykresu oddaje jego treść i funkcję, a obiekty czysto dekoracyjne są oznaczone jako dekoracyjne?",
-      "hint": "Kliknij obiekt prawym przyciskiem myszy → Wyświetl tekst alternatywny (starsze wersje: Edytuj tekst alternatywny)."
-    },
-    {
       "id": "manual-1.3.1:structure",
       "wcag": [
         "1.3.1"
       ],
       "question": "Czy dla każdego zestawu danych da się ustalić – programowo albo z tekstu – które komórki są nagłówkami wierszy i kolumn i do których danych się odnoszą?",
       "hint": "Zaznacz komórkę w danych: karta Projekt tabeli pojawia się tylko dla Tabeli Excela; pole „Wiersz nagłówka” pokazuje, czy tabela ma nagłówki."
-    },
-    {
-      "id": "manual-1.3.2",
-      "wcag": [
-        "1.3.2"
-      ],
-      "question": "Czy treść czytana w kolejności komórek i obiektów (od A1, arkusz po arkuszu) zachowuje sens, także tam, gdzie użyto pól tekstowych i obiektów pływających?"
     },
     {
       "id": "manual-1.3.3:structure",
@@ -70,18 +55,13 @@
       "question": "Czy instrukcje w skoroszycie są zrozumiałe bez odwoływania się wyłącznie do koloru, kształtu, rozmiaru lub położenia (np. „wypełnij żółte pola”, „tabela po prawej”)?"
     },
     {
-      "id": "manual-1.4.1",
-      "wcag": [
-        "1.4.1"
-      ],
-      "question": "Czy każda informacja przekazana kolorem (statusy, wartości ujemne, serie wykresu, wyróżnienia) jest dostępna także w inny widoczny sposób: tekstem, znakiem, wzorem, etykietą?"
-    },
-    {
-      "id": "manual-1.4.3",
+      "id": "manual-1.4.3:color",
       "wcag": [
         "1.4.3"
       ],
-      "question": "Czy tekst na tle z obrazu, gradientu, wzoru lub w kolorach automatycznych jest wyraźnie czytelny (kontrast co najmniej 4,5:1, dla dużego tekstu 3:1)?"
+      "code": "XL-CONTRAST",
+      "question": "Czy tekst na tle z obrazu, gradientu, wzoru lub w kolorach automatycznych, a także tekst w tabelach ze stylem tabeli, w kształtach i na wykresach, jest wyraźnie czytelny (kontrast co najmniej 4,5:1, dla dużego tekstu 3:1)?",
+      "hint": "Narzędzie ocenia kontrast tylko z formatowania komórek; nie ocenia stylów tabel, obrazów tła arkusza (Układ strony → Tło) ani tekstu w obiektach. W tym skoroszycie: tabele ze stylem tabeli (wiersz nagłówka, pasy wierszy i kolumn, wiersz sumy) – zaznacz komórkę tabeli i sprawdź Projekt tabeli → Style tabeli. Kolory oceń też w Recenzja → Sprawdź ułatwienia dostępu."
     },
     {
       "id": "manual-1.4.10",
@@ -89,13 +69,6 @@
         "1.4.10"
       ],
       "question": "Czy przy dużym powiększeniu treść pojedynczych komórek (zwłaszcza długie teksty) da się przeczytać bez przewijania w dwóch kierunkach?"
-    },
-    {
-      "id": "manual-1.4.11",
-      "wcag": [
-        "1.4.11"
-      ],
-      "question": "Czy elementy wykresów i grafik niezbędne do zrozumienia treści (linie, słupki, wycinki, ikony) odróżniają się od tła i od siebie kontrastem co najmniej 3:1 albo mają etykiety tekstowe niosące tę samą informację?"
     },
     {
       "id": "manual-2.4.2:structure",
@@ -132,9 +105,8 @@
       "sc": "1.1.1",
       "name": "Treść nietekstowa",
       "level": "A",
-      "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: kryterium stosuje się wprost. Każdy obraz, kształt, wykres i obiekt osadzony wymaga alternatywy tekstowej albo oznaczenia jako dekoracyjny.",
-      "manualChecks": 1
+      "status": "NoIssuesDetected",
+      "reason": "Kontrole automatyczne nie wykryły problemów w zakresie: XL-ALT-MISSING, XL-ALT-POOR, XL-CHART-ALT. Do oceny ręcznej pozostaje: Czy tekst alternatywny każdego obrazu, kształtu i wykresu oddaje jego treść i funkcję, a obiekty czysto dekoracyjne są oznaczone jako dekoracyjne?"
     },
     {
       "sc": "1.2.1",
@@ -183,9 +155,8 @@
       "sc": "1.3.2",
       "name": "Zrozumiała kolejność",
       "level": "A",
-      "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: kryterium stosuje się wprost. Wymagane tylko tam, gdzie kolejność wpływa na znaczenie treści.",
-      "manualChecks": 1
+      "status": "NoIssuesDetected",
+      "reason": "Kontrole automatyczne nie wykryły problemów w zakresie: XL-TEXTBOX. Do oceny ręcznej pozostaje: Czy treść czytana w kolejności komórek i obiektów (od A1, arkusz po arkuszu) zachowuje sens, także tam, gdzie użyto pól tekstowych i obiektów pływających?"
     },
     {
       "sc": "1.3.3",
@@ -213,9 +184,8 @@
       "sc": "1.4.1",
       "name": "Użycie koloru",
       "level": "A",
-      "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: kryterium stosuje się wprost. Kolor nie może być jedynym wizualnym nośnikiem informacji (statusy, liczby ujemne, serie wykresu, łącza).",
-      "manualChecks": 1
+      "status": "NoIssuesDetected",
+      "reason": "Kontrole automatyczne nie wykryły problemów w zakresie: XL-CHART-COLOR, XL-COLOR-ONLY. Do oceny ręcznej pozostaje: Czy każda informacja przekazana kolorem (statusy, wartości ujemne, serie wykresu, wyróżnienia) jest dostępna także w inny widoczny sposób: tekstem, znakiem, wzorem, etykietą?"
     },
     {
       "sc": "1.4.2",
@@ -260,9 +230,8 @@
       "sc": "1.4.11",
       "name": "Kontrast elementów nietekstowych",
       "level": "AA",
-      "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: kryterium stosuje się wprost. Obejmuje serie wykresów, ikony i kształty niosące informację; wygląd standardowych kontrolek i siatki ustala oprogramowanie (wyjątek).",
-      "manualChecks": 1
+      "status": "NoIssuesDetected",
+      "reason": "Kontrole automatyczne nie wykryły problemów w zakresie: XL-CHART-CONTRAST. Do oceny ręcznej pozostaje: Czy elementy wykresów i grafik niezbędne do zrozumienia treści (linie, słupki, wycinki, ikony) odróżniają się od tła i od siebie kontrastem co najmniej 3:1 albo mają etykiety tekstowe niosące tę samą informację?"
     },
     {
       "sc": "1.4.12",
