@@ -3,7 +3,7 @@
   "failure": "None",
   "wcagVersion": "2.1",
   "profileName": "WCAG 2.1 AA (arkusz Excel)",
-  "summary": "Nie wykryto automatycznie niezgodności. 12 kryteriów wymaga oceny ręcznej.",
+  "summary": "Nie wykryto automatycznie niezgodności; do potwierdzenia przez człowieka pozostają zgłoszenia (ostrzeżenia: 4, do weryfikacji: 8). 12 kryteriów wymaga oceny ręcznej.",
   "disclaimer": "Wynik automatyczny nie potwierdza zgodności z WCAG",
   "workbook": {
     "sheets": 8,
@@ -18,12 +18,469 @@
   },
   "counts": {
     "errors": 0,
-    "warnings": 0,
-    "needsReview": 0,
-    "info": 0,
+    "warnings": 4,
+    "needsReview": 8,
+    "info": 6,
     "manualChecks": 12
   },
-  "findings": [],
+  "findings": [
+    {
+      "code": "XL-SHEET-NAME",
+      "severity": "Warning",
+      "checkType": "Heuristic",
+      "confidence": 0.9,
+      "title": "Nazwa arkusza nie opisuje jego zawartości",
+      "wcag": [
+        "2.4.6"
+      ],
+      "message": "Arkusz ma domyślną nazwę „Arkusz1”, która nie opisuje jego zawartości. Możliwy problem z kryterium 2.4.6 – wymaga weryfikacji przez człowieka.",
+      "fixInstruction": "1. Kliknij prawym przyciskiem myszy kartę arkusza u dołu okna (albo naciśnij Shift+F10 na karcie). 2. Wybierz Zmień nazwę. 3. Wpisz krótką nazwę opisującą zawartość arkusza, np. „Sprzedaż 2026”, i naciśnij Enter. Wynik sprawdzisz poleceniem Recenzja → Sprawdź ułatwienia dostępu.",
+      "location": "Arkusz „Arkusz1”",
+      "key": "0000|Sheet|0000000|00000||",
+      "evidence": [
+        {
+          "name": "Nazwa arkusza",
+          "value": "Arkusz1"
+        },
+        {
+          "name": "Rodzaj nazwy",
+          "value": "domyślna"
+        }
+      ]
+    },
+    {
+      "code": "XL-SHEET-NAME",
+      "severity": "Warning",
+      "checkType": "Heuristic",
+      "confidence": 0.9,
+      "title": "Nazwa arkusza nie opisuje jego zawartości",
+      "wcag": [
+        "2.4.6"
+      ],
+      "message": "Arkusz ma domyślną nazwę „Sheet2”, która nie opisuje jego zawartości. Możliwy problem z kryterium 2.4.6 – wymaga weryfikacji przez człowieka.",
+      "fixInstruction": "1. Kliknij prawym przyciskiem myszy kartę arkusza u dołu okna (albo naciśnij Shift+F10 na karcie). 2. Wybierz Zmień nazwę. 3. Wpisz krótką nazwę opisującą zawartość arkusza, np. „Sprzedaż 2026”, i naciśnij Enter. Wynik sprawdzisz poleceniem Recenzja → Sprawdź ułatwienia dostępu.",
+      "location": "Arkusz „Sheet2”",
+      "key": "0001|Sheet|0000000|00000||",
+      "evidence": [
+        {
+          "name": "Nazwa arkusza",
+          "value": "Sheet2"
+        },
+        {
+          "name": "Rodzaj nazwy",
+          "value": "domyślna"
+        }
+      ]
+    },
+    {
+      "code": "XL-TABLE-HEADER-NAME",
+      "severity": "Warning",
+      "checkType": "Heuristic",
+      "confidence": 0.85,
+      "title": "Nagłówki kolumn tabeli mają nazwy domyślne",
+      "wcag": [
+        "2.4.6"
+      ],
+      "message": "Tabela „Tabela2” ma nagłówki domyślne („Kolumna1”, „Kolumna2”, „Kolumna3”), które nie opisują zawartości kolumn. Możliwy problem z kryterium 2.4.6 – wymaga weryfikacji przez człowieka.",
+      "fixInstruction": "1. Kliknij komórkę nagłówka z nazwą domyślną (np. „Kolumna1”). 2. Wpisz nazwę opisującą zawartość kolumny, np. „Data zamówienia”, i naciśnij Enter. 3. Powtórz dla pozostałych nagłówków domyślnych. Upewnij się, że na karcie Projekt tabeli zaznaczone jest pole Wiersz nagłówka.",
+      "location": "Tabele!E1:G1",
+      "key": "0005|Range|0000001|00005|E1:G1|",
+      "snippet": "Kolumna1 | Kolumna2 | Kolumna3",
+      "evidence": [
+        {
+          "name": "Tabela",
+          "value": "Tabela2"
+        },
+        {
+          "name": "Nagłówki domyślne",
+          "value": "„Kolumna1”, „Kolumna2”, „Kolumna3”"
+        },
+        {
+          "name": "Liczba nagłówków domyślnych",
+          "value": "3"
+        }
+      ]
+    },
+    {
+      "code": "XL-TABLE-HEADER",
+      "severity": "Warning",
+      "checkType": "Heuristic",
+      "confidence": 0.85,
+      "title": "Tabela nie ma wiersza nagłówka",
+      "wcag": [
+        "1.3.1"
+      ],
+      "message": "Tabela „Tabela1” ma wyłączony wiersz nagłówka, więc kolumny nie mają nagłówków powiązanych z danymi. Prawdopodobne niespełnienie kryterium 1.3.1 – potwierdź, czy nagłówki kolumn da się ustalić w inny sposób.",
+      "fixInstruction": "1. Kliknij dowolną komórkę tabeli. 2. Na karcie Projekt tabeli (grupa Opcje stylu tabeli) zaznacz pole Wiersz nagłówka. 3. W nowym wierszu nagłówka zastąp nazwy „Kolumna1”, „Kolumna2”… nazwami opisującymi zawartość kolumn. Wynik sprawdzisz poleceniem Recenzja → Sprawdź ułatwienia dostępu.",
+      "location": "Tabela „Tabela1” (Tabele!A1:C4)",
+      "key": "0005|Table|0000001|00001|Tabela1|",
+      "evidence": [
+        {
+          "name": "Wiersz nagłówka",
+          "value": "wyłączony (headerRowCount=\"0\")"
+        },
+        {
+          "name": "Kolumny",
+          "value": "3"
+        }
+      ]
+    },
+    {
+      "code": "XL-LANG",
+      "severity": "NeedsReview",
+      "checkType": "Heuristic",
+      "title": "Brak informacji o języku skoroszytu we właściwościach dokumentu",
+      "wcag": [
+        "3.1.1"
+      ],
+      "message": "Właściwości dokumentu nie zawierają języka skoroszytu. Excel często nie zapisuje tej właściwości i nie potwierdzono, że czytniki ekranu z niej korzystają – to nie jest stwierdzenie niespełnienia kryterium 3.1.1, tylko sygnał do sprawdzenia, czy treść jest odczytywana we właściwym języku.",
+      "fixInstruction": "Excel nie ma w oknie właściwości pola języka dokumentu, więc samego braku nie da się tam uzupełnić. 1. Otwórz skoroszyt z czytnikiem ekranu (np. NVDA albo Narrator) i sprawdź, czy treść komórek i obiektów jest czytana w języku, w którym została napisana. 2. Sprawdź języki tworzenia i sprawdzania pakietu Office: Plik → Opcje → Język. 3. Jeśli skoroszyt powstaje w narzędziu, które zapisuje właściwości pliku (eksport, generator raportów), ustaw w nim język dokumentu (np. pl-PL).",
+      "location": "Skoroszyt",
+      "key": "-001|Workbook|0000000|00000||",
+      "evidence": [
+        {
+          "name": "Język we właściwościach",
+          "value": "brak"
+        }
+      ]
+    },
+    {
+      "code": "XL-TITLE",
+      "severity": "NeedsReview",
+      "checkType": "Heuristic",
+      "confidence": 0.5,
+      "title": "Brak opisowego tytułu skoroszytu we właściwościach dokumentu",
+      "wcag": [
+        "2.4.2"
+      ],
+      "message": "Skoroszyt nie ma tytułu we właściwościach dokumentu. W profilu WCAG 2.1 norma EN 301 549 V3.2.1 (klauzula 10.2.4.2, NOTE 1) uznaje za tytuł także opisową nazwę pliku – sprawdź, czy nazwa pliku opisuje temat lub cel skoroszytu, albo uzupełnij tytuł.",
+      "fixInstruction": "1. Otwórz Plik → Informacje. 2. W panelu Właściwości kliknij pole Tytuł (jeśli go nie widać: Właściwości → Właściwości zaawansowane → karta Podsumowanie). 3. Wpisz tytuł opisujący nazwę, temat lub cel skoroszytu, np. „Budżet działu na 2026 rok”. 4. Zapisz plik.",
+      "location": "Skoroszyt",
+      "key": "-001|Workbook|0000000|00000||",
+      "evidence": [
+        {
+          "name": "Tytuł we właściwościach",
+          "value": "brak"
+        }
+      ]
+    },
+    {
+      "code": "XL-SENSORY",
+      "severity": "NeedsReview",
+      "checkType": "Heuristic",
+      "confidence": 0.5,
+      "title": "Tekst odwołuje się do koloru, położenia lub kształtu",
+      "wcag": [
+        "1.3.3"
+      ],
+      "message": "Tekst komórki odwołuje się do właściwości zmysłowych (kolor, położenie): „zaznaczone na czerwono”, „po prawej”. Sprawdź, czy treść jest zrozumiała bez widzenia koloru, położenia i kształtu – możliwy problem z kryterium 1.3.3, wymaga weryfikacji przez człowieka.",
+      "fixInstruction": "1. Przeczytaj wskazany tekst i sprawdź, czy da się go zrozumieć bez widzenia koloru, położenia i kształtu. 2. Jeśli nie, dopisz odniesienie niezależne od wyglądu: nazwę arkusza, tabeli lub kolumny, adres komórki albo treść etykiety, np. zamiast „pola zaznaczone na czerwono” – „pola z dopiskiem »Do poprawy« w kolumnie Status”, zamiast „tabela po prawej” – „tabela »Podsumowanie« (od komórki H2)”. 3. Informację przekazywaną kolorem powtórz tekstem lub znakiem w komórce.",
+      "location": "Arkusz1!A7",
+      "key": "0000|Cell|0000007|00001|A7|",
+      "snippet": "Wartości zaznaczone na czerwono wymagają korekty, a podsumowanie znajduje się p…",
+      "evidence": [
+        {
+          "name": "Źródło tekstu",
+          "value": "Tekst komórki"
+        },
+        {
+          "name": "Znalezione zwroty",
+          "value": "„zaznaczone na czerwono”, „po prawej”"
+        },
+        {
+          "name": "Rodzaj odwołania",
+          "value": "kolor, położenie"
+        }
+      ]
+    },
+    {
+      "code": "XL-TABLE-MISSING",
+      "severity": "NeedsReview",
+      "checkType": "Heuristic",
+      "confidence": 0.5,
+      "title": "Dane z wierszem nagłówkowym nie są zdefiniowane jako tabela",
+      "wcag": [
+        "1.3.1"
+      ],
+      "message": "Zakres wygląda na tabelę danych z wierszem nagłówkowym (wiersz 1), ale nie jest zdefiniowany jako Tabela Excela, więc powiązania nagłówków z danymi nie są zapisane w pliku. To czynnik ryzyka dla kryterium 1.3.1, nie stwierdzenie niespełnienia – wymaga weryfikacji przez człowieka.",
+      "fixInstruction": "1. Zaznacz dowolną komórkę zakresu danych. 2. Wybierz Narzędzia główne → Formatuj jako tabelę (albo Wstawianie → Tabela, skrót Ctrl+T). 3. W oknie potwierdź zakres i zaznacz „Moja tabela ma nagłówki”. 4. Na karcie Projekt tabeli sprawdź, czy zaznaczone jest pole Wiersz nagłówka, i nadaj tabeli opisową nazwę (pole Nazwa tabeli). Jeśli zakres celowo nie jest tabelą, upewnij się, że nagłówki kolumn i wierszy da się jednoznacznie ustalić z treści arkusza.",
+      "location": "Arkusz1!A1:C5",
+      "key": "0000|Range|0000001|00001|A1:C5|",
+      "snippet": "Miesiąc | Sprzedaż | Koszt",
+      "evidence": [
+        {
+          "name": "Nagłówki",
+          "value": "Miesiąc | Sprzedaż | Koszt"
+        },
+        {
+          "name": "Kolumny",
+          "value": "3"
+        },
+        {
+          "name": "Wiersze danych",
+          "value": "4"
+        },
+        {
+          "name": "Podstawa rozpoznania nagłówka",
+          "value": "wyróżnienie formatowaniem, teksty nad wartościami liczbowymi"
+        }
+      ]
+    },
+    {
+      "code": "XL-TABLE-MISSING",
+      "severity": "NeedsReview",
+      "checkType": "Heuristic",
+      "confidence": 0.5,
+      "title": "Dane z wierszem nagłówkowym nie są zdefiniowane jako tabela",
+      "wcag": [
+        "1.3.1"
+      ],
+      "message": "Zakres wygląda na tabelę danych z wierszem nagłówkowym (wiersz 2), ale nie jest zdefiniowany jako Tabela Excela, więc powiązania nagłówków z danymi nie są zapisane w pliku. To czynnik ryzyka dla kryterium 1.3.1, nie stwierdzenie niespełnienia – wymaga weryfikacji przez człowieka.",
+      "fixInstruction": "1. Zaznacz dowolną komórkę zakresu danych. 2. Wybierz Narzędzia główne → Formatuj jako tabelę (albo Wstawianie → Tabela, skrót Ctrl+T). 3. W oknie potwierdź zakres i zaznacz „Moja tabela ma nagłówki”. 4. Na karcie Projekt tabeli sprawdź, czy zaznaczone jest pole Wiersz nagłówka, i nadaj tabeli opisową nazwę (pole Nazwa tabeli). Jeśli zakres celowo nie jest tabelą, upewnij się, że nagłówki kolumn i wierszy da się jednoznacznie ustalić z treści arkusza.",
+      "location": "Sheet2!A2:D8",
+      "key": "0001|Range|0000002|00001|A2:D8|",
+      "snippet": "Region | Q1 | Q2 | Uwagi",
+      "evidence": [
+        {
+          "name": "Nagłówki",
+          "value": "Region | Q1 | Q2 | Uwagi"
+        },
+        {
+          "name": "Kolumny",
+          "value": "4"
+        },
+        {
+          "name": "Wiersze danych",
+          "value": "5"
+        },
+        {
+          "name": "Podstawa rozpoznania nagłówka",
+          "value": "wyróżnienie formatowaniem, teksty nad wartościami liczbowymi"
+        }
+      ]
+    },
+    {
+      "code": "XL-MERGED",
+      "severity": "NeedsReview",
+      "checkType": "Heuristic",
+      "confidence": 0.6,
+      "title": "Scalone komórki w obszarze danych",
+      "wcag": [
+        "1.3.1"
+      ],
+      "message": "Scalone komórki przecinają dane bloku danych A2:D8. Scalenie zaburza powiązanie nagłówków z danymi – możliwy problem z kryterium 1.3.1, wymaga weryfikacji przez człowieka.",
+      "fixInstruction": "1. Zaznacz scalone komórki. 2. Wybierz Narzędzia główne → Scal i wyśrodkuj → Rozdziel komórki. 3. Uzupełnij wartości w komórkach, które po rozdzieleniu zostały puste (każdy wiersz i każda kolumna danych powinny mieć własną wartość albo wpis typu „brak danych”). Tekst wyśrodkowany nad kilkoma kolumnami uzyskasz bez scalania: Ctrl+1 → Wyrównanie → Poziomo: Wyrównaj zaznaczenie do środka.",
+      "location": "Sheet2!B4:C4",
+      "key": "0001|Range|0000004|00002|B4:C4|",
+      "snippet": "brak danych za półrocze",
+      "evidence": [
+        {
+          "name": "Scalony zakres",
+          "value": "B4:C4"
+        },
+        {
+          "name": "Scalone komórki",
+          "value": "2"
+        },
+        {
+          "name": "Blok danych",
+          "value": "A2:D8"
+        }
+      ]
+    },
+    {
+      "code": "XL-BLANK-LAYOUT",
+      "severity": "NeedsReview",
+      "checkType": "Heuristic",
+      "confidence": 0.4,
+      "title": "Puste wiersze lub kolumny rozdzielają dane",
+      "wcag": [
+        "1.3.1"
+      ],
+      "message": "Pusty wiersz 6 rozdziela dane, które ciągną się dalej w tych samych kolumnach (blok A1:D8). Czytnik ekranu może potraktować pusty wiersz jak koniec danych – możliwy problem z kryterium 1.3.1, wymaga weryfikacji przez człowieka.",
+      "fixInstruction": "1. Zaznacz puste wiersze (kolumny), klikając ich nagłówki. 2. Kliknij prawym przyciskiem myszy → Usuń (albo Narzędzia główne → Usuń → Usuń wiersze arkusza / Usuń kolumny arkusza). 3. Odstęp między częściami danych uzyskaj wysokością wiersza lub szerokością kolumny (Narzędzia główne → Format → Wysokość wiersza / Szerokość kolumny), a nie pustymi komórkami. Jeśli to osobne zestawienia, nadaj każdemu własny wiersz nagłówka albo przenieś je na osobne arkusze.",
+      "location": "Sheet2!A6:D6",
+      "key": "0001|Range|0000006|00001|A6:D6|",
+      "evidence": [
+        {
+          "name": "Puste wiersze",
+          "value": "1"
+        },
+        {
+          "name": "Blok danych",
+          "value": "A1:D8"
+        }
+      ]
+    },
+    {
+      "code": "XL-SHEET-NAME",
+      "severity": "NeedsReview",
+      "checkType": "Heuristic",
+      "confidence": 0.5,
+      "title": "Nazwa arkusza nie opisuje jego zawartości",
+      "wcag": [
+        "2.4.6"
+      ],
+      "message": "Nazwa arkusza „Q” ma najwyżej 2 znaki – sprawdź, czy opisuje zawartość arkusza (kryterium 2.4.6).",
+      "fixInstruction": "1. Kliknij prawym przyciskiem myszy kartę arkusza u dołu okna (albo naciśnij Shift+F10 na karcie). 2. Wybierz Zmień nazwę. 3. Wpisz krótką nazwę opisującą zawartość arkusza, np. „Sprzedaż 2026”, i naciśnij Enter. Wynik sprawdzisz poleceniem Recenzja → Sprawdź ułatwienia dostępu.",
+      "location": "Arkusz „Q”",
+      "key": "0007|Sheet|0000000|00000||",
+      "evidence": [
+        {
+          "name": "Nazwa arkusza",
+          "value": "Q"
+        },
+        {
+          "name": "Rodzaj nazwy",
+          "value": "bardzo krótka"
+        }
+      ]
+    },
+    {
+      "code": "XL-HIDDEN",
+      "severity": "Info",
+      "checkType": "Auto",
+      "title": "Ukryta treść w skoroszycie",
+      "bestPractice": true,
+      "message": "Informacja (dobra praktyka, nie wymóg WCAG): arkusz „Dane ukryte” jest ukryty, a zawiera dane. Sprawdź, czy odbiorca nie potrzebuje tej treści i czy widoczne arkusze są zrozumiałe bez niej.",
+      "fixInstruction": "Jeśli dane mają być dostępne dla odbiorcy: kliknij prawym przyciskiem myszy dowolną kartę arkusza → Odkryj… → wybierz arkusz → OK (arkusz „bardzo ukryty” odkryjesz tylko w edytorze Visual Basic: Alt+F11 → okno Właściwości → Visible). Jeśli dane są pomocnicze albo zbędne, zostaw arkusz ukryty lub usuń go i sprawdź, czy formuły, listy i wykresy nadal działają.",
+      "location": "Arkusz „Dane ukryte”",
+      "key": "0002|Sheet|0000000|00000||",
+      "evidence": [
+        {
+          "name": "Stan arkusza",
+          "value": "ukryty (hidden)"
+        },
+        {
+          "name": "Komórki z treścią",
+          "value": "6"
+        },
+        {
+          "name": "Zakres danych",
+          "value": "A1:B3"
+        }
+      ]
+    },
+    {
+      "code": "XL-HIDDEN",
+      "severity": "Info",
+      "checkType": "Auto",
+      "title": "Ukryta treść w skoroszycie",
+      "bestPractice": true,
+      "message": "Informacja (dobra praktyka, nie wymóg WCAG): arkusz „Słownik” jest bardzo ukryty, a zawiera dane. Sprawdź, czy odbiorca nie potrzebuje tej treści i czy widoczne arkusze są zrozumiałe bez niej.",
+      "fixInstruction": "Jeśli dane mają być dostępne dla odbiorcy: kliknij prawym przyciskiem myszy dowolną kartę arkusza → Odkryj… → wybierz arkusz → OK (arkusz „bardzo ukryty” odkryjesz tylko w edytorze Visual Basic: Alt+F11 → okno Właściwości → Visible). Jeśli dane są pomocnicze albo zbędne, zostaw arkusz ukryty lub usuń go i sprawdź, czy formuły, listy i wykresy nadal działają.",
+      "location": "Arkusz „Słownik”",
+      "key": "0003|Sheet|0000000|00000||",
+      "evidence": [
+        {
+          "name": "Stan arkusza",
+          "value": "bardzo ukryty (veryHidden)"
+        },
+        {
+          "name": "Komórki z treścią",
+          "value": "3"
+        },
+        {
+          "name": "Zakres danych",
+          "value": "A1:A3"
+        }
+      ]
+    },
+    {
+      "code": "XL-HIDDEN",
+      "severity": "Info",
+      "checkType": "Auto",
+      "title": "Ukryta treść w skoroszycie",
+      "bestPractice": true,
+      "message": "Informacja (dobra praktyka, nie wymóg WCAG): komórka ma treść ukrytą formatem liczbowym „;;;” – wartość jest w pliku, ale nie widać jej w arkuszu.",
+      "fixInstruction": "Zaznacz komórki → Ctrl+1 (Formatuj komórki) → karta Liczby → wybierz kategorię Ogólne albo właściwy format zamiast niestandardowego „;;;”. Jeśli wartość ma pozostać niewidoczna, rozważ przeniesienie jej do arkusza pomocniczego.",
+      "location": "Koszty!E3",
+      "key": "0004|Cell|0000003|00005|E3|",
+      "snippet": "wartość ukryta formatem",
+      "evidence": [
+        {
+          "name": "Format liczbowy",
+          "value": ";;;"
+        },
+        {
+          "name": "Komórki z treścią",
+          "value": "1"
+        }
+      ]
+    },
+    {
+      "code": "XL-HIDDEN",
+      "severity": "Info",
+      "checkType": "Auto",
+      "title": "Ukryta treść w skoroszycie",
+      "bestPractice": true,
+      "message": "Informacja (dobra praktyka, nie wymóg WCAG): ukryta kolumna C zawiera dane. Sprawdź, czy odbiorca nie potrzebuje tej treści.",
+      "fixInstruction": "Jeśli dane mają być dostępne dla odbiorcy: zaznacz wiersze (kolumny) sąsiadujące z ukrytymi → kliknij prawym przyciskiem myszy nagłówek wiersza (kolumny) → Odkryj (albo Narzędzia główne → Format → Ukryj i odkryj). Jeśli są pomocnicze, zostaw je ukryte i upewnij się, że widoczna treść jest zrozumiała bez nich.",
+      "location": "Koszty!C1:C6",
+      "key": "0004|Range|0000001|00003|C1:C6|",
+      "evidence": [
+        {
+          "name": "Ukryte kolumny z treścią",
+          "value": "C"
+        },
+        {
+          "name": "Komórki z treścią",
+          "value": "6"
+        }
+      ]
+    },
+    {
+      "code": "XL-HIDDEN",
+      "severity": "Info",
+      "checkType": "Auto",
+      "title": "Ukryta treść w skoroszycie",
+      "bestPractice": true,
+      "message": "Informacja (dobra praktyka, nie wymóg WCAG): ukryty wiersz 4 zawiera dane. Sprawdź, czy odbiorca nie potrzebuje tej treści.",
+      "fixInstruction": "Jeśli dane mają być dostępne dla odbiorcy: zaznacz wiersze (kolumny) sąsiadujące z ukrytymi → kliknij prawym przyciskiem myszy nagłówek wiersza (kolumny) → Odkryj (albo Narzędzia główne → Format → Ukryj i odkryj). Jeśli są pomocnicze, zostaw je ukryte i upewnij się, że widoczna treść jest zrozumiała bez nich.",
+      "location": "Koszty!A4:E4",
+      "key": "0004|Range|0000004|00001|A4:E4|",
+      "evidence": [
+        {
+          "name": "Ukryte wiersze z treścią",
+          "value": "4"
+        },
+        {
+          "name": "Komórki z treścią",
+          "value": "5"
+        }
+      ]
+    },
+    {
+      "code": "XL-START-A1",
+      "severity": "Info",
+      "checkType": "Auto",
+      "title": "Treść arkusza nie zaczyna się w okolicy komórki A1",
+      "bestPractice": true,
+      "message": "Informacja (dobra praktyka, nie wymóg WCAG): treść arkusza zaczyna się w komórce H20, a czytniki ekranu rozpoczynają odczyt od A1. Użytkownik trafia najpierw na puste komórki i może uznać arkusz za pusty.",
+      "fixInstruction": "1. Zaznacz puste wiersze nad treścią i puste kolumny po jej lewej stronie (kliknij ich nagłówki). 2. Kliknij prawym przyciskiem myszy → Usuń, tak aby treść zaczynała się w komórce A1. 3. Jeśli układ musi pozostać, wpisz w A1 tytuł arkusza albo krótką informację, gdzie zaczynają się dane (np. „Dane zaczynają się w komórce H20”).",
+      "location": "'Późny start'!H20",
+      "key": "0006|Cell|0000020|00008|H20|",
+      "snippet": "Kod",
+      "evidence": [
+        {
+          "name": "Początek pierwszego bloku treści",
+          "value": "H20"
+        },
+        {
+          "name": "Zakres treści",
+          "value": "H20:I22"
+        },
+        {
+          "name": "Puste wiersze nad treścią",
+          "value": "19"
+        },
+        {
+          "name": "Puste kolumny przed treścią",
+          "value": "7"
+        }
+      ]
+    }
+  ],
   "manualChecks": [
     {
       "id": "manual-1.1.1",
@@ -34,7 +491,7 @@
       "hint": "Kliknij obiekt prawym przyciskiem myszy → Wyświetl tekst alternatywny (starsze wersje: Edytuj tekst alternatywny)."
     },
     {
-      "id": "manual-1.3.1",
+      "id": "manual-1.3.1:structure",
       "wcag": [
         "1.3.1"
       ],
@@ -49,7 +506,7 @@
       "question": "Czy treść czytana w kolejności komórek i obiektów (od A1, arkusz po arkuszu) zachowuje sens, także tam, gdzie użyto pól tekstowych i obiektów pływających?"
     },
     {
-      "id": "manual-1.3.3",
+      "id": "manual-1.3.3:structure",
       "wcag": [
         "1.3.3"
       ],
@@ -84,22 +541,22 @@
       "question": "Czy elementy wykresów i grafik niezbędne do zrozumienia treści (linie, słupki, wycinki, ikony) odróżniają się od tła i od siebie kontrastem co najmniej 3:1 albo mają etykiety tekstowe niosące tę samą informację?"
     },
     {
-      "id": "manual-2.4.2",
+      "id": "manual-2.4.2:structure",
       "wcag": [
         "2.4.2"
       ],
-      "question": "Czy tytuł we właściwościach dokumentu opisuje nazwę, temat lub cel skoroszytu?",
+      "question": "Czy tytuł we właściwościach albo nazwa pliku opisuje temat lub cel skoroszytu?",
       "hint": "Plik → Informacje → Właściwości → Tytuł."
     },
     {
-      "id": "manual-2.4.6",
+      "id": "manual-2.4.6:structure",
       "wcag": [
         "2.4.6"
       ],
       "question": "Czy nazwy arkuszy, nagłówki kolumn i wierszy, tytuły wykresów i etykiety pól opisują temat lub cel tego, co oznaczają?"
     },
     {
-      "id": "manual-3.1.1",
+      "id": "manual-3.1.1:structure",
       "wcag": [
         "3.1.1"
       ],
@@ -162,7 +619,13 @@
       "name": "Informacje i relacje",
       "level": "A",
       "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: kryterium stosuje się wprost. Relacje komórka–nagłówek, grupowanie i struktura przekazane wyglądem muszą być określone programowo albo dostępne w tekście.",
+      "reason": "Możliwy problem – wymaga weryfikacji przez człowieka: XL-BLANK-LAYOUT, XL-MERGED, XL-TABLE-HEADER, XL-TABLE-MISSING. WCAG2ICT: kryterium stosuje się wprost. Relacje komórka–nagłówek, grupowanie i struktura przekazane wyglądem muszą być określone programowo albo dostępne w tekście.",
+      "findingCodes": [
+        "XL-BLANK-LAYOUT",
+        "XL-MERGED",
+        "XL-TABLE-HEADER",
+        "XL-TABLE-MISSING"
+      ],
       "manualChecks": 1
     },
     {
@@ -178,7 +641,10 @@
       "name": "Właściwości zmysłowe",
       "level": "A",
       "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. Dotyczy, gdy skoroszyt zawiera instrukcje dla użytkownika (czego nie da się ustalić z samego pliku). WCAG2ICT: stosuje się wprost. Instrukcje nie mogą polegać wyłącznie na kształcie, kolorze, rozmiarze ani położeniu.",
+      "reason": "Możliwy problem – wymaga weryfikacji przez człowieka: XL-SENSORY. Dotyczy, gdy skoroszyt zawiera instrukcje dla użytkownika (czego nie da się ustalić z samego pliku). WCAG2ICT: stosuje się wprost. Instrukcje nie mogą polegać wyłącznie na kształcie, kolorze, rozmiarze ani położeniu.",
+      "findingCodes": [
+        "XL-SENSORY"
+      ],
       "manualChecks": 1
     },
     {
@@ -319,7 +785,10 @@
       "name": "Tytuł strony",
       "level": "A",
       "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT uznaje kryterium za trudne do zastosowania wprost i zaleca brzmienie zastępcze: dokument ma tytuł opisujący nazwę, temat lub cel. Skoroszyt ma właściwość „Tytuł”. W profilu 2.1 norma EN 301 549 V3.2.1 (10.2.4.2) dopuszcza też opisową nazwę pliku.",
+      "reason": "Możliwy problem – wymaga weryfikacji przez człowieka: XL-TITLE. WCAG2ICT uznaje kryterium za trudne do zastosowania wprost i zaleca brzmienie zastępcze: dokument ma tytuł opisujący nazwę, temat lub cel. Skoroszyt ma właściwość „Tytuł”. W profilu 2.1 norma EN 301 549 V3.2.1 (10.2.4.2) dopuszcza też opisową nazwę pliku.",
+      "findingCodes": [
+        "XL-TITLE"
+      ],
       "manualChecks": 1
     },
     {
@@ -348,7 +817,11 @@
       "name": "Nagłówki i etykiety",
       "level": "AA",
       "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: kryterium stosuje się wprost. Kryterium nie wymaga nagłówków ani etykiet – wymaga, by istniejące opisywały temat lub cel.",
+      "reason": "Możliwy problem – wymaga weryfikacji przez człowieka: XL-SHEET-NAME, XL-TABLE-HEADER-NAME. WCAG2ICT: kryterium stosuje się wprost. Kryterium nie wymaga nagłówków ani etykiet – wymaga, by istniejące opisywały temat lub cel.",
+      "findingCodes": [
+        "XL-SHEET-NAME",
+        "XL-TABLE-HEADER-NAME"
+      ],
       "manualChecks": 1
     },
     {
@@ -392,7 +865,10 @@
       "name": "Język strony",
       "level": "A",
       "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: „each web page” → dokument nie-webowy. Nie potwierdzono w źródłach, czy Excel i czytniki ekranu korzystają z właściwości języka zapisanej w pliku, dlatego wynik jest zawsze do weryfikacji.",
+      "reason": "Możliwy problem – wymaga weryfikacji przez człowieka: XL-LANG. WCAG2ICT: „each web page” → dokument nie-webowy. Nie potwierdzono w źródłach, czy Excel i czytniki ekranu korzystają z właściwości języka zapisanej w pliku, dlatego wynik jest zawsze do weryfikacji.",
+      "findingCodes": [
+        "XL-LANG"
+      ],
       "manualChecks": 1
     },
     {

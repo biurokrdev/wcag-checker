@@ -48,7 +48,7 @@
       "hint": "Kliknij obiekt prawym przyciskiem myszy → Wyświetl tekst alternatywny (starsze wersje: Edytuj tekst alternatywny)."
     },
     {
-      "id": "manual-1.3.1",
+      "id": "manual-1.3.1:structure",
       "wcag": [
         "1.3.1"
       ],
@@ -63,7 +63,7 @@
       "question": "Czy treść czytana w kolejności komórek i obiektów (od A1, arkusz po arkuszu) zachowuje sens, także tam, gdzie użyto pól tekstowych i obiektów pływających?"
     },
     {
-      "id": "manual-1.3.3",
+      "id": "manual-1.3.3:structure",
       "wcag": [
         "1.3.3"
       ],
@@ -98,22 +98,22 @@
       "question": "Czy elementy wykresów i grafik niezbędne do zrozumienia treści (linie, słupki, wycinki, ikony) odróżniają się od tła i od siebie kontrastem co najmniej 3:1 albo mają etykiety tekstowe niosące tę samą informację?"
     },
     {
-      "id": "manual-2.4.2",
+      "id": "manual-2.4.2:structure",
       "wcag": [
         "2.4.2"
       ],
-      "question": "Czy tytuł we właściwościach dokumentu opisuje nazwę, temat lub cel skoroszytu?",
+      "question": "Czy tytuł we właściwościach albo nazwa pliku opisuje temat lub cel skoroszytu?",
       "hint": "Plik → Informacje → Właściwości → Tytuł."
     },
     {
-      "id": "manual-2.4.6",
+      "id": "manual-2.4.6:structure",
       "wcag": [
         "2.4.6"
       ],
       "question": "Czy nazwy arkuszy, nagłówki kolumn i wierszy, tytuły wykresów i etykiety pól opisują temat lub cel tego, co oznaczają?"
     },
     {
-      "id": "manual-3.1.1",
+      "id": "manual-3.1.1:structure",
       "wcag": [
         "3.1.1"
       ],

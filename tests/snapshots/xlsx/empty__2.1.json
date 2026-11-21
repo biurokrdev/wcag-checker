@@ -3,7 +3,7 @@
   "failure": "None",
   "wcagVersion": "2.1",
   "profileName": "WCAG 2.1 AA (arkusz Excel)",
-  "summary": "Skoroszyt jest pusty – nie ma treści do oceny. Nie wykryto automatycznie niezgodności. 3 kryteria wymagają oceny ręcznej.",
+  "summary": "Skoroszyt jest pusty – nie ma treści do oceny. Nie wykryto automatycznie niezgodności; do potwierdzenia przez człowieka pozostają zgłoszenia (ostrzeżenia: 1, do weryfikacji: 2). 3 kryteria wymagają oceny ręcznej.",
   "disclaimer": "Wynik automatyczny nie potwierdza zgodności z WCAG",
   "workbook": {
     "sheets": 1,
@@ -18,30 +18,94 @@
   },
   "counts": {
     "errors": 0,
-    "warnings": 0,
-    "needsReview": 0,
+    "warnings": 1,
+    "needsReview": 2,
     "info": 0,
     "manualChecks": 3
   },
-  "findings": [],
-  "manualChecks": [
+  "findings": [
     {
-      "id": "manual-2.4.2",
+      "code": "XL-SHEET-NAME",
+      "severity": "Warning",
+      "checkType": "Heuristic",
+      "confidence": 0.9,
+      "title": "Nazwa arkusza nie opisuje jego zawartości",
+      "wcag": [
+        "2.4.6"
+      ],
+      "message": "Arkusz ma domyślną nazwę „Arkusz1”, która nie opisuje jego zawartości. Możliwy problem z kryterium 2.4.6 – wymaga weryfikacji przez człowieka.",
+      "fixInstruction": "1. Kliknij prawym przyciskiem myszy kartę arkusza u dołu okna (albo naciśnij Shift+F10 na karcie). 2. Wybierz Zmień nazwę. 3. Wpisz krótką nazwę opisującą zawartość arkusza, np. „Sprzedaż 2026”, i naciśnij Enter. Wynik sprawdzisz poleceniem Recenzja → Sprawdź ułatwienia dostępu.",
+      "location": "Arkusz „Arkusz1”",
+      "key": "0000|Sheet|0000000|00000||",
+      "evidence": [
+        {
+          "name": "Nazwa arkusza",
+          "value": "Arkusz1"
+        },
+        {
+          "name": "Rodzaj nazwy",
+          "value": "domyślna"
+        }
+      ]
+    },
+    {
+      "code": "XL-LANG",
+      "severity": "NeedsReview",
+      "checkType": "Heuristic",
+      "title": "Brak informacji o języku skoroszytu we właściwościach dokumentu",
+      "wcag": [
+        "3.1.1"
+      ],
+      "message": "Właściwości dokumentu nie zawierają języka skoroszytu. Excel często nie zapisuje tej właściwości i nie potwierdzono, że czytniki ekranu z niej korzystają – to nie jest stwierdzenie niespełnienia kryterium 3.1.1, tylko sygnał do sprawdzenia, czy treść jest odczytywana we właściwym języku.",
+      "fixInstruction": "Excel nie ma w oknie właściwości pola języka dokumentu, więc samego braku nie da się tam uzupełnić. 1. Otwórz skoroszyt z czytnikiem ekranu (np. NVDA albo Narrator) i sprawdź, czy treść komórek i obiektów jest czytana w języku, w którym została napisana. 2. Sprawdź języki tworzenia i sprawdzania pakietu Office: Plik → Opcje → Język. 3. Jeśli skoroszyt powstaje w narzędziu, które zapisuje właściwości pliku (eksport, generator raportów), ustaw w nim język dokumentu (np. pl-PL).",
+      "location": "Skoroszyt",
+      "key": "-001|Workbook|0000000|00000||",
+      "evidence": [
+        {
+          "name": "Język we właściwościach",
+          "value": "brak"
+        }
+      ]
+    },
+    {
+      "code": "XL-TITLE",
+      "severity": "NeedsReview",
+      "checkType": "Heuristic",
+      "confidence": 0.5,
+      "title": "Brak opisowego tytułu skoroszytu we właściwościach dokumentu",
       "wcag": [
         "2.4.2"
       ],
-      "question": "Czy tytuł we właściwościach dokumentu opisuje nazwę, temat lub cel skoroszytu?",
+      "message": "Skoroszyt nie ma tytułu we właściwościach dokumentu. W profilu WCAG 2.1 norma EN 301 549 V3.2.1 (klauzula 10.2.4.2, NOTE 1) uznaje za tytuł także opisową nazwę pliku – sprawdź, czy nazwa pliku opisuje temat lub cel skoroszytu, albo uzupełnij tytuł.",
+      "fixInstruction": "1. Otwórz Plik → Informacje. 2. W panelu Właściwości kliknij pole Tytuł (jeśli go nie widać: Właściwości → Właściwości zaawansowane → karta Podsumowanie). 3. Wpisz tytuł opisujący nazwę, temat lub cel skoroszytu, np. „Budżet działu na 2026 rok”. 4. Zapisz plik.",
+      "location": "Skoroszyt",
+      "key": "-001|Workbook|0000000|00000||",
+      "evidence": [
+        {
+          "name": "Tytuł we właściwościach",
+          "value": "brak"
+        }
+      ]
+    }
+  ],
+  "manualChecks": [
+    {
+      "id": "manual-2.4.2:structure",
+      "wcag": [
+        "2.4.2"
+      ],
+      "question": "Czy tytuł we właściwościach albo nazwa pliku opisuje temat lub cel skoroszytu?",
       "hint": "Plik → Informacje → Właściwości → Tytuł."
     },
     {
-      "id": "manual-2.4.6",
+      "id": "manual-2.4.6:structure",
       "wcag": [
         "2.4.6"
       ],
       "question": "Czy nazwy arkuszy, nagłówki kolumn i wierszy, tytuły wykresów i etykiety pól opisują temat lub cel tego, co oznaczają?"
     },
     {
-      "id": "manual-3.1.1",
+      "id": "manual-3.1.1:structure",
       "wcag": [
         "3.1.1"
       ],
@@ -246,7 +310,10 @@
       "name": "Tytuł strony",
       "level": "A",
       "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT uznaje kryterium za trudne do zastosowania wprost i zaleca brzmienie zastępcze: dokument ma tytuł opisujący nazwę, temat lub cel. Skoroszyt ma właściwość „Tytuł”. W profilu 2.1 norma EN 301 549 V3.2.1 (10.2.4.2) dopuszcza też opisową nazwę pliku.",
+      "reason": "Możliwy problem – wymaga weryfikacji przez człowieka: XL-TITLE. WCAG2ICT uznaje kryterium za trudne do zastosowania wprost i zaleca brzmienie zastępcze: dokument ma tytuł opisujący nazwę, temat lub cel. Skoroszyt ma właściwość „Tytuł”. W profilu 2.1 norma EN 301 549 V3.2.1 (10.2.4.2) dopuszcza też opisową nazwę pliku.",
+      "findingCodes": [
+        "XL-TITLE"
+      ],
       "manualChecks": 1
     },
     {
@@ -275,7 +342,10 @@
       "name": "Nagłówki i etykiety",
       "level": "AA",
       "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: kryterium stosuje się wprost. Kryterium nie wymaga nagłówków ani etykiet – wymaga, by istniejące opisywały temat lub cel.",
+      "reason": "Możliwy problem – wymaga weryfikacji przez człowieka: XL-SHEET-NAME. WCAG2ICT: kryterium stosuje się wprost. Kryterium nie wymaga nagłówków ani etykiet – wymaga, by istniejące opisywały temat lub cel.",
+      "findingCodes": [
+        "XL-SHEET-NAME"
+      ],
       "manualChecks": 1
     },
     {
@@ -319,7 +389,10 @@
       "name": "Język strony",
       "level": "A",
       "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: „each web page” → dokument nie-webowy. Nie potwierdzono w źródłach, czy Excel i czytniki ekranu korzystają z właściwości języka zapisanej w pliku, dlatego wynik jest zawsze do weryfikacji.",
+      "reason": "Możliwy problem – wymaga weryfikacji przez człowieka: XL-LANG. WCAG2ICT: „each web page” → dokument nie-webowy. Nie potwierdzono w źródłach, czy Excel i czytniki ekranu korzystają z właściwości języka zapisanej w pliku, dlatego wynik jest zawsze do weryfikacji.",
+      "findingCodes": [
+        "XL-LANG"
+      ],
       "manualChecks": 1
     },
     {
