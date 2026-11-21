@@ -1,0 +1,86 @@
+{
+  "fixture": "nontext",
+  "group": "nontext",
+  "wcagVersion": "2.2",
+  "findings": [
+    {
+      "code": "XL-ALT-MISSING",
+      "severity": "Error",
+      "location": "Obraz „Obraz 1” na arkuszu „Obrazy i obiekty” (przy komórce B3)"
+    },
+    {
+      "code": "XL-ALT-MISSING",
+      "severity": "Error",
+      "location": "Kształt „Prostokąt 7” na arkuszu „Obrazy i obiekty” (przy komórce E13)"
+    },
+    {
+      "code": "XL-CHART-ALT",
+      "severity": "Error",
+      "location": "Wykres „Wykres 1” na arkuszu „Wykresy”"
+    },
+    {
+      "code": "XL-CONTROL",
+      "severity": "Error",
+      "location": "Kontrolka „Check Box 1” na arkuszu „Kontrolki” (przy komórce B3)"
+    },
+    {
+      "code": "XL-CONTROL",
+      "severity": "Error",
+      "location": "Kontrolka „Drop Down 3” na arkuszu „Kontrolki” (przy komórce B9)"
+    },
+    {
+      "code": "XL-ALT-POOR",
+      "severity": "Warning",
+      "location": "Obraz „Obraz 3” na arkuszu „Obrazy i obiekty” (przy komórce B13)"
+    },
+    {
+      "code": "XL-ALT-POOR",
+      "severity": "Warning",
+      "location": "Obraz „Obraz 4” na arkuszu „Obrazy i obiekty” (przy komórce B18)"
+    },
+    {
+      "code": "XL-LINK-TEXT",
+      "severity": "Warning",
+      "location": "Łącza!A6"
+    },
+    {
+      "code": "XL-TEXTBOX",
+      "severity": "NeedsReview",
+      "location": "Pole tekstowe „pole tekstowe 6” na arkuszu „Obrazy i obiekty” (przy komórce E8)"
+    },
+    {
+      "code": "XL-LINK-TEXT",
+      "severity": "NeedsReview",
+      "location": "Łącza!A3"
+    },
+    {
+      "code": "XL-LINK-TEXT",
+      "severity": "NeedsReview",
+      "location": "Łącza!A4"
+    },
+    {
+      "code": "XL-LINK-TEXT",
+      "severity": "NeedsReview",
+      "location": "Łącza!A7"
+    },
+    {
+      "code": "XL-CHART-TITLE",
+      "severity": "Info",
+      "location": "Wykres „Wykres 1” na arkuszu „Wykresy”"
+    },
+    {
+      "code": "XL-CHART-TITLE",
+      "severity": "Info",
+      "location": "Wykres „Wykres 2” na arkuszu „Wykresy”"
+    },
+    {
+      "code": "XL-LINK-URL",
+      "severity": "Info",
+      "location": "Łącza!A2"
+    }
+  ],
+  "manualChecks": [
+    "XL-CONTROL",
+    "XL-TEXT-IN-IMAGE"
+  ]
+}

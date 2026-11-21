@@ -1,0 +1,23 @@
+{
+  "fixture": "forms",
+  "group": "nontext",
+  "wcagVersion": "2.2",
+  "findings": [
+    {
+      "code": "XL-DV-ERROR",
+      "severity": "NeedsReview",
+      "location": "'Formularz zgłoszenia'!B5"
+    },
+    {
+      "code": "XL-FIELD-LABEL",
+      "severity": "NeedsReview",
+      "location": "'Formularz zgłoszenia'!F3:F4"
+    },
+    {
+      "code": "XL-DV-INPUT",
+      "severity": "NeedsReview",
+      "location": "'Formularz zgłoszenia'!D10:D12"
+    }
+  ],
+  "manualChecks": []
+}

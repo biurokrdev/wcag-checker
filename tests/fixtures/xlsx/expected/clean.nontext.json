@@ -1,0 +1,9 @@
+{
+  "fixture": "clean",
+  "group": "nontext",
+  "wcagVersion": "2.2",
+  "findings": [],
+  "manualChecks": [
+    "XL-TEXT-IN-IMAGE"
+  ]
+}
