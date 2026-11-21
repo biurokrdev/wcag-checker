@@ -104,6 +104,79 @@ internal static partial class NonTextOptions
     /// <summary>Powyżej tylu odblokowanych komórek w arkuszu uznajemy, że odblokowanie nie wyznacza pól formularza, i nie zgłaszamy XL-FIELD-LABEL.</summary>
     public const int MaxFieldCellsPerSheet = 2000;
 
+    // ---------- XL-DV-ERROR-TEXT ----------
+
+    /// <summary>
+    /// Własny komunikat o błędzie z listy ogólników („Błąd”, „Nieprawidłowa wartość”) – nie opisuje błędu ani oczekiwanej wartości;
+    /// bardzo prawdopodobne (ostrzeżenie). Macierz pkt 3.4: ryzyko dla 3.3.1, gdy autor wpisał komunikat, który niczego nie opisuje.
+    /// </summary>
+    public const double DvErrorTextGenericConfidence = 0.8;
+
+    /// <summary>Komunikat bardzo krótki (bez cyfr) – bywa wystarczający („Tylko TAK”), więc tylko „do weryfikacji”.</summary>
+    public const double DvErrorTextShortConfidence = 0.5;
+
+    /// <summary>Komunikat krótszy niż tyle znaków (po przycięciu) i bez cyfr uznajemy za podejrzanie krótki.</summary>
+    public const int DvErrorTextMinLength = 10;
+
+    /// <summary>
+    /// Komunikaty o błędzie, które same nie mówią, na czym polega błąd ani czego się oczekuje (porównanie po normalizacji).
+    /// „The value you entered is not valid” to treść domyślnego komunikatu angielskiego Excela (z wiedzy o programie, nie ze źródła).
+    /// </summary>
+    public static readonly string[] DvErrorGenericTexts =
+    [
+        "błąd", "blad", "błąd!", "error", "błąd danych", "błąd wprowadzania", "błąd wprowadzania danych", "błędne dane", "błędna wartość",
+        "nieprawidłowa wartość", "nieprawidlowa wartosc", "nieprawidłowe dane", "nieprawidłowy wpis", "niepoprawna wartość",
+        "niepoprawne dane", "zła wartość", "wartość nieprawidłowa", "wartość niepoprawna", "niedozwolona wartość", "wartość niedozwolona",
+        "uwaga", "stop", "ostrzeżenie", "spróbuj ponownie", "invalid", "invalid value", "invalid entry", "invalid data", "invalid input",
+        "incorrect value", "wrong value", "warning", "try again", "the value you entered is not valid",
+    ];
+
+    public static bool IsGenericErrorText(string text) => DvErrorGenericTexts.Contains(Normalize(text), StringComparer.Ordinal);
+
+    /// <summary>Komunikat podejrzanie krótki: mniej niż <see cref="DvErrorTextMinLength"/> znaków i bez cyfr (cyfry zwykle podają zakres).</summary>
+    public static bool IsShortErrorText(string text)
+    {
+        var trimmed = text.Trim();
+        return trimmed.Length < DvErrorTextMinLength && !trimmed.Any(char.IsDigit);
+    }
+
+    // ---------- XL-CHART-TITLE-POOR ----------
+
+    /// <summary>Tytuł będący tekstem zastępczym Excela („Tytuł wykresu”, „Chart Title”) – na pewno nie opisuje wykresu; ostrzeżenie.</summary>
+    public const double ChartTitlePlaceholderConfidence = 0.9;
+
+    /// <summary>Tytuł ogólny z numerem („Wykres 1”, „Chart 3”) albo równy nazwie obiektu – bardzo prawdopodobne; ostrzeżenie.</summary>
+    public const double ChartTitleGenericConfidence = 0.85;
+
+    /// <summary>
+    /// Tytuł automatyczny (element tytułu bez tekstu) przy kilku seriach: Excel nie ma czego pokazać poza tekstem zastępczym
+    /// (zachowanie programu z wiedzy o formacie, nie ze źródła) – „do weryfikacji”.
+    /// </summary>
+    public const double ChartTitleAutomaticConfidence = 0.6;
+
+    /// <summary>Teksty zastępcze tytułu wykresu wstawiane przez Excel i inne programy (porównanie po normalizacji).</summary>
+    public static readonly string[] ChartTitlePlaceholders =
+    [
+        "tytuł wykresu", "tytul wykresu", "chart title", "tytuł", "tytul", "title", "wykres", "chart", "diagram", "bez tytułu", "untitled",
+        "tytuł osi", "axis title",
+    ];
+
+    /// <summary>Słowa ogólne, które z numerem nie są tytułem: „Wykres 1”, „Chart3”, „Seria 2”, „Rysunek 4”.</summary>
+    public static readonly string[] ChartTitleGenericWords =
+    [
+        "wykres", "chart", "diagram", "seria", "series", "rysunek", "figure", "grafika", "graph", "wykresy", "tytuł", "title",
+    ];
+
+    public static bool IsChartTitlePlaceholder(string title) => ChartTitlePlaceholders.Contains(Normalize(title), StringComparer.Ordinal);
+
+    /// <summary>„Wykres 1”, „chart3”, „Seria 2” – słowo ogólne z numerem.</summary>
+    public static bool IsGenericChartTitle(string title)
+    {
+        var match = WordWithNumber().Match(Normalize(title));
+        return match.Success && match.Groups[1].Value.Length < Normalize(title).Length
+            && ChartTitleGenericWords.Contains(match.Groups[1].Value, StringComparer.Ordinal);
+    }
+
     // ---------- XL-TEXT-IN-IMAGE ----------
 
     /// <summary>Do tylu obrazów na arkuszu każdy dostaje własną pozycję checklisty; powyżej – jedna pozycja na arkusz z listą nazw.</summary>

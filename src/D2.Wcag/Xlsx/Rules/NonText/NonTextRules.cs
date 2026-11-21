@@ -15,11 +15,13 @@ internal static class NonTextRules
     [
         new AltTextRule(),
         new ChartTitleRule(),
+        new ChartTitleTextRule(),
         new TextBoxRule(),
         new LinkRule(),
         new ControlRule(),
         new TextInImageRule(),
         new DataEntryRule(),
+        new ErrorTextRule(),
     ];
 
     /// <summary>

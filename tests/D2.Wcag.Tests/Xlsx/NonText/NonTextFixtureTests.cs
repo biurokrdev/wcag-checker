@@ -31,6 +31,8 @@ public class NonTextFixtureTests
             ("XL-DV-INPUT", "3.3.2", XlsxCheckType.Heuristic),
             ("XL-DV-ERROR", "3.3.3", XlsxCheckType.Heuristic),
             ("XL-FIELD-LABEL", "3.3.2", XlsxCheckType.Heuristic),
+            ("XL-CHART-TITLE-POOR", "2.4.6", XlsxCheckType.Heuristic),
+            ("XL-DV-ERROR-TEXT", "3.3.1", XlsxCheckType.Heuristic),
         ];
         Assert.All(expected, e =>
         {
@@ -357,7 +359,7 @@ public class NonTextFixtureTests
         Assert.Empty(GroupIds("macro"));
         // clean: obrazy i wykres, łącze, walidacja danych – bez kontrolek.
         Assert.Equal(
-            ["manual-1.1.1:nontext", "manual-1.3.2:nontext", "manual-2.4.4:nontext", "manual-3.3.2:nontext", "manual-3.3.3:nontext"],
+            ["manual-1.1.1:nontext", "manual-1.3.2:nontext", "manual-2.4.4:nontext", "manual-3.3.1:nontext", "manual-3.3.2:nontext", "manual-3.3.3:nontext"],
             GroupIds("clean").Order(StringComparer.Ordinal));
     }
 

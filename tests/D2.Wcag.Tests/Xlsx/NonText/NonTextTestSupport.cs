@@ -10,7 +10,7 @@ internal static class NonTextTestSupport
     public static readonly string[] Codes =
     [
         "XL-ALT-MISSING", "XL-ALT-POOR", "XL-CHART-ALT", "XL-CHART-TITLE", "XL-TEXTBOX", "XL-LINK-TEXT", "XL-LINK-URL", "XL-CONTROL",
-        "XL-TEXT-IN-IMAGE", "XL-DV-INPUT", "XL-DV-ERROR", "XL-FIELD-LABEL",
+        "XL-TEXT-IN-IMAGE", "XL-DV-INPUT", "XL-DV-ERROR", "XL-FIELD-LABEL", "XL-CHART-TITLE-POOR", "XL-DV-ERROR-TEXT",
     ];
 
     public static XlsxAuditResult Audit(XlsxWorkbook workbook, string version = "2.2") =>

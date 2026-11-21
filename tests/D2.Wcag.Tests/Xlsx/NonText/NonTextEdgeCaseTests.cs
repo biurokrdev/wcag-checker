@@ -214,8 +214,64 @@ public class NonTextEdgeCaseTests
         var deleted = AuditSheet(s => s.Chart(Chart(title: null, series: 1, autoTitleDeleted: true), "Wykres 1", 2, "D2", "K16", "Opis wykresu sprzedaży kwartalnej."));
         Assert.Equal("Wykres „Wykres 1” nie ma: tytułu wykresu.", Assert.Single(deleted.Findings).Message);
 
+        // Kilka serii i tytuł automatyczny: Excel pokazuje tekst zastępczy – to tytuł nieopisowy (2.4.6), a nie brak tytułu.
         var many = AuditSheet(s => s.Chart(Chart(title: "", series: 2), "Wykres 1", 2, "D2", "K16", "Opis wykresu sprzedaży kwartalnej."));
-        Assert.Equal("Wykres „Wykres 1” nie ma: tytułu wykresu.", Assert.Single(many.Findings).Message);
+        var poor = Assert.Single(many.Findings);
+        Assert.Equal(("XL-CHART-TITLE-POOR", XlsxSeverity.NeedsReview), (poor.Code, poor.Severity));
+    }
+
+    // ---------- tytuł wykresu nieopisowy (2.4.6) ----------
+
+    [Theory]
+    [InlineData("Tytuł wykresu", 0.9, XlsxSeverity.Warning)]
+    [InlineData("Chart Title", 0.9, XlsxSeverity.Warning)]
+    [InlineData("  wykres ", 0.9, XlsxSeverity.Warning)]
+    [InlineData("Wykres 1", 0.85, XlsxSeverity.Warning)]
+    [InlineData("Chart3", 0.85, XlsxSeverity.Warning)]
+    [InlineData("Seria 2", 0.85, XlsxSeverity.Warning)]
+    [InlineData("Obroty", 0.85, XlsxSeverity.Warning)] // równy nazwie obiektu wykresu
+    public void ChartTitlePoor_Patterns(string title, double confidence, XlsxSeverity severity)
+    {
+        var result = AuditSheet(s => s.Chart(Chart(title: title), "Obroty", 2, "D2", "K16", "Opis wykresu sprzedaży kwartalnej."));
+
+        var finding = Assert.Single(result.Findings);
+        Assert.Equal(("XL-CHART-TITLE-POOR", confidence, severity), (finding.Code, finding.Confidence, finding.Severity));
+        Assert.Equal(["2.4.6"], finding.Wcag.Select(r => r.Sc));
+        Assert.Equal("Wykres „Obroty” na arkuszu „Dane”", finding.Location.Display);
+        Assert.Equal(title.Trim(), finding.Value("Tytuł wykresu"));
+        Assert.Contains("Możliwy problem z kryterium 2.4.6", finding.Message);
+    }
+
+    [Theory]
+    [InlineData("Sprzedaż kwartalna 2026 (tys. zł)")]
+    [InlineData("Wykres sprzedaży")]
+    [InlineData("Udział regionów w przychodach")]
+    [InlineData("Q1")]
+    public void ChartTitlePoor_DescriptiveTitle_IsNotReported(string title)
+    {
+        var result = AuditSheet(s => s.Chart(Chart(title: title), "Wykres 1", 2, "D2", "K16", "Opis wykresu sprzedaży kwartalnej."));
+
+        Assert.Empty(result.Findings);
+    }
+
+    [Fact]
+    public void ChartTitlePoor_NoTitle_OrAutomaticWithOneSeries_IsNotAssessed()
+    {
+        // Brak tytułu to wyłącznie dobra praktyka (XL-CHART-TITLE); jedna seria – Excel pokazuje jej nazwę.
+        var none = AuditSheet(s => s.Chart(Chart(title: null, series: 2, autoTitleDeleted: true), "Wykres 1", 2, "D2", "K16", "Opis wykresu sprzedaży kwartalnej."));
+        Assert.Equal(["XL-CHART-TITLE"], none.Findings.Select(f => f.Code));
+        var single = AuditSheet(s => s.Chart(Chart(title: "", series: 1), "Wykres 1", 2, "D2", "K16", "Opis wykresu sprzedaży kwartalnej."));
+        Assert.Empty(single.Findings);
+    }
+
+    [Fact]
+    public void ChartTitlePoor_HiddenChart_IsSkipped()
+    {
+        var fx = new FixtureXlsx { Title = "Skoroszyt testowy", Language = "pl-PL" };
+        fx.AddSheet("Dane").Text("A1", "Kwartał").Chart(Chart(title: "Wykres 1"), "Wykres 1", 2, "D2", "K16", "Opis wykresu.");
+        var bytes = FixtureXlsxPatch.ReplaceInPart(fx.Build(), "xl/drawings/drawing1.xml", "name=\"Wykres 1\"", "name=\"Wykres 1\" hidden=\"1\"");
+
+        Assert.Empty(Audit(XlsxTestData.Read(bytes)).Of("XL-CHART-TITLE-POOR"));
     }
 
     [Fact]
@@ -455,6 +511,80 @@ public class NonTextEdgeCaseTests
         Assert.Equal("Błąd", number.Value("Tytuł alertu"));
         Assert.Equal(2, result.Of("XL-DV-ERROR").Count);
         Assert.All(result.Of("XL-DV-ERROR"), f => Assert.Equal(["3.3.3"], f.Wcag.Select(r => r.Sc)));
+    }
+
+    // ---------- treść komunikatu o błędzie (3.3.1) ----------
+
+    private static string Validation(string cell, string? error, string? errorTitle = null, bool alert = true, string type = "whole") =>
+        $"<dataValidation type=\"{type}\" showInputMessage=\"1\" prompt=\"Wpisz liczbę od 1 do 26\" {(alert ? "showErrorMessage=\"1\"" : "")} "
+        + (errorTitle is null ? "" : $"errorTitle=\"{errorTitle}\" ") + (error is null ? "" : $"error=\"{error}\" ")
+        + $"sqref=\"{cell}\"><formula1>1</formula1><formula2>26</formula2></dataValidation>";
+
+    [Theory]
+    [InlineData("Błąd", 0.8, XlsxSeverity.Warning)]
+    [InlineData("Error!", 0.8, XlsxSeverity.Warning)]
+    [InlineData("Nieprawidłowa wartość.", 0.8, XlsxSeverity.Warning)]
+    [InlineData("BŁĘDNE DANE", 0.8, XlsxSeverity.Warning)]
+    [InlineData("The value you entered is not valid", 0.8, XlsxSeverity.Warning)]
+    [InlineData("Zła data", 0.5, XlsxSeverity.NeedsReview)]
+    [InlineData("Popraw!", 0.5, XlsxSeverity.NeedsReview)]
+    public void DvErrorText_GenericOrVeryShortOwnMessage_IsReported(string error, double confidence, XlsxSeverity severity)
+    {
+        var result = AuditSheet(s => s.DataValidations.Add(Validation("C3", error)));
+
+        var finding = Assert.Single(result.Of("XL-DV-ERROR-TEXT"));
+        Assert.Equal((confidence, severity), (finding.Confidence, finding.Severity));
+        Assert.Equal(["3.3.1"], finding.Wcag.Select(r => r.Sc));
+        Assert.Equal("Dane!C3", finding.Location.Display);
+        Assert.Equal(error, finding.Value("Komunikat o błędzie"));
+        Assert.Contains("Możliwy problem z kryterium 3.3.1", finding.Message);
+        Assert.Contains("Alert o błędzie", finding.FixInstruction);
+        // Własna treść jest, więc XL-DV-ERROR (3.3.3, brak własnego komunikatu) tego pola nie dotyczy.
+        Assert.Empty(result.Of("XL-DV-ERROR"));
+    }
+
+    [Theory]
+    [InlineData("Wpisz liczbę całkowitą od 1 do 26.")]
+    [InlineData("Dozwolone wartości: Tak albo Nie")]
+    [InlineData("Max 26")] // krótki, ale z cyfrą – zwykle podaje zakres
+    public void DvErrorText_DescriptiveMessage_IsNotReported(string error)
+    {
+        var result = AuditSheet(s => s.DataValidations.Add(Validation("C3", error)));
+
+        Assert.Empty(result.Of("XL-DV-ERROR-TEXT"));
+    }
+
+    [Fact]
+    public void DvErrorText_NoOwnText_DisabledAlert_OrTitleOnly_IsNotReported()
+    {
+        var result = AuditSheet(s =>
+        {
+            // brak własnej treści – Excel pokazuje komunikat domyślny (to nie jest niespełnienie 3.3.1; zgłasza XL-DV-ERROR dla 3.3.3)
+            s.DataValidations.Add(Validation("C3", null));
+            // ogólnik tylko w tytule alertu
+            s.DataValidations.Add(Validation("C5", null, errorTitle: "Błąd"));
+            // alert wyłączony – błąd nie jest wykrywany
+            s.DataValidations.Add(Validation("C7", "Błąd", alert: false));
+        });
+
+        Assert.Empty(result.Of("XL-DV-ERROR-TEXT"));
+        Assert.Equal(["Dane!C3", "Dane!C5"], result.Of("XL-DV-ERROR").Select(f => f.Location.Display));
+        // Reguła nie miała czego zbadać, a kryterium wymaga oceny człowieka – status „Do oceny ręcznej” z pytaniem grupy.
+        var criterion = result.Criteria.Single(c => c.Sc == "3.3.1");
+        Assert.Equal(XlsxCriterionStatus.ManualReview, criterion.Status);
+        Assert.Contains("nie znalazły w skoroszycie treści do sprawdzenia", criterion.Reason);
+        Assert.Contains(result.ManualChecks, c => c.Id == "manual-3.3.1:nontext");
+        Assert.DoesNotContain(result.ManualChecks, c => c.Id == "manual-3.3.1");
+    }
+
+    [Fact]
+    public void DvErrorText_DescriptiveMessages_CriterionStaysForManualReview()
+    {
+        var result = AuditSheet(s => s.DataValidations.Add(Validation("C3", "Wpisz liczbę całkowitą od 1 do 26.")));
+
+        var criterion = result.Criteria.Single(c => c.Sc == "3.3.1");
+        Assert.Equal(XlsxCriterionStatus.ManualReview, criterion.Status);
+        Assert.StartsWith("Sprawdzono automatycznie: treść własnych komunikatów o błędzie walidacji danych (XL-DV-ERROR-TEXT) – nie wykryto problemów.", criterion.Reason);
     }
 
     // ---------- pola do wypełnienia ----------

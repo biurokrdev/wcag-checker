@@ -207,7 +207,7 @@
       "question": "Czy skoroszyt zawiera fragmenty w innym języku niż główny i czy da się je oznaczyć (w komórkach może to być niemożliwe – wtedy odnotować ograniczenie formatu)?"
     },
     {
-      "id": "manual-3.3.1",
+      "id": "manual-3.3.1:nontext",
       "wcag": [
         "3.3.1"
       ],
@@ -595,7 +595,7 @@
       "name": "Identyfikacja błędu",
       "level": "A",
       "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. Dotyczy, gdy arkusz przyjmuje dane i wykrywa błędy (walidacja danych). Błąd wykryty automatycznie ma być wskazany i opisany tekstem; okno błędu wyświetla Excel, treść komunikatu może zdefiniować autor.",
+      "reason": "Sprawdzono automatycznie: treść własnych komunikatów o błędzie walidacji danych (XL-DV-ERROR-TEXT) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. Dotyczy, gdy arkusz przyjmuje dane i wykrywa błędy (walidacja danych). Błąd wykryty automatycznie ma być wskazany i opisany tekstem; okno błędu wyświetla Excel, treść komunikatu może zdefiniować autor.",
       "manualChecks": 1
     },
     {

@@ -4,8 +4,9 @@ namespace D2.Wcag.Xlsx.Rules.NonText;
 /// <c>XL-CHART-TITLE</c> – dobra praktyka spoza WCAG (żadne kryterium nie wymaga tytułu wykresu ani tytułów osi; macierz rozdz. 4
 /// i 7): wykres bez tytułu albo – dla typów z osiami – bez tytułów osi. Jedno zgłoszenie na wykres, z listą braków.
 /// Tytuł automatyczny (brak wpisanego tekstu, <c>autoTitleDeleted</c> = 0) liczy się jako tytuł tylko przy jednej serii – Excel
-/// pokazuje wtedy nazwę serii (zachowanie programu z wiedzy o formacie, nie ze źródła). Osie usunięte i oś serii (wykresy 3-W)
-/// nie są oceniane.
+/// pokazuje wtedy nazwę serii (zachowanie programu z wiedzy o formacie, nie ze źródła). Tytuł automatyczny przy kilku seriach
+/// (element tytułu bez tekstu) zgłasza <see cref="ChartTitleTextRule"/> jako tytuł nieopisowy, więc tu nie jest „brakiem tytułu”.
+/// Osie usunięte i oś serii (wykresy 3-W) nie są oceniane.
 /// </summary>
 internal sealed class ChartTitleRule : IXlsxRule
 {
@@ -35,7 +36,8 @@ internal sealed class ChartTitleRule : IXlsxRule
 
                 var missing = new List<string>();
                 var automaticTitle = !chart.AutoTitleDeleted && chart.Series.Count == 1;
-                var noTitle = NonTextOptions.IsBlank(chart.Title) && !automaticTitle;
+                // Tytuł automatyczny przy kilku seriach Excel wyświetla jako tekst zastępczy – to tytuł nieopisowy (XL-CHART-TITLE-POOR, 2.4.6), nie brak tytułu.
+                var noTitle = NonTextOptions.IsBlank(chart.Title) && !automaticTitle && !ChartTitleTextRule.IsAutomaticWithManySeries(chart);
                 if (noTitle)
                 {
                     missing.Add("tytułu wykresu");
