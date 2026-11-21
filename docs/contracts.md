@@ -151,7 +151,10 @@ public static class FormatProps
         ParagraphShading = "p.shd", Style = "p.pStyle";
     public static string Label(string property);                 // „pogrubienie”, „rozmiar czcionki”
     public static string Display(string property, string value); // „12 pt”, „#FF6200”, „tak”
-    // Dziecko rPr/pPr spoza słownika → klucz = nazwa lokalna elementu; żadna właściwość bezpośrednia nie ginie.
+    // Dziecko rPr spoza słownika → klucz = nazwa lokalna elementu (np. „kern”); dziecko pPr spoza słownika →
+    // „p.” + nazwa lokalna (np. „p.tabs”) – patrz pkt 11; żadna właściwość bezpośrednia nie ginie.
+    public static bool IsToggle(string property);
+    public static bool IsParagraphProperty(string property);   // klucz z prefiksem „p.”
 }
 
 public sealed class ResolvedRun
@@ -408,3 +411,36 @@ Zakres: 3 sample + 5 fixtur × profile `wcag`, `firmowy19`, `firmowy20`, `wcag+f
 - Podwójne zgłoszenia `HIER-SKIP` kontra `HEADING_LEVEL_SKIPPED` oraz `HIER-FAKE`/`STY-FAKE-HEADING` kontra `FAKE_HEADING`, gdy wybrano też `wcag/2.1` – scalanie z kodami WCAG zmieniłoby istniejące wyniki, więc zostają oba; opisać w raporcie końcowym.
 - Style tabel i tint/shade to najsłabiej potwierdzona część resolvera.
 - Akapity z `mc:Choice` i `mc:Fallback` są liczone oba – nowe reguły pomijają `InFallback`.
+
+## 11. Stan po core (tag `core-done`) – doprecyzowania i odstępstwa
+
+Sygnatury z pkt 2–6 są zaimplementowane jak wyżej. Różnice i dodatki (wszystkie addytywne, poza pierwszym punktem):
+
+**Odstępstwo**
+- `FormatProps`: dziecko `w:pPr` spoza słownika ma klucz `p.` + nazwa lokalna (`p.tabs`, `p.contextualSpacing`), a nie samą nazwę lokalną. Powód: wszystkie właściwości akapitowe mają wspólny prefiks, więc jedna płaska lista ignorowanych (`StyleGalleryOptions.IgnoredProperties`) jest jednoznaczna, a `w:spacing`/`w:shd` akapitu nie mylą się ze znakowymi. Dzieci `w:rPr` bez zmian (nazwa lokalna). Atrybuty spoza słownika: `p.spacing.<atrybut>`, `p.ind.<atrybut>`; `w:rFonts` bez czcionki ascii/hAnsi → `rFonts.hint`, `w:lang` bez `w:val` → `lang.other`.
+
+**Doprecyzowania wartości**
+- `p.spacing.line` jest w punktach (`line`/20, np. 288 → `14.4`), rodzaj w `p.spacing.lineRule` (`auto`/`exact`/`atLeast`). Mnożnik interlinii (1,2; 1,5) daje `ResolvedParagraph.LineSpacing` (null dla exact/atLeast).
+- Wartości wbudowane (`ValueSource.BuiltIn`) istnieją dla podstawowych właściwości (np. `b=0`, `sz=10`, `color=auto`, `u=none`, `p.jc=left`, `p.spacing.before=0`, `p.outlineLvl=9`), więc formatowanie bezpośrednie równe wartości domyślnej Worda też jest `IsRedundant`. `p.pStyle` ma wartość wbudowaną = domyślny styl akapitowy.
+- `ResolvedValue.Inherited` dla wartości niebezpośredniej = `Value`; dla bezpośredniej bez odpowiednika w stylach = `null`.
+- Toggle: w obrębie jednego łańcucha `basedOn` późniejszy styl nadpisuje wcześniejszy; XOR działa między poziomami (styl tabeli, styl akapitu, styl znakowy). Przełącznik włączony w docDefaults obowiązuje zawsze. Wyłączenie (`val=0`) w stylu nie wyłącza wartości z wcześniejszego poziomu.
+- Styl tabeli: brak `w:tblLook` = tylko `wholeTable` (bez formatowania warunkowego); `w:cnfStyle` (akapitu, komórki, wiersza) ma pierwszeństwo przed położeniem komórki. Tabela bez `w:tblStyle` dostaje domyślny styl tabeli, jeśli jest.
+- Poziom numeracji: `w:pPr` poziomu (wcięcia) wchodzi do `Format` akapitu ze źródłem `Numbering`, po łańcuchu stylu akapitu.
+- `FakeHeadingCandidates()` pomija akapity `InFallback`; „nie na liście” = `p.numPr.numId` > 0 (jak stara reguła, także gdy instancji brak w numbering.xml).
+- `Sections()`/`StoryUsage.Section`/`SectionInfo.Index` są numerowane od 0; `DescribeStory` pisze „sekcja 1” (od 1), w dopełniaczu: „stopki (sekcja 1, strona: pierwsza)”, „stopki (sekcja 2, strony: parzyste)”, „nagłówka strony (sekcja 1, strony: wszystkie | nieparzyste)”, „stopki (nieużywanej w żadnej sekcji)”, „treści dokumentu”, „przypisów dolnych”.
+- `ParagraphTextMap.Segments` zawiera wszystkie runy własne, także bez tekstu (długość 0); `RunsCovering` bierze pod uwagę tylko runy z tekstem.
+- Deduplikacja po `DedupGroup` wymaga identycznej listy wystąpień: `STY-FAKE-HEADING` i `HIER-FAKE` muszą zgłaszać **jedno zgłoszenie na kandydata** (jedno wystąpienie = `candidate.Location`), inaczej się nie scalą.
+
+**Dodatki (nie zmieniają sygnatur z kontraktu)**
+- `ResolvedParagraph.LineSpacing`, `ResolvedParagraph.NumberingSymbolFormat` (format znaku numeru/punktora: ustawienia domyślne, styl akapitu, znak akapitu, `w:rPr` poziomu ze źródłem `Numbering`).
+- `DocxDocument.TableStyleProperties(TableCell cell, string localName)` – elementy `tcPr`/`tblPr`/`trPr`/`pPr`/`rPr` ze stylu tabeli i pasujących `w:tblStylePr`, od najsłabszego do najsilniejszego (dla A2: wyrównanie pionowe i krawędzie ze stylu tabeli).
+- `FormatProps.ParagraphPrefix`, `IsToggle`, `IsParagraphProperty`; `RuleHit(string message, params IssueLocation?[] locations)`; `Rule.Descriptor`.
+- Właściwości `ResolvedParagraph` są `init` (obiekt tworzy tylko biblioteka); `IssueLocation.TryParseKey` przyjmuje `string?`.
+- API: `LocationDto.ToLocation()`, `ReportBuilder.LabelOf(issue)`, `StructureNodeDto(Kind, Text, Count, Children)` + opcjonalne `Key`/`Level`/`Label`/`StyleName`, `IDocumentCheckService.PreviewLocation(reportId, key)` (400 dla złego klucza albo braku elementu, 404 dla wygasłego raportu). `StyleGalleryStandard` jest rejestrowany w `Program.cs` przez DI z `IOptions<StyleGalleryOptions>` (sekcja `Wcag:StyleGallery`).
+- UI: `ISSUE_SCOPE_LABEL`, `StructureNode`/`StructureNodeKind` w `models.ts`, `WcagDocumentsService.previewLocation`, blok „Miejsce w dokumencie” (`data-testid="location-preview"`) pod panelem struktury dla klucza bez zgłoszenia. `core/comment-export.service.ts` nie istnieje – tworzy go A1.
+
+**Snapshoty i fixtury**
+- Profile: `wcag`, `firmowy19`, `firmowy20`, `wcag+firmowy19`, `wcag+firmowy20`, `style`, `hierarchia` (lista w `tests/Shared/Snapshot.cs`, `SnapshotCases.Profiles`).
+- `api/{doc}__{profil}.report.txt`: eksport z `IncludePreviews=false`; ostatnia linia `PDF: %PDF-, strony: N` (liczba stron schematu zależy od czcionek systemu – przy pracy na innej maszynie może wymagać `UPDATE_SNAPSHOTS=1`).
+- `lib/{doc}.structure.json` nie istnieje – dodaje go A4; projekcja `lib/*.json` wypisuje `structure` dopiero, gdy drzewo jest niepuste.
+- Fixtury budują się przez `FixtureDocx` (jawne `rId`, `Normalize` pakietu); kolejność stopek w `edge`: `footer/0` domyślna sekcji 1, `footer/1` pierwsza strona, `footer/2` strony parzyste, `footer/3` domyślna sekcji 2.
