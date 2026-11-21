@@ -393,7 +393,7 @@
           "snippet": "(metadane dokumentu)"
         }
       ],
-      "fix": "1. Plik → Informacje → Powiązane osoby → Autor. 2. Usuń autora osobowego (prawy przycisk myszy → Usuń osobę). 3. Wpisz „Example Company S. A.”."
+      "fix": "1. Plik → Informacje → Powiązane osoby → Autor. 2. Jeśli wpisany jest autor osobowy, usuń go (prawy przycisk myszy → Usuń osobę). 3. Wpisz „Example Company S. A.”."
     },
     {
       "code": "TITLE_MISSING",

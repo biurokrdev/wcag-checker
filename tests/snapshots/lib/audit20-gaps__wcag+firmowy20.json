@@ -533,7 +533,7 @@
       ],
       "status": "Required",
       "title": "Brak stopki",
-      "fix": "1. Wstawianie → Stopka → Edytuj stopkę. 2. Nadaj akapitowi styl „Stopka” (SUN Me 8 pt, #696969, interlinia 1,2). 3. Wpisz „Strona: ”, wstaw pole numeru strony (Wstawianie → Szybkie części → Pole → Page), wpisz „ z ”, wstaw pole NumPages, a po nim „. ” i tytuł dokumentu. 4. Jeśli stopki brakuje tylko w jednej sekcji, włącz w niej Nagłówek i stopka → Połącz z poprzednią. 5. Zamknij stopkę klawiszem Esc.",
+      "fix": "1. Wstawianie → Stopka → Edytuj stopkę. 2. Nadaj akapitowi styl „Stopka” (SUN Me 8 pt, #696969, interlinia 1,2). 3. Wpisz „Strona: ”, wstaw pole numeru strony (Wstawianie → Szybkie części → Pole → Page), wpisz „ z ”, wstaw pole NumPages, a po nim „. ” i tytuł dokumentu. 4. Jeśli stopki brakuje tylko w jednej sekcji, włącz w niej Nagłówek i stopka → Połącz z poprzednim. 5. Zamknij stopkę klawiszem Esc.",
       "scope": "Section"
     },
     {
@@ -581,7 +581,7 @@
         }
       ],
       "status": "Required",
-      "fix": "1. Plik → Informacje → Powiązane osoby → Autor. 2. Usuń autora osobowego (prawy przycisk myszy → Usuń osobę). 3. Wpisz „Example Company S. A.”."
+      "fix": "1. Plik → Informacje → Powiązane osoby → Autor. 2. Jeśli wpisany jest autor osobowy, usuń go (prawy przycisk myszy → Usuń osobę). 3. Wpisz „Example Company S. A.”."
     },
     {
       "code": "TITLE_MISSING",

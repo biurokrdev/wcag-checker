@@ -179,7 +179,7 @@ internal static class Footer20Rules
         "1. Wstawianie → Stopka → Edytuj stopkę. "
         + "2. Nadaj akapitowi styl „Stopka” (SUN Me 8 pt, #696969, interlinia 1,2). "
         + "3. Wpisz „Strona: ”, wstaw pole numeru strony (Wstawianie → Szybkie części → Pole → Page), wpisz „ z ”, wstaw pole NumPages, a po nim „. ” i tytuł dokumentu. "
-        + "4. Jeśli stopki brakuje tylko w jednej sekcji, włącz w niej Nagłówek i stopka → Połącz z poprzednią. "
+        + "4. Jeśli stopki brakuje tylko w jednej sekcji, włącz w niej Nagłówek i stopka → Połącz z poprzednim. "
         + "5. Zamknij stopkę klawiszem Esc.",
         IssueScope.Section)
     {

@@ -22,7 +22,7 @@ internal static class LegacyFixes20
     {
         var author =
             "1. Plik → Informacje → Powiązane osoby → Autor. "
-            + "2. Usuń autora osobowego (prawy przycisk myszy → Usuń osobę). "
+            + "2. Jeśli wpisany jest autor osobowy, usuń go (prawy przycisk myszy → Usuń osobę). "
             + $"3. Wpisz „{institution}”.";
 
         return new Dictionary<string, string>(StringComparer.Ordinal)

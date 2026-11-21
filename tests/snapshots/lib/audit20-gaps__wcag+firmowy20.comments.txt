@@ -3,7 +3,7 @@
     Dokument i metadane
     [AUTHOR_MISSING] Brak autora dokumentu  ·  WYMAGANE → błąd
     Problem: Dokument nie ma autora w metadanych.
-    Jak naprawić: 1. Plik → Informacje → Powiązane osoby → Autor. 2. Usuń autora osobowego (prawy przycisk myszy → Usuń osobę). 3. Wpisz „Example Company S. A.”.
+    Jak naprawić: 1. Plik → Informacje → Powiązane osoby → Autor. 2. Jeśli wpisany jest autor osobowy, usuń go (prawy przycisk myszy → Usuń osobę). 3. Wpisz „Example Company S. A.”.
     [INVALID_MARGINS] Marginesy inne niż wymagane  ·  WYMAGANE → błąd
     Problem: Margines górny ma 70,9 pt, a wymagane jest 36 pt.
     Jak naprawić: 1. Układ → Marginesy → Marginesy niestandardowe. 2. W polach Górny, Dolny, Lewy i Prawy wpisz 1,27 cm. 3. Zastosuj do: Cały dokument → OK.
@@ -30,7 +30,7 @@
     Dotyczy całej sekcji, która zaczyna się w tym miejscu.
     [F20-FOOTER-MISSING] Brak stopki  ·  WYMAGANE → błąd
     Problem: Sekcja 1 nie ma stopki (własnej ani odziedziczonej z poprzedniej sekcji); standard wymaga stopki z numerem strony i tytułem dokumentu („Strona: X z Y. Tytuł dokumentu”).
-    Jak naprawić: 1. Wstawianie → Stopka → Edytuj stopkę. 2. Nadaj akapitowi styl „Stopka” (SUN Me 8 pt, #696969, interlinia 1,2). 3. Wpisz „Strona: ”, wstaw pole numeru strony (Wstawianie → Szybkie części → Pole → Page), wpisz „ z ”, wstaw pole NumPages, a po nim „. ” i tytuł dokumentu. 4. Jeśli stopki brakuje tylko w jednej sekcji, włącz w niej Nagłówek i stopka → Połącz z poprzednią. 5. Zamknij stopkę klawiszem Esc.
+    Jak naprawić: 1. Wstawianie → Stopka → Edytuj stopkę. 2. Nadaj akapitowi styl „Stopka” (SUN Me 8 pt, #696969, interlinia 1,2). 3. Wpisz „Strona: ”, wstaw pole numeru strony (Wstawianie → Szybkie części → Pole → Page), wpisz „ z ”, wstaw pole NumPages, a po nim „. ” i tytuł dokumentu. 4. Jeśli stopki brakuje tylko w jednej sekcji, włącz w niej Nagłówek i stopka → Połącz z poprzednim. 5. Zamknij stopkę klawiszem Esc.
 
 #2 [Audytor szablonów / AS / 2025-01-15T10:30:00Z] akapit 2: „ Pani/Pan ”
     [VARIANT_SLASH_ALTERNATIVE] Alternatywa z ukośnikiem zamiast [lub]  ·  WYMAGANE → błąd

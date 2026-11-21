@@ -111,7 +111,7 @@
       "message": "Autor „Krzysztof Rybka” ma być zastąpiony nazwą banku „Example Company S. A.”.",
       "standard": "firmowy/2.0",
       "fixable": true,
-      "fix": "1. Plik → Informacje → Powiązane osoby → Autor. 2. Usuń autora osobowego (prawy przycisk myszy → Usuń osobę). 3. Wpisz „Example Company S. A.”."
+      "fix": "1. Plik → Informacje → Powiązane osoby → Autor. 2. Jeśli wpisany jest autor osobowy, usuń go (prawy przycisk myszy → Usuń osobę). 3. Wpisz „Example Company S. A.”."
     },
     {
       "code": "TITLE_MISSING",
@@ -1045,7 +1045,7 @@
       },
       "occurrence": 1,
       "occurrenceCount": 1,
-      "fix": "1. Plik → Informacje → Powiązane osoby → Autor. 2. Usuń autora osobowego (prawy przycisk myszy → Usuń osobę). 3. Wpisz „Example Company S. A.”."
+      "fix": "1. Plik → Informacje → Powiązane osoby → Autor. 2. Jeśli wpisany jest autor osobowy, usuń go (prawy przycisk myszy → Usuń osobę). 3. Wpisz „Example Company S. A.”."
     },
     {
       "index": 14,
