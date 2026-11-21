@@ -216,7 +216,7 @@ public class ResolvedModelTests
         Assert.Equal("00AA00", styled.NumberingSymbolFormat!.Text(FormatProps.Color));
         Assert.Equal(new ResolvedValue("p.numPr.numId", "4", ValueSource.ParagraphStyle, "Listapunktowana", "4", ValueSource.ParagraphStyle), styled.Format.Get(FormatProps.NumId));
         Assert.Equal("Lista punktowana", styled.StyleDisplayName);
-        Assert.Empty(styled.Direct.Where(d => d.Property != FormatProps.Style));
+        Assert.DoesNotContain(styled.Direct, d => d.Property != FormatProps.Style);
 
         Assert.Null(Find(docx, "Dokument zbiera przypadki").Numbering);
         Assert.Null(Find(docx, "Dokument zbiera przypadki").NumberingSymbolFormat);

@@ -211,7 +211,7 @@ public class FormattingResolutionTests
         var unreadable = validator.Validate("nie docx"u8.ToArray());
         var corporateOnly = validator.Validate(clean is { } ? new DocxBuilder().Heading(1, "A").Build() : [], new WcagValidationProfile().WithStandards("firmowy/1.9"));
 
-        var cleanReport = WcagStandard.Report(clean);
+        var cleanReport = WcagStandard.Report(clean!);
         var brokenReport = WcagStandard.Report(broken);
         var unreadableReport = WcagStandard.Report(unreadable);
         var notAppliedReport = WcagStandard.Report(corporateOnly);
