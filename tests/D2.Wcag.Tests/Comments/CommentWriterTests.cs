@@ -373,6 +373,34 @@ public class CommentWriterTests
     }
 
     [Fact]
+    public void MainPartUnderAnotherName_GetsCommentsNextToIt()
+    {
+        // Zmiana typu dokumentu w SDK przenosi część główną pod inną nazwę (word/document2.xml…) i zapisuje relacje z adresami bezwzględnymi.
+        using var stream = new MemoryStream();
+        stream.Write(new DocxBuilder().Heading(1, "Wstęp").Paragraph("Treść akapitu.").Build());
+        string mainName;
+        using (var package = WordprocessingDocument.Open(stream, true))
+        {
+            package.ChangeDocumentType(WordprocessingDocumentType.Template);
+            package.ChangeDocumentType(WordprocessingDocumentType.Document);
+            mainName = package.MainDocumentPart!.Uri.OriginalString.TrimStart('/');
+        }
+
+        var docx = stream.ToArray();
+        Assert.NotEqual("word/document.xml", mainName);
+
+        var annotated = Writer.Annotate(docx, [Issue("X-1", IssueSeverity.Error, "Opis.", BodyParagraph(docx, "Treść akapitu"))], Options);
+
+        var parts = FixtureDocx.Parts(annotated.Content);
+        Assert.Contains("word/comments.xml", parts.Keys);
+        Assert.Contains("Target=\"comments.xml\"", Encoding.UTF8.GetString(parts[$"word/_rels/{mainName[5..]}.rels"]));
+        var comment = Assert.Single(Added(annotated.Content));
+        Assert.Equal("Treść akapitu.", comment.AnchorText);
+        Assert.Empty(SchemaErrors(annotated.Content).Except(SchemaErrors(docx)));
+        Assert.True(Validate(annotated.Content, "wcag/2.1").IsDocumentReadable);
+    }
+
+    [Fact]
     public void ExistingComment_IsKept_AndNewIdsContinueAfterIt()
     {
         var annotated = Writer.Annotate(Edge, [Issue("X-1", IssueSeverity.Error, "Opis.", BodyParagraph(Edge, "Ostatni akapit dokumentu"))], Options);
@@ -407,6 +435,35 @@ public class CommentWriterTests
 
         Assert.Contains(expected, ex.Message);
         Assert.Contains("zapisz plik w Wordzie jako „Dokument programu Word (*.docx)”", ex.Message);
+    }
+
+    // Plik prosto z Worda: budowa pakietu jak w .docx (word/document.xml), różni się tylko typ zawartości części głównej.
+    [Theory]
+    [InlineData("application/vnd.ms-word.document.macroEnabled.main+xml", "dokumentem z makrami (.docm)")]
+    [InlineData("application/vnd.openxmlformats-officedocument.wordprocessingml.template.main+xml", "szablonem programu Word (.dotx)")]
+    [InlineData("application/vnd.ms-word.template.macroEnabledTemplate.main+xml", "szablonem z makrami (.dotm)")]
+    public void WordFilesWithOtherMainContentType_AreRejected_InsteadOfBecomingABrokenDocx(string contentType, string expected)
+    {
+        using var stream = new MemoryStream();
+        stream.Write(Edge);
+        using (var zip = new ZipArchive(stream, ZipArchiveMode.Update, leaveOpen: true))
+        {
+            var entry = zip.GetEntry("[Content_Types].xml")!;
+            string types;
+            using (var reader = new StreamReader(entry.Open()))
+            {
+                types = reader.ReadToEnd();
+            }
+
+            Assert.Contains("wordprocessingml.document.main+xml", types);
+            entry.Delete();
+            using var writer = new StreamWriter(zip.CreateEntry("[Content_Types].xml").Open());
+            writer.Write(types.Replace("application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml", contentType));
+        }
+
+        var ex = Assert.Throws<CommentExportException>(() => Writer.Annotate(stream.ToArray(), [], Options));
+
+        Assert.Contains(expected, ex.Message);
     }
 
     [Fact]
