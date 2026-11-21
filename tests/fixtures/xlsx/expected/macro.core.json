@@ -1,0 +1,13 @@
+{
+  "fixture": "macro",
+  "group": "core",
+  "wcagVersion": "2.2",
+  "findings": [
+    {
+      "code": "XL-MACROS",
+      "severity": "Info",
+      "location": "Skoroszyt"
+    }
+  ],
+  "manualChecks": []
+}

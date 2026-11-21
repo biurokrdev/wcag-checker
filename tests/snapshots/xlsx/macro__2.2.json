@@ -1,0 +1,534 @@
+{
+  "isReadable": true,
+  "failure": "None",
+  "wcagVersion": "2.2",
+  "profileName": "WCAG 2.2 AA (arkusz Excel)",
+  "summary": "Nie wykryto automatycznie niezgodności. 12 kryteriów wymaga oceny ręcznej.",
+  "disclaimer": "Wynik automatyczny nie potwierdza zgodności z WCAG",
+  "workbook": {
+    "title": "Rejestr zamówień z makrami",
+    "language": "pl-PL",
+    "sheets": 1,
+    "hiddenSheets": 0,
+    "cells": 9,
+    "tables": 1,
+    "images": 0,
+    "charts": 0,
+    "hasMacros": true,
+    "isStrict": false,
+    "isEmpty": false
+  },
+  "counts": {
+    "errors": 0,
+    "warnings": 0,
+    "needsReview": 0,
+    "info": 1,
+    "manualChecks": 12
+  },
+  "findings": [
+    {
+      "code": "XL-MACROS",
+      "severity": "Info",
+      "checkType": "Auto",
+      "title": "Skoroszyt zawiera makra",
+      "bestPractice": true,
+      "message": "Skoroszyt zawiera makra; makra nie są oceniane.",
+      "fixInstruction": "Makra nie są uruchamiane ani oceniane przez audyt. Jeśli makra pokazują formularze, okna dialogowe albo zmieniają treść arkuszy, sprawdź ich dostępność ręcznie (obsługa z klawiatury, etykiety kontrolek, komunikaty) albo udostępnij wersję skoroszytu bez makr (Plik → Zapisz jako → Skoroszyt programu Excel (*.xlsx)).",
+      "location": "Skoroszyt",
+      "key": "-001|Workbook|0000000|00000||"
+    }
+  ],
+  "manualChecks": [
+    {
+      "id": "manual-1.1.1",
+      "wcag": [
+        "1.1.1"
+      ],
+      "question": "Czy tekst alternatywny każdego obrazu, kształtu i wykresu oddaje jego treść i funkcję, a obiekty czysto dekoracyjne są oznaczone jako dekoracyjne?",
+      "hint": "Kliknij obiekt prawym przyciskiem myszy → Wyświetl tekst alternatywny (starsze wersje: Edytuj tekst alternatywny)."
+    },
+    {
+      "id": "manual-1.3.1",
+      "wcag": [
+        "1.3.1"
+      ],
+      "question": "Czy dla każdego zestawu danych da się ustalić – programowo albo z tekstu – które komórki są nagłówkami wierszy i kolumn i do których danych się odnoszą?",
+      "hint": "Zaznacz komórkę w danych: karta Projekt tabeli pojawia się tylko dla Tabeli Excela; pole „Wiersz nagłówka” pokazuje, czy tabela ma nagłówki."
+    },
+    {
+      "id": "manual-1.3.2",
+      "wcag": [
+        "1.3.2"
+      ],
+      "question": "Czy treść czytana w kolejności komórek i obiektów (od A1, arkusz po arkuszu) zachowuje sens, także tam, gdzie użyto pól tekstowych i obiektów pływających?"
+    },
+    {
+      "id": "manual-1.3.3",
+      "wcag": [
+        "1.3.3"
+      ],
+      "question": "Czy instrukcje w skoroszycie są zrozumiałe bez odwoływania się wyłącznie do koloru, kształtu, rozmiaru lub położenia (np. „wypełnij żółte pola”, „tabela po prawej”)?"
+    },
+    {
+      "id": "manual-1.4.1",
+      "wcag": [
+        "1.4.1"
+      ],
+      "question": "Czy każda informacja przekazana kolorem (statusy, wartości ujemne, serie wykresu, wyróżnienia) jest dostępna także w inny widoczny sposób: tekstem, znakiem, wzorem, etykietą?"
+    },
+    {
+      "id": "manual-1.4.3",
+      "wcag": [
+        "1.4.3"
+      ],
+      "question": "Czy tekst na tle z obrazu, gradientu, wzoru lub w kolorach automatycznych jest wyraźnie czytelny (kontrast co najmniej 4,5:1, dla dużego tekstu 3:1)?"
+    },
+    {
+      "id": "manual-1.4.10",
+      "wcag": [
+        "1.4.10"
+      ],
+      "question": "Czy przy dużym powiększeniu treść pojedynczych komórek (zwłaszcza długie teksty) da się przeczytać bez przewijania w dwóch kierunkach?"
+    },
+    {
+      "id": "manual-1.4.11",
+      "wcag": [
+        "1.4.11"
+      ],
+      "question": "Czy elementy wykresów i grafik niezbędne do zrozumienia treści (linie, słupki, wycinki, ikony) odróżniają się od tła i od siebie kontrastem co najmniej 3:1 albo mają etykiety tekstowe niosące tę samą informację?"
+    },
+    {
+      "id": "manual-2.4.2",
+      "wcag": [
+        "2.4.2"
+      ],
+      "question": "Czy tytuł we właściwościach dokumentu opisuje nazwę, temat lub cel skoroszytu?",
+      "hint": "Plik → Informacje → Właściwości → Tytuł."
+    },
+    {
+      "id": "manual-2.4.6",
+      "wcag": [
+        "2.4.6"
+      ],
+      "question": "Czy nazwy arkuszy, nagłówki kolumn i wierszy, tytuły wykresów i etykiety pól opisują temat lub cel tego, co oznaczają?"
+    },
+    {
+      "id": "manual-3.1.1",
+      "wcag": [
+        "3.1.1"
+      ],
+      "question": "Czy główny język treści skoroszytu jest poprawnie odczytywany przez czytnik ekranu (ustawienia języka dokumentu i tekstu w obiektach)?"
+    },
+    {
+      "id": "manual-3.1.2",
+      "wcag": [
+        "3.1.2"
+      ],
+      "question": "Czy skoroszyt zawiera fragmenty w innym języku niż główny i czy da się je oznaczyć (w komórkach może to być niemożliwe – wtedy odnotować ograniczenie formatu)?"
+    }
+  ],
+  "criteria": [
+    {
+      "sc": "1.1.1",
+      "name": "Treść nietekstowa",
+      "level": "A",
+      "status": "ManualReview",
+      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: kryterium stosuje się wprost. Każdy obraz, kształt, wykres i obiekt osadzony wymaga alternatywy tekstowej albo oznaczenia jako dekoracyjny.",
+      "manualChecks": 1
+    },
+    {
+      "sc": "1.2.1",
+      "name": "Tylko audio lub tylko wideo (nagranie)",
+      "level": "A",
+      "status": "NotApplicable",
+      "reason": "Skoroszyt nie zawiera osadzonych nagrań audio ani wideo. Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    },
+    {
+      "sc": "1.2.2",
+      "name": "Napisy rozszerzone (nagranie)",
+      "level": "A",
+      "status": "NotApplicable",
+      "reason": "Skoroszyt nie zawiera osadzonych nagrań audio ani wideo. Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    },
+    {
+      "sc": "1.2.3",
+      "name": "Audiodeskrypcja lub alternatywa tekstowa dla mediów (nagranie)",
+      "level": "A",
+      "status": "NotApplicable",
+      "reason": "Skoroszyt nie zawiera osadzonych nagrań audio ani wideo. Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    },
+    {
+      "sc": "1.2.4",
+      "name": "Napisy rozszerzone (na żywo)",
+      "level": "AA",
+      "status": "NotApplicable",
+      "reason": "Kryterium dotyczy mediów nadawanych na żywo; statyczny plik XLSX ich nie zawiera (interpretacja na podstawie modelu zgodności opisanego w WCAG2ICT, „Comments on Conformance”). Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    },
+    {
+      "sc": "1.2.5",
+      "name": "Audiodeskrypcja (nagranie)",
+      "level": "AA",
+      "status": "NotApplicable",
+      "reason": "Skoroszyt nie zawiera osadzonych nagrań audio ani wideo. Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    },
+    {
+      "sc": "1.3.1",
+      "name": "Informacje i relacje",
+      "level": "A",
+      "status": "ManualReview",
+      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: kryterium stosuje się wprost. Relacje komórka–nagłówek, grupowanie i struktura przekazane wyglądem muszą być określone programowo albo dostępne w tekście.",
+      "manualChecks": 1
+    },
+    {
+      "sc": "1.3.2",
+      "name": "Zrozumiała kolejność",
+      "level": "A",
+      "status": "ManualReview",
+      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: kryterium stosuje się wprost. Wymagane tylko tam, gdzie kolejność wpływa na znaczenie treści.",
+      "manualChecks": 1
+    },
+    {
+      "sc": "1.3.3",
+      "name": "Właściwości zmysłowe",
+      "level": "A",
+      "status": "ManualReview",
+      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. Dotyczy, gdy skoroszyt zawiera instrukcje dla użytkownika (czego nie da się ustalić z samego pliku). WCAG2ICT: stosuje się wprost. Instrukcje nie mogą polegać wyłącznie na kształcie, kolorze, rozmiarze ani położeniu.",
+      "manualChecks": 1
+    },
+    {
+      "sc": "1.3.4",
+      "name": "Orientacja",
+      "level": "AA",
+      "status": "NotApplicable",
+      "reason": "Format XLSX nie ma mechanizmu blokowania orientacji wyświetlania (orientacja wydruku to nie orientacja ekranu); o obrocie decyduje oprogramowanie (interpretacja – WCAG2ICT nie omawia arkuszy). Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    },
+    {
+      "sc": "1.3.5",
+      "name": "Określenie pożądanej wartości",
+      "level": "AA",
+      "status": "NotApplicable",
+      "reason": "WCAG2ICT (Note 1): technologie dokumentów bez atrybutów określających oczekiwane znaczenie danych formularza są poza zakresem kryterium; format arkusza nie ma takich atrybutów. Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    },
+    {
+      "sc": "1.4.1",
+      "name": "Użycie koloru",
+      "level": "A",
+      "status": "ManualReview",
+      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: kryterium stosuje się wprost. Kolor nie może być jedynym wizualnym nośnikiem informacji (statusy, liczby ujemne, serie wykresu, łącza).",
+      "manualChecks": 1
+    },
+    {
+      "sc": "1.4.2",
+      "name": "Kontrola odtwarzania dźwięku",
+      "level": "A",
+      "status": "NotApplicable",
+      "reason": "Skoroszyt nie zawiera osadzonych nagrań audio ani wideo. Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    },
+    {
+      "sc": "1.4.3",
+      "name": "Kontrast (minimum)",
+      "level": "AA",
+      "status": "ManualReview",
+      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: kryterium stosuje się wprost. Kolory tekstu i tła komórek, kształtów i wykresów ustala autor.",
+      "manualChecks": 1
+    },
+    {
+      "sc": "1.4.4",
+      "name": "Zmiana rozmiaru tekstu",
+      "level": "AA",
+      "status": "NotApplicable",
+      "softwareDependent": true,
+      "reason": "Formalnie dotyczy dokumentu, ale spełnia je oprogramowanie: wg WCAG2ICT (Note 2) treść, dla której istnieją programy z powiększeniem do 200%, spełnia kryterium, chyba że nie działa z tą funkcją. Kontrola ręczna jest potrzebna tylko wtedy, gdy treść nie działa z powiększeniem widoku. Kryterium zależy od oprogramowania użytego do otwarcia pliku (np. Excela), a nie od autora pliku – nie zostało ocenione."
+    },
+    {
+      "sc": "1.4.5",
+      "name": "Obrazy tekstu",
+      "level": "AA",
+      "status": "NotApplicable",
+      "reason": "Skoroszyt nie zawiera obrazów. Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    },
+    {
+      "sc": "1.4.10",
+      "name": "Dopasowanie do ekranu",
+      "level": "AA",
+      "status": "ManualReview",
+      "softwareDependent": true,
+      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. Zależy od oprogramowania; siatka danych jest objęta wyjątkiem kryterium (układ dwuwymiarowy). WCAG2ICT (Note 4): jeśli typ dokumentu i jego programy nie obsługują zawijania, spełnienie kryterium może być niemożliwe. Do oceny pozostaje czytelność treści pojedynczych komórek przy powiększeniu.",
+      "manualChecks": 1
+    },
+    {
+      "sc": "1.4.11",
+      "name": "Kontrast elementów nietekstowych",
+      "level": "AA",
+      "status": "ManualReview",
+      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: kryterium stosuje się wprost. Obejmuje serie wykresów, ikony i kształty niosące informację; wygląd standardowych kontrolek i siatki ustala oprogramowanie (wyjątek).",
+      "manualChecks": 1
+    },
+    {
+      "sc": "1.4.12",
+      "name": "Odstępy w tekście",
+      "level": "AA",
+      "status": "NotApplicable",
+      "reason": "WCAG2ICT (Note 1): kryterium dotyczy wyłącznie dokumentów w językach znaczników, które pozwalają użytkownikowi zmieniać odstępy w tekście; arkusz nie daje takiego mechanizmu. Uwaga: EN 301 549 V3.2.1 (10.1.4.12) formułuje warunek inaczej. Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    },
+    {
+      "sc": "1.4.13",
+      "name": "Treść spod kursora lub fokusu",
+      "level": "AA",
+      "status": "NotApplicable",
+      "softwareDependent": true,
+      "reason": "Wyjątek w kryterium: dymki notatek i komentarzy, komunikat wejściowy walidacji i etykietkę łącza prezentuje oprogramowanie, a autor nie zmienia ich zachowania. Kryterium zależy od oprogramowania użytego do otwarcia pliku (np. Excela), a nie od autora pliku – nie zostało ocenione."
+    },
+    {
+      "sc": "2.1.1",
+      "name": "Klawiatura",
+      "level": "A",
+      "status": "NotApplicable",
+      "reason": "Nie wykryto kontrolek, obiektów osadzonych ani klikalnych kształtów. Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    },
+    {
+      "sc": "2.1.2",
+      "name": "Bez pułapki na klawiaturę",
+      "level": "A",
+      "status": "NotApplicable",
+      "reason": "Nie wykryto kontrolek ActiveX ani obiektów osadzonych. Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    },
+    {
+      "sc": "2.1.4",
+      "name": "Jednoznakowe skróty klawiaturowe",
+      "level": "A",
+      "status": "NotApplicable",
+      "reason": "Kryterium dotyczy skrótów zaimplementowanych w treści; plik XLSX bez makr nie definiuje skrótów klawiaturowych. Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    },
+    {
+      "sc": "2.2.1",
+      "name": "Dostosowanie czasu",
+      "level": "A",
+      "status": "NotApplicable",
+      "reason": "Kryterium dotyczy limitów czasu ustawionych przez dokument; plik XLSX bez makr nie ustawia limitów czasu. Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    },
+    {
+      "sc": "2.2.2",
+      "name": "Pauza, zatrzymanie, ukrycie",
+      "level": "A",
+      "status": "NotApplicable",
+      "reason": "Nie wykryto animowanych obrazów ani osadzonych multimediów. Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    },
+    {
+      "sc": "2.3.1",
+      "name": "Trzy błyski lub wartości poniżej progu",
+      "level": "A",
+      "status": "NotApplicable",
+      "reason": "Nie wykryto animowanych obrazów ani osadzonych multimediów. Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    },
+    {
+      "sc": "2.4.1",
+      "name": "Możliwość pominięcia bloków",
+      "level": "A",
+      "status": "NotApplicable",
+      "reason": "WCAG2ICT (Note 2): kryterium dotyczy treści powtarzanej w zestawie dokumentów; pojedynczy dokument spełnia je automatycznie. W EN 301 549 klauzula 10.2.4.1 jest pusta. Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    },
+    {
+      "sc": "2.4.2",
+      "name": "Tytuł strony",
+      "level": "A",
+      "status": "ManualReview",
+      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT uznaje kryterium za trudne do zastosowania wprost i zaleca brzmienie zastępcze: dokument ma tytuł opisujący nazwę, temat lub cel. Skoroszyt ma właściwość „Tytuł”. W profilu 2.1 norma EN 301 549 V3.2.1 (10.2.4.2) dopuszcza też opisową nazwę pliku.",
+      "manualChecks": 1
+    },
+    {
+      "sc": "2.4.3",
+      "name": "Kolejność fokusu",
+      "level": "A",
+      "status": "NotApplicable",
+      "reason": "Nie wykryto obiektów pływających, kontrolek ani arkuszy chronionych. Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    },
+    {
+      "sc": "2.4.4",
+      "name": "Cel łącza (w kontekście)",
+      "level": "A",
+      "status": "NotApplicable",
+      "reason": "Skoroszyt nie zawiera hiperłączy. Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    },
+    {
+      "sc": "2.4.5",
+      "name": "Wiele dróg",
+      "level": "AA",
+      "status": "NotApplicable",
+      "reason": "Kryterium dotyczy odnajdywania dokumentu w zestawie dokumentów; nie dotyczy pojedynczego skoroszytu. W EN 301 549 klauzula 10.2.4.5 jest pusta. Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    },
+    {
+      "sc": "2.4.6",
+      "name": "Nagłówki i etykiety",
+      "level": "AA",
+      "status": "ManualReview",
+      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: kryterium stosuje się wprost. Kryterium nie wymaga nagłówków ani etykiet – wymaga, by istniejące opisywały temat lub cel.",
+      "manualChecks": 1
+    },
+    {
+      "sc": "2.4.7",
+      "name": "Widoczny fokus",
+      "level": "AA",
+      "status": "NotApplicable",
+      "softwareDependent": true,
+      "reason": "Nie wykryto kontrolek ActiveX ani obiektów osadzonych; wskaźnik fokusu rysuje oprogramowanie. Kryterium zależy od oprogramowania użytego do otwarcia pliku (np. Excela), a nie od autora pliku – nie zostało ocenione."
+    },
+    {
+      "sc": "2.4.11",
+      "name": "Fokus niezasłonięty (minimum)",
+      "level": "AA",
+      "status": "NotApplicable",
+      "reason": "Nie wykryto obiektów pływających. Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    },
+    {
+      "sc": "2.5.1",
+      "name": "Gesty dotykowe",
+      "level": "A",
+      "status": "NotApplicable",
+      "reason": "WCAG2ICT (Note 2): gesty wielopunktowe i oparte na ścieżce są w dokumentach rzadkie; format XLSX nie pozwala autorowi ich definiować – gesty obsługuje oprogramowanie. Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    },
+    {
+      "sc": "2.5.2",
+      "name": "Rezygnacja ze wskazania",
+      "level": "A",
+      "status": "NotApplicable",
+      "reason": "WCAG2ICT (Note 3): treść interpretująca zdarzenia wskaźnika jest w dokumentach rzadka; w pliku XLSX bez makr zdarzenia obsługuje oprogramowanie. Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    },
+    {
+      "sc": "2.5.3",
+      "name": "Etykieta w nazwie",
+      "level": "A",
+      "status": "NotApplicable",
+      "reason": "Nie wykryto kontrolek ani klikalnych kształtów. Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    },
+    {
+      "sc": "2.5.4",
+      "name": "Aktywowanie ruchem",
+      "level": "A",
+      "status": "NotApplicable",
+      "reason": "Plik XLSX nie udostępnia funkcji uruchamianych ruchem urządzenia. Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    },
+    {
+      "sc": "2.5.7",
+      "name": "Ruchy przeciągania",
+      "level": "AA",
+      "status": "NotApplicable",
+      "reason": "WCAG2ICT (Note 2): przeciąganie jest w dokumentach rzadkie; wyjątek w kryterium obejmuje funkcje określone przez oprogramowanie i niezmienione przez autora. Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    },
+    {
+      "sc": "2.5.8",
+      "name": "Rozmiar celu (minimum)",
+      "level": "AA",
+      "status": "NotApplicable",
+      "reason": "Nie wykryto kontrolek ani klikalnych obiektów. Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    },
+    {
+      "sc": "3.1.1",
+      "name": "Język strony",
+      "level": "A",
+      "status": "ManualReview",
+      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: „each web page” → dokument nie-webowy. Nie potwierdzono w źródłach, czy Excel i czytniki ekranu korzystają z właściwości języka zapisanej w pliku, dlatego wynik jest zawsze do weryfikacji.",
+      "manualChecks": 1
+    },
+    {
+      "sc": "3.1.2",
+      "name": "Język części",
+      "level": "AA",
+      "status": "ManualReview",
+      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. Dotyczy, gdy skoroszyt zawiera fragmenty w innym języku niż główny (czego audyt nie ustala). WCAG2ICT (Note 1): w niektórych technologiach dokumentów nie ma metody oznaczania języka fragmentów i spełnienie kryterium może być niemożliwe.",
+      "manualChecks": 1
+    },
+    {
+      "sc": "3.2.1",
+      "name": "Po otrzymaniu fokusu",
+      "level": "A",
+      "status": "NotApplicable",
+      "reason": "Nie wykryto kontrolek ActiveX ani obiektów osadzonych. Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    },
+    {
+      "sc": "3.2.2",
+      "name": "Podczas wprowadzania danych",
+      "level": "A",
+      "status": "NotApplicable",
+      "reason": "Nie wykryto kontrolek formularza ani ActiveX. Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    },
+    {
+      "sc": "3.2.3",
+      "name": "Spójna nawigacja",
+      "level": "AA",
+      "status": "NotApplicable",
+      "reason": "Kryterium dotyczy mechanizmów powtarzanych w wielu dokumentach zestawu; nie dotyczy pojedynczego skoroszytu (arkusze jednego skoroszytu nie są zestawem dokumentów). Jeśli plik jest częścią zestawu dokumentów w rozumieniu WCAG2ICT, spójność trzeba ocenić ręcznie. Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    },
+    {
+      "sc": "3.2.4",
+      "name": "Spójna identyfikacja",
+      "level": "AA",
+      "status": "NotApplicable",
+      "reason": "Kryterium dotyczy zestawu dokumentów; nie dotyczy pojedynczego skoroszytu. Jeśli plik jest częścią zestawu dokumentów w rozumieniu WCAG2ICT, spójność trzeba ocenić ręcznie. Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    },
+    {
+      "sc": "3.2.6",
+      "name": "Spójna pomoc",
+      "level": "A",
+      "status": "NotApplicable",
+      "reason": "Kryterium dotyczy mechanizmów pomocy powtarzanych w wielu dokumentach zestawu; nie dotyczy pojedynczego skoroszytu. Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    },
+    {
+      "sc": "3.3.1",
+      "name": "Identyfikacja błędu",
+      "level": "A",
+      "status": "NotApplicable",
+      "reason": "Nie wykryto reguł walidacji danych. Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    },
+    {
+      "sc": "3.3.2",
+      "name": "Etykiety lub instrukcje",
+      "level": "A",
+      "status": "NotApplicable",
+      "reason": "Nie wykryto pól do wypełnienia (walidacji danych, kontrolek ani arkuszy chronionych). Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    },
+    {
+      "sc": "3.3.3",
+      "name": "Sugestie korekty błędów",
+      "level": "AA",
+      "status": "NotApplicable",
+      "reason": "Nie wykryto reguł walidacji danych. Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    },
+    {
+      "sc": "3.3.4",
+      "name": "Zapobieganie błędom (prawnym, finansowym, w danych)",
+      "level": "AA",
+      "status": "NotApplicable",
+      "reason": "Kryterium dotyczy dokumentów, które powodują zobowiązania prawne lub transakcje, modyfikują dane w systemach albo wysyłają odpowiedzi testowe; sam plik XLSX tego nie robi (interpretacja własna autorów macierzy). Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    },
+    {
+      "sc": "3.3.7",
+      "name": "Zbędne ponowne wprowadzanie",
+      "level": "A",
+      "status": "NotApplicable",
+      "reason": "Nie wykryto pól do wypełnienia (walidacji danych, kontrolek ani arkuszy chronionych). Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    },
+    {
+      "sc": "3.3.8",
+      "name": "Dostępne uwierzytelnianie (minimum)",
+      "level": "AA",
+      "status": "NotApplicable",
+      "softwareDependent": true,
+      "reason": "Nie wykryto ochrony arkuszy hasłem; okno hasła wyświetla oprogramowanie. Kryterium zależy od oprogramowania użytego do otwarcia pliku (np. Excela), a nie od autora pliku – nie zostało ocenione."
+    },
+    {
+      "sc": "4.1.2",
+      "name": "Nazwa, rola, wartość",
+      "level": "A",
+      "status": "NotApplicable",
+      "reason": "Nie wykryto kontrolek ani obiektów interaktywnych. Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    },
+    {
+      "sc": "4.1.3",
+      "name": "Komunikaty o stanie",
+      "level": "AA",
+      "status": "NotApplicable",
+      "reason": "Komunikaty o stanie w pliku XLSX bez makr generuje oprogramowanie, nie treść dokumentu (interpretacja własna autorów macierzy). Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."
+    }
+  ]
+}
