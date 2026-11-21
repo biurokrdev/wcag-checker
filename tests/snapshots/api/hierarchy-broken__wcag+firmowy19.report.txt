@@ -6,7 +6,7 @@ Obrazy: 0
 Raport walidacji dokumentu „hierarchy-broken.docx”
 Wynik: niepoprawny. 3 błędy, 6 ostrzeżeń, 2 informacje.
 Data sprawdzenia: <data>. Standardy: WCAG 2.1 AA (dokument Word); Standard pism firmowych 1.9.
-Dokument: tytuł „Hierarchia treści. Example Company S. A.”, autor „Example Company S. A.”, język pl-PL, 38 akapitów, 8 nagłówków, 1 tabel, 0 obrazów.
+Dokument: tytuł „Hierarchia treści. Example Company S. A.”, autor „Example Company S. A.”, język pl-PL, 44 akapitów, 11 nagłówków, 1 tabel, 0 obrazów.
 Podsumowanie kontroli
 WCAG 2.1 AA (dokument Word)
 Sekcja „Dokument”
@@ -18,7 +18,7 @@ Sekcja „Dokument”
 | Zatwierdzono | Wersja ostateczna (bez zmian śledzonych i komentarzy) | – |
 | Zatwierdzono | Sekcje i ustawienia strony | – |
 | Zatwierdzono | Numer strony w stopce albo nagłówku | – |
-| Informacja | Spis treści w długim dokumencie | Brak spisu treści: Dokument ma 8 nagłówków, a nie ma spisu treści (pole TOC); spis ułatwia nawigację czytnikiem ekranu. |
+| Informacja | Spis treści w długim dokumencie | Brak spisu treści: Dokument ma 11 nagłówków, a nie ma spisu treści (pole TOC); spis ułatwia nawigację czytnikiem ekranu. |
 Sekcja „Struktura”
 | Status | Kontrola | Szczegóły |
 | Błąd | Hierarchia nagłówków | Pusty nagłówek: Nagłówek poziomu 3 w akapicie 7 jest pusty. ⏎ Treść przed pierwszym nagłówkiem: Treść zaczyna się przed pierwszym nagłówkiem: „Ten akapit stoi przed pierwszym nagłówkiem dokumentu.”. ⏎ Pominięty poziom nagłówka: Pierwszy nagłówek „Zakres dokumentu” ma poziom 2; dokument powinien zaczynać się od nagłówka poziomu 1. ⏎ Pominięty poziom nagłówka: Nagłówek „Szczegóły zakresu” ma poziom 4 zaraz po poziomie 2; pominięto poziom 3. ⏎ Za długi nagłówek: Nagłówek „Ten nagłówek jest zdecydowanie za długi, ponieważ zawiera ca…” ma 158 znaków; to raczej akapit treści ze stylem nagłówka niż tytuł sekcji. |
@@ -80,7 +80,7 @@ Tabela stanu kryteriów WCAG 2.1
 | 1.4.10 Dopasowanie do ekranu | AA | ręcznie | do przeglądu | Nie dotyczy dokumentu Word wprost; tabele i pola tekstowe o stałej szerokości ogląda człowiek. |
 | 2.4.2 Tytuł strony | A | automatycznie | spełnione | Tytuł w metadanych, inny niż nazwa domyślna albo nazwa pliku. |
 | 2.4.4 Cel łącza (w kontekście) | A | częściowo | do przeglądu | Automat wykrywa łącza bez celu, bez tekstu, z samym adresem, z tekstem w rodzaju „tutaj” i ten sam tekst prowadzący do różnych miejsc. Czy tekst łącza opisuje cel, ocenia człowiek. |
-| 2.4.5 Wiele dróg | AA | częściowo | do przeglądu | Brak spisu treści: Dokument ma 8 nagłówków, a nie ma spisu treści (pole TOC); spis ułatwia nawigację czytnikiem ekranu. |
+| 2.4.5 Wiele dróg | AA | częściowo | do przeglądu | Brak spisu treści: Dokument ma 11 nagłówków, a nie ma spisu treści (pole TOC); spis ułatwia nawigację czytnikiem ekranu. |
 | 2.4.6 Nagłówki i etykiety | AA | częściowo | niespełnione | Pusty nagłówek: Nagłówek poziomu 3 w akapicie 7 jest pusty. ⏎ Za długi nagłówek: Nagłówek „Ten nagłówek jest zdecydowanie za długi, ponieważ zawiera ca…” ma 158 znaków; to raczej akapit treści ze stylem nagłówka niż tytuł sekcji. |
 | 3.1.1 Język strony | A | automatycznie | spełnione | Język dokumentu ustawiony (właściwości pakietu albo domyślne ustawienia stylów) i zapisany jako kod języka. |
 | 3.1.2 Język części | AA | ręcznie | do przeglądu | Fragmenty w innym języku powinny mieć oznaczony język (w:lang); automat nie rozpozna języka tekstu. |
@@ -103,6 +103,6 @@ Tabela wystąpień
 | 10 | ostrzeżenie | Za długi nagłówek | WCAG 2.1 AA (dokument Word) | akapit: „Ten nagłówek jest zdecydowanie za długi,…” | Nagłówek „Ten nagłówek jest zdecydowanie za długi, ponieważ zawiera ca…” ma 158 znaków; to raczej akapit treści ze stylem nagłówka niż tytuł sekcji. | nie |
 | 11 | ostrzeżenie | Autor bez wymaganej nazwy instytucji | Standard pism firmowych 1.9 | dokument: „(metadane dokumentu)” | Autor „Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”. | nie |
 | 12 | informacja | Zalecane sprawdzenie ręczne | WCAG 2.1 AA (dokument Word) | dokument: „” | Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie. | nie |
-| 13 | informacja | Brak spisu treści | WCAG 2.1 AA (dokument Word) | dokument: „” | Dokument ma 8 nagłówków, a nie ma spisu treści (pole TOC); spis ułatwia nawigację czytnikiem ekranu. | nie |
+| 13 | informacja | Brak spisu treści | WCAG 2.1 AA (dokument Word) | dokument: „” | Dokument ma 11 nagłówków, a nie ma spisu treści (pole TOC); spis ułatwia nawigację czytnikiem ekranu. | nie |
 
 PDF: %PDF-, strony: 9

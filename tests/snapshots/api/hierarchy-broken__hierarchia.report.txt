@@ -4,13 +4,29 @@ Język: pl-PL
 Obrazy: 0
 
 Raport walidacji dokumentu „hierarchy-broken.docx”
-Wynik: poprawny. Dokument spełnia wszystkie automatycznie sprawdzane wymagania.
+Wynik: niepoprawny. 5 błędów, 2 ostrzeżenia.
 Data sprawdzenia: <data>. Standardy: Hierarchia treści.
-Dokument: tytuł „Hierarchia treści. Example Company S. A.”, autor „Example Company S. A.”, język pl-PL, 38 akapitów, 8 nagłówków, 1 tabel, 0 obrazów.
+Dokument: tytuł „Hierarchia treści. Example Company S. A.”, autor „Example Company S. A.”, język pl-PL, 44 akapitów, 11 nagłówków, 1 tabel, 0 obrazów.
 Podsumowanie kontroli
+Hierarchia treści
+Sekcja „Hierarchia treści”
+| Status | Kontrola | Szczegóły |
+| Błąd | Pusty nagłówek | Pusty nagłówek: Nagłówek poziomu 3 w akapicie 7 jest pusty (styl „Nagłówek 3”). |
+| Błąd | Fałszywy nagłówek | Fałszywy nagłówek: Akapit „Postanowienia ogólne” wygląda jak nagłówek (krótki, pogrubiony albo dużą czcionką), ale ma styl „Normalny”, więc nie należy do struktury dokumentu. |
+| Błąd | Treść albo nagłówek bez nagłówka nadrzędnego | Treść albo nagłówek bez nagłówka nadrzędnego: Treść zaczyna się przed pierwszym nagłówkiem: „Ten akapit stoi przed pierwszym nagłówkiem dokumentu.”. ⏎ Treść albo nagłówek bez nagłówka nadrzędnego: Nagłówek „Zakres dokumentu” ma poziom 2, ale nie ma nad nim nagłówka wyższego rzędu; struktura powinna zaczynać się od nagłówka poziomu 1. |
+| Błąd | Przeskok poziomu nagłówka | Przeskok poziomu nagłówka: Nagłówek „Szczegóły zakresu” ma poziom 4 zaraz po nagłówku poziomu 2; pominięto poziom 3. |
+| Ostrzeżenie | Numer nagłówka niezgodny z poziomem | Numer nagłówka niezgodny z poziomem: Nagłówek „Numer z niewłaściwego poziomu” ma poziom 2, ale jego numer pochodzi z poziomu 3 listy wielopoziomowej; pozostałe nagłówki poziomu 2 numeruje poziom 2. |
+| Ostrzeżenie | Skok poziomu listy | Skok poziomu listy: Pozycja listy „pozycja od razu na poziomie trzecim.” jest na poziomie 3 zaraz po pozycji poziomu 1; pominięto poziom 2. |
 Wyniki walidacji
-0 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
+7 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
 Tabela wystąpień
 | Nr | Waga | Zgłoszenie | Standard | Miejsce | Komunikat | Zweryfikowano |
+| 1 | błąd | Pusty nagłówek | Hierarchia treści | akapit: „” | Nagłówek poziomu 3 w akapicie 7 jest pusty (styl „Nagłówek 3”). | nie |
+| 2 | błąd | Fałszywy nagłówek | Hierarchia treści | akapit: „Postanowienia ogólne” | Akapit „Postanowienia ogólne” wygląda jak nagłówek (krótki, pogrubiony albo dużą czcionką), ale ma styl „Normalny”, więc nie należy do struktury dokumentu. | nie |
+| 3 | błąd | Treść albo nagłówek bez nagłówka nadrzędnego | Hierarchia treści | akapit: „Ten akapit stoi przed pierwszym nagłówki…” | Treść zaczyna się przed pierwszym nagłówkiem: „Ten akapit stoi przed pierwszym nagłówkiem dokumentu.”. | nie |
+| 4 | błąd | Treść albo nagłówek bez nagłówka nadrzędnego | Hierarchia treści | akapit: „Zakres dokumentu” | Nagłówek „Zakres dokumentu” ma poziom 2, ale nie ma nad nim nagłówka wyższego rzędu; struktura powinna zaczynać się od nagłówka poziomu 1. | nie |
+| 5 | błąd | Przeskok poziomu nagłówka | Hierarchia treści | akapit: „Szczegóły zakresu” | Nagłówek „Szczegóły zakresu” ma poziom 4 zaraz po nagłówku poziomu 2; pominięto poziom 3. | nie |
+| 6 | ostrzeżenie | Numer nagłówka niezgodny z poziomem | Hierarchia treści | akapit: „Numer z niewłaściwego poziomu” | Nagłówek „Numer z niewłaściwego poziomu” ma poziom 2, ale jego numer pochodzi z poziomu 3 listy wielopoziomowej; pozostałe nagłówki poziomu 2 numeruje poziom 2. | nie |
+| 7 | ostrzeżenie | Skok poziomu listy | Hierarchia treści | akapit: „pozycja od razu na poziomie trzecim.” | Pozycja listy „pozycja od razu na poziomie trzecim.” jest na poziomie 3 zaraz po pozycji poziomu 1; pominięto poziom 2. | nie |
 
-PDF: %PDF-, strony: 1
+PDF: %PDF-, strony: 3

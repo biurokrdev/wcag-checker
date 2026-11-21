@@ -24,8 +24,8 @@
     "title": "Hierarchia treści. Example Company S. A.",
     "author": "Example Company S. A.",
     "language": "pl-PL",
-    "paragraphs": 38,
-    "headings": 8,
+    "paragraphs": 44,
+    "headings": 11,
     "tables": 1,
     "images": 0
   },
@@ -121,7 +121,7 @@
       "label": "Brak spisu treści",
       "severity": "Info",
       "category": "Structure",
-      "message": "Dokument ma 8 nagłówków, a nie ma spisu treści (pole TOC); spis ułatwia nawigację czytnikiem ekranu.",
+      "message": "Dokument ma 11 nagłówków, a nie ma spisu treści (pole TOC); spis ułatwia nawigację czytnikiem ekranu.",
       "standard": "wcag/2.1",
       "fixable": false
     }
@@ -158,6 +158,18 @@
     {
       "level": 1,
       "text": "Załączniki"
+    },
+    {
+      "level": 1,
+      "text": "Zasady numeracji"
+    },
+    {
+      "level": 2,
+      "text": "Numer zgodny z poziomem"
+    },
+    {
+      "level": 2,
+      "text": "Numer z niewłaściwego poziomu"
     }
   ],
   "wcag": {
@@ -396,7 +408,7 @@
             "label": "Brak spisu treści",
             "severity": "Info",
             "category": "Structure",
-            "message": "Dokument ma 8 nagłówków, a nie ma spisu treści (pole TOC); spis ułatwia nawigację czytnikiem ekranu.",
+            "message": "Dokument ma 11 nagłówków, a nie ma spisu treści (pole TOC); spis ułatwia nawigację czytnikiem ekranu.",
             "standard": "wcag/2.1",
             "fixable": false
           }
@@ -560,7 +572,7 @@
             {
               "code": "TOC_MISSING",
               "label": "Brak spisu treści",
-              "message": "Dokument ma 8 nagłówków, a nie ma spisu treści (pole TOC); spis ułatwia nawigację czytnikiem ekranu.",
+              "message": "Dokument ma 11 nagłówków, a nie ma spisu treści (pole TOC); spis ułatwia nawigację czytnikiem ekranu.",
               "occurrences": 1,
               "severity": "Info"
             }
@@ -1399,7 +1411,7 @@
       "category": "Structure",
       "standard": "wcag/2.1",
       "standardName": "WCAG 2.1 AA (dokument Word)",
-      "message": "Dokument ma 8 nagłówków, a nie ma spisu treści (pole TOC); spis ułatwia nawigację czytnikiem ekranu.",
+      "message": "Dokument ma 11 nagłówków, a nie ma spisu treści (pole TOC); spis ułatwia nawigację czytnikiem ekranu.",
       "fixable": false,
       "criteria": [
         "2.4.5"
@@ -1414,6 +1426,357 @@
       },
       "occurrence": 1,
       "occurrenceCount": 1
+    }
+  ],
+  "structure": [
+    {
+      "kind": "Paragraphs",
+      "text": "Hierarchia treści",
+      "count": 1,
+      "children": [],
+      "key": "body:Paragraph:0",
+      "styleName": "Tytuł"
+    },
+    {
+      "kind": "Paragraphs",
+      "text": "Ten akapit stoi przed pierwszym nagłówkiem dokumentu.",
+      "count": 1,
+      "children": [],
+      "key": "body:Paragraph:1",
+      "styleName": "Normalny"
+    },
+    {
+      "kind": "Heading",
+      "text": "Zakres dokumentu",
+      "count": 1,
+      "children": [
+        {
+          "kind": "Paragraphs",
+          "text": "Dokument zaczyna się od nagłówka poziomu 2, bo nagłówka pozi…",
+          "count": 1,
+          "children": [],
+          "key": "body:Paragraph:3",
+          "styleName": "Normalny"
+        },
+        {
+          "kind": "Heading",
+          "text": "Szczegóły zakresu",
+          "count": 1,
+          "children": [
+            {
+              "kind": "Paragraphs",
+              "text": "Ten nagłówek przeskakuje z poziomu 2 od razu na poziom 4.",
+              "count": 1,
+              "children": [],
+              "key": "body:Paragraph:5",
+              "styleName": "Normalny"
+            }
+          ],
+          "key": "body:Paragraph:4",
+          "level": 4,
+          "styleName": "Nagłówek 4"
+        },
+        {
+          "kind": "Heading",
+          "text": "",
+          "count": 1,
+          "children": [
+            {
+              "kind": "Paragraphs",
+              "text": "Powyżej jest pusty nagłówek poziomu 3.",
+              "count": 3,
+              "children": [],
+              "key": "body:Paragraph:7",
+              "styleName": "Normalny"
+            }
+          ],
+          "key": "body:Paragraph:6",
+          "level": 3,
+          "styleName": "Nagłówek 3"
+        },
+        {
+          "kind": "Heading",
+          "text": "Nagłówek z poziomu konspektu",
+          "count": 1,
+          "children": [
+            {
+              "kind": "Paragraphs",
+              "text": "Akapit powyżej jest nagłówkiem tylko przez poziom konspektu…",
+              "count": 1,
+              "children": [],
+              "key": "body:Paragraph:11",
+              "styleName": "Normalny"
+            }
+          ],
+          "key": "body:Paragraph:10",
+          "level": 3,
+          "styleName": "Normalny"
+        },
+        {
+          "kind": "Heading",
+          "text": "Ten nagłówek jest zdecydowanie za długi, ponieważ zawiera ca…",
+          "count": 1,
+          "children": [
+            {
+              "kind": "Paragraphs",
+              "text": "Lista wielopoziomowa z przeskokiem poziomu:",
+              "count": 1,
+              "children": [],
+              "key": "body:Paragraph:13",
+              "styleName": "Normalny"
+            },
+            {
+              "kind": "List",
+              "text": "Lista punktowana",
+              "count": 4,
+              "children": [
+                {
+                  "kind": "ListItem",
+                  "text": "pozycja poziomu pierwszego,",
+                  "count": 1,
+                  "children": [
+                    {
+                      "kind": "ListItem",
+                      "text": "pozycja poziomu drugiego,",
+                      "count": 1,
+                      "children": [],
+                      "key": "body:Paragraph:15",
+                      "level": 1,
+                      "label": "–",
+                      "styleName": "Akapit z listą"
+                    }
+                  ],
+                  "key": "body:Paragraph:14",
+                  "level": 0,
+                  "label": "•",
+                  "styleName": "Akapit z listą"
+                },
+                {
+                  "kind": "ListItem",
+                  "text": "druga pozycja poziomu pierwszego,",
+                  "count": 1,
+                  "children": [
+                    {
+                      "kind": "ListItem",
+                      "text": "pozycja od razu na poziomie trzecim.",
+                      "count": 1,
+                      "children": [],
+                      "key": "body:Paragraph:17",
+                      "level": 2,
+                      "label": "–",
+                      "styleName": "Akapit z listą"
+                    }
+                  ],
+                  "key": "body:Paragraph:16",
+                  "level": 0,
+                  "label": "•",
+                  "styleName": "Akapit z listą"
+                }
+              ],
+              "key": "body:Paragraph:14",
+              "styleName": "Akapit z listą"
+            },
+            {
+              "kind": "Paragraphs",
+              "text": "Lista numerowana ze stylu akapitu:",
+              "count": 1,
+              "children": [],
+              "key": "body:Paragraph:18",
+              "styleName": "Normalny"
+            },
+            {
+              "kind": "List",
+              "text": "Lista numerowana",
+              "count": 2,
+              "children": [
+                {
+                  "kind": "ListItem",
+                  "text": "Pierwszy krok.",
+                  "count": 1,
+                  "children": [],
+                  "key": "body:Paragraph:19",
+                  "level": 0,
+                  "label": "1.",
+                  "styleName": "Lista numerowana"
+                },
+                {
+                  "kind": "ListItem",
+                  "text": "Drugi krok.",
+                  "count": 1,
+                  "children": [],
+                  "key": "body:Paragraph:20",
+                  "level": 0,
+                  "label": "2.",
+                  "styleName": "Lista numerowana"
+                }
+              ],
+              "key": "body:Paragraph:19",
+              "styleName": "Lista numerowana"
+            },
+            {
+              "kind": "Paragraphs",
+              "text": "Lista zrobiona ręcznie:",
+              "count": 5,
+              "children": [],
+              "key": "body:Paragraph:21",
+              "styleName": "Normalny"
+            },
+            {
+              "kind": "Table",
+              "text": "Tabela 3 × 2",
+              "count": 3,
+              "children": [
+                {
+                  "kind": "Paragraphs",
+                  "text": "Pozycja",
+                  "count": 5,
+                  "children": [],
+                  "key": "body:Paragraph:26",
+                  "styleName": "Normalny"
+                },
+                {
+                  "kind": "Heading",
+                  "text": "Nagłówek w komórce",
+                  "count": 1,
+                  "children": [
+                    {
+                      "kind": "Paragraphs",
+                      "text": "Opis drugiej pozycji",
+                      "count": 1,
+                      "children": [],
+                      "key": "body:Paragraph:32",
+                      "styleName": "Normalny"
+                    }
+                  ],
+                  "key": "body:Paragraph:31",
+                  "level": 3,
+                  "styleName": "Nagłówek 3"
+                }
+              ],
+              "key": "body:Table:0",
+              "label": "3 × 2",
+              "styleName": "Tabela standardowa"
+            }
+          ],
+          "key": "body:Paragraph:12",
+          "level": 3,
+          "styleName": "Nagłówek 3"
+        }
+      ],
+      "key": "body:Paragraph:2",
+      "level": 2,
+      "styleName": "Nagłówek 2"
+    },
+    {
+      "kind": "Heading",
+      "text": "Część główna",
+      "count": 1,
+      "children": [
+        {
+          "kind": "Paragraphs",
+          "text": "Nagłówek poziomu 1 pojawia się dopiero tutaj.",
+          "count": 1,
+          "children": [],
+          "key": "body:Paragraph:34",
+          "styleName": "Normalny"
+        },
+        {
+          "kind": "Heading",
+          "text": "Podsumowanie",
+          "count": 1,
+          "children": [
+            {
+              "kind": "Paragraphs",
+              "text": "Treść podsumowania.",
+              "count": 1,
+              "children": [],
+              "key": "body:Paragraph:36",
+              "styleName": "Normalny"
+            }
+          ],
+          "key": "body:Paragraph:35",
+          "level": 2,
+          "styleName": "Nagłówek 2"
+        }
+      ],
+      "key": "body:Paragraph:33",
+      "level": 1,
+      "styleName": "Nagłówek 1"
+    },
+    {
+      "kind": "Heading",
+      "text": "Załączniki",
+      "count": 1,
+      "children": [
+        {
+          "kind": "Paragraphs",
+          "text": "Lista załączników jest pusta.",
+          "count": 1,
+          "children": [],
+          "key": "body:Paragraph:38",
+          "styleName": "Normalny"
+        }
+      ],
+      "key": "body:Paragraph:37",
+      "level": 1,
+      "styleName": "Nagłówek 1"
+    },
+    {
+      "kind": "Heading",
+      "text": "Zasady numeracji",
+      "count": 1,
+      "children": [
+        {
+          "kind": "Paragraphs",
+          "text": "Nagłówki tej części numeruje lista wielopoziomowa.",
+          "count": 1,
+          "children": [],
+          "key": "body:Paragraph:40",
+          "styleName": "Normalny"
+        },
+        {
+          "kind": "Heading",
+          "text": "Numer zgodny z poziomem",
+          "count": 1,
+          "children": [
+            {
+              "kind": "Paragraphs",
+              "text": "Nagłówek poziomu 2 ma numer z drugiego poziomu listy.",
+              "count": 1,
+              "children": [],
+              "key": "body:Paragraph:42",
+              "styleName": "Normalny"
+            }
+          ],
+          "key": "body:Paragraph:41",
+          "level": 2,
+          "label": "1.1.",
+          "styleName": "Nagłówek 2"
+        },
+        {
+          "kind": "Heading",
+          "text": "Numer z niewłaściwego poziomu",
+          "count": 1,
+          "children": [
+            {
+              "kind": "Paragraphs",
+              "text": "Ten nagłówek poziomu 2 dostał numer z trzeciego poziomu list…",
+              "count": 1,
+              "children": [],
+              "key": "body:Paragraph:44",
+              "styleName": "Normalny"
+            }
+          ],
+          "key": "body:Paragraph:43",
+          "level": 2,
+          "label": "1.1.1.",
+          "styleName": "Nagłówek 2"
+        }
+      ],
+      "key": "body:Paragraph:39",
+      "level": 1,
+      "label": "1.",
+      "styleName": "Nagłówek 1"
     }
   ]
 }

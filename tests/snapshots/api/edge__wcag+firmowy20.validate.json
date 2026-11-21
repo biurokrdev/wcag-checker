@@ -1375,5 +1375,87 @@
       "occurrence": 1,
       "occurrenceCount": 1
     }
+  ],
+  "structure": [
+    {
+      "kind": "Heading",
+      "text": "Przypadki brzegowe",
+      "count": 1,
+      "children": [
+        {
+          "kind": "Paragraphs",
+          "text": "Ten akapit ma fragment z istniejącym komentarzem recenzenta.",
+          "count": 6,
+          "children": [],
+          "key": "body:Paragraph:1",
+          "styleName": "Normalny"
+        },
+        {
+          "kind": "Heading",
+          "text": "Tabela ze stylem tabeli",
+          "count": 1,
+          "children": [
+            {
+              "kind": "Paragraphs",
+              "text": "Tabela 1. Terminy.",
+              "count": 1,
+              "children": [],
+              "key": "body:Paragraph:10",
+              "styleName": "Normalny"
+            },
+            {
+              "kind": "Table",
+              "text": "Tabela 3 × 2",
+              "count": 3,
+              "children": [
+                {
+                  "kind": "Paragraphs",
+                  "text": "Etap",
+                  "count": 6,
+                  "children": [],
+                  "key": "body:Paragraph:11",
+                  "styleName": "Normalny"
+                }
+              ],
+              "key": "body:Table:0",
+              "label": "3 × 2",
+              "styleName": "Tabela brzegowa"
+            },
+            {
+              "kind": "Paragraphs",
+              "text": "Ostatni akapit pierwszej sekcji.",
+              "count": 1,
+              "children": [],
+              "key": "body:Paragraph:17",
+              "styleName": "Normalny"
+            }
+          ],
+          "key": "body:Paragraph:9",
+          "level": 2,
+          "styleName": "Nagłówek 2"
+        },
+        {
+          "kind": "Heading",
+          "text": "Druga sekcja",
+          "count": 1,
+          "children": [
+            {
+              "kind": "Paragraphs",
+              "text": "Druga sekcja ma własną stopkę domyślną. Szczegóły: Regulamin…",
+              "count": 2,
+              "children": [],
+              "key": "body:Paragraph:19",
+              "styleName": "Normalny"
+            }
+          ],
+          "key": "body:Paragraph:18",
+          "level": 2,
+          "styleName": "Nagłówek 2"
+        }
+      ],
+      "key": "body:Paragraph:0",
+      "level": 1,
+      "styleName": "Nagłówek 1"
+    }
   ]
 }

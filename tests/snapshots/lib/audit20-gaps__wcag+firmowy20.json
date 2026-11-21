@@ -44,6 +44,180 @@
       "text": "Dane rejestrowe"
     }
   ],
+  "structure": [
+    {
+      "kind": "Heading",
+      "text": "Luki audytu 2.0",
+      "key": "body:Paragraph:0",
+      "level": 1,
+      "count": 1,
+      "styleName": "Nagłówek 1",
+      "children": [
+        {
+          "kind": "Paragraphs",
+          "text": "Dokument zbiera przypadki, których standard pism firmowych 2…",
+          "key": "body:Paragraph:1",
+          "count": 4,
+          "styleName": "Normalny",
+          "children": []
+        },
+        {
+          "kind": "Heading",
+          "text": "Listy z nadpisaniami",
+          "key": "body:Paragraph:5",
+          "level": 3,
+          "count": 1,
+          "styleName": "Nagłówek 3",
+          "children": [
+            {
+              "kind": "Paragraphs",
+              "text": "Numeracja z nadpisanym poziomem:",
+              "key": "body:Paragraph:6",
+              "count": 1,
+              "styleName": "Normalny",
+              "children": []
+            },
+            {
+              "kind": "List",
+              "text": "Lista numerowana",
+              "key": "body:Paragraph:7",
+              "count": 2,
+              "styleName": "Akapit z listą",
+              "children": [
+                {
+                  "kind": "ListItem",
+                  "text": "Pierwszy krok z numerem bez pogrubienia.",
+                  "key": "body:Paragraph:7",
+                  "level": 0,
+                  "count": 1,
+                  "label": "1)",
+                  "styleName": "Akapit z listą",
+                  "children": []
+                },
+                {
+                  "kind": "ListItem",
+                  "text": "Drugi krok z numerem bez pogrubienia.",
+                  "key": "body:Paragraph:8",
+                  "level": 0,
+                  "count": 1,
+                  "label": "2)",
+                  "styleName": "Akapit z listą",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "kind": "Paragraphs",
+              "text": "Lista, której numeracja pochodzi ze stylu akapitu:",
+              "key": "body:Paragraph:9",
+              "count": 1,
+              "styleName": "Normalny",
+              "children": []
+            },
+            {
+              "kind": "List",
+              "text": "Lista punktowana",
+              "key": "body:Paragraph:10",
+              "count": 2,
+              "styleName": "Lista punktowana",
+              "children": [
+                {
+                  "kind": "ListItem",
+                  "text": "pozycja z zielonym punktorem,",
+                  "key": "body:Paragraph:10",
+                  "level": 0,
+                  "count": 1,
+                  "label": "•",
+                  "styleName": "Lista punktowana",
+                  "children": []
+                },
+                {
+                  "kind": "ListItem",
+                  "text": "druga pozycja z zielonym punktorem.",
+                  "key": "body:Paragraph:11",
+                  "level": 0,
+                  "count": 1,
+                  "label": "•",
+                  "styleName": "Lista punktowana",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "Heading",
+          "text": "Tabela z nadpisaniami",
+          "key": "body:Paragraph:12",
+          "level": 2,
+          "count": 1,
+          "styleName": "Nagłówek 2",
+          "children": [
+            {
+              "kind": "Paragraphs",
+              "text": "Tabela 1. Opłaty.",
+              "key": "body:Paragraph:13",
+              "count": 1,
+              "styleName": "Normalny",
+              "children": []
+            },
+            {
+              "kind": "Table",
+              "text": "Tabela 3 × 2",
+              "key": "body:Table:0",
+              "count": 3,
+              "label": "3 × 2",
+              "styleName": "Tabela z nagłówkiem",
+              "children": [
+                {
+                  "kind": "Paragraphs",
+                  "text": "Rodzaj opłaty",
+                  "key": "body:Paragraph:14",
+                  "count": 5,
+                  "styleName": "Normalny",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "Heading",
+          "text": "Dane rejestrowe",
+          "key": "body:Paragraph:20",
+          "level": 2,
+          "count": 1,
+          "styleName": "Nagłówek 2",
+          "children": [
+            {
+              "kind": "Paragraphs",
+              "text": "Poniżej dwa bloki danych rejestrowych: pierwszy w dedykowany…",
+              "key": "body:Paragraph:21",
+              "count": 1,
+              "styleName": "Normalny",
+              "children": []
+            },
+            {
+              "kind": "Paragraphs",
+              "text": "Example Company S. A. z siedzibą w Warszawie, ul. Przykładow…",
+              "key": "body:Paragraph:22",
+              "count": 1,
+              "styleName": "Dane rejestrowe",
+              "children": []
+            },
+            {
+              "kind": "Paragraphs",
+              "text": "Example Company S. A., Sąd Rejonowy dla m.st. Warszawy, KRS…",
+              "key": "body:Paragraph:23",
+              "count": 1,
+              "styleName": "Normalny",
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
   "issues": [
     {
       "code": "TABLE_ALIGNMENT_MISMATCH",

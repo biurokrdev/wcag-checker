@@ -40,6 +40,88 @@
       "text": "Druga sekcja"
     }
   ],
+  "structure": [
+    {
+      "kind": "Heading",
+      "text": "Przypadki brzegowe",
+      "key": "body:Paragraph:0",
+      "level": 1,
+      "count": 1,
+      "styleName": "Nagłówek 1",
+      "children": [
+        {
+          "kind": "Paragraphs",
+          "text": "Ten akapit ma fragment z istniejącym komentarzem recenzenta.",
+          "key": "body:Paragraph:1",
+          "count": 6,
+          "styleName": "Normalny",
+          "children": []
+        },
+        {
+          "kind": "Heading",
+          "text": "Tabela ze stylem tabeli",
+          "key": "body:Paragraph:9",
+          "level": 2,
+          "count": 1,
+          "styleName": "Nagłówek 2",
+          "children": [
+            {
+              "kind": "Paragraphs",
+              "text": "Tabela 1. Terminy.",
+              "key": "body:Paragraph:10",
+              "count": 1,
+              "styleName": "Normalny",
+              "children": []
+            },
+            {
+              "kind": "Table",
+              "text": "Tabela 3 × 2",
+              "key": "body:Table:0",
+              "count": 3,
+              "label": "3 × 2",
+              "styleName": "Tabela brzegowa",
+              "children": [
+                {
+                  "kind": "Paragraphs",
+                  "text": "Etap",
+                  "key": "body:Paragraph:11",
+                  "count": 6,
+                  "styleName": "Normalny",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "kind": "Paragraphs",
+              "text": "Ostatni akapit pierwszej sekcji.",
+              "key": "body:Paragraph:17",
+              "count": 1,
+              "styleName": "Normalny",
+              "children": []
+            }
+          ]
+        },
+        {
+          "kind": "Heading",
+          "text": "Druga sekcja",
+          "key": "body:Paragraph:18",
+          "level": 2,
+          "count": 1,
+          "styleName": "Nagłówek 2",
+          "children": [
+            {
+              "kind": "Paragraphs",
+              "text": "Druga sekcja ma własną stopkę domyślną. Szczegóły: Regulamin…",
+              "key": "body:Paragraph:19",
+              "count": 2,
+              "styleName": "Normalny",
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
   "issues": [
     {
       "code": "IMAGE_MISSING_ALT_TEXT",

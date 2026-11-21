@@ -1,6 +1,6 @@
 {
-  "status": "Valid",
-  "summary": "Dokument spełnia wszystkie automatycznie sprawdzane wymagania.",
+  "status": "Invalid",
+  "summary": "4 błędy.",
   "standards": [
     {
       "key": "hierarchia/1.0",
@@ -22,14 +22,366 @@
     "images": 2
   },
   "counts": {
-    "errors": 0,
+    "errors": 4,
     "warnings": 0,
     "infos": 0
   },
-  "issues": [],
+  "issues": [
+    {
+      "code": "HIER-EMPTY",
+      "label": "Pusty nagłówek",
+      "severity": "Error",
+      "category": "Headings",
+      "message": "Nagłówek poziomu 1 w akapicie 15 jest pusty (styl „Nagłówek 1”).",
+      "standard": "hierarchia/1.0",
+      "fixable": false,
+      "status": "Required",
+      "fix": "W Wordzie wpisz w tym akapicie tytuł sekcji albo usuń pusty akapit. Jeśli ma zostać jako odstęp, zmień jego styl na „Normalny” (Narzędzia główne → Style), a odstęp ustaw w stylu sąsiedniego akapitu (Akapit → Odstępy)."
+    },
+    {
+      "code": "HIER-FAKE",
+      "label": "Fałszywy nagłówek",
+      "severity": "Error",
+      "category": "Headings",
+      "message": "Akapit „Jebać TEKOM” wygląda jak nagłówek (krótki, pogrubiony albo dużą czcionką), ale ma styl „Header1”, więc nie należy do struktury dokumentu.",
+      "standard": "hierarchia/1.0",
+      "fixable": false,
+      "status": "Required",
+      "fix": "W Wordzie zaznacz ten akapit i nadaj mu styl nagłówka właściwego poziomu (Narzędzia główne → Style → „Nagłówek 2”, „Nagłówek 3”…), a ręczne pogrubienie i powiększenie czcionki usuń (Ctrl+Spacja). Strukturę sprawdzisz w okienku nawigacji (Widok → Okienko nawigacji → Nagłówki)."
+    },
+    {
+      "code": "HIER-FAKE",
+      "label": "Fałszywy nagłówek",
+      "severity": "Error",
+      "category": "Headings",
+      "message": "Akapit „Kutas boko też jest spoko” wygląda jak nagłówek (krótki, pogrubiony albo dużą czcionką), ale ma styl „Header1”, więc nie należy do struktury dokumentu.",
+      "standard": "hierarchia/1.0",
+      "fixable": false,
+      "status": "Required",
+      "fix": "W Wordzie zaznacz ten akapit i nadaj mu styl nagłówka właściwego poziomu (Narzędzia główne → Style → „Nagłówek 2”, „Nagłówek 3”…), a ręczne pogrubienie i powiększenie czcionki usuń (Ctrl+Spacja). Strukturę sprawdzisz w okienku nawigacji (Widok → Okienko nawigacji → Nagłówki)."
+    },
+    {
+      "code": "HIER-NO-PARENT",
+      "label": "Treść albo nagłówek bez nagłówka nadrzędnego",
+      "severity": "Error",
+      "category": "Headings",
+      "message": "Treść zaczyna się przed pierwszym nagłówkiem: „Jebać TEKOM”.",
+      "standard": "hierarchia/1.0",
+      "fixable": false,
+      "status": "Required",
+      "fix": "W Wordzie dodaj przed tym miejscem nagłówek nadrzędny: wpisz tytuł sekcji i nadaj mu styl „Nagłówek 1” (Narzędzia główne → Style) albo zmień styl tego akapitu na nagłówek właściwego poziomu. Dokument powinien zaczynać się od nagłówka poziomu 1. Strukturę sprawdzisz w okienku nawigacji (Widok → Okienko nawigacji → Nagłówki)."
+    }
+  ],
   "outline": [],
   "wcag": null,
   "reportId": "<id>",
-  "summaryTable": [],
-  "findings": []
+  "summaryTable": [
+    {
+      "standard": "hierarchia/1.0",
+      "standardName": "Hierarchia treści",
+      "section": "Hierarchia treści",
+      "rows": [
+        {
+          "id": "HIER-EMPTY",
+          "name": "Pusty nagłówek",
+          "status": "Error",
+          "details": [
+            {
+              "code": "HIER-EMPTY",
+              "label": "Pusty nagłówek",
+              "message": "Nagłówek poziomu 1 w akapicie 15 jest pusty (styl „Nagłówek 1”).",
+              "occurrences": 1,
+              "severity": "Error"
+            }
+          ],
+          "note": null
+        },
+        {
+          "id": "HIER-FAKE",
+          "name": "Fałszywy nagłówek",
+          "status": "Error",
+          "details": [
+            {
+              "code": "HIER-FAKE",
+              "label": "Fałszywy nagłówek",
+              "message": "Akapit „Jebać TEKOM” wygląda jak nagłówek (krótki, pogrubiony albo dużą czcionką), ale ma styl „Header1”, więc nie należy do struktury dokumentu.",
+              "occurrences": 1,
+              "severity": "Error"
+            },
+            {
+              "code": "HIER-FAKE",
+              "label": "Fałszywy nagłówek",
+              "message": "Akapit „Kutas boko też jest spoko” wygląda jak nagłówek (krótki, pogrubiony albo dużą czcionką), ale ma styl „Header1”, więc nie należy do struktury dokumentu.",
+              "occurrences": 1,
+              "severity": "Error"
+            }
+          ],
+          "note": null
+        },
+        {
+          "id": "HIER-NO-PARENT",
+          "name": "Treść albo nagłówek bez nagłówka nadrzędnego",
+          "status": "Error",
+          "details": [
+            {
+              "code": "HIER-NO-PARENT",
+              "label": "Treść albo nagłówek bez nagłówka nadrzędnego",
+              "message": "Treść zaczyna się przed pierwszym nagłówkiem: „Jebać TEKOM”.",
+              "occurrences": 1,
+              "severity": "Error"
+            }
+          ],
+          "note": null
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "index": 0,
+      "code": "HIER-EMPTY",
+      "label": "Pusty nagłówek",
+      "severity": "Error",
+      "category": "Headings",
+      "standard": "hierarchia/1.0",
+      "standardName": "Hierarchia treści",
+      "message": "Nagłówek poziomu 1 w akapicie 15 jest pusty (styl „Nagłówek 1”).",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:14",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 14,
+        "subIndex": null,
+        "snippet": ""
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "W Wordzie wpisz w tym akapicie tytuł sekcji albo usuń pusty akapit. Jeśli ma zostać jako odstęp, zmień jego styl na „Normalny” (Narzędzia główne → Style), a odstęp ustaw w stylu sąsiedniego akapitu (Akapit → Odstępy).",
+      "scope": "Paragraph"
+    },
+    {
+      "index": 1,
+      "code": "HIER-FAKE",
+      "label": "Fałszywy nagłówek",
+      "severity": "Error",
+      "category": "Headings",
+      "standard": "hierarchia/1.0",
+      "standardName": "Hierarchia treści",
+      "message": "Akapit „Jebać TEKOM” wygląda jak nagłówek (krótki, pogrubiony albo dużą czcionką), ale ma styl „Header1”, więc nie należy do struktury dokumentu.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:0",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "Jebać TEKOM"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "W Wordzie zaznacz ten akapit i nadaj mu styl nagłówka właściwego poziomu (Narzędzia główne → Style → „Nagłówek 2”, „Nagłówek 3”…), a ręczne pogrubienie i powiększenie czcionki usuń (Ctrl+Spacja). Strukturę sprawdzisz w okienku nawigacji (Widok → Okienko nawigacji → Nagłówki).",
+      "scope": "Paragraph"
+    },
+    {
+      "index": 2,
+      "code": "HIER-FAKE",
+      "label": "Fałszywy nagłówek",
+      "severity": "Error",
+      "category": "Headings",
+      "standard": "hierarchia/1.0",
+      "standardName": "Hierarchia treści",
+      "message": "Akapit „Kutas boko też jest spoko” wygląda jak nagłówek (krótki, pogrubiony albo dużą czcionką), ale ma styl „Header1”, więc nie należy do struktury dokumentu.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:2",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 2,
+        "subIndex": null,
+        "snippet": "Kutas boko też jest spoko"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "W Wordzie zaznacz ten akapit i nadaj mu styl nagłówka właściwego poziomu (Narzędzia główne → Style → „Nagłówek 2”, „Nagłówek 3”…), a ręczne pogrubienie i powiększenie czcionki usuń (Ctrl+Spacja). Strukturę sprawdzisz w okienku nawigacji (Widok → Okienko nawigacji → Nagłówki).",
+      "scope": "Paragraph"
+    },
+    {
+      "index": 3,
+      "code": "HIER-NO-PARENT",
+      "label": "Treść albo nagłówek bez nagłówka nadrzędnego",
+      "severity": "Error",
+      "category": "Headings",
+      "standard": "hierarchia/1.0",
+      "standardName": "Hierarchia treści",
+      "message": "Treść zaczyna się przed pierwszym nagłówkiem: „Jebać TEKOM”.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:0",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "Jebać TEKOM"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "W Wordzie dodaj przed tym miejscem nagłówek nadrzędny: wpisz tytuł sekcji i nadaj mu styl „Nagłówek 1” (Narzędzia główne → Style) albo zmień styl tego akapitu na nagłówek właściwego poziomu. Dokument powinien zaczynać się od nagłówka poziomu 1. Strukturę sprawdzisz w okienku nawigacji (Widok → Okienko nawigacji → Nagłówki).",
+      "scope": "Paragraph"
+    }
+  ],
+  "structure": [
+    {
+      "kind": "Paragraphs",
+      "text": "Jebać TEKOM",
+      "count": 1,
+      "children": [],
+      "key": "body:Paragraph:0",
+      "styleName": "Header1"
+    },
+    {
+      "kind": "Paragraphs",
+      "text": "Lubię pierdolić głupoty",
+      "count": 1,
+      "children": [],
+      "key": "body:Paragraph:1",
+      "styleName": "Text"
+    },
+    {
+      "kind": "Paragraphs",
+      "text": "Kutas boko też jest spoko",
+      "count": 1,
+      "children": [],
+      "key": "body:Paragraph:2",
+      "styleName": "Header1"
+    },
+    {
+      "kind": "Paragraphs",
+      "text": "Jestem sobie dokumentem i mam wszystko w piździe.",
+      "count": 2,
+      "children": [],
+      "key": "body:Paragraph:3",
+      "styleName": "Text"
+    },
+    {
+      "kind": "Paragraphs",
+      "text": "www.dupeczki.pl",
+      "count": 1,
+      "children": [],
+      "key": "body:Paragraph:6",
+      "styleName": "Normalny"
+    },
+    {
+      "kind": "List",
+      "text": "Lista punktowana",
+      "count": 7,
+      "children": [
+        {
+          "kind": "ListItem",
+          "text": "Kobieta",
+          "count": 1,
+          "children": [
+            {
+              "kind": "ListItem",
+              "text": "Robi mi",
+              "count": 1,
+              "children": [
+                {
+                  "kind": "ListItem",
+                  "text": "Laskę",
+                  "count": 1,
+                  "children": [],
+                  "key": "body:Paragraph:9",
+                  "level": 2,
+                  "label": "•",
+                  "styleName": "Akapit z listą"
+                }
+              ],
+              "key": "body:Paragraph:8",
+              "level": 1,
+              "label": "o",
+              "styleName": "Akapit z listą"
+            }
+          ],
+          "key": "body:Paragraph:7",
+          "level": 0,
+          "label": "•",
+          "styleName": "Akapit z listą"
+        },
+        {
+          "kind": "ListItem",
+          "text": "Śniadanie",
+          "count": 1,
+          "children": [],
+          "key": "body:Paragraph:10",
+          "level": 0,
+          "label": "•",
+          "styleName": "Akapit z listą"
+        },
+        {
+          "kind": "ListItem",
+          "text": "Kawkę",
+          "count": 1,
+          "children": [],
+          "key": "body:Paragraph:11",
+          "level": 0,
+          "label": "•",
+          "styleName": "Akapit z listą"
+        },
+        {
+          "kind": "ListItem",
+          "text": "Pierdoli",
+          "count": 1,
+          "children": [],
+          "key": "body:Paragraph:12",
+          "level": 0,
+          "label": "•",
+          "styleName": "Akapit z listą"
+        },
+        {
+          "kind": "ListItem",
+          "text": "głupoty",
+          "count": 1,
+          "children": [],
+          "key": "body:Paragraph:13",
+          "level": 0,
+          "label": "•",
+          "styleName": "Akapit z listą"
+        }
+      ],
+      "key": "body:Paragraph:7",
+      "styleName": "Akapit z listą"
+    },
+    {
+      "kind": "Heading",
+      "text": "",
+      "count": 1,
+      "children": [
+        {
+          "kind": "Table",
+          "text": "Tabela 2 × 2",
+          "count": 2,
+          "children": [],
+          "key": "body:Table:0",
+          "label": "2 × 2",
+          "styleName": "Tabela - Siatka"
+        }
+      ],
+      "key": "body:Paragraph:14",
+      "level": 1,
+      "styleName": "Nagłówek 1"
+    }
+  ]
 }
