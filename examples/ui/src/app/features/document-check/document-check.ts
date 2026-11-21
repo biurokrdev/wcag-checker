@@ -1,9 +1,11 @@
-import { Component, OnDestroy, OnInit, computed, inject, signal } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, computed, inject, signal, viewChild } from '@angular/core';
 import { Subscription, finalize } from 'rxjs';
 import { saveBlob } from '../../core/download';
+import { DEFAULT_FILE_TYPE, FileTypeConfig, FileTypeId, WcagVersion, checkFile, fileTypeConfig } from '../../core/file-types';
 import { WcagDocumentsService } from '../../core/wcag-documents.service';
 import { CommentExportButton } from '../comment-export/comment-export-button';
 import { ContentTree } from '../content-tree/content-tree';
+import { FileTypePicker } from '../file-type/file-type-picker';
 import {
   CATEGORY_LABEL,
   CHECK_STATUS_LABEL,
@@ -17,7 +19,6 @@ import {
   ISSUE_SCOPE_LABEL,
   issueLabel,
   LOCATION_KIND_LABEL,
-  MAX_FILE_SIZE_BYTES,
   OUTCOME_LABEL,
   SEVERITY_LABEL,
   SPEC_STATUS_LABEL,
@@ -28,6 +29,14 @@ import {
 
 export type ReportTab = 'summary' | 'findings';
 
+// Plik Excel przyjęty przez przeglądarkę, czekający na audyt (do czasu podłączenia modułu XLSX).
+export interface XlsxPending {
+  fileName: string;
+  wcagVersion: WcagVersion;
+}
+
+// Nad standardami sekcja „Typ pliku” (app-file-type-picker): Word działa jak dotąd, Excel ma własny standard
+// (WCAG + wybór wersji) i własne teksty pola pliku, PDF jest niedostępny. Wybory są pamiętane osobno dla typu.
 // Przebieg: wybór standardów i pliku DOCX (także przeciągnięciem) → analiza (API) → raport w dwóch zakładkach.
 // „Podsumowanie”: bloki standardów z zwijanymi sekcjami i tabelą Status | Kontrola | Szczegóły, raport kryteriów WCAG.
 // „Wyniki walidacji”: po lewej lista wystąpień (każde osobno, po 30 na stronę), po prawej opis, weryfikacja ręczna
@@ -35,7 +44,7 @@ export type ReportTab = 'summary' | 'findings';
 // Nad zakładkami zawsze widoczny jest panel struktury dokumentu (app-content-tree), niezależnie od wybranych standardów.
 @Component({
   selector: 'app-document-check',
-  imports: [ContentTree, CommentExportButton],
+  imports: [ContentTree, CommentExportButton, FileTypePicker],
   templateUrl: './document-check.html',
   styleUrl: './document-check.scss',
 })
@@ -59,6 +68,29 @@ export class DocumentCheck implements OnInit, OnDestroy {
   protected readonly catalogError = signal<string | null>(null);
   protected readonly selected = signal<string[]>([]);
   protected readonly dragging = signal(false);
+
+  // Typ pliku. Stan jest trzymany osobno dla typu: „selected” to standardy Word (z katalogu API) i nie zmienia się
+  // przy przełączaniu, „wcagVersion” to wersja WCAG dla Excela – dlatego Word → Excel → Word przywraca wybory.
+  protected readonly fileType = signal<FileTypeId>(DEFAULT_FILE_TYPE);
+  protected readonly typeConfig = computed(() => fileTypeConfig(this.fileType()));
+  protected readonly isWord = computed(() => this.fileType() === 'docx');
+  protected readonly usesCatalog = computed(() => this.typeConfig().standards.kind === 'api-catalog');
+  protected readonly fixedStandards = computed(() => {
+    const standards = this.typeConfig().standards;
+    return standards.kind === 'fixed' ? standards : null;
+  });
+  protected readonly wcagVersion = signal<WcagVersion>(DocumentCheck.defaultWcagVersion());
+  protected readonly wcagVersionLabel = computed(() => this.fixedStandards()?.versions.find((v) => v.id === this.wcagVersion())?.label ?? '');
+
+  // Komunikat przy polu pliku dla typów innych niż Word (formularz zostaje widoczny); Word pokazuje błąd jak dotąd.
+  protected readonly fileError = signal<string | null>(null);
+  protected readonly xlsxPending = signal<XlsxPending | null>(null);
+  // Widoczna informacja o pliku usuniętym przy zmianie typu oraz tekst stałego regionu aria-live.
+  protected readonly removedFileNotice = signal<string | null>(null);
+  protected readonly liveMessage = signal('');
+  protected readonly pickDescribedBy = computed(() => (this.isWord() ? null : this.fileError() ? 'upload-hint file-error' : 'upload-hint'));
+
+  private readonly fileInput = viewChild<ElementRef<HTMLInputElement>>('fileInput');
 
   protected readonly busy = signal(false);
   protected readonly stage = signal('');
@@ -86,7 +118,8 @@ export class DocumentCheck implements OnInit, OnDestroy {
 
   protected readonly formVisible = computed(() => !this.busy() && this.error() === null && this.result() === null);
 
-  protected readonly canSelectFile = computed(() => this.selected().length > 0);
+  // Word wymaga co najmniej jednego standardu z katalogu; typ ze stałą listą ma standard zaznaczony na stałe.
+  protected readonly canSelectFile = computed(() => !this.usesCatalog() || this.selected().length > 0);
 
   protected readonly findings = computed(() => this.result()?.findings ?? []);
 
@@ -146,6 +179,33 @@ export class DocumentCheck implements OnInit, OnDestroy {
     if (checked) next.add(key);
     else next.delete(key);
     this.selected.set(keys.filter((k) => next.has(k)));
+  }
+
+  // Zmiana typu pliku. Kafelki są częścią formularza, a formularz znika na czas analizy, błędu i raportu,
+  // więc typu nie da się zmienić w trakcie analizy ani przy otwartym raporcie – na ekranie może być wtedy tylko
+  // komunikat przy polu albo plik Excel czekający na audyt. Jedno i drugie znika: komunikat dotyczył poprzedniego
+  // typu, a plik do nowego typu nie pasuje (informacja widoczna pod kafelkami i w regionie aria-live).
+  protected onFileTypeChange(next: FileTypeId): void {
+    const target = fileTypeConfig(next);
+    if (next === this.fileType() || !target.enabled || this.busy()) return;
+
+    const removed = this.xlsxPending()?.fileName ?? null;
+    const removal = removed ? `Usunięto plik ${removed} – nie pasuje do typu ${target.label}.` : null;
+    this.fileError.set(null);
+    this.xlsxPending.set(null);
+    this.dragging.set(false);
+    this.fileType.set(next);
+    this.removedFileNotice.set(removal);
+    this.liveMessage.set([`Pokazano standardy dla plików ${target.liveName}.`, removal].filter(Boolean).join(' '));
+  }
+
+  // Wymagany standard: kliknięcie i spacja nie odznaczają pola (anulowane zdarzenie przywraca zaznaczenie).
+  protected keepRequired(event: Event, required: boolean): void {
+    if (required) event.preventDefault();
+  }
+
+  protected openFilePicker(): void {
+    this.fileInput()?.nativeElement.click();
   }
 
   protected onFileSelected(event: Event): void {
@@ -401,10 +461,18 @@ export class DocumentCheck implements OnInit, OnDestroy {
   private handleFile(file: File): void {
     if (this.busy()) return;
 
+    this.removedFileNotice.set(null);
+    const type = this.typeConfig();
+    if (type.id !== 'docx') {
+      this.handleTypedFile(file, type);
+      return;
+    }
+
+    // Word: przebieg jak przed dodaniem wyboru typu pliku.
     this.reset();
-    const problem = DocumentCheck.rejectionReason(file);
-    if (problem) {
-      this.error.set(problem);
+    const check = checkFile(file, type);
+    if (!check.ok) {
+      this.error.set(check.message);
       return;
     }
 
@@ -420,6 +488,36 @@ export class DocumentCheck implements OnInit, OnDestroy {
         },
         error: (e) => this.error.set(WcagDocumentsService.errorMessage(e)),
       });
+  }
+
+  // Typy inne niż Word: plik niezgodny z typem nie trafia do audytu; komunikat zostaje przy polu, formularz jest widoczny.
+  private handleTypedFile(file: File, type: FileTypeConfig): void {
+    this.fileError.set(null);
+    this.xlsxPending.set(null);
+
+    const check = checkFile(file, type);
+    if (!check.ok) {
+      this.fileError.set(check.message);
+      return;
+    }
+    if (type.id === 'xlsx') this.handleXlsx(file, this.wcagVersion());
+  }
+
+  // MIEJSCE ROZSZERZENIA (agent X4): audyt XLSX.
+  // Wywoływane wyłącznie dla typu Excel, po sprawdzeniu pliku w przeglądarce (rozszerzenie .xlsx, niepusty, do 20 MB),
+  // z wersją WCAG wybraną w sekcji „Standardy” ('2.2' albo '2.1'). Do czasu podłączenia modułu NIE woła żadnego
+  // endpointu: zapamiętuje plik w „xlsxPending” (komunikat „Audyt plików Excel jest w przygotowaniu”) i ogłasza to
+  // w regionie aria-live. Podłączając audyt: zastąp treść tej metody wywołaniem API (np. busy/stage jak w handleFile),
+  // wynik trzymaj w nowym sygnale (np. xlsxResult), uwzględnij go w „formVisible” i w „reset”, osadź komponent
+  // wyników w miejscu oznaczonym na końcu document-check.html, a „xlsxPending” z komunikatem usuń.
+  private handleXlsx(file: File, wcagVersion: WcagVersion): void {
+    this.xlsxPending.set({ fileName: file.name, wcagVersion });
+    this.liveMessage.set(`Audyt plików Excel jest w przygotowaniu. Plik ${file.name} nie został wysłany do analizy.`);
+  }
+
+  private static defaultWcagVersion(): WcagVersion {
+    const standards = fileTypeConfig('xlsx').standards;
+    return standards.kind === 'fixed' ? standards.defaultVersion : '2.2';
   }
 
   private reset(): void {
@@ -458,12 +556,5 @@ export class DocumentCheck implements OnInit, OnDestroy {
     } catch {
       return new Set();
     }
-  }
-
-  private static rejectionReason(file: File): string | null {
-    if (!file.name.toLowerCase().endsWith('.docx')) return `„${file.name}” nie jest plikiem DOCX.`;
-    if (file.size === 0) return 'Plik jest pusty.';
-    if (file.size > MAX_FILE_SIZE_BYTES) return `Plik jest za duży. Dopuszczalny rozmiar to ${MAX_FILE_SIZE_BYTES / (1024 * 1024)} MB.`;
-    return null;
   }
 }

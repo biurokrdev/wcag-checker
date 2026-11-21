@@ -1,8 +1,19 @@
 <h1 class="page-title">Walidator dostępności oraz jakości szablonu pisma <sup class="version">v 1.0</sup></h1>
 
+<!-- Stały region dla czytnika ekranu: zmiana listy standardów po wyborze typu pliku, usunięcie niepasującego pliku,
+     status audytu Excel. Jest w DOM od początku i poza formularzem, żeby komunikat nie znikał razem z nim. -->
+<p class="visually-hidden" role="status" aria-live="polite" data-testid="live-region">{{ liveMessage() }}</p>
+
 @if (formVisible()) {
   <form class="setup" (submit)="$event.preventDefault()">
+    <app-file-type-picker [selected]="fileType()" (selectedChange)="onFileTypeChange($event)" />
+    @if (removedFileNotice()) {
+      <p class="type-notice" data-testid="removed-file-notice">{{ removedFileNotice() }}</p>
+    }
+
     <h2 class="field-label">Standardy</h2>
+    @if (usesCatalog()) {
+    <!-- Word: blok bez zmian (bramka regresji document-check.word-gate.spec.ts). -->
     <div class="panel-soft">
       @if (catalogError()) {
         <div class="box error" role="alert" data-testid="catalog-error">Nie udało się pobrać listy standardów. {{ catalogError() }}</div>
@@ -26,8 +37,44 @@
         }
       }
     </div>
+    } @else if (fixedStandards(); as fixed) {
+    <!-- Typ ze stałą listą (Excel): standardy Word nie są renderowane. -->
+    <div class="panel-soft fixed-standards" data-testid="fixed-standards">
+      @for (s of fixed.items; track s.key) {
+        <div class="fixed-standard">
+          <label class="standard">
+            <!-- Zaznaczony i nieodznaczalny: pole zostaje dostępne z klawiatury i dla czytnika (aria-disabled + opis),
+                 a próba odznaczenia jest anulowana. Atrybut disabled wyjąłby je z kolejności tabulacji. -->
+            <input
+              type="checkbox"
+              [checked]="true"
+              [attr.aria-disabled]="s.required ? 'true' : null"
+              [attr.aria-describedby]="s.required ? 'standard-' + s.key + '-required' : null"
+              (click)="keepRequired($event, s.required)"
+              [attr.data-testid]="'standard-' + s.key"
+            />
+            <span class="name">{{ s.name }}</span>
+          </label>
+          @if (s.required) {
+            <p class="required-note" [id]="'standard-' + s.key + '-required'" [attr.data-testid]="'standard-' + s.key + '-required'">
+              Wymagany – jedyny standard dla tego typu pliku, nie można go odznaczyć.
+            </p>
+          }
+        </div>
+      }
+      <fieldset class="versions" data-testid="wcag-versions">
+        <legend>{{ fixed.versionLegend }}</legend>
+        @for (v of fixed.versions; track v.id) {
+          <label class="version">
+            <input type="radio" name="wcag-version" [value]="v.id" [checked]="v.id === wcagVersion()" (change)="wcagVersion.set(v.id)" [attr.data-testid]="'wcag-version-' + v.id" />
+            <span>{{ v.label }}</span>
+          </label>
+        }
+      </fieldset>
+    </div>
+    }
 
-    <h2 class="field-label">Plik szablonu (*.docx)</h2>
+    <h2 class="field-label">{{ typeConfig().uploadTitle }}</h2>
     <div class="panel-soft">
       <div
         class="dropzone"
@@ -39,13 +86,40 @@
         data-testid="dropzone"
       >
         <span class="drop-icon" aria-hidden="true">⤓</span>
-        <span>
+        <span [attr.id]="isWord() ? null : 'upload-hint'">
           <b>Przeciągnij i upuść tutaj</b><br />
-          Dopuszczalny format pliku: DOCX, do 20 MB
+          {{ typeConfig().uploadHint }}
         </span>
       </div>
-      <input #fileInput type="file" class="visually-hidden" accept=".docx" (change)="onFileSelected($event)" data-testid="file-input" />
-      <button type="button" class="link pick" (click)="fileInput.click()" [disabled]="!canSelectFile()" data-testid="pick-button">⊕ Wybierz plik</button>
+      @if (isWord()) {
+        <!-- Word: pole dokładnie jak przed wyborem typu pliku (statyczne accept=".docx" – ta sama kolejność atrybutów w DOM). -->
+        <input #fileInput type="file" class="visually-hidden" accept=".docx" (change)="onFileSelected($event)" data-testid="file-input" />
+      } @else {
+        <!-- Pozostałe typy: accept (rozszerzenie + MIME) i nazwa z konfiguracji. Pole jest poza kolejnością tabulacji,
+             bo z klawiatury otwiera je przycisk „Wybierz plik”; błąd jest z nim powiązany przez aria-describedby. -->
+        <input
+          #fileInput
+          type="file"
+          class="visually-hidden"
+          tabindex="-1"
+          [attr.accept]="typeConfig().accept"
+          [attr.aria-label]="typeConfig().uploadTitle"
+          [attr.aria-describedby]="fileError() ? 'upload-hint file-error' : 'upload-hint'"
+          [attr.aria-invalid]="fileError() ? 'true' : null"
+          (change)="onFileSelected($event)"
+          data-testid="file-input"
+        />
+      }
+      <button type="button" class="link pick" (click)="openFilePicker()" [disabled]="!canSelectFile()" [attr.aria-describedby]="pickDescribedBy()" data-testid="pick-button">⊕ Wybierz plik</button>
+      @if (fileError()) {
+        <div class="box error file-error" role="alert" id="file-error" data-testid="file-error">{{ fileError() }}</div>
+      }
+      @if (xlsxPending(); as pending) {
+        <p class="box info file-pending" data-testid="xlsx-pending">
+          <b>Audyt plików Excel jest w przygotowaniu.</b>
+          Plik „{{ pending.fileName }}” ({{ wcagVersionLabel() }}) nie został wysłany do analizy.
+        </p>
+      }
     </div>
   </form>
 }
@@ -340,3 +414,9 @@
     }
   </section>
 }
+
+<!-- MIEJSCE ROZSZERZENIA (agent X4): wynik audytu XLSX.
+     Osadź tutaj komponent wyników arkusza, obok sekcji raportu Word powyżej (jej wnętrza nie zmieniaj), np.:
+       @if (xlsxResult(); as x) { <app-xlsx-report [result]="x" [wcagVersion]="wcagVersion()" (finish)="next()" /> }
+     Stan ustawia DocumentCheck.handleXlsx(file, wcagVersion) w document-check.ts; do tego czasu ekran pokazuje
+     komunikat „Audyt plików Excel jest w przygotowaniu” (data-testid="xlsx-pending") i niczego nie wysyła. -->

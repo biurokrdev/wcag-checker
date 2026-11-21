@@ -552,3 +552,74 @@
     border-color: var(--orange);
   }
 }
+
+// ---- Typ pliku: informacja pod kafelkami, standard stały (Excel) z wyborem wersji, komunikaty przy polu pliku.
+// Nowe reguły dotyczą tylko nowych elementów; style ścieżki Word powyżej zostają bez zmian.
+.type-notice {
+  margin: -0.9rem 0 1.5rem;
+  font-weight: 600;
+}
+
+.fixed-standards {
+  // Fokus na szarym panelu w indygo (pomarańczowy z reguły globalnej ma tu za niski kontrast).
+  input:focus-visible {
+    outline: 2px solid var(--indigo);
+    outline-offset: 2px;
+  }
+
+  // Wiersz z polem ma co najmniej 24 px wysokości (cel dotykowy).
+  .standard,
+  .version {
+    min-height: 1.75rem;
+  }
+
+  .standard {
+    grid-template-columns: auto 1fr;
+    grid-template-areas: 'box name';
+    // Pole jest wymagane – kursor nie sugeruje, że da się je przełączyć.
+    cursor: default;
+  }
+}
+
+.required-note {
+  margin: 0 0 0.9rem 1.75rem;
+  font-size: 0.9rem;
+}
+
+.versions {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+
+  legend {
+    padding: 0;
+    margin: 0 0 0.3rem;
+    font-weight: 600;
+  }
+}
+
+.version {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.2rem 0;
+  cursor: pointer;
+
+  input {
+    width: 1.05rem;
+    height: 1.05rem;
+    margin: 0;
+    accent-color: var(--indigo);
+  }
+}
+
+.file-error,
+.file-pending {
+  margin: 0.8rem 0 0;
+}
+
+.box.info {
+  background: #e9f0f8;
+  border: 1px solid #5b7fa8;
+}
