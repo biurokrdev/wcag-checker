@@ -24,6 +24,7 @@ internal sealed class SensoryRule : IXlsxRule
         + "2. Jeśli nie, dopisz odniesienie niezależne od wyglądu: nazwę arkusza, tabeli lub kolumny, adres komórki albo treść etykiety, np. zamiast „pola zaznaczone na czerwono” – „pola z dopiskiem »Do poprawy« w kolumnie Status”, zamiast „tabela po prawej” – „tabela »Podsumowanie« (od komórki H2)”. "
         + "3. Informację przekazywaną kolorem powtórz tekstem lub znakiem w komórce.")
     {
+        Scope = "teksty odwołujące się do koloru, położenia lub kształtu",
         DefaultConfidence = StructureOptions.SensoryConfidence,
     };
 

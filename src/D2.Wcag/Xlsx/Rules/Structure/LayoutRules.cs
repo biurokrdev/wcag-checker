@@ -26,6 +26,7 @@ internal sealed class MergedCellsRule : IXlsxRule
         + "3. Uzupełnij wartości w komórkach, które po rozdzieleniu zostały puste (każdy wiersz i każda kolumna danych powinny mieć własną wartość albo wpis typu „brak danych”). "
         + "Tekst wyśrodkowany nad kilkoma kolumnami uzyskasz bez scalania: Ctrl+1 → Wyrównanie → Poziomo: Wyrównaj zaznaczenie do środka.")
     {
+        Scope = "scalone komórki w obszarach danych",
         DefaultConfidence = StructureOptions.MergedInDataConfidence,
     };
 
@@ -171,6 +172,7 @@ internal sealed class BlankLayoutRule : IXlsxRule
         + "3. Odstęp między częściami danych uzyskaj wysokością wiersza lub szerokością kolumny (Narzędzia główne → Format → Wysokość wiersza / Szerokość kolumny), a nie pustymi komórkami. "
         + "Jeśli to osobne zestawienia, nadaj każdemu własny wiersz nagłówka albo przenieś je na osobne arkusze.")
     {
+        Scope = "puste wiersze i kolumny dzielące dane",
         DefaultConfidence = StructureOptions.BlankRowConfidence,
     };
 

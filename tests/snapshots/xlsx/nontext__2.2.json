@@ -804,7 +804,7 @@
       "name": "Informacje i relacje",
       "level": "A",
       "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: kryterium stosuje się wprost. Relacje komórka–nagłówek, grupowanie i struktura przekazane wyglądem muszą być określone programowo albo dostępne w tekście.",
+      "reason": "Sprawdzono automatycznie: puste wiersze i kolumny dzielące dane (XL-BLANK-LAYOUT); scalone komórki w obszarach danych (XL-MERGED); wiersze nagłówka Tabel Excela (XL-TABLE-HEADER); obszary danych z wierszem nagłówkowym poza Tabelami Excela (XL-TABLE-MISSING) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. WCAG2ICT: kryterium stosuje się wprost. Relacje komórka–nagłówek, grupowanie i struktura przekazane wyglądem muszą być określone programowo albo dostępne w tekście.",
       "manualChecks": 1
     },
     {
@@ -823,7 +823,7 @@
       "name": "Właściwości zmysłowe",
       "level": "A",
       "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. Dotyczy, gdy skoroszyt zawiera instrukcje dla użytkownika (czego nie da się ustalić z samego pliku). WCAG2ICT: stosuje się wprost. Instrukcje nie mogą polegać wyłącznie na kształcie, kolorze, rozmiarze ani położeniu.",
+      "reason": "Sprawdzono automatycznie: teksty odwołujące się do koloru, położenia lub kształtu (XL-SENSORY) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. Dotyczy, gdy skoroszyt zawiera instrukcje dla użytkownika (czego nie da się ustalić z samego pliku). WCAG2ICT: stosuje się wprost. Instrukcje nie mogą polegać wyłącznie na kształcie, kolorze, rozmiarze ani położeniu.",
       "manualChecks": 1
     },
     {
@@ -862,7 +862,7 @@
       "name": "Kontrast (minimum)",
       "level": "AA",
       "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: kryterium stosuje się wprost. Kolory tekstu i tła komórek, kształtów i wykresów ustala autor.",
+      "reason": "Sprawdzono automatycznie: kontrast tekstu w komórkach (XL-CONTRAST); kontrast tekstu po zadziałaniu formatowania warunkowego (XL-CONTRAST-CF) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. WCAG2ICT: kryterium stosuje się wprost. Kolory tekstu i tła komórek, kształtów i wykresów ustala autor.",
       "manualChecks": 1
     },
     {
@@ -895,7 +895,7 @@
       "name": "Kontrast elementów nietekstowych",
       "level": "AA",
       "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: kryterium stosuje się wprost. Obejmuje serie wykresów, ikony i kształty niosące informację; wygląd standardowych kontrolek i siatki ustala oprogramowanie (wyjątek).",
+      "reason": "Sprawdzono automatycznie: kontrast serii wykresów o kolorach zapisanych w pliku (XL-CHART-CONTRAST) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. WCAG2ICT: kryterium stosuje się wprost. Obejmuje serie wykresów, ikony i kształty niosące informację; wygląd standardowych kontrolek i siatki ustala oprogramowanie (wyjątek).",
       "manualChecks": 1
     },
     {
@@ -969,7 +969,7 @@
       "name": "Tytuł strony",
       "level": "A",
       "status": "NoIssuesDetected",
-      "reason": "Kontrole automatyczne nie wykryły problemów w zakresie: XL-TITLE. Do oceny ręcznej pozostaje: Czy tytuł we właściwościach dokumentu opisuje nazwę, temat lub cel skoroszytu?"
+      "reason": "Sprawdzono automatycznie: tytuł we właściwościach dokumentu (XL-TITLE) – nie wykryto problemów. Do oceny ręcznej pozostaje: Czy tytuł we właściwościach dokumentu opisuje nazwę, temat lub cel skoroszytu?"
     },
     {
       "sc": "2.4.3",
@@ -1002,7 +1002,7 @@
       "name": "Nagłówki i etykiety",
       "level": "AA",
       "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: kryterium stosuje się wprost. Kryterium nie wymaga nagłówków ani etykiet – wymaga, by istniejące opisywały temat lub cel.",
+      "reason": "Sprawdzono automatycznie: nazwy arkuszy (XL-SHEET-NAME); nazwy kolumn Tabel Excela (XL-TABLE-HEADER-NAME) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. WCAG2ICT: kryterium stosuje się wprost. Kryterium nie wymaga nagłówków ani etykiet – wymaga, by istniejące opisywały temat lub cel.",
       "manualChecks": 1
     },
     {
@@ -1071,7 +1071,7 @@
       "name": "Język strony",
       "level": "A",
       "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: „each web page” → dokument nie-webowy. Nie potwierdzono w źródłach, czy Excel i czytniki ekranu korzystają z właściwości języka zapisanej w pliku, dlatego wynik jest zawsze do weryfikacji.",
+      "reason": "Sprawdzono automatycznie: język we właściwościach dokumentu (XL-LANG) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. WCAG2ICT: „each web page” → dokument nie-webowy. Nie potwierdzono w źródłach, czy Excel i czytniki ekranu korzystają z właściwości języka zapisanej w pliku, dlatego wynik jest zawsze do weryfikacji.",
       "manualChecks": 1
     },
     {
@@ -1131,7 +1131,7 @@
       "name": "Etykiety lub instrukcje",
       "level": "A",
       "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. Dotyczy, gdy arkusz wymaga wprowadzania danych. Etykiety lub instrukcje są wymagane, gdy treść wymaga danych od użytkownika; komunikat wejściowy walidacji jest jednym ze sposobów, nie jedynym.",
+      "reason": "Sprawdzono automatycznie: komunikaty wejściowe i etykiety pól z walidacją danych (XL-DV-INPUT); etykiety komórek do wypełnienia w chronionych arkuszach (XL-FIELD-LABEL) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. Dotyczy, gdy arkusz wymaga wprowadzania danych. Etykiety lub instrukcje są wymagane, gdy treść wymaga danych od użytkownika; komunikat wejściowy walidacji jest jednym ze sposobów, nie jedynym.",
       "manualChecks": 1
     },
     {

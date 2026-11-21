@@ -1204,7 +1204,7 @@
       "name": "Treść nietekstowa",
       "level": "A",
       "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: kryterium stosuje się wprost. Każdy obraz, kształt, wykres i obiekt osadzony wymaga alternatywy tekstowej albo oznaczenia jako dekoracyjny.",
+      "reason": "Sprawdzono automatycznie: obecność tekstu alternatywnego obrazów i kształtów (XL-ALT-MISSING); tekst alternatywny obiektów pod kątem opisów ogólnych, nazw plików i bardzo krótkich (XL-ALT-POOR); obecność opisu alternatywnego wykresów (XL-CHART-ALT) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. WCAG2ICT: kryterium stosuje się wprost. Każdy obraz, kształt, wykres i obiekt osadzony wymaga alternatywy tekstowej albo oznaczenia jako dekoracyjny.",
       "manualChecks": 1
     },
     {
@@ -1247,7 +1247,7 @@
       "name": "Informacje i relacje",
       "level": "A",
       "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: kryterium stosuje się wprost. Relacje komórka–nagłówek, grupowanie i struktura przekazane wyglądem muszą być określone programowo albo dostępne w tekście.",
+      "reason": "Sprawdzono automatycznie: puste wiersze i kolumny dzielące dane (XL-BLANK-LAYOUT); scalone komórki w obszarach danych (XL-MERGED); wiersze nagłówka Tabel Excela (XL-TABLE-HEADER); obszary danych z wierszem nagłówkowym poza Tabelami Excela (XL-TABLE-MISSING) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. WCAG2ICT: kryterium stosuje się wprost. Relacje komórka–nagłówek, grupowanie i struktura przekazane wyglądem muszą być określone programowo albo dostępne w tekście.",
       "manualChecks": 1
     },
     {
@@ -1255,7 +1255,7 @@
       "name": "Zrozumiała kolejność",
       "level": "A",
       "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: kryterium stosuje się wprost. Wymagane tylko tam, gdzie kolejność wpływa na znaczenie treści.",
+      "reason": "Sprawdzono automatycznie: treść pól tekstowych i kształtów leżącą poza siatką komórek (XL-TEXTBOX) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. WCAG2ICT: kryterium stosuje się wprost. Wymagane tylko tam, gdzie kolejność wpływa na znaczenie treści.",
       "manualChecks": 1
     },
     {
@@ -1263,7 +1263,7 @@
       "name": "Właściwości zmysłowe",
       "level": "A",
       "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. Dotyczy, gdy skoroszyt zawiera instrukcje dla użytkownika (czego nie da się ustalić z samego pliku). WCAG2ICT: stosuje się wprost. Instrukcje nie mogą polegać wyłącznie na kształcie, kolorze, rozmiarze ani położeniu.",
+      "reason": "Sprawdzono automatycznie: teksty odwołujące się do koloru, położenia lub kształtu (XL-SENSORY) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. Dotyczy, gdy skoroszyt zawiera instrukcje dla użytkownika (czego nie da się ustalić z samego pliku). WCAG2ICT: stosuje się wprost. Instrukcje nie mogą polegać wyłącznie na kształcie, kolorze, rozmiarze ani położeniu.",
       "manualChecks": 1
     },
     {
@@ -1415,7 +1415,7 @@
       "name": "Tytuł strony",
       "level": "A",
       "status": "NoIssuesDetected",
-      "reason": "Kontrole automatyczne nie wykryły problemów w zakresie: XL-TITLE. Do oceny ręcznej pozostaje: Czy tytuł we właściwościach dokumentu opisuje nazwę, temat lub cel skoroszytu?"
+      "reason": "Sprawdzono automatycznie: tytuł we właściwościach dokumentu (XL-TITLE) – nie wykryto problemów. Do oceny ręcznej pozostaje: Czy tytuł we właściwościach dokumentu opisuje nazwę, temat lub cel skoroszytu?"
     },
     {
       "sc": "2.4.3",
@@ -1444,7 +1444,7 @@
       "name": "Nagłówki i etykiety",
       "level": "AA",
       "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: kryterium stosuje się wprost. Kryterium nie wymaga nagłówków ani etykiet – wymaga, by istniejące opisywały temat lub cel.",
+      "reason": "Sprawdzono automatycznie: nazwy arkuszy (XL-SHEET-NAME); nazwy kolumn Tabel Excela (XL-TABLE-HEADER-NAME) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. WCAG2ICT: kryterium stosuje się wprost. Kryterium nie wymaga nagłówków ani etykiet – wymaga, by istniejące opisywały temat lub cel.",
       "manualChecks": 1
     },
     {
@@ -1510,7 +1510,7 @@
       "name": "Język strony",
       "level": "A",
       "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: „each web page” → dokument nie-webowy. Nie potwierdzono w źródłach, czy Excel i czytniki ekranu korzystają z właściwości języka zapisanej w pliku, dlatego wynik jest zawsze do weryfikacji.",
+      "reason": "Sprawdzono automatycznie: język we właściwościach dokumentu (XL-LANG) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. WCAG2ICT: „each web page” → dokument nie-webowy. Nie potwierdzono w źródłach, czy Excel i czytniki ekranu korzystają z właściwości języka zapisanej w pliku, dlatego wynik jest zawsze do weryfikacji.",
       "manualChecks": 1
     },
     {

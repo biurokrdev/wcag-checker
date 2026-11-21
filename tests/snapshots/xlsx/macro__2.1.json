@@ -106,7 +106,7 @@
       "name": "Treść nietekstowa",
       "level": "A",
       "status": "NoIssuesDetected",
-      "reason": "Kontrole automatyczne nie wykryły problemów w zakresie: XL-ALT-MISSING, XL-ALT-POOR, XL-CHART-ALT. Do oceny ręcznej pozostaje: Czy tekst alternatywny każdego obrazu, kształtu i wykresu oddaje jego treść i funkcję, a obiekty czysto dekoracyjne są oznaczone jako dekoracyjne?"
+      "reason": "Sprawdzono automatycznie: obecność tekstu alternatywnego obrazów i kształtów (XL-ALT-MISSING); tekst alternatywny obiektów pod kątem opisów ogólnych, nazw plików i bardzo krótkich (XL-ALT-POOR); obecność opisu alternatywnego wykresów (XL-CHART-ALT) – nie wykryto problemów. Do oceny ręcznej pozostaje: Czy tekst alternatywny każdego obrazu, kształtu i wykresu oddaje jego treść i funkcję, a obiekty czysto dekoracyjne są oznaczone jako dekoracyjne?"
     },
     {
       "sc": "1.2.1",
@@ -148,7 +148,7 @@
       "name": "Informacje i relacje",
       "level": "A",
       "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: kryterium stosuje się wprost. Relacje komórka–nagłówek, grupowanie i struktura przekazane wyglądem muszą być określone programowo albo dostępne w tekście.",
+      "reason": "Sprawdzono automatycznie: puste wiersze i kolumny dzielące dane (XL-BLANK-LAYOUT); scalone komórki w obszarach danych (XL-MERGED); wiersze nagłówka Tabel Excela (XL-TABLE-HEADER); obszary danych z wierszem nagłówkowym poza Tabelami Excela (XL-TABLE-MISSING) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. WCAG2ICT: kryterium stosuje się wprost. Relacje komórka–nagłówek, grupowanie i struktura przekazane wyglądem muszą być określone programowo albo dostępne w tekście.",
       "manualChecks": 1
     },
     {
@@ -156,14 +156,14 @@
       "name": "Zrozumiała kolejność",
       "level": "A",
       "status": "NoIssuesDetected",
-      "reason": "Kontrole automatyczne nie wykryły problemów w zakresie: XL-TEXTBOX. Do oceny ręcznej pozostaje: Czy treść czytana w kolejności komórek i obiektów (od A1, arkusz po arkuszu) zachowuje sens, także tam, gdzie użyto pól tekstowych i obiektów pływających?"
+      "reason": "Sprawdzono automatycznie: treść pól tekstowych i kształtów leżącą poza siatką komórek (XL-TEXTBOX) – nie wykryto problemów. Do oceny ręcznej pozostaje: Czy treść czytana w kolejności komórek i obiektów (od A1, arkusz po arkuszu) zachowuje sens, także tam, gdzie użyto pól tekstowych i obiektów pływających?"
     },
     {
       "sc": "1.3.3",
       "name": "Właściwości zmysłowe",
       "level": "A",
       "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. Dotyczy, gdy skoroszyt zawiera instrukcje dla użytkownika (czego nie da się ustalić z samego pliku). WCAG2ICT: stosuje się wprost. Instrukcje nie mogą polegać wyłącznie na kształcie, kolorze, rozmiarze ani położeniu.",
+      "reason": "Sprawdzono automatycznie: teksty odwołujące się do koloru, położenia lub kształtu (XL-SENSORY) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. Dotyczy, gdy skoroszyt zawiera instrukcje dla użytkownika (czego nie da się ustalić z samego pliku). WCAG2ICT: stosuje się wprost. Instrukcje nie mogą polegać wyłącznie na kształcie, kolorze, rozmiarze ani położeniu.",
       "manualChecks": 1
     },
     {
@@ -185,7 +185,7 @@
       "name": "Użycie koloru",
       "level": "A",
       "status": "NoIssuesDetected",
-      "reason": "Kontrole automatyczne nie wykryły problemów w zakresie: XL-CHART-COLOR, XL-COLOR-ONLY. Do oceny ręcznej pozostaje: Czy każda informacja przekazana kolorem (statusy, wartości ujemne, serie wykresu, wyróżnienia) jest dostępna także w inny widoczny sposób: tekstem, znakiem, wzorem, etykietą?"
+      "reason": "Sprawdzono automatycznie: rozróżnienie serii wykresów innym środkiem niż kolor (XL-CHART-COLOR); formatowanie warunkowe i formaty liczb ujemnych wyróżniające wyłącznie kolorem (XL-COLOR-ONLY) – nie wykryto problemów. Do oceny ręcznej pozostaje: Czy każda informacja przekazana kolorem (statusy, wartości ujemne, serie wykresu, wyróżnienia) jest dostępna także w inny widoczny sposób: tekstem, znakiem, wzorem, etykietą?"
     },
     {
       "sc": "1.4.2",
@@ -199,7 +199,7 @@
       "name": "Kontrast (minimum)",
       "level": "AA",
       "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: kryterium stosuje się wprost. Kolory tekstu i tła komórek, kształtów i wykresów ustala autor.",
+      "reason": "Sprawdzono automatycznie: kontrast tekstu w komórkach (XL-CONTRAST); kontrast tekstu po zadziałaniu formatowania warunkowego (XL-CONTRAST-CF) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. WCAG2ICT: kryterium stosuje się wprost. Kolory tekstu i tła komórek, kształtów i wykresów ustala autor.",
       "manualChecks": 1
     },
     {
@@ -231,7 +231,7 @@
       "name": "Kontrast elementów nietekstowych",
       "level": "AA",
       "status": "NoIssuesDetected",
-      "reason": "Kontrole automatyczne nie wykryły problemów w zakresie: XL-CHART-CONTRAST. Do oceny ręcznej pozostaje: Czy elementy wykresów i grafik niezbędne do zrozumienia treści (linie, słupki, wycinki, ikony) odróżniają się od tła i od siebie kontrastem co najmniej 3:1 albo mają etykiety tekstowe niosące tę samą informację?"
+      "reason": "Sprawdzono automatycznie: kontrast serii wykresów o kolorach zapisanych w pliku (XL-CHART-CONTRAST) – nie wykryto problemów. Do oceny ręcznej pozostaje: Czy elementy wykresów i grafik niezbędne do zrozumienia treści (linie, słupki, wycinki, ikony) odróżniają się od tła i od siebie kontrastem co najmniej 3:1 albo mają etykiety tekstowe niosące tę samą informację?"
     },
     {
       "sc": "1.4.12",
@@ -302,7 +302,7 @@
       "name": "Tytuł strony",
       "level": "A",
       "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT uznaje kryterium za trudne do zastosowania wprost i zaleca brzmienie zastępcze: dokument ma tytuł opisujący nazwę, temat lub cel. Skoroszyt ma właściwość „Tytuł”. W profilu 2.1 norma EN 301 549 V3.2.1 (10.2.4.2) dopuszcza też opisową nazwę pliku.",
+      "reason": "Sprawdzono automatycznie: tytuł we właściwościach dokumentu (XL-TITLE) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. WCAG2ICT uznaje kryterium za trudne do zastosowania wprost i zaleca brzmienie zastępcze: dokument ma tytuł opisujący nazwę, temat lub cel. Skoroszyt ma właściwość „Tytuł”. W profilu 2.1 norma EN 301 549 V3.2.1 (10.2.4.2) dopuszcza też opisową nazwę pliku.",
       "manualChecks": 1
     },
     {
@@ -331,7 +331,7 @@
       "name": "Nagłówki i etykiety",
       "level": "AA",
       "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: kryterium stosuje się wprost. Kryterium nie wymaga nagłówków ani etykiet – wymaga, by istniejące opisywały temat lub cel.",
+      "reason": "Sprawdzono automatycznie: nazwy arkuszy (XL-SHEET-NAME); nazwy kolumn Tabel Excela (XL-TABLE-HEADER-NAME) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. WCAG2ICT: kryterium stosuje się wprost. Kryterium nie wymaga nagłówków ani etykiet – wymaga, by istniejące opisywały temat lub cel.",
       "manualChecks": 1
     },
     {
@@ -375,7 +375,7 @@
       "name": "Język strony",
       "level": "A",
       "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: „each web page” → dokument nie-webowy. Nie potwierdzono w źródłach, czy Excel i czytniki ekranu korzystają z właściwości języka zapisanej w pliku, dlatego wynik jest zawsze do weryfikacji.",
+      "reason": "Sprawdzono automatycznie: język we właściwościach dokumentu (XL-LANG) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. WCAG2ICT: „each web page” → dokument nie-webowy. Nie potwierdzono w źródłach, czy Excel i czytniki ekranu korzystają z właściwości języka zapisanej w pliku, dlatego wynik jest zawsze do weryfikacji.",
       "manualChecks": 1
     },
     {

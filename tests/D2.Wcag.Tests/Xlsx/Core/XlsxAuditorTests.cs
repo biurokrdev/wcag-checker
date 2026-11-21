@@ -437,6 +437,10 @@ public class XlsxAuditorTests
         Assert.Equal(XlsxCriterionStatus.ManualReview, Criterion("1.3.3").Status);
         Assert.Equal((XlsxCriterionStatus.ManualReview, 1), (Criterion("2.4.4").Status, Criterion("2.4.4").ManualChecks));
         Assert.Empty(Criterion("2.4.4").FindingCodes);
+        // Kryterium pokryte heurystyką, która tylko dodała pytanie: uzasadnienie mówi, co sprawdzono, a nie „nie zostało ocenione”.
+        Assert.StartsWith("Sprawdzono automatycznie: Tytuł T-LINK (T-LINK) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych.",
+            Criterion("2.4.4").Reason);
+        Assert.DoesNotContain("nie zostało ocenione", Criterion("2.4.4").Reason);
         Assert.Equal(XlsxCriterionStatus.ManualReview, Criterion("1.1.1").Status);
         Assert.Contains("nie zostało ocenione przez narzędzie", Criterion("1.1.1").Reason);
         Assert.Equal(1, Criterion("1.1.1").ManualChecks);
@@ -460,6 +464,29 @@ public class XlsxAuditorTests
         Assert.Equal(result.Criteria.Select(c => c.Sc).OrderBy(sc => sc, XlsxWcagCriteria.ScComparer), result.Criteria.Select(c => c.Sc));
         Assert.All(result.Criteria, c => Assert.False(string.IsNullOrWhiteSpace(c.Reason)));
         Assert.Equal(new XlsxCounts(1, 1, 1, 0, result.ManualChecks.Count), result.Counts);
+    }
+
+    [Theory]
+    [MemberData(nameof(XlsxSnapshotCases.AllFixtures), MemberType = typeof(XlsxSnapshotCases))]
+    public void Criteria_Reason_SaysNotAssessed_OnlyWithoutAutomatedChecks(string fixture)
+    {
+        var result = new WcagXlsxAuditor().Audit(XlsxSnapshotCases.Load(fixture));
+        var automated = XlsxRules.All.SelectMany(r => r.Descriptors).Where(d => d.CheckType != XlsxCheckType.Manual)
+            .SelectMany(d => d.Wcag).Select(r => r.Sc).ToHashSet();
+
+        Assert.All(result.Criteria.Where(c => c.Status is XlsxCriterionStatus.ManualReview or XlsxCriterionStatus.NoIssuesDetected), c =>
+        {
+            if (automated.Contains(c.Sc))
+            {
+                Assert.DoesNotContain("nie zostało ocenione przez narzędzie", c.Reason);
+            }
+            else
+            {
+                Assert.StartsWith("Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie.", c.Reason);
+            }
+        });
+        Assert.All(result.Criteria.Where(c => c.Status == XlsxCriterionStatus.NoIssuesDetected),
+            c => Assert.StartsWith("Sprawdzono automatycznie: ", c.Reason));
     }
 
     [Fact]

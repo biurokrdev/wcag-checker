@@ -22,7 +22,10 @@ internal sealed class TitleRule : IXlsxRule
         "Brak opisowego tytułu skoroszytu we właściwościach dokumentu",
         [XlsxWcagCriteria.Ref("2.4.2")],
         XlsxCheckType.Auto,
-        Fix);
+        Fix)
+    {
+        Scope = "tytuł we właściwościach dokumentu",
+    };
 
     public IReadOnlyList<XlsxRuleDescriptor> Descriptors { get; } = [Descriptor];
 
@@ -142,7 +145,10 @@ internal sealed class LanguageRule : IXlsxRule
         XlsxCheckType.Heuristic,
         "Excel nie ma w oknie właściwości pola języka dokumentu, więc samego braku nie da się tam uzupełnić. 1. Otwórz skoroszyt z czytnikiem ekranu (np. NVDA albo Narrator) i sprawdź, czy treść komórek i obiektów jest czytana w języku, w którym została napisana. "
         + "2. Sprawdź języki tworzenia i sprawdzania pakietu Office: Plik → Opcje → Język. "
-        + "3. Jeśli skoroszyt powstaje w narzędziu, które zapisuje właściwości pliku (eksport, generator raportów), ustaw w nim język dokumentu (np. pl-PL).");
+        + "3. Jeśli skoroszyt powstaje w narzędziu, które zapisuje właściwości pliku (eksport, generator raportów), ustaw w nim język dokumentu (np. pl-PL).")
+    {
+        Scope = "język we właściwościach dokumentu",
+    };
 
     public IReadOnlyList<XlsxRuleDescriptor> Descriptors { get; } = [Descriptor];
 
@@ -178,6 +184,7 @@ internal sealed class SheetNameRule : IXlsxRule
         "1. Kliknij prawym przyciskiem myszy kartę arkusza u dołu okna (albo naciśnij Shift+F10 na karcie). 2. Wybierz Zmień nazwę. "
         + "3. Wpisz krótką nazwę opisującą zawartość arkusza, np. „Sprzedaż 2026”, i naciśnij Enter. Wynik sprawdzisz poleceniem Recenzja → Sprawdź ułatwienia dostępu.")
     {
+        Scope = "nazwy arkuszy",
         DefaultConfidence = StructureOptions.SheetNameDefaultConfidence,
     };
 

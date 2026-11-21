@@ -11,6 +11,12 @@ public sealed record XlsxRuleDescriptor(string Code, string Title, IReadOnlyList
 
     /// <summary>Domyślna pewność heurystyki (0–1), gdy trafienie nie poda własnej.</summary>
     public double? DefaultConfidence { get; init; }
+
+    /// <summary>
+    /// Co kontrola sprawdza – fraza do zdania „Sprawdzono automatycznie: …” w uzasadnieniu kryterium (np. „kontrast tekstu
+    /// w komórkach”). <c>null</c> – w uzasadnieniu stoi tytuł reguły.
+    /// </summary>
+    public string? Scope { get; init; }
 }
 
 /// <summary>Trafienie reguły. Wagę, limit i sortowanie nadaje audytor.</summary>

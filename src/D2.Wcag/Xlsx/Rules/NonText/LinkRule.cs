@@ -35,6 +35,7 @@ internal sealed class LinkRule : IXlsxRule
     [
         new(TextCode, "Tekst łącza nie wskazuje celu", [XlsxWcagCriteria.Ref("2.4.4")], XlsxCheckType.Heuristic, TextFix)
         {
+            Scope = "tekst hiperłączy i łącza w obiektach",
             DefaultConfidence = NonTextOptions.LinkGenericConfidence,
         },
         new(UrlCode, "Tekst łącza jest surowym adresem", [], XlsxCheckType.Auto, UrlFix) { BestPractice = true },

@@ -21,6 +21,7 @@ internal sealed class TableMissingRule : IXlsxRule
         + "3. W oknie potwierdź zakres i zaznacz „Moja tabela ma nagłówki”. 4. Na karcie Projekt tabeli sprawdź, czy zaznaczone jest pole Wiersz nagłówka, i nadaj tabeli opisową nazwę (pole Nazwa tabeli). "
         + "Jeśli zakres celowo nie jest tabelą, upewnij się, że nagłówki kolumn i wierszy da się jednoznacznie ustalić z treści arkusza.")
     {
+        Scope = "obszary danych z wierszem nagłówkowym poza Tabelami Excela",
         DefaultConfidence = StructureOptions.TableMissingConfidence,
     };
 
@@ -96,6 +97,7 @@ internal sealed class TableHeaderRule : IXlsxRule
         "1. Kliknij dowolną komórkę tabeli. 2. Na karcie Projekt tabeli (grupa Opcje stylu tabeli) zaznacz pole Wiersz nagłówka. "
         + "3. W nowym wierszu nagłówka zastąp nazwy „Kolumna1”, „Kolumna2”… nazwami opisującymi zawartość kolumn. Wynik sprawdzisz poleceniem Recenzja → Sprawdź ułatwienia dostępu.")
     {
+        Scope = "wiersze nagłówka Tabel Excela",
         DefaultConfidence = StructureOptions.TableHeaderMissingConfidence,
     };
 
@@ -107,6 +109,7 @@ internal sealed class TableHeaderRule : IXlsxRule
         "1. Kliknij komórkę nagłówka z nazwą domyślną (np. „Kolumna1”). 2. Wpisz nazwę opisującą zawartość kolumny, np. „Data zamówienia”, i naciśnij Enter. "
         + "3. Powtórz dla pozostałych nagłówków domyślnych. Upewnij się, że na karcie Projekt tabeli zaznaczone jest pole Wiersz nagłówka.")
     {
+        Scope = "nazwy kolumn Tabel Excela",
         DefaultConfidence = StructureOptions.TableHeaderDefaultNameConfidence,
     };
 

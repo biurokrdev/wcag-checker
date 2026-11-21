@@ -82,6 +82,7 @@ internal sealed class ConditionalContrastRule : IXlsxRule
         XlsxCheckType.Heuristic,
         FixText)
     {
+        Scope = "kontrast tekstu po zadziałaniu formatowania warunkowego",
         DefaultConfidence = SomeCellsConfidence,
     };
 

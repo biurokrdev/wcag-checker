@@ -36,7 +36,10 @@ internal sealed class ContrastRule : IXlsxRule
         "Za niski kontrast tekstu względem tła komórki",
         [Criteria.XlsxWcagCriteria.Ref("1.4.3")],
         XlsxCheckType.Auto,
-        BaseFix);
+        BaseFix)
+    {
+        Scope = "kontrast tekstu w komórkach",
+    };
 
     public IReadOnlyList<XlsxRuleDescriptor> Descriptors { get; } = [Descriptor];
 

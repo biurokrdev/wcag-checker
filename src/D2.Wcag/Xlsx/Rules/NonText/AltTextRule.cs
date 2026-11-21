@@ -38,12 +38,19 @@ internal sealed class AltTextRule : IXlsxRule
 
     public IReadOnlyList<XlsxRuleDescriptor> Descriptors { get; } =
     [
-        new(MissingCode, "Obiekt bez tekstu alternatywnego", [Criteria.XlsxWcagCriteria.Ref("1.1.1")], XlsxCheckType.Auto, MissingFix),
+        new(MissingCode, "Obiekt bez tekstu alternatywnego", [Criteria.XlsxWcagCriteria.Ref("1.1.1")], XlsxCheckType.Auto, MissingFix)
+        {
+            Scope = "obecność tekstu alternatywnego obrazów i kształtów",
+        },
         new(PoorCode, "Tekst alternatywny nie opisuje obiektu", [Criteria.XlsxWcagCriteria.Ref("1.1.1")], XlsxCheckType.Heuristic, PoorFix)
         {
+            Scope = "tekst alternatywny obiektów pod kątem opisów ogólnych, nazw plików i bardzo krótkich",
             DefaultConfidence = NonTextOptions.AltGenericConfidence,
         },
-        new(ChartCode, "Wykres bez opisu alternatywnego", [Criteria.XlsxWcagCriteria.Ref("1.1.1")], XlsxCheckType.Auto, ChartFix),
+        new(ChartCode, "Wykres bez opisu alternatywnego", [Criteria.XlsxWcagCriteria.Ref("1.1.1")], XlsxCheckType.Auto, ChartFix)
+        {
+            Scope = "obecność opisu alternatywnego wykresów",
+        },
     ];
 
     public IEnumerable<XlsxRuleHit> Check(XlsxWorkbook workbook, XlsxAuditContext context)

@@ -32,7 +32,10 @@ internal sealed class ControlRule : IXlsxRule
 
     public IReadOnlyList<XlsxRuleDescriptor> Descriptors { get; } =
     [
-        new(Code, "Kontrolka bez nazwy", [XlsxWcagCriteria.Ref("4.1.2")], XlsxCheckType.Auto, Fix),
+        new(Code, "Kontrolka bez nazwy", [XlsxWcagCriteria.Ref("4.1.2")], XlsxCheckType.Auto, Fix)
+        {
+            Scope = "nazwy (etykiety i tekst alternatywny) kontrolek formularza",
+        },
     ];
 
     public IEnumerable<XlsxRuleHit> Check(XlsxWorkbook workbook, XlsxAuditContext context)

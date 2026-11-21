@@ -23,6 +23,7 @@ internal sealed class TextBoxRule : IXlsxRule
     [
         new(Code, "Treść w polu tekstowym poza siatką komórek", [XlsxWcagCriteria.Ref("1.3.2")], XlsxCheckType.Heuristic, Fix)
         {
+            Scope = "treść pól tekstowych i kształtów leżącą poza siatką komórek",
             DefaultConfidence = NonTextOptions.TextBoxConfidence,
         },
     ];

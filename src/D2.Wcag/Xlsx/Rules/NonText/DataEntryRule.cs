@@ -43,14 +43,17 @@ internal sealed class DataEntryRule : IXlsxRule
     [
         new(InputCode, "Pole z walidacją danych bez komunikatu wejściowego i etykiety", [XlsxWcagCriteria.Ref("3.3.2")], XlsxCheckType.Heuristic, InputFix)
         {
+            Scope = "komunikaty wejściowe i etykiety pól z walidacją danych",
             DefaultConfidence = NonTextOptions.DvInputConfidence,
         },
         new(ErrorCode, "Walidacja danych bez własnego komunikatu o błędzie", [XlsxWcagCriteria.Ref("3.3.3")], XlsxCheckType.Heuristic, ErrorFix)
         {
+            Scope = "obecność własnych komunikatów o błędzie w walidacji danych o znanym zbiorze wartości",
             DefaultConfidence = NonTextOptions.DvErrorConfidence,
         },
         new(FieldCode, "Pole do wypełnienia bez etykiety", [XlsxWcagCriteria.Ref("3.3.2")], XlsxCheckType.Heuristic, FieldFix)
         {
+            Scope = "etykiety komórek do wypełnienia w chronionych arkuszach",
             DefaultConfidence = NonTextOptions.FieldLabelConfidence,
         },
     ];

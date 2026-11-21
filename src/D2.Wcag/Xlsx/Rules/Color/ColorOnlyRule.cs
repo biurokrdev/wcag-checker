@@ -63,6 +63,7 @@ internal sealed class ColorOnlyRule : IXlsxRule
         XlsxCheckType.Heuristic,
         FixText)
     {
+        Scope = "formatowanie warunkowe i formaty liczb ujemnych wyróżniające wyłącznie kolorem",
         DefaultConfidence = DefaultConfidence,
     };
 

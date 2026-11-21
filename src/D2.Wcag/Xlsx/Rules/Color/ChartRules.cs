@@ -81,6 +81,7 @@ internal sealed class ChartColorRule : IXlsxRule
         XlsxCheckType.Heuristic,
         FixText)
     {
+        Scope = "rozróżnienie serii wykresów innym środkiem niż kolor",
         DefaultConfidence = UnknownColorsConfidence,
     };
 
@@ -223,6 +224,7 @@ internal sealed class ChartContrastRule : IXlsxRule
         XlsxCheckType.Heuristic,
         FixText)
     {
+        Scope = "kontrast serii wykresów o kolorach zapisanych w pliku",
         DefaultConfidence = AssumedConfidence,
     };
 
