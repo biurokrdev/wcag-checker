@@ -49,9 +49,19 @@ public sealed class WcagCommentWriter : IWcagCommentWriter
         }
 
         using var stream = new MemoryStream(docx, writable: false);
-        if (!DocxOpener.TryOpen(stream, editable: false, out var document, out var error))
+        DocxDocument? document;
+        string? error;
+        try
         {
-            throw new CommentExportException(error!);
+            if (!DocxOpener.TryOpen(stream, editable: false, out document, out error))
+            {
+                throw new CommentExportException(error!);
+            }
+        }
+        catch (System.Xml.XmlException ex)
+        {
+            // Część główna nie jest poprawnym XML-em.
+            throw new CommentExportException($"Nie udało się odczytać pliku jako DOCX: {ex.Message}", ex);
         }
 
         using (document!.Package)
@@ -61,7 +71,7 @@ public sealed class WcagCommentWriter : IWcagCommentWriter
             {
                 return Annotate(docx, document, issueList, options);
             }
-            catch (Exception ex) when (ex is not CommentExportException && DocxOpener.IsFormatError(ex))
+            catch (Exception ex) when (ex is not CommentExportException && (DocxOpener.IsFormatError(ex) || ex is System.Xml.XmlException))
             {
                 throw new CommentExportException($"Nie udało się dopisać komentarzy – plik jest uszkodzony albo ma nietypową budowę: {ex.Message}", ex);
             }

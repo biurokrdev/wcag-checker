@@ -534,6 +534,18 @@ public class CommentWriterTests
         Assert.StartsWith("Nie udało się odczytać pliku jako DOCX", Assert.Throws<CommentExportException>(() => Writer.Annotate("to nie jest plik Worda"u8.ToArray(), [], Options)).Message);
         Assert.StartsWith("Nie udało się odczytać pliku jako DOCX", Assert.Throws<CommentExportException>(() => Writer.Annotate(truncated, [], Options)).Message);
         Assert.StartsWith("Nie udało się", Assert.Throws<CommentExportException>(() => Writer.Annotate(zip.ToArray(), [], Options)).Message);
+
+        // Pakiet poprawny, ale część główna to niedomknięty XML.
+        using var broken = new MemoryStream();
+        broken.Write(Edge);
+        using (var archive = new ZipArchive(broken, ZipArchiveMode.Update, leaveOpen: true))
+        {
+            archive.GetEntry("word/document.xml")!.Delete();
+            using var entry = archive.CreateEntry("word/document.xml").Open();
+            entry.Write("<w:document xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\"><w:body><w:p><w:r><w:t>x</w:body></w:document>"u8);
+        }
+
+        Assert.StartsWith("Nie udało się odczytać pliku jako DOCX", Assert.Throws<CommentExportException>(() => Writer.Annotate(broken.ToArray(), [], Options)).Message);
     }
 
     [Fact]
