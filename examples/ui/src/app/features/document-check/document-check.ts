@@ -9,6 +9,7 @@ import { CommentExportButton } from '../comment-export/comment-export-button';
 import { ContentTree } from '../content-tree/content-tree';
 import { FileTypePicker } from '../file-type/file-type-picker';
 import { XlsxReport } from '../xlsx-results/xlsx-report';
+import { DOCUMENT_CHECK_UPLOAD_COLORS } from './document-check.colors';
 import {
   CATEGORY_LABEL,
   CHECK_STATUS_LABEL,
@@ -64,6 +65,13 @@ export class DocumentCheck implements OnInit, OnDestroy {
   protected readonly specStatusLabel = SPEC_STATUS_LABEL;
   protected readonly scopeLabel = ISSUE_SCOPE_LABEL;
   protected readonly issueLabel = issueLabel;
+  // Kolory strefy pliku poza ścieżką Word (kontrast tekstu, obramowania i fokusu) jako zmienne CSS --dc-*; Word zostaje bez zmian.
+  protected readonly uploadStyle = [
+    `--dc-drop-text: ${DOCUMENT_CHECK_UPLOAD_COLORS.dropText}`,
+    `--dc-drop-border: ${DOCUMENT_CHECK_UPLOAD_COLORS.dropBorder}`,
+    `--dc-drop-active-bg: ${DOCUMENT_CHECK_UPLOAD_COLORS.dropActiveBg}`,
+    `--dc-focus: ${DOCUMENT_CHECK_UPLOAD_COLORS.focus}`,
+  ].join('; ');
 
   protected readonly catalog = signal<Standard[]>([]);
   protected readonly catalogError = signal<string | null>(null);
@@ -507,6 +515,7 @@ export class DocumentCheck implements OnInit, OnDestroy {
 
   // Audyt XLSX: wywoływane wyłącznie dla typu Excel, po sprawdzeniu pliku w przeglądarce (rozszerzenie .xlsx, niepusty,
   // do 20 MB), z wersją WCAG wybraną w sekcji „Standardy”. Na czas analizy formularz znika („Analiza skoroszytu…”).
+  // Ogłoszenia: początek – tylko stały region live (tekst „stage” nie jest regionem live), koniec – tylko fokus na nagłówku raportu.
   // Odrzucenie z serwera (np. dokument Word wysłany jako .xlsx, plik zaszyfrowany) wraca przy polu pliku jak błąd
   // przeglądarki: formularz zostaje, komunikat ma role="alert", fokus wraca na „Wybierz plik” (opisany komunikatem).
   // Wynik trafia do app-xlsx-report, który przenosi fokus na swój nagłówek.
@@ -521,7 +530,9 @@ export class DocumentCheck implements OnInit, OnDestroy {
       .subscribe({
         next: (r) => {
           this.xlsxResult.set(r);
-          this.liveMessage.set(`Zakończono analizę skoroszytu ${file.name}.`);
+          // Wynik ogłasza fokus przeniesiony na nagłówek raportu (app-xlsx-report) – drugi komunikat w regionie live
+          // dublowałby to ogłoszenie, więc region jest tylko czyszczony.
+          this.liveMessage.set('');
         },
         error: (e) => {
           this.fileError.set(WcagWorkbooksService.errorMessage(e));

@@ -612,3 +612,22 @@
 .file-error {
   margin: 0.8rem 0 0;
 }
+
+// Strefa pliku poza ścieżką Word (klasa .upload-accessible i zmienne --dc-* tylko w tym stanie; kolory i test kontrastu:
+// document-check.colors.ts). Reguły Worda powyżej zostają bez zmian. Tekst ≥ 4,5:1, obramowanie i fokus ≥ 3:1 na panelu;
+// stan aktywny (plik nad strefą) zmienia też styl obramowania na ciągły – nie tylko kolor tła.
+.upload-accessible {
+  .dropzone {
+    color: var(--dc-drop-text);
+    border-color: var(--dc-drop-border);
+
+    &.active {
+      background: var(--dc-drop-active-bg);
+      border-style: solid;
+    }
+  }
+
+  .pick:focus-visible {
+    outline-color: var(--dc-focus);
+  }
+}

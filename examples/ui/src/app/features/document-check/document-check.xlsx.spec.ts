@@ -70,6 +70,10 @@ describe('DocumentCheck – Excel audit', () => {
     selectFile(file('budzet.xlsx'));
 
     expect(text(q('stage'))).toBe('Analiza skoroszytu…');
+    // Jedno źródło ogłoszenia: stały region live; tekst „stage” nie jest regionem live (bez podwójnego komunikatu).
+    expect(live()).toBe('Analiza skoroszytu budzet.xlsx…');
+    expect(q('stage')!.getAttribute('role')).toBeNull();
+    expect(q('stage')!.getAttribute('aria-live')).toBeNull();
     const request = http.expectOne(WORKBOOKS_VALIDATE);
     expect(request.request.method).toBe('POST');
     expect((request.request.body as FormData).get('wcagVersion')).toBe('2.1');
@@ -81,10 +85,37 @@ describe('DocumentCheck – Excel audit', () => {
     expect(q('result')).toBeNull();
     expect(text(q('xlsx-report-title'))).toBe('Raport: budzet.xlsx');
     expect(text(q('xlsx-profile'))).toBe('Profil: WCAG 2.1 A+AA');
+    // Wynik ogłasza wyłącznie fokus na nagłówku raportu; region live jest czyszczony, a nie powtarza „Zakończono analizę…”.
     expect(document.activeElement).toBe(q('xlsx-report-title'));
-    expect(live()).toBe('Zakończono analizę skoroszytu budzet.xlsx.');
+    expect(live()).toBe('');
     // Tytuł strony bez zmian.
     expect(text(el.querySelector('h1'))).toBe('Walidator dostępności oraz jakości szablonu pisma v 1.0');
+  });
+
+  it('uses accessible upload colours only outside the Word path, leaving the Word panel untouched', () => {
+    const { q, chooseType } = render();
+    const panel = () => q('dropzone')!.closest<HTMLElement>('.panel-soft')!;
+    // Word: bez klasy i bez zmiennych (DOM jak we wzorcu bramki Word).
+    expect(panel().getAttribute('class')).toBe('panel-soft');
+    expect(panel().getAttribute('style')).toBeNull();
+
+    chooseType('xlsx');
+    expect(panel().classList).toContain('upload-accessible');
+    expect(panel().style.getPropertyValue('--dc-drop-text')).toBe('#a63f00');
+    expect(panel().style.getPropertyValue('--dc-focus')).toBe('#524fb7');
+
+    chooseType('docx');
+    expect(panel().getAttribute('class')).toBe('panel-soft');
+    expect(panel().style.getPropertyValue('--dc-drop-text')).toBe('');
+    expect(panel().getAttribute('style')).toBeNull();
+  });
+
+  it('keeps the Word stage as a status region (Word path unchanged)', () => {
+    const { q, selectFile } = render();
+    selectFile(file('pismo.docx'));
+    expect(q('stage')!.getAttribute('role')).toBe('status');
+    expect(q('stage')!.getAttribute('aria-live')).toBe('polite');
+    http.expectOne(VALIDATE).flush(null, { status: 500, statusText: 'Server Error' });
   });
 
   it('still sends a Word document to the old endpoint with the standards', () => {

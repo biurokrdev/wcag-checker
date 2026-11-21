@@ -71,7 +71,9 @@
     }
 
     <h2 class="field-label">{{ typeConfig().uploadTitle }}</h2>
-    <div class="panel-soft">
+    <!-- Klasa i zmienne kolorów tylko poza Wordem. Atrybut style jest wiązany w całości ([attr.style]: null usuwa atrybut), żeby
+         po powrocie do Worda nie zostawał pusty style="" – DOM Worda jest identyczny jak we wzorcu bramki także po przełączeniu typu. -->
+    <div class="panel-soft" [class.upload-accessible]="!isWord()" [attr.style]="isWord() ? null : uploadStyle">
       <div
         class="dropzone"
         [class.active]="dragging()"
@@ -117,7 +119,12 @@
 @if (busy() || error()) {
   <div class="panel-soft">
     @if (busy()) {
-      <p class="status" role="status" aria-live="polite" data-testid="stage">{{ stage() }}</p>
+      @if (isWord()) {
+        <p class="status" role="status" aria-live="polite" data-testid="stage">{{ stage() }}</p>
+      } @else {
+        <!-- Poza Wordem przebieg ogłasza wyłącznie stały region live-region (jedno źródło ogłoszenia); tu tylko tekst na ekranie. -->
+        <p class="status" data-testid="stage">{{ stage() }}</p>
+      }
     }
     @if (error()) {
       <div class="box error" role="alert" data-testid="error"><b>Nie udało się przetworzyć dokumentu.</b> {{ error() }}</div>
