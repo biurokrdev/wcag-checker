@@ -4,10 +4,11 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace D2.Wcag.Fixes;
 
-// Naprawy standardu 2.0, tylko bezpieczne i jednoznaczne: wyrównanie do lewej, niepodzielne wiersze tabel,
-// tytuł z dopiskiem banku i autor = bank. Typografii, kolorów i treści wariantów nie zmieniamy automatycznie.
+// Naprawy standardu 2.0, tylko bezpieczne i jednoznaczne: wyrównanie do lewej, wiersz nagłówkowy i niepodzielne
+// wiersze tabel danych, tytuł z dopiskiem banku i autor = bank. Typografii, kolorów i treści wariantów nie zmieniamy
+// automatycznie. Każda naprawa dotyka tylko tego, co zgłasza odpowiadająca jej reguła (te same warunki).
 
-/// <summary>Akapity wyjustowane dostają wyrównanie do lewej (bezpośrednio w akapicie, styl zostaje).</summary>
+/// <summary>Akapity z tekstem, które są wyjustowane, dostają wyrównanie do lewej (bezpośrednio w akapicie, styl zostaje).</summary>
 internal sealed class Justification20Fix : IDocumentFix
 {
     public IReadOnlyList<string> Codes { get; } = [IssueCodes.JustificationForbidden];
@@ -17,7 +18,8 @@ internal sealed class Justification20Fix : IDocumentFix
         var changed = 0;
         foreach (var paragraph in document.Paragraphs.ToList())
         {
-            if (!document.ResolveParagraph(paragraph).Justified)
+            // Jak w regule G-04: pusty akapit nie jest zgłaszany, więc naprawa go nie rusza.
+            if (paragraph.InnerText.Trim().Length == 0 || !document.ResolveParagraph(paragraph).Justified)
             {
                 continue;
             }
@@ -34,7 +36,44 @@ internal sealed class Justification20Fix : IDocumentFix
     }
 }
 
-/// <summary>Każdy wiersz tabeli danych dostaje „Nie dziel wiersza między stronami” (w:cantSplit).</summary>
+/// <summary>
+/// Pierwszy wiersz tabeli danych zostaje oznaczony jako nagłówkowy (w:tblHeader). Jak reguła G-08, pomija tabele
+/// układu (jeden wiersz albo jedna kolumna), których standard nie ocenia; wiersz z pustą komórką zostaje dla człowieka.
+/// </summary>
+internal sealed class TableHeader20Fix : IDocumentFix
+{
+    public IReadOnlyList<string> Codes { get; } = [IssueCodes.TableMissingHeaders];
+
+    public IEnumerable<AppliedFix> Apply(DocxDocument document, WcagFixOptions options)
+    {
+        var changed = 0;
+        foreach (var table in document.Tables.ToList())
+        {
+            var rows = table.Elements<TableRow>().ToList();
+            if (rows.Count == 0 || TableRules.IsLayoutTable(rows) || TableRules.HasHeaderRow(rows[0])
+                || rows[0].Elements<TableCell>().Any(c => string.IsNullOrWhiteSpace(c.InnerText)))
+            {
+                continue;
+            }
+
+            rows[0].TableRowProperties ??= new TableRowProperties();
+            rows[0].TableRowProperties!.Append(new TableHeader());
+            changed++;
+        }
+
+        if (changed > 0)
+        {
+            yield return new AppliedFix(
+                IssueCodes.TableMissingHeaders,
+                $"Oznaczono pierwszy wiersz jako nagłówkowy w {Polish.Count(changed, "tabeli", "tabelach", "tabelach")}.");
+        }
+    }
+}
+
+/// <summary>
+/// Wiersz tabeli danych, który może dzielić się między strony, dostaje „Nie dziel wiersza między stronami”
+/// (w:cantSplit). Wiersz, któremu daje to styl tabeli, jest już poprawny (jak w regule) i zostaje bez zmian.
+/// </summary>
 internal sealed class TableRows20Fix : IDocumentFix
 {
     public IReadOnlyList<string> Codes { get; } = [IssueCodes.TableRowCanSplit];
@@ -52,7 +91,7 @@ internal sealed class TableRows20Fix : IDocumentFix
 
             foreach (var row in rows)
             {
-                if (row.TableRowProperties?.GetFirstChild<CantSplit>() is { } existing && existing.Val?.Value != OnOffOnlyValues.Off)
+                if (TableCells20.CantSplit(row, document))
                 {
                     continue;
                 }

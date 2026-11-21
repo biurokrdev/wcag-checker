@@ -170,7 +170,7 @@ public sealed class CorporateStandard20 : DocumentStandard
         [
             new MarginsFix(MarginPt),
             new Justification20Fix(),
-            new TableHeaderFix(),
+            new TableHeader20Fix(),
             new TableRows20Fix(),
             new Metadata20Fix(_institution),
         ];
