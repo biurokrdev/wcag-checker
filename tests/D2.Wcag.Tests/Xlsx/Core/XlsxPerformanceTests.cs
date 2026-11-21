@@ -4,7 +4,19 @@ using Xunit.Abstractions;
 
 namespace D2.Wcag.Tests.Xlsx.Core;
 
+/// <summary>
+/// Kolekcja testów mierzących pamięć i czas całego procesu. xUnit uruchamia kolekcje z wyłączoną równoległością dopiero po
+/// zakończeniu wszystkich kolekcji równoległych i pojedynczo, więc w trakcie pomiaru żaden inny test nie alokuje pamięci
+/// (wcześniej <c>GC.GetTotalMemory</c> doliczał alokacje równoległych testów i pomiar modelu dawał czasem ponad 100 MB).
+/// </summary>
+[CollectionDefinition(Name, DisableParallelization = true)]
+public sealed class XlsxMeasurementCollection
+{
+    public const string Name = "Pomiary pamięci i czasu XLSX (bez równoległości)";
+}
+
 // Wydajność i pamięć: arkusz 200 000 wierszy × 3 kolumny (fixtura edge) czytany strumieniowo do zwartego modelu.
+[Collection(XlsxMeasurementCollection.Name)]
 public class XlsxPerformanceTests(ITestOutputHelper output)
 {
     [Fact]
