@@ -3,7 +3,7 @@
   "failure": "None",
   "wcagVersion": "2.2",
   "profileName": "WCAG 2.2 AA (arkusz Excel)",
-  "summary": "Skoroszyt jest pusty – nie ma treści do oceny. Wykryto automatycznie problemy (błędy: 1, ostrzeżenia: 1, do weryfikacji: 1). 2 kryteria wymagają oceny ręcznej (w całości lub w części).",
+  "summary": "Skoroszyt jest pusty – nie ma treści do oceny. Wykryto automatycznie problemy (błędy: 1, do weryfikacji: 1). 2 kryteria wymagają oceny ręcznej (w całości lub w części).",
   "disclaimer": "Wynik automatyczny nie potwierdza zgodności z WCAG",
   "workbook": {
     "sheets": 1,
@@ -18,7 +18,7 @@
   },
   "counts": {
     "errors": 1,
-    "warnings": 1,
+    "warnings": 0,
     "needsReview": 1,
     "info": 0,
     "manualChecks": 2
@@ -40,30 +40,6 @@
         {
           "name": "Tytuł we właściwościach",
           "value": "brak"
-        }
-      ]
-    },
-    {
-      "code": "XL-SHEET-NAME",
-      "severity": "Warning",
-      "checkType": "Heuristic",
-      "confidence": 0.9,
-      "title": "Nazwa arkusza nie opisuje jego zawartości",
-      "wcag": [
-        "2.4.6"
-      ],
-      "message": "Arkusz ma domyślną nazwę „Arkusz1”, która nie opisuje jego zawartości. Możliwy problem z kryterium 2.4.6 – wymaga weryfikacji przez człowieka.",
-      "fixInstruction": "1. Kliknij prawym przyciskiem myszy kartę arkusza u dołu okna (albo naciśnij Shift+F10 na karcie). 2. Wybierz Zmień nazwę. 3. Wpisz krótką nazwę opisującą zawartość arkusza, np. „Sprzedaż 2026”, i naciśnij Enter. Wynik sprawdzisz poleceniem Recenzja → Sprawdź ułatwienia dostępu.",
-      "location": "Arkusz „Arkusz1”",
-      "key": "0000|Sheet|0000000|00000||",
-      "evidence": [
-        {
-          "name": "Nazwa arkusza",
-          "value": "Arkusz1"
-        },
-        {
-          "name": "Rodzaj nazwy",
-          "value": "domyślna"
         }
       ]
     },
@@ -332,10 +308,7 @@
       "name": "Nagłówki i etykiety",
       "level": "AA",
       "status": "ManualReview",
-      "reason": "Możliwy problem – wymaga weryfikacji przez człowieka: XL-SHEET-NAME. WCAG2ICT: kryterium stosuje się wprost. Kryterium nie wymaga nagłówków ani etykiet – wymaga, by istniejące opisywały temat lub cel.",
-      "findingCodes": [
-        "XL-SHEET-NAME"
-      ],
+      "reason": "Kryterium wymaga oceny ręcznej. Kontrole automatyczne tego kryterium nie znalazły w skoroszycie treści do sprawdzenia: tytuły wykresów (XL-CHART-TITLE-POOR); nazwy arkuszy (XL-SHEET-NAME); nazwy kolumn Tabel Excela (XL-TABLE-HEADER-NAME). WCAG2ICT: kryterium stosuje się wprost. Kryterium nie wymaga nagłówków ani etykiet – wymaga, by istniejące opisywały temat lub cel.",
       "manualChecks": 1
     },
     {

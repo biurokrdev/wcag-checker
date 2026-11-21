@@ -78,6 +78,13 @@ internal sealed class ContrastRule : IXlsxRule
             found.Add("tekst w kształtach, polach tekstowych i na wykresach (tytuły, etykiety osi i danych, legenda) – zaznacz obiekt i sprawdź Formatuj kształt → Opcje tekstu → Wypełnienie tekstu oraz wypełnienie kształtu lub obszaru wykresu");
         }
 
+        // Obraz może zawierać tekst (obraz tekstu), którego kontrastu bez OCR nie da się ocenić – bez tego pytania 1.4.3
+        // dostałby „Brak wykrytych problemów”, choć obrazów nikt nie sprawdził.
+        if (visible.Any(s => s.Drawings.Any(d => d.Type == XlsxDrawingType.Image && !d.Hidden && !d.Decorative)))
+        {
+            found.Add("obrazy, które mogą zawierać tekst (zrzuty ekranu, napisy, tabele jako obraz) – kontrast tekstu w obrazie oceń na samym obrazie, np. narzędziem do pomiaru kontrastu kolorów");
+        }
+
         if (analysis.HasTextOnApproximateBackground)
         {
             found.Add("komórki z wypełnieniem deseniem albo gradientem, ocenione w przybliżeniu – sprawdź Formatuj komórki → Wypełnienie (Kolor deseniu, Styl deseniu, Efekty wypełnienia)");
@@ -94,8 +101,8 @@ internal sealed class ContrastRule : IXlsxRule
             {
                 Id = ManualId,
                 Wcag = wcag,
-                Question = "Czy tekst na tle z obrazu, gradientu, wzoru lub w kolorach automatycznych, a także tekst w tabelach ze stylem tabeli, w kształtach i na wykresach, jest wyraźnie czytelny (kontrast co najmniej 4,5:1, dla dużego tekstu 3:1)?",
-                Hint = "Narzędzie ocenia kontrast tylko z formatowania komórek; nie ocenia stylów tabel, obrazów tła arkusza (Układ strony → Tło) ani tekstu w obiektach. W tym skoroszycie: "
+                Question = "Czy tekst na tle z obrazu, gradientu, wzoru lub w kolorach automatycznych, a także tekst w tabelach ze stylem tabeli, w kształtach, na wykresach i w obrazach (obrazy tekstu), jest wyraźnie czytelny (kontrast co najmniej 4,5:1, dla dużego tekstu 3:1)?",
+                Hint = "Narzędzie ocenia kontrast tylko z formatowania komórek; nie ocenia stylów tabel, obrazów tła arkusza (Układ strony → Tło), tekstu w obiektach ani tekstu w obrazach. W tym skoroszycie: "
                     + string.Join("; ", found) + ". Kolory oceń też w Recenzja → Sprawdź ułatwienia dostępu.",
                 Code = Code,
             };

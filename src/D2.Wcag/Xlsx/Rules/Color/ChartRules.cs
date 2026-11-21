@@ -33,8 +33,18 @@ internal static class ChartColors
         return types.Length > 0 && types.All(t => t is "line" or "line3D" or "scatter" or "radar" or "stock");
     }
 
-    /// <summary>Wykres, w którym kolejne serie stykają się ze sobą (kolumny w grupie, słupki skumulowane, warstwy).</summary>
-    public static bool HasTouchingSeries(XlsxChart chart) => Types(chart).Any(t => t is "bar" or "bar3D" or "area" or "area3D");
+    /// <summary>
+    /// Wykres, w którym kolejne serie stykają się ze sobą: warstwy (area) zawsze, słupki 3D jak dotąd, a słupki i kolumny 2D tylko
+    /// wtedy, gdy nie ma między nimi odstępu – <c>c:overlap</c> ≥ 0 (brak elementu = 0, także słupki skumulowane z nakładaniem 100).
+    /// Ujemne <c>overlap</c> zostawia odstęp, więc sąsiednie serie leżą na tle obszaru kreślenia, a nie na sobie
+    /// (<c>gapWidth</c> to odstęp między grupami kategorii – nie rozdziela serii w grupie).
+    /// </summary>
+    public static bool HasTouchingSeries(XlsxChart chart) => Types(chart).Any(t => t switch
+    {
+        "area" or "area3D" or "bar3D" => true,
+        "bar" => chart.BarOverlap is not < 0,
+        _ => false,
+    });
 
     /// <summary>Kolor serii „RRGGBB” albo <c>null</c>, gdy jest automatyczny (nie znamy go).</summary>
     public static string? Color(XlsxChart chart, XlsxChartSeries series) =>

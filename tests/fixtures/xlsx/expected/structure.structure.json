@@ -5,8 +5,8 @@
   "findings": [
     { "code": "XL-TITLE", "severity": "Error", "location": "Skoroszyt" },
     { "code": "XL-LANG", "severity": "NeedsReview", "location": "Skoroszyt" },
-    { "code": "XL-SHEET-NAME", "severity": "Warning", "location": "Arkusz „Arkusz1”" },
-    { "code": "XL-SHEET-NAME", "severity": "Warning", "location": "Arkusz „Sheet2”" },
+    { "code": "XL-SHEET-NAME", "severity": "NeedsReview", "location": "Arkusz „Arkusz1”" },
+    { "code": "XL-SHEET-NAME", "severity": "NeedsReview", "location": "Arkusz „Sheet2”" },
     { "code": "XL-SHEET-NAME", "severity": "NeedsReview", "location": "Arkusz „Q”" },
     { "code": "XL-TABLE-MISSING", "severity": "NeedsReview", "location": "Arkusz1!A1:C5" },
     { "code": "XL-TABLE-MISSING", "severity": "NeedsReview", "location": "Sheet2!A2:D8" },

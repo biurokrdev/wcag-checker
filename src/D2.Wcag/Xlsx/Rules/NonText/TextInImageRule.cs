@@ -15,6 +15,7 @@ internal sealed class TextInImageRule : IXlsxRule
     private const string Hint =
         "Obejrzyj obraz. Jeśli zawiera tekst niosący informację (tabelę, zrzut ekranu, napis), wpisz ten tekst w komórkach albo w kształcie "
         + "zamiast obrazu, a co najmniej powtórz go w tekście alternatywnym (prawy przycisk myszy → Wyświetl tekst alternatywny). "
+        + "Tekst alternatywny wystarcza dla kryterium 1.1.1, ale nie dla 1.4.5 – obraz tekstu nadal nim pozostaje. "
         + "Logotypy i tekst będący nieistotną częścią zdjęcia są wyjątkiem.";
 
     public IReadOnlyList<XlsxRuleDescriptor> Descriptors { get; } =

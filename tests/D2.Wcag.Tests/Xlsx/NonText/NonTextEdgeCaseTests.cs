@@ -416,6 +416,28 @@ public class NonTextEdgeCaseTests
     }
 
     [Fact]
+    public void Control_LabelAndGroupBox_AreNotInteractive_AndAreNotReported()
+    {
+        // Etykieta i pole grupy bez nazwy: to tekst statyczny i ramka, a nie komponenty interfejsu z 4.1.2.
+        var result = AuditSheet(s => s
+            .FormControl("Label 1", 1025, "Label", "B3", "D4")
+            .FormControl("Group Box 2", 1026, "GBox", "B6", "D9"));
+
+        Assert.Empty(result.Of("XL-CONTROL"));
+        Assert.DoesNotContain(result.ManualChecks, c => c.Id == "manual-4.1.2:nontext");
+        Assert.Equal(XlsxCriterionStatus.NotApplicable, result.Criteria.Single(c => c.Sc == "4.1.2").Status);
+        Assert.Equal(XlsxCriterionStatus.NotApplicable, result.Criteria.Single(c => c.Sc == "2.1.1").Status);
+        Assert.True(XlsxTestData.Read(BuildWith(s => s.FormControl("Label 1", 1025, "Label", "B3", "D4"))).Sheets[0].Controls.Single().Kind == "Label");
+    }
+
+    private static byte[] BuildWith(Action<FxSheet> build)
+    {
+        var fx = new FixtureXlsx { Title = "Skoroszyt testowy", Language = "pl-PL" };
+        build(fx.AddSheet("Dane").Text("A1", "Nagłówek"));
+        return fx.Build();
+    }
+
+    [Fact]
     public void Control_ActiveX_WithAltText_IsStillChecklistItem_NotFinding()
     {
         var result = AuditSheet(s => s.ActiveX("CommandButton1", 1025, "B3", "D4", altText: "Wyślij formularz"));

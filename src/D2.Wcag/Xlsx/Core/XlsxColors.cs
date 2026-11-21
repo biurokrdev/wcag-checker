@@ -348,9 +348,10 @@ public static class XlsxColors
 public static class WcagContrast
 {
     /// <summary>
-    /// Luminancja względna 0–1. Próg linearyzacji 0,04045 pochodzi z normy sRGB (IEC 61966-2-1); definicja w WCAG 2.x podaje
-    /// 0,03928. Dla kolorów 8-bitowych wynik jest identyczny: żadna wartość kanału c/255 nie leży między progami
-    /// (10/255 ≈ 0,0392 jest poniżej obu, 11/255 ≈ 0,0431 powyżej obu) – pilnuje tego test po wszystkich 256 wartościach.
+    /// Luminancja względna 0–1. Próg linearyzacji 0,04045 – jak w definicji „relative luminance” w WCAG 2.2 i w normie sRGB
+    /// (IEC 61966-2-1); wartość 0,03928 podawały WCAG 2.0/2.1 sprzed poprawki z maja 2021. Dla kolorów 8-bitowych wynik jest
+    /// identyczny: żadna wartość kanału c/255 nie leży między progami (10/255 ≈ 0,0392 jest poniżej obu, 11/255 ≈ 0,0431 powyżej
+    /// obu) – pilnuje tego test po wszystkich 256 wartościach.
     /// </summary>
     public static double RelativeLuminance(string hex)
     {

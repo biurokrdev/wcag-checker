@@ -31,10 +31,11 @@ internal static class StructureOptions
     // ---------- XL-SHEET-NAME (2.4.6) ----------
 
     /// <summary>
-    /// Nazwa domyślna („Arkusz1”) na pewno nie opisuje zawartości; powiązanie z 2.4.6 (nazwa arkusza jako etykieta) to
-    /// interpretacja, oparta praktycznie na regule Microsoft „Sheet tabs have meaningful names” (ostrzeżenie) – stąd ostrzeżenie.
+    /// Nazwa domyślna („Arkusz1”) na pewno nie opisuje zawartości, ale powiązanie z 2.4.6 (nazwa arkusza jako etykieta) to
+    /// interpretacja, oparta praktycznie na regule Microsoft „Sheet tabs have meaningful names”; w skoroszycie z jednym arkuszem
+    /// nazwa często nie niesie informacji. Dlatego „do weryfikacji” (poniżej progu ostrzeżenia), a nie ostrzeżenie.
     /// </summary>
-    public const double SheetNameDefaultConfidence = 0.9;
+    public const double SheetNameDefaultConfidence = 0.6;
 
     /// <summary>Nazwa 1–2-znakowa może być świadomym skrótem („Q1” to już 2 znaki, „PL”) – „do weryfikacji”.</summary>
     public const double SheetNameShortConfidence = 0.5;

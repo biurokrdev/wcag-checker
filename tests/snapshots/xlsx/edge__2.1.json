@@ -128,8 +128,8 @@
         "1.4.3"
       ],
       "code": "XL-CONTRAST",
-      "question": "Czy tekst na tle z obrazu, gradientu, wzoru lub w kolorach automatycznych, a także tekst w tabelach ze stylem tabeli, w kształtach i na wykresach, jest wyraźnie czytelny (kontrast co najmniej 4,5:1, dla dużego tekstu 3:1)?",
-      "hint": "Narzędzie ocenia kontrast tylko z formatowania komórek; nie ocenia stylów tabel, obrazów tła arkusza (Układ strony → Tło) ani tekstu w obiektach. W tym skoroszycie: tekst w kształtach, polach tekstowych i na wykresach (tytuły, etykiety osi i danych, legenda) – zaznacz obiekt i sprawdź Formatuj kształt → Opcje tekstu → Wypełnienie tekstu oraz wypełnienie kształtu lub obszaru wykresu. Kolory oceń też w Recenzja → Sprawdź ułatwienia dostępu."
+      "question": "Czy tekst na tle z obrazu, gradientu, wzoru lub w kolorach automatycznych, a także tekst w tabelach ze stylem tabeli, w kształtach, na wykresach i w obrazach (obrazy tekstu), jest wyraźnie czytelny (kontrast co najmniej 4,5:1, dla dużego tekstu 3:1)?",
+      "hint": "Narzędzie ocenia kontrast tylko z formatowania komórek; nie ocenia stylów tabel, obrazów tła arkusza (Układ strony → Tło), tekstu w obiektach ani tekstu w obrazach. W tym skoroszycie: tekst w kształtach, polach tekstowych i na wykresach (tytuły, etykiety osi i danych, legenda) – zaznacz obiekt i sprawdź Formatuj kształt → Opcje tekstu → Wypełnienie tekstu oraz wypełnienie kształtu lub obszaru wykresu. Kolory oceń też w Recenzja → Sprawdź ułatwienia dostępu."
     },
     {
       "id": "manual-1.4.10",

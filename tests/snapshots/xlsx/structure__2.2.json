@@ -3,7 +3,7 @@
   "failure": "None",
   "wcagVersion": "2.2",
   "profileName": "WCAG 2.2 AA (arkusz Excel)",
-  "summary": "Wykryto automatycznie problemy (błędy: 1, ostrzeżenia: 4, do weryfikacji: 7). 11 kryteriów wymaga oceny ręcznej (w całości lub w części).",
+  "summary": "Wykryto automatycznie problemy (błędy: 1, ostrzeżenia: 2, do weryfikacji: 9). 11 kryteriów wymaga oceny ręcznej (w całości lub w części).",
   "disclaimer": "Wynik automatyczny nie potwierdza zgodności z WCAG",
   "workbook": {
     "sheets": 8,
@@ -18,8 +18,8 @@
   },
   "counts": {
     "errors": 1,
-    "warnings": 4,
-    "needsReview": 7,
+    "warnings": 2,
+    "needsReview": 9,
     "info": 6,
     "manualChecks": 11
   },
@@ -40,54 +40,6 @@
         {
           "name": "Tytuł we właściwościach",
           "value": "brak"
-        }
-      ]
-    },
-    {
-      "code": "XL-SHEET-NAME",
-      "severity": "Warning",
-      "checkType": "Heuristic",
-      "confidence": 0.9,
-      "title": "Nazwa arkusza nie opisuje jego zawartości",
-      "wcag": [
-        "2.4.6"
-      ],
-      "message": "Arkusz ma domyślną nazwę „Arkusz1”, która nie opisuje jego zawartości. Możliwy problem z kryterium 2.4.6 – wymaga weryfikacji przez człowieka.",
-      "fixInstruction": "1. Kliknij prawym przyciskiem myszy kartę arkusza u dołu okna (albo naciśnij Shift+F10 na karcie). 2. Wybierz Zmień nazwę. 3. Wpisz krótką nazwę opisującą zawartość arkusza, np. „Sprzedaż 2026”, i naciśnij Enter. Wynik sprawdzisz poleceniem Recenzja → Sprawdź ułatwienia dostępu.",
-      "location": "Arkusz „Arkusz1”",
-      "key": "0000|Sheet|0000000|00000||",
-      "evidence": [
-        {
-          "name": "Nazwa arkusza",
-          "value": "Arkusz1"
-        },
-        {
-          "name": "Rodzaj nazwy",
-          "value": "domyślna"
-        }
-      ]
-    },
-    {
-      "code": "XL-SHEET-NAME",
-      "severity": "Warning",
-      "checkType": "Heuristic",
-      "confidence": 0.9,
-      "title": "Nazwa arkusza nie opisuje jego zawartości",
-      "wcag": [
-        "2.4.6"
-      ],
-      "message": "Arkusz ma domyślną nazwę „Sheet2”, która nie opisuje jego zawartości. Możliwy problem z kryterium 2.4.6 – wymaga weryfikacji przez człowieka.",
-      "fixInstruction": "1. Kliknij prawym przyciskiem myszy kartę arkusza u dołu okna (albo naciśnij Shift+F10 na karcie). 2. Wybierz Zmień nazwę. 3. Wpisz krótką nazwę opisującą zawartość arkusza, np. „Sprzedaż 2026”, i naciśnij Enter. Wynik sprawdzisz poleceniem Recenzja → Sprawdź ułatwienia dostępu.",
-      "location": "Arkusz „Sheet2”",
-      "key": "0001|Sheet|0000000|00000||",
-      "evidence": [
-        {
-          "name": "Nazwa arkusza",
-          "value": "Sheet2"
-        },
-        {
-          "name": "Rodzaj nazwy",
-          "value": "domyślna"
         }
       ]
     },
@@ -226,6 +178,30 @@
       ]
     },
     {
+      "code": "XL-SHEET-NAME",
+      "severity": "NeedsReview",
+      "checkType": "Heuristic",
+      "confidence": 0.6,
+      "title": "Nazwa arkusza nie opisuje jego zawartości",
+      "wcag": [
+        "2.4.6"
+      ],
+      "message": "Arkusz ma domyślną nazwę „Arkusz1”, która nie opisuje jego zawartości. Możliwy problem z kryterium 2.4.6 – wymaga weryfikacji przez człowieka.",
+      "fixInstruction": "1. Kliknij prawym przyciskiem myszy kartę arkusza u dołu okna (albo naciśnij Shift+F10 na karcie). 2. Wybierz Zmień nazwę. 3. Wpisz krótką nazwę opisującą zawartość arkusza, np. „Sprzedaż 2026”, i naciśnij Enter. Wynik sprawdzisz poleceniem Recenzja → Sprawdź ułatwienia dostępu.",
+      "location": "Arkusz „Arkusz1”",
+      "key": "0000|Sheet|0000000|00000||",
+      "evidence": [
+        {
+          "name": "Nazwa arkusza",
+          "value": "Arkusz1"
+        },
+        {
+          "name": "Rodzaj nazwy",
+          "value": "domyślna"
+        }
+      ]
+    },
+    {
       "code": "XL-TABLE-MISSING",
       "severity": "NeedsReview",
       "checkType": "Heuristic",
@@ -308,6 +284,30 @@
         {
           "name": "Blok danych",
           "value": "A2:D8"
+        }
+      ]
+    },
+    {
+      "code": "XL-SHEET-NAME",
+      "severity": "NeedsReview",
+      "checkType": "Heuristic",
+      "confidence": 0.6,
+      "title": "Nazwa arkusza nie opisuje jego zawartości",
+      "wcag": [
+        "2.4.6"
+      ],
+      "message": "Arkusz ma domyślną nazwę „Sheet2”, która nie opisuje jego zawartości. Możliwy problem z kryterium 2.4.6 – wymaga weryfikacji przez człowieka.",
+      "fixInstruction": "1. Kliknij prawym przyciskiem myszy kartę arkusza u dołu okna (albo naciśnij Shift+F10 na karcie). 2. Wybierz Zmień nazwę. 3. Wpisz krótką nazwę opisującą zawartość arkusza, np. „Sprzedaż 2026”, i naciśnij Enter. Wynik sprawdzisz poleceniem Recenzja → Sprawdź ułatwienia dostępu.",
+      "location": "Arkusz „Sheet2”",
+      "key": "0001|Sheet|0000000|00000||",
+      "evidence": [
+        {
+          "name": "Nazwa arkusza",
+          "value": "Sheet2"
+        },
+        {
+          "name": "Rodzaj nazwy",
+          "value": "domyślna"
         }
       ]
     },
@@ -524,8 +524,8 @@
         "1.4.3"
       ],
       "code": "XL-CONTRAST",
-      "question": "Czy tekst na tle z obrazu, gradientu, wzoru lub w kolorach automatycznych, a także tekst w tabelach ze stylem tabeli, w kształtach i na wykresach, jest wyraźnie czytelny (kontrast co najmniej 4,5:1, dla dużego tekstu 3:1)?",
-      "hint": "Narzędzie ocenia kontrast tylko z formatowania komórek; nie ocenia stylów tabel, obrazów tła arkusza (Układ strony → Tło) ani tekstu w obiektach. W tym skoroszycie: tabele ze stylem tabeli (wiersz nagłówka, pasy wierszy i kolumn, wiersz sumy) – zaznacz komórkę tabeli i sprawdź Projekt tabeli → Style tabeli. Kolory oceń też w Recenzja → Sprawdź ułatwienia dostępu."
+      "question": "Czy tekst na tle z obrazu, gradientu, wzoru lub w kolorach automatycznych, a także tekst w tabelach ze stylem tabeli, w kształtach, na wykresach i w obrazach (obrazy tekstu), jest wyraźnie czytelny (kontrast co najmniej 4,5:1, dla dużego tekstu 3:1)?",
+      "hint": "Narzędzie ocenia kontrast tylko z formatowania komórek; nie ocenia stylów tabel, obrazów tła arkusza (Układ strony → Tło), tekstu w obiektach ani tekstu w obrazach. W tym skoroszycie: tabele ze stylem tabeli (wiersz nagłówka, pasy wierszy i kolumn, wiersz sumy) – zaznacz komórkę tabeli i sprawdź Projekt tabeli → Style tabeli. Kolory oceń też w Recenzja → Sprawdź ułatwienia dostępu."
     },
     {
       "id": "manual-1.4.10",

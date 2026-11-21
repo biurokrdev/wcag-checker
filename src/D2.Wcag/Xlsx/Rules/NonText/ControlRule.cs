@@ -6,7 +6,8 @@ namespace D2.Wcag.Xlsx.Rules.NonText;
 /// <c>XL-CONTROL</c> (4.1.2). Macierz (rozdz. 4): automatycznie da się stwierdzić tylko brak nazwy kontrolki; obsługa z klawiatury
 /// (2.1.1, 2.1.2) jest wyłącznie do oceny ręcznej.
 /// <list type="bullet">
-/// <item>Kontrolka formularza bez etykiety (podpisu) i bez tekstu alternatywnego → zgłoszenie automatyczne (błąd).</item>
+/// <item>Interaktywna kontrolka formularza bez etykiety (podpisu) i bez tekstu alternatywnego → zgłoszenie automatyczne (błąd).
+/// Etykieta (Label) i pole grupy (GroupBox) nie są komponentami interaktywnymi – nie są oceniane.</item>
 /// <item>Kontrolka ActiveX → zawsze pozycja checklisty powiązana z 4.1.2, 2.1.1 i 2.1.2 (zawartości ActiveX parser nie czyta).</item>
 /// </list>
 /// </summary>
@@ -24,10 +25,15 @@ internal sealed class ControlRule : IXlsxRule
         + "czy da się do niej dojść i ją obsłużyć oraz czy da się z niej wyjść (np. klawiszem Esc). Jeśli nie – zastąp ją kontrolką formularza "
         + "(Deweloper → Wstaw → Kontrolki formularza) albo listą z poprawności danych (Dane → Poprawność danych).";
 
-    /// <summary>Rodzaje kontrolek formularza (<see cref="XlsxControl.Kind"/>), dla których brak nazwy zgłaszamy automatycznie.</summary>
+    /// <summary>
+    /// Rodzaje kontrolek formularza (<see cref="XlsxControl.Kind"/>), dla których brak nazwy zgłaszamy automatycznie: tylko komponenty
+    /// interaktywne. Etykieta (<c>Label</c>) to tekst statyczny, a pole grupy (<c>GroupBox</c>) – ramka grupująca; żadne z nich nie
+    /// przyjmuje fokusu ani danych, więc nie jest komponentem interfejsu w rozumieniu 4.1.2 i nie jest tu oceniane (bez heurystyki –
+    /// ich treść jest zwykłym tekstem, jak w komórce).
+    /// </summary>
     private static readonly HashSet<string> FormControlKinds = new(StringComparer.Ordinal)
     {
-        "CheckBox", "Button", "ComboBox", "ListBox", "OptionButton", "GroupBox", "Label", "ScrollBar", "Spinner", "EditBox",
+        "CheckBox", "Button", "ComboBox", "ListBox", "OptionButton", "ScrollBar", "Spinner", "EditBox",
     };
 
     public IReadOnlyList<XlsxRuleDescriptor> Descriptors { get; } =
@@ -35,7 +41,7 @@ internal sealed class ControlRule : IXlsxRule
         new(Code, "Kontrolka bez nazwy", [XlsxWcagCriteria.Ref("4.1.2")], XlsxCheckType.Auto, Fix)
         {
             Scope = "nazwy (etykiety i tekst alternatywny) kontrolek formularza",
-            HasSubject = w => w.Sheets.Any(s => s.Controls.Any(c => !c.IsActiveX)),
+            HasSubject = w => w.Sheets.Any(s => s.Controls.Any(c => !c.IsActiveX && FormControlKinds.Contains(c.Kind))),
         },
     ];
 
@@ -81,7 +87,7 @@ internal sealed class ControlRule : IXlsxRule
         {
             foreach (var control in sheet.Controls)
             {
-                any = true;
+                any |= XlsxWcagCriteria.IsInteractive(control);
                 if (!control.IsActiveX)
                 {
                     continue;

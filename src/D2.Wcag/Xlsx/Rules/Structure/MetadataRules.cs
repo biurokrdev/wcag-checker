@@ -170,7 +170,8 @@ internal sealed class LanguageRule : IXlsxRule
 /// XL-SHEET-NAME (2.4.6): nazwa arkusza domyślna („Arkusz1”, „Sheet2”) albo 1–2-znakowa. Nazwę arkusza traktujemy jak
 /// etykietę (interpretacja; podstawa praktyczna: reguła Microsoft „Sheet tabs have meaningful names”). Kryterium 2.4.2
 /// dotyczy tytułu dokumentu, nie arkuszy – nie jest tu przypisane.
-/// <para>Arkusze ukryte i bardzo ukryte są pomijane: ich kart użytkownik nie widzi, a samo ukrycie zgłasza XL-HIDDEN.</para>
+/// <para>Arkusze ukryte i bardzo ukryte są pomijane: ich kart użytkownik nie widzi, a samo ukrycie zgłasza XL-HIDDEN. Pomijane są też
+/// arkusze puste – nazwa nie ma czego opisywać (np. jedyny arkusz nowego skoroszytu).</para>
 /// </summary>
 internal sealed class SheetNameRule : IXlsxRule
 {
@@ -186,15 +187,18 @@ internal sealed class SheetNameRule : IXlsxRule
     {
         Scope = "nazwy arkuszy",
         DefaultConfidence = StructureOptions.SheetNameDefaultConfidence,
+        HasSubject = w => w.Sheets.Any(Examined),
     };
 
     public IReadOnlyList<XlsxRuleDescriptor> Descriptors { get; } = [Descriptor];
+
+    private static bool Examined(XlsxSheet sheet) => sheet.State == XlsxSheetState.Visible && !sheet.IsEmpty;
 
     public IEnumerable<XlsxRuleHit> Check(XlsxWorkbook workbook, XlsxAuditContext context)
     {
         foreach (var sheet in workbook.Sheets)
         {
-            if (sheet.State != XlsxSheetState.Visible)
+            if (!Examined(sheet))
             {
                 continue;
             }

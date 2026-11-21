@@ -83,8 +83,9 @@ public class NonTextFixtureTests
         Assert.Equal("(brak)", image.Value("Obecny opis"));
         Assert.Equal("image1.png", image.Value("Plik obrazu"));
 
+        // Kształt bez tekstu może być nieoznaczonym ozdobnikiem: heurystyka wysokiej pewności (ostrzeżenie), nie błąd.
         var shape = result.At("XL-ALT-MISSING", $"Kształt „Prostokąt 7” na arkuszu „{Objects}” (przy komórce E13)");
-        Assert.Equal(XlsxSeverity.Error, shape.Severity);
+        Assert.Equal((XlsxSeverity.Warning, XlsxCheckType.Heuristic, (double?)0.85), (shape.Severity, shape.CheckType, shape.Confidence));
 
         // Dekoracyjny (Obraz 2), obrazy w grupie z opisem (Obraz 9, 10), obraz ukryty (Obraz 11), pole z tekstem, wykresy: bez zgłoszeń tego kodu.
         Assert.Equal(2, result.Of("XL-ALT-MISSING").Count);

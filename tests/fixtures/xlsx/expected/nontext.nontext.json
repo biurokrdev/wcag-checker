@@ -10,7 +10,7 @@
     },
     {
       "code": "XL-ALT-MISSING",
-      "severity": "Error",
+      "severity": "Warning",
       "location": "Kształt „Prostokąt 7” na arkuszu „Obrazy i obiekty” (przy komórce E13)"
     },
     {

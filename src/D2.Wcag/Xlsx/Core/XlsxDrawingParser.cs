@@ -238,6 +238,7 @@ internal sealed class XlsxDrawingParser
                 axis.El("delete").Flag()))
             .ToList();
 
+        var barGroup = groups.FirstOrDefault(g => g.Name.LocalName == "barChart");
         return new XlsxChart(
             frame.Name,
             titleElement is null ? null : TextOf(titleElement.El("tx")) ?? "",
@@ -249,7 +250,11 @@ internal sealed class XlsxDrawingParser
             groupLabels || series.Any(s => s.HasDataLabels),
             frame.Description,
             Color(plotArea.El("spPr").El("solidFill")),
-            frame);
+            frame)
+        {
+            BarOverlap = XlsxXml.Int(barGroup.El("overlap").Attr("val")),
+            BarGapWidth = XlsxXml.Int(barGroup.El("gapWidth").Attr("val")),
+        };
     }
 
     /// <summary>Tekst tytułu albo nazwy serii: tekst wpisany (<c>rich</c>), wartość z pamięci podręcznej odwołania (<c>strRef/strCache</c>) albo <c>v</c>.</summary>

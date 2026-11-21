@@ -100,7 +100,18 @@ public sealed record XlsxDrawingObject(string ObjectId, string Name, XlsxDrawing
 
 public sealed record XlsxChart(string Name, string? Title, bool AutoTitleDeleted, IReadOnlyList<XlsxChartAxis> Axes,
     IReadOnlyList<XlsxChartSeries> Series, string ChartType, bool HasLegend, bool HasDataLabels, string? Description,
-    string? PlotAreaFillHex, XlsxDrawingObject? Frame);
+    string? PlotAreaFillHex, XlsxDrawingObject? Frame)
+{
+    /// <summary>
+    /// Nakładanie słupków serii w grupie (<c>c:barChart/c:overlap/@val</c>, od −100 do 100; w procentach szerokości słupka):
+    /// 0 i więcej – słupki sąsiednich serii stykają się albo nachodzą, wartość ujemna – między nimi jest odstęp.
+    /// <c>null</c> = brak elementu (domyślnie 0) albo wykres bez grupy słupkowej.
+    /// </summary>
+    public int? BarOverlap { get; init; }
+
+    /// <summary>Odstęp między grupami słupków (<c>c:gapWidth/@val</c>, 0–500, w procentach szerokości słupka); <c>null</c> = brak elementu.</summary>
+    public int? BarGapWidth { get; init; }
+}
 
 /// <param name="Kind">category | value | date | series</param>
 public sealed record XlsxChartAxis(string Kind, string? Title, bool Deleted);

@@ -361,6 +361,66 @@ public class ColorRuleTests
     }
 
     [Fact]
+    public void Contrast_ImagesThatMayContainText_KeepTheManualQuestion()
+    {
+        // Bez obrazów i bez innych treści nieocenianych 1.4.3 ma „Brak wykrytych problemów”; obraz (możliwy obraz tekstu) zostawia pytanie.
+        XlsxAuditResult Run(bool image, bool decorative = false)
+        {
+            var fx = New();
+            var sheet = fx.AddSheet("Dane").Text("A1", "Treść o dobrym kontraście");
+            if (image)
+            {
+                sheet.Image("Zrzut ekranu", 2, "C3", "F10", description: "Zrzut ekranu formularza", decorative: decorative);
+            }
+
+            return new WcagXlsxAuditor().Audit(fx.Build());
+        }
+
+        var without = Run(image: false);
+        Assert.DoesNotContain(without.ManualChecks, c => c.Id == "manual-1.4.3:color");
+        Assert.Equal(XlsxCriterionStatus.NoIssuesDetected, without.Criteria.Single(c => c.Sc == "1.4.3").Status);
+
+        var with = Run(image: true);
+        var check = Assert.Single(with.ManualChecks, c => c.Id == "manual-1.4.3:color");
+        Assert.Contains("obrazy, które mogą zawierać tekst", check.Hint);
+        Assert.Equal(XlsxCriterionStatus.ManualReview, with.Criteria.Single(c => c.Sc == "1.4.3").Status);
+
+        Assert.DoesNotContain(Run(image: true, decorative: true).ManualChecks, c => c.Id == "manual-1.4.3:color");
+    }
+
+    [Theory]
+    [InlineData(null, true)]
+    [InlineData("0", true)]
+    [InlineData("100", true)]
+    [InlineData("-30", false)]
+    public void ChartContrast_BarSeries_TouchOnlyWithoutGap_FromOverlap(string? overlap, bool touching)
+    {
+        // Ciemnoszary i czarny: każdy ma dobry kontrast z białym tłem, ale między sobą tylko ok. 2:1 – liczy się to wyłącznie,
+        // gdy słupki stykają się (c:overlap ≥ 0; brak elementu = 0).
+        var fx = New();
+        var sheet = fx.AddSheet("Dane");
+        sheet.Row("A1", 0, "Miesiąc", "A", "B").Row("A2", 0, "Styczeń").Number("B2", 1).Number("C2", 2);
+        var chart = new FxChart { Type = "bar", Title = "Wykres", CategoryAxisTitle = "Miesiąc", ValueAxisTitle = "Wartość", PlotAreaFill = "FFFFFF" };
+        chart.Series.AddRange([Series(0) with { Fill = "404040" }, Series(1) with { Fill = "000000" }]);
+        sheet.Chart(chart, "Wykres 1", 2, "F1", "M15", "Opis wykresu.");
+        var parts = FixtureXlsx.Parts(fx.Build());
+        var xml = System.Text.Encoding.UTF8.GetString(parts["xl/charts/chart1.xml"]);
+        if (overlap is not null)
+        {
+            xml = xml.Replace("<c:gapWidth ", $"<c:overlap val=\"{overlap}\"/><c:gapWidth ");
+        }
+
+        var bytes = XlsxSecurityTests.Repack(parts, ("xl/charts/chart1.xml", xml));
+        var model = XlsxTestData.Read(bytes).Sheets[0].Charts.Single();
+        var result = ColorTestData.Audit(bytes);
+
+        Assert.Equal(overlap is null ? null : int.Parse(overlap, System.Globalization.CultureInfo.InvariantCulture), model.BarOverlap);
+        Assert.Equal(150, model.BarGapWidth);
+        Assert.Equal(touching, ChartColors.HasTouchingSeries(model));
+        Assert.Equal(touching, result.Code("XL-CHART-CONTRAST").Any(f => f.Message.Contains("sąsiedniej serii", StringComparison.Ordinal)));
+    }
+
+    [Fact]
     public void Rules_ObserveCancellation()
     {
         // Świeży model – analiza jest zapamiętywana na czas życia modelu, więc nie wolno użyć modelu współdzielonego.

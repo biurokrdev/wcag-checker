@@ -3,7 +3,7 @@
   "failure": "None",
   "wcagVersion": "2.2",
   "profileName": "WCAG 2.2 AA (arkusz Excel)",
-  "summary": "Wykryto automatycznie problemy (błędy: 5, ostrzeżenia: 3, do weryfikacji: 6). 24 kryteria wymagają oceny ręcznej (w całości lub w części).",
+  "summary": "Wykryto automatycznie problemy (błędy: 4, ostrzeżenia: 4, do weryfikacji: 6). 24 kryteria wymagają oceny ręcznej (w całości lub w części).",
   "disclaimer": "Wynik automatyczny nie potwierdza zgodności z WCAG",
   "workbook": {
     "title": "Raport sprzedaży – obiekty i łącza",
@@ -19,8 +19,8 @@
     "isEmpty": false
   },
   "counts": {
-    "errors": 5,
-    "warnings": 3,
+    "errors": 4,
+    "warnings": 4,
     "needsReview": 6,
     "info": 3,
     "manualChecks": 31
@@ -54,33 +54,6 @@
         {
           "name": "Plik obrazu",
           "value": "image1.png"
-        }
-      ]
-    },
-    {
-      "code": "XL-ALT-MISSING",
-      "severity": "Error",
-      "checkType": "Auto",
-      "title": "Obiekt bez tekstu alternatywnego",
-      "wcag": [
-        "1.1.1"
-      ],
-      "message": "Obiekt „Prostokąt 7” (kształt) nie ma tekstu alternatywnego i nie jest oznaczony jako dekoracyjny.",
-      "fixInstruction": "1. Kliknij obiekt prawym przyciskiem myszy i wybierz Wyświetl tekst alternatywny (w starszych wersjach: Edytuj tekst alternatywny). 2. W okienku wpisz jedno–dwa zdania opisujące treść i funkcję obiektu (nie jego wygląd ani nazwę pliku). 3. Jeśli obiekt jest wyłącznie ozdobą, zamiast opisu zaznacz pole Oznacz jako dekoracyjny. Na koniec uruchom Recenzja → Sprawdź ułatwienia dostępu.",
-      "location": "Kształt „Prostokąt 7” na arkuszu „Obrazy i obiekty” (przy komórce E13)",
-      "key": "0000|Drawing|0000013|00005|Prostokąt 7|8",
-      "evidence": [
-        {
-          "name": "Typ obiektu",
-          "value": "kształt"
-        },
-        {
-          "name": "Nazwa obiektu",
-          "value": "Prostokąt 7"
-        },
-        {
-          "name": "Obecny opis",
-          "value": "(brak)"
         }
       ]
     },
@@ -206,6 +179,34 @@
         {
           "name": "Plik obrazu",
           "value": "image1.png"
+        }
+      ]
+    },
+    {
+      "code": "XL-ALT-MISSING",
+      "severity": "Warning",
+      "checkType": "Heuristic",
+      "confidence": 0.85,
+      "title": "Obiekt bez tekstu alternatywnego",
+      "wcag": [
+        "1.1.1"
+      ],
+      "message": "Obiekt „Prostokąt 7” (kształt) nie ma tekstu alternatywnego i nie jest oznaczony jako dekoracyjny. Jeśli niesie informację, potrzebuje tekstu alternatywnego; jeśli jest ozdobą, oznacz go jako dekoracyjny.",
+      "fixInstruction": "1. Kliknij obiekt prawym przyciskiem myszy i wybierz Wyświetl tekst alternatywny (w starszych wersjach: Edytuj tekst alternatywny). 2. W okienku wpisz jedno–dwa zdania opisujące treść i funkcję obiektu (nie jego wygląd ani nazwę pliku). 3. Jeśli obiekt jest wyłącznie ozdobą, zamiast opisu zaznacz pole Oznacz jako dekoracyjny. Na koniec uruchom Recenzja → Sprawdź ułatwienia dostępu.",
+      "location": "Kształt „Prostokąt 7” na arkuszu „Obrazy i obiekty” (przy komórce E13)",
+      "key": "0000|Drawing|0000013|00005|Prostokąt 7|8",
+      "evidence": [
+        {
+          "name": "Typ obiektu",
+          "value": "kształt"
+        },
+        {
+          "name": "Nazwa obiektu",
+          "value": "Prostokąt 7"
+        },
+        {
+          "name": "Obecny opis",
+          "value": "(brak)"
         }
       ]
     },
@@ -545,8 +546,8 @@
         "1.4.3"
       ],
       "code": "XL-CONTRAST",
-      "question": "Czy tekst na tle z obrazu, gradientu, wzoru lub w kolorach automatycznych, a także tekst w tabelach ze stylem tabeli, w kształtach i na wykresach, jest wyraźnie czytelny (kontrast co najmniej 4,5:1, dla dużego tekstu 3:1)?",
-      "hint": "Narzędzie ocenia kontrast tylko z formatowania komórek; nie ocenia stylów tabel, obrazów tła arkusza (Układ strony → Tło) ani tekstu w obiektach. W tym skoroszycie: tabele ze stylem tabeli (wiersz nagłówka, pasy wierszy i kolumn, wiersz sumy) – zaznacz komórkę tabeli i sprawdź Projekt tabeli → Style tabeli; tekst w kształtach, polach tekstowych i na wykresach (tytuły, etykiety osi i danych, legenda) – zaznacz obiekt i sprawdź Formatuj kształt → Opcje tekstu → Wypełnienie tekstu oraz wypełnienie kształtu lub obszaru wykresu. Kolory oceń też w Recenzja → Sprawdź ułatwienia dostępu."
+      "question": "Czy tekst na tle z obrazu, gradientu, wzoru lub w kolorach automatycznych, a także tekst w tabelach ze stylem tabeli, w kształtach, na wykresach i w obrazach (obrazy tekstu), jest wyraźnie czytelny (kontrast co najmniej 4,5:1, dla dużego tekstu 3:1)?",
+      "hint": "Narzędzie ocenia kontrast tylko z formatowania komórek; nie ocenia stylów tabel, obrazów tła arkusza (Układ strony → Tło), tekstu w obiektach ani tekstu w obrazach. W tym skoroszycie: tabele ze stylem tabeli (wiersz nagłówka, pasy wierszy i kolumn, wiersz sumy) – zaznacz komórkę tabeli i sprawdź Projekt tabeli → Style tabeli; tekst w kształtach, polach tekstowych i na wykresach (tytuły, etykiety osi i danych, legenda) – zaznacz obiekt i sprawdź Formatuj kształt → Opcje tekstu → Wypełnienie tekstu oraz wypełnienie kształtu lub obszaru wykresu; obrazy, które mogą zawierać tekst (zrzuty ekranu, napisy, tabele jako obraz) – kontrast tekstu w obrazie oceń na samym obrazie, np. narzędziem do pomiaru kontrastu kolorów. Kolory oceń też w Recenzja → Sprawdź ułatwienia dostępu."
     },
     {
       "id": "XL-TEXT-IN-IMAGE:0000|Drawing|0000003|00002|Obraz 1|2",
@@ -555,7 +556,7 @@
       ],
       "code": "XL-TEXT-IN-IMAGE",
       "question": "Czy obraz „Obraz 1” nie zawiera tekstu, który można było zapisać jako tekst w komórce lub kształcie (z wyjątkiem logotypów)?",
-      "hint": "Obejrzyj obraz. Jeśli zawiera tekst niosący informację (tabelę, zrzut ekranu, napis), wpisz ten tekst w komórkach albo w kształcie zamiast obrazu, a co najmniej powtórz go w tekście alternatywnym (prawy przycisk myszy → Wyświetl tekst alternatywny). Logotypy i tekst będący nieistotną częścią zdjęcia są wyjątkiem.",
+      "hint": "Obejrzyj obraz. Jeśli zawiera tekst niosący informację (tabelę, zrzut ekranu, napis), wpisz ten tekst w komórkach albo w kształcie zamiast obrazu, a co najmniej powtórz go w tekście alternatywnym (prawy przycisk myszy → Wyświetl tekst alternatywny). Tekst alternatywny wystarcza dla kryterium 1.1.1, ale nie dla 1.4.5 – obraz tekstu nadal nim pozostaje. Logotypy i tekst będący nieistotną częścią zdjęcia są wyjątkiem.",
       "location": "Obraz „Obraz 1” na arkuszu „Obrazy i obiekty” (przy komórce B3)"
     },
     {
@@ -565,7 +566,7 @@
       ],
       "code": "XL-TEXT-IN-IMAGE",
       "question": "Czy obraz „Obraz 5” nie zawiera tekstu, który można było zapisać jako tekst w komórce lub kształcie (z wyjątkiem logotypów)?",
-      "hint": "Obejrzyj obraz. Jeśli zawiera tekst niosący informację (tabelę, zrzut ekranu, napis), wpisz ten tekst w komórkach albo w kształcie zamiast obrazu, a co najmniej powtórz go w tekście alternatywnym (prawy przycisk myszy → Wyświetl tekst alternatywny). Logotypy i tekst będący nieistotną częścią zdjęcia są wyjątkiem.",
+      "hint": "Obejrzyj obraz. Jeśli zawiera tekst niosący informację (tabelę, zrzut ekranu, napis), wpisz ten tekst w komórkach albo w kształcie zamiast obrazu, a co najmniej powtórz go w tekście alternatywnym (prawy przycisk myszy → Wyświetl tekst alternatywny). Tekst alternatywny wystarcza dla kryterium 1.1.1, ale nie dla 1.4.5 – obraz tekstu nadal nim pozostaje. Logotypy i tekst będący nieistotną częścią zdjęcia są wyjątkiem.",
       "location": "Obraz „Obraz 5” na arkuszu „Obrazy i obiekty” (przy komórce E3)"
     },
     {
@@ -575,7 +576,7 @@
       ],
       "code": "XL-TEXT-IN-IMAGE",
       "question": "Czy obraz „Obraz 3” nie zawiera tekstu, który można było zapisać jako tekst w komórce lub kształcie (z wyjątkiem logotypów)?",
-      "hint": "Obejrzyj obraz. Jeśli zawiera tekst niosący informację (tabelę, zrzut ekranu, napis), wpisz ten tekst w komórkach albo w kształcie zamiast obrazu, a co najmniej powtórz go w tekście alternatywnym (prawy przycisk myszy → Wyświetl tekst alternatywny). Logotypy i tekst będący nieistotną częścią zdjęcia są wyjątkiem.",
+      "hint": "Obejrzyj obraz. Jeśli zawiera tekst niosący informację (tabelę, zrzut ekranu, napis), wpisz ten tekst w komórkach albo w kształcie zamiast obrazu, a co najmniej powtórz go w tekście alternatywnym (prawy przycisk myszy → Wyświetl tekst alternatywny). Tekst alternatywny wystarcza dla kryterium 1.1.1, ale nie dla 1.4.5 – obraz tekstu nadal nim pozostaje. Logotypy i tekst będący nieistotną częścią zdjęcia są wyjątkiem.",
       "location": "Obraz „Obraz 3” na arkuszu „Obrazy i obiekty” (przy komórce B13)"
     },
     {
@@ -585,7 +586,7 @@
       ],
       "code": "XL-TEXT-IN-IMAGE",
       "question": "Czy obraz „Obraz 4” nie zawiera tekstu, który można było zapisać jako tekst w komórce lub kształcie (z wyjątkiem logotypów)?",
-      "hint": "Obejrzyj obraz. Jeśli zawiera tekst niosący informację (tabelę, zrzut ekranu, napis), wpisz ten tekst w komórkach albo w kształcie zamiast obrazu, a co najmniej powtórz go w tekście alternatywnym (prawy przycisk myszy → Wyświetl tekst alternatywny). Logotypy i tekst będący nieistotną częścią zdjęcia są wyjątkiem.",
+      "hint": "Obejrzyj obraz. Jeśli zawiera tekst niosący informację (tabelę, zrzut ekranu, napis), wpisz ten tekst w komórkach albo w kształcie zamiast obrazu, a co najmniej powtórz go w tekście alternatywnym (prawy przycisk myszy → Wyświetl tekst alternatywny). Tekst alternatywny wystarcza dla kryterium 1.1.1, ale nie dla 1.4.5 – obraz tekstu nadal nim pozostaje. Logotypy i tekst będący nieistotną częścią zdjęcia są wyjątkiem.",
       "location": "Obraz „Obraz 4” na arkuszu „Obrazy i obiekty” (przy komórce B18)"
     },
     {
@@ -595,7 +596,7 @@
       ],
       "code": "XL-TEXT-IN-IMAGE",
       "question": "Czy obraz „Obraz 10” nie zawiera tekstu, który można było zapisać jako tekst w komórce lub kształcie (z wyjątkiem logotypów)?",
-      "hint": "Obejrzyj obraz. Jeśli zawiera tekst niosący informację (tabelę, zrzut ekranu, napis), wpisz ten tekst w komórkach albo w kształcie zamiast obrazu, a co najmniej powtórz go w tekście alternatywnym (prawy przycisk myszy → Wyświetl tekst alternatywny). Logotypy i tekst będący nieistotną częścią zdjęcia są wyjątkiem.",
+      "hint": "Obejrzyj obraz. Jeśli zawiera tekst niosący informację (tabelę, zrzut ekranu, napis), wpisz ten tekst w komórkach albo w kształcie zamiast obrazu, a co najmniej powtórz go w tekście alternatywnym (prawy przycisk myszy → Wyświetl tekst alternatywny). Tekst alternatywny wystarcza dla kryterium 1.1.1, ale nie dla 1.4.5 – obraz tekstu nadal nim pozostaje. Logotypy i tekst będący nieistotną częścią zdjęcia są wyjątkiem.",
       "location": "Obraz „Obraz 10” na arkuszu „Obrazy i obiekty” (przy komórce E18)"
     },
     {
@@ -605,7 +606,7 @@
       ],
       "code": "XL-TEXT-IN-IMAGE",
       "question": "Czy obraz „Obraz 9” nie zawiera tekstu, który można było zapisać jako tekst w komórce lub kształcie (z wyjątkiem logotypów)?",
-      "hint": "Obejrzyj obraz. Jeśli zawiera tekst niosący informację (tabelę, zrzut ekranu, napis), wpisz ten tekst w komórkach albo w kształcie zamiast obrazu, a co najmniej powtórz go w tekście alternatywnym (prawy przycisk myszy → Wyświetl tekst alternatywny). Logotypy i tekst będący nieistotną częścią zdjęcia są wyjątkiem.",
+      "hint": "Obejrzyj obraz. Jeśli zawiera tekst niosący informację (tabelę, zrzut ekranu, napis), wpisz ten tekst w komórkach albo w kształcie zamiast obrazu, a co najmniej powtórz go w tekście alternatywnym (prawy przycisk myszy → Wyświetl tekst alternatywny). Tekst alternatywny wystarcza dla kryterium 1.1.1, ale nie dla 1.4.5 – obraz tekstu nadal nim pozostaje. Logotypy i tekst będący nieistotną częścią zdjęcia są wyjątkiem.",
       "location": "Obraz „Obraz 9” na arkuszu „Obrazy i obiekty” (przy komórce E18)"
     },
     {

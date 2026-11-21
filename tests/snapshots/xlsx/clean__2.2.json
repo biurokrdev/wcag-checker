@@ -70,8 +70,8 @@
         "1.4.3"
       ],
       "code": "XL-CONTRAST",
-      "question": "Czy tekst na tle z obrazu, gradientu, wzoru lub w kolorach automatycznych, a także tekst w tabelach ze stylem tabeli, w kształtach i na wykresach, jest wyraźnie czytelny (kontrast co najmniej 4,5:1, dla dużego tekstu 3:1)?",
-      "hint": "Narzędzie ocenia kontrast tylko z formatowania komórek; nie ocenia stylów tabel, obrazów tła arkusza (Układ strony → Tło) ani tekstu w obiektach. W tym skoroszycie: tabele ze stylem tabeli (wiersz nagłówka, pasy wierszy i kolumn, wiersz sumy) – zaznacz komórkę tabeli i sprawdź Projekt tabeli → Style tabeli; tekst w kształtach, polach tekstowych i na wykresach (tytuły, etykiety osi i danych, legenda) – zaznacz obiekt i sprawdź Formatuj kształt → Opcje tekstu → Wypełnienie tekstu oraz wypełnienie kształtu lub obszaru wykresu. Kolory oceń też w Recenzja → Sprawdź ułatwienia dostępu."
+      "question": "Czy tekst na tle z obrazu, gradientu, wzoru lub w kolorach automatycznych, a także tekst w tabelach ze stylem tabeli, w kształtach, na wykresach i w obrazach (obrazy tekstu), jest wyraźnie czytelny (kontrast co najmniej 4,5:1, dla dużego tekstu 3:1)?",
+      "hint": "Narzędzie ocenia kontrast tylko z formatowania komórek; nie ocenia stylów tabel, obrazów tła arkusza (Układ strony → Tło), tekstu w obiektach ani tekstu w obrazach. W tym skoroszycie: tabele ze stylem tabeli (wiersz nagłówka, pasy wierszy i kolumn, wiersz sumy) – zaznacz komórkę tabeli i sprawdź Projekt tabeli → Style tabeli; tekst w kształtach, polach tekstowych i na wykresach (tytuły, etykiety osi i danych, legenda) – zaznacz obiekt i sprawdź Formatuj kształt → Opcje tekstu → Wypełnienie tekstu oraz wypełnienie kształtu lub obszaru wykresu; obrazy, które mogą zawierać tekst (zrzuty ekranu, napisy, tabele jako obraz) – kontrast tekstu w obrazie oceń na samym obrazie, np. narzędziem do pomiaru kontrastu kolorów. Kolory oceń też w Recenzja → Sprawdź ułatwienia dostępu."
     },
     {
       "id": "XL-TEXT-IN-IMAGE:0000|Drawing|0000002|00006|Logo|2",
@@ -80,7 +80,7 @@
       ],
       "code": "XL-TEXT-IN-IMAGE",
       "question": "Czy obraz „Logo” nie zawiera tekstu, który można było zapisać jako tekst w komórce lub kształcie (z wyjątkiem logotypów)?",
-      "hint": "Obejrzyj obraz. Jeśli zawiera tekst niosący informację (tabelę, zrzut ekranu, napis), wpisz ten tekst w komórkach albo w kształcie zamiast obrazu, a co najmniej powtórz go w tekście alternatywnym (prawy przycisk myszy → Wyświetl tekst alternatywny). Logotypy i tekst będący nieistotną częścią zdjęcia są wyjątkiem.",
+      "hint": "Obejrzyj obraz. Jeśli zawiera tekst niosący informację (tabelę, zrzut ekranu, napis), wpisz ten tekst w komórkach albo w kształcie zamiast obrazu, a co najmniej powtórz go w tekście alternatywnym (prawy przycisk myszy → Wyświetl tekst alternatywny). Tekst alternatywny wystarcza dla kryterium 1.1.1, ale nie dla 1.4.5 – obraz tekstu nadal nim pozostaje. Logotypy i tekst będący nieistotną częścią zdjęcia są wyjątkiem.",
       "location": "Obraz „Logo” na arkuszu „Budżet 2026” (przy komórce F2)"
     },
     {

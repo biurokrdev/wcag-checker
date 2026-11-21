@@ -65,8 +65,8 @@ public class StructureFixtureTests
     [Theory]
     [InlineData("XL-TITLE", "Skoroszyt", XlsxSeverity.Error)]
     [InlineData("XL-LANG", "Skoroszyt", XlsxSeverity.NeedsReview)]
-    [InlineData("XL-SHEET-NAME", "Arkusz „Arkusz1”", XlsxSeverity.Warning)]
-    [InlineData("XL-SHEET-NAME", "Arkusz „Sheet2”", XlsxSeverity.Warning)]
+    [InlineData("XL-SHEET-NAME", "Arkusz „Arkusz1”", XlsxSeverity.NeedsReview)]
+    [InlineData("XL-SHEET-NAME", "Arkusz „Sheet2”", XlsxSeverity.NeedsReview)]
     [InlineData("XL-SHEET-NAME", "Arkusz „Q”", XlsxSeverity.NeedsReview)]
     [InlineData("XL-HIDDEN", "Arkusz „Dane ukryte”", XlsxSeverity.Info)]
     [InlineData("XL-HIDDEN", "Arkusz „Słownik”", XlsxSeverity.Info)]
@@ -257,11 +257,11 @@ public class StructureNegativeTests
     }
 
     [Fact]
-    public void Empty_ReportsOnlyMetadataAndSheetName()
+    public void Empty_ReportsOnlyMetadata_EmptySheetNameIsNotJudged()
     {
         var codes = Audit("empty").Findings.Select(f => f.Code).Order(StringComparer.Ordinal).ToList();
 
-        Assert.Equal(["XL-LANG", "XL-SHEET-NAME", "XL-TITLE"], codes);
+        Assert.Equal(["XL-LANG", "XL-TITLE"], codes);
     }
 }
 
@@ -352,12 +352,26 @@ public class StructureSheetNameTests
     [InlineData("Hoja2")]
     [InlineData("Arkusz1 (2)")]
     [InlineData("Wykres1")]
-    public void DefaultName_IsWarning(string name)
+    public void DefaultName_NeedsReview(string name)
     {
         var finding = WithSheets(name).Single("XL-SHEET-NAME");
 
-        Assert.Equal(XlsxSeverity.Warning, finding.Severity);
+        // Powiązanie nazwy arkusza z 2.4.6 to interpretacja – pewność poniżej progu ostrzeżenia.
+        Assert.Equal((XlsxSeverity.NeedsReview, (double?)0.6), (finding.Severity, finding.Confidence));
         Assert.Equal("domyślna", finding.Evidence("Rodzaj nazwy"));
+    }
+
+    [Fact]
+    public void EmptySheet_NameIsNotJudged()
+    {
+        var result = Audit(Build(fx =>
+        {
+            fx.AddSheet("Arkusz1").Text("A1", "Treść arkusza");
+            fx.AddSheet("Arkusz2");
+        }));
+
+        var finding = result.Single("XL-SHEET-NAME");
+        Assert.Equal("Arkusz „Arkusz1”", finding.Location.Display);
     }
 
     [Theory]

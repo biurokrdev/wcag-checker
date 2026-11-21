@@ -21,6 +21,12 @@ internal static partial class NonTextOptions
     /// <summary>Opis równy nazwie obiektu („Obraz 3”) albo samemu słowu ogólnemu z numerem – nie mówi nic o treści; bardzo prawdopodobne.</summary>
     public const double AltGenericConfidence = 0.85;
 
+    /// <summary>
+    /// Kształt bez tekstu, bez opisu i bez oznaczenia „dekoracyjny” (XL-ALT-MISSING): zwykle niesie informację albo jest ozdobnikiem,
+    /// którego autor nie oznaczył – z pliku tego nie wiadomo. Bardzo prawdopodobny problem (ostrzeżenie), ale nie błąd jak przy obrazie.
+    /// </summary>
+    public const double ShapeAltMissingConfidence = 0.85;
+
     /// <summary>Opis wygenerowany automatycznie przez Office – bywa trafny, więc tylko „do weryfikacji”.</summary>
     public const double AltGeneratedConfidence = 0.7;
 

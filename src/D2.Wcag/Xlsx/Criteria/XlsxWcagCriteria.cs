@@ -133,12 +133,15 @@ public static class XlsxWcagCriteria
 
     private static bool HasFloatingObjects(XlsxWorkbook w) => w.Sheets.Any(s => s.Drawings.Count > 0 || s.Controls.Count > 0);
 
-    private static bool HasControls(XlsxWorkbook w) => w.Sheets.Any(s => s.Controls.Count > 0);
+    /// <summary>Kontrolka interaktywna: ActiveX albo kontrolka formularza inna niż etykieta (Label) i pole grupy (GroupBox).</summary>
+    internal static bool IsInteractive(XlsxControl c) => c.IsActiveX || c.Kind is not ("Label" or "GroupBox");
+
+    private static bool HasControls(XlsxWorkbook w) => w.Sheets.Any(s => s.Controls.Any(IsInteractive));
 
     private static bool HasActiveObjects(XlsxWorkbook w) => w.HasEmbeddedMedia || w.Sheets.Any(s => s.Controls.Any(c => c.IsActiveX));
 
     private static bool HasClickableObjects(XlsxWorkbook w) =>
-        w.Sheets.Any(s => s.Controls.Count > 0 || s.Drawings.Any(d => d.HyperlinkTarget is not null));
+        w.Sheets.Any(s => s.Controls.Any(IsInteractive) || s.Drawings.Any(d => d.HyperlinkTarget is not null));
 
     private static bool HasInteractive(XlsxWorkbook w) => w.HasEmbeddedMedia || HasClickableObjects(w);
 
@@ -146,9 +149,9 @@ public static class XlsxWcagCriteria
 
     private static bool HasValidation(XlsxWorkbook w) => w.Sheets.Any(s => s.DataValidations.Count > 0);
 
-    private static bool HasInput(XlsxWorkbook w) => w.Sheets.Any(s => s.DataValidations.Count > 0 || s.Controls.Count > 0 || s.IsProtected);
+    private static bool HasInput(XlsxWorkbook w) => w.Sheets.Any(s => s.DataValidations.Count > 0 || s.Controls.Any(IsInteractive) || s.IsProtected);
 
-    private static bool HasFocusOrderContent(XlsxWorkbook w) => w.Sheets.Any(s => s.Drawings.Count > 0 || s.Controls.Count > 0 || s.IsProtected);
+    private static bool HasFocusOrderContent(XlsxWorkbook w) => w.Sheets.Any(s => s.Drawings.Count > 0 || s.Controls.Any(IsInteractive) || s.IsProtected);
 
     private static bool HasMovingOrRefreshing(XlsxWorkbook w) => HasAnimation(w) || w.HasDataConnections;
 

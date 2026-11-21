@@ -3,7 +3,8 @@ namespace D2.Wcag.Xlsx.Rules.NonText;
 /// <summary>
 /// Tekst alternatywny obiektów rysunku (kryterium 1.1.1):
 /// <list type="bullet">
-/// <item><c>XL-ALT-MISSING</c> (auto) – obraz albo kształt bez tekstu, który nie ma opisu i nie jest oznaczony jako dekoracyjny;</item>
+/// <item><c>XL-ALT-MISSING</c> – obraz (auto, błąd) albo kształt bez tekstu (heurystyka wysokiej pewności, ostrzeżenie: kształt
+/// może być nieoznaczonym ozdobnikiem), który nie ma opisu i nie jest oznaczony jako dekoracyjny;</item>
 /// <item><c>XL-CHART-ALT</c> (auto) – wykres bez opisu alternatywnego. Wykresy mają własny kod (inna instrukcja naprawy, lokalizacja
 /// wykresu), więc <c>XL-ALT-MISSING</c> ramek wykresów nie zgłasza – jeden brak, jedno zgłoszenie;</item>
 /// <item><c>XL-ALT-POOR</c> (heurystyka) – opis jest, ale nic nie mówi: nazwa pliku, nazwa obiektu, „Obraz 1”, opis bardzo krótki.</item>
@@ -119,12 +120,25 @@ internal sealed class AltTextRule : IXlsxRule
                     continue;
                 }
 
-                if (obj.Type == XlsxDrawingType.Image || NonTextOptions.IsBlank(obj.Text))
+                if (obj.Type == XlsxDrawingType.Image)
                 {
                     yield return new XlsxRuleHit(MissingCode,
                         $"Obiekt „{obj.Name}” ({NonTextRules.TypeLabel(obj)}) nie ma tekstu alternatywnego i nie jest oznaczony jako dekoracyjny.",
                         location)
                     {
+                        Evidence = Evidence(obj, null),
+                    };
+                }
+                else if (NonTextOptions.IsBlank(obj.Text))
+                {
+                    // Kształt bez tekstu bywa ozdobnikiem albo elementem układu (linia, ramka), którego autor nie oznaczył jako
+                    // dekoracyjny – z pliku nie wynika, czy niesie informację. Heurystyka wysokiej pewności, nie błąd.
+                    yield return new XlsxRuleHit(MissingCode,
+                        $"Obiekt „{obj.Name}” ({NonTextRules.TypeLabel(obj)}) nie ma tekstu alternatywnego i nie jest oznaczony jako dekoracyjny. Jeśli niesie informację, potrzebuje tekstu alternatywnego; jeśli jest ozdobą, oznacz go jako dekoracyjny.",
+                        location)
+                    {
+                        CheckType = XlsxCheckType.Heuristic,
+                        Confidence = NonTextOptions.ShapeAltMissingConfidence,
                         Evidence = Evidence(obj, null),
                     };
                 }
