@@ -242,9 +242,12 @@ public static partial class SheetNames
             }
         }
 
-        return CellRef.TryParse(name, out _) || RowColumnStyle().IsMatch(name);
+        // Jak Excel: wartości logiczne i wszystko, co da się odczytać jako odwołanie w stylu A1 albo R1C1
+        // („R”, „C”, „R1”, „C2”, „RC”, „R1C1”, „R2C”…; w polskim Excelu W/K).
+        return CellRef.TryParse(name, out _) || RowColumnStyle().IsMatch(name)
+            || name.Equals("TRUE", StringComparison.OrdinalIgnoreCase) || name.Equals("FALSE", StringComparison.OrdinalIgnoreCase);
     }
 
-    [GeneratedRegex(@"^[RrWw]\d*[CcKk]\d*$", RegexOptions.CultureInvariant)]
+    [GeneratedRegex(@"^(?:[RrWw]\d*(?:[CcKk]\d*)?|[CcKk]\d*)$", RegexOptions.CultureInvariant)]
     private static partial Regex RowColumnStyle();
 }
