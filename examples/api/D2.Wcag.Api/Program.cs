@@ -4,6 +4,7 @@ using D2.Wcag.Api.Comments;
 using D2.Wcag.Api.Documents;
 using D2.Wcag.Api.Reports;
 using D2.Wcag.Api.Validation;
+using D2.Wcag.Api.Workbooks;
 using D2.Wcag.DependencyInjection;
 using D2.Wcag.Standards;
 using Microsoft.AspNetCore.Diagnostics;
@@ -36,6 +37,11 @@ builder.Services.Configure<ReportStoreOptions>(builder.Configuration.GetSection(
 builder.Services.AddSingleton<IReportStore, ReportStore>();
 builder.Services.AddScoped<IDocumentCheckService, DocumentCheckService>();
 
+// Audyt skoroszytów Excel (api/wcag-workbooks): osobny audytor, serwis i magazyn raportów; konfiguracja "Reports" wspólna.
+builder.Services.AddD2WcagXlsx();
+builder.Services.AddSingleton<IWorkbookReportStore, WorkbookReportStore>();
+builder.Services.AddScoped<IWorkbookAuditService, WorkbookAuditService>();
+
 builder.Services
     .AddControllers()
     .AddJsonOptions(o => o.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
@@ -61,6 +67,8 @@ app.UseExceptionHandler(handler => handler.Run(async ctx =>
         CommentExportRejectedException => (StatusCodes.Status422UnprocessableEntity, "Nie można przygotować kopii z komentarzami."),
         InvalidLocationException => (StatusCodes.Status400BadRequest, "Nieprawidłowe miejsce w dokumencie."),
         ReportNotFoundException => (StatusCodes.Status404NotFound, "Raport wygasł."),
+        UnknownWcagVersionException => (StatusCodes.Status400BadRequest, "Nieznana wersja WCAG."),
+        UnreadableWorkbookException => (StatusCodes.Status422UnprocessableEntity, "Skoroszytu nie da się odczytać."),
         BadHttpRequestException bad => (bad.StatusCode, "Nieprawidłowe żądanie."),
         _ => (StatusCodes.Status500InternalServerError, "Błąd serwera."),
     };

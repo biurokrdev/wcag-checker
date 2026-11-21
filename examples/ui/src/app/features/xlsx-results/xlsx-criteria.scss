@@ -1,0 +1,59 @@
+@use 'xlsx-shared' as shared;
+
+@include shared.base;
+
+.legend {
+  list-style: none;
+  margin: 0 0 0.6rem;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 1.25rem;
+}
+
+.explain {
+  margin-bottom: 0.4rem;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.matrix {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--xr-surface);
+  font-size: 0.92rem;
+
+  caption {
+    text-align: left;
+    font-weight: 600;
+    padding: 0.6rem 0 0.4rem;
+  }
+
+  th,
+  td {
+    border: 1px solid var(--xr-border);
+    padding: 0.35rem 0.6rem;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  thead th {
+    font-weight: 600;
+  }
+
+  tbody th {
+    font-weight: 400;
+    min-width: 12rem;
+  }
+
+  .status {
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .chip {
+    margin-left: 0.3rem;
+  }
+}

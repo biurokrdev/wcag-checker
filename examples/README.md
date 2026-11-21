@@ -12,6 +12,7 @@ examples/
 │  │  ├─ Rendering/                   SchematicDocxRenderer: schematyczny układ stron A4 (SkiaSharp) z prostokątem każdego elementu pod kluczami IssueLocation; IssuePreviewRenderer: łososiowa ramka i powiększenie
 │  │  ├─ Reports/                     ReportStore: dokument i wynik w pamięci procesu (IMemoryCache, bez dysku i GCS); ReportDocxWriter: raport DOCX (OpenXml, sam przechodzi walidację WCAG); ReportPdfWriter: ten sam raport jako PDF przez renderer stron
 │  │  ├─ Contracts/                   żądania i odpowiedzi JSON (enumy biblioteki: ValidationOutcome, IssueSeverity, IssueCategory)
+│  │  ├─ Workbooks/                   audyt skoroszytów Excel (api/wcag-workbooks): serwis, kontrakty, magazyn raportów, raport DOCX
 │  │  └─ Controllers/                 siedem endpointów; Program.cs: profil i wersje standardu firmowego z konfiguracji, AddD2Wcag, ReportStore, mapowanie błędów na ProblemDetails
 │  └─ D2.Wcag.Api.Tests/              xUnit przez WebApplicationFactory na samples/przyklad.docx i DOCX generowanych w kodzie
 └─ ui/                                Angular 22, jeden ekran
@@ -155,11 +156,28 @@ Błędy techniczne to `ProblemDetails` z polskim tytułem; nigdy nie udają wyni
 | `summaryTable[]` | tabela podsumowania: `standard`, `standardName`, `section`, `rows[]` (`id`, `name`, `status`: `Passed` / `Error` / `Warning` / `Info` / `ManualReview`, `details[]` z `code`, `message`, `occurrences`, `note`) |
 | `findings[]` | każde wystąpienie zgłoszenia osobno: `index`, `code`, `label` (nazwa po polsku z `IssueLabels`), `severity`, `category`, `standard`, `message`, `fixable`, `criteria[]`, `location` (`key`, `kind`, `story`, `index`, `subIndex`, `snippet`; `null` = cały dokument), `occurrence`/`occurrenceCount` |
 
+### Audyt skoroszytów Excel – `api/wcag-workbooks`
+
+Osobny kontroler (`Controllers/WcagWorkbooksController.cs`) i katalog `Workbooks/` (serwis, kontrakty, magazyn raportów, zapis raportu DOCX); ścieżka Word się nie zmienia. Raport nigdy nie stwierdza zgodności: najmocniejsze zdanie to „Nie wykryto automatycznie niezgodności. N kryteriów wymaga oceny ręcznej.”, a `disclaimer` zawsze brzmi „Wynik automatyczny nie potwierdza zgodności z WCAG”.
+
+| Endpoint | Opis |
+|---|---|
+| `POST validate` (`multipart/form-data`: `file`, `wcagVersion` = `2.2` domyślnie albo `2.1`) | audyt `.xlsx` / `.xlsm` do 20 MB, rozpoznanie po zawartości. Odpowiedź: `reportId`, `file`, `profile`, `summary`, `disclaimer`, `counts` (`errors`, `warnings`, `needsReview`, `info`, `manualChecks`), `workbook`, `findings[]` (waga i typ kontroli z etykietą, `wcag[]` z nazwą i adresem Understanding WCAG, `location` z `display` w notacji Excela, `evidence[]`, `bestPractice`, `moreCount`), `manualChecks[]`, `criteria[]` (status, uzasadnienie, `softwareDependent`), `sheets[]` |
+| `GET criteria?version=2.2` | katalog kryteriów A i AA z zastosowaniem do arkuszy, bez pliku |
+| `POST reports/{reportId}/export?format=docx\|pdf` (JSON opcjonalny: `{ "checkedManual": [ids] }`) | raport `<nazwa>_raport.docx` / `.pdf` (DOCX przechodzi walidator WCAG biblioteki, PDF przez `ReportPdfWriter.FromDocx`); 404 po wygaśnięciu raportu |
+
+Odrzucenia (`ProblemDetails`): `400` – plik pusty / za duży (teksty jak dla Word), dokument Word („Wybrano typ pliku Excel, a przesłany plik to dokument Word (.docx). Dodaj plik .xlsx albo zmień typ pliku na Word.”), inny format („Format nieobsługiwany: …”), nieznana wersja WCAG; `422` – skoroszyt zaszyfrowany, uszkodzony, przekraczający limity (np. bomba ZIP) albo czas analizy.
+
+```
+curl -F "file=@tests/fixtures/xlsx/structure.xlsx" -F wcagVersion=2.2 http://localhost:5100/api/wcag-workbooks/validate
+```
+
 ## Frontend
 
 Jeden ekran w stylu produkcyjnego walidatora (pomarańczowy tytuł, indygo etykiety, szare panele), w trzech krokach.
 
-1. **Wczytanie**: lista standardów z katalogu API (domyślne zaznaczone, wersje robocze oznaczone; bez zaznaczenia nie da się wybrać pliku) i plik DOCX: strefa „Przeciągnij i upuść tutaj” albo „⊕ Wybierz plik”. Analiza startuje od razu. Nad standardami jest sekcja „Typ pliku” z kafelkami Word (domyślny) / Excel / PDF („Dostępne niebawem”, niewybieralny); konfiguracja typów w `src/app/core/file-types.ts`. Word działa jak opisano wyżej. Excel pokazuje zamiast standardów Word jedną wymaganą pozycję „WCAG (arkusz Excel)” z wyborem wersji (2.2 AA domyślnie / 2.1 AA) i pole „Plik arkusza (*.xlsx)”; plik niezgodny z typem nie jest wysyłany (komunikat przy polu), a poprawny `.xlsx` kończy się na razie komunikatem „Audyt plików Excel jest w przygotowaniu” – bez wywołania API.
+1. **Wczytanie**: lista standardów z katalogu API (domyślne zaznaczone, wersje robocze oznaczone; bez zaznaczenia nie da się wybrać pliku) i plik DOCX: strefa „Przeciągnij i upuść tutaj” albo „⊕ Wybierz plik”. Analiza startuje od razu. Nad standardami jest sekcja „Typ pliku” z kafelkami Word (domyślny) / Excel / PDF („Dostępne niebawem”, niewybieralny); konfiguracja typów w `src/app/core/file-types.ts`. Word działa jak opisano wyżej. Excel pokazuje zamiast standardów Word jedną wymaganą pozycję „WCAG (arkusz Excel)” z wyborem wersji (2.2 AA domyślnie / 2.1 AA) i pole „Plik arkusza (*.xlsx)”; plik niezgodny z typem nie jest wysyłany (komunikat przy polu), a poprawny `.xlsx` idzie do `api/wcag-workbooks/validate` z wybraną wersją („Analiza skoroszytu…”). Odrzucenie z serwera (np. dokument Word zapisany jako `.xlsx`, plik zaszyfrowany) pojawia się przy polu pliku, formularz zostaje, fokus wraca na „Wybierz plik”.
+   **Raport Excel** (`src/app/features/xlsx-results/`, `app-xlsx-report`): nagłówek „Raport: {plik}” (dostaje fokus) z profilem, liczbami błędów / ostrzeżeń / do weryfikacji / informacji i zdaniem z API; „Pobierz raport (docx)”, „(pdf)” i „Sprawdź kolejny”; zgłoszenia z miejscem w notacji Excela, wagą (znak + tekst), typem kontroli, kryterium z łączem do Understanding WCAG (nowa karta), dowodem, instrukcją naprawy i „+N kolejnych”, grupowane po arkuszu (najpierw „Skoroszyt”) albo po kryterium, dobre praktyki osobno z etykietą „dobra praktyka, nie wymóg WCAG”, po 20 z „Pokaż kolejne”; macierz kryteriów z czterema statusami (znak + tekst; „Brak wykrytych problemów” neutralnie szary, nie zielony) i oznaczeniem zależnych od oprogramowania; checklista oceny ręcznej z licznikiem „Odhaczono X z N” (nie zmienia statusów, trafia do eksportu); stała stopka „Wynik automatyczny nie potwierdza zgodności z WCAG”. Kolory widoku są w `xlsx-report.colors.ts` z testem kontrastu.
 2. **Analiza**: API waliduje wybranymi standardami i zapamiętuje dokument w pamięci na czas podglądów.
 3. **Raport** z werdyktem jednym zdaniem, faktami (standardy, dokument), przyciskami „Pobierz raport (docx)” i „Sprawdź kolejny” obok siebie oraz dwiema zakładkami:
    - **Podsumowanie**: dla każdego standardu blok z pomarańczowym paskiem (jak „Standard WCAG”), a w nim zwijane sekcje z szarym paskiem tytułu i liczbą błędów/ostrzeżeń/kontroli ręcznych (WCAG: Dokument, Struktura, Tekst, Obrazy, Tabele, Łącza, Formularze, Weryfikacja ręczna; standard firmowy: jedna sekcja). Każda sekcja to tabela „Status | Kontrola | Szczegóły”: status jako kolorowe słowo `Zatwierdzono` / `Błąd` / `Ostrzeżenie` / `Informacja` / `Ręczna weryfikacja`, szczegóły jako „Kod X – komunikat (n wystąpień)”. Osobny blok „Kryteria WCAG 2.1” ze zwiniętą tabelą kryteriów i strukturą nagłówków.
@@ -171,5 +189,5 @@ Automatyczna naprawa i raport PDF są dostępne w API (`fix`, `export?format=pdf
 
 ```
 dotnet test examples/D2.Wcag.Examples.sln     # API, kilka sekund
-cd examples/ui && npm test                    # komponenty (Vitest)
+cd examples/ui && npm test                    # komponenty (Vitest + jsdom, axe-core; limit czasu testu w vitest-base.config.ts)
 ```

@@ -555,11 +555,6 @@
 
 // ---- Typ pliku: informacja pod kafelkami, standard stały (Excel) z wyborem wersji, komunikaty przy polu pliku.
 // Nowe reguły dotyczą tylko nowych elementów; style ścieżki Word powyżej zostają bez zmian.
-.type-notice {
-  margin: -0.9rem 0 1.5rem;
-  font-weight: 600;
-}
-
 .fixed-standards {
   // Fokus na szarym panelu w indygo (pomarańczowy z reguły globalnej ma tu za niski kontrast).
   input:focus-visible {
@@ -614,12 +609,6 @@
   }
 }
 
-.file-error,
-.file-pending {
+.file-error {
   margin: 0.8rem 0 0;
-}
-
-.box.info {
-  background: #e9f0f8;
-  border: 1px solid #5b7fa8;
 }
