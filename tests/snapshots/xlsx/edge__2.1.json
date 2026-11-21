@@ -3,7 +3,7 @@
   "failure": "None",
   "wcagVersion": "2.1",
   "profileName": "WCAG 2.1 AA (arkusz Excel)",
-  "summary": "Nie wykryto automatycznie niezgodności. 13 kryteriów wymaga oceny ręcznej.",
+  "summary": "Nie wykryto automatycznie niezgodności; do potwierdzenia przez człowieka pozostają zgłoszenia (do weryfikacji: 1). 13 kryteriów wymaga oceny ręcznej.",
   "disclaimer": "Wynik automatyczny nie potwierdza zgodności z WCAG",
   "workbook": {
     "title": "Przypadki brzegowe – zażółć gęślą jaźń",
@@ -21,11 +21,67 @@
   "counts": {
     "errors": 0,
     "warnings": 0,
-    "needsReview": 0,
-    "info": 0,
+    "needsReview": 1,
+    "info": 1,
     "manualChecks": 13
   },
-  "findings": [],
+  "findings": [
+    {
+      "code": "XL-TABLE-MISSING",
+      "severity": "NeedsReview",
+      "checkType": "Heuristic",
+      "confidence": 0.5,
+      "title": "Dane z wierszem nagłówkowym nie są zdefiniowane jako tabela",
+      "wcag": [
+        "1.3.1"
+      ],
+      "message": "Zakres wygląda na tabelę danych z wierszem nagłówkowym (wiersz 1), ale nie jest zdefiniowany jako Tabela Excela, więc powiązania nagłówków z danymi nie są zapisane w pliku. To czynnik ryzyka dla kryterium 1.3.1, nie stwierdzenie niespełnienia – wymaga weryfikacji przez człowieka.",
+      "fixInstruction": "1. Zaznacz dowolną komórkę zakresu danych. 2. Wybierz Narzędzia główne → Formatuj jako tabelę (albo Wstawianie → Tabela, skrót Ctrl+T). 3. W oknie potwierdź zakres i zaznacz „Moja tabela ma nagłówki”. 4. Na karcie Projekt tabeli sprawdź, czy zaznaczone jest pole Wiersz nagłówka, i nadaj tabeli opisową nazwę (pole Nazwa tabeli). Jeśli zakres celowo nie jest tabelą, upewnij się, że nagłówki kolumn i wierszy da się jednoznacznie ustalić z treści arkusza.",
+      "location": "Duży!A1:C200000",
+      "key": "0003|Range|0000001|00001|A1:C200000|",
+      "snippet": "Lp | Kategoria | Wartość",
+      "evidence": [
+        {
+          "name": "Nagłówki",
+          "value": "Lp | Kategoria | Wartość"
+        },
+        {
+          "name": "Kolumny",
+          "value": "3"
+        },
+        {
+          "name": "Wiersze danych",
+          "value": "199999"
+        },
+        {
+          "name": "Podstawa rozpoznania nagłówka",
+          "value": "wyróżnienie formatowaniem, teksty nad wartościami liczbowymi"
+        }
+      ]
+    },
+    {
+      "code": "XL-HIDDEN",
+      "severity": "Info",
+      "checkType": "Auto",
+      "title": "Ukryta treść w skoroszycie",
+      "bestPractice": true,
+      "message": "Informacja (dobra praktyka, nie wymóg WCAG): komórka ma treść ukrytą formatem liczbowym „;;;” – wartość jest w pliku, ale nie widać jej w arkuszu.",
+      "fixInstruction": "Zaznacz komórki → Ctrl+1 (Formatuj komórki) → karta Liczby → wybierz kategorię Ogólne albo właściwy format zamiast niestandardowego „;;;”. Jeśli wartość ma pozostać niewidoczna, rozważ przeniesienie jej do arkusza pomocniczego.",
+      "location": "'Zażółć gęślą jaźń'!A2",
+      "key": "0000|Cell|0000002|00001|A2|",
+      "snippet": "ukryta treść",
+      "evidence": [
+        {
+          "name": "Format liczbowy",
+          "value": ";;;"
+        },
+        {
+          "name": "Komórki z treścią",
+          "value": "1"
+        }
+      ]
+    }
+  ],
   "manualChecks": [
     {
       "id": "manual-1.1.1",
@@ -36,7 +92,7 @@
       "hint": "Kliknij obiekt prawym przyciskiem myszy → Wyświetl tekst alternatywny (starsze wersje: Edytuj tekst alternatywny)."
     },
     {
-      "id": "manual-1.3.1",
+      "id": "manual-1.3.1:structure",
       "wcag": [
         "1.3.1"
       ],
@@ -51,7 +107,7 @@
       "question": "Czy treść czytana w kolejności komórek i obiektów (od A1, arkusz po arkuszu) zachowuje sens, także tam, gdzie użyto pól tekstowych i obiektów pływających?"
     },
     {
-      "id": "manual-1.3.3",
+      "id": "manual-1.3.3:structure",
       "wcag": [
         "1.3.3"
       ],
@@ -86,11 +142,11 @@
       "question": "Czy elementy wykresów i grafik niezbędne do zrozumienia treści (linie, słupki, wycinki, ikony) odróżniają się od tła i od siebie kontrastem co najmniej 3:1 albo mają etykiety tekstowe niosące tę samą informację?"
     },
     {
-      "id": "manual-2.4.2",
+      "id": "manual-2.4.2:structure",
       "wcag": [
         "2.4.2"
       ],
-      "question": "Czy tytuł we właściwościach dokumentu opisuje nazwę, temat lub cel skoroszytu?",
+      "question": "Czy tytuł we właściwościach albo nazwa pliku opisuje temat lub cel skoroszytu?",
       "hint": "Plik → Informacje → Właściwości → Tytuł."
     },
     {
@@ -101,14 +157,14 @@
       "question": "Czy przechodzenie klawiszem Tab po kontrolkach, obiektach i polach do wypełnienia odbywa się w kolejności zgodnej z logiką arkusza?"
     },
     {
-      "id": "manual-2.4.6",
+      "id": "manual-2.4.6:structure",
       "wcag": [
         "2.4.6"
       ],
       "question": "Czy nazwy arkuszy, nagłówki kolumn i wierszy, tytuły wykresów i etykiety pól opisują temat lub cel tego, co oznaczają?"
     },
     {
-      "id": "manual-3.1.1",
+      "id": "manual-3.1.1:structure",
       "wcag": [
         "3.1.1"
       ],
@@ -171,7 +227,10 @@
       "name": "Informacje i relacje",
       "level": "A",
       "status": "ManualReview",
-      "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. WCAG2ICT: kryterium stosuje się wprost. Relacje komórka–nagłówek, grupowanie i struktura przekazane wyglądem muszą być określone programowo albo dostępne w tekście.",
+      "reason": "Możliwy problem – wymaga weryfikacji przez człowieka: XL-TABLE-MISSING. WCAG2ICT: kryterium stosuje się wprost. Relacje komórka–nagłówek, grupowanie i struktura przekazane wyglądem muszą być określone programowo albo dostępne w tekście.",
+      "findingCodes": [
+        "XL-TABLE-MISSING"
+      ],
       "manualChecks": 1
     },
     {

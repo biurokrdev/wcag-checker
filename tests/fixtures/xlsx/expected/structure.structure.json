@@ -1,0 +1,26 @@
+{
+  "fixture": "structure",
+  "group": "structure",
+  "wcagVersion": "2.2",
+  "findings": [
+    { "code": "XL-TITLE", "severity": "Error", "location": "Skoroszyt" },
+    { "code": "XL-LANG", "severity": "NeedsReview", "location": "Skoroszyt" },
+    { "code": "XL-SHEET-NAME", "severity": "Warning", "location": "Arkusz „Arkusz1”" },
+    { "code": "XL-SHEET-NAME", "severity": "Warning", "location": "Arkusz „Sheet2”" },
+    { "code": "XL-SHEET-NAME", "severity": "NeedsReview", "location": "Arkusz „Q”" },
+    { "code": "XL-TABLE-MISSING", "severity": "NeedsReview", "location": "Arkusz1!A1:C5" },
+    { "code": "XL-TABLE-MISSING", "severity": "NeedsReview", "location": "Sheet2!A2:D8" },
+    { "code": "XL-SENSORY", "severity": "NeedsReview", "location": "Arkusz1!A7" },
+    { "code": "XL-MERGED", "severity": "NeedsReview", "location": "Sheet2!B4:C4" },
+    { "code": "XL-BLANK-LAYOUT", "severity": "NeedsReview", "location": "Sheet2!A6:D6" },
+    { "code": "XL-HIDDEN", "severity": "Info", "location": "Arkusz „Dane ukryte”" },
+    { "code": "XL-HIDDEN", "severity": "Info", "location": "Arkusz „Słownik”" },
+    { "code": "XL-HIDDEN", "severity": "Info", "location": "Koszty!A4:E4" },
+    { "code": "XL-HIDDEN", "severity": "Info", "location": "Koszty!C1:C6" },
+    { "code": "XL-HIDDEN", "severity": "Info", "location": "Koszty!E3" },
+    { "code": "XL-TABLE-HEADER", "severity": "Warning", "location": "Tabela „Tabela1” (Tabele!A1:C4)" },
+    { "code": "XL-TABLE-HEADER-NAME", "severity": "Warning", "location": "Tabele!E1:G1" },
+    { "code": "XL-START-A1", "severity": "Info", "location": "'Późny start'!H20" }
+  ],
+  "manualChecks": []
+}

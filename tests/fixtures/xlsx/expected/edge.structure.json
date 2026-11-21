@@ -1,0 +1,10 @@
+{
+  "fixture": "edge",
+  "group": "structure",
+  "wcagVersion": "2.2",
+  "findings": [
+    { "code": "XL-HIDDEN", "severity": "Info", "location": "'Zażółć gęślą jaźń'!A2" },
+    { "code": "XL-TABLE-MISSING", "severity": "NeedsReview", "location": "Duży!A1:C200000" }
+  ],
+  "manualChecks": []
+}
