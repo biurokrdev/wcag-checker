@@ -120,6 +120,16 @@ public class WorkbookRejectionApiTests : IClassFixture<DefaultApiTestHost>
     }
 
     [Fact]
+    public async Task EncryptedWorkbook_IsUnprocessable_WithAHintToRemoveThePassword()
+    {
+        var (status, problem) = await Post(EncryptedWorkbook(), "tajny.xlsx");
+
+        Assert.Equal(HttpStatusCode.UnprocessableEntity, status);
+        Assert.Equal("Skoroszytu nie da się odczytać.", problem.Title);
+        Assert.StartsWith("Plik jest zaszyfrowany hasłem i nie można go przeanalizować.", problem.Detail);
+    }
+
+    [Fact]
     public async Task WorkbookWithABrokenPart_IsUnprocessable_NotAServerError()
     {
         // Poprawny pakiet, w którym workbook.xml nie jest XML-em.

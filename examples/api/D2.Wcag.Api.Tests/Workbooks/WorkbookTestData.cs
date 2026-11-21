@@ -78,6 +78,16 @@ internal static partial class WorkbookTestData
         return content;
     }
 
+    // Kontener OLE z wpisem katalogu „EncryptedPackage” – tak wygląda skoroszyt zaszyfrowany hasłem.
+    public static byte[] EncryptedWorkbook()
+    {
+        var content = LegacyXls();
+        var name = System.Text.Encoding.Unicode.GetBytes("EncryptedPackage\0");
+        name.CopyTo(content, 1024);
+        content[1024 + 64] = (byte)name.Length;
+        return content;
+    }
+
     public static byte[] CorruptedZip()
     {
         var content = new byte[2048];
