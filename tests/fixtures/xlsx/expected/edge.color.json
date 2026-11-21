@@ -1,0 +1,7 @@
+{
+  "fixture": "edge",
+  "group": "color",
+  "wcagVersion": "2.2",
+  "findings": [],
+  "manualChecks": [ "XL-COLOR-ONLY", "XL-CONTRAST", "XL-CHART-CONTRAST" ]
+}

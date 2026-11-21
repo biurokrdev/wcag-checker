@@ -114,18 +114,22 @@
       "question": "Czy instrukcje w skoroszycie są zrozumiałe bez odwoływania się wyłącznie do koloru, kształtu, rozmiaru lub położenia (np. „wypełnij żółte pola”, „tabela po prawej”)?"
     },
     {
-      "id": "manual-1.4.1",
+      "id": "manual-1.4.1:color",
       "wcag": [
         "1.4.1"
       ],
-      "question": "Czy każda informacja przekazana kolorem (statusy, wartości ujemne, serie wykresu, wyróżnienia) jest dostępna także w inny widoczny sposób: tekstem, znakiem, wzorem, etykietą?"
+      "code": "XL-COLOR-ONLY",
+      "question": "Czy każda informacja przekazana kolorem (statusy, wartości ujemne, serie wykresu, wyróżnienia), także kolorem wypełnienia albo czcionki nadanym komórkom ręcznie, jest dostępna także w inny widoczny sposób: tekstem, znakiem, wzorem, etykietą?",
+      "hint": "Skoroszyt ma komórki z ręcznie nadanym kolorem wypełnienia albo czcionki (np. pokolorowane wiersze, statusy, pola do wypełnienia) – narzędzie nie rozpoznaje znaczenia takich kolorów. Obejrzyj arkusz bez kolorów, np. w podglądzie wydruku czarno-białego (Układ strony → Ustawienia strony → Arkusz → Czarno-biały): jeżeli jakaś informacja znika, dopisz ją tekstem w komórce albo obok."
     },
     {
-      "id": "manual-1.4.3",
+      "id": "manual-1.4.3:color",
       "wcag": [
         "1.4.3"
       ],
-      "question": "Czy tekst na tle z obrazu, gradientu, wzoru lub w kolorach automatycznych jest wyraźnie czytelny (kontrast co najmniej 4,5:1, dla dużego tekstu 3:1)?"
+      "code": "XL-CONTRAST",
+      "question": "Czy tekst na tle z obrazu, gradientu, wzoru lub w kolorach automatycznych, a także tekst w tabelach ze stylem tabeli, w kształtach i na wykresach, jest wyraźnie czytelny (kontrast co najmniej 4,5:1, dla dużego tekstu 3:1)?",
+      "hint": "Narzędzie ocenia kontrast tylko z formatowania komórek; nie ocenia stylów tabel, obrazów tła arkusza (Układ strony → Tło) ani tekstu w obiektach. W tym skoroszycie: tekst w kształtach, polach tekstowych i na wykresach (tytuły, etykiety osi i danych, legenda) – zaznacz obiekt i sprawdź Formatuj kształt → Opcje tekstu → Wypełnienie tekstu oraz wypełnienie kształtu lub obszaru wykresu. Kolory oceń też w Recenzja → Sprawdź ułatwienia dostępu."
     },
     {
       "id": "manual-1.4.10",
@@ -135,11 +139,13 @@
       "question": "Czy przy dużym powiększeniu treść pojedynczych komórek (zwłaszcza długie teksty) da się przeczytać bez przewijania w dwóch kierunkach?"
     },
     {
-      "id": "manual-1.4.11",
+      "id": "manual-1.4.11:color",
       "wcag": [
         "1.4.11"
       ],
-      "question": "Czy elementy wykresów i grafik niezbędne do zrozumienia treści (linie, słupki, wycinki, ikony) odróżniają się od tła i od siebie kontrastem co najmniej 3:1 albo mają etykiety tekstowe niosące tę samą informację?"
+      "code": "XL-CHART-CONTRAST",
+      "question": "Czy elementy wykresów i grafik niezbędne do zrozumienia treści (linie, słupki, wycinki, ikony) odróżniają się od tła i od siebie kontrastem co najmniej 3:1 albo mają etykiety tekstowe niosące tę samą informację?",
+      "hint": "Narzędzie ocenia tylko serie wykresów o kolorach zapisanych w pliku (względem tła obszaru kreślenia i serii sąsiednich). Sprawdź ręcznie wycinki wykresów kołowych, serie w kolorach automatycznych, znaczniki, linie i osie, kształty oraz ikony i paski danych formatowania warunkowego: zaznacz element i porównaj jego kolory z sąsiednimi w Formatuj kształt albo Formatuj serię danych → Wypełnienie i linia."
     },
     {
       "id": "manual-2.4.3",
