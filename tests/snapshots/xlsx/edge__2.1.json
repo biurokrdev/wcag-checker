@@ -84,7 +84,7 @@
   ],
   "manualChecks": [
     {
-      "id": "manual-1.1.1",
+      "id": "manual-1.1.1:nontext",
       "wcag": [
         "1.1.1"
       ],
@@ -100,7 +100,7 @@
       "hint": "Zaznacz komórkę w danych: karta Projekt tabeli pojawia się tylko dla Tabeli Excela; pole „Wiersz nagłówka” pokazuje, czy tabela ma nagłówki."
     },
     {
-      "id": "manual-1.3.2",
+      "id": "manual-1.3.2:nontext",
       "wcag": [
         "1.3.2"
       ],
