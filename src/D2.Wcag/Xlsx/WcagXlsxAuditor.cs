@@ -207,12 +207,25 @@ public sealed class WcagXlsxAuditor : IWcagXlsxAuditor
 
         context.ThrowIfCancellationRequested();
         var findings = ApplyLimit(pending, profile.MaxFindingsPerRulePerSheet);
+        // Czy kontrola miała co badać – raz na deskryptor (predykat może przeglądać arkusze).
+        var examined = new Dictionary<XlsxRuleDescriptor, bool>(ReferenceEqualityComparer.Instance);
+        bool Examined(XlsxRuleDescriptor descriptor)
+        {
+            if (!examined.TryGetValue(descriptor, out var value))
+            {
+                context.ThrowIfCancellationRequested();
+                examined[descriptor] = value = descriptor.HasSubject?.Invoke(workbook) ?? true;
+            }
+
+            return value;
+        }
+
         var coverage = declared.ToDictionary(sc => sc, sc =>
         {
             var rules = automated.TryGetValue(sc, out var list)
                 ? list.OrderBy(d => d.Code, StringComparer.Ordinal).ToList()
                 : [];
-            return new XlsxCriterionCoverage { Automated = rules, Declared = true };
+            return new XlsxCriterionCoverage { Automated = rules, Examined = rules.Where(Examined).ToList(), Declared = true };
         }, StringComparer.Ordinal);
         var criteria = XlsxCriteriaEvaluator.Evaluate(workbook, version, findings, manual, coverage);
 

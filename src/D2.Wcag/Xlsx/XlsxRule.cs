@@ -17,6 +17,13 @@ public sealed record XlsxRuleDescriptor(string Code, string Title, IReadOnlyList
     /// w komórkach”). <c>null</c> – w uzasadnieniu stoi tytuł reguły.
     /// </summary>
     public string? Scope { get; init; }
+
+    /// <summary>
+    /// Czy w skoroszycie jest treść, którą ta kontrola bada (np. pola tekstowe dla reguły o polach tekstowych). Kontrola, która
+    /// nie miała czego badać, nie daje kryterium statusu „Brak wykrytych problemów” (kontrakt pkt 7.1). <c>null</c> – kontrola
+    /// bada każdy skoroszyt (np. właściwości dokumentu albo nazwy arkuszy).
+    /// </summary>
+    public Func<XlsxWorkbook, bool>? HasSubject { get; init; }
 }
 
 /// <summary>Trafienie reguły. Wagę, limit i sortowanie nadaje audytor.</summary>

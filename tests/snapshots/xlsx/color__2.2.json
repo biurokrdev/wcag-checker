@@ -1204,7 +1204,7 @@
       "name": "Treść nietekstowa",
       "level": "A",
       "status": "ManualReview",
-      "reason": "Sprawdzono automatycznie: obecność tekstu alternatywnego obrazów i kształtów (XL-ALT-MISSING); tekst alternatywny obiektów pod kątem opisów ogólnych, nazw plików i bardzo krótkich (XL-ALT-POOR); obecność opisu alternatywnego wykresów (XL-CHART-ALT) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. WCAG2ICT: kryterium stosuje się wprost. Każdy obraz, kształt, wykres i obiekt osadzony wymaga alternatywy tekstowej albo oznaczenia jako dekoracyjny.",
+      "reason": "Sprawdzono automatycznie: tekst alternatywny obiektów pod kątem opisów ogólnych, nazw plików i bardzo krótkich (XL-ALT-POOR); obecność opisu alternatywnego wykresów (XL-CHART-ALT) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. WCAG2ICT: kryterium stosuje się wprost. Każdy obraz, kształt, wykres i obiekt osadzony wymaga alternatywy tekstowej albo oznaczenia jako dekoracyjny.",
       "manualChecks": 1
     },
     {
@@ -1255,7 +1255,7 @@
       "name": "Zrozumiała kolejność",
       "level": "A",
       "status": "ManualReview",
-      "reason": "Sprawdzono automatycznie: treść pól tekstowych i kształtów leżącą poza siatką komórek (XL-TEXTBOX) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. WCAG2ICT: kryterium stosuje się wprost. Wymagane tylko tam, gdzie kolejność wpływa na znaczenie treści.",
+      "reason": "Kryterium wymaga oceny ręcznej. Kontrole automatyczne tego kryterium nie znalazły w skoroszycie treści do sprawdzenia: treść pól tekstowych i kształtów leżącą poza siatką komórek (XL-TEXTBOX). WCAG2ICT: kryterium stosuje się wprost. Wymagane tylko tam, gdzie kolejność wpływa na znaczenie treści.",
       "manualChecks": 1
     },
     {

@@ -39,6 +39,7 @@ internal sealed class ContrastRule : IXlsxRule
         BaseFix)
     {
         Scope = "kontrast tekstu w komórkach",
+        HasSubject = XlsxSubjects.HasVisibleCellValues,
     };
 
     public IReadOnlyList<XlsxRuleDescriptor> Descriptors { get; } = [Descriptor];

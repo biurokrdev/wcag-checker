@@ -83,6 +83,7 @@ internal sealed class ConditionalContrastRule : IXlsxRule
         FixText)
     {
         Scope = "kontrast tekstu po zadziałaniu formatowania warunkowego",
+        HasSubject = w => w.Sheets.Any(s => s.State == XlsxSheetState.Visible && s.ConditionalFormats.Count > 0),
         DefaultConfidence = SomeCellsConfidence,
     };
 

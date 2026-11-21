@@ -46,6 +46,14 @@ public class XlsxRuleRegistryTests
                 Assert.NotEmpty(descriptor.Wcag);
             }
 
+            // Kontrole automatyczne i heurystyczne mówią w uzasadnieniu kryterium, co sprawdziły („Sprawdzono automatycznie: …”).
+            if (descriptor.Wcag.Count > 0 && descriptor.CheckType != XlsxCheckType.Manual)
+            {
+                Assert.False(string.IsNullOrWhiteSpace(descriptor.Scope), descriptor.Code);
+                Assert.True(char.IsLower(descriptor.Scope![0]), descriptor.Code);
+                Assert.DoesNotContain("spełn", descriptor.Scope, StringComparison.OrdinalIgnoreCase);
+            }
+
             Assert.All(descriptor.Wcag, reference =>
             {
                 var criterion = XlsxWcagCriteria.Find(reference.Sc);

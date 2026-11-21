@@ -22,6 +22,7 @@ internal sealed class TableMissingRule : IXlsxRule
         + "Jeśli zakres celowo nie jest tabelą, upewnij się, że nagłówki kolumn i wierszy da się jednoznacznie ustalić z treści arkusza.")
     {
         Scope = "obszary danych z wierszem nagłówkowym poza Tabelami Excela",
+        HasSubject = XlsxSubjects.HasCellValues,
         DefaultConfidence = StructureOptions.TableMissingConfidence,
     };
 
@@ -98,6 +99,7 @@ internal sealed class TableHeaderRule : IXlsxRule
         + "3. W nowym wierszu nagłówka zastąp nazwy „Kolumna1”, „Kolumna2”… nazwami opisującymi zawartość kolumn. Wynik sprawdzisz poleceniem Recenzja → Sprawdź ułatwienia dostępu.")
     {
         Scope = "wiersze nagłówka Tabel Excela",
+        HasSubject = XlsxSubjects.HasTables,
         DefaultConfidence = StructureOptions.TableHeaderMissingConfidence,
     };
 
@@ -110,6 +112,7 @@ internal sealed class TableHeaderRule : IXlsxRule
         + "3. Powtórz dla pozostałych nagłówków domyślnych. Upewnij się, że na karcie Projekt tabeli zaznaczone jest pole Wiersz nagłówka.")
     {
         Scope = "nazwy kolumn Tabel Excela",
+        HasSubject = XlsxSubjects.HasTablesWithHeader,
         DefaultConfidence = StructureOptions.TableHeaderDefaultNameConfidence,
     };
 

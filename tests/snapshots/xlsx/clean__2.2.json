@@ -222,7 +222,7 @@
       "name": "Zrozumiała kolejność",
       "level": "A",
       "status": "ManualReview",
-      "reason": "Sprawdzono automatycznie: treść pól tekstowych i kształtów leżącą poza siatką komórek (XL-TEXTBOX) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. WCAG2ICT: kryterium stosuje się wprost. Wymagane tylko tam, gdzie kolejność wpływa na znaczenie treści.",
+      "reason": "Kryterium wymaga oceny ręcznej. Kontrole automatyczne tego kryterium nie znalazły w skoroszycie treści do sprawdzenia: treść pól tekstowych i kształtów leżącą poza siatką komórek (XL-TEXTBOX). WCAG2ICT: kryterium stosuje się wprost. Wymagane tylko tam, gdzie kolejność wpływa na znaczenie treści.",
       "manualChecks": 1
     },
     {
@@ -252,7 +252,7 @@
       "name": "Użycie koloru",
       "level": "A",
       "status": "NoIssuesDetected",
-      "reason": "Sprawdzono automatycznie: rozróżnienie serii wykresów innym środkiem niż kolor (XL-CHART-COLOR); formatowanie warunkowe i formaty liczb ujemnych wyróżniające wyłącznie kolorem (XL-COLOR-ONLY) – nie wykryto problemów. Do oceny ręcznej pozostaje: Czy każda informacja przekazana kolorem (statusy, wartości ujemne, serie wykresu, wyróżnienia) jest dostępna także w inny widoczny sposób: tekstem, znakiem, wzorem, etykietą?"
+      "reason": "Sprawdzono automatycznie: rozróżnienie serii wykresów innym środkiem niż kolor (XL-CHART-COLOR) – nie wykryto problemów. Do oceny ręcznej pozostaje: Czy każda informacja przekazana kolorem (statusy, wartości ujemne, serie wykresu, wyróżnienia) jest dostępna także w inny widoczny sposób: tekstem, znakiem, wzorem, etykietą?"
     },
     {
       "sc": "1.4.2",
@@ -266,7 +266,7 @@
       "name": "Kontrast (minimum)",
       "level": "AA",
       "status": "ManualReview",
-      "reason": "Sprawdzono automatycznie: kontrast tekstu w komórkach (XL-CONTRAST); kontrast tekstu po zadziałaniu formatowania warunkowego (XL-CONTRAST-CF) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. WCAG2ICT: kryterium stosuje się wprost. Kolory tekstu i tła komórek, kształtów i wykresów ustala autor.",
+      "reason": "Sprawdzono automatycznie: kontrast tekstu w komórkach (XL-CONTRAST) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. WCAG2ICT: kryterium stosuje się wprost. Kolory tekstu i tła komórek, kształtów i wykresów ustala autor.",
       "manualChecks": 1
     },
     {
@@ -526,7 +526,7 @@
       "name": "Etykiety lub instrukcje",
       "level": "A",
       "status": "ManualReview",
-      "reason": "Sprawdzono automatycznie: komunikaty wejściowe i etykiety pól z walidacją danych (XL-DV-INPUT); etykiety komórek do wypełnienia w chronionych arkuszach (XL-FIELD-LABEL) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. Dotyczy, gdy arkusz wymaga wprowadzania danych. Etykiety lub instrukcje są wymagane, gdy treść wymaga danych od użytkownika; komunikat wejściowy walidacji jest jednym ze sposobów, nie jedynym.",
+      "reason": "Sprawdzono automatycznie: komunikaty wejściowe i etykiety pól z walidacją danych (XL-DV-INPUT) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. Dotyczy, gdy arkusz wymaga wprowadzania danych. Etykiety lub instrukcje są wymagane, gdy treść wymaga danych od użytkownika; komunikat wejściowy walidacji jest jednym ze sposobów, nie jedynym.",
       "manualChecks": 1
     },
     {

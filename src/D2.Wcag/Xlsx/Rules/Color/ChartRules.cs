@@ -82,6 +82,7 @@ internal sealed class ChartColorRule : IXlsxRule
         FixText)
     {
         Scope = "rozróżnienie serii wykresów innym środkiem niż kolor",
+        HasSubject = w => ChartColors.Visible(w).Any(),
         DefaultConfidence = UnknownColorsConfidence,
     };
 
@@ -225,6 +226,7 @@ internal sealed class ChartContrastRule : IXlsxRule
         FixText)
     {
         Scope = "kontrast serii wykresów o kolorach zapisanych w pliku",
+        HasSubject = w => ChartColors.Visible(w).Any(),
         DefaultConfidence = AssumedConfidence,
     };
 

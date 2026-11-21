@@ -189,7 +189,7 @@
       "name": "Treść nietekstowa",
       "level": "A",
       "status": "ManualReview",
-      "reason": "Sprawdzono automatycznie: obecność tekstu alternatywnego obrazów i kształtów (XL-ALT-MISSING); tekst alternatywny obiektów pod kątem opisów ogólnych, nazw plików i bardzo krótkich (XL-ALT-POOR); obecność opisu alternatywnego wykresów (XL-CHART-ALT) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. WCAG2ICT: kryterium stosuje się wprost. Każdy obraz, kształt, wykres i obiekt osadzony wymaga alternatywy tekstowej albo oznaczenia jako dekoracyjny.",
+      "reason": "Sprawdzono automatycznie: tekst alternatywny obiektów pod kątem opisów ogólnych, nazw plików i bardzo krótkich (XL-ALT-POOR); obecność opisu alternatywnego wykresów (XL-CHART-ALT) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. WCAG2ICT: kryterium stosuje się wprost. Każdy obraz, kształt, wykres i obiekt osadzony wymaga alternatywy tekstowej albo oznaczenia jako dekoracyjny.",
       "manualChecks": 1
     },
     {
@@ -243,7 +243,7 @@
       "name": "Zrozumiała kolejność",
       "level": "A",
       "status": "ManualReview",
-      "reason": "Sprawdzono automatycznie: treść pól tekstowych i kształtów leżącą poza siatką komórek (XL-TEXTBOX) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. WCAG2ICT: kryterium stosuje się wprost. Wymagane tylko tam, gdzie kolejność wpływa na znaczenie treści.",
+      "reason": "Kryterium wymaga oceny ręcznej. Kontrole automatyczne tego kryterium nie znalazły w skoroszycie treści do sprawdzenia: treść pól tekstowych i kształtów leżącą poza siatką komórek (XL-TEXTBOX). WCAG2ICT: kryterium stosuje się wprost. Wymagane tylko tam, gdzie kolejność wpływa na znaczenie treści.",
       "manualChecks": 1
     },
     {
@@ -273,7 +273,7 @@
       "name": "Użycie koloru",
       "level": "A",
       "status": "ManualReview",
-      "reason": "Sprawdzono automatycznie: rozróżnienie serii wykresów innym środkiem niż kolor (XL-CHART-COLOR); formatowanie warunkowe i formaty liczb ujemnych wyróżniające wyłącznie kolorem (XL-COLOR-ONLY) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. WCAG2ICT: kryterium stosuje się wprost. Kolor nie może być jedynym wizualnym nośnikiem informacji (statusy, liczby ujemne, serie wykresu, łącza).",
+      "reason": "Sprawdzono automatycznie: rozróżnienie serii wykresów innym środkiem niż kolor (XL-CHART-COLOR) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. WCAG2ICT: kryterium stosuje się wprost. Kolor nie może być jedynym wizualnym nośnikiem informacji (statusy, liczby ujemne, serie wykresu, łącza).",
       "manualChecks": 1
     },
     {
@@ -288,7 +288,7 @@
       "name": "Kontrast (minimum)",
       "level": "AA",
       "status": "ManualReview",
-      "reason": "Sprawdzono automatycznie: kontrast tekstu w komórkach (XL-CONTRAST); kontrast tekstu po zadziałaniu formatowania warunkowego (XL-CONTRAST-CF) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. WCAG2ICT: kryterium stosuje się wprost. Kolory tekstu i tła komórek, kształtów i wykresów ustala autor.",
+      "reason": "Sprawdzono automatycznie: kontrast tekstu w komórkach (XL-CONTRAST) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. WCAG2ICT: kryterium stosuje się wprost. Kolory tekstu i tła komórek, kształtów i wykresów ustala autor.",
       "manualChecks": 1
     },
     {
@@ -421,7 +421,7 @@
       "name": "Nagłówki i etykiety",
       "level": "AA",
       "status": "ManualReview",
-      "reason": "Sprawdzono automatycznie: nazwy arkuszy (XL-SHEET-NAME); nazwy kolumn Tabel Excela (XL-TABLE-HEADER-NAME) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. WCAG2ICT: kryterium stosuje się wprost. Kryterium nie wymaga nagłówków ani etykiet – wymaga, by istniejące opisywały temat lub cel.",
+      "reason": "Sprawdzono automatycznie: nazwy arkuszy (XL-SHEET-NAME) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. WCAG2ICT: kryterium stosuje się wprost. Kryterium nie wymaga nagłówków ani etykiet – wymaga, by istniejące opisywały temat lub cel.",
       "manualChecks": 1
     },
     {

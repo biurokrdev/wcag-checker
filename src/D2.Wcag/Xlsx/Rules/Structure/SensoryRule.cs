@@ -25,6 +25,7 @@ internal sealed class SensoryRule : IXlsxRule
         + "3. Informację przekazywaną kolorem powtórz tekstem lub znakiem w komórce.")
     {
         Scope = "teksty odwołujące się do koloru, położenia lub kształtu",
+        HasSubject = XlsxSubjects.HasAnyText,
         DefaultConfidence = StructureOptions.SensoryConfidence,
     };
 

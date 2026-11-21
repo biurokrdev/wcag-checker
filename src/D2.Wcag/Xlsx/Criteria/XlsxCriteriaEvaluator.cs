@@ -5,7 +5,9 @@ namespace D2.Wcag.Xlsx.Criteria;
 /// 1) kryterium spoza wersji jest pomijane; 2) zgłoszenie o wadze „błąd” powiązane z kryterium → „Niespełnione”;
 /// 3) katalog mówi „nie dotyczy” (zawsze albo warunek na skoroszycie nie jest spełniony) → „Nie dotyczy” z uzasadnieniem;
 /// 4) są ostrzeżenia, pozycje „do weryfikacji” albo pozycje checklisty, albo żadna zarejestrowana reguła automatyczna lub
-/// heurystyczna nie obejmuje kryterium → „Do oceny ręcznej”; 5) w pozostałych przypadkach → „Brak wykrytych problemów”.
+/// heurystyczna nie obejmuje kryterium, albo żadna z nich nie miała w tym skoroszycie czego badać
+/// (<see cref="XlsxRuleDescriptor.HasSubject"/>) → „Do oceny ręcznej”; 5) w pozostałych przypadkach (kontrole zbadały treść
+/// skoroszytu i nic nie zgłosiły) → „Brak wykrytych problemów”.
 /// Sformułowania uzasadnień wg macierzy pkt 8.2 – żadne nie stwierdza spełnienia kryterium ocenianego ręcznie. Uzasadnienie mówi,
 /// co narzędzie faktycznie sprawdziło („Sprawdzono automatycznie: … – nie wykryto problemów”, z <see cref="XlsxRuleDescriptor.Scope"/>),
 /// a „nie zostało ocenione przez narzędzie” pada tylko wtedy, gdy żadna kontrola automatyczna ani heurystyczna kryterium nie dotyczy.
@@ -33,7 +35,8 @@ public static class XlsxCriteriaEvaluator
             // Pozycje są w checkliście deduplikowane po identyfikatorze – liczymy tak samo.
             var manualCount = ruleChecks.Where(c => c.Wcag.Any(r => r.Sc == criterion.Sc)).Select(c => c.Id).Distinct(StringComparer.Ordinal).Count();
             var scope = coverage.GetValueOrDefault(criterion.Sc) ?? new XlsxCriterionCoverage();
-            var covered = scope.Automated.Count > 0;
+            // Pokrycie liczy się tylko wtedy, gdy kontrole miały w tym skoroszycie co badać.
+            var covered = scope.Examined.Count > 0;
             var ruleAsks = scope.Declared && manualCount > 0;
 
             XlsxCriterionStatus status;
@@ -71,22 +74,29 @@ public static class XlsxCriteriaEvaluator
                     status = XlsxCriterionStatus.ManualReview;
                     reason = $"Możliwy problem – wymaga weryfikacji przez człowieka: {string.Join(", ", review)}. {criterion.Reason}";
                 }
-                else if (!covered)
+                else if (scope.Automated.Count == 0)
                 {
                     // Żadna kontrola automatyczna ani heurystyczna nie dotyczy kryterium (pytania z reguł ręcznych to nie ocena).
                     status = XlsxCriterionStatus.ManualReview;
                     reason = "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. " + criterion.Reason;
                 }
+                else if (!covered)
+                {
+                    // Kontrole są, ale w tym skoroszycie nie miały czego badać – „Brak wykrytych problemów” byłby nieuprawniony.
+                    status = XlsxCriterionStatus.ManualReview;
+                    reason = $"Kryterium wymaga oceny ręcznej. Kontrole automatyczne tego kryterium nie znalazły w skoroszycie treści do sprawdzenia: "
+                        + $"{Scopes(scope.Automated)}. {criterion.Reason}";
+                }
                 else if (manualCount > 0)
                 {
                     status = XlsxCriterionStatus.ManualReview;
-                    reason = $"{Checked(scope.Automated)} Pozostała część kryterium wymaga oceny ręcznej – "
+                    reason = $"{Checked(scope.Examined)} Pozostała część kryterium wymaga oceny ręcznej – "
                         + $"{ChecklistItems(manualCount)} na liście kontroli ręcznych. {criterion.Reason}";
                 }
                 else
                 {
                     status = XlsxCriterionStatus.NoIssuesDetected;
-                    reason = Checked(scope.Automated)
+                    reason = Checked(scope.Examined)
                         + (criterion.Question is null ? "" : " Do oceny ręcznej pozostaje: " + criterion.Question);
                 }
             }
@@ -102,10 +112,9 @@ public static class XlsxCriteriaEvaluator
     }
 
     /// <summary>„Sprawdzono automatycznie: kontrast tekstu w komórkach (XL-CONTRAST) – nie wykryto problemów.” (macierz pkt 8.2).</summary>
-    private static string Checked(IEnumerable<XlsxRuleDescriptor> rules) =>
-        "Sprawdzono automatycznie: "
-        + string.Join("; ", rules.Select(d => $"{d.Scope ?? d.Title} ({d.Code})"))
-        + " – nie wykryto problemów.";
+    private static string Checked(IEnumerable<XlsxRuleDescriptor> rules) => $"Sprawdzono automatycznie: {Scopes(rules)} – nie wykryto problemów.";
+
+    private static string Scopes(IEnumerable<XlsxRuleDescriptor> rules) => string.Join("; ", rules.Select(d => $"{d.Scope ?? d.Title} ({d.Code})"));
 
     private static string ChecklistItems(int count) => count switch
     {

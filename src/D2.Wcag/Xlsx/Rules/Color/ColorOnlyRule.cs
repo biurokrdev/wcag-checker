@@ -64,6 +64,8 @@ internal sealed class ColorOnlyRule : IXlsxRule
         FixText)
     {
         Scope = "formatowanie warunkowe i formaty liczb ujemnych wyróżniające wyłącznie kolorem",
+        HasSubject = w => w.Sheets.Any(s => s.State == XlsxSheetState.Visible && s.ConditionalFormats.Count > 0)
+            || w.Styles.CellFormats.Any(f => NumberFormatTraits.Of(f.NumberFormat).NegativeColorOnly is not null),
         DefaultConfidence = DefaultConfidence,
     };
 

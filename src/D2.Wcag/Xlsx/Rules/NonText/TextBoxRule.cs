@@ -25,6 +25,8 @@ internal sealed class TextBoxRule : IXlsxRule
         {
             Scope = "treść pól tekstowych i kształtów leżącą poza siatką komórek",
             DefaultConfidence = NonTextOptions.TextBoxConfidence,
+            HasSubject = w => w.Sheets.Any(s => NonTextRules.Objects(s).Any(o =>
+                !o.Hidden && !o.Object.IsGroup && o.Object.Type is XlsxDrawingType.TextBox or XlsxDrawingType.Shape)),
         },
     ];
 

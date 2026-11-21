@@ -27,6 +27,7 @@ internal sealed class MergedCellsRule : IXlsxRule
         + "Tekst wyśrodkowany nad kilkoma kolumnami uzyskasz bez scalania: Ctrl+1 → Wyrównanie → Poziomo: Wyrównaj zaznaczenie do środka.")
     {
         Scope = "scalone komórki w obszarach danych",
+        HasSubject = XlsxSubjects.HasCellValues,
         DefaultConfidence = StructureOptions.MergedInDataConfidence,
     };
 
@@ -173,6 +174,7 @@ internal sealed class BlankLayoutRule : IXlsxRule
         + "Jeśli to osobne zestawienia, nadaj każdemu własny wiersz nagłówka albo przenieś je na osobne arkusze.")
     {
         Scope = "puste wiersze i kolumny dzielące dane",
+        HasSubject = XlsxSubjects.HasCellValues,
         DefaultConfidence = StructureOptions.BlankRowConfidence,
     };
 

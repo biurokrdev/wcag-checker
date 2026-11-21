@@ -41,15 +41,18 @@ internal sealed class AltTextRule : IXlsxRule
         new(MissingCode, "Obiekt bez tekstu alternatywnego", [Criteria.XlsxWcagCriteria.Ref("1.1.1")], XlsxCheckType.Auto, MissingFix)
         {
             Scope = "obecność tekstu alternatywnego obrazów i kształtów",
+            HasSubject = w => HasVisibleObjects(w, t => t is not (XlsxDrawingType.Control or XlsxDrawingType.Chart)),
         },
         new(PoorCode, "Tekst alternatywny nie opisuje obiektu", [Criteria.XlsxWcagCriteria.Ref("1.1.1")], XlsxCheckType.Heuristic, PoorFix)
         {
             Scope = "tekst alternatywny obiektów pod kątem opisów ogólnych, nazw plików i bardzo krótkich",
             DefaultConfidence = NonTextOptions.AltGenericConfidence,
+            HasSubject = w => HasVisibleObjects(w, t => t != XlsxDrawingType.Control),
         },
         new(ChartCode, "Wykres bez opisu alternatywnego", [Criteria.XlsxWcagCriteria.Ref("1.1.1")], XlsxCheckType.Auto, ChartFix)
         {
             Scope = "obecność opisu alternatywnego wykresów",
+            HasSubject = w => HasVisibleObjects(w, t => t == XlsxDrawingType.Chart),
         },
     ];
 
@@ -139,6 +142,10 @@ internal sealed class AltTextRule : IXlsxRule
             yield return NonTextRules.CriterionCheck("1.1.1");
         }
     }
+
+    /// <summary>Czy reguła ma co badać: nieukryte obiekty rysunku podanego rodzaju.</summary>
+    private static bool HasVisibleObjects(XlsxWorkbook workbook, Func<XlsxDrawingType, bool> type) =>
+        workbook.Sheets.Any(s => NonTextRules.Objects(s).Any(o => !o.Hidden && type(o.Object.Type)));
 
     private static (string Reason, double Confidence)? Poor(XlsxDrawingObject obj, string alt)
     {

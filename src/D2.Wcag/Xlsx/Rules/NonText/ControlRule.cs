@@ -35,6 +35,7 @@ internal sealed class ControlRule : IXlsxRule
         new(Code, "Kontrolka bez nazwy", [XlsxWcagCriteria.Ref("4.1.2")], XlsxCheckType.Auto, Fix)
         {
             Scope = "nazwy (etykiety i tekst alternatywny) kontrolek formularza",
+            HasSubject = w => w.Sheets.Any(s => s.Controls.Any(c => !c.IsActiveX)),
         },
     ];
 

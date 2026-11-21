@@ -862,7 +862,7 @@
       "name": "Kontrast (minimum)",
       "level": "AA",
       "status": "ManualReview",
-      "reason": "Sprawdzono automatycznie: kontrast tekstu w komórkach (XL-CONTRAST); kontrast tekstu po zadziałaniu formatowania warunkowego (XL-CONTRAST-CF) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. WCAG2ICT: kryterium stosuje się wprost. Kolory tekstu i tła komórek, kształtów i wykresów ustala autor.",
+      "reason": "Sprawdzono automatycznie: kontrast tekstu w komórkach (XL-CONTRAST) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. WCAG2ICT: kryterium stosuje się wprost. Kolory tekstu i tła komórek, kształtów i wykresów ustala autor.",
       "manualChecks": 1
     },
     {
@@ -1131,7 +1131,7 @@
       "name": "Etykiety lub instrukcje",
       "level": "A",
       "status": "ManualReview",
-      "reason": "Sprawdzono automatycznie: komunikaty wejściowe i etykiety pól z walidacją danych (XL-DV-INPUT); etykiety komórek do wypełnienia w chronionych arkuszach (XL-FIELD-LABEL) – nie wykryto problemów. Pozostała część kryterium wymaga oceny ręcznej – 1 pozycja na liście kontroli ręcznych. Dotyczy, gdy arkusz wymaga wprowadzania danych. Etykiety lub instrukcje są wymagane, gdy treść wymaga danych od użytkownika; komunikat wejściowy walidacji jest jednym ze sposobów, nie jedynym.",
+      "reason": "Kryterium wymaga oceny ręcznej. Kontrole automatyczne tego kryterium nie znalazły w skoroszycie treści do sprawdzenia: komunikaty wejściowe i etykiety pól z walidacją danych (XL-DV-INPUT); etykiety komórek do wypełnienia w chronionych arkuszach (XL-FIELD-LABEL). Dotyczy, gdy arkusz wymaga wprowadzania danych. Etykiety lub instrukcje są wymagane, gdy treść wymaga danych od użytkownika; komunikat wejściowy walidacji jest jednym ze sposobów, nie jedynym.",
       "manualChecks": 1
     },
     {

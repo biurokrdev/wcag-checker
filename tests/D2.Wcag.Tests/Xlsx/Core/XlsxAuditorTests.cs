@@ -490,6 +490,44 @@ public class XlsxAuditorTests
     }
 
     [Fact]
+    public void Criteria_RuleWithNothingToExamine_GivesManualReviewWithQuestion()
+    {
+        // Ta sama reguła heurystyczna 1.3.2: raz ma co badać, raz nie.
+        XlsxAuditResult Run(bool hasSubject) => Audit(new FakeRule(
+            [Descriptor("T-SEQ", XlsxCheckType.Heuristic, "1.3.2") with { Scope = "pola tekstowe", HasSubject = _ => hasSubject }],
+            (_, _) => []));
+
+        var examined = Run(true).Criteria.Single(c => c.Sc == "1.3.2");
+        Assert.Equal(XlsxCriterionStatus.NoIssuesDetected, examined.Status);
+        Assert.StartsWith("Sprawdzono automatycznie: pola tekstowe (T-SEQ) – nie wykryto problemów. Do oceny ręcznej pozostaje: ", examined.Reason);
+
+        var nothing = Run(false);
+        var criterion = nothing.Criteria.Single(c => c.Sc == "1.3.2");
+        Assert.Equal((XlsxCriterionStatus.ManualReview, 1), (criterion.Status, criterion.ManualChecks));
+        Assert.StartsWith("Kryterium wymaga oceny ręcznej. Kontrole automatyczne tego kryterium nie znalazły w skoroszycie treści do sprawdzenia: pola tekstowe (T-SEQ).",
+            criterion.Reason);
+        var check = Assert.Single(nothing.ManualChecks, c => c.Wcag.Any(r => r.Sc == "1.3.2"));
+        Assert.Equal(("manual-1.3.2", XlsxWcagCriteria.Find("1.3.2")!.Question), (check.Id, check.Question));
+    }
+
+    [Fact]
+    public void Criteria_MeaningfulSequence_WithoutFloatingObjects_IsManualReview()
+    {
+        var fx = new FixtureXlsx { Title = "Plan urlopów zespołu", Language = "pl-PL" };
+        fx.AddSheet("Urlopy").Row("A1", 0, "Imię", "Od", "Do").Row("A2", 0, "Anna", "1 lipca", "14 lipca");
+
+        var result = new WcagXlsxAuditor().Audit(fx.Build());
+
+        var criterion = result.Criteria.Single(c => c.Sc == "1.3.2");
+        Assert.Equal(XlsxCriterionStatus.ManualReview, criterion.Status);
+        Assert.Contains("XL-TEXTBOX", criterion.Reason);
+        Assert.Contains(result.ManualChecks, c => c.Id == "manual-1.3.2");
+        // Kryteria, których kontrole zbadały komórki, mogą mieć „Brak wykrytych problemów” albo pozycje checklisty – nigdy na pusto.
+        Assert.All(result.Criteria.Where(c => c.Status == XlsxCriterionStatus.NoIssuesDetected),
+            c => Assert.DoesNotContain("nie znalazły w skoroszycie treści", c.Reason));
+    }
+
+    [Fact]
     public void Criteria_NoRules_NothingIsReportedAsNoIssuesDetected()
     {
         var result = Audit();

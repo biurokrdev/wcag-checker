@@ -37,6 +37,7 @@ internal sealed class LinkRule : IXlsxRule
         {
             Scope = "tekst hiperłączy i łącza w obiektach",
             DefaultConfidence = NonTextOptions.LinkGenericConfidence,
+            HasSubject = w => w.Sheets.Any(s => s.Hyperlinks.Count > 0 || s.Drawings.Any(d => d.HyperlinkTarget is not null)),
         },
         new(UrlCode, "Tekst łącza jest surowym adresem", [], XlsxCheckType.Auto, UrlFix) { BestPractice = true },
     ];
