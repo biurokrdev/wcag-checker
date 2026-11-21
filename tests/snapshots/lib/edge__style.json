@@ -1,6 +1,6 @@
 {
-  "outcome": "Valid",
-  "summary": "Dokument spełnia wszystkie automatycznie sprawdzane wymagania.",
+  "outcome": "Invalid",
+  "summary": "1 błąd.",
   "standards": [
     {
       "key": "style/1.0",
@@ -33,5 +33,37 @@
       "text": "Druga sekcja"
     }
   ],
-  "issues": []
+  "issues": [
+    {
+      "code": "STY-DIRECT-OVERRIDE",
+      "severity": "Error",
+      "category": "Text",
+      "standard": "style/1.0",
+      "message": "Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: kolor czcionki (#8EAADB, w stylu: #000000), kolor czcionki (#2F5496, w stylu: #000000).",
+      "locations": [
+        {
+          "key": "body:Paragraph:3",
+          "snippet": "Kolor motywu: rozjaśniony akcent i przyc…"
+        }
+      ],
+      "status": "Required",
+      "title": "Formatowanie ręczne inne niż w stylu",
+      "fix": "Zaznacz akapit → Ctrl+Spacja (wyczyść formatowanie znaków) → wybierz styl „Normalny” z Galerii stylów (Narzędzia główne → Style). Jeśli odstępstwo od stylu jest zamierzone, użyj innego stylu z Galerii (np. znakowego „Pogrubienie”) albo zmień sam styl – nie formatuj ręcznie.",
+      "scope": "Paragraph",
+      "details": [
+        {
+          "property": "color",
+          "actual": "8EAADB",
+          "expected": "000000",
+          "source": "tekst: „rozjaśniony akcent”"
+        },
+        {
+          "property": "color",
+          "actual": "2F5496",
+          "expected": "000000",
+          "source": "tekst: „przyciemniony akcent”"
+        }
+      ]
+    }
+  ]
 }

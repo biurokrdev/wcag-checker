@@ -1,6 +1,6 @@
 {
-  "outcome": "Valid",
-  "summary": "Dokument spełnia wszystkie automatycznie sprawdzane wymagania.",
+  "outcome": "Invalid",
+  "summary": "2 błędy.",
   "standards": [
     {
       "key": "style/1.0",
@@ -53,5 +53,61 @@
       "text": "Załączniki"
     }
   ],
-  "issues": []
+  "issues": [
+    {
+      "code": "STY-FAKE-HEADING",
+      "severity": "Error",
+      "category": "Headings",
+      "standard": "style/1.0",
+      "message": "Akapit „Postanowienia ogólne” wygląda jak nagłówek (krótki, w osobnym wierszu, pogrubiony), ale ma styl „Normalny” bez poziomu konspektu, więc nie należy do struktury dokumentu. Sugerowany styl: Nagłówek 4.",
+      "locations": [
+        {
+          "key": "body:Paragraph:8",
+          "snippet": "Postanowienia ogólne"
+        }
+      ],
+      "status": "Required",
+      "title": "Akapit udaje nagłówek",
+      "fix": "Zaznacz akapit → Ctrl+Spacja (wyczyść formatowanie znaków) → wybierz styl „Nagłówek 4” z Galerii stylów (Narzędzia główne → Style). Wygląd nagłówków zmieniaj w stylu, nie w akapicie.",
+      "scope": "Paragraph",
+      "details": [
+        {
+          "property": "p.pStyle",
+          "actual": "Normalny",
+          "expected": "Nagłówek 4"
+        },
+        {
+          "property": "b",
+          "actual": "1",
+          "source": "wygląd nagłówka"
+        }
+      ],
+      "dedupGroup": "fake-heading"
+    },
+    {
+      "code": "STY-DIRECT-OVERRIDE",
+      "severity": "Error",
+      "category": "Text",
+      "standard": "style/1.0",
+      "message": "Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: poziom konspektu (poziom 3, w stylu: tekst podstawowy).",
+      "locations": [
+        {
+          "key": "body:Paragraph:10",
+          "snippet": "Nagłówek z poziomu konspektu"
+        }
+      ],
+      "status": "Required",
+      "title": "Formatowanie ręczne inne niż w stylu",
+      "fix": "Zaznacz akapit → Ctrl+Q (wyczyść formatowanie akapitu) → wybierz styl „Normalny” z Galerii stylów (Narzędzia główne → Style). Jeśli odstępstwo od stylu jest zamierzone, użyj innego stylu z Galerii (np. znakowego „Pogrubienie”) albo zmień sam styl – nie formatuj ręcznie.",
+      "scope": "Paragraph",
+      "details": [
+        {
+          "property": "p.outlineLvl",
+          "actual": "2",
+          "expected": "9",
+          "source": "akapit"
+        }
+      ]
+    }
+  ]
 }

@@ -1,6 +1,6 @@
 {
-  "status": "Valid",
-  "summary": "Dokument spełnia wszystkie automatycznie sprawdzane wymagania.",
+  "status": "Invalid",
+  "summary": "1 błąd.",
   "standards": [
     {
       "key": "style/1.0",
@@ -22,11 +22,23 @@
     "images": 1
   },
   "counts": {
-    "errors": 0,
+    "errors": 1,
     "warnings": 0,
     "infos": 0
   },
-  "issues": [],
+  "issues": [
+    {
+      "code": "STY-DIRECT-OVERRIDE",
+      "label": "Formatowanie ręczne inne niż w stylu",
+      "severity": "Error",
+      "category": "Text",
+      "message": "Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: kolor czcionki (#8EAADB, w stylu: #000000), kolor czcionki (#2F5496, w stylu: #000000).",
+      "standard": "style/1.0",
+      "fixable": false,
+      "status": "Required",
+      "fix": "Zaznacz akapit → Ctrl+Spacja (wyczyść formatowanie znaków) → wybierz styl „Normalny” z Galerii stylów (Narzędzia główne → Style). Jeśli odstępstwo od stylu jest zamierzone, użyj innego stylu z Galerii (np. znakowego „Pogrubienie”) albo zmień sam styl – nie formatuj ręcznie."
+    }
+  ],
   "outline": [
     {
       "level": 1,
@@ -43,6 +55,107 @@
   ],
   "wcag": null,
   "reportId": "<id>",
-  "summaryTable": [],
-  "findings": []
+  "summaryTable": [
+    {
+      "standard": "style/1.0",
+      "standardName": "Formatowanie z Galerii stylów",
+      "section": "Formatowanie bezpośrednie",
+      "rows": [
+        {
+          "id": "sty-override",
+          "name": "Brak formatowania ręcznego innego niż w stylu",
+          "status": "Error",
+          "details": [
+            {
+              "code": "STY-DIRECT-OVERRIDE",
+              "label": "Formatowanie ręczne inne niż w stylu",
+              "message": "Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: kolor czcionki (#8EAADB, w stylu: #000000), kolor czcionki (#2F5496, w stylu: #000000).",
+              "occurrences": 1,
+              "severity": "Error"
+            }
+          ],
+          "note": null
+        },
+        {
+          "id": "sty-redundant",
+          "name": "Brak formatowania ręcznego powtarzającego styl",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        }
+      ]
+    },
+    {
+      "standard": "style/1.0",
+      "standardName": "Formatowanie z Galerii stylów",
+      "section": "Style",
+      "rows": [
+        {
+          "id": "sty-fake-heading",
+          "name": "Nagłówki mają styl nagłówka, a nie tylko wygląd",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "sty-gallery",
+          "name": "Użyte style są w Galerii stylów",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "sty-duplicate",
+          "name": "Brak kopii stylów po wklejeniu z innego dokumentu",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "index": 0,
+      "code": "STY-DIRECT-OVERRIDE",
+      "label": "Formatowanie ręczne inne niż w stylu",
+      "severity": "Error",
+      "category": "Text",
+      "standard": "style/1.0",
+      "standardName": "Formatowanie z Galerii stylów",
+      "message": "Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: kolor czcionki (#8EAADB, w stylu: #000000), kolor czcionki (#2F5496, w stylu: #000000).",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:3",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 3,
+        "subIndex": null,
+        "snippet": "Kolor motywu: rozjaśniony akcent i przyc…"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "Zaznacz akapit → Ctrl+Spacja (wyczyść formatowanie znaków) → wybierz styl „Normalny” z Galerii stylów (Narzędzia główne → Style). Jeśli odstępstwo od stylu jest zamierzone, użyj innego stylu z Galerii (np. znakowego „Pogrubienie”) albo zmień sam styl – nie formatuj ręcznie.",
+      "scope": "Paragraph",
+      "details": [
+        {
+          "property": "color",
+          "label": "kolor czcionki",
+          "actual": "#8EAADB",
+          "expected": "#000000",
+          "source": "tekst: „rozjaśniony akcent”"
+        },
+        {
+          "property": "color",
+          "label": "kolor czcionki",
+          "actual": "#2F5496",
+          "expected": "#000000",
+          "source": "tekst: „przyciemniony akcent”"
+        }
+      ]
+    }
+  ]
 }

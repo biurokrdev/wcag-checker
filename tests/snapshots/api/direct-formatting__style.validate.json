@@ -1,6 +1,6 @@
 {
-  "status": "Valid",
-  "summary": "Dokument spełnia wszystkie automatycznie sprawdzane wymagania.",
+  "status": "Invalid",
+  "summary": "8 błędów, 6 ostrzeżeń.",
   "standards": [
     {
       "key": "style/1.0",
@@ -22,11 +22,166 @@
     "images": 0
   },
   "counts": {
-    "errors": 0,
-    "warnings": 0,
+    "errors": 8,
+    "warnings": 6,
     "infos": 0
   },
-  "issues": [],
+  "issues": [
+    {
+      "code": "STY-FAKE-HEADING",
+      "label": "Akapit udaje nagłówek",
+      "severity": "Error",
+      "category": "Headings",
+      "message": "Akapit „Warunki dodatkowe” wygląda jak nagłówek (krótki, w osobnym wierszu, pogrubiony, 14 pt), ale ma styl „Normalny” bez poziomu konspektu, więc nie należy do struktury dokumentu. Sugerowany styl: Nagłówek 3.",
+      "standard": "style/1.0",
+      "fixable": false,
+      "status": "Required",
+      "fix": "Zaznacz akapit → Ctrl+Spacja (wyczyść formatowanie znaków) → wybierz styl „Nagłówek 3” z Galerii stylów (Narzędzia główne → Style). Wygląd nagłówków zmieniaj w stylu, nie w akapicie."
+    },
+    {
+      "code": "STY-DIRECT-OVERRIDE",
+      "label": "Formatowanie ręczne inne niż w stylu",
+      "severity": "Error",
+      "category": "Text",
+      "message": "Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: pogrubienie (tak, w stylu: nie), kursywa (tak, w stylu: nie).",
+      "standard": "style/1.0",
+      "fixable": false,
+      "status": "Required",
+      "fix": "Zaznacz akapit → Ctrl+Spacja (wyczyść formatowanie znaków) → wybierz styl „Normalny” z Galerii stylów (Narzędzia główne → Style). Jeśli odstępstwo od stylu jest zamierzone, użyj innego stylu z Galerii (np. znakowego „Pogrubienie”) albo zmień sam styl – nie formatuj ręcznie."
+    },
+    {
+      "code": "STY-DIRECT-OVERRIDE",
+      "label": "Formatowanie ręczne inne niż w stylu",
+      "severity": "Error",
+      "category": "Text",
+      "message": "Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: kolor czcionki (#0000FF wpisany ręcznie – użyj koloru motywu „Akcent 2”; w stylu: #000000).",
+      "standard": "style/1.0",
+      "fixable": false,
+      "status": "Required",
+      "fix": "Zaznacz akapit → Ctrl+Spacja (wyczyść formatowanie znaków) → wybierz styl „Normalny” z Galerii stylów (Narzędzia główne → Style). Jeśli odstępstwo od stylu jest zamierzone, użyj innego stylu z Galerii (np. znakowego „Pogrubienie”) albo zmień sam styl – nie formatuj ręcznie."
+    },
+    {
+      "code": "STY-DIRECT-OVERRIDE",
+      "label": "Formatowanie ręczne inne niż w stylu",
+      "severity": "Error",
+      "category": "Text",
+      "message": "Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: wyrównanie (do środka, w stylu: do lewej), odstęp przed akapitem (12 pt, w stylu: 0 pt), odstęp po akapicie (12 pt, w stylu: 6 pt), wcięcie z lewej (28,35 pt, w stylu: 0 pt), wcięcie pierwszego wiersza (14,2 pt, w stylu: 0 pt).",
+      "standard": "style/1.0",
+      "fixable": false,
+      "status": "Required",
+      "fix": "Zaznacz akapit → Ctrl+Q (wyczyść formatowanie akapitu) → wybierz styl „Normalny” z Galerii stylów (Narzędzia główne → Style). Jeśli odstępstwo od stylu jest zamierzone, użyj innego stylu z Galerii (np. znakowego „Pogrubienie”) albo zmień sam styl – nie formatuj ręcznie."
+    },
+    {
+      "code": "STY-DIRECT-OVERRIDE",
+      "label": "Formatowanie ręczne inne niż w stylu",
+      "severity": "Error",
+      "category": "Text",
+      "message": "Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: rozmiar czcionki (12 pt, w stylu: 10 pt), kerning (28).",
+      "standard": "style/1.0",
+      "fixable": false,
+      "status": "Required",
+      "fix": "Zaznacz akapit → Ctrl+Spacja (wyczyść formatowanie znaków) → wybierz styl „Normalny” z Galerii stylów (Narzędzia główne → Style). Jeśli odstępstwo od stylu jest zamierzone, użyj innego stylu z Galerii (np. znakowego „Pogrubienie”) albo zmień sam styl – nie formatuj ręcznie."
+    },
+    {
+      "code": "STY-DIRECT-OVERRIDE",
+      "label": "Formatowanie ręczne inne niż w stylu",
+      "severity": "Error",
+      "category": "Text",
+      "message": "Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: pogrubienie (nie, w stylu: tak).",
+      "standard": "style/1.0",
+      "fixable": false,
+      "status": "Required",
+      "fix": "Zaznacz akapit → Ctrl+Spacja (wyczyść formatowanie znaków) → wybierz styl „Normalny” z Galerii stylów (Narzędzia główne → Style). Jeśli odstępstwo od stylu jest zamierzone, użyj innego stylu z Galerii (np. znakowego „Pogrubienie”) albo zmień sam styl – nie formatuj ręcznie."
+    },
+    {
+      "code": "STY-DIRECT-OVERRIDE",
+      "label": "Formatowanie ręczne inne niż w stylu",
+      "severity": "Error",
+      "category": "Text",
+      "message": "Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: wcięcie z lewej (56,7 pt, w stylu: 18 pt).",
+      "standard": "style/1.0",
+      "fixable": false,
+      "status": "Required",
+      "fix": "Zaznacz akapit → Ctrl+Q (wyczyść formatowanie akapitu) → wybierz styl „Normalny” z Galerii stylów (Narzędzia główne → Style). Jeśli odstępstwo od stylu jest zamierzone, użyj innego stylu z Galerii (np. znakowego „Pogrubienie”) albo zmień sam styl – nie formatuj ręcznie."
+    },
+    {
+      "code": "STY-DIRECT-OVERRIDE",
+      "label": "Formatowanie ręczne inne niż w stylu",
+      "severity": "Error",
+      "category": "Text",
+      "message": "Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: wcięcie z lewej (56,7 pt, w stylu: 18 pt).",
+      "standard": "style/1.0",
+      "fixable": false,
+      "status": "Required",
+      "fix": "Zaznacz akapit → Ctrl+Q (wyczyść formatowanie akapitu) → wybierz styl „Normalny” z Galerii stylów (Narzędzia główne → Style). Jeśli odstępstwo od stylu jest zamierzone, użyj innego stylu z Galerii (np. znakowego „Pogrubienie”) albo zmień sam styl – nie formatuj ręcznie."
+    },
+    {
+      "code": "STY-DIRECT-REDUNDANT",
+      "label": "Formatowanie ręczne takie samo jak w stylu",
+      "severity": "Warning",
+      "category": "Text",
+      "message": "Akapit w stylu „Nagłówek 1” ma formatowanie nadane ręcznie, takie samo jak w stylu: pogrubienie (tak), kolor czcionki (#FF6200 wpisany ręcznie – użyj koloru motywu „Akcent 1”).",
+      "standard": "style/1.0",
+      "fixable": false,
+      "status": "Recommended",
+      "fix": "Zaznacz akapit → Ctrl+Spacja (wyczyść formatowanie znaków) → wybierz styl „Nagłówek 1” z Galerii stylów (Narzędzia główne → Style). Wygląd się nie zmieni – ręczne ustawienia tylko powtarzają styl."
+    },
+    {
+      "code": "STY-DIRECT-REDUNDANT",
+      "label": "Formatowanie ręczne takie samo jak w stylu",
+      "severity": "Warning",
+      "category": "Text",
+      "message": "Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, takie samo jak w stylu: rozmiar czcionki (10 pt), czcionka (SUN Me).",
+      "standard": "style/1.0",
+      "fixable": false,
+      "status": "Recommended",
+      "fix": "Zaznacz akapit → Ctrl+Spacja (wyczyść formatowanie znaków) → wybierz styl „Normalny” z Galerii stylów (Narzędzia główne → Style). Wygląd się nie zmieni – ręczne ustawienia tylko powtarzają styl."
+    },
+    {
+      "code": "STY-DIRECT-REDUNDANT",
+      "label": "Formatowanie ręczne takie samo jak w stylu",
+      "severity": "Warning",
+      "category": "Text",
+      "message": "Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, takie samo jak w stylu: wysunięcie (18 pt).",
+      "standard": "style/1.0",
+      "fixable": false,
+      "status": "Recommended",
+      "fix": "Zaznacz akapit → Ctrl+Q (wyczyść formatowanie akapitu) → wybierz styl „Normalny” z Galerii stylów (Narzędzia główne → Style). Wygląd się nie zmieni – ręczne ustawienia tylko powtarzają styl."
+    },
+    {
+      "code": "STY-DIRECT-REDUNDANT",
+      "label": "Formatowanie ręczne takie samo jak w stylu",
+      "severity": "Warning",
+      "category": "Text",
+      "message": "Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, takie samo jak w stylu: wysunięcie (18 pt).",
+      "standard": "style/1.0",
+      "fixable": false,
+      "status": "Recommended",
+      "fix": "Zaznacz akapit → Ctrl+Q (wyczyść formatowanie akapitu) → wybierz styl „Normalny” z Galerii stylów (Narzędzia główne → Style). Wygląd się nie zmieni – ręczne ustawienia tylko powtarzają styl."
+    },
+    {
+      "code": "STY-DUPLICATE",
+      "label": "Kopia stylu",
+      "severity": "Warning",
+      "category": "Structure",
+      "message": "Styl akapitowy „Normalny1” to kopia stylu „Normalny” (Word dopisuje cyfrę do nazwy stylu wklejonego z innego dokumentu); użyty w 1 akapicie.",
+      "standard": "style/1.0",
+      "fixable": false,
+      "status": "Recommended",
+      "fix": "Zaznacz tekst w stylu „Normalny1” (okienko Style, Alt+Ctrl+Shift+S → menu stylu → Zaznacz wszystkie wystąpienia) → wybierz z Galerii stylów styl „Normalny” → usuń zbędny styl „Normalny1” (menu stylu → Usuń)."
+    },
+    {
+      "code": "STY-NOT-IN-GALLERY",
+      "label": "Styl spoza Galerii stylów",
+      "severity": "Warning",
+      "category": "Structure",
+      "message": "Styl akapitowy „Mój styl” jest stylem niestandardowym, którego nie ma w Galerii stylów; użyty w 1 akapicie.",
+      "standard": "style/1.0",
+      "fixable": false,
+      "status": "Recommended",
+      "fix": "Zaznacz tekst w stylu „Mój styl” i wybierz właściwy styl z Galerii stylów (Narzędzia główne → Style). Jeśli styl „Mój styl” jest potrzebny, dodaj go do Galerii: okienko Style (Alt+Ctrl+Shift+S) → menu stylu → Dodaj do galerii stylów."
+    }
+  ],
   "outline": [
     {
       "level": 1,
@@ -47,6 +202,720 @@
   ],
   "wcag": null,
   "reportId": "<id>",
-  "summaryTable": [],
-  "findings": []
+  "summaryTable": [
+    {
+      "standard": "style/1.0",
+      "standardName": "Formatowanie z Galerii stylów",
+      "section": "Formatowanie bezpośrednie",
+      "rows": [
+        {
+          "id": "sty-override",
+          "name": "Brak formatowania ręcznego innego niż w stylu",
+          "status": "Error",
+          "details": [
+            {
+              "code": "STY-DIRECT-OVERRIDE",
+              "label": "Formatowanie ręczne inne niż w stylu",
+              "message": "Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: pogrubienie (tak, w stylu: nie), kursywa (tak, w stylu: nie).",
+              "occurrences": 1,
+              "severity": "Error"
+            },
+            {
+              "code": "STY-DIRECT-OVERRIDE",
+              "label": "Formatowanie ręczne inne niż w stylu",
+              "message": "Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: kolor czcionki (#0000FF wpisany ręcznie – użyj koloru motywu „Akcent 2”; w stylu: #000000).",
+              "occurrences": 1,
+              "severity": "Error"
+            },
+            {
+              "code": "STY-DIRECT-OVERRIDE",
+              "label": "Formatowanie ręczne inne niż w stylu",
+              "message": "Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: wyrównanie (do środka, w stylu: do lewej), odstęp przed akapitem (12 pt, w stylu: 0 pt), odstęp po akapicie (12 pt, w stylu: 6 pt), wcięcie z lewej (28,35 pt, w stylu: 0 pt), wcięcie pierwszego wiersza (14,2 pt, w stylu: 0 pt).",
+              "occurrences": 1,
+              "severity": "Error"
+            },
+            {
+              "code": "STY-DIRECT-OVERRIDE",
+              "label": "Formatowanie ręczne inne niż w stylu",
+              "message": "Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: rozmiar czcionki (12 pt, w stylu: 10 pt), kerning (28).",
+              "occurrences": 1,
+              "severity": "Error"
+            },
+            {
+              "code": "STY-DIRECT-OVERRIDE",
+              "label": "Formatowanie ręczne inne niż w stylu",
+              "message": "Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: pogrubienie (nie, w stylu: tak).",
+              "occurrences": 1,
+              "severity": "Error"
+            },
+            {
+              "code": "STY-DIRECT-OVERRIDE",
+              "label": "Formatowanie ręczne inne niż w stylu",
+              "message": "Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: wcięcie z lewej (56,7 pt, w stylu: 18 pt).",
+              "occurrences": 1,
+              "severity": "Error"
+            },
+            {
+              "code": "STY-DIRECT-OVERRIDE",
+              "label": "Formatowanie ręczne inne niż w stylu",
+              "message": "Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: wcięcie z lewej (56,7 pt, w stylu: 18 pt).",
+              "occurrences": 1,
+              "severity": "Error"
+            }
+          ],
+          "note": null
+        },
+        {
+          "id": "sty-redundant",
+          "name": "Brak formatowania ręcznego powtarzającego styl",
+          "status": "Warning",
+          "details": [
+            {
+              "code": "STY-DIRECT-REDUNDANT",
+              "label": "Formatowanie ręczne takie samo jak w stylu",
+              "message": "Akapit w stylu „Nagłówek 1” ma formatowanie nadane ręcznie, takie samo jak w stylu: pogrubienie (tak), kolor czcionki (#FF6200 wpisany ręcznie – użyj koloru motywu „Akcent 1”).",
+              "occurrences": 1,
+              "severity": "Warning"
+            },
+            {
+              "code": "STY-DIRECT-REDUNDANT",
+              "label": "Formatowanie ręczne takie samo jak w stylu",
+              "message": "Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, takie samo jak w stylu: rozmiar czcionki (10 pt), czcionka (SUN Me).",
+              "occurrences": 1,
+              "severity": "Warning"
+            },
+            {
+              "code": "STY-DIRECT-REDUNDANT",
+              "label": "Formatowanie ręczne takie samo jak w stylu",
+              "message": "Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, takie samo jak w stylu: wysunięcie (18 pt).",
+              "occurrences": 1,
+              "severity": "Warning"
+            },
+            {
+              "code": "STY-DIRECT-REDUNDANT",
+              "label": "Formatowanie ręczne takie samo jak w stylu",
+              "message": "Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, takie samo jak w stylu: wysunięcie (18 pt).",
+              "occurrences": 1,
+              "severity": "Warning"
+            }
+          ],
+          "note": null
+        }
+      ]
+    },
+    {
+      "standard": "style/1.0",
+      "standardName": "Formatowanie z Galerii stylów",
+      "section": "Style",
+      "rows": [
+        {
+          "id": "sty-fake-heading",
+          "name": "Nagłówki mają styl nagłówka, a nie tylko wygląd",
+          "status": "Error",
+          "details": [
+            {
+              "code": "STY-FAKE-HEADING",
+              "label": "Akapit udaje nagłówek",
+              "message": "Akapit „Warunki dodatkowe” wygląda jak nagłówek (krótki, w osobnym wierszu, pogrubiony, 14 pt), ale ma styl „Normalny” bez poziomu konspektu, więc nie należy do struktury dokumentu. Sugerowany styl: Nagłówek 3.",
+              "occurrences": 1,
+              "severity": "Error"
+            }
+          ],
+          "note": null
+        },
+        {
+          "id": "sty-gallery",
+          "name": "Użyte style są w Galerii stylów",
+          "status": "Warning",
+          "details": [
+            {
+              "code": "STY-NOT-IN-GALLERY",
+              "label": "Styl spoza Galerii stylów",
+              "message": "Styl akapitowy „Mój styl” jest stylem niestandardowym, którego nie ma w Galerii stylów; użyty w 1 akapicie.",
+              "occurrences": 1,
+              "severity": "Warning"
+            }
+          ],
+          "note": null
+        },
+        {
+          "id": "sty-duplicate",
+          "name": "Brak kopii stylów po wklejeniu z innego dokumentu",
+          "status": "Warning",
+          "details": [
+            {
+              "code": "STY-DUPLICATE",
+              "label": "Kopia stylu",
+              "message": "Styl akapitowy „Normalny1” to kopia stylu „Normalny” (Word dopisuje cyfrę do nazwy stylu wklejonego z innego dokumentu); użyty w 1 akapicie.",
+              "occurrences": 1,
+              "severity": "Warning"
+            }
+          ],
+          "note": null
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "index": 0,
+      "code": "STY-FAKE-HEADING",
+      "label": "Akapit udaje nagłówek",
+      "severity": "Error",
+      "category": "Headings",
+      "standard": "style/1.0",
+      "standardName": "Formatowanie z Galerii stylów",
+      "message": "Akapit „Warunki dodatkowe” wygląda jak nagłówek (krótki, w osobnym wierszu, pogrubiony, 14 pt), ale ma styl „Normalny” bez poziomu konspektu, więc nie należy do struktury dokumentu. Sugerowany styl: Nagłówek 3.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:7",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 7,
+        "subIndex": null,
+        "snippet": "Warunki dodatkowe"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "Zaznacz akapit → Ctrl+Spacja (wyczyść formatowanie znaków) → wybierz styl „Nagłówek 3” z Galerii stylów (Narzędzia główne → Style). Wygląd nagłówków zmieniaj w stylu, nie w akapicie.",
+      "scope": "Paragraph",
+      "details": [
+        {
+          "property": "p.pStyle",
+          "label": "styl akapitu",
+          "actual": "Normalny",
+          "expected": "Nagłówek 3",
+          "source": null
+        },
+        {
+          "property": "b",
+          "label": "pogrubienie",
+          "actual": "tak",
+          "expected": null,
+          "source": "wygląd nagłówka"
+        },
+        {
+          "property": "sz",
+          "label": "rozmiar czcionki",
+          "actual": "14 pt",
+          "expected": null,
+          "source": "wygląd nagłówka"
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "code": "STY-DIRECT-OVERRIDE",
+      "label": "Formatowanie ręczne inne niż w stylu",
+      "severity": "Error",
+      "category": "Text",
+      "standard": "style/1.0",
+      "standardName": "Formatowanie z Galerii stylów",
+      "message": "Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: pogrubienie (tak, w stylu: nie), kursywa (tak, w stylu: nie).",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:2",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 2,
+        "subIndex": null,
+        "snippet": "W tym zdaniu jedno słowo jest wyróżnione…"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "Zaznacz akapit → Ctrl+Spacja (wyczyść formatowanie znaków) → wybierz styl „Normalny” z Galerii stylów (Narzędzia główne → Style). Jeśli odstępstwo od stylu jest zamierzone, użyj innego stylu z Galerii (np. znakowego „Pogrubienie”) albo zmień sam styl – nie formatuj ręcznie.",
+      "scope": "Paragraph",
+      "details": [
+        {
+          "property": "b",
+          "label": "pogrubienie",
+          "actual": "tak",
+          "expected": "nie",
+          "source": "tekst: „wyróżnione”"
+        },
+        {
+          "property": "i",
+          "label": "kursywa",
+          "actual": "tak",
+          "expected": "nie",
+          "source": "tekst: „wyróżnione”"
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "code": "STY-DIRECT-OVERRIDE",
+      "label": "Formatowanie ręczne inne niż w stylu",
+      "severity": "Error",
+      "category": "Text",
+      "standard": "style/1.0",
+      "standardName": "Formatowanie z Galerii stylów",
+      "message": "Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: kolor czcionki (#0000FF wpisany ręcznie – użyj koloru motywu „Akcent 2”; w stylu: #000000).",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:3",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 3,
+        "subIndex": null,
+        "snippet": "Umowa nr <numer umowy> ma zapis zmienny…"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "Zaznacz akapit → Ctrl+Spacja (wyczyść formatowanie znaków) → wybierz styl „Normalny” z Galerii stylów (Narzędzia główne → Style). Jeśli odstępstwo od stylu jest zamierzone, użyj innego stylu z Galerii (np. znakowego „Pogrubienie”) albo zmień sam styl – nie formatuj ręcznie.",
+      "scope": "Paragraph",
+      "details": [
+        {
+          "property": "color",
+          "label": "kolor czcionki",
+          "actual": "#0000FF",
+          "expected": "#000000",
+          "source": "tekst: „<numer umowy>”; kolor wpisany ręcznie – użyj koloru motywu „Akcent 2”"
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "code": "STY-DIRECT-OVERRIDE",
+      "label": "Formatowanie ręczne inne niż w stylu",
+      "severity": "Error",
+      "category": "Text",
+      "standard": "style/1.0",
+      "standardName": "Formatowanie z Galerii stylów",
+      "message": "Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: wyrównanie (do środka, w stylu: do lewej), odstęp przed akapitem (12 pt, w stylu: 0 pt), odstęp po akapicie (12 pt, w stylu: 6 pt), wcięcie z lewej (28,35 pt, w stylu: 0 pt), wcięcie pierwszego wiersza (14,2 pt, w stylu: 0 pt).",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:5",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 5,
+        "subIndex": null,
+        "snippet": "Akapit wyśrodkowany, z odstępami i wcięc…"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "Zaznacz akapit → Ctrl+Q (wyczyść formatowanie akapitu) → wybierz styl „Normalny” z Galerii stylów (Narzędzia główne → Style). Jeśli odstępstwo od stylu jest zamierzone, użyj innego stylu z Galerii (np. znakowego „Pogrubienie”) albo zmień sam styl – nie formatuj ręcznie.",
+      "scope": "Paragraph",
+      "details": [
+        {
+          "property": "p.jc",
+          "label": "wyrównanie",
+          "actual": "do środka",
+          "expected": "do lewej",
+          "source": "akapit"
+        },
+        {
+          "property": "p.spacing.before",
+          "label": "odstęp przed akapitem",
+          "actual": "12 pt",
+          "expected": "0 pt",
+          "source": "akapit"
+        },
+        {
+          "property": "p.spacing.after",
+          "label": "odstęp po akapicie",
+          "actual": "12 pt",
+          "expected": "6 pt",
+          "source": "akapit"
+        },
+        {
+          "property": "p.ind.left",
+          "label": "wcięcie z lewej",
+          "actual": "28,35 pt",
+          "expected": "0 pt",
+          "source": "akapit"
+        },
+        {
+          "property": "p.ind.firstLine",
+          "label": "wcięcie pierwszego wiersza",
+          "actual": "14,2 pt",
+          "expected": "0 pt",
+          "source": "akapit"
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "code": "STY-DIRECT-OVERRIDE",
+      "label": "Formatowanie ręczne inne niż w stylu",
+      "severity": "Error",
+      "category": "Text",
+      "standard": "style/1.0",
+      "standardName": "Formatowanie z Galerii stylów",
+      "message": "Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: rozmiar czcionki (12 pt, w stylu: 10 pt), kerning (28).",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:6",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 6,
+        "subIndex": null,
+        "snippet": "Akapit z formatowaniem znaku akapitu i k…"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "Zaznacz akapit → Ctrl+Spacja (wyczyść formatowanie znaków) → wybierz styl „Normalny” z Galerii stylów (Narzędzia główne → Style). Jeśli odstępstwo od stylu jest zamierzone, użyj innego stylu z Galerii (np. znakowego „Pogrubienie”) albo zmień sam styl – nie formatuj ręcznie.",
+      "scope": "Paragraph",
+      "details": [
+        {
+          "property": "sz",
+          "label": "rozmiar czcionki",
+          "actual": "12 pt",
+          "expected": "10 pt",
+          "source": "znak akapitu"
+        },
+        {
+          "property": "kern",
+          "label": "kerning",
+          "actual": "28",
+          "expected": null,
+          "source": "cały tekst akapitu"
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "code": "STY-DIRECT-OVERRIDE",
+      "label": "Formatowanie ręczne inne niż w stylu",
+      "severity": "Error",
+      "category": "Text",
+      "standard": "style/1.0",
+      "standardName": "Formatowanie z Galerii stylów",
+      "message": "Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: pogrubienie (nie, w stylu: tak).",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:11",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 11,
+        "subIndex": null,
+        "snippet": "Styl znakowy z ręcznym wyłączeniem pogru…"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "Zaznacz akapit → Ctrl+Spacja (wyczyść formatowanie znaków) → wybierz styl „Normalny” z Galerii stylów (Narzędzia główne → Style). Jeśli odstępstwo od stylu jest zamierzone, użyj innego stylu z Galerii (np. znakowego „Pogrubienie”) albo zmień sam styl – nie formatuj ręcznie.",
+      "scope": "Paragraph",
+      "details": [
+        {
+          "property": "b",
+          "label": "pogrubienie",
+          "actual": "nie",
+          "expected": "tak",
+          "source": "tekst: „niepogrubione”"
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "code": "STY-DIRECT-OVERRIDE",
+      "label": "Formatowanie ręczne inne niż w stylu",
+      "severity": "Error",
+      "category": "Text",
+      "standard": "style/1.0",
+      "standardName": "Formatowanie z Galerii stylów",
+      "message": "Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: wcięcie z lewej (56,7 pt, w stylu: 18 pt).",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:14",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 14,
+        "subIndex": null,
+        "snippet": "pozycja listy 1 z ręcznym wcięciem,"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "Zaznacz akapit → Ctrl+Q (wyczyść formatowanie akapitu) → wybierz styl „Normalny” z Galerii stylów (Narzędzia główne → Style). Jeśli odstępstwo od stylu jest zamierzone, użyj innego stylu z Galerii (np. znakowego „Pogrubienie”) albo zmień sam styl – nie formatuj ręcznie.",
+      "scope": "Paragraph",
+      "details": [
+        {
+          "property": "p.ind.left",
+          "label": "wcięcie z lewej",
+          "actual": "56,7 pt",
+          "expected": "18 pt",
+          "source": "akapit"
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "code": "STY-DIRECT-OVERRIDE",
+      "label": "Formatowanie ręczne inne niż w stylu",
+      "severity": "Error",
+      "category": "Text",
+      "standard": "style/1.0",
+      "standardName": "Formatowanie z Galerii stylów",
+      "message": "Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: wcięcie z lewej (56,7 pt, w stylu: 18 pt).",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:15",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 15,
+        "subIndex": null,
+        "snippet": "pozycja listy 2 z ręcznym wcięciem,"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE",
+      "fix": "Zaznacz akapit → Ctrl+Q (wyczyść formatowanie akapitu) → wybierz styl „Normalny” z Galerii stylów (Narzędzia główne → Style). Jeśli odstępstwo od stylu jest zamierzone, użyj innego stylu z Galerii (np. znakowego „Pogrubienie”) albo zmień sam styl – nie formatuj ręcznie.",
+      "scope": "Paragraph",
+      "details": [
+        {
+          "property": "p.ind.left",
+          "label": "wcięcie z lewej",
+          "actual": "56,7 pt",
+          "expected": "18 pt",
+          "source": "akapit"
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "code": "STY-DIRECT-REDUNDANT",
+      "label": "Formatowanie ręczne takie samo jak w stylu",
+      "severity": "Warning",
+      "category": "Text",
+      "standard": "style/1.0",
+      "standardName": "Formatowanie z Galerii stylów",
+      "message": "Akapit w stylu „Nagłówek 1” ma formatowanie nadane ręcznie, takie samo jak w stylu: pogrubienie (tak), kolor czcionki (#FF6200 wpisany ręcznie – użyj koloru motywu „Akcent 1”).",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:0",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "Formatowanie bezpośrednie"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Recommended",
+      "statusLabel": "REKOMENDOWANE",
+      "fix": "Zaznacz akapit → Ctrl+Spacja (wyczyść formatowanie znaków) → wybierz styl „Nagłówek 1” z Galerii stylów (Narzędzia główne → Style). Wygląd się nie zmieni – ręczne ustawienia tylko powtarzają styl.",
+      "scope": "Paragraph",
+      "details": [
+        {
+          "property": "b",
+          "label": "pogrubienie",
+          "actual": "tak",
+          "expected": "tak",
+          "source": "cały tekst akapitu"
+        },
+        {
+          "property": "color",
+          "label": "kolor czcionki",
+          "actual": "#FF6200",
+          "expected": "#FF6200",
+          "source": "cały tekst akapitu; kolor wpisany ręcznie – użyj koloru motywu „Akcent 1”"
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "code": "STY-DIRECT-REDUNDANT",
+      "label": "Formatowanie ręczne takie samo jak w stylu",
+      "severity": "Warning",
+      "category": "Text",
+      "standard": "style/1.0",
+      "standardName": "Formatowanie z Galerii stylów",
+      "message": "Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, takie samo jak w stylu: rozmiar czcionki (10 pt), czcionka (SUN Me).",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:1",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 1,
+        "subIndex": null,
+        "snippet": "Ten akapit ma rozmiar i czcionkę nadane…"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Recommended",
+      "statusLabel": "REKOMENDOWANE",
+      "fix": "Zaznacz akapit → Ctrl+Spacja (wyczyść formatowanie znaków) → wybierz styl „Normalny” z Galerii stylów (Narzędzia główne → Style). Wygląd się nie zmieni – ręczne ustawienia tylko powtarzają styl.",
+      "scope": "Paragraph",
+      "details": [
+        {
+          "property": "sz",
+          "label": "rozmiar czcionki",
+          "actual": "10 pt",
+          "expected": "10 pt",
+          "source": "cały tekst akapitu"
+        },
+        {
+          "property": "rFonts",
+          "label": "czcionka",
+          "actual": "SUN Me",
+          "expected": "SUN Me",
+          "source": "cały tekst akapitu"
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "code": "STY-DIRECT-REDUNDANT",
+      "label": "Formatowanie ręczne takie samo jak w stylu",
+      "severity": "Warning",
+      "category": "Text",
+      "standard": "style/1.0",
+      "standardName": "Formatowanie z Galerii stylów",
+      "message": "Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, takie samo jak w stylu: wysunięcie (18 pt).",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:14",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 14,
+        "subIndex": null,
+        "snippet": "pozycja listy 1 z ręcznym wcięciem,"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Recommended",
+      "statusLabel": "REKOMENDOWANE",
+      "fix": "Zaznacz akapit → Ctrl+Q (wyczyść formatowanie akapitu) → wybierz styl „Normalny” z Galerii stylów (Narzędzia główne → Style). Wygląd się nie zmieni – ręczne ustawienia tylko powtarzają styl.",
+      "scope": "Paragraph",
+      "details": [
+        {
+          "property": "p.ind.hanging",
+          "label": "wysunięcie",
+          "actual": "18 pt",
+          "expected": "18 pt",
+          "source": "akapit"
+        }
+      ]
+    },
+    {
+      "index": 11,
+      "code": "STY-DIRECT-REDUNDANT",
+      "label": "Formatowanie ręczne takie samo jak w stylu",
+      "severity": "Warning",
+      "category": "Text",
+      "standard": "style/1.0",
+      "standardName": "Formatowanie z Galerii stylów",
+      "message": "Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, takie samo jak w stylu: wysunięcie (18 pt).",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:15",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 15,
+        "subIndex": null,
+        "snippet": "pozycja listy 2 z ręcznym wcięciem,"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Recommended",
+      "statusLabel": "REKOMENDOWANE",
+      "fix": "Zaznacz akapit → Ctrl+Q (wyczyść formatowanie akapitu) → wybierz styl „Normalny” z Galerii stylów (Narzędzia główne → Style). Wygląd się nie zmieni – ręczne ustawienia tylko powtarzają styl.",
+      "scope": "Paragraph",
+      "details": [
+        {
+          "property": "p.ind.hanging",
+          "label": "wysunięcie",
+          "actual": "18 pt",
+          "expected": "18 pt",
+          "source": "akapit"
+        }
+      ]
+    },
+    {
+      "index": 12,
+      "code": "STY-DUPLICATE",
+      "label": "Kopia stylu",
+      "severity": "Warning",
+      "category": "Structure",
+      "standard": "style/1.0",
+      "standardName": "Formatowanie z Galerii stylów",
+      "message": "Styl akapitowy „Normalny1” to kopia stylu „Normalny” (Word dopisuje cyfrę do nazwy stylu wklejonego z innego dokumentu); użyty w 1 akapicie.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:21",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 21,
+        "subIndex": null,
+        "snippet": "Koniec dokumentu."
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Recommended",
+      "statusLabel": "REKOMENDOWANE",
+      "fix": "Zaznacz tekst w stylu „Normalny1” (okienko Style, Alt+Ctrl+Shift+S → menu stylu → Zaznacz wszystkie wystąpienia) → wybierz z Galerii stylów styl „Normalny” → usuń zbędny styl „Normalny1” (menu stylu → Usuń).",
+      "scope": "Styles",
+      "details": [
+        {
+          "property": "p.pStyle",
+          "label": "styl akapitu",
+          "actual": "Normalny1",
+          "expected": "Normalny",
+          "source": null
+        }
+      ]
+    },
+    {
+      "index": 13,
+      "code": "STY-NOT-IN-GALLERY",
+      "label": "Styl spoza Galerii stylów",
+      "severity": "Warning",
+      "category": "Structure",
+      "standard": "style/1.0",
+      "standardName": "Formatowanie z Galerii stylów",
+      "message": "Styl akapitowy „Mój styl” jest stylem niestandardowym, którego nie ma w Galerii stylów; użyty w 1 akapicie.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:9",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 9,
+        "subIndex": null,
+        "snippet": "Akapit we własnym stylu, którego nie ma…"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Recommended",
+      "statusLabel": "REKOMENDOWANE",
+      "fix": "Zaznacz tekst w stylu „Mój styl” i wybierz właściwy styl z Galerii stylów (Narzędzia główne → Style). Jeśli styl „Mój styl” jest potrzebny, dodaj go do Galerii: okienko Style (Alt+Ctrl+Shift+S) → menu stylu → Dodaj do galerii stylów.",
+      "scope": "Styles",
+      "details": [
+        {
+          "property": "p.pStyle",
+          "label": "styl akapitu",
+          "actual": "Mój styl",
+          "expected": null,
+          "source": "styl niestandardowy bez w:qFormat"
+        }
+      ]
+    }
+  ]
 }

@@ -4,13 +4,37 @@ Język: pl-PL
 Obrazy: 0
 
 Raport walidacji dokumentu „direct-formatting.docx”
-Wynik: poprawny. Dokument spełnia wszystkie automatycznie sprawdzane wymagania.
+Wynik: niepoprawny. 8 błędów, 6 ostrzeżeń.
 Data sprawdzenia: <data>. Standardy: Formatowanie z Galerii stylów.
 Dokument: tytuł „Formatowanie bezpośrednie. Example Company S. A.”, autor „Example Company S. A.”, język pl-PL, 22 akapitów, 4 nagłówków, 1 tabel, 0 obrazów.
 Podsumowanie kontroli
+Formatowanie z Galerii stylów
+Sekcja „Formatowanie bezpośrednie”
+| Status | Kontrola | Szczegóły |
+| Błąd | Brak formatowania ręcznego innego niż w stylu | Formatowanie ręczne inne niż w stylu: Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: pogrubienie (tak, w stylu: nie), kursywa (tak, w stylu: nie). ⏎ Formatowanie ręczne inne niż w stylu: Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: kolor czcionki (#0000FF wpisany ręcznie – użyj koloru motywu „Akcent 2”; w stylu: #000000). ⏎ Formatowanie ręczne inne niż w stylu: Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: wyrównanie (do środka, w stylu: do lewej), odstęp przed akapitem (12 pt, w stylu: 0 pt), odstęp po akapicie (12 pt, w stylu: 6 pt), wcięcie z lewej (28,35 pt, w stylu: 0 pt), wcięcie pierwszego wiersza (14,2 pt, w stylu: 0 pt). ⏎ Formatowanie ręczne inne niż w stylu: Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: rozmiar czcionki (12 pt, w stylu: 10 pt), kerning (28). ⏎ Formatowanie ręczne inne niż w stylu: Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: pogrubienie (nie, w stylu: tak). ⏎ Formatowanie ręczne inne niż w stylu: Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: wcięcie z lewej (56,7 pt, w stylu: 18 pt). ⏎ Formatowanie ręczne inne niż w stylu: Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: wcięcie z lewej (56,7 pt, w stylu: 18 pt). |
+| Ostrzeżenie | Brak formatowania ręcznego powtarzającego styl | Formatowanie ręczne takie samo jak w stylu: Akapit w stylu „Nagłówek 1” ma formatowanie nadane ręcznie, takie samo jak w stylu: pogrubienie (tak), kolor czcionki (#FF6200 wpisany ręcznie – użyj koloru motywu „Akcent 1”). ⏎ Formatowanie ręczne takie samo jak w stylu: Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, takie samo jak w stylu: rozmiar czcionki (10 pt), czcionka (SUN Me). ⏎ Formatowanie ręczne takie samo jak w stylu: Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, takie samo jak w stylu: wysunięcie (18 pt). ⏎ Formatowanie ręczne takie samo jak w stylu: Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, takie samo jak w stylu: wysunięcie (18 pt). |
+Sekcja „Style”
+| Status | Kontrola | Szczegóły |
+| Błąd | Nagłówki mają styl nagłówka, a nie tylko wygląd | Akapit udaje nagłówek: Akapit „Warunki dodatkowe” wygląda jak nagłówek (krótki, w osobnym wierszu, pogrubiony, 14 pt), ale ma styl „Normalny” bez poziomu konspektu, więc nie należy do struktury dokumentu. Sugerowany styl: Nagłówek 3. |
+| Ostrzeżenie | Użyte style są w Galerii stylów | Styl spoza Galerii stylów: Styl akapitowy „Mój styl” jest stylem niestandardowym, którego nie ma w Galerii stylów; użyty w 1 akapicie. |
+| Ostrzeżenie | Brak kopii stylów po wklejeniu z innego dokumentu | Kopia stylu: Styl akapitowy „Normalny1” to kopia stylu „Normalny” (Word dopisuje cyfrę do nazwy stylu wklejonego z innego dokumentu); użyty w 1 akapicie. |
 Wyniki walidacji
-0 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
+14 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
 Tabela wystąpień
 | Nr | Waga | Zgłoszenie | Standard | Miejsce | Komunikat | Zweryfikowano |
+| 1 | błąd | Akapit udaje nagłówek | Formatowanie z Galerii stylów | akapit: „Warunki dodatkowe” | Akapit „Warunki dodatkowe” wygląda jak nagłówek (krótki, w osobnym wierszu, pogrubiony, 14 pt), ale ma styl „Normalny” bez poziomu konspektu, więc nie należy do struktury dokumentu. Sugerowany styl: Nagłówek 3. | nie |
+| 2 | błąd | Formatowanie ręczne inne niż w stylu | Formatowanie z Galerii stylów | akapit: „W tym zdaniu jedno słowo jest wyróżnione…” | Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: pogrubienie (tak, w stylu: nie), kursywa (tak, w stylu: nie). | nie |
+| 3 | błąd | Formatowanie ręczne inne niż w stylu | Formatowanie z Galerii stylów | akapit: „Umowa nr <numer umowy> ma zapis zmienny…” | Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: kolor czcionki (#0000FF wpisany ręcznie – użyj koloru motywu „Akcent 2”; w stylu: #000000). | nie |
+| 4 | błąd | Formatowanie ręczne inne niż w stylu | Formatowanie z Galerii stylów | akapit: „Akapit wyśrodkowany, z odstępami i wcięc…” | Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: wyrównanie (do środka, w stylu: do lewej), odstęp przed akapitem (12 pt, w stylu: 0 pt), odstęp po akapicie (12 pt, w stylu: 6 pt), wcięcie z lewej (28,35 pt, w stylu: 0 pt), wcięcie pierwszego wiersza (14,2 pt, w stylu: 0 pt). | nie |
+| 5 | błąd | Formatowanie ręczne inne niż w stylu | Formatowanie z Galerii stylów | akapit: „Akapit z formatowaniem znaku akapitu i k…” | Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: rozmiar czcionki (12 pt, w stylu: 10 pt), kerning (28). | nie |
+| 6 | błąd | Formatowanie ręczne inne niż w stylu | Formatowanie z Galerii stylów | akapit: „Styl znakowy z ręcznym wyłączeniem pogru…” | Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: pogrubienie (nie, w stylu: tak). | nie |
+| 7 | błąd | Formatowanie ręczne inne niż w stylu | Formatowanie z Galerii stylów | akapit: „pozycja listy 1 z ręcznym wcięciem,” | Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: wcięcie z lewej (56,7 pt, w stylu: 18 pt). | nie |
+| 8 | błąd | Formatowanie ręczne inne niż w stylu | Formatowanie z Galerii stylów | akapit: „pozycja listy 2 z ręcznym wcięciem,” | Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, inne niż w stylu: wcięcie z lewej (56,7 pt, w stylu: 18 pt). | nie |
+| 9 | ostrzeżenie | Formatowanie ręczne takie samo jak w stylu | Formatowanie z Galerii stylów | akapit: „Formatowanie bezpośrednie” | Akapit w stylu „Nagłówek 1” ma formatowanie nadane ręcznie, takie samo jak w stylu: pogrubienie (tak), kolor czcionki (#FF6200 wpisany ręcznie – użyj koloru motywu „Akcent 1”). | nie |
+| 10 | ostrzeżenie | Formatowanie ręczne takie samo jak w stylu | Formatowanie z Galerii stylów | akapit: „Ten akapit ma rozmiar i czcionkę nadane…” | Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, takie samo jak w stylu: rozmiar czcionki (10 pt), czcionka (SUN Me). | nie |
+| 11 | ostrzeżenie | Formatowanie ręczne takie samo jak w stylu | Formatowanie z Galerii stylów | akapit: „pozycja listy 1 z ręcznym wcięciem,” | Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, takie samo jak w stylu: wysunięcie (18 pt). | nie |
+| 12 | ostrzeżenie | Formatowanie ręczne takie samo jak w stylu | Formatowanie z Galerii stylów | akapit: „pozycja listy 2 z ręcznym wcięciem,” | Akapit w stylu „Normalny” ma formatowanie nadane ręcznie, takie samo jak w stylu: wysunięcie (18 pt). | nie |
+| 13 | ostrzeżenie | Kopia stylu | Formatowanie z Galerii stylów | akapit: „Koniec dokumentu.” | Styl akapitowy „Normalny1” to kopia stylu „Normalny” (Word dopisuje cyfrę do nazwy stylu wklejonego z innego dokumentu); użyty w 1 akapicie. | nie |
+| 14 | ostrzeżenie | Styl spoza Galerii stylów | Formatowanie z Galerii stylów | akapit: „Akapit we własnym stylu, którego nie ma…” | Styl akapitowy „Mój styl” jest stylem niestandardowym, którego nie ma w Galerii stylów; użyty w 1 akapicie. | nie |
 
-PDF: %PDF-, strony: 1
+PDF: %PDF-, strony: 6
