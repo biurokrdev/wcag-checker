@@ -1,0 +1,66 @@
+<section class="block" [attr.aria-labelledby]="uid + '-title'" data-testid="xlsx-criteria">
+  <h3 class="field-label" [id]="uid + '-title'">Kryteria WCAG</h3>
+  <div class="panel">
+    <ul class="legend" aria-label="Liczba kryteriów według stanu" data-testid="xlsx-criteria-counts">
+      @for (s of statusCounts(); track s.status) {
+        <li [attr.data-status]="s.status">
+          <span class="mark" [class]="statusTone[s.status]" aria-hidden="true">{{ statusIcon[s.status] }}</span>
+          {{ s.label }}: <b>{{ s.count }}</b>
+        </li>
+      }
+    </ul>
+    <p class="soft explain">
+      „Brak wykrytych problemów” oznacza, że kontrole automatyczne niczego nie zgłosiły – nie potwierdza spełnienia kryterium.
+      „Do oceny ręcznej” – kryterium nie zostało ocenione przez narzędzie. „Nie dotyczy” – kryterium nie ma zastosowania do
+      zawartości tego pliku albo zależy od programu użytego do otwarcia pliku.
+    </p>
+    @if (softwareDependent().length > 0) {
+      <p class="soft" data-testid="xlsx-software-dependent">
+        Zależne od oprogramowania użytego do otwarcia pliku – nie oceniano:
+        @for (c of softwareDependent(); track c.sc; let last = $last) {
+          <span>{{ c.sc }} {{ c.name }}</span>@if (!last) {<span>; </span>}
+        }.
+      </p>
+    }
+  </div>
+
+  <div class="table-wrap">
+    <table class="matrix" data-testid="xlsx-criteria-table">
+      <caption>Stan kryteriów {{ result().profile.profileName }} po analizie automatycznej</caption>
+      <thead>
+        <tr>
+          <th scope="col">Kryterium</th>
+          <th scope="col">Poziom</th>
+          <th scope="col">Stan</th>
+          <th scope="col">Uzasadnienie</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (c of criteria(); track c.sc) {
+          <tr [attr.data-criterion]="c.sc" [attr.data-status]="c.status">
+            <th scope="row">
+              @if (c.url) {
+                <a class="external" [href]="c.url" target="_blank" rel="noopener noreferrer">{{ c.sc }} {{ c.name }}<span aria-hidden="true"> ↗</span><span class="visually-hidden"> {{ newTabHint }}</span></a>
+              } @else {
+                {{ c.sc }} {{ c.name }}
+              }
+            </th>
+            <td>{{ c.level }}</td>
+            <td class="status" [class]="statusTone[c.status]" data-testid="criterion-status">
+              <span class="mark" aria-hidden="true">{{ statusIcon[c.status] }}</span> {{ c.statusLabel }}
+            </td>
+            <td>
+              {{ c.reason }}
+              @if (c.softwareDependent) {
+                <span class="chip" data-testid="criterion-software-dependent">{{ softwareDependentLabel }}</span>
+              }
+              @if (c.manualChecks > 0) {
+                <span class="soft"> Pozycje checklisty: {{ c.manualChecks }}.</span>
+              }
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</section>

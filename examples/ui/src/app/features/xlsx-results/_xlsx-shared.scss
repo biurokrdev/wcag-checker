@@ -1,0 +1,108 @@
+// Wspólne elementy widoku wyników XLSX. Kolory wyłącznie ze zmiennych --xr-* (xlsx-report.colors.ts), które
+// app-xlsx-report ustawia na swoim elemencie; komponenty podrzędne je dziedziczą.
+@mixin base {
+  :host {
+    display: block;
+    color: var(--xr-text);
+  }
+
+  // Fokus klawiatury w indygo, 3 px: na szarym panelu globalny pomarańczowy ma za niski kontrast (2,54:1).
+  button,
+  a,
+  input,
+  summary,
+  [tabindex] {
+    &:focus-visible {
+      outline: 3px solid var(--xr-accent);
+      outline-offset: 2px;
+    }
+  }
+
+  a {
+    color: var(--xr-accent);
+    text-underline-offset: 0.15em;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .block {
+    margin: 0 0 1.5rem;
+  }
+
+  .field-label {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--xr-accent);
+    margin: 0 0 0.6rem;
+  }
+
+  .panel {
+    background: var(--xr-panel);
+    padding: 1rem 1.25rem 1.1rem;
+  }
+
+  .soft {
+    color: var(--xr-text-soft);
+    font-size: 0.9rem;
+  }
+
+  .mono {
+    font-family: ui-monospace, Consolas, monospace;
+    font-size: 0.9em;
+    overflow-wrap: anywhere;
+  }
+
+  .chip {
+    display: inline-block;
+    padding: 0.05rem 0.5rem;
+    border: 1px solid var(--xr-accent);
+    border-radius: 2px;
+    background: var(--xr-chip);
+    color: var(--xr-text);
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  // Znak statusu obok tekstu: status nigdy nie jest przekazywany samym kolorem.
+  .mark {
+    display: inline-block;
+    min-width: 1.1em;
+    text-align: center;
+    font-weight: 700;
+  }
+
+  .tone-error {
+    color: var(--xr-error);
+  }
+
+  .tone-warning {
+    color: var(--xr-warning);
+  }
+
+  .tone-review {
+    color: var(--xr-accent);
+  }
+
+  .tone-info {
+    color: var(--xr-info);
+  }
+
+  .tone-neutral {
+    color: var(--xr-neutral);
+  }
+
+  // Łącze do strony zewnętrznej: cel co najmniej 24 px wysokości.
+  .external {
+    display: inline-block;
+    min-height: 1.6rem;
+    padding: 0.1rem 0;
+  }
+}

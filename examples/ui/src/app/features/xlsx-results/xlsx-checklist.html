@@ -1,0 +1,51 @@
+<section class="block" [attr.aria-labelledby]="uid + '-title'" data-testid="xlsx-checklist">
+  <h3 class="field-label" [id]="uid + '-title'">Checklista oceny ręcznej</h3>
+  <div class="panel">
+    <p class="soft">
+      Pytania, na które musi odpowiedzieć człowiek. Odhaczenie to notatka na czas tej sesji: nie zmienia stanu kryteriów,
+      trafia do pobieranego raportu.
+    </p>
+    <p class="count" aria-live="polite" data-testid="xlsx-checklist-count">Odhaczono {{ checkedCount() }} z {{ items().length }}.</p>
+
+    @if (items().length === 0) {
+      <p data-testid="xlsx-checklist-empty">Brak pozycji checklisty dla tego skoroszytu.</p>
+    } @else {
+      <ul class="items">
+        @for (c of visible(); track c.id; let i = $index) {
+          <li class="item" [attr.data-check]="c.id" data-testid="xlsx-check">
+            <input
+              type="checkbox"
+              [id]="itemId(i)"
+              [checked]="checked().has(c.id)"
+              [attr.aria-describedby]="itemId(i) + '-d'"
+              (change)="toggle(c.id, $any($event.target).checked)"
+              data-testid="xlsx-check-box"
+            />
+            <div class="text">
+              <label [for]="itemId(i)">{{ c.question }}</label>
+              <div class="soft details" [id]="itemId(i) + '-d'">
+                @if (c.wcag.length > 0) {
+                  <span>{{ c.wcag.length > 1 ? 'Kryteria' : 'Kryterium' }}: {{ refsLabel(c) }}.</span>
+                }
+                @if (c.location) {
+                  <span> Miejsce: <span class="mono">{{ c.location.display }}</span>.</span>
+                }
+                @if (c.hint) {
+                  <span> {{ c.hint }}</span>
+                }
+              </div>
+            </div>
+          </li>
+        }
+      </ul>
+      @if (remaining() > 0) {
+        <p class="more-row">
+          <button type="button" class="secondary small" (click)="showMore()" data-testid="xlsx-checklist-more">
+            Pokaż kolejne {{ nextBatch() }}<span class="visually-hidden"> pozycji checklisty</span>
+          </button>
+          <span class="soft">Pokazano {{ visible().length }} z {{ items().length }}.</span>
+        </p>
+      }
+    }
+  </div>
+</section>
