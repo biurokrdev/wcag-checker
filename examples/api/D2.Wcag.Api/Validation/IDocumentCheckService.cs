@@ -24,6 +24,9 @@ public interface IDocumentCheckService
 
 public sealed record ExportedReport(string FileName, string ContentType, byte[] Content);
 
+// Podgląd miejsca po kluczu: klucz nie jest kluczem miejsca albo w dokumencie nie ma takiego elementu (400).
+public sealed class InvalidLocationException(string message) : Exception(message);
+
 public static class WcagProfileSection
 {
     public const string Name = "Wcag";

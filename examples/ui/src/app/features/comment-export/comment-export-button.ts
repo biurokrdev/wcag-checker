@@ -37,10 +37,10 @@ export class CommentExportButton {
     this.busy.set(true);
     this.error.set(null);
     this.api
-      .download(reportId)
+      .download(reportId, this.fileName())
       .pipe(finalize(() => this.busy.set(false)))
       .subscribe({
-        next: (blob) => saveBlob(blob, CommentExportService.fileName(this.fileName())),
+        next: (file) => saveBlob(file.blob, file.fileName),
         error: (e: unknown) => this.error.set(e instanceof Error ? e.message : 'Nieoczekiwany błąd.'),
       });
   }

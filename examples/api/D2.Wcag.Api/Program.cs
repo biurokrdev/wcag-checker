@@ -58,6 +58,8 @@ app.UseExceptionHandler(handler => handler.Run(async ctx =>
         DocumentRejectedException => (StatusCodes.Status400BadRequest, "Nie można przyjąć pliku."),
         StandardNotFoundException => (StatusCodes.Status400BadRequest, "Nieznany standard."),
         UnreadableDocumentException => (StatusCodes.Status422UnprocessableEntity, "Dokumentu nie da się odczytać."),
+        CommentExportRejectedException => (StatusCodes.Status422UnprocessableEntity, "Nie można przygotować kopii z komentarzami."),
+        InvalidLocationException => (StatusCodes.Status400BadRequest, "Nieprawidłowe miejsce w dokumencie."),
         ReportNotFoundException => (StatusCodes.Status404NotFound, "Raport wygasł."),
         BadHttpRequestException bad => (bad.StatusCode, "Nieprawidłowe żądanie."),
         _ => (StatusCodes.Status500InternalServerError, "Błąd serwera."),

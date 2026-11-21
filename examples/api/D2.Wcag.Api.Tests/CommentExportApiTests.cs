@@ -6,6 +6,7 @@ using D2.Wcag.Api.Contracts;
 using D2.Wcag.Api.Reports;
 using D2.Wcag.Docx;
 using D2.Wcag.Tests;
+using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Validation;
 using DocumentFormat.OpenXml.Wordprocessing;
@@ -128,12 +129,11 @@ public class CommentExportApiTests : IClassFixture<DefaultApiTestHost>
         Assert.Contains("wczytaj dokument ponownie", problem["detail"]!.GetValue<string>());
     }
 
-    [Fact]
-    public async Task MacroEnabledDocument_Is422_WithExplanation_NotABrokenFile()
+    // Jak zapisuje Word: ta sama budowa pakietu co .docx, inny typ zawartości części głównej.
+    private static byte[] WithMainContentType(byte[] docx, string contentType)
     {
-        // Jak zapisuje Word: ta sama budowa pakietu co .docx, inny typ zawartości części głównej.
         using var stream = new MemoryStream();
-        stream.Write(new DocxBuilder().Heading(1, "Wstęp").Paragraph("Treść.").Build());
+        stream.Write(docx);
         using (var zip = new ZipArchive(stream, ZipArchiveMode.Update, leaveOpen: true))
         {
             var entry = zip.GetEntry("[Content_Types].xml")!;
@@ -146,18 +146,77 @@ public class CommentExportApiTests : IClassFixture<DefaultApiTestHost>
             Assert.Contains("wordprocessingml.document.main+xml", types);
             entry.Delete();
             using var writer = new StreamWriter(zip.CreateEntry("[Content_Types].xml").Open());
-            writer.Write(types.Replace("application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml", "application/vnd.ms-word.document.macroEnabled.main+xml"));
+            writer.Write(types.Replace("application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml", contentType));
         }
 
-        var validated = await _client.PostAsync($"{Base}/validate", Form(stream.ToArray(), "makra.docm"));
+        return stream.ToArray();
+    }
+
+    // Narzędzie audytuje szablony: szablon i plik z makrami dostają kopię TEGO SAMEGO typu, pod własnym rozszerzeniem
+    // (Word nie otwiera szablonu nazwanego .docx), a nazwa nie niesie doklejonego przy przyjęciu „.docx”.
+    [Theory]
+    [InlineData("szablon pisma.dotx", "application/vnd.openxmlformats-officedocument.wordprocessingml.template.main+xml", "szablon pisma_z_komentarzami.dotx", "application/vnd.openxmlformats-officedocument.wordprocessingml.template", WordprocessingDocumentType.Template)]
+    [InlineData("makra.docm", "application/vnd.ms-word.document.macroEnabled.main+xml", "makra_z_komentarzami.docm", "application/vnd.ms-word.document.macroEnabled.12", WordprocessingDocumentType.MacroEnabledDocument)]
+    [InlineData("Wzór.DOTM", "application/vnd.ms-word.template.macroEnabledTemplate.main+xml", "Wzór_z_komentarzami.dotm", "application/vnd.ms-word.template.macroEnabled.12", WordprocessingDocumentType.MacroEnabledTemplate)]
+    [InlineData("szablon-nazwany.docx", "application/vnd.openxmlformats-officedocument.wordprocessingml.template.main+xml", "szablon-nazwany_z_komentarzami.dotx", "application/vnd.openxmlformats-officedocument.wordprocessingml.template", WordprocessingDocumentType.Template)]
+    public async Task TemplateOrMacroFile_GetsACopyOfTheSameType_UnderItsOwnExtension(string fileName, string mainContentType, string expectedName, string expectedMediaType, WordprocessingDocumentType type)
+    {
+        var original = WithMainContentType(SnapshotCases.Load("edge"), mainContentType);
+        var validated = await _client.PostAsync($"{Base}/validate", Form(original, fileName));
         Assert.True(validated.IsSuccessStatusCode, await validated.Content.ReadAsStringAsync());
         var result = await Body<ValidationResponse>(validated);
+
         var response = await Download(result.ReportId);
+
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        Assert.Equal(expectedMediaType, response.Content.Headers.ContentType!.MediaType);
+        Assert.Equal(expectedName, response.Content.Headers.ContentDisposition!.FileNameStar ?? response.Content.Headers.ContentDisposition.FileName);
+        var copy = await response.Content.ReadAsByteArrayAsync();
+        using (var package = WordprocessingDocument.Open(new MemoryStream(copy), false))
+        {
+            Assert.Equal(type, package.DocumentType);
+            Assert.Equal(mainContentType, package.MainDocumentPart!.ContentType);
+        }
+
+        var located = result.Findings.Count(f => f.Location is { Kind: not LocationKind.Document });
+        Assert.Equal(located + (result.Findings.Count > located ? 1 : 0), Comments(copy).Count(c => c.Author == Author));
+
+        // Istniejące nazwy raportu zostają takie, jak były (z doklejonym przy przyjęciu „.docx”).
+        var report = await _client.PostAsync($"{Base}/reports/{result.ReportId}/export?format=docx", JsonContent("{\"includePreviews\":false}"));
+        Assert.Equal(
+            Path.GetFileNameWithoutExtension(result.Document.FileName) + "_raport.docx",
+            report.Content.Headers.ContentDisposition!.FileNameStar ?? report.Content.Headers.ContentDisposition.FileName);
+    }
+
+    [Theory]
+    [InlineData("pismo.docx", "pismo")]
+    [InlineData("szablon.dotx.docx", "szablon")]
+    [InlineData("Makra.DOCM.docx", "Makra")]
+    [InlineData("wersja 2.0.docx", "wersja 2.0")]
+    [InlineData(".dotx.docx", ".dotx")]
+    public void BaseName_DropsTheAppendedDocx_AndTheOriginalWordExtension(string stored, string expected)
+    {
+        Assert.Equal(expected, CommentExportService.BaseName(stored));
+    }
+
+    // Odmowa eksportu to nie „nieczytelny dokument”: dokument został sprawdzony, nie da się tylko przygotować kopii.
+    [Fact]
+    public async Task DocumentWithoutParagraphs_Is422_WithExportTitle()
+    {
+        using var stream = new MemoryStream();
+        using (var package = WordprocessingDocument.Create(stream, WordprocessingDocumentType.Document))
+        {
+            package.AddMainDocumentPart().Document = new Document(new Body(new SectionProperties()));
+        }
+
+        var validated = await _client.PostAsync($"{Base}/validate", Form(stream.ToArray(), "pusty.docx"));
+        Assert.True(validated.IsSuccessStatusCode, await validated.Content.ReadAsStringAsync());
+        var response = await Download((await Body<ValidationResponse>(validated)).ReportId);
 
         Assert.Equal(HttpStatusCode.UnprocessableEntity, response.StatusCode);
         var problem = JsonNode.Parse(await response.Content.ReadAsStringAsync())!;
-        Assert.Equal("Dokumentu nie da się odczytać.", problem["title"]!.GetValue<string>());
-        Assert.Contains("dokumentem z makrami (.docm)", problem["detail"]!.GetValue<string>());
+        Assert.Equal("Nie można przygotować kopii z komentarzami.", problem["title"]!.GetValue<string>());
+        Assert.Equal("Dokument nie ma w treści żadnego akapitu, w którym Word pozwala umieścić komentarz.", problem["detail"]!.GetValue<string>());
     }
 
     // Zgłoszenia z polami nowego kontraktu (status, tytuł, instrukcja, zakres znaków, zakres zgłoszenia) – takie, jakie

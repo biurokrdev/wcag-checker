@@ -45,8 +45,10 @@ public sealed record WrittenComment(int Id, CommentKind Kind, string? Code, stri
 /// <summary>Kopia dokumentu z komentarzami i lista komentarzy, które dopisano (w kolejności identyfikatorów).</summary>
 public sealed class CommentedDocument
 {
-    internal CommentedDocument(byte[] content, IReadOnlyList<WrittenComment> comments, int collectedIssues)
+    internal CommentedDocument(byte[] content, IReadOnlyList<WrittenComment> comments, int collectedIssues, string fileExtension, string mediaType)
     {
+        FileExtension = fileExtension;
+        MediaType = mediaType;
         Content = content;
         Comments = comments;
         CollectedIssues = collectedIssues;
@@ -54,6 +56,15 @@ public sealed class CommentedDocument
 
     /// <summary>Nowy pakiet DOCX; bajty wejściowe pozostają nietknięte.</summary>
     public byte[] Content { get; }
+
+    /// <summary>
+    /// Rozszerzenie, pod którym trzeba zapisać kopię: takie jak typ oryginału (<c>.docx</c>, <c>.dotx</c>,
+    /// <c>.docm</c>, <c>.dotm</c>) – Word nie otwiera szablonu ani pliku z makrami pod rozszerzeniem <c>.docx</c>.
+    /// </summary>
+    public string FileExtension { get; }
+
+    /// <summary>Typ MIME kopii, zgodny z <see cref="FileExtension"/>.</summary>
+    public string MediaType { get; }
 
     public IReadOnlyList<WrittenComment> Comments { get; }
 

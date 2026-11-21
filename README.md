@@ -225,20 +225,22 @@ var validator = new WcagDocxValidator(catalog: StandardCatalog.Default.With(styl
 var result = validator.Validate(docxBytes, profile);
 IWcagCommentWriter writer = new WcagCommentWriter();
 var copy = writer.Annotate(docxBytes, result, new CommentOptions { Date = DateTimeOffset.UtcNow });   // te same bajty, które walidowano
-File.WriteAllBytes("regulamin_z_komentarzami.docx", copy.Content);
+File.WriteAllBytes("regulamin_z_komentarzami" + copy.FileExtension, copy.Content);   // .docx, a dla szablonu .dotx
 Console.WriteLine($"{copy.Comments.Count} komentarzy, w zbiorczym: {copy.CollectedIssues}");
 ```
 
-- Jedno wystąpienie zgłoszenia = jeden komentarz w miejscu wystąpienia: `[KOD] Tytuł  ·  STATUS → waga`, `Problem: …`, `Jak naprawić: …` (gdy zgłoszenie niesie instrukcję). Komentarz obejmuje akapit, fragment albo zakres znaków zaokrąglony do granic fragmentów (fragmentów nie dzieli się); kilka komentarzy w jednym miejscu jest ułożonych według wagi, potem kodu.
+- Jedno wystąpienie zgłoszenia = jeden komentarz w miejscu wystąpienia: `[KOD] Tytuł  ·  STATUS → waga`, `Problem: …`, `Jak naprawić: …` (gdy zgłoszenie niesie instrukcję). Komentarz obejmuje akapit, fragment albo zakres znaków zaokrąglony do granic fragmentów (fragmentów nie dzieli się); komentarze zaczynające się w tym samym miejscu (także komentarz do akapitu i do jego pierwszego fragmentu) są ułożone według wagi, potem kodu.
 - Zgłoszenia bez miejsca w treści (metadane, marginesy, style, nieużywana stopka) trafiają do jednego komentarza zbiorczego na pierwszym akapicie. Word nie pokazuje komentarzy w nagłówkach, stopkach i przypisach, więc takie zgłoszenie jest kotwiczone w treści (początek sekcji, odwołanie do przypisu) z dopiskiem „Dotyczy stopki (sekcja 1, …)”.
+- Kontrolki treści: w kontrolce tekstu sformatowanego komentarz staje w miejscu wystąpienia. Word nie przyjmuje komentarzy wewnątrz kontrolek zwykłego tekstu, daty, listy, pola wyboru, obrazu ani powiązanych z danymi (plik ze znacznikiem w takiej kontrolce nie otwiera się), więc dla kontrolki w wierszu komentarz obejmuje ją całą, a dla kontrolki obejmującej całe akapity staje na najbliższym akapicie poza nią, z dopiskiem. Tak samo w całości obejmowane są pole proste, usunięcie śledzone i tekst z adnotacją ruby.
+- Szablon (`.dotx`) oraz dokument i szablon z makrami (`.docm`, `.dotm`) dostają kopię tego samego typu: `CommentedDocument.FileExtension` i `MediaType` mówią, pod jakim rozszerzeniem ją zapisać (Word nie otwiera szablonu nazwanego `.docx`).
 - Dokument bez zgłoszeń dostaje jeden komentarz „Brak uwag po walidacji” z nazwami standardów.
 - Autor „Audytor szablonów”, inicjały „AS”, data = data analizy (`CommentOptions`). Istniejące komentarze zostają, nowe mają kolejne identyfikatory.
 
-Przykładowa aplikacja: `POST /api/wcag-documents/reports/{reportId}/commented-document` zwraca plik `<nazwa>_z_komentarzami.docx` zbudowany z dokumentu i wystąpień raportu trzymanego w pamięci (404, gdy raport wygasł), a ekran ma przy wyniku przycisk „Pobierz z komentarzami”.
+Przykładowa aplikacja: `POST /api/wcag-documents/reports/{reportId}/commented-document` zwraca plik `<nazwa>_z_komentarzami.docx` (dla szablonu `.dotx`, dla plików z makrami `.docm` / `.dotm`, z właściwym typem MIME) zbudowany z dokumentu i wystąpień raportu trzymanego w pamięci (404, gdy raport wygasł; 422 „Nie można przygotować kopii z komentarzami.”, gdy eksport nie jest możliwy), a ekran ma przy wyniku przycisk „Pobierz z komentarzami”.
 
 Ograniczenia:
 
-- tylko zwykły `.docx`: szablon (`.dotx`), dokument i szablon z makrami (`.docm`, `.dotm`) oraz format Strict Open XML dają `CommentExportException` z wyjaśnieniem po polsku (w API odpowiedź 422); tak samo plik zaszyfrowany i dokument bez akapitów w treści;
+- format Strict Open XML, plik zaszyfrowany i dokument bez akapitu, w którym Word przyjmuje komentarz, dają `CommentExportException` z wyjaśnieniem po polsku (w API odpowiedź 422);
 - kopia z komentarzami, sprawdzona ponownie z `wcag/2.1`, dostaje ostrzeżenie `COMMENTS_PRESENT` – reguła celowo nie odróżnia komentarzy audytora od innych; pozostałe zgłoszenia są takie same jak dla oryginału.
 
 ## Wynik

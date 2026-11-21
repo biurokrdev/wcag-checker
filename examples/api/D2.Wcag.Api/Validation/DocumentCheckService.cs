@@ -83,7 +83,7 @@ public sealed class DocumentCheckService(
         var report = reports.Get(reportId);
         if (!IssueLocation.TryParseKey(key, out _, out var kind, out _, out _))
         {
-            throw new DocumentRejectedException($"„{key}” nie jest kluczem miejsca w dokumencie (np. body:Paragraph:12).");
+            throw new InvalidLocationException($"„{key}” nie jest kluczem miejsca w dokumencie (np. body:Paragraph:12).");
         }
 
         if (kind == LocationKind.Document)
@@ -101,7 +101,7 @@ public sealed class DocumentCheckService(
 
         if (location is null)
         {
-            throw new DocumentRejectedException($"W dokumencie nie ma elementu o kluczu „{key}”.");
+            throw new InvalidLocationException($"W dokumencie nie ma elementu o kluczu „{key}”.");
         }
 
         return Preview(report, location);
