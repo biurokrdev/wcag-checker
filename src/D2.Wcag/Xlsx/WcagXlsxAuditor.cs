@@ -258,7 +258,8 @@ public sealed class WcagXlsxAuditor : IWcagXlsxAuditor
             workbook.IsStrict,
             workbook.IsEmpty);
 
-        var manualCriteria = criteria.Results.Count(c => c.Status == XlsxCriterionStatus.ManualReview);
+        // „Do oceny ręcznej” oraz „Brak wykrytych problemów” z pytaniem pozostawionym na checkliście (ocena ręczna w części).
+        var manualCriteria = criteria.Results.Count(c => c.NeedsManualReview);
         return new XlsxAuditResult(version, info, findings, checklist, criteria.Results, counts, Summarize(counts, manualCriteria, workbook.IsEmpty));
     }
 
@@ -269,9 +270,9 @@ public sealed class WcagXlsxAuditor : IWcagXlsxAuditor
         var manual = manualCriteria switch
         {
             0 => "",
-            1 => " 1 kryterium wymaga oceny ręcznej.",
-            _ when manualCriteria % 10 is >= 2 and <= 4 && manualCriteria % 100 is < 12 or > 14 => $" {manualCriteria} kryteria wymagają oceny ręcznej.",
-            _ => $" {manualCriteria} kryteriów wymaga oceny ręcznej.",
+            1 => " 1 kryterium wymaga oceny ręcznej (w całości lub w części).",
+            _ when manualCriteria % 10 is >= 2 and <= 4 && manualCriteria % 100 is < 12 or > 14 => $" {manualCriteria} kryteria wymagają oceny ręcznej (w całości lub w części).",
+            _ => $" {manualCriteria} kryteriów wymaga oceny ręcznej (w całości lub w części).",
         };
 
         var review = new List<string>();

@@ -55,7 +55,7 @@ public class WorkbookExportApiTests : IClassFixture<DefaultApiTestHost>
 
         using var package = WordprocessingDocument.Open(new MemoryStream(docx), false);
         var text = package.MainDocumentPart!.Document.Body!.InnerText;
-        Assert.Contains($"Raport audytu dostępności skoroszytu „{FixtureFile(fixture)}”", text);
+        Assert.Contains($"Raport z automatycznej analizy dostępności skoroszytu „{FixtureFile(fixture)}”", text);
         Assert.Contains(result.Summary, text);
         Assert.Contains("WCAG 2.2 AA (arkusz Excel)", text);
         Assert.Contains("Podsumowanie liczbowe", text);
@@ -72,7 +72,7 @@ public class WorkbookExportApiTests : IClassFixture<DefaultApiTestHost>
         Assert.Contains(Disclaimer, package.MainDocumentPart.FooterParts.Single().Footer.InnerText);
         Assert.DoesNotMatch(ConformanceClaimInReport(), text);
 
-        Assert.Equal($"Raport audytu dostępności: {FixtureFile(fixture)}", package.PackageProperties.Title);
+        Assert.Equal($"Raport z automatycznej analizy dostępności: {FixtureFile(fixture)}", package.PackageProperties.Title);
         Assert.Equal("pl-PL", package.PackageProperties.Language);
         AssertPassesTheWcagValidator(docx);
     }
@@ -182,7 +182,7 @@ public class WorkbookExportApiTests : IClassFixture<DefaultApiTestHost>
             .ToList();
         Assert.Equal(
         [
-            "Raport audytu dostępności skoroszytu „Budżet 2026.xlsx”",
+            "Raport z automatycznej analizy dostępności skoroszytu „Budżet 2026.xlsx”",
             "Podsumowanie liczbowe",
             "Zgłoszenia",
             "Skoroszyt",

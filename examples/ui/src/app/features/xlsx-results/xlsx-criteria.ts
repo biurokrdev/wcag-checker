@@ -11,9 +11,10 @@ import {
 
 let nextId = 0;
 
-// Macierz kryteriów WCAG profilu (A i AA): cztery statusy, każdy ze znakiem i tekstem (nigdy sam kolor);
-// „Brak wykrytych problemów” jest neutralny (szary okrąg), bo nie potwierdza spełnienia kryterium. Kryteria zależne
-// od oprogramowania mają etykietę w wierszu i są dodatkowo wymienione osobno nad tabelą.
+// Macierz kryteriów WCAG profilu (A i AA): pięć statusów, każdy ze znakiem i tekstem (nigdy sam kolor);
+// „Brak wykrytych problemów” jest neutralny (szary okrąg), bo nie potwierdza spełnienia kryterium. Kryteria realizowane
+// przez program mają własny status „Zależy od programu – nie oceniano”; kryterium częściowo zależne od programu,
+// ale z oceną ręczną (np. 1.4.10), ma dodatkowo etykietę w wierszu.
 @Component({
   selector: 'app-xlsx-criteria',
   templateUrl: './xlsx-criteria.html',
@@ -37,6 +38,4 @@ export class XlsxCriteria {
       count: this.criteria().filter((c) => c.status === status).length,
     })),
   );
-
-  protected readonly softwareDependent = computed(() => this.criteria().filter((c) => c.softwareDependent));
 }

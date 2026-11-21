@@ -9,7 +9,10 @@ public enum XlsxCriterionApplicability
     /// <summary>Dotyczy, gdy skoroszyt zawiera określoną treść (<see cref="XlsxCriterion.AppliesWhen"/>).</summary>
     Conditional,
 
-    /// <summary>Nie dotyczy pliku XLSX (w modelu WCAG: spełnione automatycznie) albo zależy wyłącznie od oprogramowania.</summary>
+    /// <summary>
+    /// Nie dotyczy pliku XLSX (treść, której dotyczy kryterium, nie występuje – wg WCAG2ICT kryterium nie jest wtedy naruszane)
+    /// albo zależy wyłącznie od oprogramowania (<see cref="XlsxCriterion.SoftwareDependent"/>).
+    /// </summary>
     NotApplicable,
 }
 
@@ -38,8 +41,20 @@ public sealed record XlsxCriterion(string Sc, string Name, string EnglishName, s
     /// <summary>Jak sprawdzić w Excelu.</summary>
     public string? Hint { get; init; }
 
-    /// <summary>Znacznik [UA] z macierzy: kryterium spełnia (lub nie) oprogramowanie użyte do otwarcia pliku, a nie autor pliku.</summary>
+    /// <summary>
+    /// Znacznik [UA] z macierzy: kryterium realizuje oprogramowanie użyte do otwarcia pliku, a nie autor pliku. Gdy kryterium
+    /// nie ma w skoroszycie nic do oceny, jego status to <see cref="XlsxCriterionStatus.SoftwareDependent"/>, a nie „Nie dotyczy”.
+    /// </summary>
     public bool SoftwareDependent { get; init; }
+
+    /// <summary>
+    /// Pytanie checklisty, gdy skoroszyt zawiera makra: makra mogą dodawać funkcje objęte kryterium (formularze, skróty, limity
+    /// czasu, reakcje na zdarzenia), a narzędzie ich nie uruchamia ani nie ocenia. <c>null</c> = makra nie zmieniają oceny.
+    /// </summary>
+    public string? MacroQuestion { get; init; }
+
+    /// <summary>Dopisek do uzasadnienia statusu „Niespełnione” (np. skąd pochodzi brzmienie kryterium stosowane do dokumentów).</summary>
+    public string? FailedNote { get; init; }
 
     /// <summary>Kryterium ma sens także dla skoroszytu bez treści (tytuł, język, nazwy arkuszy).</summary>
     public bool AppliesToEmptyWorkbook { get; init; }
@@ -59,8 +74,11 @@ public static class XlsxWcagCriteria
 {
     private const string Understanding = "https://www.w3.org/WAI/WCAG22/Understanding/";
 
-    private const string AutomaticallyMet = " Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie).";
-    private const string SoftwareNote = " Kryterium zależy od oprogramowania użytego do otwarcia pliku (np. Excela), a nie od autora pliku – nie zostało ocenione.";
+    /// <summary>Dopisek do „Nie dotyczy”: ostrożne, prawdziwe brzmienie – bez stwierdzania, że skoroszyt cokolwiek spełnia.</summary>
+    internal const string NotViolatedNote = "Zgodnie z WCAG2ICT (Comments on Conformance) kryterium nie jest naruszane, gdy treść, której dotyczy, nie występuje.";
+
+    private const string AutomaticallyMet = " " + NotViolatedNote;
+    private const string SoftwareNote = " Kryterium realizuje oprogramowanie użyte do otwarcia pliku (np. Excel), a nie autor pliku – narzędzie go nie oceniało.";
 
     private static readonly string[] Both = ["2.1", "2.2"];
     private static readonly string[] Only22 = ["2.2"];
@@ -132,7 +150,7 @@ public static class XlsxWcagCriteria
 
     private static bool HasFocusOrderContent(XlsxWorkbook w) => w.Sheets.Any(s => s.Drawings.Count > 0 || s.Controls.Count > 0 || s.IsProtected);
 
-    private static bool HasProtection(XlsxWorkbook w) => w.Sheets.Any(s => s.IsProtected);
+    private static bool HasMovingOrRefreshing(XlsxWorkbook w) => HasAnimation(w) || w.HasDataConnections;
 
     private static List<XlsxCriterion> Build()
     {
@@ -140,7 +158,8 @@ public static class XlsxWcagCriteria
 
         void Add(string sc, string name, string english, string level, string[] versions, XlsxCriterionApplicability applicability,
             XlsxCheckType? checkType, string slug, string reason, string? question = null, Func<XlsxWorkbook, bool>? when = null,
-            string? notApplicable = null, string? hint = null, bool software = false, bool emptyToo = false, bool working = false)
+            string? notApplicable = null, string? hint = null, bool software = false, bool emptyToo = false, bool working = false,
+            string? macro = null, string? failed = null)
         {
             if (applicability == XlsxCriterionApplicability.NotApplicable && sc != "4.1.1")
             {
@@ -161,6 +180,8 @@ public static class XlsxWcagCriteria
                 SoftwareDependent = software,
                 AppliesToEmptyWorkbook = emptyToo,
                 WorkingTranslation = working,
+                MacroQuestion = macro,
+                FailedNote = failed,
             });
         }
 
@@ -219,7 +240,7 @@ public static class XlsxWcagCriteria
             "WCAG2ICT: kryterium stosuje się wprost. Kolory tekstu i tła komórek, kształtów i wykresów ustala autor.",
             "Czy tekst na tle z obrazu, gradientu, wzoru lub w kolorach automatycznych jest wyraźnie czytelny (kontrast co najmniej 4,5:1, dla dużego tekstu 3:1)?");
         Add("1.4.4", "Zmiana rozmiaru tekstu", "Resize Text", "AA", Both, NotApplicable, null, "resize-text",
-            "Formalnie dotyczy dokumentu, ale spełnia je oprogramowanie: wg WCAG2ICT (Note 2) treść, dla której istnieją programy z powiększeniem do 200%, spełnia kryterium, chyba że nie działa z tą funkcją. Kontrola ręczna jest potrzebna tylko wtedy, gdy treść nie działa z powiększeniem widoku.",
+            "Powiększanie tekstu zapewnia program, którym otwiera się plik (np. powiększenie widoku w Excelu); wg WCAG2ICT (Note 2) o wyniku decyduje to, czy treść działa z taką funkcją programu. Narzędzie tego nie sprawdza – ocena ręczna jest potrzebna tylko wtedy, gdy treść nie daje się czytać przy powiększeniu widoku do 200%.",
             software: true);
         Add("1.4.5", "Obrazy tekstu", "Images of Text", "AA", Both, Conditional, XlsxCheckType.Manual, "images-of-text",
             "Dotyczy, gdy skoroszyt zawiera obrazy. WCAG2ICT: stosuje się wprost. Wyjątki: prezentacja istotna (logotypy), obraz dostosowywalny.",
@@ -240,30 +261,36 @@ public static class XlsxWcagCriteria
         Add("2.1.1", "Klawiatura", "Keyboard", "A", Both, Conditional, XlsxCheckType.Manual, "keyboard",
             "Dotyczy, gdy skoroszyt zawiera kontrolki formularza, ActiveX, obiekty osadzone albo kształty z akcją lub łączem. Nawigację po komórkach zapewnia Excel; ocenie podlega funkcjonalność dodana przez autora.",
             "Czy wszystkie kontrolki, przyciski, fragmentatory i obiekty osadzone da się obsłużyć samą klawiaturą?",
-            HasInteractive, "Nie wykryto kontrolek, obiektów osadzonych ani klikalnych kształtów.");
+            HasInteractive, "Nie wykryto kontrolek, obiektów osadzonych ani klikalnych kształtów.",
+            macro: "Czy funkcje dodane przez makra (formularze użytkownika, przyciski i kształty z przypisanym makrem, okna dialogowe) da się obsłużyć samą klawiaturą?");
         Add("2.1.2", "Bez pułapki na klawiaturę", "No Keyboard Trap", "A", Both, Conditional, XlsxCheckType.Manual, "no-keyboard-trap",
             "Dotyczy, gdy skoroszyt zawiera kontrolki ActiveX albo obiekty osadzone – ryzyko jest tylko przy obiektach, które przejmują fokus.",
             "Czy z każdej kontrolki i każdego obiektu osadzonego da się wyjść klawiaturą (np. klawiszem Esc)?",
-            HasActiveObjects, "Nie wykryto kontrolek ActiveX ani obiektów osadzonych.");
+            HasActiveObjects, "Nie wykryto kontrolek ActiveX ani obiektów osadzonych.",
+            macro: "Czy z formularzy użytkownika i okien otwieranych przez makra da się wyjść samą klawiaturą (np. klawiszem Esc albo Tab)?");
         Add("2.1.4", "Jednoznakowe skróty klawiaturowe", "Character Key Shortcuts", "A", Both, NotApplicable, null, "character-key-shortcuts",
-            "Kryterium dotyczy skrótów zaimplementowanych w treści; plik XLSX bez makr nie definiuje skrótów klawiaturowych.");
+            "Kryterium dotyczy skrótów zaimplementowanych w treści; plik XLSX bez makr nie definiuje skrótów klawiaturowych.",
+            macro: "Czy makra nie definiują skrótów jednoznakowych (np. Application.OnKey z samą literą, cyfrą albo znakiem), a jeśli tak – czy można je wyłączyć, zmienić albo działają tylko przy fokusie na danym elemencie?");
         Add("2.2.1", "Dostosowanie czasu", "Timing Adjustable", "A", Both, NotApplicable, null, "timing-adjustable",
-            "Kryterium dotyczy limitów czasu ustawionych przez dokument; plik XLSX bez makr nie ustawia limitów czasu.");
+            "Kryterium dotyczy limitów czasu ustawionych przez dokument; plik XLSX bez makr nie ustawia limitów czasu.",
+            macro: "Czy makra nie ustawiają limitów czasu (np. Application.OnTime, samoczynne zamknięcie skoroszytu albo formularza), a jeśli tak – czy użytkownik może je wyłączyć, wydłużyć albo dostosować?");
         Add("2.2.2", "Pauza, zatrzymanie, ukrycie", "Pause, Stop, Hide", "A", Both, Conditional, XlsxCheckType.Manual, "pause-stop-hide",
-            "Dotyczy, gdy skoroszyt zawiera treść ruchomą lub odświeżaną automatycznie (animowane obrazy, wideo, automatyczne odświeżanie danych). Automatycznego odświeżania danych audyt nie wykrywa.",
+            "Dotyczy, gdy skoroszyt zawiera treść ruchomą lub odświeżaną automatycznie (animowane obrazy, wideo, połączenia danych odświeżane przy otwarciu albo co określony czas). Połączenia danych (xl/connections.xml) audyt wykrywa, ale nie ustala, czy odświeżanie zmienia widoczną treść.",
             "Czy treść ruchomą lub odświeżaną automatycznie (animowane obrazy, automatyczne odświeżanie danych) można wstrzymać, zatrzymać lub ukryć?",
-            HasAnimation, "Nie wykryto animowanych obrazów ani osadzonych multimediów.");
+            HasMovingOrRefreshing, "Nie wykryto animowanych obrazów, osadzonych multimediów ani połączeń danych.",
+            hint: "Połączenia danych: Dane → Zapytania i połączenia → Właściwości (Odśwież dane podczas otwierania pliku, Odświeżaj co … min).");
         Add("2.3.1", "Trzy błyski lub wartości poniżej progu", "Three Flashes or Below Threshold", "A", Both, Conditional, XlsxCheckType.Manual,
             "three-flashes-or-below-threshold",
             "Dotyczy, gdy skoroszyt zawiera animowane obrazy albo wideo.",
             "Czy żaden animowany obraz ani wideo nie błyska częściej niż trzy razy na sekundę?",
             HasAnimation, "Nie wykryto animowanych obrazów ani osadzonych multimediów.");
         Add("2.4.1", "Możliwość pominięcia bloków", "Bypass Blocks", "A", Both, NotApplicable, null, "bypass-blocks",
-            "WCAG2ICT (Note 2): kryterium dotyczy treści powtarzanej w zestawie dokumentów; pojedynczy dokument spełnia je automatycznie. W EN 301 549 klauzula 10.2.4.1 jest pusta.");
+            "WCAG2ICT (Note 2): kryterium dotyczy bloków treści powtarzanych w zestawie dokumentów; pojedynczy skoroszyt takich bloków nie ma. W EN 301 549 klauzula 10.2.4.1 jest pusta.");
         Add("2.4.2", "Tytuł strony", "Page Titled", "A", Both, Applies, XlsxCheckType.Auto, "page-titled",
             "WCAG2ICT uznaje kryterium za trudne do zastosowania wprost i zaleca brzmienie zastępcze: dokument ma tytuł opisujący nazwę, temat lub cel. Skoroszyt ma właściwość „Tytuł”. W profilu 2.1 norma EN 301 549 V3.2.1 (10.2.4.2) dopuszcza też opisową nazwę pliku.",
             "Czy tytuł we właściwościach dokumentu opisuje nazwę, temat lub cel skoroszytu?",
-            hint: "Plik → Informacje → Właściwości → Tytuł.", emptyToo: true);
+            hint: "Plik → Informacje → Właściwości → Tytuł.", emptyToo: true,
+            failed: "Brzmienie kryterium dla dokumentów („dokument ma tytuł opisujący nazwę, temat lub cel”) pochodzi z WCAG2ICT (brzmienie zastępcze dla 2.4.2) i z EN 301 549 V4.1.1, klauzula 10.2.4.2.");
         Add("2.4.3", "Kolejność fokusu", "Focus Order", "A", Both, Conditional, XlsxCheckType.Manual, "focus-order",
             "Dotyczy, gdy skoroszyt zawiera obiekty pływające, kontrolki albo arkusz chroniony z komórkami do wypełnienia. Kolejność w siatce ustala Excel; autor wpływa na kolejność obiektów i komórek odblokowanych.",
             "Czy przechodzenie klawiszem Tab po kontrolkach, obiektach i polach do wypełnienia odbywa się w kolejności zgodnej z logiką arkusza?",
@@ -292,7 +319,8 @@ public static class XlsxWcagCriteria
         Add("2.5.1", "Gesty dotykowe", "Pointer Gestures", "A", Both, NotApplicable, null, "pointer-gestures",
             "WCAG2ICT (Note 2): gesty wielopunktowe i oparte na ścieżce są w dokumentach rzadkie; format XLSX nie pozwala autorowi ich definiować – gesty obsługuje oprogramowanie.");
         Add("2.5.2", "Rezygnacja ze wskazania", "Pointer Cancellation", "A", Both, NotApplicable, null, "pointer-cancellation",
-            "WCAG2ICT (Note 3): treść interpretująca zdarzenia wskaźnika jest w dokumentach rzadka; w pliku XLSX bez makr zdarzenia obsługuje oprogramowanie.");
+            "WCAG2ICT (Note 3): treść interpretująca zdarzenia wskaźnika jest w dokumentach rzadka; w pliku XLSX bez makr zdarzenia obsługuje oprogramowanie.",
+            macro: "Czy makra uruchamiane kliknięciem (przyciski, kształty z przypisanym makrem) wykonują się dopiero po zwolnieniu przycisku myszy, albo czy ich działanie można przerwać lub cofnąć?");
         Add("2.5.3", "Etykieta w nazwie", "Label in Name", "A", Both, Conditional, XlsxCheckType.Manual, "label-in-name",
             "Dotyczy kontrolek i klikalnych kształtów z widocznym tekstem, których nazwa programowa (tekst alternatywny) może nie zawierać tego tekstu.",
             "Czy nazwa (tekst alternatywny) przycisków i klikalnych kształtów zawiera tekst widoczny na tych elementach?",
@@ -316,11 +344,13 @@ public static class XlsxWcagCriteria
         Add("3.2.1", "Po otrzymaniu fokusu", "On Focus", "A", Both, Conditional, XlsxCheckType.Manual, "on-focus",
             "Dotyczy kontrolek ActiveX i obiektów osadzonych; w pliku XLSX bez makr autor nie definiuje reakcji na fokus.",
             "Czy samo przejście fokusem na kontrolkę lub obiekt nie powoduje nieoczekiwanej zmiany kontekstu?",
-            HasActiveObjects, "Nie wykryto kontrolek ActiveX ani obiektów osadzonych.");
+            HasActiveObjects, "Nie wykryto kontrolek ActiveX ani obiektów osadzonych.",
+            macro: "Czy makra nie zmieniają kontekstu (nie przełączają arkusza, nie otwierają okien, nie przenoszą fokusu) w chwili, gdy komórka, arkusz albo kontrolka otrzymuje fokus (np. zdarzenia Worksheet_SelectionChange, Worksheet_Activate)?");
         Add("3.2.2", "Podczas wprowadzania danych", "On Input", "A", Both, Conditional, XlsxCheckType.Manual, "on-input",
             "Dotyczy kontrolek formularza powiązanych z komórkami i kontrolek ActiveX: zmiana wartości nie powinna powodować nieoczekiwanej zmiany kontekstu.",
             "Czy zmiana wartości kontrolki lub pola nie powoduje nieoczekiwanej zmiany kontekstu (np. przeniesienia do innego arkusza) bez uprzedzenia?",
-            HasControls, "Nie wykryto kontrolek formularza ani ActiveX.");
+            HasControls, "Nie wykryto kontrolek formularza ani ActiveX.",
+            macro: "Czy makra nie zmieniają kontekstu bez uprzedzenia, gdy użytkownik zmienia wartość komórki albo kontrolki (np. zdarzenie Worksheet_Change przenoszące do innego arkusza)?");
         Add("3.2.3", "Spójna nawigacja", "Consistent Navigation", "AA", Both, NotApplicable, null, "consistent-navigation",
             "Kryterium dotyczy mechanizmów powtarzanych w wielu dokumentach zestawu; nie dotyczy pojedynczego skoroszytu (arkusze jednego skoroszytu nie są zestawem dokumentów). Jeśli plik jest częścią zestawu dokumentów w rozumieniu WCAG2ICT, spójność trzeba ocenić ręcznie.");
         Add("3.2.4", "Spójna identyfikacja", "Consistent Identification", "AA", Both, NotApplicable, null, "consistent-identification",
@@ -345,22 +375,26 @@ public static class XlsxWcagCriteria
             "error-prevention-legal-financial-data",
             "Kryterium dotyczy dokumentów, które powodują zobowiązania prawne lub transakcje, modyfikują dane w systemach albo wysyłają odpowiedzi testowe; sam plik XLSX tego nie robi (interpretacja własna autorów macierzy).");
         Add("3.3.7", "Zbędne ponowne wprowadzanie", "Redundant Entry", "A", Only22, Conditional, XlsxCheckType.Manual, "redundant-entry",
-            "Dotyczy arkuszy-formularzy wymagających ponownego wpisania tych samych danych w jednym procesie; w zwykłym arkuszu z danymi kryterium jest spełnione automatycznie.",
+            "Dotyczy arkuszy-formularzy wymagających ponownego wpisania tych samych danych w jednym procesie; w zwykłym arkuszu z danymi nie ma procesu wprowadzania danych, którego kryterium dotyczy.",
             "Czy użytkownik nie musi ponownie wpisywać danych, które już podał w tym samym procesie?",
             HasInput, "Nie wykryto pól do wypełnienia (walidacji danych, kontrolek ani arkuszy chronionych).", working: true);
-        Add("3.3.8", "Dostępne uwierzytelnianie (minimum)", "Accessible Authentication (Minimum)", "AA", Only22, Conditional, XlsxCheckType.Manual,
+        // 3.3.8: uwierzytelnianiem (weryfikacją tożsamości) mogłoby być tylko hasło otwarcia pliku, a pliku zaszyfrowanego hasłem
+        // audytor nie otwiera (wynik Encrypted) – każdy oceniany skoroszyt jest więc bez niego. Hasło ochrony arkusza nie weryfikuje
+        // tożsamości, tylko odblokowuje edycję, dlatego nie jest warunkiem tego kryterium.
+        Add("3.3.8", "Dostępne uwierzytelnianie (minimum)", "Accessible Authentication (Minimum)", "AA", Only22, NotApplicable, null,
             "accessible-authentication-minimum",
-            "Dotyczy pliku lub arkusza chronionego hasłem; okno hasła należy do oprogramowania (zastosowanie do hasła pliku to interpretacja własna autorów macierzy). Pliku zaszyfrowanego hasłem audyt nie otwiera.",
-            "Czy hasło można wkleić lub wprowadzić z menedżera haseł, bez przepisywania z pamięci?",
-            HasProtection, "Nie wykryto ochrony arkuszy hasłem; okno hasła wyświetla oprogramowanie.", software: true, working: true);
+            "Kryterium dotyczy procesu uwierzytelniania. Oceniany plik nie jest zaszyfrowany hasłem otwarcia (takich plików narzędzie nie analizuje), a hasło ochrony arkusza nie służy weryfikacji tożsamości, tylko odblokowaniu edycji (interpretacja własna autorów macierzy).",
+            working: true);
         Add("4.1.1", "Poprawność kodu", "Parsing", "A", Only21, NotApplicable, null, "parsing",
-            "Kryterium usunięte w WCAG 2.2. W WCAG 2.1 (wydanie z erratą, Note 1) kryterium uznaje się za zawsze spełnione dla treści w HTML lub XML, a plik XLSX to XML – status: spełnione wg erraty WCAG 2.1. Uwaga: EN 301 549 V3.2.1 (10.4.1.1) nadal zawiera ten wymóg i wymienia OOXML.");
+            "Kryterium usunięte w WCAG 2.2. Errata WCAG 2.1 (Note 1) wyłącza z oceny treść w HTML lub XML, a plik XLSX jest zapisany w XML – dlatego narzędzie kryterium nie ocenia (status „Nie dotyczy”). Uwaga: EN 301 549 V3.2.1 (10.4.1.1) nadal zawiera ten wymóg i wymienia OOXML.");
         Add("4.1.2", "Nazwa, rola, wartość", "Name, Role, Value", "A", Both, Conditional, XlsxCheckType.Auto, "name-role-value",
-            "Dotyczy kontrolek formularza, ActiveX i obiektów interaktywnych. WCAG2ICT (Note 1): standardowe komponenty formatu zwykle spełniają kryterium; rolę i stan udostępnia oprogramowanie, autor odpowiada za nazwę.",
+            "Dotyczy kontrolek formularza, ActiveX i obiektów interaktywnych. WCAG2ICT (Note 1): rolę i stan standardowych komponentów formatu zwykle udostępnia oprogramowanie, a autor odpowiada za nazwę.",
             "Czy każda kontrolka ma nazwę odczytywaną przez czytnik ekranu, a jej rola i stan są poprawnie ogłaszane?",
-            HasInteractive, "Nie wykryto kontrolek ani obiektów interaktywnych.");
+            HasInteractive, "Nie wykryto kontrolek ani obiektów interaktywnych.",
+            macro: "Czy kontrolki formularzy użytkownika (UserForm) i okien otwieranych przez makra mają nazwy, role i stany odczytywane przez czytnik ekranu?");
         Add("4.1.3", "Komunikaty o stanie", "Status Messages", "AA", Both, NotApplicable, null, "status-messages",
-            "Komunikaty o stanie w pliku XLSX bez makr generuje oprogramowanie, nie treść dokumentu (interpretacja własna autorów macierzy).");
+            "Komunikaty o stanie w pliku XLSX bez makr generuje oprogramowanie, nie treść dokumentu (interpretacja własna autorów macierzy).",
+            macro: "Czy komunikaty o stanie pokazywane przez makra (np. na pasku stanu – Application.StatusBar – albo wpisywane do komórek) docierają do czytnika ekranu bez przenoszenia fokusu?");
 
         list.Sort((a, b) => CompareSc(a.Sc, b.Sc));
         return list;

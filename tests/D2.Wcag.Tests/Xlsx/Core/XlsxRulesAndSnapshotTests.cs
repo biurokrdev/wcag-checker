@@ -125,7 +125,8 @@ public class XlsxWcagCriteriaTests
                     Assert.Null(c.Question);
                     Assert.Null(c.CheckType);
                     Assert.Null(c.AppliesWhen);
-                    Assert.True(c.Reason.Contains("spełnione") || c.Reason.Contains("zależy od oprogramowania"), c.Sc);
+                    Assert.True(c.Reason.Contains(XlsxWcagCriteria.NotViolatedNote) || c.Reason.Contains("realizuje oprogramowanie")
+                        || c.Sc == "4.1.1", c.Sc);
                     break;
                 case XlsxCriterionApplicability.Conditional:
                     Assert.NotNull(c.Question);
@@ -143,7 +144,10 @@ public class XlsxWcagCriteriaTests
                 Assert.NotNull(c.CheckType);
             }
         });
-        Assert.Equal(["1.4.4", "1.4.10", "1.4.13", "2.4.7", "3.3.8"], XlsxWcagCriteria.All.Where(c => c.SoftwareDependent).Select(c => c.Sc));
+        Assert.Equal(["1.4.4", "1.4.10", "1.4.13", "2.4.7"], XlsxWcagCriteria.All.Where(c => c.SoftwareDependent).Select(c => c.Sc));
+        Assert.Equal(["2.1.1", "2.1.2", "2.1.4", "2.2.1", "2.5.2", "3.2.1", "3.2.2", "4.1.2", "4.1.3"],
+            XlsxWcagCriteria.All.Where(c => c.MacroQuestion is not null).Select(c => c.Sc));
+        Assert.All(XlsxWcagCriteria.All.Where(c => c.MacroQuestion is not null), c => Assert.EndsWith("?", c.MacroQuestion));
     }
 
     [Fact]
@@ -173,9 +177,11 @@ public class XlsxWcagCriteriaTests
         Assert.True(Applies("3.3.1", "forms"));
         Assert.True(Applies("3.3.2", "forms"));
         Assert.False(Applies("3.3.1", "structure"));
-        // ochrona arkusza
-        Assert.True(Applies("3.3.8", "forms"));
+        // 3.3.8: hasło ochrony arkusza nie jest uwierzytelnianiem, a plików zaszyfrowanych hasłem otwarcia audyt nie czyta
+        Assert.False(Applies("3.3.8", "forms"));
         Assert.False(Applies("3.3.8", "clean"));
+        // połączenia danych (odświeżanie) – żadna fixtura ich nie ma
+        Assert.False(Applies("2.2.2", "clean"));
         // warunek nieustalalny z modelu → kryterium zostaje do oceny ręcznej
         Assert.True(Applies("3.1.2", "clean"));
         Assert.True(Applies("1.3.3", "clean"));

@@ -38,6 +38,12 @@ public sealed class XlsxWorkbook
     /// <summary>Pakiet zawiera osadzone audio/wideo albo obiekty OLE.</summary>
     public bool HasEmbeddedMedia { get; }
 
+    /// <summary>
+    /// Pakiet zawiera połączenia danych (<c>xl/connections.xml</c>: zapytania, bazy danych, strony WWW). Połączenie może odświeżać
+    /// treść przy otwarciu (<c>refreshOnLoad</c>) albo co określony czas (<c>interval</c>) – audyt tego nie uruchamia.
+    /// </summary>
+    public bool HasDataConnections { get; init; }
+
     /// <summary>Plik w odmianie Strict Open XML (przestrzenie nazw <c>purl.oclc.org</c>).</summary>
     public bool IsStrict { get; }
 

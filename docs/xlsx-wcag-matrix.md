@@ -467,8 +467,8 @@ Narzędzie bada plik automatycznie i heurystycznie. Nie ocenia kryteriów wymaga
 - „Możliwy problem z kryterium X – wymaga weryfikacji przez człowieka” – dla heurystyk.
 - „Dobra praktyka (zalecenie Microsoft), nie jest wymogiem WCAG”.
 - „Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie”.
-- „Kryterium zależy od oprogramowania użytego do otwarcia pliku – nie zostało ocenione”.
-- „Kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)”.
+- „Kryterium realizuje oprogramowanie użyte do otwarcia pliku (np. Excel), a nie autor pliku – narzędzie go nie oceniało” – status „Zależy od programu – nie oceniano”.
+- „Zgodnie z WCAG2ICT (Comments on Conformance) kryterium nie jest naruszane, gdy treść, której dotyczy, nie występuje” – dopisek do „Nie dotyczy” (pkt 10: bez „spełnione automatycznie”).
 - „Zbadano N z M kryteriów profilu WCAG 2.2 A+AA; pozostałe wymagają oceny ręcznej”.
 - „Interpretacja dla dokumentów nie-webowych wg W3C WCAG2ICT (nota informacyjna z 11.12.2025)”.
 - „Odpowiednik w EN 301 549 V4.1.1 / V3.2.1: klauzula 10.x.x.x” – zawsze z numerem wersji normy.
@@ -485,3 +485,13 @@ Narzędzie bada plik automatycznie i heurystycznie. Nie ocenia kryteriów wymaga
 7. Klasyfikacje oznaczone w macierzy jako „interpretacja własna”: 1.2.4, 1.3.4, 2.4.7 (podział odpowiedzialności), 2.4.11 (komórki jako komponenty z fokusem), 3.3.4, 3.3.8 (hasło pliku), 4.1.3. WCAG2ICT nie omawia arkuszy kalkulacyjnych poza wymienieniem ich jako przykładu dokumentu.
 
 Strony, których nie udało się pobrać: `https://www.w3.org/Translations/WCAG22-pl/` (404). Stronę EUR-Lex z decyzją 2021/1339 pobrano; strony Understanding pobrano dla 17 kryteriów (1.1.1, 1.3.1, 1.3.2, 1.3.3, 1.4.1, 1.4.3, 1.4.5, 1.4.11, 2.4.2, 2.4.4, 2.4.6, 2.4.7, 3.1.1, 3.3.1, 3.3.2, 3.3.3, 4.1.2). Dla pozostałych kryteriów linki do Understanding pochodzą z samej specyfikacji WCAG 2.2, a treści tych stron nie czytano.
+
+## 10. Zmiany po niezależnej weryfikacji (stan implementacji)
+
+Katalog kryteriów (`XlsxWcagCriteria`) odchodzi od wcześniejszych wierszy macierzy w tych punktach (szczegóły: `docs/xlsx-contracts.md`, pkt 7.5):
+
+- „Spełnione automatycznie” nie pada w żadnym komunikacie: „Nie dotyczy” ma dopisek „Zgodnie z WCAG2ICT (Comments on Conformance) kryterium nie jest naruszane, gdy treść, której dotyczy, nie występuje”, a kryteria [UA] bez treści do oceny mają osobny status „Zależy od programu – nie oceniano”.
+- Skoroszyt z makrami: 2.1.1, 2.1.2, 2.1.4, 2.2.1, 2.5.2, 3.2.1, 3.2.2, 4.1.2, 4.1.3 – do oceny ręcznej (makra nie są oceniane), zamiast „nie dotyczy – plik bez makr”.
+- 2.2.2 – dotyczy także skoroszytu z połączeniami danych (`xl/connections.xml`).
+- 3.3.8 – **nie dotyczy** każdego ocenianego pliku (interpretacja własna): hasło ochrony arkusza nie jest uwierzytelnianiem, a plików zaszyfrowanych hasłem otwarcia narzędzie nie analizuje. Pytanie z pkt 6.1 dla 3.3.8 nie jest zadawane.
+- 4.1.1 (profil 2.1) – „Nie dotyczy” z uzasadnieniem z erraty, bez „spełnione wg erraty”.

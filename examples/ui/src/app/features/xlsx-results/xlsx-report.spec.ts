@@ -101,7 +101,7 @@ describe('XlsxReport', () => {
 
   // ------------------------------------------------------------ macierz kryteriów
 
-  it('shows the criteria matrix with all four statuses as an icon and a text, never colour alone', () => {
+  it('shows the criteria matrix with all five statuses as an icon and a text, never colour alone', () => {
     const { q, text } = render();
     const table = q('xlsx-criteria-table')!;
     expect(text(table.querySelector('caption'))).toBe('Stan kryteriów WCAG 2.2 A+AA po analizie automatycznej');
@@ -112,6 +112,8 @@ describe('XlsxReport', () => {
       '✕ Niespełnione',
       '? Do oceny ręcznej',
       '○ Brak wykrytych problemów',
+      '◇ Zależy od programu – nie oceniano',
+      '? Do oceny ręcznej',
       '– Nie dotyczy',
     ]);
     // „Brak wykrytych problemów” jest neutralny, nie zielony „zaliczone”.
@@ -120,17 +122,23 @@ describe('XlsxReport', () => {
     expect(Array.from(q('xlsx-criteria-counts')!.querySelectorAll('li')).map(text)).toEqual([
       '✕ Niespełnione: 1',
       '○ Brak wykrytych problemów: 1',
-      '? Do oceny ręcznej: 1',
+      '? Do oceny ręcznej: 2',
       '– Nie dotyczy: 1',
+      '◇ Zależy od programu – nie oceniano: 1',
     ]);
   });
 
-  it('marks criteria that depend on the software, in the row and in a separate list', () => {
+  it('gives software-dependent criteria their own status, distinct from "Nie dotyczy"', () => {
     const { q, all, text } = render();
+    const row = (sc: string) => q('xlsx-criteria-table')!.querySelector<HTMLElement>(`tr[data-criterion="${sc}"]`)!;
+    expect(row('1.4.4').dataset['status']).toBe('SoftwareDependent');
+    expect(text(row('1.4.4').querySelector('[data-testid="criterion-status"]'))).toBe('◇ Zależy od programu – nie oceniano');
+    // Etykieta w wierszu tylko przy kryterium częściowo zależnym od programu, które ma inny status (bez dublowania statusu).
     expect(all('criterion-software-dependent').length).toBe(1);
+    expect(all('criterion-software-dependent')[0].closest('tr')!.dataset['criterion']).toBe('1.4.10');
     expect(text(q('criterion-software-dependent'))).toBe('zależy od oprogramowania – nie oceniano');
-    expect(all('criterion-software-dependent')[0].closest('tr')!.dataset['criterion']).toBe('1.4.4');
-    expect(text(q('xlsx-software-dependent'))).toContain('1.4.4 Zmiana rozmiaru tekstu');
+    expect(text(q('xlsx-criteria')!.querySelector('.explain'))).toContain('„Zależy od programu – nie oceniano” – kryterium realizuje program');
+    expect(text(q('xlsx-criteria')!.querySelector('.explain'))).not.toContain('albo zależy od programu');
   });
 
   it('links criteria in the matrix to Understanding WCAG in a new tab', () => {

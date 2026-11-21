@@ -82,13 +82,21 @@ public sealed record XlsxManualCheck
     public string? Code { get; init; }
 }
 
-/// <summary>„Niespełnione” / „Brak wykrytych problemów” / „Do oceny ręcznej” / „Nie dotyczy”.</summary>
-public enum XlsxCriterionStatus { Failed, NoIssuesDetected, ManualReview, NotApplicable }
+/// <summary>
+/// „Niespełnione” / „Brak wykrytych problemów” / „Do oceny ręcznej” / „Nie dotyczy” / „Zależy od programu – nie oceniano”.
+/// <see cref="SoftwareDependent"/> dopisano na końcu (wartości liczbowe pozostałych bez zmian): kryterium realizuje program użyty
+/// do otwarcia pliku, a nie autor – to nie jest „Nie dotyczy”, tylko brak oceny.
+/// </summary>
+public enum XlsxCriterionStatus { Failed, NoIssuesDetected, ManualReview, NotApplicable, SoftwareDependent }
 
 public sealed record XlsxCriterionResult(string Sc, string Name, string Level, IReadOnlyList<string> Versions,
     XlsxCriterionStatus Status, string Reason, string UnderstandingUrl, IReadOnlyList<string> FindingCodes, int ManualChecks)
 {
-    /// <summary>Kryterium spełnia (lub nie) oprogramowanie użyte do otwarcia pliku, a nie autor pliku – do osobnej adnotacji w raporcie.</summary>
+    /// <summary>
+    /// Znacznik z katalogu: kryterium realizuje (lub nie) oprogramowanie użyte do otwarcia pliku, a nie autor pliku. Gdy narzędzie
+    /// nie miało w skoroszycie nic do oceny, status to <see cref="XlsxCriterionStatus.SoftwareDependent"/>; znacznik zostaje też
+    /// przy kryteriach z częścią do oceny ręcznej (np. 1.4.10).
+    /// </summary>
     public bool SoftwareDependent { get; init; }
 
     /// <summary>Polska etykieta statusu.</summary>
@@ -97,8 +105,15 @@ public sealed record XlsxCriterionResult(string Sc, string Name, string Level, I
         XlsxCriterionStatus.Failed => "Niespełnione",
         XlsxCriterionStatus.NoIssuesDetected => "Brak wykrytych problemów",
         XlsxCriterionStatus.ManualReview => "Do oceny ręcznej",
+        XlsxCriterionStatus.SoftwareDependent => "Zależy od programu – nie oceniano",
         _ => "Nie dotyczy",
     };
+
+    /// <summary>
+    /// Kryterium wymaga oceny człowieka w całości albo w części: status „Do oceny ręcznej” albo „Brak wykrytych problemów” z pytaniem
+    /// pozostawionym na liście kontroli ręcznych. Z tego liczona jest liczba N w podsumowaniu.
+    /// </summary>
+    public bool NeedsManualReview => Status == XlsxCriterionStatus.ManualReview || (Status == XlsxCriterionStatus.NoIssuesDetected && ManualChecks > 0);
 }
 
 /// <summary>Jedyne miejsce mapowania typu kontroli na wagę zgłoszenia.</summary>

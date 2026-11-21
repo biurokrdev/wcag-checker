@@ -427,7 +427,7 @@ public class XlsxAuditorTests
 
         // 3) nie dotyczy: zawsze (2.4.1) i warunkowo (brak multimediów → 1.2.2, mimo zarejestrowanej reguły)
         Assert.Equal(XlsxCriterionStatus.NotApplicable, Criterion("2.4.1").Status);
-        Assert.Contains("spełnione automatycznie", Criterion("2.4.1").Reason);
+        Assert.Contains(XlsxWcagCriteria.NotViolatedNote, Criterion("2.4.1").Reason);
         Assert.Equal(XlsxCriterionStatus.NotApplicable, Criterion("1.2.2").Status);
         Assert.Contains("nie zawiera osadzonych nagrań", Criterion("1.2.2").Reason);
 
@@ -445,21 +445,26 @@ public class XlsxAuditorTests
         Assert.Contains("nie zostało ocenione przez narzędzie", Criterion("1.1.1").Reason);
         Assert.Equal(1, Criterion("1.1.1").ManualChecks);
 
-        // 5) reguła automatyczna jest i nic nie zgłosiła → Brak wykrytych problemów, z dopiskiem, co zostaje do oceny ręcznej
+        // 5) reguła automatyczna jest i nic nie zgłosiła → Brak wykrytych problemów, z dopiskiem, co zostaje do oceny ręcznej;
+        // pozostała część trafia na checklistę i do liczby N („w całości lub w części”)
         var clear = Criterion("1.4.3");
         Assert.Equal(XlsxCriterionStatus.NoIssuesDetected, clear.Status);
         Assert.Contains("T-CONTRAST", clear.Reason);
         Assert.Contains("Do oceny ręcznej pozostaje", clear.Reason);
         Assert.Empty(clear.FindingCodes);
-        Assert.Equal(0, clear.ManualChecks);
-        Assert.DoesNotContain(result.ManualChecks, c => c.Id == "manual-1.4.3");
+        Assert.Equal(1, clear.ManualChecks);
+        Assert.True(clear.NeedsManualReview);
+        Assert.Contains(result.ManualChecks, c => c.Id == "manual-1.4.3");
         Assert.DoesNotContain(result.ManualChecks, c => c.Id == "manual-2.4.2");
 
-        // kryteria zależne od oprogramowania mają znacznik i mówią o tym wprost
+        // kryteria zależne od oprogramowania mają własny status („Zależy od programu – nie oceniano”), nie „Nie dotyczy”
         Assert.True(Criterion("1.4.4").SoftwareDependent);
-        Assert.Equal(XlsxCriterionStatus.NotApplicable, Criterion("1.4.4").Status);
-        Assert.Contains("zależy od oprogramowania", Criterion("1.4.4").Reason);
+        Assert.Equal(XlsxCriterionStatus.SoftwareDependent, Criterion("1.4.4").Status);
+        Assert.Equal("Zależy od programu – nie oceniano", XlsxCriterionResult.StatusLabel(Criterion("1.4.4").Status));
+        Assert.Contains("realizuje oprogramowanie", Criterion("1.4.4").Reason);
+        Assert.False(Criterion("1.4.4").NeedsManualReview);
         Assert.False(Criterion("2.4.2").SoftwareDependent);
+        Assert.Contains("EN 301 549 V4.1.1, klauzula 10.2.4.2", failed.Reason);
 
         Assert.Equal(result.Criteria.Select(c => c.Sc).OrderBy(sc => sc, XlsxWcagCriteria.ScComparer), result.Criteria.Select(c => c.Sc));
         Assert.All(result.Criteria, c => Assert.False(string.IsNullOrWhiteSpace(c.Reason)));
@@ -480,6 +485,11 @@ public class XlsxAuditorTests
             {
                 Assert.DoesNotContain("nie zostało ocenione przez narzędzie", c.Reason);
             }
+            else if (result.Workbook!.HasMacros && XlsxWcagCriteria.Find(c.Sc)!.MacroQuestion is not null)
+            {
+                // Kryterium, które bez makr byłoby „Nie dotyczy”: uzasadnieniem jest nieoceniona treść makr.
+                Assert.Contains("makra", c.Reason);
+            }
             else
             {
                 Assert.StartsWith("Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie.", c.Reason);
@@ -499,7 +509,7 @@ public class XlsxAuditorTests
 
         var examined = Run(true).Criteria.Single(c => c.Sc == "1.3.2");
         Assert.Equal(XlsxCriterionStatus.NoIssuesDetected, examined.Status);
-        Assert.StartsWith("Sprawdzono automatycznie: pola tekstowe (T-SEQ) – nie wykryto problemów. Do oceny ręcznej pozostaje: ", examined.Reason);
+        Assert.StartsWith("Sprawdzono automatycznie: pola tekstowe (T-SEQ) – nie wykryto problemów. Do oceny ręcznej pozostaje (pozycja na liście kontroli ręcznych): ", examined.Reason);
 
         var nothing = Run(false);
         var criterion = nothing.Criteria.Single(c => c.Sc == "1.3.2");
@@ -580,6 +590,72 @@ public class XlsxAuditorTests
         Assert.DoesNotContain(new WcagXlsxAuditor().Audit(Clean).Findings, f => f.Code == "XL-MACROS");
     }
 
+    [Theory]
+    [InlineData("2.2")]
+    [InlineData("2.1")]
+    public void Macros_CriteriaThatMacrosCanAffect_AreManualReview_NotNotApplicable(string version)
+    {
+        string[] affected = ["2.1.1", "2.1.2", "2.1.4", "2.2.1", "2.5.2", "3.2.1", "3.2.2", "4.1.2", "4.1.3"];
+        var macro = new WcagXlsxAuditor().Audit(XlsxFixtureCatalog.Build("macro"), new XlsxAuditProfile { WcagVersion = version });
+        var clean = new WcagXlsxAuditor().Audit(Clean, new XlsxAuditProfile { WcagVersion = version });
+
+        foreach (var sc in affected)
+        {
+            var criterion = macro.Criteria.Single(c => c.Sc == sc);
+            Assert.Equal(XlsxCriterionStatus.ManualReview, criterion.Status);
+            Assert.Contains("makra, których narzędzie nie uruchamia ani nie ocenia", criterion.Reason);
+            Assert.DoesNotContain("bez makr", criterion.Reason);
+            var check = Assert.Single(macro.ManualChecks, c => c.Id == $"manual-{sc}:macros");
+            Assert.Equal(XlsxWcagCriteria.Find(sc)!.MacroQuestion, check.Question);
+            Assert.Contains("Visual Basic", check.Hint);
+            // Bez makr te same kryteria nie mają pozycji o makrach.
+            Assert.DoesNotContain(clean.ManualChecks, c => c.Id == $"manual-{sc}:macros");
+        }
+
+        // Kryteria, na które makra nie wpływają, zostają bez zmian (np. 2.4.1 – „Nie dotyczy”).
+        Assert.Equal(XlsxCriterionStatus.NotApplicable, macro.Criteria.Single(c => c.Sc == "2.4.1").Status);
+        Assert.Equal(XlsxCriterionStatus.NotApplicable, clean.Criteria.Single(c => c.Sc == "2.1.4").Status);
+        Assert.Contains("bez makr", clean.Criteria.Single(c => c.Sc == "2.1.4").Reason);
+        Assert.Equal(macro.Criteria.Count(c => c.NeedsManualReview), int.Parse(Regex.Match(macro.Summary, @"(\d+) kryteri").Groups[1].Value));
+    }
+
+    [Fact]
+    public void DataConnections_MakePauseStopHide_ManualReview()
+    {
+        var fx = new FixtureXlsx { Title = "Kursy walut", Language = "pl-PL" };
+        fx.AddSheet("Kursy").Row("A1", 0, "Waluta", "Kurs").Row("A2", 0, "EUR", "4,30");
+        var without = new WcagXlsxAuditor().Audit(fx.Build());
+        fx.ExtraParts["xl/connections.xml"] = (
+            System.Text.Encoding.UTF8.GetBytes("<?xml version=\"1.0\" encoding=\"UTF-8\"?><connections xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\">"
+                + "<connection id=\"1\" name=\"Kursy NBP\" type=\"4\" refreshOnLoad=\"1\" interval=\"5\"><webPr url=\"https://example.com/kursy\"/></connection></connections>"),
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.connections+xml");
+        var with = new WcagXlsxAuditor().Audit(fx.Build());
+
+        Assert.False(XlsxTestData.Read(fx.Build()) is { HasDataConnections: false });
+        Assert.Equal(XlsxCriterionStatus.NotApplicable, without.Criteria.Single(c => c.Sc == "2.2.2").Status);
+        Assert.Contains("połączeń danych", without.Criteria.Single(c => c.Sc == "2.2.2").Reason);
+        var criterion = with.Criteria.Single(c => c.Sc == "2.2.2");
+        Assert.Equal(XlsxCriterionStatus.ManualReview, criterion.Status);
+        Assert.Contains(with.ManualChecks, c => c.Id == "manual-2.2.2");
+        // Miganie dotyczy animacji i wideo, nie odświeżania danych.
+        Assert.Equal(XlsxCriterionStatus.NotApplicable, with.Criteria.Single(c => c.Sc == "2.3.1").Status);
+    }
+
+    [Theory]
+    [MemberData(nameof(XlsxSnapshotCases.AllFixtures), MemberType = typeof(XlsxSnapshotCases))]
+    public void Criteria_Reasons_NeverStateThatTheWorkbookMeetsACriterion(string fixture)
+    {
+        foreach (var version in XlsxSnapshotCases.Versions)
+        {
+            var result = new WcagXlsxAuditor().Audit(XlsxSnapshotCases.Load(fixture), new XlsxAuditProfile { WcagVersion = version });
+            Assert.All(result.Criteria, c =>
+            {
+                Assert.DoesNotContain("spełnione automatycznie", c.Reason);
+                Assert.DoesNotMatch(@"(?<!nie)spełnia\b|(?<!nie)spełnione|wg erraty", c.Reason);
+            });
+        }
+    }
+
     // ---------- podsumowanie ----------
 
     private static readonly Regex Compliance = new(
@@ -615,14 +691,14 @@ public class XlsxAuditorTests
 
     [Theory]
     [InlineData(0, 0, 0, 0, "Nie wykryto automatycznie niezgodności.")]
-    [InlineData(0, 0, 0, 1, "Nie wykryto automatycznie niezgodności. 1 kryterium wymaga oceny ręcznej.")]
-    [InlineData(0, 0, 0, 3, "Nie wykryto automatycznie niezgodności. 3 kryteria wymagają oceny ręcznej.")]
-    [InlineData(0, 0, 0, 12, "Nie wykryto automatycznie niezgodności. 12 kryteriów wymaga oceny ręcznej.")]
-    [InlineData(0, 0, 0, 22, "Nie wykryto automatycznie niezgodności. 22 kryteria wymagają oceny ręcznej.")]
-    [InlineData(0, 0, 0, 25, "Nie wykryto automatycznie niezgodności. 25 kryteriów wymaga oceny ręcznej.")]
-    [InlineData(2, 1, 3, 5, "Wykryto automatycznie problemy (błędy: 2, ostrzeżenia: 1, do weryfikacji: 3). 5 kryteriów wymaga oceny ręcznej.")]
+    [InlineData(0, 0, 0, 1, "Nie wykryto automatycznie niezgodności. 1 kryterium wymaga oceny ręcznej (w całości lub w części).")]
+    [InlineData(0, 0, 0, 3, "Nie wykryto automatycznie niezgodności. 3 kryteria wymagają oceny ręcznej (w całości lub w części).")]
+    [InlineData(0, 0, 0, 12, "Nie wykryto automatycznie niezgodności. 12 kryteriów wymaga oceny ręcznej (w całości lub w części).")]
+    [InlineData(0, 0, 0, 22, "Nie wykryto automatycznie niezgodności. 22 kryteria wymagają oceny ręcznej (w całości lub w części).")]
+    [InlineData(0, 0, 0, 25, "Nie wykryto automatycznie niezgodności. 25 kryteriów wymaga oceny ręcznej (w całości lub w części).")]
+    [InlineData(2, 1, 3, 5, "Wykryto automatycznie problemy (błędy: 2, ostrzeżenia: 1, do weryfikacji: 3). 5 kryteriów wymaga oceny ręcznej (w całości lub w części).")]
     [InlineData(1, 0, 0, 0, "Wykryto automatycznie problemy (błędy: 1).")]
-    [InlineData(0, 2, 0, 4, "Nie wykryto automatycznie niezgodności; do potwierdzenia przez człowieka pozostają zgłoszenia (ostrzeżenia: 2). 4 kryteria wymagają oceny ręcznej.")]
+    [InlineData(0, 2, 0, 4, "Nie wykryto automatycznie niezgodności; do potwierdzenia przez człowieka pozostają zgłoszenia (ostrzeżenia: 2). 4 kryteria wymagają oceny ręcznej (w całości lub w części).")]
     public void Summary_Texts(int errors, int warnings, int review, int manualCriteria, string expected)
     {
         Assert.Equal(expected, WcagXlsxAuditor.Summarize(new XlsxCounts(errors, warnings, review, 0, 0), manualCriteria, isEmpty: false));

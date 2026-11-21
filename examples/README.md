@@ -158,7 +158,7 @@ Błędy techniczne to `ProblemDetails` z polskim tytułem; nigdy nie udają wyni
 
 ### Audyt skoroszytów Excel – `api/wcag-workbooks`
 
-Osobny kontroler (`Controllers/WcagWorkbooksController.cs`) i katalog `Workbooks/` (serwis, kontrakty, magazyn raportów, zapis raportu DOCX); ścieżka Word się nie zmienia. Raport nigdy nie stwierdza zgodności: najmocniejsze zdanie to „Nie wykryto automatycznie niezgodności. N kryteriów wymaga oceny ręcznej.”, a `disclaimer` zawsze brzmi „Wynik automatyczny nie potwierdza zgodności z WCAG”.
+Osobny kontroler (`Controllers/WcagWorkbooksController.cs`) i katalog `Workbooks/` (serwis, kontrakty, magazyn raportów, zapis raportu DOCX); ścieżka Word się nie zmienia. Raport nigdy nie stwierdza zgodności: najmocniejsze zdanie to „Nie wykryto automatycznie niezgodności. N kryteriów wymaga oceny ręcznej (w całości lub w części).”, a `disclaimer` zawsze brzmi „Wynik automatyczny nie potwierdza zgodności z WCAG”.
 
 | Endpoint | Opis |
 |---|---|

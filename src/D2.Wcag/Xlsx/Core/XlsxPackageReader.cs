@@ -172,7 +172,13 @@ internal static class XlsxPackageReader
                 || MediaExtensions.Any(extension => file.EndsWith(extension, StringComparison.OrdinalIgnoreCase));
         }
 
-        return new XlsxWorkbook(properties, sheets, definedNames, styles, theme, hasMacros, hasMedia, isStrict);
+        // Połączenia danych: część z relacji skoroszytu (albo pod nazwą domyślną). Samo istnienie części wystarcza – odświeżania nie uruchamiamy.
+        var hasConnections = PartOfType("connections", "xl/connections.xml") is not null;
+
+        return new XlsxWorkbook(properties, sheets, definedNames, styles, theme, hasMacros, hasMedia, isStrict)
+        {
+            HasDataConnections = hasConnections,
+        };
     }
 
     /// <summary>Właściwości dokumentu są dodatkiem: nieczytelna część nie blokuje audytu (DTD nadal jest odmową).</summary>

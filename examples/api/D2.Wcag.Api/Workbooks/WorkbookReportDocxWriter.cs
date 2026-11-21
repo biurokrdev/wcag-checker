@@ -23,7 +23,8 @@ public static class WorkbookReportDocxWriter
     internal const string ChecklistNote =
         "Odhaczenie pozycji oznacza, że osoba sprawdzająca ją przejrzała. Nie zmienia statusów kryteriów ani podsumowania.";
 
-    public static string Title(WorkbookValidationResponse response) => $"Raport audytu dostępności: {response.File.FileName}";
+    // „Raport z automatycznej analizy”, nie „raport audytu”: narzędzie nie przeprowadza audytu dostępności (ScopeNote).
+    public static string Title(WorkbookValidationResponse response) => $"Raport z automatycznej analizy dostępności: {response.File.FileName}";
 
     public static byte[] Write(StoredWorkbookReport report, IReadOnlySet<string> checkedManual)
     {
@@ -37,7 +38,7 @@ public static class WorkbookReportDocxWriter
             main.Document = new Document(body);
             AddStyles(main);
 
-            body.Append(Heading(1, $"Raport audytu dostępności skoroszytu „{r.File.FileName}”"));
+            body.Append(Heading(1, $"Raport z automatycznej analizy dostępności skoroszytu „{r.File.FileName}”"));
             body.Append(Paragraph(r.Summary, bold: true));
             body.Append(Paragraph(disclaimer, bold: true));
             body.Append(Paragraph(
@@ -146,8 +147,10 @@ public static class WorkbookReportDocxWriter
 
         body.Append(Heading(2, $"Macierz kryteriów WCAG {version} (poziomy A i AA)"));
         body.Append(Paragraph(
-            "„Brak wykrytych problemów” oznacza wyłącznie, że kontrole automatyczne nic nie zgłosiły – nie jest potwierdzeniem spełnienia kryterium. "
-            + "„Nie dotyczy” oznacza, że kryterium nie ma zastosowania do zawartości tego pliku (w modelu WCAG: spełnione automatycznie)."));
+            "„Brak wykrytych problemów” oznacza wyłącznie, że kontrole automatyczne nic nie zgłosiły – nie jest potwierdzeniem spełnienia kryterium; "
+            + "pytanie o część, której narzędzie nie sprawdza, jest na checkliście oceny ręcznej. "
+            + "„Nie dotyczy” oznacza, że w pliku nie występuje treść, której dotyczy kryterium – zgodnie z WCAG2ICT (Comments on Conformance) kryterium nie jest wtedy naruszane. "
+            + "„Zależy od programu – nie oceniano” oznacza kryterium realizowane przez program użyty do otwarcia pliku (np. Excel); narzędzie go nie oceniało."));
         body.Append(Paragraph(string.Join("; ", own.GroupBy(c => c.Status).OrderBy(g => g.Key).Select(g => $"{g.First().StatusLabel}: {g.Count()}")) + "."));
         var caption = $"Stan kryteriów WCAG {version} po analizie automatycznej";
         body.Append(Paragraph(caption));
@@ -166,15 +169,16 @@ public static class WorkbookReportDocxWriter
         }
 
         body.Append(Heading(2, "Kryteria zależne od oprogramowania"));
-        body.Append(Paragraph("Te kryteria spełnia (lub nie) program użyty do otwarcia pliku, np. Excel, a nie autor skoroszytu. Nie zostały ocenione."));
+        body.Append(Paragraph("Te kryteria realizuje program użyty do otwarcia pliku, np. Excel, a nie autor skoroszytu – narzędzie ich nie oceniało. "
+            + "Kryterium z częścią zależną od autora (np. 1.4.10) ma status „Do oceny ręcznej” i pozycję na checkliście."));
         const string softwareCaption = "Kryteria zależne od programu użytego do otwarcia pliku";
         body.Append(Paragraph(softwareCaption));
         body.Append(Table(softwareCaption, ["Kryterium", "Poziom", "Adnotacja", "Uzasadnienie"], software.Select(c => new[]
         {
             $"{c.Sc} {c.Name}",
             c.Level,
-            c.Status == XlsxCriterionStatus.NotApplicable ? SoftwareNote : $"{c.StatusLabel}\n{SoftwareNote}",
-            c.Reason,
+            c.Status == XlsxCriterionStatus.SoftwareDependent ? c.StatusLabel : $"{c.StatusLabel}\n{SoftwareNote}",
+            c.Reason + (c.ManualChecks > 0 ? $"\nPozycje checklisty: {c.ManualChecks}." : ""),
         }).ToList(), [2600, 800, 1700, 4260]));
     }
 

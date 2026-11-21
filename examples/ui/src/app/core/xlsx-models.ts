@@ -5,7 +5,8 @@ import { WcagVersion } from './file-types';
 
 export type XlsxSeverity = 'Error' | 'Warning' | 'NeedsReview' | 'Info';
 export type XlsxCheckType = 'Auto' | 'Heuristic' | 'Manual';
-export type XlsxCriterionStatus = 'Failed' | 'NoIssuesDetected' | 'ManualReview' | 'NotApplicable';
+// 'SoftwareDependent' – kryterium realizuje program użyty do otwarcia pliku; narzędzie go nie ocenia (to nie jest „Nie dotyczy”).
+export type XlsxCriterionStatus = 'Failed' | 'NoIssuesDetected' | 'ManualReview' | 'NotApplicable' | 'SoftwareDependent';
 export type XlsxLocationKind = 'Workbook' | 'Sheet' | 'Cell' | 'Range' | 'Table' | 'Drawing' | 'Chart' | 'DefinedName';
 export type XlsxReportFormat = 'docx' | 'pdf';
 
@@ -71,7 +72,8 @@ export interface XlsxCriterion {
   reason: string;
   url: string;
   codes: string[];
-  // Kryterium zależy od programu użytego do otwarcia pliku – nie oceniano.
+  // Znacznik z katalogu: kryterium realizuje program użyty do otwarcia pliku. Gdy nic nie zostało do oceny, status to
+  // 'SoftwareDependent'; znacznik zostaje też przy kryterium z częścią do oceny ręcznej (np. 1.4.10).
   softwareDependent: boolean;
   manualChecks: number;
 }
@@ -177,13 +179,14 @@ export const XLSX_SEVERITY_ICON: Record<XlsxSeverity, string> = {
   Info: 'i',
 };
 
-export const XLSX_CRITERION_STATUSES: readonly XlsxCriterionStatus[] = ['Failed', 'NoIssuesDetected', 'ManualReview', 'NotApplicable'];
+export const XLSX_CRITERION_STATUSES: readonly XlsxCriterionStatus[] = ['Failed', 'NoIssuesDetected', 'ManualReview', 'NotApplicable', 'SoftwareDependent'];
 
 export const XLSX_CRITERION_STATUS_LABEL: Record<XlsxCriterionStatus, string> = {
   Failed: 'Niespełnione',
   NoIssuesDetected: 'Brak wykrytych problemów',
   ManualReview: 'Do oceny ręcznej',
   NotApplicable: 'Nie dotyczy',
+  SoftwareDependent: 'Zależy od programu – nie oceniano',
 };
 
 // „Brak wykrytych problemów” celowo nie ma znaku zatwierdzenia ani zieleni – to nie jest potwierdzenie zgodności.
@@ -192,6 +195,7 @@ export const XLSX_CRITERION_STATUS_ICON: Record<XlsxCriterionStatus, string> = {
   NoIssuesDetected: '○',
   ManualReview: '?',
   NotApplicable: '–',
+  SoftwareDependent: '◇',
 };
 
 export const XLSX_SOFTWARE_DEPENDENT_LABEL = 'zależy od oprogramowania – nie oceniano';
@@ -211,6 +215,7 @@ export const XLSX_CRITERION_STATUS_TONE: Record<XlsxCriterionStatus, string> = {
   NoIssuesDetected: 'tone-neutral',
   ManualReview: 'tone-review',
   NotApplicable: 'tone-neutral',
+  SoftwareDependent: 'tone-neutral',
 };
 
 // Polska liczba mnoga: 1 zgłoszenie, 2–4 zgłoszenia (bez 12–14), pozostałe zgłoszeń.

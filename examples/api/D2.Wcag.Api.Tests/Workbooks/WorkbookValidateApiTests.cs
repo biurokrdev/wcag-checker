@@ -16,7 +16,7 @@ namespace D2.Wcag.Api.Tests.Workbooks;
 // kodów reguł – te należą do testów biblioteki i zmieniają się wraz z dopisywanymi grupami reguł.
 public class WorkbookValidateApiTests : IClassFixture<DefaultApiTestHost>
 {
-    private static readonly string[] StatusLabels = ["Niespełnione", "Brak wykrytych problemów", "Do oceny ręcznej", "Nie dotyczy"];
+    private static readonly string[] StatusLabels = ["Niespełnione", "Brak wykrytych problemów", "Do oceny ręcznej", "Nie dotyczy", "Zależy od programu – nie oceniano"];
 
     private readonly DefaultApiTestHost _host;
     private readonly HttpClient _client;
@@ -102,7 +102,7 @@ public class WorkbookValidateApiTests : IClassFixture<DefaultApiTestHost>
             Assert.All(c.Wcag, AssertReference);
         });
 
-        // Macierz kryteriów: komplet dla wersji, cztery statusy z polskimi etykietami, „Niespełnione” tylko z błędem.
+        // Macierz kryteriów: komplet dla wersji, pięć statusów z polskimi etykietami, „Niespełnione” tylko z błędem.
         Assert.Equal(version == "2.2" ? 55 : 50, result.Criteria.Count);
         Assert.Equal(result.Criteria.Count, result.Criteria.Select(c => c.Sc).Distinct().Count());
         Assert.All(result.Criteria, c =>
@@ -118,12 +118,14 @@ public class WorkbookValidateApiTests : IClassFixture<DefaultApiTestHost>
             Assert.Equal(hasError, c.Status == XlsxCriterionStatus.Failed);
         });
         Assert.Contains(result.Criteria, c => c.SoftwareDependent);
+        // Status „Zależy od programu” mają tylko kryteria ze znacznikiem [UA].
+        Assert.All(result.Criteria.Where(c => c.Status == XlsxCriterionStatus.SoftwareDependent), c => Assert.True(c.SoftwareDependent));
 
         // JSON: camelCase, enumy jako nazwy, pola bez wartości pominięte.
         Assert.DoesNotContain(":null", raw);
         Assert.Contains("\"reportId\":\"", raw);
         Assert.Contains("\"wcagVersion\":\"" + version + "\"", raw);
-        Assert.Matches("\"status\":\"(Failed|NoIssuesDetected|ManualReview|NotApplicable)\"", raw);
+        Assert.Matches("\"status\":\"(Failed|NoIssuesDetected|ManualReview|NotApplicable|SoftwareDependent)\"", raw);
         Assert.DoesNotMatch("\"(status|severity|checkType|kind|format)\":\\d", raw);
     }
 
