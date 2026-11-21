@@ -1,6 +1,6 @@
 {
   "status": "Invalid",
-  "summary": "1 błąd, 2 ostrzeżenia.",
+  "summary": "3 błędy.",
   "standards": [
     {
       "key": "firmowy/2.0",
@@ -22,35 +22,37 @@
     "images": 0
   },
   "counts": {
-    "errors": 1,
-    "warnings": 2,
+    "errors": 3,
+    "warnings": 0,
     "infos": 0
   },
   "issues": [
+    {
+      "code": "HEADING_LEVEL_SKIPPED",
+      "label": "Pominięty poziom nagłówka",
+      "severity": "Error",
+      "category": "Headings",
+      "message": "Pierwszy nagłówek „Zakres dokumentu” ma poziom 2; dokument powinien zaczynać się od nagłówka poziomu 1.",
+      "standard": "firmowy/2.0",
+      "fixable": false,
+      "status": "Required"
+    },
+    {
+      "code": "HEADING_LEVEL_SKIPPED",
+      "label": "Pominięty poziom nagłówka",
+      "severity": "Error",
+      "category": "Headings",
+      "message": "Nagłówek „Szczegóły zakresu” ma poziom 4 zaraz po poziomie 2; pominięto poziom 3.",
+      "standard": "firmowy/2.0",
+      "fixable": false,
+      "status": "Required"
+    },
     {
       "code": "HEADING_STYLE_MISMATCH",
       "label": "Nagłówek niezgodny z typografią standardu",
       "severity": "Error",
       "category": "Headings",
       "message": "Nagłówek H3 „Nagłówek z poziomu konspektu”: rozmiar 10 pt zamiast 14 pt; brak pogrubienia.",
-      "standard": "firmowy/2.0",
-      "fixable": false
-    },
-    {
-      "code": "HEADING_LEVEL_SKIPPED",
-      "label": "Pominięty poziom nagłówka",
-      "severity": "Warning",
-      "category": "Headings",
-      "message": "Pierwszy nagłówek „Zakres dokumentu” ma poziom 2; dokument powinien zaczynać się od nagłówka poziomu 1.",
-      "standard": "firmowy/2.0",
-      "fixable": false
-    },
-    {
-      "code": "HEADING_LEVEL_SKIPPED",
-      "label": "Pominięty poziom nagłówka",
-      "severity": "Warning",
-      "category": "Headings",
-      "message": "Nagłówek „Szczegóły zakresu” ma poziom 4 zaraz po poziomie 2; pominięto poziom 3.",
       "standard": "firmowy/2.0",
       "fixable": false
     }
@@ -185,21 +187,21 @@
         {
           "id": "g07",
           "name": "G-07 Hierarchia nagłówków: start od H1, bez przeskoków",
-          "status": "Warning",
+          "status": "Error",
           "details": [
             {
               "code": "HEADING_LEVEL_SKIPPED",
               "label": "Pominięty poziom nagłówka",
               "message": "Pierwszy nagłówek „Zakres dokumentu” ma poziom 2; dokument powinien zaczynać się od nagłówka poziomu 1.",
               "occurrences": 1,
-              "severity": "Warning"
+              "severity": "Error"
             },
             {
               "code": "HEADING_LEVEL_SKIPPED",
               "label": "Pominięty poziom nagłówka",
               "message": "Nagłówek „Szczegóły zakresu” ma poziom 4 zaraz po poziomie 2; pominięto poziom 3.",
               "occurrences": 1,
-              "severity": "Warning"
+              "severity": "Error"
             }
           ],
           "note": null
@@ -378,31 +380,9 @@
   "findings": [
     {
       "index": 0,
-      "code": "HEADING_STYLE_MISMATCH",
-      "label": "Nagłówek niezgodny z typografią standardu",
-      "severity": "Error",
-      "category": "Headings",
-      "standard": "firmowy/2.0",
-      "standardName": "Standard pism firmowych 2.0",
-      "message": "Nagłówek H3 „Nagłówek z poziomu konspektu”: rozmiar 10 pt zamiast 14 pt; brak pogrubienia.",
-      "fixable": false,
-      "criteria": [],
-      "location": {
-        "key": "body:Paragraph:10",
-        "kind": "Paragraph",
-        "story": "body",
-        "index": 10,
-        "subIndex": null,
-        "snippet": "Nagłówek z poziomu konspektu"
-      },
-      "occurrence": 1,
-      "occurrenceCount": 1
-    },
-    {
-      "index": 1,
       "code": "HEADING_LEVEL_SKIPPED",
       "label": "Pominięty poziom nagłówka",
-      "severity": "Warning",
+      "severity": "Error",
       "category": "Headings",
       "standard": "firmowy/2.0",
       "standardName": "Standard pism firmowych 2.0",
@@ -420,13 +400,15 @@
         "snippet": "Zakres dokumentu"
       },
       "occurrence": 1,
-      "occurrenceCount": 1
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE"
     },
     {
-      "index": 2,
+      "index": 1,
       "code": "HEADING_LEVEL_SKIPPED",
       "label": "Pominięty poziom nagłówka",
-      "severity": "Warning",
+      "severity": "Error",
       "category": "Headings",
       "standard": "firmowy/2.0",
       "standardName": "Standard pism firmowych 2.0",
@@ -442,6 +424,30 @@
         "index": 4,
         "subIndex": null,
         "snippet": "Szczegóły zakresu"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE"
+    },
+    {
+      "index": 2,
+      "code": "HEADING_STYLE_MISMATCH",
+      "label": "Nagłówek niezgodny z typografią standardu",
+      "severity": "Error",
+      "category": "Headings",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Nagłówek H3 „Nagłówek z poziomu konspektu”: rozmiar 10 pt zamiast 14 pt; brak pogrubienia.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:10",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 10,
+        "subIndex": null,
+        "snippet": "Nagłówek z poziomu konspektu"
       },
       "occurrence": 1,
       "occurrenceCount": 1

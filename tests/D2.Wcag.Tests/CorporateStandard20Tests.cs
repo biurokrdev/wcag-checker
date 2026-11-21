@@ -428,7 +428,7 @@ public class CorporateStandard20Tests
     }
 
     [Fact]
-    public void SlashAlternative_InsideVariant_IsAWarning_OutsideIsNot()
+    public void SlashAlternative_InsideVariant_IsAnError_OutsideIsNot()
     {
         Run Fuchsia(string text) => new(new RunProperties(new Color { Val = "AB0066" }), new Text(text));
 
@@ -438,9 +438,10 @@ public class CorporateStandard20Tests
             .Paragraph("Kwota w PLN / EUR / USD.")
             .Runs(Fuchsia("[koniec wariantu 1]"))));
 
-        var issue = Assert.Single(result.Warnings, i => i.Code == IssueCodes.VariantSlashAlternative);
+        var issue = Assert.Single(result.Errors, i => i.Code == IssueCodes.VariantSlashAlternative);
         var location = Assert.Single(issue.Locations);
         Assert.Contains("PLN / EUR", location.Snippet);
+        Assert.Equal(new TextRange("Kwota w ".Length, "PLN / EUR".Length), location.Range);
     }
 
     [Fact]
@@ -497,16 +498,18 @@ public class CorporateStandard20Tests
     }
 
     [Fact]
-    public void HierarchyAndLanguage_AreCheckedByStandard20_AndNotDuplicatedWithWcag()
+    public void HierarchyAndLanguage_AreCheckedByStandard20_WithItsOwnSeverity()
     {
         var document = Build(Compliant().Heading(1, "A").Heading(3, "Przeskok"));
 
         var only20 = Validate(document);
         var both = new WcagDocxValidator().Validate(document, new WcagValidationProfile().WithStandards("wcag/2.1", "firmowy/2.0"));
 
-        Assert.Contains(only20.Warnings, i => i.Code == IssueCodes.HeadingLevelSkipped);
-        var merged = Assert.Single(both.Issues, i => i.Code == IssueCodes.HeadingLevelSkipped);
-        Assert.Equal("wcag/2.1", merged.Standard);
+        // Przeskok poziomu to w 2.0 błąd (WYMAGANE), w WCAG ostrzeżenie: przy obu standardach zostają oba wpisy,
+        // żeby ostrzeżenie WCAG nie połknęło błędu 2.0.
+        Assert.Contains(only20.Errors, i => i.Code == IssueCodes.HeadingLevelSkipped);
+        var skipped = both.Issues.Where(i => i.Code == IssueCodes.HeadingLevelSkipped).ToList();
+        Assert.Equal([("firmowy/2.0", IssueSeverity.Error), ("wcag/2.1", IssueSeverity.Warning)], skipped.Select(i => (i.Standard!, i.Severity)));
 
         var noLanguage = Validate(Build(new DocxBuilder { Title = $"A. {Bank}", Author = Bank, PackageLanguage = null }.Heading(1, "A"), main =>
             main.StyleDefinitionsPart!.Styles!.DocDefaults!.RunPropertiesDefault!.RunPropertiesBaseStyle!.RemoveAllChildren<Languages>()));

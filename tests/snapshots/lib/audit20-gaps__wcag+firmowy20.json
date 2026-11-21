@@ -1,6 +1,6 @@
 {
   "outcome": "Invalid",
-  "summary": "9 błędów, 11 ostrzeżeń, 1 informacja.",
+  "summary": "16 błędów, 5 ostrzeżeń, 1 informacja.",
   "standards": [
     {
       "key": "wcag/2.1",
@@ -56,6 +56,20 @@
     }
   ],
   "issues": [
+    {
+      "code": "HEADING_LEVEL_SKIPPED",
+      "severity": "Error",
+      "category": "Headings",
+      "standard": "firmowy/2.0",
+      "message": "Nagłówek „Listy z nadpisaniami” ma poziom 3 zaraz po poziomie 1; pominięto poziom 2.",
+      "locations": [
+        {
+          "key": "body:Paragraph:7",
+          "snippet": "Listy z nadpisaniami"
+        }
+      ],
+      "status": "Required"
+    },
     {
       "code": "TABLE_ALIGNMENT_MISMATCH",
       "severity": "Error",
@@ -143,6 +157,32 @@
       ]
     },
     {
+      "code": "VARIANT_SLASH_ALTERNATIVE",
+      "severity": "Error",
+      "category": "Text",
+      "standard": "firmowy/2.0",
+      "message": "2 akapity wewnątrz wariantu mają alternatywę z ukośnikiem (np. „PLN / EUR”); w wariantach separator zastępuje się znacznikiem [lub] w kolorze #AB0066.",
+      "locations": [
+        {
+          "key": "body:Paragraph:2",
+          "snippet": "Pani/Pan",
+          "range": {
+            "start": 21,
+            "length": 8
+          }
+        },
+        {
+          "key": "body:Paragraph:3",
+          "snippet": "PLN / EUR",
+          "range": {
+            "start": 44,
+            "length": 9
+          }
+        }
+      ],
+      "status": "Required"
+    },
+    {
       "code": "TITLE_MISSING",
       "severity": "Error",
       "category": "Metadata",
@@ -173,6 +213,62 @@
       ]
     },
     {
+      "code": "INVALID_MARGINS",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "message": "Margines górny ma 70,9 pt, a wymagane jest 36 pt.",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": "(ustawienia strony)"
+        }
+      ],
+      "status": "Required"
+    },
+    {
+      "code": "INVALID_MARGINS",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "message": "Margines dolny ma 70,9 pt, a wymagane jest 36 pt.",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": "(ustawienia strony)"
+        }
+      ],
+      "status": "Required"
+    },
+    {
+      "code": "INVALID_MARGINS",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "message": "Margines lewy ma 70,9 pt, a wymagane jest 36 pt.",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": "(ustawienia strony)"
+        }
+      ],
+      "status": "Required"
+    },
+    {
+      "code": "INVALID_MARGINS",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "message": "Margines prawy ma 70,9 pt, a wymagane jest 36 pt.",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": "(ustawienia strony)"
+        }
+      ],
+      "status": "Required"
+    },
+    {
       "code": "LINE_SPACING_MISMATCH",
       "severity": "Error",
       "category": "Quality",
@@ -192,6 +288,20 @@
           "snippet": "Example Company S. A. z siedzibą w Warsz… (interlinia 1,5)"
         }
       ]
+    },
+    {
+      "code": "PAGE_FORMAT_NOT_A4",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "message": "Strona ma 216 × 279 mm, a wymagany jest format A4 (210 × 297 mm).",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": "(ustawienia strony)"
+        }
+      ],
+      "status": "Required"
     },
     {
       "code": "HEADING_LEVEL_SKIPPED",
@@ -224,31 +334,6 @@
       ]
     },
     {
-      "code": "VARIANT_SLASH_ALTERNATIVE",
-      "severity": "Warning",
-      "category": "Text",
-      "standard": "firmowy/2.0",
-      "message": "2 akapity wewnątrz wariantu mają alternatywę z ukośnikiem (np. „PLN / EUR”); w wariantach separator zastępuje się znacznikiem [lub] w kolorze #AB0066.",
-      "locations": [
-        {
-          "key": "body:Paragraph:2",
-          "snippet": "Pani/Pan",
-          "range": {
-            "start": 21,
-            "length": 8
-          }
-        },
-        {
-          "key": "body:Paragraph:3",
-          "snippet": "PLN / EUR",
-          "range": {
-            "start": 44,
-            "length": 9
-          }
-        }
-      ]
-    },
-    {
       "code": "FOOTER_TITLE_MISSING",
       "severity": "Warning",
       "category": "Structure",
@@ -271,71 +356,6 @@
         {
           "key": "body:Document:0",
           "snippet": "(metadane dokumentu)"
-        }
-      ]
-    },
-    {
-      "code": "INVALID_MARGINS",
-      "severity": "Warning",
-      "category": "Quality",
-      "standard": "firmowy/2.0",
-      "message": "Margines górny ma 70,9 pt, a wymagane jest 36 pt.",
-      "locations": [
-        {
-          "key": "body:Document:0",
-          "snippet": "(ustawienia strony)"
-        }
-      ]
-    },
-    {
-      "code": "INVALID_MARGINS",
-      "severity": "Warning",
-      "category": "Quality",
-      "standard": "firmowy/2.0",
-      "message": "Margines dolny ma 70,9 pt, a wymagane jest 36 pt.",
-      "locations": [
-        {
-          "key": "body:Document:0",
-          "snippet": "(ustawienia strony)"
-        }
-      ]
-    },
-    {
-      "code": "INVALID_MARGINS",
-      "severity": "Warning",
-      "category": "Quality",
-      "standard": "firmowy/2.0",
-      "message": "Margines lewy ma 70,9 pt, a wymagane jest 36 pt.",
-      "locations": [
-        {
-          "key": "body:Document:0",
-          "snippet": "(ustawienia strony)"
-        }
-      ]
-    },
-    {
-      "code": "INVALID_MARGINS",
-      "severity": "Warning",
-      "category": "Quality",
-      "standard": "firmowy/2.0",
-      "message": "Margines prawy ma 70,9 pt, a wymagane jest 36 pt.",
-      "locations": [
-        {
-          "key": "body:Document:0",
-          "snippet": "(ustawienia strony)"
-        }
-      ]
-    },
-    {
-      "code": "PAGE_FORMAT_NOT_A4",
-      "severity": "Warning",
-      "category": "Quality",
-      "standard": "firmowy/2.0",
-      "message": "Strona ma 216 × 279 mm, a wymagany jest format A4 (210 × 297 mm).",
-      "locations": [
-        {
-          "key": "body:Document:0",
-          "snippet": "(ustawienia strony)"
         }
       ]
     },

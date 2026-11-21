@@ -4,7 +4,7 @@ Język: pl-PL
 Obrazy: 0
 
 Raport walidacji dokumentu „audit20-gaps.docx”
-Wynik: niepoprawny. 9 błędów, 11 ostrzeżeń, 1 informacja.
+Wynik: niepoprawny. 16 błędów, 5 ostrzeżeń, 1 informacja.
 Data sprawdzenia: <data>. Standardy: WCAG 2.1 AA (dokument Word); Standard pism firmowych 2.0.
 Dokument: tytuł „brak”, autor „brak”, język pl-PL, 54 akapitów, 7 nagłówków, 3 tabel, 0 obrazów.
 Podsumowanie kontroli
@@ -63,7 +63,7 @@ Sekcja „Inne”
 Standard pism firmowych 2.0
 Sekcja „Format strony i ustawienia bazowe”
 | Status | Kontrola | Szczegóły |
-| Ostrzeżenie | G-01 A4 210 × 297 mm, marginesy 12,7 mm | Marginesy inne niż wymagane: Margines górny ma 70,9 pt, a wymagane jest 36 pt. ⏎ Marginesy inne niż wymagane: Margines dolny ma 70,9 pt, a wymagane jest 36 pt. ⏎ Marginesy inne niż wymagane: Margines lewy ma 70,9 pt, a wymagane jest 36 pt. ⏎ Marginesy inne niż wymagane: Margines prawy ma 70,9 pt, a wymagane jest 36 pt. ⏎ Strona inna niż A4: Strona ma 216 × 279 mm, a wymagany jest format A4 (210 × 297 mm). |
+| Błąd | G-01 A4 210 × 297 mm, marginesy 12,7 mm | Marginesy inne niż wymagane: Margines górny ma 70,9 pt, a wymagane jest 36 pt. ⏎ Marginesy inne niż wymagane: Margines dolny ma 70,9 pt, a wymagane jest 36 pt. ⏎ Marginesy inne niż wymagane: Margines lewy ma 70,9 pt, a wymagane jest 36 pt. ⏎ Marginesy inne niż wymagane: Margines prawy ma 70,9 pt, a wymagane jest 36 pt. ⏎ Strona inna niż A4: Strona ma 216 × 279 mm, a wymagany jest format A4 (210 × 297 mm). |
 | Zatwierdzono | G-04 Wyrównanie do lewej, bez justowania | – |
 | Zatwierdzono | Czcionka SUN Me (H1: SUN Display), grubość osobno | – |
 | Błąd | Interlinia 1,2 | Interlinia inna niż 1,2: 3 akapity mają interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). (3 wystąpień) |
@@ -76,7 +76,7 @@ Sekcja „Typografia”
 | Błąd | Tekst podstawowy 10 pt (12/14 pt warunkowo) | Rozmiar tekstu podstawowego spoza standardu: 2 fragmenty tekstu podstawowego mają rozmiar spoza standardu; wymagane 10 pt (dopuszczalnie 12 albo 14 pt). (2 wystąpień) |
 | Zatwierdzono | Łącza #7724FF z podkreśleniem | – |
 | Zatwierdzono | G-05 Odstępy H1: 42,5 pt nad, 34 pt pod | – |
-| Zatwierdzono | G-07 Hierarchia nagłówków: start od H1, bez przeskoków | – |
+| Błąd | G-07 Hierarchia nagłówków: start od H1, bez przeskoków | Pominięty poziom nagłówka: Nagłówek „Listy z nadpisaniami” ma poziom 3 zaraz po poziomie 1; pominięto poziom 2. |
 Sekcja „Spis treści i listy”
 | Status | Kontrola | Szczegóły |
 | Zatwierdzono | G-06 Automatyczny spis treści powyżej 9 stron | – |
@@ -97,7 +97,7 @@ Sekcja „Stopka i metadane”
 | Zatwierdzono | G-13 Język dokumentu ustawiony | – |
 Sekcja „Warianty i oznaczenia”
 | Status | Kontrola | Szczegóły |
-| Ostrzeżenie | G-14 Warianty zagnieżdżone i domknięte, kolory znaczników, [lub] zamiast ukośnika | Alternatywa z ukośnikiem zamiast [lub]: 2 akapity wewnątrz wariantu mają alternatywę z ukośnikiem (np. „PLN / EUR”); w wariantach separator zastępuje się znacznikiem [lub] w kolorze #AB0066. (2 wystąpień) |
+| Błąd | G-14 Warianty zagnieżdżone i domknięte, kolory znaczników, [lub] zamiast ukośnika | Alternatywa z ukośnikiem zamiast [lub]: 2 akapity wewnątrz wariantu mają alternatywę z ukośnikiem (np. „PLN / EUR”); w wariantach separator zastępuje się znacznikiem [lub] w kolorze #AB0066. (2 wystąpień) |
 | Zatwierdzono | G-16 Napis WZÓR na każdej stronie, SUN Me Bold 28 pt | – |
 Sekcja „Weryfikacja ręczna”
 | Status | Kontrola | Szczegóły |
@@ -130,36 +130,37 @@ Tabela stanu kryteriów WCAG 2.1
 | 4.1.1 Poprawność kodu | A | automatycznie | spełnione | Pakiet DOCX otwiera się i ma część główną. |
 | 4.1.2 Nazwa, rola, wartość | A | częściowo | do przeglądu | Formanty mają nazwę (etykietę albo tytuł); rola i wartość wynikają z typu formantu w Wordzie. |
 Wyniki walidacji
-28 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
+29 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
 Tabela wystąpień
 | Nr | Waga | Zgłoszenie | Standard | Miejsce | Komunikat | Zweryfikowano |
-| 1 | błąd | Wyrównanie w tabeli niezgodne ze standardem | Standard pism firmowych 2.0 | komórka tabeli: „1,5%” (1/2) | Tabela 2: 2 komórki nie są wyrównane do lewej i do środka w pionie. | nie |
-| 2 | błąd | Wyrównanie w tabeli niezgodne ze standardem | Standard pism firmowych 2.0 | komórka tabeli: „0,5%” (2/2) | Tabela 2: 2 komórki nie są wyrównane do lewej i do środka w pionie. | nie |
-| 3 | błąd | Krawędzie tabeli inne niż 1 pt czarne | Standard pism firmowych 2.0 | komórka tabeli: „0 zł (krawędzie: górna 0,5 pt #FF0000, lewa 0,5 pt #FF0000, dolna 0,5 pt #FF0000, prawa 0,5 pt #FF0000)” | Tabela 1: 1 komórka ma krawędzie inne niż 1 pt w kolorze #000000 (nadpisane w komórce albo w stylu tabeli). | nie |
-| 4 | błąd | Pusta komórka tabeli | Standard pism firmowych 2.0 | komórka tabeli: „(pusta komórka)” | Tabela 1: 1 pusta komórka; wpisz „Brak danych”, „0” albo inną wartość słowną. | nie |
-| 5 | błąd | Nagłówek tabeli bez pogrubienia | Standard pism firmowych 2.0 | komórka tabeli: „Stawka” | Tabela 2: 1 komórka nagłówka nie jest pogrubiona. | nie |
-| 6 | błąd | Wiersz tabeli może dzielić się między strony | Standard pism firmowych 2.0 | tabela: „tabela 1” | Tabela 1: 1 wiersz może dzielić się między strony (brak „Nie dziel wiersza między stronami”). | nie |
-| 7 | błąd | Punktor w niedozwolonym kolorze | Standard pism firmowych 2.0 | akapit: „pozycja z zielonym punktorem, (punktor #00AA00)” (1/2) | 2 pozycje listy mają punktor w kolorze spoza #FF6200 i #000000. | nie |
-| 8 | błąd | Punktor w niedozwolonym kolorze | Standard pism firmowych 2.0 | akapit: „druga pozycja z zielonym punktorem. (punktor #00AA00)” (2/2) | 2 pozycje listy mają punktor w kolorze spoza #FF6200 i #000000. | nie |
-| 9 | błąd | Brak tytułu dokumentu | WCAG 2.1 AA (dokument Word) | dokument: „(metadane dokumentu)” | Dokument nie ma tytułu w metadanych (Plik → Informacje → Tytuł). | nie |
-| 10 | błąd | Rozmiar tekstu podstawowego spoza standardu | Standard pism firmowych 2.0 | fragment tekstu: „Example Company S. A. z siedzibą w Warsz… (8 pt)” (1/2) | 2 fragmenty tekstu podstawowego mają rozmiar spoza standardu; wymagane 10 pt (dopuszczalnie 12 albo 14 pt). | nie |
-| 11 | błąd | Rozmiar tekstu podstawowego spoza standardu | Standard pism firmowych 2.0 | fragment tekstu: „Example Company S. A., oddział w Krakowi… (9 pt)” (2/2) | 2 fragmenty tekstu podstawowego mają rozmiar spoza standardu; wymagane 10 pt (dopuszczalnie 12 albo 14 pt). | nie |
-| 12 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „Example Company S. A. z siedzibą w Warsz… (interlinia 1,5)” (1/3) | 3 akapity mają interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
-| 13 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „Example Company S. A., oddział w Krakowi… (interlinia 1,5)” (2/3) | 3 akapity mają interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
-| 14 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „Example Company S. A. z siedzibą w Warsz… (interlinia 1,5)” (3/3) | 3 akapity mają interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
-| 15 | ostrzeżenie | Pominięty poziom nagłówka | WCAG 2.1 AA (dokument Word) | akapit: „Listy z nadpisaniami” | Nagłówek „Listy z nadpisaniami” ma poziom 3 zaraz po poziomie 1; pominięto poziom 2. | nie |
-| 16 | ostrzeżenie | Numer listy bez pogrubienia | Standard pism firmowych 2.0 | akapit: „Pierwszy krok z numerem bez pogrubienia.” (1/2) | 2 pozycje listy numerowanej mają niepogrubiony numer; guidebook: „Lista numerowana: bold”. | nie |
-| 17 | ostrzeżenie | Numer listy bez pogrubienia | Standard pism firmowych 2.0 | akapit: „Drugi krok z numerem bez pogrubienia.” (2/2) | 2 pozycje listy numerowanej mają niepogrubiony numer; guidebook: „Lista numerowana: bold”. | nie |
-| 18 | ostrzeżenie | Alternatywa z ukośnikiem zamiast [lub] | Standard pism firmowych 2.0 | akapit: „Pani/Pan” (1/2) | 2 akapity wewnątrz wariantu mają alternatywę z ukośnikiem (np. „PLN / EUR”); w wariantach separator zastępuje się znacznikiem [lub] w kolorze #AB0066. | nie |
-| 19 | ostrzeżenie | Alternatywa z ukośnikiem zamiast [lub] | Standard pism firmowych 2.0 | akapit: „PLN / EUR” (2/2) | 2 akapity wewnątrz wariantu mają alternatywę z ukośnikiem (np. „PLN / EUR”); w wariantach separator zastępuje się znacznikiem [lub] w kolorze #AB0066. | nie |
-| 20 | ostrzeżenie | Stopka bez tytułu dokumentu | Standard pism firmowych 2.0 | akapit: „(stopka)” | Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”. | nie |
-| 21 | ostrzeżenie | Brak autora dokumentu | WCAG 2.1 AA (dokument Word) | dokument: „(metadane dokumentu)” | Dokument nie ma autora w metadanych. | nie |
-| 22 | ostrzeżenie | Marginesy inne niż wymagane | Standard pism firmowych 2.0 | dokument: „(ustawienia strony)” | Margines górny ma 70,9 pt, a wymagane jest 36 pt. | nie |
-| 23 | ostrzeżenie | Marginesy inne niż wymagane | Standard pism firmowych 2.0 | dokument: „(ustawienia strony)” | Margines dolny ma 70,9 pt, a wymagane jest 36 pt. | nie |
-| 24 | ostrzeżenie | Marginesy inne niż wymagane | Standard pism firmowych 2.0 | dokument: „(ustawienia strony)” | Margines lewy ma 70,9 pt, a wymagane jest 36 pt. | nie |
-| 25 | ostrzeżenie | Marginesy inne niż wymagane | Standard pism firmowych 2.0 | dokument: „(ustawienia strony)” | Margines prawy ma 70,9 pt, a wymagane jest 36 pt. | nie |
-| 26 | ostrzeżenie | Strona inna niż A4 | Standard pism firmowych 2.0 | dokument: „(ustawienia strony)” | Strona ma 216 × 279 mm, a wymagany jest format A4 (210 × 297 mm). | nie |
-| 27 | ostrzeżenie | Kolor z palety użyty niezgodnie z przeznaczeniem | Standard pism firmowych 2.0 | fragment tekstu: „Example Company S. A., oddział w Krakowi… (szary #696969 jest zarezerwowany dla stopki i danych rejestrowych (8 pt))” | 1 fragment tekstu ma kolor z palety użyty niezgodnie z przeznaczeniem (rozdz. 2 guidebooka). | nie |
-| 28 | informacja | Zalecane sprawdzenie ręczne | WCAG 2.1 AA (dokument Word) | dokument: „” | Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie. | nie |
+| 1 | błąd | Pominięty poziom nagłówka | Standard pism firmowych 2.0 | akapit: „Listy z nadpisaniami” | Nagłówek „Listy z nadpisaniami” ma poziom 3 zaraz po poziomie 1; pominięto poziom 2. | nie |
+| 2 | błąd | Wyrównanie w tabeli niezgodne ze standardem | Standard pism firmowych 2.0 | komórka tabeli: „1,5%” (1/2) | Tabela 2: 2 komórki nie są wyrównane do lewej i do środka w pionie. | nie |
+| 3 | błąd | Wyrównanie w tabeli niezgodne ze standardem | Standard pism firmowych 2.0 | komórka tabeli: „0,5%” (2/2) | Tabela 2: 2 komórki nie są wyrównane do lewej i do środka w pionie. | nie |
+| 4 | błąd | Krawędzie tabeli inne niż 1 pt czarne | Standard pism firmowych 2.0 | komórka tabeli: „0 zł (krawędzie: górna 0,5 pt #FF0000, lewa 0,5 pt #FF0000, dolna 0,5 pt #FF0000, prawa 0,5 pt #FF0000)” | Tabela 1: 1 komórka ma krawędzie inne niż 1 pt w kolorze #000000 (nadpisane w komórce albo w stylu tabeli). | nie |
+| 5 | błąd | Pusta komórka tabeli | Standard pism firmowych 2.0 | komórka tabeli: „(pusta komórka)” | Tabela 1: 1 pusta komórka; wpisz „Brak danych”, „0” albo inną wartość słowną. | nie |
+| 6 | błąd | Nagłówek tabeli bez pogrubienia | Standard pism firmowych 2.0 | komórka tabeli: „Stawka” | Tabela 2: 1 komórka nagłówka nie jest pogrubiona. | nie |
+| 7 | błąd | Wiersz tabeli może dzielić się między strony | Standard pism firmowych 2.0 | tabela: „tabela 1” | Tabela 1: 1 wiersz może dzielić się między strony (brak „Nie dziel wiersza między stronami”). | nie |
+| 8 | błąd | Punktor w niedozwolonym kolorze | Standard pism firmowych 2.0 | akapit: „pozycja z zielonym punktorem, (punktor #00AA00)” (1/2) | 2 pozycje listy mają punktor w kolorze spoza #FF6200 i #000000. | nie |
+| 9 | błąd | Punktor w niedozwolonym kolorze | Standard pism firmowych 2.0 | akapit: „druga pozycja z zielonym punktorem. (punktor #00AA00)” (2/2) | 2 pozycje listy mają punktor w kolorze spoza #FF6200 i #000000. | nie |
+| 10 | błąd | Alternatywa z ukośnikiem zamiast [lub] | Standard pism firmowych 2.0 | akapit: „Pani/Pan” (1/2) | 2 akapity wewnątrz wariantu mają alternatywę z ukośnikiem (np. „PLN / EUR”); w wariantach separator zastępuje się znacznikiem [lub] w kolorze #AB0066. | nie |
+| 11 | błąd | Alternatywa z ukośnikiem zamiast [lub] | Standard pism firmowych 2.0 | akapit: „PLN / EUR” (2/2) | 2 akapity wewnątrz wariantu mają alternatywę z ukośnikiem (np. „PLN / EUR”); w wariantach separator zastępuje się znacznikiem [lub] w kolorze #AB0066. | nie |
+| 12 | błąd | Brak tytułu dokumentu | WCAG 2.1 AA (dokument Word) | dokument: „(metadane dokumentu)” | Dokument nie ma tytułu w metadanych (Plik → Informacje → Tytuł). | nie |
+| 13 | błąd | Rozmiar tekstu podstawowego spoza standardu | Standard pism firmowych 2.0 | fragment tekstu: „Example Company S. A. z siedzibą w Warsz… (8 pt)” (1/2) | 2 fragmenty tekstu podstawowego mają rozmiar spoza standardu; wymagane 10 pt (dopuszczalnie 12 albo 14 pt). | nie |
+| 14 | błąd | Rozmiar tekstu podstawowego spoza standardu | Standard pism firmowych 2.0 | fragment tekstu: „Example Company S. A., oddział w Krakowi… (9 pt)” (2/2) | 2 fragmenty tekstu podstawowego mają rozmiar spoza standardu; wymagane 10 pt (dopuszczalnie 12 albo 14 pt). | nie |
+| 15 | błąd | Marginesy inne niż wymagane | Standard pism firmowych 2.0 | dokument: „(ustawienia strony)” | Margines górny ma 70,9 pt, a wymagane jest 36 pt. | nie |
+| 16 | błąd | Marginesy inne niż wymagane | Standard pism firmowych 2.0 | dokument: „(ustawienia strony)” | Margines dolny ma 70,9 pt, a wymagane jest 36 pt. | nie |
+| 17 | błąd | Marginesy inne niż wymagane | Standard pism firmowych 2.0 | dokument: „(ustawienia strony)” | Margines lewy ma 70,9 pt, a wymagane jest 36 pt. | nie |
+| 18 | błąd | Marginesy inne niż wymagane | Standard pism firmowych 2.0 | dokument: „(ustawienia strony)” | Margines prawy ma 70,9 pt, a wymagane jest 36 pt. | nie |
+| 19 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „Example Company S. A. z siedzibą w Warsz… (interlinia 1,5)” (1/3) | 3 akapity mają interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
+| 20 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „Example Company S. A., oddział w Krakowi… (interlinia 1,5)” (2/3) | 3 akapity mają interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
+| 21 | błąd | Interlinia inna niż 1,2 | Standard pism firmowych 2.0 | akapit: „Example Company S. A. z siedzibą w Warsz… (interlinia 1,5)” (3/3) | 3 akapity mają interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288). | nie |
+| 22 | błąd | Strona inna niż A4 | Standard pism firmowych 2.0 | dokument: „(ustawienia strony)” | Strona ma 216 × 279 mm, a wymagany jest format A4 (210 × 297 mm). | nie |
+| 23 | ostrzeżenie | Pominięty poziom nagłówka | WCAG 2.1 AA (dokument Word) | akapit: „Listy z nadpisaniami” | Nagłówek „Listy z nadpisaniami” ma poziom 3 zaraz po poziomie 1; pominięto poziom 2. | nie |
+| 24 | ostrzeżenie | Numer listy bez pogrubienia | Standard pism firmowych 2.0 | akapit: „Pierwszy krok z numerem bez pogrubienia.” (1/2) | 2 pozycje listy numerowanej mają niepogrubiony numer; guidebook: „Lista numerowana: bold”. | nie |
+| 25 | ostrzeżenie | Numer listy bez pogrubienia | Standard pism firmowych 2.0 | akapit: „Drugi krok z numerem bez pogrubienia.” (2/2) | 2 pozycje listy numerowanej mają niepogrubiony numer; guidebook: „Lista numerowana: bold”. | nie |
+| 26 | ostrzeżenie | Stopka bez tytułu dokumentu | Standard pism firmowych 2.0 | akapit: „(stopka)” | Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”. | nie |
+| 27 | ostrzeżenie | Brak autora dokumentu | WCAG 2.1 AA (dokument Word) | dokument: „(metadane dokumentu)” | Dokument nie ma autora w metadanych. | nie |
+| 28 | ostrzeżenie | Kolor z palety użyty niezgodnie z przeznaczeniem | Standard pism firmowych 2.0 | fragment tekstu: „Example Company S. A., oddział w Krakowi… (szary #696969 jest zarezerwowany dla stopki i danych rejestrowych (8 pt))” | 1 fragment tekstu ma kolor z palety użyty niezgodnie z przeznaczeniem (rozdz. 2 guidebooka). | nie |
+| 29 | informacja | Zalecane sprawdzenie ręczne | WCAG 2.1 AA (dokument Word) | dokument: „” | Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie. | nie |
 
 PDF: %PDF-, strony: 12

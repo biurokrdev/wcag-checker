@@ -1,6 +1,6 @@
 {
   "status": "Invalid",
-  "summary": "8 błędów, 10 ostrzeżeń.",
+  "summary": "15 błędów, 3 ostrzeżenia.",
   "standards": [
     {
       "key": "firmowy/2.0",
@@ -22,11 +22,21 @@
     "images": 0
   },
   "counts": {
-    "errors": 8,
-    "warnings": 10,
+    "errors": 15,
+    "warnings": 3,
     "infos": 0
   },
   "issues": [
+    {
+      "code": "HEADING_LEVEL_SKIPPED",
+      "label": "Pominięty poziom nagłówka",
+      "severity": "Error",
+      "category": "Headings",
+      "message": "Nagłówek „Listy z nadpisaniami” ma poziom 3 zaraz po poziomie 1; pominięto poziom 2.",
+      "standard": "firmowy/2.0",
+      "fixable": false,
+      "status": "Required"
+    },
     {
       "code": "TABLE_ALIGNMENT_MISMATCH",
       "label": "Wyrównanie w tabeli niezgodne ze standardem",
@@ -82,6 +92,16 @@
       "fixable": false
     },
     {
+      "code": "VARIANT_SLASH_ALTERNATIVE",
+      "label": "Alternatywa z ukośnikiem zamiast [lub]",
+      "severity": "Error",
+      "category": "Text",
+      "message": "2 akapity wewnątrz wariantu mają alternatywę z ukośnikiem (np. „PLN / EUR”); w wariantach separator zastępuje się znacznikiem [lub] w kolorze #AB0066.",
+      "standard": "firmowy/2.0",
+      "fixable": false,
+      "status": "Required"
+    },
+    {
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Error",
@@ -89,6 +109,46 @@
       "message": "2 fragmenty tekstu podstawowego mają rozmiar spoza standardu; wymagane 10 pt (dopuszczalnie 12 albo 14 pt).",
       "standard": "firmowy/2.0",
       "fixable": false
+    },
+    {
+      "code": "INVALID_MARGINS",
+      "label": "Marginesy inne niż wymagane",
+      "severity": "Error",
+      "category": "Quality",
+      "message": "Margines górny ma 70,9 pt, a wymagane jest 36 pt.",
+      "standard": "firmowy/2.0",
+      "fixable": true,
+      "status": "Required"
+    },
+    {
+      "code": "INVALID_MARGINS",
+      "label": "Marginesy inne niż wymagane",
+      "severity": "Error",
+      "category": "Quality",
+      "message": "Margines dolny ma 70,9 pt, a wymagane jest 36 pt.",
+      "standard": "firmowy/2.0",
+      "fixable": true,
+      "status": "Required"
+    },
+    {
+      "code": "INVALID_MARGINS",
+      "label": "Marginesy inne niż wymagane",
+      "severity": "Error",
+      "category": "Quality",
+      "message": "Margines lewy ma 70,9 pt, a wymagane jest 36 pt.",
+      "standard": "firmowy/2.0",
+      "fixable": true,
+      "status": "Required"
+    },
+    {
+      "code": "INVALID_MARGINS",
+      "label": "Marginesy inne niż wymagane",
+      "severity": "Error",
+      "category": "Quality",
+      "message": "Margines prawy ma 70,9 pt, a wymagane jest 36 pt.",
+      "standard": "firmowy/2.0",
+      "fixable": true,
+      "status": "Required"
     },
     {
       "code": "LINE_SPACING_MISMATCH",
@@ -100,13 +160,14 @@
       "fixable": false
     },
     {
-      "code": "HEADING_LEVEL_SKIPPED",
-      "label": "Pominięty poziom nagłówka",
-      "severity": "Warning",
-      "category": "Headings",
-      "message": "Nagłówek „Listy z nadpisaniami” ma poziom 3 zaraz po poziomie 1; pominięto poziom 2.",
+      "code": "PAGE_FORMAT_NOT_A4",
+      "label": "Strona inna niż A4",
+      "severity": "Error",
+      "category": "Quality",
+      "message": "Strona ma 216 × 279 mm, a wymagany jest format A4 (210 × 297 mm).",
       "standard": "firmowy/2.0",
-      "fixable": false
+      "fixable": false,
+      "status": "Required"
     },
     {
       "code": "LIST_NUMBER_NOT_BOLD",
@@ -118,65 +179,11 @@
       "fixable": false
     },
     {
-      "code": "VARIANT_SLASH_ALTERNATIVE",
-      "label": "Alternatywa z ukośnikiem zamiast [lub]",
-      "severity": "Warning",
-      "category": "Text",
-      "message": "2 akapity wewnątrz wariantu mają alternatywę z ukośnikiem (np. „PLN / EUR”); w wariantach separator zastępuje się znacznikiem [lub] w kolorze #AB0066.",
-      "standard": "firmowy/2.0",
-      "fixable": false
-    },
-    {
       "code": "FOOTER_TITLE_MISSING",
       "label": "Stopka bez tytułu dokumentu",
       "severity": "Warning",
       "category": "Structure",
       "message": "Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”.",
-      "standard": "firmowy/2.0",
-      "fixable": false
-    },
-    {
-      "code": "INVALID_MARGINS",
-      "label": "Marginesy inne niż wymagane",
-      "severity": "Warning",
-      "category": "Quality",
-      "message": "Margines górny ma 70,9 pt, a wymagane jest 36 pt.",
-      "standard": "firmowy/2.0",
-      "fixable": true
-    },
-    {
-      "code": "INVALID_MARGINS",
-      "label": "Marginesy inne niż wymagane",
-      "severity": "Warning",
-      "category": "Quality",
-      "message": "Margines dolny ma 70,9 pt, a wymagane jest 36 pt.",
-      "standard": "firmowy/2.0",
-      "fixable": true
-    },
-    {
-      "code": "INVALID_MARGINS",
-      "label": "Marginesy inne niż wymagane",
-      "severity": "Warning",
-      "category": "Quality",
-      "message": "Margines lewy ma 70,9 pt, a wymagane jest 36 pt.",
-      "standard": "firmowy/2.0",
-      "fixable": true
-    },
-    {
-      "code": "INVALID_MARGINS",
-      "label": "Marginesy inne niż wymagane",
-      "severity": "Warning",
-      "category": "Quality",
-      "message": "Margines prawy ma 70,9 pt, a wymagane jest 36 pt.",
-      "standard": "firmowy/2.0",
-      "fixable": true
-    },
-    {
-      "code": "PAGE_FORMAT_NOT_A4",
-      "label": "Strona inna niż A4",
-      "severity": "Warning",
-      "category": "Quality",
-      "message": "Strona ma 216 × 279 mm, a wymagany jest format A4 (210 × 297 mm).",
       "standard": "firmowy/2.0",
       "fixable": false
     },
@@ -231,42 +238,42 @@
         {
           "id": "g01",
           "name": "G-01 A4 210 × 297 mm, marginesy 12,7 mm",
-          "status": "Warning",
+          "status": "Error",
           "details": [
             {
               "code": "INVALID_MARGINS",
               "label": "Marginesy inne niż wymagane",
               "message": "Margines górny ma 70,9 pt, a wymagane jest 36 pt.",
               "occurrences": 1,
-              "severity": "Warning"
+              "severity": "Error"
             },
             {
               "code": "INVALID_MARGINS",
               "label": "Marginesy inne niż wymagane",
               "message": "Margines dolny ma 70,9 pt, a wymagane jest 36 pt.",
               "occurrences": 1,
-              "severity": "Warning"
+              "severity": "Error"
             },
             {
               "code": "INVALID_MARGINS",
               "label": "Marginesy inne niż wymagane",
               "message": "Margines lewy ma 70,9 pt, a wymagane jest 36 pt.",
               "occurrences": 1,
-              "severity": "Warning"
+              "severity": "Error"
             },
             {
               "code": "INVALID_MARGINS",
               "label": "Marginesy inne niż wymagane",
               "message": "Margines prawy ma 70,9 pt, a wymagane jest 36 pt.",
               "occurrences": 1,
-              "severity": "Warning"
+              "severity": "Error"
             },
             {
               "code": "PAGE_FORMAT_NOT_A4",
               "label": "Strona inna niż A4",
               "message": "Strona ma 216 × 279 mm, a wymagany jest format A4 (210 × 297 mm).",
               "occurrences": 1,
-              "severity": "Warning"
+              "severity": "Error"
             }
           ],
           "note": null
@@ -368,14 +375,14 @@
         {
           "id": "g07",
           "name": "G-07 Hierarchia nagłówków: start od H1, bez przeskoków",
-          "status": "Warning",
+          "status": "Error",
           "details": [
             {
               "code": "HEADING_LEVEL_SKIPPED",
               "label": "Pominięty poziom nagłówka",
               "message": "Nagłówek „Listy z nadpisaniami” ma poziom 3 zaraz po poziomie 1; pominięto poziom 2.",
               "occurrences": 1,
-              "severity": "Warning"
+              "severity": "Error"
             }
           ],
           "note": null
@@ -548,14 +555,14 @@
         {
           "id": "g14",
           "name": "G-14 Warianty zagnieżdżone i domknięte, kolory znaczników, [lub] zamiast ukośnika",
-          "status": "Warning",
+          "status": "Error",
           "details": [
             {
               "code": "VARIANT_SLASH_ALTERNATIVE",
               "label": "Alternatywa z ukośnikiem zamiast [lub]",
               "message": "2 akapity wewnątrz wariantu mają alternatywę z ukośnikiem (np. „PLN / EUR”); w wariantach separator zastępuje się znacznikiem [lub] w kolorze #AB0066.",
               "occurrences": 2,
-              "severity": "Warning"
+              "severity": "Error"
             }
           ],
           "note": null
@@ -622,6 +629,32 @@
   "findings": [
     {
       "index": 0,
+      "code": "HEADING_LEVEL_SKIPPED",
+      "label": "Pominięty poziom nagłówka",
+      "severity": "Error",
+      "category": "Headings",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Nagłówek „Listy z nadpisaniami” ma poziom 3 zaraz po poziomie 1; pominięto poziom 2.",
+      "fixable": false,
+      "criteria": [
+        "1.3.1"
+      ],
+      "location": {
+        "key": "body:Paragraph:7",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 7,
+        "subIndex": null,
+        "snippet": "Listy z nadpisaniami"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE"
+    },
+    {
+      "index": 1,
       "code": "TABLE_ALIGNMENT_MISMATCH",
       "label": "Wyrównanie w tabeli niezgodne ze standardem",
       "severity": "Error",
@@ -643,7 +676,7 @@
       "occurrenceCount": 2
     },
     {
-      "index": 1,
+      "index": 2,
       "code": "TABLE_ALIGNMENT_MISMATCH",
       "label": "Wyrównanie w tabeli niezgodne ze standardem",
       "severity": "Error",
@@ -665,7 +698,7 @@
       "occurrenceCount": 2
     },
     {
-      "index": 2,
+      "index": 3,
       "code": "TABLE_BORDER_MISMATCH",
       "label": "Krawędzie tabeli inne niż 1 pt czarne",
       "severity": "Error",
@@ -687,7 +720,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 3,
+      "index": 4,
       "code": "TABLE_EMPTY_CELL",
       "label": "Pusta komórka tabeli",
       "severity": "Error",
@@ -709,7 +742,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 4,
+      "index": 5,
       "code": "TABLE_HEADER_NOT_BOLD",
       "label": "Nagłówek tabeli bez pogrubienia",
       "severity": "Error",
@@ -731,7 +764,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 5,
+      "index": 6,
       "code": "TABLE_ROW_CAN_SPLIT",
       "label": "Wiersz tabeli może dzielić się między strony",
       "severity": "Error",
@@ -753,7 +786,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 6,
+      "index": 7,
       "code": "LIST_BULLET_COLOR_MISMATCH",
       "label": "Punktor w niedozwolonym kolorze",
       "severity": "Error",
@@ -775,7 +808,7 @@
       "occurrenceCount": 2
     },
     {
-      "index": 7,
+      "index": 8,
       "code": "LIST_BULLET_COLOR_MISMATCH",
       "label": "Punktor w niedozwolonym kolorze",
       "severity": "Error",
@@ -797,7 +830,63 @@
       "occurrenceCount": 2
     },
     {
-      "index": 8,
+      "index": 9,
+      "code": "VARIANT_SLASH_ALTERNATIVE",
+      "label": "Alternatywa z ukośnikiem zamiast [lub]",
+      "severity": "Error",
+      "category": "Text",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "2 akapity wewnątrz wariantu mają alternatywę z ukośnikiem (np. „PLN / EUR”); w wariantach separator zastępuje się znacznikiem [lub] w kolorze #AB0066.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:2",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 2,
+        "subIndex": null,
+        "snippet": "Pani/Pan",
+        "range": {
+          "start": 21,
+          "length": 8
+        }
+      },
+      "occurrence": 1,
+      "occurrenceCount": 2,
+      "status": "Required",
+      "statusLabel": "WYMAGANE"
+    },
+    {
+      "index": 10,
+      "code": "VARIANT_SLASH_ALTERNATIVE",
+      "label": "Alternatywa z ukośnikiem zamiast [lub]",
+      "severity": "Error",
+      "category": "Text",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "2 akapity wewnątrz wariantu mają alternatywę z ukośnikiem (np. „PLN / EUR”); w wariantach separator zastępuje się znacznikiem [lub] w kolorze #AB0066.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "body:Paragraph:3",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 3,
+        "subIndex": null,
+        "snippet": "PLN / EUR",
+        "range": {
+          "start": 44,
+          "length": 9
+        }
+      },
+      "occurrence": 2,
+      "occurrenceCount": 2,
+      "status": "Required",
+      "statusLabel": "WYMAGANE"
+    },
+    {
+      "index": 11,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Error",
@@ -819,7 +908,7 @@
       "occurrenceCount": 2
     },
     {
-      "index": 9,
+      "index": 12,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Error",
@@ -841,7 +930,103 @@
       "occurrenceCount": 2
     },
     {
-      "index": 10,
+      "index": 13,
+      "code": "INVALID_MARGINS",
+      "label": "Marginesy inne niż wymagane",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Margines górny ma 70,9 pt, a wymagane jest 36 pt.",
+      "fixable": true,
+      "criteria": [],
+      "location": {
+        "key": "body:Document:0",
+        "kind": "Document",
+        "story": "body",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "(ustawienia strony)"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE"
+    },
+    {
+      "index": 14,
+      "code": "INVALID_MARGINS",
+      "label": "Marginesy inne niż wymagane",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Margines dolny ma 70,9 pt, a wymagane jest 36 pt.",
+      "fixable": true,
+      "criteria": [],
+      "location": {
+        "key": "body:Document:0",
+        "kind": "Document",
+        "story": "body",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "(ustawienia strony)"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE"
+    },
+    {
+      "index": 15,
+      "code": "INVALID_MARGINS",
+      "label": "Marginesy inne niż wymagane",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Margines lewy ma 70,9 pt, a wymagane jest 36 pt.",
+      "fixable": true,
+      "criteria": [],
+      "location": {
+        "key": "body:Document:0",
+        "kind": "Document",
+        "story": "body",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "(ustawienia strony)"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE"
+    },
+    {
+      "index": 16,
+      "code": "INVALID_MARGINS",
+      "label": "Marginesy inne niż wymagane",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Margines prawy ma 70,9 pt, a wymagane jest 36 pt.",
+      "fixable": true,
+      "criteria": [],
+      "location": {
+        "key": "body:Document:0",
+        "kind": "Document",
+        "story": "body",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "(ustawienia strony)"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE"
+    },
+    {
+      "index": 17,
       "code": "LINE_SPACING_MISMATCH",
       "label": "Interlinia inna niż 1,2",
       "severity": "Error",
@@ -863,7 +1048,7 @@
       "occurrenceCount": 3
     },
     {
-      "index": 11,
+      "index": 18,
       "code": "LINE_SPACING_MISMATCH",
       "label": "Interlinia inna niż 1,2",
       "severity": "Error",
@@ -885,7 +1070,7 @@
       "occurrenceCount": 3
     },
     {
-      "index": 12,
+      "index": 19,
       "code": "LINE_SPACING_MISMATCH",
       "label": "Interlinia inna niż 1,2",
       "severity": "Error",
@@ -907,31 +1092,31 @@
       "occurrenceCount": 3
     },
     {
-      "index": 13,
-      "code": "HEADING_LEVEL_SKIPPED",
-      "label": "Pominięty poziom nagłówka",
-      "severity": "Warning",
-      "category": "Headings",
+      "index": 20,
+      "code": "PAGE_FORMAT_NOT_A4",
+      "label": "Strona inna niż A4",
+      "severity": "Error",
+      "category": "Quality",
       "standard": "firmowy/2.0",
       "standardName": "Standard pism firmowych 2.0",
-      "message": "Nagłówek „Listy z nadpisaniami” ma poziom 3 zaraz po poziomie 1; pominięto poziom 2.",
+      "message": "Strona ma 216 × 279 mm, a wymagany jest format A4 (210 × 297 mm).",
       "fixable": false,
-      "criteria": [
-        "1.3.1"
-      ],
+      "criteria": [],
       "location": {
-        "key": "body:Paragraph:7",
-        "kind": "Paragraph",
+        "key": "body:Document:0",
+        "kind": "Document",
         "story": "body",
-        "index": 7,
+        "index": 0,
         "subIndex": null,
-        "snippet": "Listy z nadpisaniami"
+        "snippet": "(ustawienia strony)"
       },
       "occurrence": 1,
-      "occurrenceCount": 1
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE"
     },
     {
-      "index": 14,
+      "index": 21,
       "code": "LIST_NUMBER_NOT_BOLD",
       "label": "Numer listy bez pogrubienia",
       "severity": "Warning",
@@ -953,7 +1138,7 @@
       "occurrenceCount": 2
     },
     {
-      "index": 15,
+      "index": 22,
       "code": "LIST_NUMBER_NOT_BOLD",
       "label": "Numer listy bez pogrubienia",
       "severity": "Warning",
@@ -975,59 +1160,7 @@
       "occurrenceCount": 2
     },
     {
-      "index": 16,
-      "code": "VARIANT_SLASH_ALTERNATIVE",
-      "label": "Alternatywa z ukośnikiem zamiast [lub]",
-      "severity": "Warning",
-      "category": "Text",
-      "standard": "firmowy/2.0",
-      "standardName": "Standard pism firmowych 2.0",
-      "message": "2 akapity wewnątrz wariantu mają alternatywę z ukośnikiem (np. „PLN / EUR”); w wariantach separator zastępuje się znacznikiem [lub] w kolorze #AB0066.",
-      "fixable": false,
-      "criteria": [],
-      "location": {
-        "key": "body:Paragraph:2",
-        "kind": "Paragraph",
-        "story": "body",
-        "index": 2,
-        "subIndex": null,
-        "snippet": "Pani/Pan",
-        "range": {
-          "start": 21,
-          "length": 8
-        }
-      },
-      "occurrence": 1,
-      "occurrenceCount": 2
-    },
-    {
-      "index": 17,
-      "code": "VARIANT_SLASH_ALTERNATIVE",
-      "label": "Alternatywa z ukośnikiem zamiast [lub]",
-      "severity": "Warning",
-      "category": "Text",
-      "standard": "firmowy/2.0",
-      "standardName": "Standard pism firmowych 2.0",
-      "message": "2 akapity wewnątrz wariantu mają alternatywę z ukośnikiem (np. „PLN / EUR”); w wariantach separator zastępuje się znacznikiem [lub] w kolorze #AB0066.",
-      "fixable": false,
-      "criteria": [],
-      "location": {
-        "key": "body:Paragraph:3",
-        "kind": "Paragraph",
-        "story": "body",
-        "index": 3,
-        "subIndex": null,
-        "snippet": "PLN / EUR",
-        "range": {
-          "start": 44,
-          "length": 9
-        }
-      },
-      "occurrence": 2,
-      "occurrenceCount": 2
-    },
-    {
-      "index": 18,
+      "index": 23,
       "code": "FOOTER_TITLE_MISSING",
       "label": "Stopka bez tytułu dokumentu",
       "severity": "Warning",
@@ -1044,116 +1177,6 @@
         "index": 0,
         "subIndex": null,
         "snippet": "(stopka)"
-      },
-      "occurrence": 1,
-      "occurrenceCount": 1
-    },
-    {
-      "index": 19,
-      "code": "INVALID_MARGINS",
-      "label": "Marginesy inne niż wymagane",
-      "severity": "Warning",
-      "category": "Quality",
-      "standard": "firmowy/2.0",
-      "standardName": "Standard pism firmowych 2.0",
-      "message": "Margines górny ma 70,9 pt, a wymagane jest 36 pt.",
-      "fixable": true,
-      "criteria": [],
-      "location": {
-        "key": "body:Document:0",
-        "kind": "Document",
-        "story": "body",
-        "index": 0,
-        "subIndex": null,
-        "snippet": "(ustawienia strony)"
-      },
-      "occurrence": 1,
-      "occurrenceCount": 1
-    },
-    {
-      "index": 20,
-      "code": "INVALID_MARGINS",
-      "label": "Marginesy inne niż wymagane",
-      "severity": "Warning",
-      "category": "Quality",
-      "standard": "firmowy/2.0",
-      "standardName": "Standard pism firmowych 2.0",
-      "message": "Margines dolny ma 70,9 pt, a wymagane jest 36 pt.",
-      "fixable": true,
-      "criteria": [],
-      "location": {
-        "key": "body:Document:0",
-        "kind": "Document",
-        "story": "body",
-        "index": 0,
-        "subIndex": null,
-        "snippet": "(ustawienia strony)"
-      },
-      "occurrence": 1,
-      "occurrenceCount": 1
-    },
-    {
-      "index": 21,
-      "code": "INVALID_MARGINS",
-      "label": "Marginesy inne niż wymagane",
-      "severity": "Warning",
-      "category": "Quality",
-      "standard": "firmowy/2.0",
-      "standardName": "Standard pism firmowych 2.0",
-      "message": "Margines lewy ma 70,9 pt, a wymagane jest 36 pt.",
-      "fixable": true,
-      "criteria": [],
-      "location": {
-        "key": "body:Document:0",
-        "kind": "Document",
-        "story": "body",
-        "index": 0,
-        "subIndex": null,
-        "snippet": "(ustawienia strony)"
-      },
-      "occurrence": 1,
-      "occurrenceCount": 1
-    },
-    {
-      "index": 22,
-      "code": "INVALID_MARGINS",
-      "label": "Marginesy inne niż wymagane",
-      "severity": "Warning",
-      "category": "Quality",
-      "standard": "firmowy/2.0",
-      "standardName": "Standard pism firmowych 2.0",
-      "message": "Margines prawy ma 70,9 pt, a wymagane jest 36 pt.",
-      "fixable": true,
-      "criteria": [],
-      "location": {
-        "key": "body:Document:0",
-        "kind": "Document",
-        "story": "body",
-        "index": 0,
-        "subIndex": null,
-        "snippet": "(ustawienia strony)"
-      },
-      "occurrence": 1,
-      "occurrenceCount": 1
-    },
-    {
-      "index": 23,
-      "code": "PAGE_FORMAT_NOT_A4",
-      "label": "Strona inna niż A4",
-      "severity": "Warning",
-      "category": "Quality",
-      "standard": "firmowy/2.0",
-      "standardName": "Standard pism firmowych 2.0",
-      "message": "Strona ma 216 × 279 mm, a wymagany jest format A4 (210 × 297 mm).",
-      "fixable": false,
-      "criteria": [],
-      "location": {
-        "key": "body:Document:0",
-        "kind": "Document",
-        "story": "body",
-        "index": 0,
-        "subIndex": null,
-        "snippet": "(ustawienia strony)"
       },
       "occurrence": 1,
       "occurrenceCount": 1

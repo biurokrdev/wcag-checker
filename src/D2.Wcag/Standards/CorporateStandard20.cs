@@ -26,6 +26,21 @@ public sealed class CorporateStandard20 : DocumentStandard
     /// <summary>Marginesy 12,7 mm = 36 pt (G-01).</summary>
     public const double MarginPt = 36;
 
+    // Statusy ze specyfikacji dla kodów, które zgłaszają reguły wspólne z WCAG i standardem 1.9 (tam z inną wagą):
+    // waga w tym standardzie wynika z jednej tabeli SpecStatuses.Severity. Paleta kolorów (G-02), „WZÓR nie na każdej
+    // stronie” (G-16) i tytuł tabeli zostają ostrzeżeniami, więc nie mają tu statusu WYMAGANE.
+    private static readonly IReadOnlyDictionary<string, SpecStatus> Statuses = new Dictionary<string, SpecStatus>(StringComparer.Ordinal)
+    {
+        // G-01: A4 i marginesy 12,7 mm.
+        [IssueCodes.PageFormatNotA4] = SpecStatus.Required,
+        [IssueCodes.MarginsMissing] = SpecStatus.Required,
+        [IssueCodes.InvalidMargins] = SpecStatus.Required,
+        // G-07 i rozdz. 16: start od H1, bez przeskoków poziomów.
+        [IssueCodes.HeadingLevelSkipped] = SpecStatus.Required,
+        // Rozdz. 14: w wariantach [lub] zamiast ukośnika.
+        [IssueCodes.VariantSlashAlternative] = SpecStatus.Required,
+    };
+
     private readonly string _institution;
 
     public CorporateStandard20(string? institution = null)
@@ -79,6 +94,8 @@ public sealed class CorporateStandard20 : DocumentStandard
     public override IReadOnlyList<IDocumentFix> Fixes { get; }
 
     public override IReadOnlyList<StandardCheck> Checks => BuildChecks();
+
+    public override IReadOnlyDictionary<string, SpecStatus> LegacyStatuses => Statuses;
 
     private static IReadOnlyList<StandardCheck> BuildChecks() =>
     [

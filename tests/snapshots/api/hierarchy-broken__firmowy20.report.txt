@@ -4,7 +4,7 @@ Język: pl-PL
 Obrazy: 0
 
 Raport walidacji dokumentu „hierarchy-broken.docx”
-Wynik: niepoprawny. 1 błąd, 2 ostrzeżenia.
+Wynik: niepoprawny. 3 błędy.
 Data sprawdzenia: <data>. Standardy: Standard pism firmowych 2.0.
 Dokument: tytuł „Hierarchia treści. Example Company S. A.”, autor „Example Company S. A.”, język pl-PL, 38 akapitów, 8 nagłówków, 1 tabel, 0 obrazów.
 Podsumowanie kontroli
@@ -24,7 +24,7 @@ Sekcja „Typografia”
 | Zatwierdzono | Tekst podstawowy 10 pt (12/14 pt warunkowo) | – |
 | Zatwierdzono | Łącza #7724FF z podkreśleniem | – |
 | Zatwierdzono | G-05 Odstępy H1: 42,5 pt nad, 34 pt pod | – |
-| Ostrzeżenie | G-07 Hierarchia nagłówków: start od H1, bez przeskoków | Pominięty poziom nagłówka: Pierwszy nagłówek „Zakres dokumentu” ma poziom 2; dokument powinien zaczynać się od nagłówka poziomu 1. ⏎ Pominięty poziom nagłówka: Nagłówek „Szczegóły zakresu” ma poziom 4 zaraz po poziomie 2; pominięto poziom 3. |
+| Błąd | G-07 Hierarchia nagłówków: start od H1, bez przeskoków | Pominięty poziom nagłówka: Pierwszy nagłówek „Zakres dokumentu” ma poziom 2; dokument powinien zaczynać się od nagłówka poziomu 1. ⏎ Pominięty poziom nagłówka: Nagłówek „Szczegóły zakresu” ma poziom 4 zaraz po poziomie 2; pominięto poziom 3. |
 Sekcja „Spis treści i listy”
 | Status | Kontrola | Szczegóły |
 | Zatwierdzono | G-06 Automatyczny spis treści powyżej 9 stron | – |
@@ -59,8 +59,8 @@ Wyniki walidacji
 3 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
 Tabela wystąpień
 | Nr | Waga | Zgłoszenie | Standard | Miejsce | Komunikat | Zweryfikowano |
-| 1 | błąd | Nagłówek niezgodny z typografią standardu | Standard pism firmowych 2.0 | akapit: „Nagłówek z poziomu konspektu” | Nagłówek H3 „Nagłówek z poziomu konspektu”: rozmiar 10 pt zamiast 14 pt; brak pogrubienia. | nie |
-| 2 | ostrzeżenie | Pominięty poziom nagłówka | Standard pism firmowych 2.0 | akapit: „Zakres dokumentu” | Pierwszy nagłówek „Zakres dokumentu” ma poziom 2; dokument powinien zaczynać się od nagłówka poziomu 1. | nie |
-| 3 | ostrzeżenie | Pominięty poziom nagłówka | Standard pism firmowych 2.0 | akapit: „Szczegóły zakresu” | Nagłówek „Szczegóły zakresu” ma poziom 4 zaraz po poziomie 2; pominięto poziom 3. | nie |
+| 1 | błąd | Pominięty poziom nagłówka | Standard pism firmowych 2.0 | akapit: „Zakres dokumentu” | Pierwszy nagłówek „Zakres dokumentu” ma poziom 2; dokument powinien zaczynać się od nagłówka poziomu 1. | nie |
+| 2 | błąd | Pominięty poziom nagłówka | Standard pism firmowych 2.0 | akapit: „Szczegóły zakresu” | Nagłówek „Szczegóły zakresu” ma poziom 4 zaraz po poziomie 2; pominięto poziom 3. | nie |
+| 3 | błąd | Nagłówek niezgodny z typografią standardu | Standard pism firmowych 2.0 | akapit: „Nagłówek z poziomu konspektu” | Nagłówek H3 „Nagłówek z poziomu konspektu”: rozmiar 10 pt zamiast 14 pt; brak pogrubienia. | nie |
 
 PDF: %PDF-, strony: 4
