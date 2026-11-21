@@ -1,6 +1,6 @@
 {
   "status": "Invalid",
-  "summary": "3 błędy, 5 ostrzeżeń, 2 informacje.",
+  "summary": "5 błędów, 5 ostrzeżeń, 2 informacje.",
   "standards": [
     {
       "key": "wcag/2.1",
@@ -30,7 +30,7 @@
     "images": 0
   },
   "counts": {
-    "errors": 3,
+    "errors": 5,
     "warnings": 5,
     "infos": 2
   },
@@ -43,6 +43,26 @@
       "message": "Nagłówek poziomu 3 w akapicie 7 jest pusty.",
       "standard": "wcag/2.1",
       "fixable": true
+    },
+    {
+      "code": "HEADING_LEVEL_SKIPPED",
+      "label": "Pominięty poziom nagłówka",
+      "severity": "Error",
+      "category": "Headings",
+      "message": "Pierwszy nagłówek „Zakres dokumentu” ma poziom 2; dokument powinien zaczynać się od nagłówka poziomu 1.",
+      "standard": "firmowy/2.0",
+      "fixable": false,
+      "status": "Required"
+    },
+    {
+      "code": "HEADING_LEVEL_SKIPPED",
+      "label": "Pominięty poziom nagłówka",
+      "severity": "Error",
+      "category": "Headings",
+      "message": "Nagłówek „Szczegóły zakresu” ma poziom 4 zaraz po poziomie 2; pominięto poziom 3.",
+      "standard": "firmowy/2.0",
+      "fixable": false,
+      "status": "Required"
     },
     {
       "code": "HEADING_STYLE_MISMATCH",
@@ -945,7 +965,7 @@
         },
         {
           "id": "g05",
-          "name": "G-05 Odstępy H1: 42,5 pt nad, 34 pt pod",
+          "name": "G-05 Odstępy H1: 42,5 pt nad, 34 pt pod; układ dokumentu",
           "status": "Passed",
           "details": [],
           "note": null
@@ -953,8 +973,23 @@
         {
           "id": "g07",
           "name": "G-07 Hierarchia nagłówków: start od H1, bez przeskoków",
-          "status": "Passed",
-          "details": [],
+          "status": "Error",
+          "details": [
+            {
+              "code": "HEADING_LEVEL_SKIPPED",
+              "label": "Pominięty poziom nagłówka",
+              "message": "Pierwszy nagłówek „Zakres dokumentu” ma poziom 2; dokument powinien zaczynać się od nagłówka poziomu 1.",
+              "occurrences": 1,
+              "severity": "Error"
+            },
+            {
+              "code": "HEADING_LEVEL_SKIPPED",
+              "label": "Pominięty poziom nagłówka",
+              "message": "Nagłówek „Szczegóły zakresu” ma poziom 4 zaraz po poziomie 2; pominięto poziom 3.",
+              "occurrences": 1,
+              "severity": "Error"
+            }
+          ],
           "note": null
         }
       ]
@@ -1036,7 +1071,14 @@
       "rows": [
         {
           "id": "g11",
-          "name": "G-11 Stopka SUN Me 8 pt #696969 interlinia 1,2, numer i tytuł, bez stopki na stronie tytułowej",
+          "name": "G-11 Stopka SUN Me 8 pt #696969 interlinia 1,2, numer i tytuł („Strona: X z Y. Tytuł”), bez stopki na stronie tytułowej",
+          "status": "Passed",
+          "details": [],
+          "note": null
+        },
+        {
+          "id": "registration",
+          "name": "Dane rejestrowe SUN Me 8 pt #696969, interlinia 1,5",
           "status": "Passed",
           "details": [],
           "note": null
@@ -1116,7 +1158,7 @@
           "name": "Wariant układu (dane rejestrowe, strona tytułowa, pole adresowe)",
           "status": "ManualReview",
           "details": [],
-          "note": "Dane rejestrowe SUN Me 8 pt #696969 interlinia 1,5; strona tytułowa bez stopki; pole adresowe najlepiej puste."
+          "note": "Dobór układu do rodzaju pisma i położenie danych rejestrowych na stronie ocenić na wydruku; pole adresowe najlepiej puste. Format danych rejestrowych i reguły wybranego układu są sprawdzane automatycznie."
         },
         {
           "id": "manual-signatures",
@@ -1156,6 +1198,58 @@
     },
     {
       "index": 1,
+      "code": "HEADING_LEVEL_SKIPPED",
+      "label": "Pominięty poziom nagłówka",
+      "severity": "Error",
+      "category": "Headings",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Pierwszy nagłówek „Zakres dokumentu” ma poziom 2; dokument powinien zaczynać się od nagłówka poziomu 1.",
+      "fixable": false,
+      "criteria": [
+        "1.3.1"
+      ],
+      "location": {
+        "key": "body:Paragraph:2",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 2,
+        "subIndex": null,
+        "snippet": "Zakres dokumentu"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE"
+    },
+    {
+      "index": 2,
+      "code": "HEADING_LEVEL_SKIPPED",
+      "label": "Pominięty poziom nagłówka",
+      "severity": "Error",
+      "category": "Headings",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Nagłówek „Szczegóły zakresu” ma poziom 4 zaraz po poziomie 2; pominięto poziom 3.",
+      "fixable": false,
+      "criteria": [
+        "1.3.1"
+      ],
+      "location": {
+        "key": "body:Paragraph:4",
+        "kind": "Paragraph",
+        "story": "body",
+        "index": 4,
+        "subIndex": null,
+        "snippet": "Szczegóły zakresu"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE"
+    },
+    {
+      "index": 3,
       "code": "HEADING_STYLE_MISMATCH",
       "label": "Nagłówek niezgodny z typografią standardu",
       "severity": "Error",
@@ -1177,7 +1271,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 2,
+      "index": 4,
       "code": "LIST_MISSING_SEMANTIC",
       "label": "Lista zrobiona ręcznie",
       "severity": "Error",
@@ -1201,7 +1295,7 @@
       "occurrenceCount": 3
     },
     {
-      "index": 3,
+      "index": 5,
       "code": "LIST_MISSING_SEMANTIC",
       "label": "Lista zrobiona ręcznie",
       "severity": "Error",
@@ -1225,7 +1319,7 @@
       "occurrenceCount": 3
     },
     {
-      "index": 4,
+      "index": 6,
       "code": "LIST_MISSING_SEMANTIC",
       "label": "Lista zrobiona ręcznie",
       "severity": "Error",
@@ -1249,7 +1343,7 @@
       "occurrenceCount": 3
     },
     {
-      "index": 5,
+      "index": 7,
       "code": "CONTENT_BEFORE_HEADING",
       "label": "Treść przed pierwszym nagłówkiem",
       "severity": "Warning",
@@ -1273,7 +1367,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 6,
+      "index": 8,
       "code": "FAKE_HEADING",
       "label": "Nagłówek zrobiony formatowaniem",
       "severity": "Warning",
@@ -1297,7 +1391,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 7,
+      "index": 9,
       "code": "HEADING_LEVEL_SKIPPED",
       "label": "Pominięty poziom nagłówka",
       "severity": "Warning",
@@ -1321,7 +1415,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 8,
+      "index": 10,
       "code": "HEADING_LEVEL_SKIPPED",
       "label": "Pominięty poziom nagłówka",
       "severity": "Warning",
@@ -1345,7 +1439,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 9,
+      "index": 11,
       "code": "HEADING_TOO_LONG",
       "label": "Za długi nagłówek",
       "severity": "Warning",
@@ -1370,7 +1464,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 10,
+      "index": 12,
       "code": "MANUAL_CHECK_SUGGESTED",
       "label": "Zalecane sprawdzenie ręczne",
       "severity": "Info",
@@ -1392,7 +1486,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 11,
+      "index": 13,
       "code": "TOC_MISSING",
       "label": "Brak spisu treści",
       "severity": "Info",

@@ -97,7 +97,19 @@ Reguły WCAG też da się dostroić: `new WcagStandard(new WcagStandardOptions {
 
 ## Standard pism firmowych 2.0
 
-`CorporateStandard20` (`firmowy/2.0`) implementuje „Specyfikację techniczną guidebooka” (wersja 1.0, 24.10.2026), rozdz. 20 „Reguły walidacji dokumentu”. Wymagania „WYMAGANE” są błędami, „REKOMENDOWANE” i „WARUNKOWE” ostrzeżeniami. Nazwa instytucji (dopisek w tytule, autor) jest parametrem konstruktora, domyślnie z rozdz. 17.
+`CorporateStandard20` (`firmowy/2.0`) implementuje „Specyfikację techniczną guidebooka” (wersja 1.0, 24.10.2026), rozdz. 20 „Reguły walidacji dokumentu”. Wymagania „WYMAGANE” są błędami. Nowe reguły (kody `F20-…`) biorą wagę z jednej tabeli `SpecStatuses.Severity`: WYMAGANE → błąd, REKOMENDOWANE → ostrzeżenie, WARUNKOWE i DO WERYFIKACJI → informacja; niosą też tytuł, status i instrukcję naprawy krok po kroku (`WcagIssue.Title`, `Status`, `Fix`). Kody wspólne z WCAG i standardem 1.9 dostają w 2.0 wagę ze specyfikacji przez `LegacyStatuses` (marginesy i A4, przeskok poziomu nagłówków, ukośnik zamiast `[lub]`, brak tytułu i autora, brak tytułu w stopce – błędy), a w tamtych standardach zostają przy swojej. Z decyzji właściciela standardu ostrzeżeniami zostają: paleta kolorów (G-02), „WZÓR nie na każdej stronie” (G-16) i tytuł tabeli. Całą tabelę kod → waga pilnuje test `SeverityTableTests`.
+
+Parametry (`CorporateStandard20Options`): `Institution` (dopisek w tytule i autor, domyślnie z rozdz. 17), `Layout` (układ dokumentu z rozdz. 4) i `RegistrationDataStyles` (style akapitu z danymi rejestrowymi). Standard z parametrami rejestruje się pod tym samym kluczem, więc zastępuje wbudowany:
+
+```csharp
+var standard = new CorporateStandard20(new CorporateStandard20Options
+{
+    Layout = DocumentLayout20.TitlePage,                    // null (domyślnie) = bez wyboru, heurystyki
+    RegistrationDataStyles = ["Dane rejestrowe", "Stopka firmowa"],
+});
+var validator = new WcagDocxValidator(catalog: StandardCatalog.Default.With(standard));
+// albo w DI: builder.Services.AddDocumentStandard(standard);
+```
 
 | Reguła | Co sprawdza w DOCX | Kody |
 |---|---|---|
@@ -105,26 +117,36 @@ Reguły WCAG też da się dostroić: `new WcagStandard(new WcagStandardOptions {
 | G-02 | kolor efektywny każdego fragmentu tekstu z palety #000000, #FF6200, #0000FF, #AB0066, #7724FF, #696969, #4D0020; kolor użyty zgodnie z przeznaczeniem (pomarańcz tylko H1 i punktory, fiolet tylko łącza, szary tylko stopka i dane rejestrowe 8 pt, bordo tylko grafika) | `TEXT_COLOR_NOT_ALLOWED`, `TEXT_COLOR_USAGE_MISMATCH` |
 | G-03 | H1 SUN Display 24 pt (#000000/#FF6200/#0000FF) albo 32 pt (#FF6200); H2 16, H3 14, H4 12, H5 10 pt SUN Me (#000000/#0000FF); wszystkie Bold | `HEADING_STYLE_MISMATCH` |
 | G-04 | brak justowania | `JUSTIFICATION_FORBIDDEN` |
-| G-05 | H1: 42,5 pt nad (w piśmie z polem adresowym ok. 210 pt), 34 pt pod | `HEADING_SPACING_MISMATCH` |
+| G-05 | H1: 42,5 pt nad (w piśmie z polem adresowym ok. 210 pt), 34 pt pod; po wyborze układu dokumentu reguły tego układu (tabela niżej) | `HEADING_SPACING_MISMATCH`, `F20-LAYOUT-H1-SIZE`, `F20-LAYOUT-EFFECTIVE-DATE-SIZE`, `F20-REGISTRATION-DATA-PLACEMENT` |
 | G-06 | automatyczny spis treści powyżej 9 stron (liczba stron z właściwości pliku); „Spis treści” nie jest nagłówkiem, ma styl SUN Me Bold 10 pt | `TOC_REQUIRED`, `TOC_HEADING_IN_TOC`, `TOC_HEADING_STYLE_MISMATCH` |
-| G-07 | hierarchia nagłówków: pierwszy to H1, bez przeskoków poziomów (to samo zgłoszenie co WCAG; walidator scala duplikaty) | `HEADING_LEVEL_SKIPPED` |
-| G-08, G-09 | tabele danych: wiersz nagłówkowy oznaczony (czyli powtarzany na kolejnych stronach), bez pustych komórek, wiersze niepodzielne, krawędzie 1 pt #000000, nagłówki Bold, tekst do lewej i do środka w pionie, tytuł w tekście alternatywnym; brak opisu to informacja | `TABLE_MISSING_HEADERS`, `TABLE_EMPTY_CELL`, `TABLE_ROW_CAN_SPLIT`, `TABLE_BORDER_MISMATCH`, `TABLE_HEADER_NOT_BOLD`, `TABLE_ALIGNMENT_MISMATCH`, `TABLE_TITLE_MISSING`, `TABLE_DESCRIPTION_MISSING` |
+| G-07 | hierarchia nagłówków: pierwszy to H1, bez przeskoków poziomów (ten sam kod co WCAG, ale błąd) | `HEADING_LEVEL_SKIPPED` |
+| G-08, G-09 | tabele danych: wiersz nagłówkowy oznaczony (czyli powtarzany na kolejnych stronach), bez pustych komórek, wiersze niepodzielne, krawędzie 1 pt #000000, nagłówki Bold, tekst do lewej i do środka w pionie, tytuł w tekście alternatywnym; brak opisu to informacja. Krawędzie, pogrubienie, wyrównanie i „nie dziel wiersza” są sprawdzane na wartościach efektywnych: z komórki (`w:tcPr`, `w:tcBorders`), wiersza, tabeli i stylu tabeli razem z `w:tblStylePr`; krawędź nadpisana w jednej komórce jest zgłaszana dla tej komórki | `TABLE_MISSING_HEADERS`, `TABLE_EMPTY_CELL`, `TABLE_ROW_CAN_SPLIT`, `TABLE_BORDER_MISMATCH`, `TABLE_HEADER_NOT_BOLD`, `TABLE_ALIGNMENT_MISMATCH`, `TABLE_TITLE_MISSING`, `TABLE_DESCRIPTION_MISSING` |
 | G-10 | grafika z „logo” w nazwie albo opisie: alt „Example Company S. A. logo”, 44 × 10 mm; „symbol”/„identyfikator”: alt „Symbol graficzny Example Company S. A.”, 22 × 22 mm (±1 mm) | `BRAND_IMAGE_MISMATCH` |
-| G-11 | stopka SUN Me 8 pt #696969, interlinia 1,2, z numerem strony i tytułem; dokument ze stroną tytułową (H1 32 pt) ma „Inną na pierwszej stronie” z pustą stopką | `FOOTER_STYLE_MISMATCH`, `FOOTER_TITLE_MISSING`, `LINE_SPACING_MISMATCH`, `TITLE_PAGE_FOOTER_PRESENT` |
-| G-12 | Title „[Tytuł dokumentu]. Example Company S. A.”, Author = bank | `TITLE_SUFFIX_INVALID`, `AUTHOR_NOT_INSTITUTION` |
+| G-11 | każda sekcja ma stopkę (pusta liczy się jak brak), w stopce jest pole numeru strony (PAGE) i tytuł dokumentu – błędy; postać inna niż dosłowne „Strona: X z Y. Tytuł” (pola PAGE i NUMPAGES) – ostrzeżenie; stopka SUN Me Regular 8 pt #696969, interlinia 1,2 (rodzina czcionki i pogrubienie też sprawdzane); dokument ze stroną tytułową (H1 32 pt albo wybrany układ) ma „Inną na pierwszej stronie” z pustą stopką. Zgłoszenia wskazują akapit albo fragment w stopce (`footer/{i}`), brak stopki – początek sekcji | `F20-FOOTER-MISSING`, `F20-FOOTER-PAGE-NUMBER-MISSING`, `FOOTER_TITLE_MISSING`, `F20-FOOTER-FORMAT`, `FOOTER_STYLE_MISMATCH`, `LINE_SPACING_MISMATCH`, `TITLE_PAGE_FOOTER_PRESENT` |
+| G-12 | Title i Author ustawione; Title „[Tytuł dokumentu]. Example Company S. A.”, Author = bank | `TITLE_MISSING`, `TITLE_GENERIC`, `TITLE_SUFFIX_INVALID`, `AUTHOR_MISSING`, `AUTHOR_NOT_INSTITUTION` |
 | G-13 | język dokumentu ustawiony (to samo zgłoszenie co WCAG) | `LANGUAGE_MISSING`, `LANGUAGE_INVALID` |
-| G-14 | `[wariant N]` … `[koniec wariantu N]` zagnieżdżone i domknięte, znaczniki i `[lub]` w #AB0066, zapisy `<…>` w #0000FF, bez skrótów fleksyjnych („Zostałam [lub] em”); wewnątrz wariantu alternatywa „PLN / EUR” zamiast `[lub]` to ostrzeżenie | `VARIANT_MARKER_UNBALANCED`, `VARIANT_MARKER_COLOR_MISMATCH`, `VARIABLE_COLOR_MISMATCH`, `VARIANT_INFLECTION_SHORTCUT`, `VARIANT_SLASH_ALTERNATIVE` |
+| G-14 | `[wariant N]` … `[koniec wariantu N]` zagnieżdżone i domknięte, znaczniki i `[lub]` w #AB0066, zapisy `<…>` w #0000FF, bez skrótów fleksyjnych („Zostałam [lub] em”); wewnątrz wariantu (także otwartego i zamkniętego w tym samym akapicie) alternatywa „PLN / EUR” albo „Pani/Pan” zamiast `[lub]` to błąd, każdy ukośnik z zakresem znaków; ukośnik w stałym tekście i w zapisie zmiennym `<…>` zostaje | `VARIANT_MARKER_UNBALANCED`, `VARIANT_MARKER_COLOR_MISMATCH`, `VARIABLE_COLOR_MISMATCH`, `VARIANT_INFLECTION_SHORTCUT`, `VARIANT_SLASH_ALTERNATIVE` |
 | G-16 | napis WZÓR w nagłówku strony (czyli na każdej stronie), SUN Me Bold 28 pt #000000 | `SAMPLE_MARK_NOT_ON_EVERY_PAGE`, `SAMPLE_MARK_STYLE_MISMATCH` |
-| rozdz. 1, 3, 4 | rodzina SUN Me (H1 SUN Display), grubość nie w nazwie rodziny; interlinia 1,2; tekst podstawowy 10 pt (12/14 pt warunkowo; zwrot „Szanowni Państwo” 14/16 pt w układzie z polem adresowym) | `FONT_FAMILY_MISMATCH`, `FONT_WEIGHT_IN_FAMILY_NAME`, `LINE_SPACING_MISMATCH`, `BODY_TEXT_SIZE_MISMATCH` |
-| rozdz. 3.2, 7 | łącza #7724FF z podkreśleniem; punktory #FF6200/#000000, numery list pogrubione | `LINK_STYLE_MISMATCH`, `LIST_BULLET_COLOR_MISMATCH`, `LIST_NUMBER_NOT_BOLD` |
+| rozdz. 1, 3, 4 | rodzina SUN Me (H1 SUN Display), grubość nie w nazwie rodziny; interlinia 1,2; tekst podstawowy 10 pt (12/14 pt warunkowo; zwrot „Szanowni Państwo” 14/16 pt w układzie z polem adresowym); blok danych rejestrowych jest z tych reguł wyłączony | `FONT_FAMILY_MISMATCH`, `FONT_WEIGHT_IN_FAMILY_NAME`, `LINE_SPACING_MISMATCH`, `BODY_TEXT_SIZE_MISMATCH` |
+| rozdz. 3.2, 7 | łącza #7724FF z podkreśleniem; punktory #FF6200/#000000, numery list pogrubione – na efektywnym formacie znaku listy: poziom po `w:lvlOverride` i poziom wynikający ze stylu akapitu, kolor i pogrubienie po złożeniu stylu akapitu, znaku akapitu i `w:rPr` poziomu | `LINK_STYLE_MISMATCH`, `LIST_BULLET_COLOR_MISMATCH`, `LIST_NUMBER_NOT_BOLD` |
+| rozdz. 10 | dane rejestrowe („pseudostopka”): SUN Me Regular 8 pt #696969, interlinia 1,5. Blok rozpoznawany po stylu akapitu z listy `RegistrationDataStyles` (domyślnie „Dane rejestrowe”, „Pseudostopka”, „Registration data”; nazwa albo identyfikator, także styl oparty na takim stylu), a bez takiego stylu po treści: co najmniej dwa z określeń KRS, NIP, REGON, „kapitał zakładowy”. Blok może leżeć w treści, w nagłówku strony albo w stopce Worda | `F20-REGISTRATION-DATA-FORMAT` |
 
-Kontrole ręczne w podsumowaniu: G-07 (drzewo tagów w wygenerowanym PDF), G-10 (alt text ikon „tak/nie” i QR z kontekstu, pole na barcode dekoracyjne, zasoby z OrangeSharing), G-13 (język fragmentów), G-15 (sygnatura 270°, SIGNOTEK), wariant układu (dane rejestrowe, pole adresowe), pola podpisów i kontrolki w px. Parametry, które specyfikacja zostawia „do weryfikacji” (odstępy H2–H5, wcięcia list, pozycja WZÓR, próg kontrastu, format numeracji), nie są sprawdzane.
+Układ dokumentu (rozdz. 4) wybiera parametr `Layout`; standard go nie wykrywa. Bez wyboru działają heurystyki: oba odstępy nad H1 dopuszczalne, zwrot grzecznościowy 14/16 pt dopuszczalny, strona tytułowa rozpoznawana po pierwszym nagłówku H1 32 pt. Po wyborze:
+
+| Układ (`DocumentLayout20`) | Reguły |
+|---|---|
+| `WithoutRegistrationData` – bez danych rejestrowych | 42,5 pt nad H1, 34 pt pod; H1 24 pt (32 pt to ostrzeżenie); dane rejestrowe na dole ostatniej strony – ich brak albo położenie tylko w części górnej to informacja |
+| `WithRegistrationData` – z danymi rejestrowymi | jak wyżej, ale dane rejestrowe w części górnej (nagłówek strony albo przed H1) – inaczej informacja |
+| `TitlePage` – strona tytułowa | pierwszy H1 32 pt, „Obowiązuje od” 12 pt, pusta stopka pierwszej strony (reguła strony tytułowej działa niezależnie od rozmiaru H1); 42,5 pt nad H1, 34 pt pod |
+| `AddressField` – pole adresowe | ok. 210 pt (±10) nad pierwszym H1, 34 pt pod; H1 24 albo 32 pt; zwrot „Szanowni Państwo” 14 albo 16 pt |
+
+Kontrole ręczne w podsumowaniu: G-07 (drzewo tagów w wygenerowanym PDF), G-10 (alt text ikon „tak/nie” i QR z kontekstu, pole na barcode dekoracyjne, zasoby z OrangeSharing), G-13 (język fragmentów), G-15 (sygnatura 270°, SIGNOTEK), wariant układu (dobór układu do rodzaju pisma, położenie danych rejestrowych na stronie, pole adresowe), pola podpisów i kontrolki w px. Parametry, które specyfikacja zostawia „do weryfikacji” (odstępy H2–H5, wcięcia list, pozycja WZÓR, próg kontrastu, format numeracji), nie są sprawdzane.
 
 Naprawy (tylko jednoznaczne): marginesy 36 pt, wyrównanie do lewej, pierwszy wiersz tabeli jako nagłówkowy (gdy wszystkie komórki wypełnione), „nie dziel wiersza” w tabelach, tytuł z dopiskiem banku, autor = bank. Typografii, kolorów i treści wariantów naprawa nie zmienia.
 
 Standard 2.0 obejmuje wszystko, co sprawdza 1.9: marginesy 36 pt tą samą regułą i naprawą, a frazę instytucji w tytule i autorze (`TITLE_PHRASE_MISSING`, `AUTHOR_PHRASE_MISSING`) zastępuje ścisły format z rozdz. 17 (`TITLE_SUFFIX_INVALID`, `AUTHOR_NOT_INSTITUTION`). Pilnuje tego test `Standard20_CoversEveryRequirementOf19`. Różnica: 1.9 wymaga frazy `CorporateStandards.Phrase` („SUN Example Company S. A.”), 2.0 nazwy z rozdz. 17 specyfikacji (`CorporateStandard20.DefaultInstitution`, „Example Company S. A.”); każdy standard sprawdza dokument według własnej definicji, więc ten sam tytuł nie przejdzie obu naraz, dopóki nazwy nie zostaną ujednolicone.
 
-Gdy profil łączy `wcag/2.1` z `firmowy/2.0`, zgłoszenia identyczne co do kodu, treści i wystąpień (hierarchia nagłówków, język, wiersz nagłówkowy tabeli) są scalane i przypisane do pierwszego standardu w profilu.
+Gdy profil łączy `wcag/2.1` z `firmowy/2.0`, zgłoszenia identyczne co do kodu, treści, wagi i wystąpień (język, wiersz nagłówkowy tabeli, brak tytułu) są scalane i przypisane do pierwszego standardu w profilu. Gdy ten sam kod ma w obu standardach inną wagę (przeskok poziomu nagłówków, brak autora), zostają oba wpisy: ostrzeżenie WCAG nie zastępuje błędu standardu 2.0.
 
 Uwaga do G-15: biały identyfikator SIGNOTEK, którego wymaga specyfikacja, standard WCAG zgłosi jako `HIDDEN_TEXT_LOW_CONTRAST`; specyfikacja sama każe ocenić to osobno.
 

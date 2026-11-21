@@ -1,6 +1,6 @@
 {
   "outcome": "Invalid",
-  "summary": "3 błędy, 5 ostrzeżeń, 2 informacje.",
+  "summary": "5 błędów, 5 ostrzeżeń, 2 informacje.",
   "standards": [
     {
       "key": "wcag/2.1",
@@ -74,6 +74,34 @@
           "snippet": ""
         }
       ]
+    },
+    {
+      "code": "HEADING_LEVEL_SKIPPED",
+      "severity": "Error",
+      "category": "Headings",
+      "standard": "firmowy/2.0",
+      "message": "Pierwszy nagłówek „Zakres dokumentu” ma poziom 2; dokument powinien zaczynać się od nagłówka poziomu 1.",
+      "locations": [
+        {
+          "key": "body:Paragraph:2",
+          "snippet": "Zakres dokumentu"
+        }
+      ],
+      "status": "Required"
+    },
+    {
+      "code": "HEADING_LEVEL_SKIPPED",
+      "severity": "Error",
+      "category": "Headings",
+      "standard": "firmowy/2.0",
+      "message": "Nagłówek „Szczegóły zakresu” ma poziom 4 zaraz po poziomie 2; pominięto poziom 3.",
+      "locations": [
+        {
+          "key": "body:Paragraph:4",
+          "snippet": "Szczegóły zakresu"
+        }
+      ],
+      "status": "Required"
     },
     {
       "code": "HEADING_STYLE_MISMATCH",

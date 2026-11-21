@@ -4,23 +4,22 @@ Język: pl-PL
 Obrazy: 0
 
 Raport walidacji dokumentu „audit20-gaps.docx”
-Wynik: poprawny. 5 ostrzeżeń.
+Wynik: poprawny. 4 ostrzeżenia.
 Data sprawdzenia: <data>. Standardy: Standard pism firmowych 1.9.
-Dokument: tytuł „brak”, autor „Example Company S. A.”, język pl-PL, 23 akapitów, 4 nagłówków, 1 tabel, 0 obrazów.
+Dokument: tytuł „brak”, autor „brak”, język pl-PL, 54 akapitów, 7 nagłówków, 3 tabel, 0 obrazów.
 Podsumowanie kontroli
 Standard pism firmowych 1.9
 Sekcja „Standard pism firmowych 1.9”
 | Status | Kontrola | Szczegóły |
-| Ostrzeżenie | Fraza „SUN Example Company S. A.” w tytule i autorze | Autor bez wymaganej nazwy instytucji: Autor „Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”. |
+| Zatwierdzono | Fraza „SUN Example Company S. A.” w tytule i autorze | – |
 | Ostrzeżenie | Marginesy 36 pt | Marginesy inne niż wymagane: Margines górny ma 70,9 pt, a wymagane jest 36 pt. ⏎ Marginesy inne niż wymagane: Margines dolny ma 70,9 pt, a wymagane jest 36 pt. ⏎ Marginesy inne niż wymagane: Margines lewy ma 70,9 pt, a wymagane jest 36 pt. ⏎ Marginesy inne niż wymagane: Margines prawy ma 70,9 pt, a wymagane jest 36 pt. |
 Wyniki walidacji
-5 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
+4 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
 Tabela wystąpień
 | Nr | Waga | Zgłoszenie | Standard | Miejsce | Komunikat | Zweryfikowano |
-| 1 | ostrzeżenie | Autor bez wymaganej nazwy instytucji | Standard pism firmowych 1.9 | dokument: „(metadane dokumentu)” | Autor „Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”. | nie |
-| 2 | ostrzeżenie | Marginesy inne niż wymagane | Standard pism firmowych 1.9 | dokument: „(ustawienia strony)” | Margines górny ma 70,9 pt, a wymagane jest 36 pt. | nie |
-| 3 | ostrzeżenie | Marginesy inne niż wymagane | Standard pism firmowych 1.9 | dokument: „(ustawienia strony)” | Margines dolny ma 70,9 pt, a wymagane jest 36 pt. | nie |
-| 4 | ostrzeżenie | Marginesy inne niż wymagane | Standard pism firmowych 1.9 | dokument: „(ustawienia strony)” | Margines lewy ma 70,9 pt, a wymagane jest 36 pt. | nie |
-| 5 | ostrzeżenie | Marginesy inne niż wymagane | Standard pism firmowych 1.9 | dokument: „(ustawienia strony)” | Margines prawy ma 70,9 pt, a wymagane jest 36 pt. | nie |
+| 1 | ostrzeżenie | Marginesy inne niż wymagane | Standard pism firmowych 1.9 | dokument: „(ustawienia strony)” | Margines górny ma 70,9 pt, a wymagane jest 36 pt. | nie |
+| 2 | ostrzeżenie | Marginesy inne niż wymagane | Standard pism firmowych 1.9 | dokument: „(ustawienia strony)” | Margines dolny ma 70,9 pt, a wymagane jest 36 pt. | nie |
+| 3 | ostrzeżenie | Marginesy inne niż wymagane | Standard pism firmowych 1.9 | dokument: „(ustawienia strony)” | Margines lewy ma 70,9 pt, a wymagane jest 36 pt. | nie |
+| 4 | ostrzeżenie | Marginesy inne niż wymagane | Standard pism firmowych 1.9 | dokument: „(ustawienia strony)” | Margines prawy ma 70,9 pt, a wymagane jest 36 pt. | nie |
 
-PDF: %PDF-, strony: 2
+PDF: %PDF-, strony: 1

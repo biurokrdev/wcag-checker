@@ -4,7 +4,7 @@ Język: pl-PL
 Obrazy: 0
 
 Raport walidacji dokumentu „hierarchy-broken.docx”
-Wynik: niepoprawny. 3 błędy, 5 ostrzeżeń, 2 informacje.
+Wynik: niepoprawny. 5 błędów, 5 ostrzeżeń, 2 informacje.
 Data sprawdzenia: <data>. Standardy: WCAG 2.1 AA (dokument Word); Standard pism firmowych 2.0.
 Dokument: tytuł „Hierarchia treści. Example Company S. A.”, autor „Example Company S. A.”, język pl-PL, 38 akapitów, 8 nagłówków, 1 tabel, 0 obrazów.
 Podsumowanie kontroli
@@ -75,8 +75,8 @@ Sekcja „Typografia”
 | Błąd | G-03 Style H1–H5 zgodne z tabelą typografii | Nagłówek niezgodny z typografią standardu: Nagłówek H3 „Nagłówek z poziomu konspektu”: rozmiar 10 pt zamiast 14 pt; brak pogrubienia. |
 | Zatwierdzono | Tekst podstawowy 10 pt (12/14 pt warunkowo) | – |
 | Zatwierdzono | Łącza #7724FF z podkreśleniem | – |
-| Zatwierdzono | G-05 Odstępy H1: 42,5 pt nad, 34 pt pod | – |
-| Zatwierdzono | G-07 Hierarchia nagłówków: start od H1, bez przeskoków | – |
+| Zatwierdzono | G-05 Odstępy H1: 42,5 pt nad, 34 pt pod; układ dokumentu | – |
+| Błąd | G-07 Hierarchia nagłówków: start od H1, bez przeskoków | Pominięty poziom nagłówka: Pierwszy nagłówek „Zakres dokumentu” ma poziom 2; dokument powinien zaczynać się od nagłówka poziomu 1. ⏎ Pominięty poziom nagłówka: Nagłówek „Szczegóły zakresu” ma poziom 4 zaraz po poziomie 2; pominięto poziom 3. |
 Sekcja „Spis treści i listy”
 | Status | Kontrola | Szczegóły |
 | Zatwierdzono | G-06 Automatyczny spis treści powyżej 9 stron | – |
@@ -92,7 +92,8 @@ Sekcja „Grafika”
 | Zatwierdzono | G-10 Logo 44 × 10 mm i symbol 22 × 22 mm z tekstem alternatywnym z guidebooka | – |
 Sekcja „Stopka i metadane”
 | Status | Kontrola | Szczegóły |
-| Zatwierdzono | G-11 Stopka SUN Me 8 pt #696969 interlinia 1,2, numer i tytuł, bez stopki na stronie tytułowej | – |
+| Zatwierdzono | G-11 Stopka SUN Me 8 pt #696969 interlinia 1,2, numer i tytuł („Strona: X z Y. Tytuł”), bez stopki na stronie tytułowej | – |
+| Zatwierdzono | Dane rejestrowe SUN Me 8 pt #696969, interlinia 1,5 | – |
 | Zatwierdzono | G-12 Title „[Tytuł]. Bank”, Author = bank | – |
 | Zatwierdzono | G-13 Język dokumentu ustawiony | – |
 Sekcja „Warianty i oznaczenia”
@@ -105,7 +106,7 @@ Sekcja „Weryfikacja ręczna”
 | Ręczna weryfikacja | G-10 Alt text ikon i QR zależny od kontekstu, dekoracje wyłączone | Ikony „tak/nie” i informacji z opisem z kontekstu; QR z przeznaczeniem; pole na naklejkę barcode dekoracyjne; zasoby z OrangeSharing, nie ze zdjęć. |
 | Ręczna weryfikacja | G-13 Znaczniki językowe fragmentów w innym języku | Cytaty, tytuły i rozwinięcia skrótów w innym języku oznaczone miejscowo. |
 | Ręczna weryfikacja | G-15 Sygnatura (SUN Me 8 pt, 270°, prawy dolny róg) i SIGNOTEK | Zgodność z integracją; biały identyfikator SIGNOTEK ocenić osobno pod kątem dostępności. |
-| Ręczna weryfikacja | Wariant układu (dane rejestrowe, strona tytułowa, pole adresowe) | Dane rejestrowe SUN Me 8 pt #696969 interlinia 1,5; strona tytułowa bez stopki; pole adresowe najlepiej puste. |
+| Ręczna weryfikacja | Wariant układu (dane rejestrowe, strona tytułowa, pole adresowe) | Dobór układu do rodzaju pisma i położenie danych rejestrowych na stronie ocenić na wydruku; pole adresowe najlepiej puste. Format danych rejestrowych i reguły wybranego układu są sprawdzane automatycznie. |
 | Ręczna weryfikacja | Pola podpisów, separatory i kontrolki formularza | Linia podpisu 1 px #000000 60 mm; inputy 1 px #696969, 24 px wysokości; checkbox 20 × 20 px. |
 Kryteria WCAG 2.1
 3 kryteria spełnione, 2 niespełnione, 13 do przeglądu ręcznego.
@@ -130,20 +131,22 @@ Tabela stanu kryteriów WCAG 2.1
 | 4.1.1 Poprawność kodu | A | automatycznie | spełnione | Pakiet DOCX otwiera się i ma część główną. |
 | 4.1.2 Nazwa, rola, wartość | A | częściowo | do przeglądu | Formanty mają nazwę (etykietę albo tytuł); rola i wartość wynikają z typu formantu w Wordzie. |
 Wyniki walidacji
-12 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
+14 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
 Tabela wystąpień
 | Nr | Waga | Zgłoszenie | Standard | Miejsce | Komunikat | Zweryfikowano |
 | 1 | błąd | Pusty nagłówek | WCAG 2.1 AA (dokument Word) | akapit: „” | Nagłówek poziomu 3 w akapicie 7 jest pusty. | nie |
-| 2 | błąd | Nagłówek niezgodny z typografią standardu | Standard pism firmowych 2.0 | akapit: „Nagłówek z poziomu konspektu” | Nagłówek H3 „Nagłówek z poziomu konspektu”: rozmiar 10 pt zamiast 14 pt; brak pogrubienia. | nie |
-| 3 | błąd | Lista zrobiona ręcznie | WCAG 2.1 AA (dokument Word) | akapit: „- pierwsza pozycja,” (1/3) | 3 akapity wyglądają na element listy (znak wypunktowania albo numer wpisany w tekst), ale bez właściwości listy; pierwszy: „- pierwsza pozycja,”. | nie |
-| 4 | błąd | Lista zrobiona ręcznie | WCAG 2.1 AA (dokument Word) | akapit: „- druga pozycja,” (2/3) | 3 akapity wyglądają na element listy (znak wypunktowania albo numer wpisany w tekst), ale bez właściwości listy; pierwszy: „- pierwsza pozycja,”. | nie |
-| 5 | błąd | Lista zrobiona ręcznie | WCAG 2.1 AA (dokument Word) | akapit: „- trzecia pozycja.” (3/3) | 3 akapity wyglądają na element listy (znak wypunktowania albo numer wpisany w tekst), ale bez właściwości listy; pierwszy: „- pierwsza pozycja,”. | nie |
-| 6 | ostrzeżenie | Treść przed pierwszym nagłówkiem | WCAG 2.1 AA (dokument Word) | akapit: „Ten akapit stoi przed pierwszym nagłówki…” | Treść zaczyna się przed pierwszym nagłówkiem: „Ten akapit stoi przed pierwszym nagłówkiem dokumentu.”. | nie |
-| 7 | ostrzeżenie | Nagłówek zrobiony formatowaniem | WCAG 2.1 AA (dokument Word) | akapit: „Postanowienia ogólne” | 1 akapit wygląda na nagłówek (krótki, pogrubiony albo dużą czcionką), ale bez stylu nagłówka, więc poza konspektem dokumentu; pierwszy: „Postanowienia ogólne”. | nie |
-| 8 | ostrzeżenie | Pominięty poziom nagłówka | WCAG 2.1 AA (dokument Word) | akapit: „Zakres dokumentu” | Pierwszy nagłówek „Zakres dokumentu” ma poziom 2; dokument powinien zaczynać się od nagłówka poziomu 1. | nie |
-| 9 | ostrzeżenie | Pominięty poziom nagłówka | WCAG 2.1 AA (dokument Word) | akapit: „Szczegóły zakresu” | Nagłówek „Szczegóły zakresu” ma poziom 4 zaraz po poziomie 2; pominięto poziom 3. | nie |
-| 10 | ostrzeżenie | Za długi nagłówek | WCAG 2.1 AA (dokument Word) | akapit: „Ten nagłówek jest zdecydowanie za długi,…” | Nagłówek „Ten nagłówek jest zdecydowanie za długi, ponieważ zawiera ca…” ma 158 znaków; to raczej akapit treści ze stylem nagłówka niż tytuł sekcji. | nie |
-| 11 | informacja | Zalecane sprawdzenie ręczne | WCAG 2.1 AA (dokument Word) | dokument: „” | Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie. | nie |
-| 12 | informacja | Brak spisu treści | WCAG 2.1 AA (dokument Word) | dokument: „” | Dokument ma 8 nagłówków, a nie ma spisu treści (pole TOC); spis ułatwia nawigację czytnikiem ekranu. | nie |
+| 2 | błąd | Pominięty poziom nagłówka | Standard pism firmowych 2.0 | akapit: „Zakres dokumentu” | Pierwszy nagłówek „Zakres dokumentu” ma poziom 2; dokument powinien zaczynać się od nagłówka poziomu 1. | nie |
+| 3 | błąd | Pominięty poziom nagłówka | Standard pism firmowych 2.0 | akapit: „Szczegóły zakresu” | Nagłówek „Szczegóły zakresu” ma poziom 4 zaraz po poziomie 2; pominięto poziom 3. | nie |
+| 4 | błąd | Nagłówek niezgodny z typografią standardu | Standard pism firmowych 2.0 | akapit: „Nagłówek z poziomu konspektu” | Nagłówek H3 „Nagłówek z poziomu konspektu”: rozmiar 10 pt zamiast 14 pt; brak pogrubienia. | nie |
+| 5 | błąd | Lista zrobiona ręcznie | WCAG 2.1 AA (dokument Word) | akapit: „- pierwsza pozycja,” (1/3) | 3 akapity wyglądają na element listy (znak wypunktowania albo numer wpisany w tekst), ale bez właściwości listy; pierwszy: „- pierwsza pozycja,”. | nie |
+| 6 | błąd | Lista zrobiona ręcznie | WCAG 2.1 AA (dokument Word) | akapit: „- druga pozycja,” (2/3) | 3 akapity wyglądają na element listy (znak wypunktowania albo numer wpisany w tekst), ale bez właściwości listy; pierwszy: „- pierwsza pozycja,”. | nie |
+| 7 | błąd | Lista zrobiona ręcznie | WCAG 2.1 AA (dokument Word) | akapit: „- trzecia pozycja.” (3/3) | 3 akapity wyglądają na element listy (znak wypunktowania albo numer wpisany w tekst), ale bez właściwości listy; pierwszy: „- pierwsza pozycja,”. | nie |
+| 8 | ostrzeżenie | Treść przed pierwszym nagłówkiem | WCAG 2.1 AA (dokument Word) | akapit: „Ten akapit stoi przed pierwszym nagłówki…” | Treść zaczyna się przed pierwszym nagłówkiem: „Ten akapit stoi przed pierwszym nagłówkiem dokumentu.”. | nie |
+| 9 | ostrzeżenie | Nagłówek zrobiony formatowaniem | WCAG 2.1 AA (dokument Word) | akapit: „Postanowienia ogólne” | 1 akapit wygląda na nagłówek (krótki, pogrubiony albo dużą czcionką), ale bez stylu nagłówka, więc poza konspektem dokumentu; pierwszy: „Postanowienia ogólne”. | nie |
+| 10 | ostrzeżenie | Pominięty poziom nagłówka | WCAG 2.1 AA (dokument Word) | akapit: „Zakres dokumentu” | Pierwszy nagłówek „Zakres dokumentu” ma poziom 2; dokument powinien zaczynać się od nagłówka poziomu 1. | nie |
+| 11 | ostrzeżenie | Pominięty poziom nagłówka | WCAG 2.1 AA (dokument Word) | akapit: „Szczegóły zakresu” | Nagłówek „Szczegóły zakresu” ma poziom 4 zaraz po poziomie 2; pominięto poziom 3. | nie |
+| 12 | ostrzeżenie | Za długi nagłówek | WCAG 2.1 AA (dokument Word) | akapit: „Ten nagłówek jest zdecydowanie za długi,…” | Nagłówek „Ten nagłówek jest zdecydowanie za długi, ponieważ zawiera ca…” ma 158 znaków; to raczej akapit treści ze stylem nagłówka niż tytuł sekcji. | nie |
+| 13 | informacja | Zalecane sprawdzenie ręczne | WCAG 2.1 AA (dokument Word) | dokument: „” | Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie. | nie |
+| 14 | informacja | Brak spisu treści | WCAG 2.1 AA (dokument Word) | dokument: „” | Dokument ma 8 nagłówków, a nie ma spisu treści (pole TOC); spis ułatwia nawigację czytnikiem ekranu. | nie |
 
 PDF: %PDF-, strony: 11

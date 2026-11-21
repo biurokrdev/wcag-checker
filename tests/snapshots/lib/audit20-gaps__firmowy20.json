@@ -1,6 +1,6 @@
 {
   "outcome": "Invalid",
-  "summary": "7 błędów, 6 ostrzeżeń.",
+  "summary": "21 błędów, 2 ostrzeżenia.",
   "standards": [
     {
       "key": "firmowy/2.0",
@@ -12,11 +12,10 @@
     }
   ],
   "document": {
-    "author": "Example Company S. A.",
     "language": "pl-PL",
-    "paragraphs": 23,
-    "headings": 4,
-    "tables": 1,
+    "paragraphs": 54,
+    "headings": 7,
+    "tables": 3,
     "images": 0
   },
   "outline": [
@@ -35,39 +34,62 @@
     {
       "level": 2,
       "text": "Dane rejestrowe"
+    },
+    {
+      "level": 2,
+      "text": "Stopka i format strony"
+    },
+    {
+      "level": 2,
+      "text": "Stopka w innej postaci"
+    },
+    {
+      "level": 2,
+      "text": "Stopka wzorcowa"
     }
   ],
   "issues": [
+    {
+      "code": "HEADING_LEVEL_SKIPPED",
+      "severity": "Error",
+      "category": "Headings",
+      "standard": "firmowy/2.0",
+      "message": "Nagłówek „Listy z nadpisaniami” ma poziom 3 zaraz po poziomie 1; pominięto poziom 2.",
+      "locations": [
+        {
+          "key": "body:Paragraph:7",
+          "snippet": "Listy z nadpisaniami"
+        }
+      ],
+      "status": "Required"
+    },
     {
       "code": "TABLE_ALIGNMENT_MISMATCH",
       "severity": "Error",
       "category": "Tables",
       "standard": "firmowy/2.0",
-      "message": "Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
+      "message": "Tabela 2: 2 komórki nie są wyrównane do lewej i do środka w pionie.",
       "locations": [
         {
-          "key": "body:TableCell:0:0",
-          "snippet": "Rodzaj opłaty"
+          "key": "body:TableCell:1:3",
+          "snippet": "1,5%"
         },
         {
-          "key": "body:TableCell:0:1",
-          "snippet": "Kwota"
-        },
-        {
-          "key": "body:TableCell:0:2",
-          "snippet": "Prowadzenie konta"
-        },
+          "key": "body:TableCell:1:5",
+          "snippet": "0,5%"
+        }
+      ]
+    },
+    {
+      "code": "TABLE_BORDER_MISMATCH",
+      "severity": "Error",
+      "category": "Tables",
+      "standard": "firmowy/2.0",
+      "message": "Tabela 1: 1 komórka ma krawędzie inne niż 1 pt w kolorze #000000 (nadpisane w komórce albo w stylu tabeli).",
+      "locations": [
         {
           "key": "body:TableCell:0:3",
-          "snippet": "0 zł"
-        },
-        {
-          "key": "body:TableCell:0:4",
-          "snippet": "Karta debetowa"
-        },
-        {
-          "key": "body:TableCell:0:5",
-          "snippet": ""
+          "snippet": "0 zł (krawędzie: górna 0,5 pt #FF0000, lewa 0,5 pt #FF0000, dolna 0,5 pt #FF0000, prawa 0,5 pt #FF0000)"
         }
       ]
     },
@@ -89,15 +111,11 @@
       "severity": "Error",
       "category": "Tables",
       "standard": "firmowy/2.0",
-      "message": "Tabela 1: 2 komórki nagłówka nie są pogrubione.",
+      "message": "Tabela 2: 1 komórka nagłówka nie jest pogrubiona.",
       "locations": [
         {
-          "key": "body:TableCell:0:0",
-          "snippet": "Rodzaj opłaty"
-        },
-        {
-          "key": "body:TableCell:0:1",
-          "snippet": "Kwota"
+          "key": "body:TableCell:1:1",
+          "snippet": "Stawka"
         }
       ]
     },
@@ -122,70 +140,205 @@
       "message": "2 pozycje listy mają punktor w kolorze spoza #FF6200 i #000000.",
       "locations": [
         {
-          "key": "body:Paragraph:10",
+          "key": "body:Paragraph:12",
           "snippet": "pozycja z zielonym punktorem, (punktor #00AA00)"
         },
         {
-          "key": "body:Paragraph:11",
+          "key": "body:Paragraph:13",
           "snippet": "druga pozycja z zielonym punktorem. (punktor #00AA00)"
         }
       ]
     },
     {
-      "code": "BODY_TEXT_SIZE_MISMATCH",
-      "severity": "Error",
-      "category": "Quality",
-      "standard": "firmowy/2.0",
-      "message": "1 fragment tekstu podstawowego ma rozmiar spoza standardu; wymagane 10 pt (dopuszczalnie 12 albo 14 pt).",
-      "locations": [
-        {
-          "key": "body:Run:22:0",
-          "snippet": "Example Company S. A. z siedzibą w Warsz… (8 pt)"
-        }
-      ]
-    },
-    {
-      "code": "LINE_SPACING_MISMATCH",
-      "severity": "Error",
-      "category": "Quality",
-      "standard": "firmowy/2.0",
-      "message": "1 akapit ma interlinię inną niż wymagane 1,2 (wielokrotna, w:line=288).",
-      "locations": [
-        {
-          "key": "body:Paragraph:22",
-          "snippet": "Example Company S. A. z siedzibą w Warsz… (interlinia 1,5)"
-        }
-      ]
-    },
-    {
-      "code": "HEADING_LEVEL_SKIPPED",
-      "severity": "Warning",
-      "category": "Headings",
-      "standard": "firmowy/2.0",
-      "message": "Nagłówek „Listy z nadpisaniami” ma poziom 3 zaraz po poziomie 1; pominięto poziom 2.",
-      "locations": [
-        {
-          "key": "body:Paragraph:5",
-          "snippet": "Listy z nadpisaniami"
-        }
-      ]
-    },
-    {
       "code": "VARIANT_SLASH_ALTERNATIVE",
-      "severity": "Warning",
+      "severity": "Error",
       "category": "Text",
       "standard": "firmowy/2.0",
-      "message": "1 akapit wewnątrz wariantu ma alternatywę z ukośnikiem (np. „PLN / EUR”); w wariantach separator zastępuje się znacznikiem [lub] w kolorze #AB0066.",
+      "message": "2 akapity wewnątrz wariantu mają alternatywę z ukośnikiem (np. „PLN / EUR”); w wariantach separator zastępuje się znacznikiem [lub] w kolorze #AB0066.",
       "locations": [
         {
+          "key": "body:Paragraph:2",
+          "snippet": "Pani/Pan",
+          "range": {
+            "start": 21,
+            "length": 8
+          }
+        },
+        {
           "key": "body:Paragraph:3",
-          "snippet": "PLN / EUR"
+          "snippet": "PLN / EUR",
+          "range": {
+            "start": 44,
+            "length": 9
+          }
+        }
+      ],
+      "status": "Required"
+    },
+    {
+      "code": "F20-FOOTER-MISSING",
+      "severity": "Error",
+      "category": "Structure",
+      "standard": "firmowy/2.0",
+      "message": "Sekcja 1 nie ma stopki (własnej ani odziedziczonej z poprzedniej sekcji); standard wymaga stopki z numerem strony i tytułem dokumentu („Strona: X z Y. Tytuł dokumentu”).",
+      "locations": [
+        {
+          "key": "body:Paragraph:0",
+          "snippet": "Luki audytu 2.0"
+        }
+      ],
+      "status": "Required",
+      "title": "Brak stopki",
+      "fix": "1. Wstawianie → Stopka → Edytuj stopkę. 2. Nadaj akapitowi styl „Stopka” (SUN Me 8 pt, #696969, interlinia 1,2). 3. Wpisz „Strona: ”, wstaw pole numeru strony (Wstawianie → Szybkie części → Pole → Page), wpisz „ z ”, wstaw pole NumPages, a po nim „. ” i tytuł dokumentu. 4. Jeśli stopki brakuje tylko w jednej sekcji, włącz w niej Nagłówek i stopka → Połącz z poprzednią. 5. Zamknij stopkę klawiszem Esc.",
+      "scope": "Section"
+    },
+    {
+      "code": "F20-FOOTER-PAGE-NUMBER-MISSING",
+      "severity": "Error",
+      "category": "Structure",
+      "standard": "firmowy/2.0",
+      "message": "Brak pola numeru strony (PAGE) w treści stopki (sekcja 2, strony: wszystkie); numer ma wstawiać pole, a nie tekst wpisany z klawiatury.",
+      "locations": [
+        {
+          "key": "footer/0:Paragraph:0",
+          "snippet": "Dokument wewnętrzny"
+        }
+      ],
+      "status": "Required",
+      "title": "Brak pola numeru strony w stopce",
+      "fix": "1. Kliknij dwukrotnie stopkę. 2. Ustaw kursor w miejscu numeru i wybierz Wstawianie → Szybkie części → Pole → Page (albo Nagłówek i stopka → Numer strony → Bieżąca pozycja → Zwykły numer). 3. Numer wpisany z klawiatury usuń – ma go zastąpić pole. 4. Docelowa postać stopki: „Strona: X z Y. Tytuł dokumentu”.",
+      "scope": "HeaderFooter"
+    },
+    {
+      "code": "FOOTER_TITLE_MISSING",
+      "severity": "Error",
+      "category": "Structure",
+      "standard": "firmowy/2.0",
+      "message": "Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”.",
+      "locations": [
+        {
+          "key": "footer/1:Paragraph:0",
+          "snippet": "(stopka)"
+        }
+      ],
+      "status": "Required"
+    },
+    {
+      "code": "AUTHOR_MISSING",
+      "severity": "Error",
+      "category": "Metadata",
+      "standard": "firmowy/2.0",
+      "message": "Dokument nie ma autora w metadanych.",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": "(metadane dokumentu)"
+        }
+      ],
+      "status": "Required"
+    },
+    {
+      "code": "TITLE_MISSING",
+      "severity": "Error",
+      "category": "Metadata",
+      "standard": "firmowy/2.0",
+      "message": "Dokument nie ma tytułu w metadanych (Plik → Informacje → Tytuł).",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": "(metadane dokumentu)"
+        }
+      ],
+      "status": "Required"
+    },
+    {
+      "code": "F20-REGISTRATION-DATA-FORMAT",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "message": "Dane rejestrowe „Example Company S. A., oddział w Krakowie, wpisany…”: rozmiar 9 pt zamiast 8 pt; pogrubienie zamiast grubości Regular; wymagane SUN Me Regular 8 pt #696969, interlinia 1,5.",
+      "locations": [
+        {
+          "key": "body:Paragraph:43",
+          "snippet": "Example Company S. A., oddział w Krakowi…"
+        }
+      ],
+      "status": "Required",
+      "title": "Dane rejestrowe w niewłaściwym formacie",
+      "fix": "1. Zaznacz akapit z danymi rejestrowymi (KRS, NIP, REGON, kapitał zakładowy). 2. Narzędzia główne → Style → wybierz styl „Dane rejestrowe”. 3. Jeśli szablon nie ma tego stylu: Narzędzia główne → Style → Utwórz styl, nazwa „Dane rejestrowe”, czcionka SUN Me, 8 pt, bez pogrubienia i kursywy, kolor #696969; Format → Akapit → Interlinia: Wielokrotne 1,5. 4. Formatowanie nadane ręcznie usuń skrótem Ctrl+Spacja (znaki) i Ctrl+Q (akapit).",
+      "scope": "Paragraph",
+      "details": [
+        {
+          "property": "sz",
+          "actual": "9",
+          "expected": "8",
+          "source": "formatowanie bezpośrednie"
+        },
+        {
+          "property": "b",
+          "actual": "1",
+          "expected": "0",
+          "source": "formatowanie bezpośrednie"
+        }
+      ]
+    },
+    {
+      "code": "F20-REGISTRATION-DATA-FORMAT",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "message": "Dane rejestrowe „Example Company S. A., Sąd Rejonowy dla m.st. Wars…”: rozmiar 10 pt zamiast 8 pt; kolor #000000 zamiast #696969; interlinia 1,2 zamiast 1,5; wymagane SUN Me Regular 8 pt #696969, interlinia 1,5.",
+      "locations": [
+        {
+          "key": "body:Paragraph:44",
+          "snippet": "Example Company S. A., Sąd Rejonowy dla…"
+        }
+      ],
+      "status": "Required",
+      "title": "Dane rejestrowe w niewłaściwym formacie",
+      "fix": "1. Zaznacz akapit z danymi rejestrowymi (KRS, NIP, REGON, kapitał zakładowy). 2. Narzędzia główne → Style → wybierz styl „Dane rejestrowe”. 3. Jeśli szablon nie ma tego stylu: Narzędzia główne → Style → Utwórz styl, nazwa „Dane rejestrowe”, czcionka SUN Me, 8 pt, bez pogrubienia i kursywy, kolor #696969; Format → Akapit → Interlinia: Wielokrotne 1,5. 4. Formatowanie nadane ręcznie usuń skrótem Ctrl+Spacja (znaki) i Ctrl+Q (akapit).",
+      "scope": "Paragraph",
+      "details": [
+        {
+          "property": "sz",
+          "actual": "10",
+          "expected": "8",
+          "source": "ustawienia domyślne dokumentu"
+        },
+        {
+          "property": "color",
+          "actual": "000000",
+          "expected": "696969",
+          "source": "ustawienia domyślne dokumentu"
+        },
+        {
+          "property": "p.spacing.line",
+          "actual": "14.4",
+          "expected": "18",
+          "source": "ustawienia domyślne dokumentu"
+        }
+      ]
+    },
+    {
+      "code": "FOOTER_STYLE_MISMATCH",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "message": "2 fragmenty stopki mają styl inny niż SUN Me 8 pt #696969.",
+      "locations": [
+        {
+          "key": "footer/1:Run:0:0",
+          "snippet": "Strona: (Arial, pogrubienie)"
+        },
+        {
+          "key": "footer/1:Run:0:1",
+          "snippet": "3 (Arial, pogrubienie)"
         }
       ]
     },
     {
       "code": "INVALID_MARGINS",
-      "severity": "Warning",
+      "severity": "Error",
       "category": "Quality",
       "standard": "firmowy/2.0",
       "message": "Margines górny ma 70,9 pt, a wymagane jest 36 pt.",
@@ -194,11 +347,12 @@
           "key": "body:Document:0",
           "snippet": "(ustawienia strony)"
         }
-      ]
+      ],
+      "status": "Required"
     },
     {
       "code": "INVALID_MARGINS",
-      "severity": "Warning",
+      "severity": "Error",
       "category": "Quality",
       "standard": "firmowy/2.0",
       "message": "Margines dolny ma 70,9 pt, a wymagane jest 36 pt.",
@@ -207,11 +361,12 @@
           "key": "body:Document:0",
           "snippet": "(ustawienia strony)"
         }
-      ]
+      ],
+      "status": "Required"
     },
     {
       "code": "INVALID_MARGINS",
-      "severity": "Warning",
+      "severity": "Error",
       "category": "Quality",
       "standard": "firmowy/2.0",
       "message": "Margines lewy ma 70,9 pt, a wymagane jest 36 pt.",
@@ -220,11 +375,12 @@
           "key": "body:Document:0",
           "snippet": "(ustawienia strony)"
         }
-      ]
+      ],
+      "status": "Required"
     },
     {
       "code": "INVALID_MARGINS",
-      "severity": "Warning",
+      "severity": "Error",
       "category": "Quality",
       "standard": "firmowy/2.0",
       "message": "Margines prawy ma 70,9 pt, a wymagane jest 36 pt.",
@@ -233,7 +389,56 @@
           "key": "body:Document:0",
           "snippet": "(ustawienia strony)"
         }
+      ],
+      "status": "Required"
+    },
+    {
+      "code": "PAGE_FORMAT_NOT_A4",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "message": "Strona ma 216 × 279 mm, a wymagany jest format A4 (210 × 297 mm).",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": "(ustawienia strony)"
+        }
+      ],
+      "status": "Required"
+    },
+    {
+      "code": "LIST_NUMBER_NOT_BOLD",
+      "severity": "Warning",
+      "category": "Lists",
+      "standard": "firmowy/2.0",
+      "message": "2 pozycje listy numerowanej mają niepogrubiony numer; guidebook: „Lista numerowana: bold”.",
+      "locations": [
+        {
+          "key": "body:Paragraph:9",
+          "snippet": "Pierwszy krok z numerem bez pogrubienia."
+        },
+        {
+          "key": "body:Paragraph:10",
+          "snippet": "Drugi krok z numerem bez pogrubienia."
+        }
       ]
+    },
+    {
+      "code": "F20-FOOTER-FORMAT",
+      "severity": "Warning",
+      "category": "Structure",
+      "standard": "firmowy/2.0",
+      "message": "Stopka ma postać „X / Y – Luki audytu 2.0” (X = pole PAGE, Y = pole NUMPAGES); standard: „Strona: X z Y. Tytuł dokumentu”.",
+      "locations": [
+        {
+          "key": "footer/2:Paragraph:0",
+          "snippet": "PAGE 4 / 5 – Luki audytu 2.0"
+        }
+      ],
+      "status": "Recommended",
+      "title": "Stopka w innej postaci niż „Strona: X z Y. Tytuł”",
+      "fix": "1. Kliknij dwukrotnie stopkę. 2. Ułóż treść w jednym akapicie: „Strona: ”, pole Page, „ z ”, pole NumPages, „. ” i tytuł dokumentu, np. „Strona: 2 z 3. Regulamin promocji”. 3. Pola wstawia się przez Wstawianie → Szybkie części → Pole (Page i NumPages).",
+      "scope": "HeaderFooter"
     }
   ]
 }

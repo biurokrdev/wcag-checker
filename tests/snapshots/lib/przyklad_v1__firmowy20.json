@@ -1,6 +1,6 @@
 {
   "outcome": "Invalid",
-  "summary": "11 błędów, 9 ostrzeżeń, 1 informacja.",
+  "summary": "17 błędów, 4 ostrzeżenia, 1 informacja.",
   "standards": [
     {
       "key": "firmowy/2.0",
@@ -124,6 +124,20 @@
       ]
     },
     {
+      "code": "FOOTER_TITLE_MISSING",
+      "severity": "Error",
+      "category": "Structure",
+      "standard": "firmowy/2.0",
+      "message": "Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”.",
+      "locations": [
+        {
+          "key": "footer/0:Paragraph:0",
+          "snippet": "(stopka)"
+        }
+      ],
+      "status": "Required"
+    },
+    {
       "code": "AUTHOR_NOT_INSTITUTION",
       "severity": "Error",
       "category": "Metadata",
@@ -135,6 +149,20 @@
           "snippet": "(metadane dokumentu)"
         }
       ]
+    },
+    {
+      "code": "TITLE_MISSING",
+      "severity": "Error",
+      "category": "Metadata",
+      "standard": "firmowy/2.0",
+      "message": "Dokument nie ma tytułu w metadanych (Plik → Informacje → Tytuł).",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": "(metadane dokumentu)"
+        }
+      ],
+      "status": "Required"
     },
     {
       "code": "BODY_TEXT_SIZE_MISMATCH",
@@ -227,13 +255,69 @@
       "locations": [
         {
           "key": "footer/0:Run:0:1",
-          "snippet": "PAGE \\* MERGEFORMAT (12 pt, #000000)"
+          "snippet": "PAGE \\* MERGEFORMAT (Calibri, 12 pt, #000000)"
         },
         {
           "key": "footer/0:Run:0:3",
-          "snippet": "2 (12 pt, #000000)"
+          "snippet": "2 (Calibri, 12 pt, #000000)"
         }
       ]
+    },
+    {
+      "code": "INVALID_MARGINS",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "message": "Margines górny ma 70,9 pt, a wymagane jest 36 pt.",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": "(ustawienia strony)"
+        }
+      ],
+      "status": "Required"
+    },
+    {
+      "code": "INVALID_MARGINS",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "message": "Margines dolny ma 70,9 pt, a wymagane jest 36 pt.",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": "(ustawienia strony)"
+        }
+      ],
+      "status": "Required"
+    },
+    {
+      "code": "INVALID_MARGINS",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "message": "Margines lewy ma 70,9 pt, a wymagane jest 36 pt.",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": "(ustawienia strony)"
+        }
+      ],
+      "status": "Required"
+    },
+    {
+      "code": "INVALID_MARGINS",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "message": "Margines prawy ma 70,9 pt, a wymagane jest 36 pt.",
+      "locations": [
+        {
+          "key": "body:Document:0",
+          "snippet": "(ustawienia strony)"
+        }
+      ],
+      "status": "Required"
     },
     {
       "code": "LINE_SPACING_MISMATCH",
@@ -327,19 +411,6 @@
       ]
     },
     {
-      "code": "FOOTER_TITLE_MISSING",
-      "severity": "Warning",
-      "category": "Structure",
-      "standard": "firmowy/2.0",
-      "message": "Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”.",
-      "locations": [
-        {
-          "key": "footer/0:Paragraph:0",
-          "snippet": "(stopka)"
-        }
-      ]
-    },
-    {
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "severity": "Warning",
       "category": "Quality",
@@ -393,58 +464,6 @@
         {
           "key": "body:Run:13:0",
           "snippet": "głupoty (12 pt)"
-        }
-      ]
-    },
-    {
-      "code": "INVALID_MARGINS",
-      "severity": "Warning",
-      "category": "Quality",
-      "standard": "firmowy/2.0",
-      "message": "Margines górny ma 70,9 pt, a wymagane jest 36 pt.",
-      "locations": [
-        {
-          "key": "body:Document:0",
-          "snippet": "(ustawienia strony)"
-        }
-      ]
-    },
-    {
-      "code": "INVALID_MARGINS",
-      "severity": "Warning",
-      "category": "Quality",
-      "standard": "firmowy/2.0",
-      "message": "Margines dolny ma 70,9 pt, a wymagane jest 36 pt.",
-      "locations": [
-        {
-          "key": "body:Document:0",
-          "snippet": "(ustawienia strony)"
-        }
-      ]
-    },
-    {
-      "code": "INVALID_MARGINS",
-      "severity": "Warning",
-      "category": "Quality",
-      "standard": "firmowy/2.0",
-      "message": "Margines lewy ma 70,9 pt, a wymagane jest 36 pt.",
-      "locations": [
-        {
-          "key": "body:Document:0",
-          "snippet": "(ustawienia strony)"
-        }
-      ]
-    },
-    {
-      "code": "INVALID_MARGINS",
-      "severity": "Warning",
-      "category": "Quality",
-      "standard": "firmowy/2.0",
-      "message": "Margines prawy ma 70,9 pt, a wymagane jest 36 pt.",
-      "locations": [
-        {
-          "key": "body:Document:0",
-          "snippet": "(ustawienia strony)"
         }
       ]
     },

@@ -1,6 +1,6 @@
 {
   "status": "Invalid",
-  "summary": "17 błędów, 13 ostrzeżeń, 2 informacje.",
+  "summary": "22 błędy, 8 ostrzeżeń, 2 informacje.",
   "standards": [
     {
       "key": "wcag/2.1",
@@ -30,8 +30,8 @@
     "images": 2
   },
   "counts": {
-    "errors": 17,
-    "warnings": 13,
+    "errors": 22,
+    "warnings": 8,
     "infos": 2
   },
   "issues": [
@@ -135,6 +135,16 @@
       "fixable": false
     },
     {
+      "code": "FOOTER_TITLE_MISSING",
+      "label": "Stopka bez tytułu dokumentu",
+      "severity": "Error",
+      "category": "Structure",
+      "message": "Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”.",
+      "standard": "firmowy/2.0",
+      "fixable": false,
+      "status": "Required"
+    },
+    {
       "code": "AUTHOR_NOT_INSTITUTION",
       "label": "Autor inny niż nazwa banku",
       "severity": "Error",
@@ -178,6 +188,46 @@
       "message": "2 fragmenty stopki mają styl inny niż SUN Me 8 pt #696969.",
       "standard": "firmowy/2.0",
       "fixable": false
+    },
+    {
+      "code": "INVALID_MARGINS",
+      "label": "Marginesy inne niż wymagane",
+      "severity": "Error",
+      "category": "Quality",
+      "message": "Margines górny ma 70,9 pt, a wymagane jest 36 pt.",
+      "standard": "firmowy/2.0",
+      "fixable": true,
+      "status": "Required"
+    },
+    {
+      "code": "INVALID_MARGINS",
+      "label": "Marginesy inne niż wymagane",
+      "severity": "Error",
+      "category": "Quality",
+      "message": "Margines dolny ma 70,9 pt, a wymagane jest 36 pt.",
+      "standard": "firmowy/2.0",
+      "fixable": true,
+      "status": "Required"
+    },
+    {
+      "code": "INVALID_MARGINS",
+      "label": "Marginesy inne niż wymagane",
+      "severity": "Error",
+      "category": "Quality",
+      "message": "Margines lewy ma 70,9 pt, a wymagane jest 36 pt.",
+      "standard": "firmowy/2.0",
+      "fixable": true,
+      "status": "Required"
+    },
+    {
+      "code": "INVALID_MARGINS",
+      "label": "Marginesy inne niż wymagane",
+      "severity": "Error",
+      "category": "Quality",
+      "message": "Margines prawy ma 70,9 pt, a wymagane jest 36 pt.",
+      "standard": "firmowy/2.0",
+      "fixable": true,
+      "status": "Required"
     },
     {
       "code": "LINE_SPACING_MISMATCH",
@@ -234,15 +284,6 @@
       "fixable": false
     },
     {
-      "code": "FOOTER_TITLE_MISSING",
-      "label": "Stopka bez tytułu dokumentu",
-      "severity": "Warning",
-      "category": "Structure",
-      "message": "Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”.",
-      "standard": "firmowy/2.0",
-      "fixable": false
-    },
-    {
       "code": "UNCLEAR_READING_ORDER",
       "label": "Brak nagłówków w dokumencie",
       "severity": "Warning",
@@ -259,42 +300,6 @@
       "message": "14 fragmentów tekstu jest powiększonych do 12 albo 14 pt; dopuszczalne tylko z potrzeby biznesowej.",
       "standard": "firmowy/2.0",
       "fixable": false
-    },
-    {
-      "code": "INVALID_MARGINS",
-      "label": "Marginesy inne niż wymagane",
-      "severity": "Warning",
-      "category": "Quality",
-      "message": "Margines górny ma 70,9 pt, a wymagane jest 36 pt.",
-      "standard": "firmowy/2.0",
-      "fixable": true
-    },
-    {
-      "code": "INVALID_MARGINS",
-      "label": "Marginesy inne niż wymagane",
-      "severity": "Warning",
-      "category": "Quality",
-      "message": "Margines dolny ma 70,9 pt, a wymagane jest 36 pt.",
-      "standard": "firmowy/2.0",
-      "fixable": true
-    },
-    {
-      "code": "INVALID_MARGINS",
-      "label": "Marginesy inne niż wymagane",
-      "severity": "Warning",
-      "category": "Quality",
-      "message": "Margines lewy ma 70,9 pt, a wymagane jest 36 pt.",
-      "standard": "firmowy/2.0",
-      "fixable": true
-    },
-    {
-      "code": "INVALID_MARGINS",
-      "label": "Marginesy inne niż wymagane",
-      "severity": "Warning",
-      "category": "Quality",
-      "message": "Margines prawy ma 70,9 pt, a wymagane jest 36 pt.",
-      "standard": "firmowy/2.0",
-      "fixable": true
     },
     {
       "code": "TEXT_COLOR_NOT_ALLOWED",
@@ -1080,35 +1085,35 @@
         {
           "id": "g01",
           "name": "G-01 A4 210 × 297 mm, marginesy 12,7 mm",
-          "status": "Warning",
+          "status": "Error",
           "details": [
             {
               "code": "INVALID_MARGINS",
               "label": "Marginesy inne niż wymagane",
               "message": "Margines górny ma 70,9 pt, a wymagane jest 36 pt.",
               "occurrences": 1,
-              "severity": "Warning"
+              "severity": "Error"
             },
             {
               "code": "INVALID_MARGINS",
               "label": "Marginesy inne niż wymagane",
               "message": "Margines dolny ma 70,9 pt, a wymagane jest 36 pt.",
               "occurrences": 1,
-              "severity": "Warning"
+              "severity": "Error"
             },
             {
               "code": "INVALID_MARGINS",
               "label": "Marginesy inne niż wymagane",
               "message": "Margines lewy ma 70,9 pt, a wymagane jest 36 pt.",
               "occurrences": 1,
-              "severity": "Warning"
+              "severity": "Error"
             },
             {
               "code": "INVALID_MARGINS",
               "label": "Marginesy inne niż wymagane",
               "message": "Margines prawy ma 70,9 pt, a wymagane jest 36 pt.",
               "occurrences": 1,
-              "severity": "Warning"
+              "severity": "Error"
             }
           ],
           "note": null
@@ -1225,7 +1230,7 @@
         },
         {
           "id": "g05",
-          "name": "G-05 Odstępy H1: 42,5 pt nad, 34 pt pod",
+          "name": "G-05 Odstępy H1: 42,5 pt nad, 34 pt pod; układ dokumentu",
           "status": "Passed",
           "details": [],
           "note": null
@@ -1369,24 +1374,31 @@
       "rows": [
         {
           "id": "g11",
-          "name": "G-11 Stopka SUN Me 8 pt #696969 interlinia 1,2, numer i tytuł, bez stopki na stronie tytułowej",
+          "name": "G-11 Stopka SUN Me 8 pt #696969 interlinia 1,2, numer i tytuł („Strona: X z Y. Tytuł”), bez stopki na stronie tytułowej",
           "status": "Error",
           "details": [
+            {
+              "code": "FOOTER_TITLE_MISSING",
+              "label": "Stopka bez tytułu dokumentu",
+              "message": "Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”.",
+              "occurrences": 1,
+              "severity": "Error"
+            },
             {
               "code": "FOOTER_STYLE_MISMATCH",
               "label": "Stopka niezgodna ze stylem",
               "message": "2 fragmenty stopki mają styl inny niż SUN Me 8 pt #696969.",
               "occurrences": 2,
               "severity": "Error"
-            },
-            {
-              "code": "FOOTER_TITLE_MISSING",
-              "label": "Stopka bez tytułu dokumentu",
-              "message": "Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”.",
-              "occurrences": 1,
-              "severity": "Warning"
             }
           ],
+          "note": null
+        },
+        {
+          "id": "registration",
+          "name": "Dane rejestrowe SUN Me 8 pt #696969, interlinia 1,5",
+          "status": "Passed",
+          "details": [],
           "note": null
         },
         {
@@ -1472,7 +1484,7 @@
           "name": "Wariant układu (dane rejestrowe, strona tytułowa, pole adresowe)",
           "status": "ManualReview",
           "details": [],
-          "note": "Dane rejestrowe SUN Me 8 pt #696969 interlinia 1,5; strona tytułowa bez stopki; pole adresowe najlepiej puste."
+          "note": "Dobór układu do rodzaju pisma i położenie danych rejestrowych na stronie ocenić na wydruku; pole adresowe najlepiej puste. Format danych rejestrowych i reguły wybranego układu są sprawdzane automatycznie."
         },
         {
           "id": "manual-signatures",
@@ -1994,6 +2006,30 @@
     },
     {
       "index": 22,
+      "code": "FOOTER_TITLE_MISSING",
+      "label": "Stopka bez tytułu dokumentu",
+      "severity": "Error",
+      "category": "Structure",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”.",
+      "fixable": false,
+      "criteria": [],
+      "location": {
+        "key": "footer/0:Paragraph:0",
+        "kind": "Paragraph",
+        "story": "footer/0",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "(stopka)"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE"
+    },
+    {
+      "index": 23,
       "code": "AUTHOR_NOT_INSTITUTION",
       "label": "Autor inny niż nazwa banku",
       "severity": "Error",
@@ -2015,7 +2051,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 23,
+      "index": 24,
       "code": "TITLE_MISSING",
       "label": "Brak tytułu dokumentu",
       "severity": "Error",
@@ -2039,7 +2075,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 24,
+      "index": 25,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Error",
@@ -2061,7 +2097,7 @@
       "occurrenceCount": 4
     },
     {
-      "index": 25,
+      "index": 26,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Error",
@@ -2083,7 +2119,7 @@
       "occurrenceCount": 4
     },
     {
-      "index": 26,
+      "index": 27,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Error",
@@ -2105,7 +2141,7 @@
       "occurrenceCount": 4
     },
     {
-      "index": 27,
+      "index": 28,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Error",
@@ -2127,7 +2163,7 @@
       "occurrenceCount": 4
     },
     {
-      "index": 28,
+      "index": 29,
       "code": "FONT_FAMILY_MISMATCH",
       "label": "Niedozwolona rodzina czcionki",
       "severity": "Error",
@@ -2149,7 +2185,7 @@
       "occurrenceCount": 18
     },
     {
-      "index": 29,
+      "index": 30,
       "code": "FONT_FAMILY_MISMATCH",
       "label": "Niedozwolona rodzina czcionki",
       "severity": "Error",
@@ -2171,7 +2207,7 @@
       "occurrenceCount": 18
     },
     {
-      "index": 30,
+      "index": 31,
       "code": "FONT_FAMILY_MISMATCH",
       "label": "Niedozwolona rodzina czcionki",
       "severity": "Error",
@@ -2193,7 +2229,7 @@
       "occurrenceCount": 18
     },
     {
-      "index": 31,
+      "index": 32,
       "code": "FONT_FAMILY_MISMATCH",
       "label": "Niedozwolona rodzina czcionki",
       "severity": "Error",
@@ -2215,7 +2251,7 @@
       "occurrenceCount": 18
     },
     {
-      "index": 32,
+      "index": 33,
       "code": "FONT_FAMILY_MISMATCH",
       "label": "Niedozwolona rodzina czcionki",
       "severity": "Error",
@@ -2237,7 +2273,7 @@
       "occurrenceCount": 18
     },
     {
-      "index": 33,
+      "index": 34,
       "code": "FONT_FAMILY_MISMATCH",
       "label": "Niedozwolona rodzina czcionki",
       "severity": "Error",
@@ -2259,7 +2295,7 @@
       "occurrenceCount": 18
     },
     {
-      "index": 34,
+      "index": 35,
       "code": "FONT_FAMILY_MISMATCH",
       "label": "Niedozwolona rodzina czcionki",
       "severity": "Error",
@@ -2281,7 +2317,7 @@
       "occurrenceCount": 18
     },
     {
-      "index": 35,
+      "index": 36,
       "code": "FONT_FAMILY_MISMATCH",
       "label": "Niedozwolona rodzina czcionki",
       "severity": "Error",
@@ -2303,7 +2339,7 @@
       "occurrenceCount": 18
     },
     {
-      "index": 36,
+      "index": 37,
       "code": "FONT_FAMILY_MISMATCH",
       "label": "Niedozwolona rodzina czcionki",
       "severity": "Error",
@@ -2325,7 +2361,7 @@
       "occurrenceCount": 18
     },
     {
-      "index": 37,
+      "index": 38,
       "code": "FONT_FAMILY_MISMATCH",
       "label": "Niedozwolona rodzina czcionki",
       "severity": "Error",
@@ -2347,7 +2383,7 @@
       "occurrenceCount": 18
     },
     {
-      "index": 38,
+      "index": 39,
       "code": "FONT_FAMILY_MISMATCH",
       "label": "Niedozwolona rodzina czcionki",
       "severity": "Error",
@@ -2369,7 +2405,7 @@
       "occurrenceCount": 18
     },
     {
-      "index": 39,
+      "index": 40,
       "code": "FONT_FAMILY_MISMATCH",
       "label": "Niedozwolona rodzina czcionki",
       "severity": "Error",
@@ -2391,7 +2427,7 @@
       "occurrenceCount": 18
     },
     {
-      "index": 40,
+      "index": 41,
       "code": "FONT_FAMILY_MISMATCH",
       "label": "Niedozwolona rodzina czcionki",
       "severity": "Error",
@@ -2413,7 +2449,7 @@
       "occurrenceCount": 18
     },
     {
-      "index": 41,
+      "index": 42,
       "code": "FONT_FAMILY_MISMATCH",
       "label": "Niedozwolona rodzina czcionki",
       "severity": "Error",
@@ -2435,7 +2471,7 @@
       "occurrenceCount": 18
     },
     {
-      "index": 42,
+      "index": 43,
       "code": "FONT_FAMILY_MISMATCH",
       "label": "Niedozwolona rodzina czcionki",
       "severity": "Error",
@@ -2457,7 +2493,7 @@
       "occurrenceCount": 18
     },
     {
-      "index": 43,
+      "index": 44,
       "code": "FONT_FAMILY_MISMATCH",
       "label": "Niedozwolona rodzina czcionki",
       "severity": "Error",
@@ -2479,7 +2515,7 @@
       "occurrenceCount": 18
     },
     {
-      "index": 44,
+      "index": 45,
       "code": "FONT_FAMILY_MISMATCH",
       "label": "Niedozwolona rodzina czcionki",
       "severity": "Error",
@@ -2501,7 +2537,7 @@
       "occurrenceCount": 18
     },
     {
-      "index": 45,
+      "index": 46,
       "code": "FONT_FAMILY_MISMATCH",
       "label": "Niedozwolona rodzina czcionki",
       "severity": "Error",
@@ -2523,7 +2559,7 @@
       "occurrenceCount": 18
     },
     {
-      "index": 46,
+      "index": 47,
       "code": "FOOTER_STYLE_MISMATCH",
       "label": "Stopka niezgodna ze stylem",
       "severity": "Error",
@@ -2539,13 +2575,13 @@
         "story": "footer/0",
         "index": 0,
         "subIndex": 1,
-        "snippet": "PAGE \\* MERGEFORMAT (12 pt, #000000)"
+        "snippet": "PAGE \\* MERGEFORMAT (Calibri, 12 pt, #000000)"
       },
       "occurrence": 1,
       "occurrenceCount": 2
     },
     {
-      "index": 47,
+      "index": 48,
       "code": "FOOTER_STYLE_MISMATCH",
       "label": "Stopka niezgodna ze stylem",
       "severity": "Error",
@@ -2561,13 +2597,109 @@
         "story": "footer/0",
         "index": 0,
         "subIndex": 3,
-        "snippet": "2 (12 pt, #000000)"
+        "snippet": "2 (Calibri, 12 pt, #000000)"
       },
       "occurrence": 2,
       "occurrenceCount": 2
     },
     {
-      "index": 48,
+      "index": 49,
+      "code": "INVALID_MARGINS",
+      "label": "Marginesy inne niż wymagane",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Margines górny ma 70,9 pt, a wymagane jest 36 pt.",
+      "fixable": true,
+      "criteria": [],
+      "location": {
+        "key": "body:Document:0",
+        "kind": "Document",
+        "story": "body",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "(ustawienia strony)"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE"
+    },
+    {
+      "index": 50,
+      "code": "INVALID_MARGINS",
+      "label": "Marginesy inne niż wymagane",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Margines dolny ma 70,9 pt, a wymagane jest 36 pt.",
+      "fixable": true,
+      "criteria": [],
+      "location": {
+        "key": "body:Document:0",
+        "kind": "Document",
+        "story": "body",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "(ustawienia strony)"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE"
+    },
+    {
+      "index": 51,
+      "code": "INVALID_MARGINS",
+      "label": "Marginesy inne niż wymagane",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Margines lewy ma 70,9 pt, a wymagane jest 36 pt.",
+      "fixable": true,
+      "criteria": [],
+      "location": {
+        "key": "body:Document:0",
+        "kind": "Document",
+        "story": "body",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "(ustawienia strony)"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE"
+    },
+    {
+      "index": 52,
+      "code": "INVALID_MARGINS",
+      "label": "Marginesy inne niż wymagane",
+      "severity": "Error",
+      "category": "Quality",
+      "standard": "firmowy/2.0",
+      "standardName": "Standard pism firmowych 2.0",
+      "message": "Margines prawy ma 70,9 pt, a wymagane jest 36 pt.",
+      "fixable": true,
+      "criteria": [],
+      "location": {
+        "key": "body:Document:0",
+        "kind": "Document",
+        "story": "body",
+        "index": 0,
+        "subIndex": null,
+        "snippet": "(ustawienia strony)"
+      },
+      "occurrence": 1,
+      "occurrenceCount": 1,
+      "status": "Required",
+      "statusLabel": "WYMAGANE"
+    },
+    {
+      "index": 53,
       "code": "LINE_SPACING_MISMATCH",
       "label": "Interlinia inna niż 1,2",
       "severity": "Error",
@@ -2589,7 +2721,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 49,
+      "index": 54,
       "code": "LINE_SPACING_MISMATCH",
       "label": "Interlinia inna niż 1,2",
       "severity": "Error",
@@ -2611,7 +2743,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 50,
+      "index": 55,
       "code": "LINE_SPACING_MISMATCH",
       "label": "Interlinia inna niż 1,2",
       "severity": "Error",
@@ -2633,7 +2765,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 51,
+      "index": 56,
       "code": "LINE_SPACING_MISMATCH",
       "label": "Interlinia inna niż 1,2",
       "severity": "Error",
@@ -2655,7 +2787,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 52,
+      "index": 57,
       "code": "LINE_SPACING_MISMATCH",
       "label": "Interlinia inna niż 1,2",
       "severity": "Error",
@@ -2677,7 +2809,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 53,
+      "index": 58,
       "code": "LINE_SPACING_MISMATCH",
       "label": "Interlinia inna niż 1,2",
       "severity": "Error",
@@ -2699,7 +2831,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 54,
+      "index": 59,
       "code": "LINE_SPACING_MISMATCH",
       "label": "Interlinia inna niż 1,2",
       "severity": "Error",
@@ -2721,7 +2853,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 55,
+      "index": 60,
       "code": "LINE_SPACING_MISMATCH",
       "label": "Interlinia inna niż 1,2",
       "severity": "Error",
@@ -2743,7 +2875,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 56,
+      "index": 61,
       "code": "LINE_SPACING_MISMATCH",
       "label": "Interlinia inna niż 1,2",
       "severity": "Error",
@@ -2765,7 +2897,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 57,
+      "index": 62,
       "code": "LINE_SPACING_MISMATCH",
       "label": "Interlinia inna niż 1,2",
       "severity": "Error",
@@ -2787,7 +2919,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 58,
+      "index": 63,
       "code": "LINE_SPACING_MISMATCH",
       "label": "Interlinia inna niż 1,2",
       "severity": "Error",
@@ -2809,7 +2941,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 59,
+      "index": 64,
       "code": "LINE_SPACING_MISMATCH",
       "label": "Interlinia inna niż 1,2",
       "severity": "Error",
@@ -2831,7 +2963,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 60,
+      "index": 65,
       "code": "LINE_SPACING_MISMATCH",
       "label": "Interlinia inna niż 1,2",
       "severity": "Error",
@@ -2853,7 +2985,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 61,
+      "index": 66,
       "code": "LINE_SPACING_MISMATCH",
       "label": "Interlinia inna niż 1,2",
       "severity": "Error",
@@ -2875,7 +3007,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 62,
+      "index": 67,
       "code": "BRAND_IMAGE_MISMATCH",
       "label": "Logo lub symbol niezgodny z guidebookiem",
       "severity": "Warning",
@@ -2897,7 +3029,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 63,
+      "index": 68,
       "code": "CONTENT_BEFORE_HEADING",
       "label": "Treść przed pierwszym nagłówkiem",
       "severity": "Warning",
@@ -2921,7 +3053,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 64,
+      "index": 69,
       "code": "FAKE_HEADING",
       "label": "Nagłówek zrobiony formatowaniem",
       "severity": "Warning",
@@ -2945,7 +3077,7 @@
       "occurrenceCount": 2
     },
     {
-      "index": 65,
+      "index": 70,
       "code": "FAKE_HEADING",
       "label": "Nagłówek zrobiony formatowaniem",
       "severity": "Warning",
@@ -2969,7 +3101,7 @@
       "occurrenceCount": 2
     },
     {
-      "index": 66,
+      "index": 71,
       "code": "TABLE_TITLE_MISSING",
       "label": "Tabela bez tytułu w tekście alternatywnym",
       "severity": "Warning",
@@ -2991,7 +3123,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 67,
+      "index": 72,
       "code": "REPEATED_BLANKS",
       "label": "Odstępy zrobione pustymi znakami",
       "severity": "Warning",
@@ -3015,29 +3147,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 68,
-      "code": "FOOTER_TITLE_MISSING",
-      "label": "Stopka bez tytułu dokumentu",
-      "severity": "Warning",
-      "category": "Structure",
-      "standard": "firmowy/2.0",
-      "standardName": "Standard pism firmowych 2.0",
-      "message": "Stopka zawiera sam numer strony; standard: numer i tytuł dokumentu, np. „Strona: 2 z 3. Tytuł dokumentu”.",
-      "fixable": false,
-      "criteria": [],
-      "location": {
-        "key": "footer/0:Paragraph:0",
-        "kind": "Paragraph",
-        "story": "footer/0",
-        "index": 0,
-        "subIndex": null,
-        "snippet": "(stopka)"
-      },
-      "occurrence": 1,
-      "occurrenceCount": 1
-    },
-    {
-      "index": 69,
+      "index": 73,
       "code": "UNCLEAR_READING_ORDER",
       "label": "Brak nagłówków w dokumencie",
       "severity": "Warning",
@@ -3061,7 +3171,7 @@
       "occurrenceCount": 1
     },
     {
-      "index": 70,
+      "index": 74,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Warning",
@@ -3083,7 +3193,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 71,
+      "index": 75,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Warning",
@@ -3105,7 +3215,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 72,
+      "index": 76,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Warning",
@@ -3127,7 +3237,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 73,
+      "index": 77,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Warning",
@@ -3149,7 +3259,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 74,
+      "index": 78,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Warning",
@@ -3171,7 +3281,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 75,
+      "index": 79,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Warning",
@@ -3193,7 +3303,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 76,
+      "index": 80,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Warning",
@@ -3215,7 +3325,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 77,
+      "index": 81,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Warning",
@@ -3237,7 +3347,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 78,
+      "index": 82,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Warning",
@@ -3259,7 +3369,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 79,
+      "index": 83,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Warning",
@@ -3281,7 +3391,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 80,
+      "index": 84,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Warning",
@@ -3303,7 +3413,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 81,
+      "index": 85,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Warning",
@@ -3325,7 +3435,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 82,
+      "index": 86,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Warning",
@@ -3347,7 +3457,7 @@
       "occurrenceCount": 14
     },
     {
-      "index": 83,
+      "index": 87,
       "code": "BODY_TEXT_SIZE_MISMATCH",
       "label": "Rozmiar tekstu podstawowego spoza standardu",
       "severity": "Warning",
@@ -3367,94 +3477,6 @@
       },
       "occurrence": 14,
       "occurrenceCount": 14
-    },
-    {
-      "index": 84,
-      "code": "INVALID_MARGINS",
-      "label": "Marginesy inne niż wymagane",
-      "severity": "Warning",
-      "category": "Quality",
-      "standard": "firmowy/2.0",
-      "standardName": "Standard pism firmowych 2.0",
-      "message": "Margines górny ma 70,9 pt, a wymagane jest 36 pt.",
-      "fixable": true,
-      "criteria": [],
-      "location": {
-        "key": "body:Document:0",
-        "kind": "Document",
-        "story": "body",
-        "index": 0,
-        "subIndex": null,
-        "snippet": "(ustawienia strony)"
-      },
-      "occurrence": 1,
-      "occurrenceCount": 1
-    },
-    {
-      "index": 85,
-      "code": "INVALID_MARGINS",
-      "label": "Marginesy inne niż wymagane",
-      "severity": "Warning",
-      "category": "Quality",
-      "standard": "firmowy/2.0",
-      "standardName": "Standard pism firmowych 2.0",
-      "message": "Margines dolny ma 70,9 pt, a wymagane jest 36 pt.",
-      "fixable": true,
-      "criteria": [],
-      "location": {
-        "key": "body:Document:0",
-        "kind": "Document",
-        "story": "body",
-        "index": 0,
-        "subIndex": null,
-        "snippet": "(ustawienia strony)"
-      },
-      "occurrence": 1,
-      "occurrenceCount": 1
-    },
-    {
-      "index": 86,
-      "code": "INVALID_MARGINS",
-      "label": "Marginesy inne niż wymagane",
-      "severity": "Warning",
-      "category": "Quality",
-      "standard": "firmowy/2.0",
-      "standardName": "Standard pism firmowych 2.0",
-      "message": "Margines lewy ma 70,9 pt, a wymagane jest 36 pt.",
-      "fixable": true,
-      "criteria": [],
-      "location": {
-        "key": "body:Document:0",
-        "kind": "Document",
-        "story": "body",
-        "index": 0,
-        "subIndex": null,
-        "snippet": "(ustawienia strony)"
-      },
-      "occurrence": 1,
-      "occurrenceCount": 1
-    },
-    {
-      "index": 87,
-      "code": "INVALID_MARGINS",
-      "label": "Marginesy inne niż wymagane",
-      "severity": "Warning",
-      "category": "Quality",
-      "standard": "firmowy/2.0",
-      "standardName": "Standard pism firmowych 2.0",
-      "message": "Margines prawy ma 70,9 pt, a wymagane jest 36 pt.",
-      "fixable": true,
-      "criteria": [],
-      "location": {
-        "key": "body:Document:0",
-        "kind": "Document",
-        "story": "body",
-        "index": 0,
-        "subIndex": null,
-        "snippet": "(ustawienia strony)"
-      },
-      "occurrence": 1,
-      "occurrenceCount": 1
     },
     {
       "index": 88,

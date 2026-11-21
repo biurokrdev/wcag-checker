@@ -1,6 +1,6 @@
 {
   "outcome": "Invalid",
-  "summary": "4 błędy, 3 ostrzeżenia, 1 informacja.",
+  "summary": "3 błędy, 5 ostrzeżeń, 1 informacja.",
   "standards": [
     {
       "key": "wcag/2.1",
@@ -56,56 +56,6 @@
       ]
     },
     {
-      "code": "TABLE_ALIGNMENT_MISMATCH",
-      "severity": "Error",
-      "category": "Tables",
-      "standard": "firmowy/2.0",
-      "message": "Tabela 1: 6 komórek nie jest wyrównanych do lewej i do środka w pionie.",
-      "locations": [
-        {
-          "key": "body:TableCell:0:0",
-          "snippet": "Etap"
-        },
-        {
-          "key": "body:TableCell:0:1",
-          "snippet": "Termin"
-        },
-        {
-          "key": "body:TableCell:0:2",
-          "snippet": "Złożenie wniosku"
-        },
-        {
-          "key": "body:TableCell:0:3",
-          "snippet": "do 30 dni"
-        },
-        {
-          "key": "body:TableCell:0:4",
-          "snippet": "Decyzja"
-        },
-        {
-          "key": "body:TableCell:0:5",
-          "snippet": "do 14 dni"
-        }
-      ]
-    },
-    {
-      "code": "TABLE_HEADER_NOT_BOLD",
-      "severity": "Error",
-      "category": "Tables",
-      "standard": "firmowy/2.0",
-      "message": "Tabela 1: 2 komórki nagłówka nie są pogrubione.",
-      "locations": [
-        {
-          "key": "body:TableCell:0:0",
-          "snippet": "Etap"
-        },
-        {
-          "key": "body:TableCell:0:1",
-          "snippet": "Termin"
-        }
-      ]
-    },
-    {
       "code": "TEXT_LOW_CONTRAST",
       "severity": "Error",
       "category": "Text",
@@ -119,6 +69,23 @@
       ]
     },
     {
+      "code": "F20-FOOTER-PAGE-NUMBER-MISSING",
+      "severity": "Error",
+      "category": "Structure",
+      "standard": "firmowy/2.0",
+      "message": "Brak pola numeru strony (PAGE) w treści stopki (sekcja 1, strona: pierwsza); numer ma wstawiać pole, a nie tekst wpisany z klawiatury.",
+      "locations": [
+        {
+          "key": "footer/1:Paragraph:0",
+          "snippet": "Stopka pierwszej strony"
+        }
+      ],
+      "status": "Required",
+      "title": "Brak pola numeru strony w stopce",
+      "fix": "1. Kliknij dwukrotnie stopkę. 2. Ustaw kursor w miejscu numeru i wybierz Wstawianie → Szybkie części → Pole → Page (albo Nagłówek i stopka → Numer strony → Bieżąca pozycja → Zwykły numer). 3. Numer wpisany z klawiatury usuń – ma go zastąpić pole. 4. Docelowa postać stopki: „Strona: X z Y. Tytuł dokumentu”.",
+      "scope": "HeaderFooter"
+    },
+    {
       "code": "COMMENTS_PRESENT",
       "severity": "Warning",
       "category": "Document",
@@ -130,6 +97,40 @@
           "snippet": "(komentarz)"
         }
       ]
+    },
+    {
+      "code": "F20-FOOTER-FORMAT",
+      "severity": "Warning",
+      "category": "Structure",
+      "standard": "firmowy/2.0",
+      "message": "Stopka ma postać „Stopka stron parzystych: X” (X = pole PAGE, Y = pole NUMPAGES); standard: „Strona: X z Y. Tytuł dokumentu”.",
+      "locations": [
+        {
+          "key": "footer/2:Paragraph:0",
+          "snippet": "Stopka stron parzystych: 2"
+        }
+      ],
+      "status": "Recommended",
+      "title": "Stopka w innej postaci niż „Strona: X z Y. Tytuł”",
+      "fix": "1. Kliknij dwukrotnie stopkę. 2. Ułóż treść w jednym akapicie: „Strona: ”, pole Page, „ z ”, pole NumPages, „. ” i tytuł dokumentu, np. „Strona: 2 z 3. Regulamin promocji”. 3. Pola wstawia się przez Wstawianie → Szybkie części → Pole (Page i NumPages).",
+      "scope": "HeaderFooter"
+    },
+    {
+      "code": "F20-FOOTER-FORMAT",
+      "severity": "Warning",
+      "category": "Structure",
+      "standard": "firmowy/2.0",
+      "message": "Stopka ma postać „Sekcja 2. Strona: X. Przypadki brzegowe” (X = pole PAGE, Y = pole NUMPAGES); standard: „Strona: X z Y. Tytuł dokumentu”.",
+      "locations": [
+        {
+          "key": "footer/3:Paragraph:0",
+          "snippet": "Sekcja 2. Strona: 3. Przypadki brzegowe"
+        }
+      ],
+      "status": "Recommended",
+      "title": "Stopka w innej postaci niż „Strona: X z Y. Tytuł”",
+      "fix": "1. Kliknij dwukrotnie stopkę. 2. Ułóż treść w jednym akapicie: „Strona: ”, pole Page, „ z ”, pole NumPages, „. ” i tytuł dokumentu, np. „Strona: 2 z 3. Regulamin promocji”. 3. Pola wstawia się przez Wstawianie → Szybkie części → Pole (Page i NumPages).",
+      "scope": "HeaderFooter"
     },
     {
       "code": "FLOATING_ELEMENTS_PRESENT",

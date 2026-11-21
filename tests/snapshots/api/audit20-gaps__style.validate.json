@@ -14,11 +14,11 @@
   "document": {
     "fileName": "audit20-gaps.docx",
     "title": null,
-    "author": "Example Company S. A.",
+    "author": null,
     "language": "pl-PL",
-    "paragraphs": 23,
-    "headings": 4,
-    "tables": 1,
+    "paragraphs": 54,
+    "headings": 7,
+    "tables": 3,
     "images": 0
   },
   "counts": {
@@ -43,6 +43,18 @@
     {
       "level": 2,
       "text": "Dane rejestrowe"
+    },
+    {
+      "level": 2,
+      "text": "Stopka i format strony"
+    },
+    {
+      "level": 2,
+      "text": "Stopka w innej postaci"
+    },
+    {
+      "level": 2,
+      "text": "Stopka wzorcowa"
     }
   ],
   "wcag": null,

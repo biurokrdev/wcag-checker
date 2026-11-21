@@ -11,11 +11,10 @@
     }
   ],
   "document": {
-    "author": "Example Company S. A.",
     "language": "pl-PL",
-    "paragraphs": 23,
-    "headings": 4,
-    "tables": 1,
+    "paragraphs": 54,
+    "headings": 7,
+    "tables": 3,
     "images": 0
   },
   "outline": [
@@ -34,6 +33,18 @@
     {
       "level": 2,
       "text": "Dane rejestrowe"
+    },
+    {
+      "level": 2,
+      "text": "Stopka i format strony"
+    },
+    {
+      "level": 2,
+      "text": "Stopka w innej postaci"
+    },
+    {
+      "level": 2,
+      "text": "Stopka wzorcowa"
     }
   ],
   "issues": [
@@ -58,21 +69,21 @@
       "message": "Nagłówek „Listy z nadpisaniami” ma poziom 3 zaraz po poziomie 1; pominięto poziom 2.",
       "locations": [
         {
-          "key": "body:Paragraph:5",
+          "key": "body:Paragraph:7",
           "snippet": "Listy z nadpisaniami"
         }
       ]
     },
     {
-      "code": "PAGE_NUMBERS_MISSING",
+      "code": "AUTHOR_MISSING",
       "severity": "Warning",
-      "category": "Structure",
+      "category": "Metadata",
       "standard": "wcag/2.1",
-      "message": "Ani stopka, ani nagłówek strony nie zawiera numeru strony (pole PAGE).",
+      "message": "Dokument nie ma autora w metadanych.",
       "locations": [
         {
           "key": "body:Document:0",
-          "snippet": "(stopka)"
+          "snippet": "(metadane dokumentu)"
         }
       ]
     },

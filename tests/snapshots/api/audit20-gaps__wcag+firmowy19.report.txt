@@ -4,20 +4,20 @@ Język: pl-PL
 Obrazy: 0
 
 Raport walidacji dokumentu „audit20-gaps.docx”
-Wynik: niepoprawny. 1 błąd, 7 ostrzeżeń, 1 informacja.
+Wynik: niepoprawny. 1 błąd, 6 ostrzeżeń, 1 informacja.
 Data sprawdzenia: <data>. Standardy: WCAG 2.1 AA (dokument Word); Standard pism firmowych 1.9.
-Dokument: tytuł „brak”, autor „Example Company S. A.”, język pl-PL, 23 akapitów, 4 nagłówków, 1 tabel, 0 obrazów.
+Dokument: tytuł „brak”, autor „brak”, język pl-PL, 54 akapitów, 7 nagłówków, 3 tabel, 0 obrazów.
 Podsumowanie kontroli
 WCAG 2.1 AA (dokument Word)
 Sekcja „Dokument”
 | Status | Kontrola | Szczegóły |
 | Zatwierdzono | Poprawność pliku DOCX | – |
 | Błąd | Tytuł dokumentu w metadanych | Brak tytułu dokumentu: Dokument nie ma tytułu w metadanych (Plik → Informacje → Tytuł). |
-| Zatwierdzono | Autor w metadanych | – |
+| Ostrzeżenie | Autor w metadanych | Brak autora dokumentu: Dokument nie ma autora w metadanych. |
 | Zatwierdzono | Język dokumentu | – |
 | Zatwierdzono | Wersja ostateczna (bez zmian śledzonych i komentarzy) | – |
 | Zatwierdzono | Sekcje i ustawienia strony | – |
-| Ostrzeżenie | Numer strony w stopce albo nagłówku | Brak numeru strony: Ani stopka, ani nagłówek strony nie zawiera numeru strony (pole PAGE). |
+| Zatwierdzono | Numer strony w stopce albo nagłówku | – |
 | Zatwierdzono | Spis treści w długim dokumencie | – |
 Sekcja „Struktura”
 | Status | Kontrola | Szczegóły |
@@ -63,7 +63,7 @@ Sekcja „Inne”
 Standard pism firmowych 1.9
 Sekcja „Standard pism firmowych 1.9”
 | Status | Kontrola | Szczegóły |
-| Ostrzeżenie | Fraza „SUN Example Company S. A.” w tytule i autorze | Autor bez wymaganej nazwy instytucji: Autor „Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”. |
+| Zatwierdzono | Fraza „SUN Example Company S. A.” w tytule i autorze | – |
 | Ostrzeżenie | Marginesy 36 pt | Marginesy inne niż wymagane: Margines górny ma 70,9 pt, a wymagane jest 36 pt. ⏎ Marginesy inne niż wymagane: Margines dolny ma 70,9 pt, a wymagane jest 36 pt. ⏎ Marginesy inne niż wymagane: Margines lewy ma 70,9 pt, a wymagane jest 36 pt. ⏎ Marginesy inne niż wymagane: Margines prawy ma 70,9 pt, a wymagane jest 36 pt. |
 Kryteria WCAG 2.1
 2 kryteria spełnione, 1 niespełnione, 15 do przeglądu ręcznego.
@@ -80,7 +80,7 @@ Tabela stanu kryteriów WCAG 2.1
 | 1.4.10 Dopasowanie do ekranu | AA | ręcznie | do przeglądu | Nie dotyczy dokumentu Word wprost; tabele i pola tekstowe o stałej szerokości ogląda człowiek. |
 | 2.4.2 Tytuł strony | A | automatycznie | niespełnione | Brak tytułu dokumentu: Dokument nie ma tytułu w metadanych (Plik → Informacje → Tytuł). |
 | 2.4.4 Cel łącza (w kontekście) | A | częściowo | do przeglądu | Automat wykrywa łącza bez celu, bez tekstu, z samym adresem, z tekstem w rodzaju „tutaj” i ten sam tekst prowadzący do różnych miejsc. Czy tekst łącza opisuje cel, ocenia człowiek. |
-| 2.4.5 Wiele dróg | AA | częściowo | do przeglądu | Brak numeru strony: Ani stopka, ani nagłówek strony nie zawiera numeru strony (pole PAGE). |
+| 2.4.5 Wiele dróg | AA | częściowo | do przeglądu | Spis treści w długim dokumencie i numery stron. |
 | 2.4.6 Nagłówki i etykiety | AA | częściowo | do przeglądu | Nagłówki istnieją, nie są puste ani nadmiernie długie; pola formularza mają etykiety. Czy opisują treść, ocenia człowiek. |
 | 3.1.1 Język strony | A | automatycznie | spełnione | Język dokumentu ustawiony (właściwości pakietu albo domyślne ustawienia stylów) i zapisany jako kod języka. |
 | 3.1.2 Język części | AA | ręcznie | do przeglądu | Fragmenty w innym języku powinny mieć oznaczony język (w:lang); automat nie rozpozna języka tekstu. |
@@ -88,17 +88,16 @@ Tabela stanu kryteriów WCAG 2.1
 | 4.1.1 Poprawność kodu | A | automatycznie | spełnione | Pakiet DOCX otwiera się i ma część główną. |
 | 4.1.2 Nazwa, rola, wartość | A | częściowo | do przeglądu | Formanty mają nazwę (etykietę albo tytuł); rola i wartość wynikają z typu formantu w Wordzie. |
 Wyniki walidacji
-9 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
+8 wystąpień, w tym 0 oznaczonych jako zweryfikowane.
 Tabela wystąpień
 | Nr | Waga | Zgłoszenie | Standard | Miejsce | Komunikat | Zweryfikowano |
 | 1 | błąd | Brak tytułu dokumentu | WCAG 2.1 AA (dokument Word) | dokument: „(metadane dokumentu)” | Dokument nie ma tytułu w metadanych (Plik → Informacje → Tytuł). | nie |
 | 2 | ostrzeżenie | Pominięty poziom nagłówka | WCAG 2.1 AA (dokument Word) | akapit: „Listy z nadpisaniami” | Nagłówek „Listy z nadpisaniami” ma poziom 3 zaraz po poziomie 1; pominięto poziom 2. | nie |
-| 3 | ostrzeżenie | Brak numeru strony | WCAG 2.1 AA (dokument Word) | dokument: „(stopka)” | Ani stopka, ani nagłówek strony nie zawiera numeru strony (pole PAGE). | nie |
-| 4 | ostrzeżenie | Autor bez wymaganej nazwy instytucji | Standard pism firmowych 1.9 | dokument: „(metadane dokumentu)” | Autor „Example Company S. A.” nie zawiera wymaganej frazy „SUN Example Company S. A.”. | nie |
-| 5 | ostrzeżenie | Marginesy inne niż wymagane | Standard pism firmowych 1.9 | dokument: „(ustawienia strony)” | Margines górny ma 70,9 pt, a wymagane jest 36 pt. | nie |
-| 6 | ostrzeżenie | Marginesy inne niż wymagane | Standard pism firmowych 1.9 | dokument: „(ustawienia strony)” | Margines dolny ma 70,9 pt, a wymagane jest 36 pt. | nie |
-| 7 | ostrzeżenie | Marginesy inne niż wymagane | Standard pism firmowych 1.9 | dokument: „(ustawienia strony)” | Margines lewy ma 70,9 pt, a wymagane jest 36 pt. | nie |
-| 8 | ostrzeżenie | Marginesy inne niż wymagane | Standard pism firmowych 1.9 | dokument: „(ustawienia strony)” | Margines prawy ma 70,9 pt, a wymagane jest 36 pt. | nie |
-| 9 | informacja | Zalecane sprawdzenie ręczne | WCAG 2.1 AA (dokument Word) | dokument: „” | Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie. | nie |
+| 3 | ostrzeżenie | Brak autora dokumentu | WCAG 2.1 AA (dokument Word) | dokument: „(metadane dokumentu)” | Dokument nie ma autora w metadanych. | nie |
+| 4 | ostrzeżenie | Marginesy inne niż wymagane | Standard pism firmowych 1.9 | dokument: „(ustawienia strony)” | Margines górny ma 70,9 pt, a wymagane jest 36 pt. | nie |
+| 5 | ostrzeżenie | Marginesy inne niż wymagane | Standard pism firmowych 1.9 | dokument: „(ustawienia strony)” | Margines dolny ma 70,9 pt, a wymagane jest 36 pt. | nie |
+| 6 | ostrzeżenie | Marginesy inne niż wymagane | Standard pism firmowych 1.9 | dokument: „(ustawienia strony)” | Margines lewy ma 70,9 pt, a wymagane jest 36 pt. | nie |
+| 7 | ostrzeżenie | Marginesy inne niż wymagane | Standard pism firmowych 1.9 | dokument: „(ustawienia strony)” | Margines prawy ma 70,9 pt, a wymagane jest 36 pt. | nie |
+| 8 | informacja | Zalecane sprawdzenie ręczne | WCAG 2.1 AA (dokument Word) | dokument: „” | Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie. | nie |
 
-PDF: %PDF-, strony: 7
+PDF: %PDF-, strony: 6

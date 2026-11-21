@@ -6,18 +6,18 @@ Obrazy: 0
 Raport walidacji dokumentu „audit20-gaps.docx”
 Wynik: niepoprawny. 1 błąd, 2 ostrzeżenia, 1 informacja.
 Data sprawdzenia: <data>. Standardy: WCAG 2.1 AA (dokument Word).
-Dokument: tytuł „brak”, autor „Example Company S. A.”, język pl-PL, 23 akapitów, 4 nagłówków, 1 tabel, 0 obrazów.
+Dokument: tytuł „brak”, autor „brak”, język pl-PL, 54 akapitów, 7 nagłówków, 3 tabel, 0 obrazów.
 Podsumowanie kontroli
 WCAG 2.1 AA (dokument Word)
 Sekcja „Dokument”
 | Status | Kontrola | Szczegóły |
 | Zatwierdzono | Poprawność pliku DOCX | – |
 | Błąd | Tytuł dokumentu w metadanych | Brak tytułu dokumentu: Dokument nie ma tytułu w metadanych (Plik → Informacje → Tytuł). |
-| Zatwierdzono | Autor w metadanych | – |
+| Ostrzeżenie | Autor w metadanych | Brak autora dokumentu: Dokument nie ma autora w metadanych. |
 | Zatwierdzono | Język dokumentu | – |
 | Zatwierdzono | Wersja ostateczna (bez zmian śledzonych i komentarzy) | – |
 | Zatwierdzono | Sekcje i ustawienia strony | – |
-| Ostrzeżenie | Numer strony w stopce albo nagłówku | Brak numeru strony: Ani stopka, ani nagłówek strony nie zawiera numeru strony (pole PAGE). |
+| Zatwierdzono | Numer strony w stopce albo nagłówku | – |
 | Zatwierdzono | Spis treści w długim dokumencie | – |
 Sekcja „Struktura”
 | Status | Kontrola | Szczegóły |
@@ -75,7 +75,7 @@ Tabela stanu kryteriów WCAG 2.1
 | 1.4.10 Dopasowanie do ekranu | AA | ręcznie | do przeglądu | Nie dotyczy dokumentu Word wprost; tabele i pola tekstowe o stałej szerokości ogląda człowiek. |
 | 2.4.2 Tytuł strony | A | automatycznie | niespełnione | Brak tytułu dokumentu: Dokument nie ma tytułu w metadanych (Plik → Informacje → Tytuł). |
 | 2.4.4 Cel łącza (w kontekście) | A | częściowo | do przeglądu | Automat wykrywa łącza bez celu, bez tekstu, z samym adresem, z tekstem w rodzaju „tutaj” i ten sam tekst prowadzący do różnych miejsc. Czy tekst łącza opisuje cel, ocenia człowiek. |
-| 2.4.5 Wiele dróg | AA | częściowo | do przeglądu | Brak numeru strony: Ani stopka, ani nagłówek strony nie zawiera numeru strony (pole PAGE). |
+| 2.4.5 Wiele dróg | AA | częściowo | do przeglądu | Spis treści w długim dokumencie i numery stron. |
 | 2.4.6 Nagłówki i etykiety | AA | częściowo | do przeglądu | Nagłówki istnieją, nie są puste ani nadmiernie długie; pola formularza mają etykiety. Czy opisują treść, ocenia człowiek. |
 | 3.1.1 Język strony | A | automatycznie | spełnione | Język dokumentu ustawiony (właściwości pakietu albo domyślne ustawienia stylów) i zapisany jako kod języka. |
 | 3.1.2 Język części | AA | ręcznie | do przeglądu | Fragmenty w innym języku powinny mieć oznaczony język (w:lang); automat nie rozpozna języka tekstu. |
@@ -88,7 +88,7 @@ Tabela wystąpień
 | Nr | Waga | Zgłoszenie | Standard | Miejsce | Komunikat | Zweryfikowano |
 | 1 | błąd | Brak tytułu dokumentu | WCAG 2.1 AA (dokument Word) | dokument: „(metadane dokumentu)” | Dokument nie ma tytułu w metadanych (Plik → Informacje → Tytuł). | nie |
 | 2 | ostrzeżenie | Pominięty poziom nagłówka | WCAG 2.1 AA (dokument Word) | akapit: „Listy z nadpisaniami” | Nagłówek „Listy z nadpisaniami” ma poziom 3 zaraz po poziomie 1; pominięto poziom 2. | nie |
-| 3 | ostrzeżenie | Brak numeru strony | WCAG 2.1 AA (dokument Word) | dokument: „(stopka)” | Ani stopka, ani nagłówek strony nie zawiera numeru strony (pole PAGE). | nie |
+| 3 | ostrzeżenie | Brak autora dokumentu | WCAG 2.1 AA (dokument Word) | dokument: „(metadane dokumentu)” | Dokument nie ma autora w metadanych. | nie |
 | 4 | informacja | Zalecane sprawdzenie ręczne | WCAG 2.1 AA (dokument Word) | dokument: „” | Zalecane jest ręczne sprawdzenie dostępności w Wordzie (Recenzja → Sprawdź ułatwienia dostępu): treść tekstów alternatywnych, kontrast kolorów i zrozumiałość języka nie są oceniane automatycznie. | nie |
 
 PDF: %PDF-, strony: 6
