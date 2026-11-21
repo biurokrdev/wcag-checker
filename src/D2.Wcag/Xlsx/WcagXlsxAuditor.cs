@@ -112,7 +112,8 @@ public sealed class WcagXlsxAuditor : IWcagXlsxAuditor
 
         var pending = new List<(XlsxFinding Finding, int Weight)>();
         var manual = new List<XlsxManualCheck>();
-        var automatedCoverage = new Dictionary<string, SortedSet<string>>(StringComparer.Ordinal);
+        var automated = new Dictionary<string, List<XlsxRuleDescriptor>>(StringComparer.Ordinal);
+        var declared = new HashSet<string>(StringComparer.Ordinal);
 
         foreach (var rule in _rules)
         {
@@ -121,17 +122,20 @@ public sealed class WcagXlsxAuditor : IWcagXlsxAuditor
             foreach (var descriptor in rule.Descriptors)
             {
                 descriptors[descriptor.Code] = descriptor;
-                if (descriptor.CheckType != XlsxCheckType.Manual)
+                foreach (var reference in descriptor.Wcag.Where(r => r.Versions.Contains(version)))
                 {
-                    foreach (var reference in descriptor.Wcag.Where(r => r.Versions.Contains(version)))
+                    declared.Add(reference.Sc);
+                    if (descriptor.CheckType == XlsxCheckType.Manual)
                     {
-                        if (!automatedCoverage.TryGetValue(reference.Sc, out var codes))
-                        {
-                            automatedCoverage[reference.Sc] = codes = new SortedSet<string>(StringComparer.Ordinal);
-                        }
-
-                        codes.Add(descriptor.Code);
+                        continue;
                     }
+
+                    if (!automated.TryGetValue(reference.Sc, out var list))
+                    {
+                        automated[reference.Sc] = list = [];
+                    }
+
+                    list.Add(descriptor);
                 }
             }
 
@@ -203,7 +207,14 @@ public sealed class WcagXlsxAuditor : IWcagXlsxAuditor
 
         context.ThrowIfCancellationRequested();
         var findings = ApplyLimit(pending, profile.MaxFindingsPerRulePerSheet);
-        var criteria = XlsxCriteriaEvaluator.Evaluate(workbook, version, findings, manual, automatedCoverage);
+        var coverage = declared.ToDictionary(sc => sc, sc =>
+        {
+            var rules = automated.TryGetValue(sc, out var list)
+                ? list.OrderBy(d => d.Code, StringComparer.Ordinal).ToList()
+                : [];
+            return new XlsxCriterionCoverage { Automated = rules, Declared = true };
+        }, StringComparer.Ordinal);
+        var criteria = XlsxCriteriaEvaluator.Evaluate(workbook, version, findings, manual, coverage);
 
         var checklist = manual
             .Concat(criteria.FixedChecks)

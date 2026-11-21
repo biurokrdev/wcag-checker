@@ -10,11 +10,15 @@ namespace D2.Wcag.Xlsx.Criteria;
 /// </summary>
 public static class XlsxCriteriaEvaluator
 {
-    /// <summary>Macierz kryteriów i stałe pozycje checklisty (dla kryteriów, których nie obejmuje żadna reguła automatyczna).</summary>
-    /// <param name="automatedCoverage">Numer kryterium → kody zarejestrowanych reguł automatycznych i heurystycznych, które je sprawdzają.</param>
+    /// <summary>
+    /// Macierz kryteriów i stałe pozycje checklisty <c>manual-{sc}</c>. Stała pozycja powstaje dla kryterium, które wymaga oceny
+    /// ręcznej, nie jest pokryte żadną regułą automatyczną ani heurystyczną i dla którego reguły z jego zakresu
+    /// (<see cref="XlsxCriterionCoverage.Declared"/>) nie zwróciły własnych pozycji checklisty – wtedy pytanie zadają one.
+    /// </summary>
+    /// <param name="coverage">Numer kryterium → pokrycie przez zarejestrowane reguły; brak wpisu = żadna reguła nie dotyczy kryterium.</param>
     public static (IReadOnlyList<XlsxCriterionResult> Results, IReadOnlyList<XlsxManualCheck> FixedChecks) Evaluate(
         XlsxWorkbook workbook, string wcagVersion, IReadOnlyList<XlsxFinding> findings, IReadOnlyList<XlsxManualCheck> ruleChecks,
-        IReadOnlyDictionary<string, SortedSet<string>> automatedCoverage)
+        IReadOnlyDictionary<string, XlsxCriterionCoverage> coverage)
     {
         ArgumentNullException.ThrowIfNull(workbook);
         var results = new List<XlsxCriterionResult>();
@@ -24,8 +28,12 @@ public static class XlsxCriteriaEvaluator
         {
             var related = findings.Where(f => f.Wcag.Any(r => r.Sc == criterion.Sc)).ToList();
             var codes = related.Select(f => f.Code).Distinct(StringComparer.Ordinal).OrderBy(c => c, StringComparer.Ordinal).ToList();
-            var manualCount = ruleChecks.Count(c => c.Wcag.Any(r => r.Sc == criterion.Sc));
-            var covered = automatedCoverage.TryGetValue(criterion.Sc, out var ruleCodes) && ruleCodes.Count > 0;
+            // Pozycje są w checkliście deduplikowane po identyfikatorze – liczymy tak samo.
+            var manualCount = ruleChecks.Where(c => c.Wcag.Any(r => r.Sc == criterion.Sc)).Select(c => c.Id).Distinct(StringComparer.Ordinal).Count();
+            var scope = coverage.GetValueOrDefault(criterion.Sc) ?? new XlsxCriterionCoverage();
+            var covered = scope.Automated.Count > 0;
+            var ruleCodes = scope.Automated.Select(d => d.Code).ToList();
+            var ruleAsks = scope.Declared && manualCount > 0;
 
             XlsxCriterionStatus status;
             string reason;
@@ -45,7 +53,7 @@ public static class XlsxCriteriaEvaluator
             {
                 var review = related.Where(f => f.Severity is XlsxSeverity.Warning or XlsxSeverity.NeedsReview).Select(f => f.Code)
                     .Distinct(StringComparer.Ordinal).OrderBy(c => c, StringComparer.Ordinal).ToList();
-                if (!covered && criterion.Question is not null)
+                if (!covered && !ruleAsks && criterion.Question is not null)
                 {
                     fixedChecks.Add(new XlsxManualCheck
                     {
@@ -70,7 +78,7 @@ public static class XlsxCriteriaEvaluator
                 else
                 {
                     status = XlsxCriterionStatus.NoIssuesDetected;
-                    reason = $"Kontrole automatyczne nie wykryły problemów w zakresie: {string.Join(", ", ruleCodes!)}."
+                    reason = $"Kontrole automatyczne nie wykryły problemów w zakresie: {string.Join(", ", ruleCodes)}."
                         + (criterion.Question is null ? "" : " Do oceny ręcznej pozostaje: " + criterion.Question);
                 }
             }

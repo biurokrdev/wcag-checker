@@ -370,11 +370,29 @@ public class XlsxAuditorTests
         });
         Assert.Equal("Czy język jest poprawny?", result.ManualChecks.Single(c => c.Id == "T-LANG").Question);
 
-        // Kryterium 1.4.5 nie ma reguły automatycznej, więc pozycja stała z katalogu zostaje obok pozycji z reguły.
+        // Kryterium 1.4.5 należy do zakresu reguły (deskryptor ręczny) i reguła zadała pytania – pozycja stała z katalogu
+        // nie dubluje ich. Pytanie o 3.1.1 pochodzi od reguły, która 3.1.1 nie deklaruje, więc pozycja stała 3.1.1 zostaje.
         var forSc = result.ManualChecks.Where(c => c.Wcag.Any(r => r.Sc == "1.4.5")).Select(c => c.Id).ToList();
-        Assert.Equal(["manual-1.4.5", "T-IMG:0000|Drawing|0000002|00006|Logo|2", "T-IMG:0001|Drawing|0000001|00003|Ozdobnik|2"], forSc);
+        Assert.Equal(["T-IMG:0000|Drawing|0000002|00006|Logo|2", "T-IMG:0001|Drawing|0000001|00003|Ozdobnik|2"], forSc);
         var criterion = result.Criteria.Single(c => c.Sc == "1.4.5");
-        Assert.Equal((XlsxCriterionStatus.ManualReview, 3), (criterion.Status, criterion.ManualChecks));
+        Assert.Equal((XlsxCriterionStatus.ManualReview, 2), (criterion.Status, criterion.ManualChecks));
+        Assert.Contains(result.ManualChecks, c => c.Id == "manual-3.1.1");
+        Assert.Equal(2, result.Criteria.Single(c => c.Sc == "3.1.1").ManualChecks);
+    }
+
+    [Fact]
+    public void Checklist_RuleQuestionsForDeclaredCriterion_ReplaceFixedItem()
+    {
+        // Reguła ręczna deklaruje 1.4.5, ale w tym skoroszycie nic nie zgłosiła – pytanie stałe musi zostać.
+        var silent = new FakeRule([Descriptor("T-IMG", XlsxCheckType.Manual, "1.4.5")], (_, _) => []);
+        Assert.Contains(Audit(silent).ManualChecks, c => c.Id == "manual-1.4.5");
+
+        // Reguła zwraca pytanie dla kryterium, które deklaruje – pytanie stałe znika (bez względu na sposób zwrócenia pytania).
+        var asking = new FakeRule([Descriptor("T-IMG", XlsxCheckType.Manual, "1.4.5")], (_, _) => [],
+            (_, _) => [new XlsxManualCheck { Id = "manual-1.4.5:test", Wcag = [XlsxWcagCriteria.Ref("1.4.5")], Question = "Czy obrazy nie zawierają tekstu?" }]);
+        var result = Audit(asking);
+        Assert.Equal(["manual-1.4.5:test"], result.ManualChecks.Where(c => c.Wcag.Any(r => r.Sc == "1.4.5")).Select(c => c.Id));
+        Assert.Equal((XlsxCriterionStatus.ManualReview, 1), (result.Criteria.Single(c => c.Sc == "1.4.5").Status, result.Criteria.Single(c => c.Sc == "1.4.5").ManualChecks));
     }
 
     [Fact]

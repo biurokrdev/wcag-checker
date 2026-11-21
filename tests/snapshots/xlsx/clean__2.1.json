@@ -23,7 +23,7 @@
     "warnings": 0,
     "needsReview": 0,
     "info": 0,
-    "manualChecks": 18
+    "manualChecks": 17
   },
   "findings": [],
   "manualChecks": [
@@ -65,13 +65,6 @@
       "code": "XL-CONTRAST",
       "question": "Czy tekst na tle z obrazu, gradientu, wzoru lub w kolorach automatycznych, a także tekst w tabelach ze stylem tabeli, w kształtach i na wykresach, jest wyraźnie czytelny (kontrast co najmniej 4,5:1, dla dużego tekstu 3:1)?",
       "hint": "Narzędzie ocenia kontrast tylko z formatowania komórek; nie ocenia stylów tabel, obrazów tła arkusza (Układ strony → Tło) ani tekstu w obiektach. W tym skoroszycie: tabele ze stylem tabeli (wiersz nagłówka, pasy wierszy i kolumn, wiersz sumy) – zaznacz komórkę tabeli i sprawdź Projekt tabeli → Style tabeli; tekst w kształtach, polach tekstowych i na wykresach (tytuły, etykiety osi i danych, legenda) – zaznacz obiekt i sprawdź Formatuj kształt → Opcje tekstu → Wypełnienie tekstu oraz wypełnienie kształtu lub obszaru wykresu. Kolory oceń też w Recenzja → Sprawdź ułatwienia dostępu."
-    },
-    {
-      "id": "manual-1.4.5",
-      "wcag": [
-        "1.4.5"
-      ],
-      "question": "Czy obrazy nie zawierają tekstu, który można było zapisać jako tekst w komórce lub kształcie (z wyjątkiem logotypów)?"
     },
     {
       "id": "XL-TEXT-IN-IMAGE:0000|Drawing|0000002|00006|Logo|2",
@@ -284,7 +277,7 @@
       "level": "AA",
       "status": "ManualReview",
       "reason": "Kryterium wymaga oceny ręcznej – nie zostało ocenione przez narzędzie. Dotyczy, gdy skoroszyt zawiera obrazy. WCAG2ICT: stosuje się wprost. Wyjątki: prezentacja istotna (logotypy), obraz dostosowywalny.",
-      "manualChecks": 2
+      "manualChecks": 1
     },
     {
       "sc": "1.4.10",
