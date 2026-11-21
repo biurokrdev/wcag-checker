@@ -1,7 +1,6 @@
 <h1 class="page-title">Walidator dostępności oraz jakości szablonu pisma <sup class="version">v 1.0</sup></h1>
 
-<!-- Stały region dla czytnika ekranu: zmiana listy standardów po wyborze typu pliku, usunięcie niepasującego pliku,
-     przebieg audytu Excel. Jest w DOM od początku i poza formularzem, żeby komunikat nie znikał razem z nim. -->
+<!-- Stały region dla czytnika ekranu: zmiana listy standardów po wyborze typu pliku, przebieg audytu Excel. Jest w DOM od początku i poza formularzem, żeby komunikat nie znikał razem z nim. -->
 <p class="visually-hidden" role="status" aria-live="polite" data-testid="live-region">{{ liveMessage() }}</p>
 
 @if (formVisible()) {
