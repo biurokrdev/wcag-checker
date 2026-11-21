@@ -1,0 +1,11 @@
+{
+  "fixture": "empty",
+  "group": "structure",
+  "wcagVersion": "2.2",
+  "findings": [
+    { "code": "XL-TITLE", "severity": "Error", "location": "Skoroszyt" },
+    { "code": "XL-LANG", "severity": "NeedsReview", "location": "Skoroszyt" },
+    { "code": "XL-SHEET-NAME", "severity": "Warning", "location": "Arkusz „Arkusz1”" }
+  ],
+  "manualChecks": []
+}

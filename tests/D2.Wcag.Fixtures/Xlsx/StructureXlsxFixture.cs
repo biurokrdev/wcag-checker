@@ -9,7 +9,7 @@ namespace D2.Wcag.Fixtures.Xlsx;
 //   A1:C5   blok danych z pogrubionym wierszem nagłówka (Miesiąc | Sprzedaż | Koszt), NIE jest Tabelą Excela → XL-TABLE-MISSING
 //   A7      tekst „Wartości zaznaczone na czerwono wymagają korekty, a podsumowanie znajduje się po prawej.” → XL-SENSORY
 // Arkusz 2 „Sheet2” (nazwa domyślna EN → XL-SHEET-NAME):
-//   A1:D1   scalony tytuł „Zestawienie kwartalne” nad danymi (wariant „tytuł nad tabelą” reguły XL-MERGED)
+//   A1:D1   scalony tytuł „Zestawienie kwartalne” nad danymi (wariant „tytuł nad tabelą” reguły XL-MERGED – bez zgłoszenia)
 //   A2:D2   pogrubione nagłówki Region | Q1 | Q2 | Uwagi;  A3:D5 dane
 //   B4:C4   komórki scalone W DANYCH → XL-MERGED
 //   wiersz 6 pusty, A7:D8 dalszy ciąg tych samych danych → XL-BLANK-LAYOUT (pusty wiersz dzieli blok); dane bez tabeli
@@ -21,7 +21,7 @@ namespace D2.Wcag.Fixtures.Xlsx;
 //   E3      tekst „wartość ukryta formatem” z formatem liczbowym „;;;” → XL-HIDDEN
 // Arkusz 6 „Tabele”:
 //   A1:C4   tabela „Tabela1” BEZ wiersza nagłówka (headerRowCount="0") → XL-TABLE-HEADER
-//   E1:G4   tabela „Tabela2” z nagłówkami domyślnymi Kolumna1 | Kolumna2 | Kolumna3 → XL-TABLE-HEADER
+//   E1:G4   tabela „Tabela2” z nagłówkami domyślnymi Kolumna1 | Kolumna2 | Kolumna3 → XL-TABLE-HEADER-NAME
 // Arkusz 7 „Późny start”:
 //   H20:I22 tabela „TabelaPozna” (Kod | Opis); nic przed H20 → XL-START-A1 (dobra praktyka)
 // Arkusz 8 „Q” (nazwa jednoznakowa → XL-SHEET-NAME, wariant heurystyczny): A1 „Notatka robocza”
