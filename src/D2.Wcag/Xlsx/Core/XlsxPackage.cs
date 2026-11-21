@@ -143,8 +143,15 @@ internal sealed class XlsxPackage : IDisposable
             return null;
         }
 
-        return new LimitedStream(entry.Open(), partName, Math.Min(maxBytes, _budget.Limits.MaxPartBytes), entry.CompressedLength, _budget);
+        return new LimitedStream(entry.Open(), partName, Math.Min(maxBytes, _budget.Limits.MaxPartBytes), entry.CompressedLength, _budget)
+        {
+            ExpectedLength = entry.Length,
+            ExpectedCrc = entry.Crc32,
+        };
     }
+
+    /// <summary>Odmowa przetwarzania deklaracji DTD (<see cref="System.Xml.DtdProcessing.Prohibit"/>) – w każdej części jest powodem odrzucenia pliku.</summary>
+    public static bool IsProhibitedDtd(XmlException exception) => exception.Message.Contains("DTD", StringComparison.OrdinalIgnoreCase);
 
     /// <summary>Część XML jako drzewo (małe części: style, motyw, rysunki, wykresy…); <c>null</c>, gdy części nie ma.</summary>
     public XElement? LoadXml(string? partName)
@@ -311,7 +318,11 @@ internal sealed class XlsxPackage : IDisposable
     private static XlsxReadException SuspiciousRatio() =>
         new(XlsxFailure.LimitExceeded, "Skoroszyt ma podejrzanie wysoki współczynnik kompresji (możliwa „bomba ZIP”) i nie został przeanalizowany.");
 
-    /// <summary>Strumień tylko do odczytu, który liczy faktycznie rozpakowane bajty i przerywa po przekroczeniu limitów.</summary>
+    /// <summary>
+    /// Strumień tylko do odczytu, który liczy faktycznie rozpakowane bajty i przerywa po przekroczeniu limitów. Po dojściu do końca
+    /// części porównuje liczbę bajtów i sumę CRC-32 z katalogiem ZIP: <c>ZipArchive</c> ucina dane na zadeklarowanym rozmiarze,
+    /// więc zaniżony rozmiar wpisu (albo podmienione dane) wychodzi dopiero tutaj – jako uszkodzony pakiet, a nie „niepoprawny XML”.
+    /// </summary>
     internal sealed class LimitedStream : Stream
     {
         private readonly Stream _inner;
@@ -320,6 +331,14 @@ internal sealed class XlsxPackage : IDisposable
         private readonly long _compressedLength;
         private readonly XlsxReadBudget _budget;
         private long _read;
+        private uint _crc = Crc32.Seed;
+        private bool _verified;
+
+        /// <summary>Rozmiar po rozpakowaniu z katalogu ZIP; <c>null</c> = bez sprawdzania końca części.</summary>
+        public long? ExpectedLength { get; init; }
+
+        /// <summary>Suma CRC-32 z katalogu ZIP (sprawdzana razem z <see cref="ExpectedLength"/>).</summary>
+        public uint ExpectedCrc { get; init; }
 
         public LimitedStream(Stream inner, string partName, long maxBytes, long compressedLength, XlsxReadBudget budget)
         {
@@ -352,7 +371,13 @@ internal sealed class XlsxPackage : IDisposable
             var read = _inner.Read(buffer);
             if (read <= 0)
             {
+                VerifyEnd();
                 return read;
+            }
+
+            if (ExpectedLength is not null)
+            {
+                _crc = Crc32.Update(_crc, buffer[..read]);
             }
 
             _read += read;
@@ -369,6 +394,21 @@ internal sealed class XlsxPackage : IDisposable
 
             _budget.AddBytes(read);
             return read;
+        }
+
+        private void VerifyEnd()
+        {
+            if (_verified || ExpectedLength is not { } expected)
+            {
+                return;
+            }
+
+            _verified = true;
+            if (_read != expected || Crc32.Finish(_crc) != ExpectedCrc)
+            {
+                throw new XlsxReadException(XlsxFailure.Corrupted,
+                    $"Plik jest uszkodzony: zawartość części „{_partName}” nie zgadza się z rozmiarem albo sumą kontrolną zapisanymi w archiwum ZIP. Archiwum mogło zostać uszkodzone albo spreparowane.");
+            }
         }
 
         public override void Flush()
@@ -390,6 +430,46 @@ internal sealed class XlsxPackage : IDisposable
 
             base.Dispose(disposing);
         }
+    }
+}
+
+/// <summary>CRC-32 (IEEE 802.3, wielomian odwrócony 0xEDB88320) – suma kontrolna wpisów ZIP; bez zależności zewnętrznych.</summary>
+internal static class Crc32
+{
+    public const uint Seed = 0xFFFFFFFFu;
+
+    private static readonly uint[] Table = BuildTable();
+
+    public static uint Update(uint crc, ReadOnlySpan<byte> data)
+    {
+        var table = Table;
+        foreach (var value in data)
+        {
+            crc = table[(crc ^ value) & 0xFF] ^ (crc >> 8);
+        }
+
+        return crc;
+    }
+
+    public static uint Finish(uint crc) => crc ^ 0xFFFFFFFFu;
+
+    public static uint Compute(ReadOnlySpan<byte> data) => Finish(Update(Seed, data));
+
+    private static uint[] BuildTable()
+    {
+        var table = new uint[256];
+        for (uint i = 0; i < table.Length; i++)
+        {
+            var value = i;
+            for (var bit = 0; bit < 8; bit++)
+            {
+                value = (value & 1) != 0 ? 0xEDB88320u ^ (value >> 1) : value >> 1;
+            }
+
+            table[i] = value;
+        }
+
+        return table;
     }
 }
 

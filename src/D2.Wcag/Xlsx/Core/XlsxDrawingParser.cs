@@ -53,9 +53,9 @@ internal sealed class XlsxDrawingParser
         {
             root = _package.LoadXml(vmlPart);
         }
-        catch (XmlException)
+        catch (XmlException exception) when (!XlsxPackage.IsProhibitedDtd(exception))
         {
-            // VML pisany przez stare programy nie zawsze jest poprawnym XML; brak etykiet nie blokuje audytu.
+            // VML pisany przez stare programy nie zawsze jest poprawnym XML; brak etykiet nie blokuje audytu (DTD nadal jest odmową).
             return result;
         }
 
@@ -197,7 +197,7 @@ internal sealed class XlsxDrawingParser
         {
             root = _package.LoadXml(chartPart);
         }
-        catch (XmlException)
+        catch (XmlException exception) when (!XlsxPackage.IsProhibitedDtd(exception))
         {
             root = null;
         }

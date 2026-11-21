@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;
@@ -587,8 +588,15 @@ internal sealed class XlsxSheetParser
         if (type == "s")
         {
             entry.Type = (byte)XlsxCellType.Text;
-            if (value is not null && int.TryParse(value, out var index) && index >= 0 && index < _shared.Count)
+            if (!string.IsNullOrWhiteSpace(value))
             {
+                // Indeks spoza tekstów wspólnych to uszkodzony pakiet (Excel zgłasza błąd), a nie pusta komórka.
+                if (!int.TryParse(value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var index) || index < 0 || index >= _shared.Count)
+                {
+                    throw new XlsxReadException(XlsxFailure.Corrupted,
+                        $"Plik jest uszkodzony: komórka {new CellRef(row, column)} odwołuje się do tekstu wspólnego, którego nie ma w skoroszycie (indeks „{XlsxLocation.Shorten(value)}”).");
+                }
+
                 entry.Flags |= CellEntry.Shared;
                 entry.Offset = index;
                 if (_shared.Text(index).Length > 0)

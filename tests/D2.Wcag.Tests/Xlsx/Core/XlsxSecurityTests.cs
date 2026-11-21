@@ -218,7 +218,25 @@ public class XlsxSecurityTests(Xunit.Abstractions.ITestOutputHelper output)
 
     // ---------- DTD, XXE, encje ----------
 
-    public static TheoryData<string> XxeParts() => ["xl/sharedStrings.xml", "xl/worksheets/sheet1.xml", "xl/workbook.xml", "xl/styles.xml", "docProps/core.xml", "xl/_rels/workbook.xml.rels"];
+    public static TheoryData<string> XxeParts() =>
+        ["xl/sharedStrings.xml", "xl/worksheets/sheet1.xml", "xl/workbook.xml", "xl/styles.xml", "docProps/core.xml", "xl/_rels/workbook.xml.rels", "[Content_Types].xml"];
+
+    [Theory]
+    [InlineData("xl/charts/chart1.xml")]
+    [InlineData("xl/drawings/drawing1.xml")]
+    public void Dtd_InDrawingOrChartPart_IsRefused_LikeInEveryOtherPart(string partName)
+    {
+        // Części, których nieczytelność nie blokuje audytu (wykres), też odrzucają deklarację DTD – spójnie z resztą pakietu.
+        var parts = FixtureXlsx.Parts(XlsxFixtureCatalog.Build("clean"));
+        var original = Part(parts, partName);
+        var declarationEnd = original.IndexOf("?>", StringComparison.Ordinal) + 2;
+        var malicious = Repack(parts, (partName, original[..declarationEnd] + "<!DOCTYPE x [<!ENTITY e \"e\">]>" + original[declarationEnd..]));
+
+        var result = Auditor.Audit(malicious);
+
+        AssertRefused(result, XlsxFailure.Corrupted);
+        Assert.Equal("Plik zawiera niedozwoloną deklarację DTD i nie został przeanalizowany.", result.FailureMessage);
+    }
 
     [Theory]
     [MemberData(nameof(XxeParts))]
@@ -316,12 +334,14 @@ public class XlsxSecurityTests(Xunit.Abstractions.ITestOutputHelper output)
         // Arkusz wskazany relacją zewnętrzną i relacja do pliku poza pakietem.
         var rels = Part(parts, "xl/_rels/workbook.xml.rels")
             .Replace("Target=\"worksheets/sheet1.xml\"", "Target=\"file:///c:/windows/win.ini\" TargetMode=\"External\"");
-        var external = XlsxTestData.Read(Repack(parts, ("xl/_rels/workbook.xml.rels", rels)));
-        var escaping = XlsxTestData.Read(Repack(parts,
-            ("xl/_rels/workbook.xml.rels", Part(parts, "xl/_rels/workbook.xml.rels").Replace("Target=\"worksheets/sheet1.xml\"", "Target=\"../../../../windows/win.ini\""))));
+        var external = Repack(parts, ("xl/_rels/workbook.xml.rels", rels));
+        var escaping = Repack(parts,
+            ("xl/_rels/workbook.xml.rels", Part(parts, "xl/_rels/workbook.xml.rels").Replace("Target=\"worksheets/sheet1.xml\"", "Target=\"../../../../windows/win.ini\"")));
 
-        Assert.Empty(Assert.Single(external.Sheets).Cells);
-        Assert.Empty(Assert.Single(escaping.Sheets).Cells);
+        // Cel nie jest odczytywany: arkusz bez części w pakiecie to plik uszkodzony (a nie arkusz z treścią spoza pakietu).
+        Assert.Equal(XlsxFailure.Corrupted, Assert.Throws<XlsxReadException>(() => XlsxPackageReader.Read(external)).Failure);
+        Assert.Equal(XlsxFailure.Corrupted, Assert.Throws<XlsxReadException>(() => XlsxPackageReader.Read(escaping)).Failure);
+        Assert.DoesNotContain("win.ini", Auditor.Audit(external).FailureMessage);
         Assert.Null(XlsxPackage.ResolveTarget("xl/", "../../poza.xml"));
         Assert.Equal("xl/media/image1.png", XlsxPackage.ResolveTarget("xl/drawings/", "../media/image1.png"));
         Assert.Equal("docProps/core.xml", XlsxPackage.ResolveTarget("xl/", "/docProps/core.xml"));
@@ -441,6 +461,46 @@ public class XlsxSecurityTests(Xunit.Abstractions.ITestOutputHelper output)
         Assert.Contains(exception.Failure, new[] { XlsxFailure.LimitExceeded, XlsxFailure.Corrupted });
         output.WriteLine($"Faktycznie przeczytano {budget.BytesRead} bajtów (limit części {limits.MaxPartBytes}).");
         Assert.True(budget.BytesRead <= limits.MaxPartBytes + (1024 * 1024), $"Przeczytano {budget.BytesRead} bajtów mimo limitu {limits.MaxPartBytes}.");
+    }
+
+    [Fact]
+    public void UnderstatedDeclaredSize_WithinLimits_IsReported_AsDamagedPackage_NotAsInvalidXml()
+    {
+        // ZipArchive ucina dane na zadeklarowanym rozmiarze; strumień części porównuje na końcu długość i CRC z katalogiem ZIP.
+        var parts = SmallWorkbookParts();
+        var sheet = Part(parts, "xl/worksheets/sheet1.xml");
+        var lying = PatchDeclaredSize(Repack(parts), "xl/worksheets/sheet1.xml", Encoding.UTF8.GetByteCount(sheet), 40);
+
+        var result = Auditor.Audit(lying);
+
+        AssertRefused(result, XlsxFailure.Corrupted);
+        Assert.Contains("„xl/worksheets/sheet1.xml” nie zgadza się z rozmiarem albo sumą kontrolną zapisanymi w archiwum ZIP", result.FailureMessage);
+    }
+
+    [Fact]
+    public void LimitedStream_ChecksLengthAndCrc_AtTheEndOfThePart()
+    {
+        var data = Encoding.UTF8.GetBytes("<a>treść części</a>");
+        var buffer = new byte[64];
+        void ReadAll(XlsxPackage.LimitedStream stream)
+        {
+            while (stream.Read(buffer, 0, buffer.Length) > 0)
+            {
+            }
+        }
+
+        XlsxPackage.LimitedStream Stream(long length, uint crc) =>
+            new(new MemoryStream(data), "xl/a.xml", long.MaxValue, data.Length, new XlsxReadBudget(new XlsxLimits(), CancellationToken.None))
+            {
+                ExpectedLength = length,
+                ExpectedCrc = crc,
+            };
+
+        var crc = Crc32.Compute(data);
+        Assert.Equal(0xCBF43926u, Crc32.Compute("123456789"u8));
+        ReadAll(Stream(data.Length, crc));
+        Assert.Equal(XlsxFailure.Corrupted, Assert.Throws<XlsxReadException>(() => ReadAll(Stream(data.Length, crc ^ 1))).Failure);
+        Assert.Equal(XlsxFailure.Corrupted, Assert.Throws<XlsxReadException>(() => ReadAll(Stream(data.Length + 1, crc))).Failure);
     }
 
     [Fact]
@@ -674,13 +734,13 @@ public class XlsxSecurityTests(Xunit.Abstractions.ITestOutputHelper output)
     }
 
     [Fact]
-    public void Sheet_WithoutCellReferences_UnorderedRows_AndBadIndexes_IsReadSafely()
+    public void Sheet_WithoutCellReferences_UnorderedRows_AndBadStyleIndex_IsReadSafely()
     {
-        // Komórki bez atrybutu r (pozycja z kolejności), wiersze nie po kolei, indeks tekstu wspólnego i stylu spoza zakresu.
+        // Komórki bez atrybutu r (pozycja z kolejności), wiersze nie po kolei, indeks stylu spoza zakresu, tekst wspólny bez wartości.
         const string Sheet = "<worksheet xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\"><sheetData>"
             + "<row r=\"3\"><c><v>31</v></c><c><v>32</v></c></row>"
             + "<row r=\"1\"><c r=\"B1\"><v>12</v></c><c r=\"A1\" t=\"s\"><v>0</v></c></row>"
-            + "<row><c t=\"s\" s=\"999\"><v>12345</v></c><c t=\"s\"><v>-1</v></c><c t=\"s\"><v>abc</v></c></row>"
+            + "<row><c t=\"s\" s=\"999\"/><c t=\"s\"><v> </v></c><c t=\"s\"></c></row>"
             + "</sheetData></worksheet>";
 
         var sheet = Assert.Single(XlsxTestData.Read(Repack(SmallWorkbookParts(), ("xl/worksheets/sheet1.xml", Sheet))).Sheets);
@@ -692,10 +752,57 @@ public class XlsxSecurityTests(Xunit.Abstractions.ITestOutputHelper output)
         Assert.Equal(RangeRef.Parse("A1:B3"), sheet.UsedRange);
     }
 
+    [Theory]
+    [InlineData("12345")]
+    [InlineData("1")]
+    [InlineData("-1")]
+    [InlineData("abc")]
+    public void SharedStringIndex_OutsideSharedStrings_IsCorrupted(string index)
+    {
+        // Mały skoroszyt ma jeden tekst wspólny (indeks 0) – każde inne odwołanie wskazuje na tekst, którego nie ma.
+        var sheet = "<worksheet xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\"><sheetData>"
+            + $"<row r=\"1\"><c r=\"A1\" t=\"s\"><v>0</v></c><c r=\"B1\" t=\"s\"><v>{index}</v></c></row></sheetData></worksheet>";
+
+        var result = Auditor.Audit(Repack(SmallWorkbookParts(), ("xl/worksheets/sheet1.xml", sheet)));
+
+        AssertRefused(result, XlsxFailure.Corrupted);
+        Assert.Contains("komórka B1 odwołuje się do tekstu wspólnego", result.FailureMessage);
+    }
+
+    [Fact]
+    public void SharedStringReference_WithoutSharedStringsPart_IsCorrupted()
+    {
+        var parts = SmallWorkbookParts().Where(p => p.Key != "xl/sharedStrings.xml").ToDictionary(p => p.Key, p => p.Value);
+
+        var result = Auditor.Audit(Repack(parts));
+
+        AssertRefused(result, XlsxFailure.Corrupted);
+        Assert.Contains("komórka A1 odwołuje się do tekstu wspólnego", result.FailureMessage);
+    }
+
+    [Theory]
+    [InlineData("rId1", "xl/worksheets/sheet1.xml")]
+    [InlineData("rId99", null)]
+    public void SheetDeclared_WithoutItsPart_IsCorrupted(string relationshipId, string? removedPart)
+    {
+        // Arkusz z workbook.xml bez części arkusza (usunięta część albo relacja, której nie ma) – plik uszkodzony, nie pusty skoroszyt.
+        var parts = SmallWorkbookParts().Where(p => p.Key != removedPart).ToDictionary(p => p.Key, p => p.Value);
+        var workbook = Part(parts, "xl/workbook.xml");
+        var id = System.Text.RegularExpressions.Regex.Match(workbook, "r:id=\"([^\"]+)\"").Groups[1].Value;
+        var replacements = removedPart is null
+            ? new[] { ("xl/workbook.xml", workbook.Replace($"r:id=\"{id}\"", $"r:id=\"{relationshipId}\"")) }
+            : Array.Empty<(string, string)>();
+
+        var result = Auditor.Audit(Repack(parts, replacements));
+
+        AssertRefused(result, XlsxFailure.Corrupted);
+        Assert.Contains("arkusz „Dane” jest zadeklarowany w skoroszycie, ale pakiet nie zawiera jego zawartości", result.FailureMessage);
+    }
+
     [Fact]
     public void MissingOptionalParts_GiveDefaults()
     {
-        var parts = SmallWorkbookParts().Where(p => p.Key is not ("xl/styles.xml" or "xl/theme/theme1.xml" or "docProps/core.xml" or "docProps/app.xml" or "xl/sharedStrings.xml"))
+        var parts = SmallWorkbookParts().Where(p => p.Key is not ("xl/styles.xml" or "xl/theme/theme1.xml" or "docProps/core.xml" or "docProps/app.xml"))
             .ToDictionary(p => p.Key, p => p.Value);
 
         var workbook = XlsxTestData.Read(Repack(parts));
@@ -704,7 +811,7 @@ public class XlsxSecurityTests(Xunit.Abstractions.ITestOutputHelper output)
         Assert.Equal(XlsxTheme.Office.ColorsHex, workbook.Theme.ColorsHex);
         var format = Assert.Single(workbook.Styles.CellFormats);
         Assert.Equal(("Calibri", 11d, "General", true), (format.Font.Name, format.Font.SizePt, format.NumberFormat, format.Locked));
-        Assert.Equal("", workbook.Sheets[0].TextAt(CellRef.Parse("A1")));
+        Assert.Equal("tekst", workbook.Sheets[0].TextAt(CellRef.Parse("A1")));
         Assert.Equal("1", workbook.Sheets[0].TextAt(CellRef.Parse("B1")));
     }
 

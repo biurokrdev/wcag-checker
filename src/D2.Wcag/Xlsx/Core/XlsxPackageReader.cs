@@ -39,7 +39,7 @@ internal static class XlsxPackageReader
         catch (XmlException exception)
         {
             throw new XlsxReadException(XlsxFailure.Corrupted,
-                exception.Message.Contains("DTD", StringComparison.OrdinalIgnoreCase)
+                XlsxPackage.IsProhibitedDtd(exception)
                     ? "Plik zawiera niedozwoloną deklarację DTD i nie został przeanalizowany."
                     : "Plik jest uszkodzony: jedna z części skoroszytu nie jest poprawnym XML.",
                 exception);
@@ -57,6 +57,9 @@ internal static class XlsxPackageReader
 
     private static XlsxWorkbook ReadPackage(XlsxPackage package, XlsxReadBudget budget)
     {
+        // Spis typów rozstrzygnął już o rodzaju pliku (OfficePackage.Detect – tam nieczytelny spis zastępują nazwy wpisów).
+        // Tu czytamy go jeszcze raz tylko po to, żeby deklaracja DTD była odmową w każdej części, także w tej.
+        LoadOptional(package, "[Content_Types].xml");
         var packageRelationships = package.Relationships("");
         var workbookPart = packageRelationships.FirstOrDefault(r => r.Type == "officeDocument" && !r.External)?.Target;
         if (workbookPart is null || !package.Has(workbookPart))
@@ -121,10 +124,18 @@ internal static class XlsxPackageReader
             var isChartSheet = relationship?.Type == "chartsheet";
             hasMacroSheet |= relationship?.Type is "xlMacrosheet" or "xlIntlMacrosheet";
 
-            XlsxSheetContent content;
-            if (relationship is null || relationship.External || !package.Has(relationship.Target)
-                || relationship.Type is not ("worksheet" or "chartsheet" or "dialogsheet"))
+            // Arkusz z workbook.xml bez swojej części to uszkodzony pakiet (Excel go nie otworzy), a nie pusty arkusz –
+            // inaczej audyt oceniałby skoroszyt, którego treści nie widział.
+            if (relationship is null || relationship.External || !package.Has(relationship.Target))
             {
+                throw new XlsxReadException(XlsxFailure.Corrupted,
+                    $"Plik jest uszkodzony: arkusz „{XlsxLocation.Shorten(name)}” jest zadeklarowany w skoroszycie, ale pakiet nie zawiera jego zawartości.");
+            }
+
+            XlsxSheetContent content;
+            if (relationship.Type is not ("worksheet" or "chartsheet" or "dialogsheet"))
+            {
+                // Arkusz makr (xlMacrosheet) i inne rodzaje bez komórek do oceny.
                 content = new XlsxSheetContent();
             }
             else
@@ -171,7 +182,7 @@ internal static class XlsxPackageReader
         {
             return package.LoadXml(partName);
         }
-        catch (XmlException exception) when (!exception.Message.Contains("DTD", StringComparison.OrdinalIgnoreCase))
+        catch (XmlException exception) when (!XlsxPackage.IsProhibitedDtd(exception))
         {
             return null;
         }
