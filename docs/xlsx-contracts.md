@@ -415,3 +415,47 @@ Snapshoty pełnego wyniku: `tests/snapshots/xlsx/{fixtura}__{wersja}.json` (prze
 - Brak OCR: tekst w obrazach tylko jako pytanie checklisty.
 - Formuły nie są przeliczane; reguły tekstowe widzą wartości zapisane w pliku.
 - Kontrolki ActiveX nie są analizowane – zawsze checklista.
+
+## 7. Stan po fundamencie (tag `xlsx-core-done`)
+
+Sygnatury z pkt 2 są zaimplementowane tak, jak zapisano, z poniższymi doprecyzowaniami i dodatkami (wszystkie addytywne, o ile nie zaznaczono inaczej). Źródłem prawdy jest kod w `src/D2.Wcag/Xlsx/`.
+
+### 7.1 Odstępstwa i doprecyzowania
+
+- **`XlsxSeverities.For`** ma sygnaturę `XlsxSeverity? For(XlsxCheckType checkType, bool bestPractice, double? confidence, double heuristicWarningThreshold, IReadOnlyList<WcagRef> wcag)`. Dla `Manual` zwraca `null`. Reguła bez powiązania z kryterium A/AA zawsze daje `Info`, także gdy nie ustawiono `BestPractice`.
+- **Trafienie typu `Manual`** (`XlsxRuleHit.CheckType = Manual` albo deskryptor `Manual`) audytor zamienia w `XlsxManualCheck`: `Id = "{kod}:{Location.Key}"`, `Question = Message`, `Hint = FixInstruction`. Reguła może więc zgłaszać pytania checklisty z `Check(...)` albo z `ManualChecks(...)`.
+- **Limit `MaxFindingsPerRulePerSheet`** liczy zgłoszenia (nie wagi); grupa to (kod, arkusz), zgłoszenia poziomu skoroszytu tworzą osobną grupę. Zostają pierwsze wg wagi i `Location.Key`; `MoreCount` ostatniego zachowanego = suma `XlsxRuleHit.Weight` pominiętych.
+- **Sortowanie zgłoszeń:** waga, `Location.Key`, kod, komunikat (porównania porządkowe). Identyczne trafienia nie są deduplikowane; pozycje checklisty są deduplikowane po `Id`.
+- **`Location.Key`:** dla komórek i zakresów w polu „nazwa” stoi `Ref` (dwa zakresy o wspólnym narożniku mają różne klucze). `XlsxLocation.OfRange` dla zakresu jednej komórki zwraca lokalizację rodzaju `Cell`. Dodana fabryka `XlsxLocation.OfControl(sheet, control)` (rodzaj `Drawing`, typ `Control`).
+- **Status kryterium (pkt 2.3):** „kryterium ma reguły automatyczne/heurystyczne” ustalane jest z **zarejestrowanych deskryptorów** (typ inny niż `Manual`, SC w wybranej wersji), nie z katalogu. Dopóki grupa reguł jest pusta, jej kryteria mają status „Do oceny ręcznej”. **Stała pozycja checklisty `manual-{sc}`** powstaje tylko dla kryterium, którego nie obejmuje żadna zarejestrowana reguła automatyczna/heurystyczna; gdy taka reguła jest i nic nie zgłosiła, kryterium ma „Brak wykrytych problemów”, a pytanie z katalogu trafia do `Reason` („Do oceny ręcznej pozostaje: …”). Reguła, która chce zostawić pytanie na checkliście mimo pokrycia automatycznego, zwraca je z `ManualChecks(...)` – kryterium ma wtedy status „Do oceny ręcznej”.
+- **„Nie dotyczy”** obejmuje trzy sytuacje, zawsze opisane w `Reason`: kryterium nie dotyczy formatu (w modelu WCAG: spełnione automatycznie), warunek z katalogu nie jest spełniony w tym skoroszycie (np. brak multimediów), kryterium zależy od oprogramowania (znacznik [UA] z macierzy). Dla trzeciej `XlsxCriterionResult.SoftwareDependent = true` (nowa właściwość `init`) – raport powinien wymieniać te kryteria osobno. Pusty skoroszyt: kryteria zależne od treści mają „Nie dotyczy” („Skoroszyt jest pusty”), zostają 2.4.2, 2.4.6 i 3.1.1.
+- **4.1.1** występuje tylko w profilu 2.1, ze statusem „Nie dotyczy” i uzasadnieniem „spełnione wg erraty WCAG 2.1” (macierz pkt 3.5).
+- **Anulowanie** (`CancellationToken`) zgłasza `OperationCanceledException`; przekroczenie limitu czasu to wynik `IsReadable=false`, `Failure=Timeout`. Limit czasu obejmuje odczyt i reguły – reguła o długiej pętli woła `context.ThrowIfCancellationRequested()`.
+- **Nieobsługiwana wersja WCAG** w profilu to `ArgumentException` (błąd programisty, nie pliku).
+- **Wyjątek w regule** nie jest łapany (błąd programisty); reguła zgłaszająca kod spoza swoich deskryptorów daje `InvalidOperationException`.
+- **`OfficePackage`**: dodane `Detect(byte[])` (bez kopiowania), `IsEncryptedOle(ReadOnlySpan<byte>)`, `IsReadableSpreadsheet(kind)`. `Detect` zwraca `NotZip` także dla uszkodzonego ZIP-u; audytor rozróżnia `Corrupted` (plik zaczyna się sygnaturą ZIP) od `NotZip`.
+- **Limity:** części wczytywane jako drzewo XML (wszystko poza arkuszami i tekstami wspólnymi) mają dodatkowy stały limit 32 MB (`XlsxPackage.MaxDomPartBytes`). Powtórzone nazwy wpisów ZIP i nazwy z `..`, `.`, `:` albo wiodącym `/` to `Corrupted`.
+
+### 7.2 Dodatki do modelu
+
+- `XlsxSheet`: `IsProtected` (ochrona arkusza), `IsEmpty`, `TextAt(CellRef)`, `CellsIn(RangeRef)`, `RichRuns(XlsxCell)`; `XlsxWorkbook.CellCount` liczy wszystkie komórki obecne w pliku (także z samym stylem).
+- `XlsxRichRun(Text, Color, Bold, SizePt)` – `null` = „jak w stylu komórki”.
+- `XlsxCfRule.IconSetName`; `XlsxDrawingObject.ParentGroupId` (obiekty grupy stoją na liście zaraz za grupą i mają jej kotwicę); kształty kontrolek w rysunku mają `Type = Control`.
+- `XlsxStyles.Format(styleIndex)`; `XlsxColors.EffectiveBackground(XlsxFill?, workbook)`, `IsApproximateBackground(...)` (flaga przybliżenia tła dla wzorów i gradientów), `ApplyTint`, `NormalizeHex`, `DefaultIndexedPalette`.
+- `XlsxRowInfo(Row, Hidden, Height)`, `XlsxColumnInfo(Min, Max, Hidden, Width, Style)`, `XlsxDocumentProperties(Title, Subject, Creator, Language, Description, Keywords, Application)`.
+- `XlsxRules.Core / Structure / NonText / Color / Groups`; `WcagXlsxAuditor.Rules`; `XlsxAuditContext` ma publiczny konstruktor (do testów reguł) i `ThrowIfCancellationRequested()`.
+- Katalog: `XlsxWcagCriteria.All / ForVersion / Find / Ref / ScComparer`, rekord `XlsxCriterion` (m.in. `Applicability`, `AppliesWhen`, `Question`, `Hint`, `SoftwareDependent`, `WorkingTranslation`), `XlsxCriteriaEvaluator.Evaluate`.
+- Do testów reguł (wewnętrzne, widoczne w `D2.Wcag.Tests`): `XlsxPackageReader.Read(bytes, limits)`, `WcagXlsxAuditor.Evaluate(workbook, profile)`; w testach `XlsxTestData.Workbook("fixtura")`.
+
+### 7.3 Semantyka modelu, o której warto pamiętać
+
+- `XlsxCell.Text` to wartość surowa z pliku: liczby i daty bez formatu, wartość logiczna jako `1`/`0`, błąd jako tekst (`#DIV/0!`). `XlsxCellType.Formula` oznacza formułę **bez** wartości w pliku; formuła z wartością ma typ wartości i `HasFormula = true`. Treści formuł nie przechowujemy.
+- `XlsxDrawingObject.Description`: `null` = brak atrybutu `descr`, `""` = pusty. `XlsxChart.Title`: `null` = brak elementu tytułu, `""` = tytuł automatyczny (element bez tekstu). `XlsxChartAxis.Title` analogicznie. `XlsxChartSeries.FillHex/LineHex`: `null` = kolor automatyczny.
+- `XlsxDxf.Font.SizePt == 0` = rozmiar nieokreślony w stylu różnicowym; wypełnienie `dxf` jest znormalizowane do `solid` z kolorem w `Foreground`.
+- Style: format komórki używa własnych `fontId`/`fillId`/`numFmtId` niezależnie od `apply*`; wartość ze stylu nazwanego (`cellStyleXfs[xfId]`) tylko wtedy, gdy atrybutu brakuje.
+- Notatki-zaślepki komentarzy wątkowych (autor `tc=…`) są pomijane; rozszerzenie x14 formatowania warunkowego wnosi tylko reguły z zestawem ikon (pozostałe powtarzają część główną).
+- `tint`: arytmetyka HLS 0–240 jak w Excelu (opis i wartości referencyjne w `XlsxColors.ApplyTint` i `XlsxColorTests`); wzory wypełnień: tło = mieszanka koloru wzoru i tła wg przybliżonego pokrycia (`gray125` 12,5%, `lightGray` 25%, `mediumGray` 50%, `darkGray` 75% itd.).
+
+### 7.4 Znane braki parsera
+
+Treść formuł (w tym `HYPERLINK()`), style tabel i ich pasy, obrazy tła arkusza, `sheetFormatPr/@zeroHeight`, konspekt (`outlineLevel`), fragmentatory i osie czasu, tabele przestawne, wykresy `cx:` (chartex – rozpoznane jako wykres typu `unknown`), kolory wykresów z modyfikatorami innymi niż `lumMod`/`lumOff`, tekst alternatywny obiektów OLE, zawartość kontrolek ActiveX, ochrona skoroszytu (`workbookProtection`), adresy relacji kodowane procentowo.
