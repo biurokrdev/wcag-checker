@@ -223,7 +223,7 @@ internal sealed class ColorAnalysis
         }
 
         var traits = Style(cell.StyleIndex).NumberFormat;
-        return !HiddenByFormat(cell.Type, traits) && !visibility.IsHidden(cell.Ref);
+        return !HiddenByFormat(cell, traits) && !visibility.IsHidden(cell.Ref);
     }
 
     /// <summary>Zakresy formatowania warunkowego, którego reguły mogą zmienić kolor czcionki albo tło komórek.</summary>
@@ -250,9 +250,9 @@ internal sealed class ColorAnalysis
 
     public static bool ChangesColors(XlsxDxf? dxf) => ChangesFontColor(dxf) || ChangesFill(dxf);
 
-    private static bool HiddenByFormat(XlsxCellType type, NumberFormatTraits traits) => type switch
+    private static bool HiddenByFormat(in XlsxCell cell, NumberFormatTraits traits) => cell.Type switch
     {
-        XlsxCellType.Number => traits.HidesNumbers,
+        XlsxCellType.Number => traits.HidesNumber(cell.Text),
         XlsxCellType.Text or XlsxCellType.Boolean => traits.HidesText,
         _ => false,
     };
@@ -357,7 +357,7 @@ internal sealed class ColorAnalysis
             }
 
             var type = cell.Type;
-            if (HiddenByFormat(type, style.NumberFormat))
+            if (HiddenByFormat(cell, style.NumberFormat))
             {
                 continue;
             }

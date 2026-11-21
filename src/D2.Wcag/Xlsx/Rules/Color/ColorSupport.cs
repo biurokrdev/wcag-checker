@@ -208,6 +208,33 @@ internal sealed record NumberFormatTraits(bool HidesNumbers, bool HidesText, str
 {
     private static readonly NumberFormatTraits Plain = new(false, false, null);
 
+    /// <summary>Pusta sekcja liczb ujemnych (np. „0;;0”) – liczby ujemne nie są wyświetlane.</summary>
+    public bool HidesNegative { get; private init; }
+
+    /// <summary>Pusta sekcja zera (np. „0;-0;;@”) – zero nie jest wyświetlane.</summary>
+    public bool HidesZero { get; private init; }
+
+    /// <summary>Czy liczba o podanej wartości surowej (z pliku) jest ukryta przez format.</summary>
+    public bool HidesNumber(string raw)
+    {
+        if (HidesNumbers)
+        {
+            return true;
+        }
+
+        if (!HidesNegative && !HidesZero)
+        {
+            return false;
+        }
+
+        if (!double.TryParse(raw, NumberStyles.Float, CultureInfo.InvariantCulture, out var value))
+        {
+            return false;
+        }
+
+        return value < 0 ? HidesNegative : value == 0 && HidesZero;
+    }
+
     private static readonly HashSet<string> ColorNames = new(StringComparer.OrdinalIgnoreCase)
     {
         "Black", "Blue", "Cyan", "Green", "Magenta", "Red", "White", "Yellow",
@@ -228,8 +255,13 @@ internal sealed record NumberFormatTraits(bool HidesNumbers, bool HidesText, str
         }
 
         var numeric = sections.Take(3).ToList();
+        static bool Empty((string Skeleton, string? Color, bool Conditional) section) => string.IsNullOrWhiteSpace(section.Skeleton) && !section.Conditional;
+        var anyConditional = numeric.Any(s => s.Conditional);
         var hidesNumbers = numeric.All(s => string.IsNullOrWhiteSpace(s.Skeleton) && s.Color is null && !s.Conditional);
         var hidesText = sections.Count >= 4 && string.IsNullOrWhiteSpace(sections[3].Skeleton);
+        // Sekcje warunkowe ([>100]) zmieniają przypisanie wartości do sekcji – wtedy nie ukrywamy pojedynczych znaków wartości.
+        var hidesNegative = !anyConditional && Empty(sections[1]);
+        var hidesZero = !anyConditional && sections.Count >= 3 && Empty(sections[2]);
 
         // Postać standardowa „dodatnie;ujemne[;zero[;tekst]]”: Excel pomija wtedy znak minus w sekcji ujemnej, więc
         // gdy sekcja ujemna różni się od dodatniej tylko znacznikiem koloru, kolor jest jedynym wyróżnikiem liczby ujemnej.
@@ -244,7 +276,9 @@ internal sealed record NumberFormatTraits(bool HidesNumbers, bool HidesText, str
             negativeColorOnly = "[" + negative.Color + "]";
         }
 
-        return hidesNumbers || hidesText || negativeColorOnly is not null ? new NumberFormatTraits(hidesNumbers, hidesText, negativeColorOnly) : Plain;
+        return hidesNumbers || hidesText || hidesNegative || hidesZero || negativeColorOnly is not null
+            ? new NumberFormatTraits(hidesNumbers, hidesText, negativeColorOnly) { HidesNegative = hidesNegative, HidesZero = hidesZero }
+            : Plain;
     }
 
     /// <summary>
