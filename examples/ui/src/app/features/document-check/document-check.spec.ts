@@ -219,8 +219,9 @@ describe('DocumentCheck', () => {
     expect(q('result')!.getAttribute('data-status')).toBe('Invalid');
     expect(q('summary')!.textContent).toContain('1 błąd');
     expect(q('standards-line')!.textContent).toContain('Standard pism firmowych 2.0');
-    expect(q('panel-summary')).toBeTruthy();
-    expect(q('panel-findings')).toBeNull();
+    expect(q('panel-summary')!.hidden).toBe(false);
+    expect(q('panel-findings')!.hidden).toBe(true);
+    expect(q('panel-hierarchy')!.hidden).toBe(true);
     expect(q('file-input')).toBeNull();
   });
 
@@ -256,8 +257,8 @@ describe('DocumentCheck', () => {
     validated(validation({ findings: many }));
 
     click('tab-findings');
-    expect(q('panel-findings')).toBeTruthy();
-    expect(q('panel-summary')).toBeNull();
+    expect(q('panel-findings')!.hidden).toBe(false);
+    expect(q('panel-summary')!.hidden).toBe(true);
     expect(q('tab-findings')!.textContent).toContain('65');
     expect(q('findings-list')!.querySelectorAll('li').length).toBe(30);
     expect(q('pager')!.textContent).toContain('Strona 1 z 3');
@@ -457,31 +458,89 @@ describe('DocumentCheck', () => {
     validated(validation({ standards: [V20], wcag: null, outline: [{ level: 1, text: 'Wstęp' }, { level: 2, text: 'Zakres' }] }));
 
     expect(q('wcag-report')).toBeNull();
-    expect(q('content-tree')).toBeTruthy();
+    // Drzewo jest w zakładce „Hierarchia dokumentu”.
+    expect(q('panel-hierarchy')!.contains(q('content-tree'))).toBe(true);
     expect(q('outline')!.querySelectorAll('li').length).toBe(2);
     expect(q('outline')!.textContent).toContain('Zakres');
-    // Panel jest nad zakładkami, więc widać go także w „Wynikach walidacji”.
     expect(q('panel-summary')!.contains(q('content-tree'))).toBe(false);
   });
 
-  it('keeps the structure panel with a message when the document has no headings', () => {
+  it('keeps the hierarchy tab with a message when the document has no headings', () => {
     const { q, click, validated } = render();
     validated(validation({ wcag: null, outline: [], findings: [] }));
 
-    expect(q('content-tree')).toBeTruthy();
-    expect(q('outline')).toBeNull();
-    expect(q('outline-empty')!.textContent).toContain('Dokument nie zawiera nagłówków');
-    click('tab-findings');
-    expect(q('content-tree')).toBeTruthy();
+    click('tab-hierarchy');
+    expect(q('panel-hierarchy')!.hidden).toBe(false);
+    expect(q('tab-hierarchy')!.textContent).not.toMatch(/\d/);
   });
 
-  it('shows the structure panel once, outside the WCAG criteria block, when WCAG was selected', () => {
+  it('shows the structure tree once, outside the WCAG criteria block, when WCAG was selected', () => {
     const { fixture, q, validated } = render();
     validated();
 
     expect(q('wcag-report')).toBeTruthy();
     expect((fixture.nativeElement as HTMLElement).querySelectorAll('[data-testid="outline"]').length).toBe(1);
     expect(q('panel-summary')!.contains(q('outline'))).toBe(false);
+    expect(q('panel-hierarchy')!.contains(q('outline'))).toBe(true);
+  });
+
+  it('renders the report tabs as a WAI-ARIA tablist with roving tabindex and linked panels', () => {
+    const { q, validated } = render();
+    validated();
+
+    const tabs = Array.from(q('tab-summary')!.parentElement!.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
+    expect(q('tab-summary')!.parentElement!.getAttribute('role')).toBe('tablist');
+    expect(tabs.map((t) => t.textContent!.trim().split(' (')[0])).toEqual(['Podsumowanie', 'Wyniki walidacji', 'Hierarchia dokumentu']);
+    expect(tabs.map((t) => t.getAttribute('aria-selected'))).toEqual(['true', 'false', 'false']);
+    expect(tabs.map((t) => t.tabIndex)).toEqual([0, -1, -1]);
+    for (const tab of tabs) {
+      const panel = document.getElementById(tab.getAttribute('aria-controls')!)!;
+      expect(panel.getAttribute('role')).toBe('tabpanel');
+      expect(panel.getAttribute('aria-labelledby')).toBe(tab.id);
+      expect(panel.getAttribute('tabindex')).toBe('0');
+    }
+  });
+
+  it('switches tabs with arrow keys, Home and End and moves focus to the selected tab', () => {
+    const { fixture, q, validated } = render();
+    validated();
+    const key = (k: string) => {
+      (document.activeElement as HTMLElement).dispatchEvent(new KeyboardEvent('keydown', { key: k, bubbles: true, cancelable: true }));
+      fixture.detectChanges();
+      // Wejście w „Wyniki walidacji” dociąga podgląd pierwszego wystąpienia.
+      http.match((r) => r.url.includes('/preview')).forEach((r) => r.flush(preview()));
+      fixture.detectChanges();
+    };
+
+    q('tab-summary')!.focus();
+    key('ArrowRight');
+    expect(document.activeElement).toBe(q('tab-findings'));
+    expect(q('panel-findings')!.hidden).toBe(false);
+    key('ArrowRight');
+    expect(document.activeElement).toBe(q('tab-hierarchy'));
+    expect(q('tab-hierarchy')!.getAttribute('aria-selected')).toBe('true');
+    key('ArrowRight');
+    expect(document.activeElement).toBe(q('tab-summary'));
+    key('ArrowLeft');
+    expect(document.activeElement).toBe(q('tab-hierarchy'));
+    key('Home');
+    expect(document.activeElement).toBe(q('tab-summary'));
+    key('End');
+    expect(document.activeElement).toBe(q('tab-hierarchy'));
+    expect(q('panel-hierarchy')!.hidden).toBe(false);
+    expect(q('panel-summary')!.hidden).toBe(true);
+  });
+
+  it('goes back to the summary tab after finishing and loading the next document', () => {
+    const { fixture, q, click, validated, selectFile } = render();
+    validated();
+    click('tab-hierarchy');
+    click('next-button');
+    selectFile(docx());
+    http.expectOne(VALIDATE).flush(validation());
+    fixture.detectChanges();
+    expect(q('tab-summary')!.getAttribute('aria-selected')).toBe('true');
+    expect(q('panel-summary')!.hidden).toBe(false);
   });
 
   it('shows the spec status, the fix and the property table only for findings that carry them', () => {
@@ -537,7 +596,7 @@ describe('DocumentCheck', () => {
     // Klucz, dla którego jest zgłoszenie: zakładka wyników i zaznaczone wystąpienie.
     tree.locate.emit('body:Run:4:1');
     fixture.detectChanges();
-    expect(q('panel-findings')).toBeTruthy();
+    expect(q('panel-findings')!.hidden).toBe(false);
     expect(q('finding-1')!.classList).toContain('selected');
     expect(q('location-preview')).toBeNull();
     http.expectOne(previewUrl('r1', 1)).flush(preview());

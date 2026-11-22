@@ -226,6 +226,22 @@
   }
 }
 
+// Panele zakładek są zawsze w DOM; nieaktywny ma atrybut hidden, który musi wygrać z display: grid (.findings).
+[role='tabpanel'] {
+  &[hidden] {
+    display: none !important;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--orange);
+    outline-offset: 2px;
+  }
+}
+
+.mono {
+  font-family: Consolas, 'Courier New', monospace;
+}
+
 .standard-block {
   background: var(--surface);
   margin: 0 0 1.25rem;

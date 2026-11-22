@@ -11,37 +11,36 @@ import { FileTypePicker } from '../file-type/file-type-picker';
 import { XlsxReport } from '../xlsx-results/xlsx-report';
 import { DOCUMENT_CHECK_UPLOAD_COLORS } from './document-check.colors';
 import {
-  CATEGORY_LABEL,
   CHECK_STATUS_LABEL,
   CRITERION_COVERAGE_LABEL,
   CRITERION_STATUS_LABEL,
   CheckStatus,
   CriterionStatus,
-  Finding,
   FindingPreview,
-  IssueSeverity,
-  ISSUE_SCOPE_LABEL,
   issueLabel,
-  LOCATION_KIND_LABEL,
-  OUTCOME_LABEL,
-  SEVERITY_LABEL,
-  SPEC_STATUS_LABEL,
   Standard,
   SummarySection,
   ValidationResult,
 } from '../../core/models';
+import { RESULT_SEVERITY_CLASS, ResultFinding, ResultSeverity, ResultsViewModel, hierarchyIssueCountLabel } from '../../core/results-view-model';
+import { wordResultsViewModel } from '../results/word-results.adapter';
 
-export type ReportTab = 'summary' | 'findings';
+export type ReportTab = 'summary' | 'findings' | 'hierarchy';
+
+// Kolejność zakładek raportu (strzałki, Home/End).
+export const REPORT_TABS: readonly ReportTab[] = ['summary', 'findings', 'hierarchy'];
 
 // Nad standardami sekcja „Typ pliku” (app-file-type-picker): Word działa jak dotąd, Excel ma własny standard
 // (WCAG + wybór wersji) i własne teksty pola pliku, PDF jest niedostępny. Wybory są pamiętane osobno dla typu.
 // Excel: plik sprawdzony w przeglądarce idzie do api/wcag-workbooks/validate z wybraną wersją WCAG; odrzucenie
 // z serwera jest pokazywane przy polu pliku (formularz zostaje), wynik – w app-xlsx-report.
-// Przebieg: wybór standardów i pliku DOCX (także przeciągnięciem) → analiza (API) → raport w dwóch zakładkach.
+// Przebieg: wybór standardów i pliku DOCX (także przeciągnięciem) → analiza (API) → raport w trzech zakładkach
+// (wzorzec WAI-ARIA Tabs: strzałki, Home/End, roving tabindex). Raport renderuje wspólny ResultsViewModel
+// (core/results-view-model.ts) budowany adapterem formatu – Word i Excel używają tych samych bloków szablonu.
 // „Podsumowanie”: bloki standardów z zwijanymi sekcjami i tabelą Status | Kontrola | Szczegóły, raport kryteriów WCAG.
 // „Wyniki walidacji”: po lewej lista wystąpień (każde osobno, po 30 na stronę), po prawej opis, weryfikacja ręczna
 // i podgląd strony z zaznaczeniem dociągany po kliknięciu. Raport do pobrania jako DOCX ze stanem weryfikacji.
-// Nad zakładkami zawsze widoczny jest panel struktury dokumentu (app-content-tree), niezależnie od wybranych standardów.
+// „Hierarchia dokumentu”: drzewo treści (app-content-tree) i podgląd wskazanego miejsca; zakładka jest zawsze.
 @Component({
   selector: 'app-document-check',
   imports: [ContentTree, CommentExportButton, FileTypePicker, XlsxReport],
@@ -54,16 +53,11 @@ export class DocumentCheck implements OnInit, OnDestroy {
   private readonly api = inject(WcagDocumentsService);
   private readonly workbooks = inject(WcagWorkbooksService);
   private readonly injector = inject(Injector);
+  private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
 
-  protected readonly outcomeLabel = OUTCOME_LABEL;
-  protected readonly severityLabel = SEVERITY_LABEL;
-  protected readonly categoryLabel = CATEGORY_LABEL;
   protected readonly criterionStatusLabel = CRITERION_STATUS_LABEL;
   protected readonly coverageLabel = CRITERION_COVERAGE_LABEL;
   protected readonly checkStatusLabel = CHECK_STATUS_LABEL;
-  protected readonly locationKindLabel = LOCATION_KIND_LABEL;
-  protected readonly specStatusLabel = SPEC_STATUS_LABEL;
-  protected readonly scopeLabel = ISSUE_SCOPE_LABEL;
   protected readonly issueLabel = issueLabel;
   // Kolory strefy pliku poza ścieżką Word (kontrast tekstu, obramowania i fokusu) jako zmienne CSS --dc-*; Word zostaje bez zmian.
   protected readonly uploadStyle = [
@@ -109,7 +103,7 @@ export class DocumentCheck implements OnInit, OnDestroy {
   // Raport: zakładka, strona listy wystąpień, zaznaczone wystąpienie i jego podgląd.
   protected readonly tab = signal<ReportTab>('summary');
   protected readonly page = signal(1);
-  protected readonly selectedFinding = signal<Finding | null>(null);
+  protected readonly selectedFinding = signal<ResultFinding | null>(null);
   protected readonly preview = signal<FindingPreview | null>(null);
   protected readonly previewBusy = signal(false);
   protected readonly previewError = signal<string | null>(null);
@@ -130,7 +124,21 @@ export class DocumentCheck implements OnInit, OnDestroy {
   // Word wymaga co najmniej jednego standardu z katalogu; typ ze stałą listą ma standard zaznaczony na stałe.
   protected readonly canSelectFile = computed(() => !this.usesCatalog() || this.selected().length > 0);
 
-  protected readonly findings = computed(() => this.result()?.findings ?? []);
+  // Wspólny model widoku raportu (Word: adapter wordResultsViewModel).
+  protected readonly vm = computed<ResultsViewModel | null>(() => {
+    const r = this.result();
+    return r ? wordResultsViewModel(r) : null;
+  });
+
+  protected readonly findings = computed(() => this.vm()?.findings ?? []);
+  // Zgłoszenia Word w surowej postaci – dla drzewa treści, które przypisuje je do akapitów.
+  protected readonly wordFindings = computed(() => this.result()?.findings ?? []);
+
+  // Etykieta zakładki „Hierarchia dokumentu”: licznik problemów tylko, gdy hierarchię przeanalizowano.
+  protected readonly hierarchyCount = computed(() => {
+    const h = this.vm()?.hierarchy;
+    return h && h.status === 'ok' ? hierarchyIssueCountLabel(h.issues.length) : null;
+  });
 
   protected readonly verifiedCount = computed(() => this.findings().filter((f) => this.verified().has(f.index)).length);
 
@@ -237,6 +245,7 @@ export class DocumentCheck implements OnInit, OnDestroy {
   // Wejście w „Wyniki walidacji” bez zaznaczenia wybiera pierwszą pozycję, żeby panel szczegółów nie był pusty.
   protected showTab(tab: ReportTab): void {
     this.tab.set(tab);
+    if (tab !== 'hierarchy') this.closeLocation();
     const first = this.findings()[0];
     if (tab === 'findings' && !this.selectedFinding() && first) {
       this.page.set(1);
@@ -244,16 +253,47 @@ export class DocumentCheck implements OnInit, OnDestroy {
     }
   }
 
+  // Klawiatura listy zakładek (WAI-ARIA Tabs, aktywacja automatyczna): ←/→ cyklicznie, Home/End skrajne.
+  protected onTabKey(event: KeyboardEvent): void {
+    const current = REPORT_TABS.indexOf(this.tab());
+    let next: number;
+    switch (event.key) {
+      case 'ArrowRight':
+        next = (current + 1) % REPORT_TABS.length;
+        break;
+      case 'ArrowLeft':
+        next = (current - 1 + REPORT_TABS.length) % REPORT_TABS.length;
+        break;
+      case 'Home':
+        next = 0;
+        break;
+      case 'End':
+        next = REPORT_TABS.length - 1;
+        break;
+      default:
+        return;
+    }
+    event.preventDefault();
+    this.showTab(REPORT_TABS[next]);
+    this.focusTab(REPORT_TABS[next]);
+  }
+
+  // Fokus na przycisku zakładki (przyciski są zawsze w DOM).
+  protected focusTab(tab: ReportTab): void {
+    this.host.nativeElement.querySelector<HTMLElement>(`#report-tab-${tab}`)?.focus();
+  }
+
   protected goToPage(page: number): void {
     this.page.set(Math.min(Math.max(1, page), this.pageCount()));
   }
 
   // Kliknięcie wystąpienia: opis od razu, podgląd dociągany z API po identyfikatorze raportu.
-  protected select(finding: Finding): void {
+  protected select(finding: ResultFinding): void {
     this.selectedFinding.set(finding);
     this.preview.set(null);
     this.previewError.set(null);
     this.previewRequest?.unsubscribe();
+    if (!finding.hasPreview) return;
 
     const reportId = this.result()?.reportId;
     if (!reportId) {
@@ -274,7 +314,7 @@ export class DocumentCheck implements OnInit, OnDestroy {
   // Wskazanie miejsca z panelu struktury: jeśli jest zgłoszenie dla tego klucza, otwiera je w „Wynikach walidacji”;
   // inaczej dociąga podgląd samego miejsca i pokazuje go pod panelem struktury.
   protected locate(key: string): void {
-    const finding = this.findings().find((f) => f.location?.key === key);
+    const finding = this.findings().find((f) => f.locationRef === key);
     if (finding) {
       this.closeLocation();
       this.tab.set('findings');
@@ -284,6 +324,7 @@ export class DocumentCheck implements OnInit, OnDestroy {
     }
 
     this.locationRequest?.unsubscribe();
+    this.tab.set('hierarchy');
     this.locationKey.set(key);
     this.locationPreview.set(null);
     this.locationError.set(null);
@@ -350,12 +391,12 @@ export class DocumentCheck implements OnInit, OnDestroy {
     this.select(target);
   }
 
-  protected isVerified(finding: Finding): boolean {
+  protected isVerified(finding: ResultFinding): boolean {
     return this.verified().has(finding.index);
   }
 
   // Dedykowany przycisk: oznacza wystąpienie jako zweryfikowane (albo cofa), stan trafia do eksportu raportu.
-  protected toggleVerified(finding: Finding): void {
+  protected toggleVerified(finding: ResultFinding): void {
     const next = new Set(this.verified());
     if (next.has(finding.index)) next.delete(finding.index);
     else next.add(finding.index);
@@ -400,8 +441,8 @@ export class DocumentCheck implements OnInit, OnDestroy {
 
   // ------------------------------------------------------------ prezentacja
 
-  protected severityClass(severity: IssueSeverity): string {
-    return severity === 'Error' ? 'status-bad' : severity === 'Warning' ? 'status-warn' : 'status-info';
+  protected severityClass(severity: ResultSeverity): string {
+    return RESULT_SEVERITY_CLASS[severity];
   }
 
   protected checkStatusClass(status: CheckStatus): string {
@@ -440,32 +481,6 @@ export class DocumentCheck implements OnInit, OnDestroy {
     if (count('Warning') > 0) parts.push(`ostrzeżenia: ${count('Warning')}`);
     if (count('ManualReview') > 0) parts.push(`ręcznie: ${count('ManualReview')}`);
     return parts.length > 0 ? parts.join(', ') : 'bez zastrzeżeń';
-  }
-
-  protected standardsLine(r: ValidationResult): string {
-    return r.standards.map((s) => s.name + (s.confirmed ? '' : ' (wersja robocza)')).join('; ');
-  }
-
-  protected documentLine(r: ValidationResult): string {
-    const d = r.document;
-    return [
-      `tytuł: ${d.title ?? 'brak'}`,
-      `autor: ${d.author ?? 'brak'}`,
-      `język: ${d.language ?? 'brak'}`,
-      `akapity: ${d.paragraphs}`,
-      `nagłówki: ${d.headings}`,
-      `tabele: ${d.tables}`,
-      `obrazy: ${d.images}`,
-    ].join(' · ');
-  }
-
-  protected storyLabel(story: string): string {
-    if (story === 'body') return 'treść';
-    if (story.startsWith('header')) return 'nagłówek strony';
-    if (story.startsWith('footer')) return 'stopka';
-    if (story === 'footnotes') return 'przypisy dolne';
-    if (story === 'endnotes') return 'przypisy końcowe';
-    return story;
   }
 
   // ------------------------------------------------------------ wewnętrzne

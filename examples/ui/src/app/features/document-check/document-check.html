@@ -139,25 +139,38 @@
   </div>
 }
 
-@if (result(); as r) {
-  <section class="report" data-testid="result" [attr.data-status]="r.status">
+@if (vm(); as vm) {
+  <section class="report" data-testid="result" [attr.data-format]="vm.format" [attr.data-status]="result()?.status">
     <div class="report-head">
       <div class="title-row">
-        <h2 class="report-title">Raport: {{ r.document.fileName }}</h2>
+        <h2 class="report-title">Raport: {{ vm.summary.fileName }}</h2>
         <div class="title-actions" data-testid="export">
-          <button type="button" (click)="exportReport()" [disabled]="exporting() || !r.reportId" data-testid="export-docx">
-            {{ exporting() ? 'Przygotowanie raportu…' : 'Pobierz raport (docx)' }}
-          </button>
-          <app-comment-export-button [reportId]="r.reportId" [fileName]="r.document.fileName" />
-          <button type="button" class="secondary" (click)="next()" [disabled]="busy()" data-testid="next-button">Zakończ</button>
+          @for (a of vm.actions; track a.id) {
+            @switch (a.id) {
+              @case ('export-docx') {
+                <button type="button" (click)="exportReport()" [disabled]="exporting() || !vm.reportId" data-testid="export-docx">
+                  {{ exporting() ? 'Przygotowanie raportu…' : a.label }}
+                </button>
+              }
+              @case ('export-comments') {
+                @if (a.available) {
+                  <app-comment-export-button [reportId]="vm.reportId" [fileName]="vm.summary.fileName" />
+                }
+              }
+              @case ('finish') {
+                <button type="button" class="secondary" (click)="next()" [disabled]="busy()" data-testid="next-button">{{ a.label }}</button>
+              }
+            }
+          }
         </div>
       </div>
-      <p class="verdict" [class.status-ok]="r.status === 'Valid'" [class.status-bad]="r.status !== 'Valid'" data-testid="summary">
-        Wynik: {{ outcomeLabel[r.status] }}. {{ r.summary }}
+      <p class="verdict" [class.status-ok]="vm.summary.verdict.tone === 'ok'" [class.status-bad]="vm.summary.verdict.tone === 'bad'" data-testid="summary">
+        {{ vm.summary.verdict.text }}
       </p>
       <dl class="facts">
-        <dt>Standardy</dt><dd data-testid="standards-line">{{ standardsLine(r) }}</dd>
-        <dt>Dokument</dt><dd>{{ documentLine(r) }}</dd>
+        @for (fact of vm.summary.facts; track fact.label) {
+          <dt>{{ fact.label }}</dt><dd [attr.data-testid]="fact.testId ?? null">{{ fact.value }}</dd>
+        }
       </dl>
       <p class="muted">
         Zweryfikowane ręcznie: {{ verifiedCount() }} z {{ findings().length }}.
@@ -165,7 +178,22 @@
       </p>
     </div>
 
-    <app-content-tree [nodes]="r.structure ?? []" [outline]="r.outline" [findings]="findings()" (locate)="locate($event)" />
+    <!-- Zakładki raportu: wzorzec WAI-ARIA Tabs (roving tabindex, ←/→, Home/End, aktywacja automatyczna).
+         Wszystkie panele są w DOM (aria-controls zawsze wskazuje istniejący element); nieaktywne mają atrybut hidden. -->
+    <div class="tabs" role="tablist" aria-label="Raport" (keydown)="onTabKey($event)">
+      <button type="button" role="tab" id="report-tab-summary" aria-controls="report-panel-summary" [attr.aria-selected]="tab() === 'summary'" [tabindex]="tab() === 'summary' ? 0 : -1" [class.active]="tab() === 'summary'" (click)="showTab('summary')" data-testid="tab-summary">Podsumowanie</button>
+      <button type="button" role="tab" id="report-tab-findings" aria-controls="report-panel-findings" [attr.aria-selected]="tab() === 'findings'" [tabindex]="tab() === 'findings' ? 0 : -1" [class.active]="tab() === 'findings'" (click)="showTab('findings')" data-testid="tab-findings">
+        Wyniki walidacji ({{ findings().length }}@if (verifiedCount() > 0) {<span data-testid="verified-count">, zweryfikowane {{ verifiedCount() }}</span>})
+      </button>
+      <button type="button" role="tab" id="report-tab-hierarchy" aria-controls="report-panel-hierarchy" [attr.aria-selected]="tab() === 'hierarchy'" [tabindex]="tab() === 'hierarchy' ? 0 : -1" [class.active]="tab() === 'hierarchy'" (click)="showTab('hierarchy')" data-testid="tab-hierarchy">
+        Hierarchia dokumentu@if (hierarchyCount(); as count) {<span data-testid="hierarchy-count"> ({{ count }})</span>}
+      </button>
+    </div>
+
+    <div role="tabpanel" id="report-panel-hierarchy" aria-labelledby="report-tab-hierarchy" tabindex="0" [hidden]="tab() !== 'hierarchy'" data-testid="panel-hierarchy">
+    @if (result(); as r) {
+      <app-content-tree [nodes]="r.structure ?? []" [outline]="r.outline" [findings]="wordFindings()" (locate)="locate($event)" />
+    }
 
     @if (locationKey()) {
       <section class="location-preview" data-testid="location-preview" aria-label="Podgląd miejsca w dokumencie">
@@ -196,16 +224,10 @@
         }
       </section>
     }
-
-    <div class="tabs" role="tablist" aria-label="Raport">
-      <button type="button" role="tab" [attr.aria-selected]="tab() === 'summary'" [class.active]="tab() === 'summary'" (click)="showTab('summary')" data-testid="tab-summary">Podsumowanie</button>
-      <button type="button" role="tab" [attr.aria-selected]="tab() === 'findings'" [class.active]="tab() === 'findings'" (click)="showTab('findings')" data-testid="tab-findings">
-        Wyniki walidacji ({{ findings().length }}@if (verifiedCount() > 0) {<span data-testid="verified-count">, zweryfikowane {{ verifiedCount() }}</span>})
-      </button>
     </div>
 
-    @if (tab() === 'summary') {
-      <div role="tabpanel" data-testid="panel-summary">
+    <div role="tabpanel" id="report-panel-summary" aria-labelledby="report-tab-summary" tabindex="0" [hidden]="tab() !== 'summary'" data-testid="panel-summary">
+      @if (result(); as r) {
         @for (group of summaryByStandard(); track group.standard) {
           <section class="standard-block" [attr.data-standard]="group.standard">
             <h3 class="standard-bar">{{ group.name }}</h3>
@@ -280,16 +302,15 @@
             </div>
           </section>
         }
-      </div>
-    }
+      }
+    </div>
 
-    @if (tab() === 'findings') {
       @if (findings().length === 0) {
-        <div role="tabpanel" class="no-findings" data-testid="panel-findings">
+        <div role="tabpanel" id="report-panel-findings" aria-labelledby="report-tab-findings" tabindex="0" [hidden]="tab() !== 'findings'" class="no-findings" data-testid="panel-findings">
           <p data-testid="no-findings">Brak uwag po walidacji</p>
         </div>
       } @else {
-      <div role="tabpanel" class="findings" data-testid="panel-findings">
+      <div role="tabpanel" id="report-panel-findings" aria-labelledby="report-tab-findings" tabindex="0" [hidden]="tab() !== 'findings'" class="findings" data-testid="panel-findings">
         <nav class="findings-list" aria-label="Wystąpienia">
           @if (pageCount() > 1) {
             <div class="pager pager-top" data-testid="pager">
@@ -303,11 +324,11 @@
               <li>
                 <button type="button" class="finding" [class.selected]="selectedFinding()?.index === f.index" [class.verified]="isVerified(f)" (click)="select(f)" [attr.data-testid]="'finding-' + f.index" [attr.data-code]="f.code" [attr.data-verified]="isVerified(f)">
                   <span class="nr">{{ f.index + 1 }}.</span>
-                  <span [class]="severityClass(f.severity)">{{ severityLabel[f.severity] }}</span>
-                  <span class="code" [attr.title]="'Kod ' + f.code">{{ issueLabel(f.code, f.label) }}</span>
+                  <span [class]="severityClass(f.severity)">{{ f.severityLabel }}</span>
+                  <span class="code" [attr.title]="'Kod ' + f.code">{{ f.title }}</span>
                   @if (f.occurrenceCount > 1) { <span class="muted">{{ f.occurrence }}/{{ f.occurrenceCount }}</span> }
                   @if (isVerified(f)) { <span class="status-ok">✓</span> }
-                  <span class="snippet">{{ f.location ? f.location.snippet : 'cały dokument' }}</span>
+                  <span class="snippet">{{ f.listSnippet }}</span>
                 </button>
               </li>
             }
@@ -327,8 +348,8 @@
           </div>
           @if (selectedFinding(); as f) {
             <div class="finding-title">
-              <span class="severity-tag" [class]="'severity-tag ' + severityClass(f.severity)">{{ severityLabel[f.severity] }}</span>
-              <h4>{{ issueLabel(f.code, f.label) }}</h4>
+              <span class="severity-tag" [class]="'severity-tag ' + severityClass(f.severity)">{{ f.severityLabel }}</span>
+              <h4>{{ f.title }}</h4>
             </div>
             <p class="muted finding-meta">Pozycja {{ f.index + 1 }} z {{ findings().length }} · kod {{ f.code }}</p>
             <p class="message" data-testid="finding-message">{{ f.message }}</p>
@@ -338,37 +359,32 @@
                 <p>{{ f.fix }}</p>
               </div>
             }
-            @if (f.details && f.details.length > 0) {
-              <table class="properties" data-testid="finding-details">
-                <caption class="visually-hidden">Właściwości, których dotyczy zgłoszenie</caption>
+            @if (f.table; as t) {
+              <table class="properties" [attr.data-testid]="t.testId">
+                <caption class="visually-hidden">{{ t.caption }}</caption>
                 <thead>
-                  <tr><th>Właściwość</th><th>W dokumencie</th><th>Oczekiwana</th><th>Źródło</th></tr>
+                  <tr>@for (c of t.columns; track $index) {<th>{{ c }}</th>}</tr>
                 </thead>
                 <tbody>
-                  @for (d of f.details; track $index) {
-                    <tr [attr.data-property]="d.property">
-                      <td>{{ d.label }}</td>
-                      <td>{{ d.actual ?? '–' }}</td>
-                      <td>{{ d.expected ?? '–' }}</td>
-                      <td>{{ d.source ?? '–' }}</td>
+                  @for (row of t.rows; track $index) {
+                    <tr [attr.data-property]="row.key">
+                      @for (cell of row.cells; track $index) {<td>{{ cell }}</td>}
                     </tr>
                   }
                 </tbody>
               </table>
             }
             <dl class="facts">
-              @if (f.status) { <dt>Status w specyfikacji</dt><dd data-testid="finding-status">{{ f.statusLabel ?? specStatusLabel[f.status] }}</dd> }
-              <dt>Standard</dt><dd>{{ f.standardName ?? f.standard }}</dd>
-              @if (f.criteria.length > 0) { <dt>Kryteria WCAG</dt><dd>{{ f.criteria.join(', ') }}</dd> }
-              <dt>Kategoria</dt><dd>{{ categoryLabel[f.category] }}</dd>
-              @if (f.scope) { <dt>Zakres</dt><dd data-testid="finding-scope">{{ scopeLabel[f.scope] }}</dd> }
+              @for (fact of f.facts; track fact.label) {
+                <dt>{{ fact.label }}</dt>
+                <dd [attr.data-testid]="fact.testId ?? null" [class.mono]="fact.mono">
+                  @if (fact.links; as links) {
+                    @for (l of links; track l.href; let last = $last) {<a [href]="l.href" target="_blank" rel="noopener">{{ l.text }}</a>@if (!last) {, }}
+                  } @else {{{ fact.value }}}
+                </dd>
+              }
               <dt>Miejsce</dt>
-              <dd>
-                @if (f.location; as l) {
-                  {{ locationKindLabel[l.kind] }} · {{ storyLabel(l.story) }} · „{{ l.snippet }}”
-                  @if (f.occurrenceCount > 1) { (wystąpienie {{ f.occurrence }} z {{ f.occurrenceCount }}) }
-                } @else { cały dokument }
-              </dd>
+              <dd [class.mono]="f.locationMono">{{ f.locationLabel }}</dd>
               <dt>Weryfikacja</dt>
               <dd><span data-testid="verified-state" [class.status-ok]="isVerified(f)">{{ isVerified(f) ? 'zweryfikowano ręcznie' : 'niezweryfikowane' }}</span></dd>
             </dl>
@@ -408,7 +424,6 @@
         </section>
       </div>
       }
-    }
   </section>
 }
 
