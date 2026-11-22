@@ -87,6 +87,16 @@ describe('wordResultsViewModel', () => {
     expect(withStd.findings[0].hierarchyRef).toBe('body:Paragraph:2');
 
     expect(wordResultsViewModel(result({ outline: [], structure: [] })).hierarchy.status).toBe('empty');
+
+    // HIER-FAKE scalony przez walidator ze STY-FAKE-HEADING nadal jest problemem hierarchii.
+    const merged = wordResultsViewModel(
+      result({
+        findings: [finding(0, { code: 'STY-FAKE-HEADING', location: { key: 'body:Paragraph:5', kind: 'Paragraph', story: 'body', index: 5, subIndex: null, snippet: 'Wstęp' } })],
+        standards: [{ key: 'hierarchia/1.0', name: 'Hierarchia treści', confirmed: true } as ValidationResult['standards'][number]],
+      }),
+    );
+    expect(merged.hierarchy.issues.map((i) => i.code)).toEqual(['STY-FAKE-HEADING']);
+    expect(merged.findings[0].hierarchyRef).toBe('body:Paragraph:5');
   });
 
   it('declines the issue counter in Polish', () => {

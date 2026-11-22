@@ -25,6 +25,13 @@ import {
 
 export const HIERARCHY_STANDARD_KEY = 'hierarchia';
 export const HIERARCHY_CODE_PREFIX = 'HIER-';
+// Walidator scala HIER-FAKE ze STY-FAKE-HEADING (grupa deduplikacji „fake-heading”), gdy wybrano oba standardy –
+// zostaje jedno zgłoszenie z kodem STY-…, a nadal jest to problem hierarchii.
+export const HIERARCHY_MERGED_CODES: readonly string[] = ['STY-FAKE-HEADING'];
+
+export function isHierarchyCode(code: string): boolean {
+  return code.startsWith(HIERARCHY_CODE_PREFIX) || HIERARCHY_MERGED_CODES.includes(code);
+}
 
 const SEVERITY: Record<IssueSeverity, ResultSeverity> = { Error: 'error', Warning: 'warning', Info: 'info' };
 
@@ -97,7 +104,7 @@ export function wordFinding(f: Finding): ResultFinding {
           }
         : null,
     checkType: null,
-    hierarchyRef: f.code.startsWith(HIERARCHY_CODE_PREFIX) ? (l?.key ?? null) : null,
+    hierarchyRef: isHierarchyCode(f.code) ? (l?.key ?? null) : null,
     hasPreview: true,
   };
 }
@@ -111,7 +118,7 @@ function wordHierarchy(r: ValidationResult, findings: ResultFinding[]): ResultsH
   const issues: HierarchyIssue[] =
     hasTree && issuesAnalyzed
       ? findings
-          .filter((f) => f.code.startsWith(HIERARCHY_CODE_PREFIX))
+          .filter((f) => isHierarchyCode(f.code))
           .map((f) => ({ findingIndex: f.index, code: f.code, title: f.title, locationRef: f.locationRef }))
       : [];
   return {

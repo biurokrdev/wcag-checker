@@ -94,10 +94,12 @@ for (const c of cases) {
       await expect(tree).toHaveAttribute('aria-label', 'Hierarchia treści dokumentu');
       expect(await tree.getByRole('treeitem').count()).toBeGreaterThan(5);
       await expect(tree.locator('[role="treeitem"][data-kind="Heading"]').first()).toBeVisible();
-      problems = api.findings.filter((f) => f.code.startsWith('HIER-')).length;
-      // Licznik liczy zgłoszenia HIER-*; HIER-FAKE scalone z STY-FAKE-HEADING (grupa deduplikacji) do niego nie wchodzi.
-      const hier = expectedWordIssues(m, WORD_STANDARDS).filter((i) => i.code.startsWith('HIER-'));
-      expect(problems).toBe(hier.reduce((a, i) => a + i.locations.length, 0));
+      // Licznik liczy zgłoszenia HIER-* oraz STY-FAKE-HEADING – walidator scala z nim HIER-FAKE (grupa deduplikacji
+      // „fake-heading”), więc liczba problemów jest taka jak przy samym standardzie „Hierarchia treści”.
+      const isHier = (code: string) => code.startsWith('HIER-') || code === 'STY-FAKE-HEADING';
+      problems = api.findings.filter((f) => isHier(f.code)).length;
+      const hierOnly = expectedWordIssues(m, ['hierarchia/1.0']).filter((i) => i.code.startsWith('HIER-'));
+      expect(problems).toBe(hierOnly.reduce((a, i) => a + i.locations.length, 0));
     } else {
       await expect(page.getByTestId('workbook-tree')).toBeVisible();
       await expect(tree).toHaveAttribute('aria-label', 'Struktura skoroszytu');
