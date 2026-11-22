@@ -1,4 +1,4 @@
-using System.Text;
+﻿using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using D2.Wcag.Docx;
@@ -48,7 +48,8 @@ public static class SampleVerifier
                 details.Add($"  [{issue.Severity}] {issue.Code} {string.Join(" ", issue.Locations.Take(6))}{(issue.Locations.Count > 6 ? " …" : "")}");
             }
 
-            foreach (var missing in expected.Except(blocking).Order(StringComparer.Ordinal))
+            var all = result.Issues.Select(i => i.Code).ToHashSet(StringComparer.Ordinal);
+            foreach (var missing in expected.Except(all).Order(StringComparer.Ordinal))
             {
                 problems.Add($"{profile.Name}: brak oczekiwanego zgłoszenia {missing}");
             }

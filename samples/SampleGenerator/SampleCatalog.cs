@@ -1,4 +1,4 @@
-namespace D2.Wcag.SampleGenerator;
+﻿namespace D2.Wcag.SampleGenerator;
 
 public enum SampleKind
 {
@@ -8,8 +8,8 @@ public enum SampleKind
 
 /// <summary>
 /// Profil sprawdzenia: zestaw standardów DOCX albo wersja WCAG dla XLSX, z kodami zgłoszeń, które MUSZĄ wystąpić
-/// (wagi błąd, ostrzeżenie i – w XLSX – do weryfikacji). Innych zgłoszeń o tych wagach nie może być; informacje
-/// są dozwolone i trafiają do manifestu.
+/// (w dowolnej wadze). Zgłoszeń o wadze błąd, ostrzeżenie albo do weryfikacji spoza listy nie może być; informacje
+/// spoza listy są dozwolone i trafiają do manifestu.
 /// </summary>
 public sealed record SampleProfile(string Name, IReadOnlyList<string> Standards, string? WcagVersion, IReadOnlyList<string> ExpectedCodes);
 

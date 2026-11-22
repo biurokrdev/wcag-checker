@@ -1,4 +1,4 @@
-using System.Text;
+﻿using System.Text;
 using D2.Wcag.SampleGenerator;
 
 // Generuje pliki przykładowe do samples/ i ich manifesty (*.expected.json), a przed zapisem sprawdza je prawdziwym
@@ -42,7 +42,7 @@ foreach (var sample in SampleCatalog.All)
             failed = true;
         }
 
-        if (!File.Exists(manifestPath) || File.ReadAllText(manifestPath) != report.Manifest)
+        if (!File.Exists(manifestPath) || File.ReadAllText(manifestPath).ReplaceLineEndings("\n") != report.Manifest)
         {
             Console.Error.WriteLine($"  BŁĄD: {manifestPath} różni się od wyniku generatora.");
             failed = true;

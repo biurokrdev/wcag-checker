@@ -1,0 +1,672 @@
+{
+  "file": "przyklad_arkusz_niezgodny.xlsx",
+  "kind": "xlsx",
+  "profiles": [
+    {
+      "name": "WCAG 2.2",
+      "standards": [],
+      "wcagVersion": "2.2",
+      "errors": 4,
+      "warnings": 9,
+      "needsReview": 16,
+      "info": 5,
+      "issues": [
+        {
+          "code": "XL-ALT-MISSING",
+          "severity": "Error",
+          "standard": null,
+          "locations": [
+            "0000|Drawing|0000012|00001|Obraz 4|4"
+          ]
+        },
+        {
+          "code": "XL-CHART-ALT",
+          "severity": "Error",
+          "standard": null,
+          "locations": [
+            "0000|Chart|0000001|00007|Wykres 1|2"
+          ]
+        },
+        {
+          "code": "XL-CONTROL",
+          "severity": "Error",
+          "standard": null,
+          "locations": [
+            "0001|Drawing|0000007|00001|Check Box 1|"
+          ]
+        },
+        {
+          "code": "XL-TITLE",
+          "severity": "Error",
+          "standard": null,
+          "locations": [
+            "-001|Workbook|0000000|00000||"
+          ]
+        },
+        {
+          "code": "XL-ALT-POOR",
+          "severity": "Warning",
+          "standard": null,
+          "locations": [
+            "0000|Drawing|0000012|00003|Obraz 5|5"
+          ]
+        },
+        {
+          "code": "XL-CHART-COLOR",
+          "severity": "Warning",
+          "standard": null,
+          "locations": [
+            "0000|Chart|0000001|00007|Wykres 1|2"
+          ]
+        },
+        {
+          "code": "XL-CHART-CONTRAST",
+          "severity": "Warning",
+          "standard": null,
+          "locations": [
+            "0000|Chart|0000018|00007|Wykres 2|3"
+          ]
+        },
+        {
+          "code": "XL-CHART-TITLE-POOR",
+          "severity": "Warning",
+          "standard": null,
+          "locations": [
+            "0000|Chart|0000018|00007|Wykres 2|3"
+          ]
+        },
+        {
+          "code": "XL-CONTRAST-CF",
+          "severity": "Warning",
+          "standard": null,
+          "locations": [
+            "0000|Range|0000002|00004|D2:D9|"
+          ]
+        },
+        {
+          "code": "XL-CONTRAST-CF",
+          "severity": "Warning",
+          "standard": null,
+          "locations": [
+            "0000|Range|0000002|00005|E2:E9|"
+          ]
+        },
+        {
+          "code": "XL-DV-ERROR-TEXT",
+          "severity": "Warning",
+          "standard": null,
+          "locations": [
+            "0001|Cell|0000004|00002|B4|"
+          ]
+        },
+        {
+          "code": "XL-TABLE-HEADER",
+          "severity": "Warning",
+          "standard": null,
+          "locations": [
+            "0002|Table|0000001|00001|Tabela1|"
+          ]
+        },
+        {
+          "code": "XL-TABLE-HEADER-NAME",
+          "severity": "Warning",
+          "standard": null,
+          "locations": [
+            "0002|Range|0000001|00005|E1:F1|"
+          ]
+        },
+        {
+          "code": "XL-BLANK-LAYOUT",
+          "severity": "NeedsReview",
+          "standard": null,
+          "locations": [
+            "0000|Range|0000005|00001|A5:E5|"
+          ]
+        },
+        {
+          "code": "XL-CHART-CONTRAST",
+          "severity": "NeedsReview",
+          "standard": null,
+          "locations": [
+            "0000|Chart|0000001|00007|Wykres 1|2"
+          ]
+        },
+        {
+          "code": "XL-COLOR-ONLY",
+          "severity": "NeedsReview",
+          "standard": null,
+          "locations": [
+            "0000|Range|0000002|00004|D2:D9|"
+          ]
+        },
+        {
+          "code": "XL-COLOR-ONLY",
+          "severity": "NeedsReview",
+          "standard": null,
+          "locations": [
+            "0000|Range|0000002|00005|E2:E9|"
+          ]
+        },
+        {
+          "code": "XL-CONTRAST",
+          "severity": "NeedsReview",
+          "standard": null,
+          "locations": [
+            "0000|Range|0000002|00005|E2:E4|"
+          ]
+        },
+        {
+          "code": "XL-CONTRAST",
+          "severity": "NeedsReview",
+          "standard": null,
+          "locations": [
+            "0000|Range|0000006|00005|E6:E7|"
+          ]
+        },
+        {
+          "code": "XL-DV-ERROR",
+          "severity": "NeedsReview",
+          "standard": null,
+          "locations": [
+            "0001|Cell|0000003|00002|B3|"
+          ]
+        },
+        {
+          "code": "XL-DV-INPUT",
+          "severity": "NeedsReview",
+          "standard": null,
+          "locations": [
+            "0001|Range|0000008|00004|D8:D9|"
+          ]
+        },
+        {
+          "code": "XL-FIELD-LABEL",
+          "severity": "NeedsReview",
+          "standard": null,
+          "locations": [
+            "0001|Range|0000003|00006|F3:F4|"
+          ]
+        },
+        {
+          "code": "XL-LANG",
+          "severity": "NeedsReview",
+          "standard": null,
+          "locations": [
+            "-001|Workbook|0000000|00000||"
+          ]
+        },
+        {
+          "code": "XL-LINK-TEXT",
+          "severity": "NeedsReview",
+          "standard": null,
+          "locations": [
+            "0003|Cell|0000002|00001|A2|"
+          ]
+        },
+        {
+          "code": "XL-MERGED",
+          "severity": "NeedsReview",
+          "standard": null,
+          "locations": [
+            "0000|Range|0000007|00002|B7:C7|"
+          ]
+        },
+        {
+          "code": "XL-SENSORY",
+          "severity": "NeedsReview",
+          "standard": null,
+          "locations": [
+            "0000|Cell|0000010|00001|A10|"
+          ]
+        },
+        {
+          "code": "XL-SHEET-NAME",
+          "severity": "NeedsReview",
+          "standard": null,
+          "locations": [
+            "0000|Sheet|0000000|00000||"
+          ]
+        },
+        {
+          "code": "XL-TABLE-MISSING",
+          "severity": "NeedsReview",
+          "standard": null,
+          "locations": [
+            "0000|Range|0000001|00001|A1:E8|"
+          ]
+        },
+        {
+          "code": "XL-TEXTBOX",
+          "severity": "NeedsReview",
+          "standard": null,
+          "locations": [
+            "0000|Drawing|0000018|00001|pole tekstowe 6|6"
+          ]
+        },
+        {
+          "code": "XL-CHART-TITLE",
+          "severity": "Info",
+          "standard": null,
+          "locations": [
+            "0000|Chart|0000001|00007|Wykres 1|2"
+          ]
+        },
+        {
+          "code": "XL-HIDDEN",
+          "severity": "Info",
+          "standard": null,
+          "locations": [
+            "0000|Range|0000008|00001|A8:E8|"
+          ]
+        },
+        {
+          "code": "XL-HIDDEN",
+          "severity": "Info",
+          "standard": null,
+          "locations": [
+            "0005|Sheet|0000000|00000||"
+          ]
+        },
+        {
+          "code": "XL-LINK-URL",
+          "severity": "Info",
+          "standard": null,
+          "locations": [
+            "0003|Cell|0000003|00001|A3|"
+          ]
+        },
+        {
+          "code": "XL-START-A1",
+          "severity": "Info",
+          "standard": null,
+          "locations": [
+            "0004|Cell|0000020|00008|H20|"
+          ]
+        }
+      ],
+      "manualChecks": [
+        {
+          "code": "XL-CHART-CONTRAST",
+          "severity": "Manual",
+          "standard": null,
+          "locations": [
+            ""
+          ]
+        },
+        {
+          "code": "XL-COLOR-ONLY",
+          "severity": "Manual",
+          "standard": null,
+          "locations": [
+            ""
+          ]
+        },
+        {
+          "code": "XL-CONTRAST",
+          "severity": "Manual",
+          "standard": null,
+          "locations": [
+            ""
+          ]
+        },
+        {
+          "code": "XL-CONTRAST",
+          "severity": "Manual",
+          "standard": null,
+          "locations": [
+            ""
+          ]
+        },
+        {
+          "code": "XL-TEXT-IN-IMAGE",
+          "severity": "Manual",
+          "standard": null,
+          "locations": [
+            "0000|Drawing|0000012|00001|Obraz 4|4"
+          ]
+        },
+        {
+          "code": "XL-TEXT-IN-IMAGE",
+          "severity": "Manual",
+          "standard": null,
+          "locations": [
+            "0000|Drawing|0000012|00003|Obraz 5|5"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "WCAG 2.1",
+      "standards": [],
+      "wcagVersion": "2.1",
+      "errors": 3,
+      "warnings": 9,
+      "needsReview": 17,
+      "info": 5,
+      "issues": [
+        {
+          "code": "XL-ALT-MISSING",
+          "severity": "Error",
+          "standard": null,
+          "locations": [
+            "0000|Drawing|0000012|00001|Obraz 4|4"
+          ]
+        },
+        {
+          "code": "XL-CHART-ALT",
+          "severity": "Error",
+          "standard": null,
+          "locations": [
+            "0000|Chart|0000001|00007|Wykres 1|2"
+          ]
+        },
+        {
+          "code": "XL-CONTROL",
+          "severity": "Error",
+          "standard": null,
+          "locations": [
+            "0001|Drawing|0000007|00001|Check Box 1|"
+          ]
+        },
+        {
+          "code": "XL-ALT-POOR",
+          "severity": "Warning",
+          "standard": null,
+          "locations": [
+            "0000|Drawing|0000012|00003|Obraz 5|5"
+          ]
+        },
+        {
+          "code": "XL-CHART-COLOR",
+          "severity": "Warning",
+          "standard": null,
+          "locations": [
+            "0000|Chart|0000001|00007|Wykres 1|2"
+          ]
+        },
+        {
+          "code": "XL-CHART-CONTRAST",
+          "severity": "Warning",
+          "standard": null,
+          "locations": [
+            "0000|Chart|0000018|00007|Wykres 2|3"
+          ]
+        },
+        {
+          "code": "XL-CHART-TITLE-POOR",
+          "severity": "Warning",
+          "standard": null,
+          "locations": [
+            "0000|Chart|0000018|00007|Wykres 2|3"
+          ]
+        },
+        {
+          "code": "XL-CONTRAST-CF",
+          "severity": "Warning",
+          "standard": null,
+          "locations": [
+            "0000|Range|0000002|00004|D2:D9|"
+          ]
+        },
+        {
+          "code": "XL-CONTRAST-CF",
+          "severity": "Warning",
+          "standard": null,
+          "locations": [
+            "0000|Range|0000002|00005|E2:E9|"
+          ]
+        },
+        {
+          "code": "XL-DV-ERROR-TEXT",
+          "severity": "Warning",
+          "standard": null,
+          "locations": [
+            "0001|Cell|0000004|00002|B4|"
+          ]
+        },
+        {
+          "code": "XL-TABLE-HEADER",
+          "severity": "Warning",
+          "standard": null,
+          "locations": [
+            "0002|Table|0000001|00001|Tabela1|"
+          ]
+        },
+        {
+          "code": "XL-TABLE-HEADER-NAME",
+          "severity": "Warning",
+          "standard": null,
+          "locations": [
+            "0002|Range|0000001|00005|E1:F1|"
+          ]
+        },
+        {
+          "code": "XL-BLANK-LAYOUT",
+          "severity": "NeedsReview",
+          "standard": null,
+          "locations": [
+            "0000|Range|0000005|00001|A5:E5|"
+          ]
+        },
+        {
+          "code": "XL-CHART-CONTRAST",
+          "severity": "NeedsReview",
+          "standard": null,
+          "locations": [
+            "0000|Chart|0000001|00007|Wykres 1|2"
+          ]
+        },
+        {
+          "code": "XL-COLOR-ONLY",
+          "severity": "NeedsReview",
+          "standard": null,
+          "locations": [
+            "0000|Range|0000002|00004|D2:D9|"
+          ]
+        },
+        {
+          "code": "XL-COLOR-ONLY",
+          "severity": "NeedsReview",
+          "standard": null,
+          "locations": [
+            "0000|Range|0000002|00005|E2:E9|"
+          ]
+        },
+        {
+          "code": "XL-CONTRAST",
+          "severity": "NeedsReview",
+          "standard": null,
+          "locations": [
+            "0000|Range|0000002|00005|E2:E4|"
+          ]
+        },
+        {
+          "code": "XL-CONTRAST",
+          "severity": "NeedsReview",
+          "standard": null,
+          "locations": [
+            "0000|Range|0000006|00005|E6:E7|"
+          ]
+        },
+        {
+          "code": "XL-DV-ERROR",
+          "severity": "NeedsReview",
+          "standard": null,
+          "locations": [
+            "0001|Cell|0000003|00002|B3|"
+          ]
+        },
+        {
+          "code": "XL-DV-INPUT",
+          "severity": "NeedsReview",
+          "standard": null,
+          "locations": [
+            "0001|Range|0000008|00004|D8:D9|"
+          ]
+        },
+        {
+          "code": "XL-FIELD-LABEL",
+          "severity": "NeedsReview",
+          "standard": null,
+          "locations": [
+            "0001|Range|0000003|00006|F3:F4|"
+          ]
+        },
+        {
+          "code": "XL-LANG",
+          "severity": "NeedsReview",
+          "standard": null,
+          "locations": [
+            "-001|Workbook|0000000|00000||"
+          ]
+        },
+        {
+          "code": "XL-LINK-TEXT",
+          "severity": "NeedsReview",
+          "standard": null,
+          "locations": [
+            "0003|Cell|0000002|00001|A2|"
+          ]
+        },
+        {
+          "code": "XL-MERGED",
+          "severity": "NeedsReview",
+          "standard": null,
+          "locations": [
+            "0000|Range|0000007|00002|B7:C7|"
+          ]
+        },
+        {
+          "code": "XL-SENSORY",
+          "severity": "NeedsReview",
+          "standard": null,
+          "locations": [
+            "0000|Cell|0000010|00001|A10|"
+          ]
+        },
+        {
+          "code": "XL-SHEET-NAME",
+          "severity": "NeedsReview",
+          "standard": null,
+          "locations": [
+            "0000|Sheet|0000000|00000||"
+          ]
+        },
+        {
+          "code": "XL-TABLE-MISSING",
+          "severity": "NeedsReview",
+          "standard": null,
+          "locations": [
+            "0000|Range|0000001|00001|A1:E8|"
+          ]
+        },
+        {
+          "code": "XL-TEXTBOX",
+          "severity": "NeedsReview",
+          "standard": null,
+          "locations": [
+            "0000|Drawing|0000018|00001|pole tekstowe 6|6"
+          ]
+        },
+        {
+          "code": "XL-TITLE",
+          "severity": "NeedsReview",
+          "standard": null,
+          "locations": [
+            "-001|Workbook|0000000|00000||"
+          ]
+        },
+        {
+          "code": "XL-CHART-TITLE",
+          "severity": "Info",
+          "standard": null,
+          "locations": [
+            "0000|Chart|0000001|00007|Wykres 1|2"
+          ]
+        },
+        {
+          "code": "XL-HIDDEN",
+          "severity": "Info",
+          "standard": null,
+          "locations": [
+            "0000|Range|0000008|00001|A8:E8|"
+          ]
+        },
+        {
+          "code": "XL-HIDDEN",
+          "severity": "Info",
+          "standard": null,
+          "locations": [
+            "0005|Sheet|0000000|00000||"
+          ]
+        },
+        {
+          "code": "XL-LINK-URL",
+          "severity": "Info",
+          "standard": null,
+          "locations": [
+            "0003|Cell|0000003|00001|A3|"
+          ]
+        },
+        {
+          "code": "XL-START-A1",
+          "severity": "Info",
+          "standard": null,
+          "locations": [
+            "0004|Cell|0000020|00008|H20|"
+          ]
+        }
+      ],
+      "manualChecks": [
+        {
+          "code": "XL-CHART-CONTRAST",
+          "severity": "Manual",
+          "standard": null,
+          "locations": [
+            ""
+          ]
+        },
+        {
+          "code": "XL-COLOR-ONLY",
+          "severity": "Manual",
+          "standard": null,
+          "locations": [
+            ""
+          ]
+        },
+        {
+          "code": "XL-CONTRAST",
+          "severity": "Manual",
+          "standard": null,
+          "locations": [
+            ""
+          ]
+        },
+        {
+          "code": "XL-CONTRAST",
+          "severity": "Manual",
+          "standard": null,
+          "locations": [
+            ""
+          ]
+        },
+        {
+          "code": "XL-TEXT-IN-IMAGE",
+          "severity": "Manual",
+          "standard": null,
+          "locations": [
+            "0000|Drawing|0000012|00001|Obraz 4|4"
+          ]
+        },
+        {
+          "code": "XL-TEXT-IN-IMAGE",
+          "severity": "Manual",
+          "standard": null,
+          "locations": [
+            "0000|Drawing|0000012|00003|Obraz 5|5"
+          ]
+        }
+      ]
+    }
+  ]
+}
