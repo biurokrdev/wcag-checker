@@ -1,0 +1,83 @@
+<div class="workbook-tree" data-testid="workbook-tree">
+  <div class="toolbar">
+    <label class="filter">
+      <input type="checkbox" [checked]="onlyProblems()" (change)="setOnlyProblems($any($event.target).checked)" data-testid="tree-only-problems" />
+      Pokaż tylko problemy
+    </label>
+    <button type="button" class="secondary small" (click)="expandAll()" data-testid="tree-expand-all">Rozwiń wszystko</button>
+    <button type="button" class="secondary small" (click)="collapseAll()" data-testid="tree-collapse-all">Zwiń wszystko</button>
+    <span class="muted" data-testid="tree-problems">{{ problemsSummary() }}</span>
+  </div>
+
+  @if (visible().length === 0) {
+    <p class="muted empty" data-testid="tree-no-problems">Żaden element struktury nie ma zgłoszeń.</p>
+  } @else {
+    <ul class="tree" role="tree" aria-label="Struktura skoroszytu" data-testid="tree">
+      @for (row of visible(); track row.id) {
+        <li
+          class="node"
+          role="treeitem"
+          [class.selected]="selectedId() === row.id"
+          [class]="'node state-' + state(row)"
+          [attr.aria-level]="row.depth + 1"
+          [attr.aria-posinset]="row.position"
+          [attr.aria-setsize]="row.siblings"
+          [attr.aria-expanded]="hasChildren(row) ? isOpen(row) : null"
+          [attr.aria-selected]="selectedId() === row.id"
+          [attr.tabindex]="activeId() === row.id ? 0 : -1"
+          [attr.data-node-id]="row.id"
+          [attr.data-key]="row.node.key"
+          [attr.data-kind]="row.node.kind"
+          [attr.data-state]="state(row)"
+          [style.padding-left.rem]="0.4 + row.depth * 1.2"
+          (click)="select(row)"
+          (keydown)="onKey($event, row)"
+          data-testid="tree-node"
+        >
+          @if (hasChildren(row)) {
+            <span class="toggle" aria-hidden="true" (click)="toggle(row, $event)" data-testid="tree-toggle">{{ isOpen(row) ? '▾' : '▸' }}</span>
+          } @else {
+            <span class="toggle none" aria-hidden="true"></span>
+          }
+          <span [class]="'state state-' + state(row)" [attr.title]="stateText(row)">
+            <span aria-hidden="true">{{ stateIcon(row) }}</span>
+            <span class="visually-hidden">{{ stateText(row) }}.</span>
+          </span>
+          @if (kindLabel(row); as kind) {
+            <span class="badge">{{ kind }}</span>
+          }
+          <span class="text">{{ row.node.label }}</span>
+          @if (row.node.meta; as m) {
+            <span class="meta">{{ m }}</span>
+          }
+          @if (insideText(row); as inside) {
+            <span [class]="'inside state-' + insideState(row)" data-testid="tree-inside">{{ inside }}</span>
+          }
+        </li>
+      }
+    </ul>
+  }
+
+  <div aria-live="polite">
+    @if (selected(); as s) {
+      <div class="node-detail" data-testid="tree-detail">
+        <p class="where">
+          <strong>{{ kindLabel(s) }} {{ s.node.label }}</strong>
+          @if (s.node.meta; as m) { <span class="muted"> · {{ m }}</span> }
+          <span [class]="'state-' + state(s)"> · {{ stateText(s) }}</span>
+        </p>
+        @if (marks(s).issues.length > 0) {
+          <ul class="plain">
+            @for (issue of marks(s).issues; track issue.findingIndex) {
+              <li>
+                <b>{{ issueLabel(issue) }}</b>
+                @if (issueFinding(issue); as f) { – {{ f.message }} }
+                <button type="button" class="link" (click)="showFinding.emit(issue.findingIndex)" data-testid="tree-detail-finding">Pokaż w wynikach walidacji<span class="visually-hidden">: {{ issueLabel(issue) }}</span></button>
+              </li>
+            }
+          </ul>
+        }
+      </div>
+    }
+  </div>
+</div>
