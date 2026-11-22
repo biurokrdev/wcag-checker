@@ -3,7 +3,7 @@
   "failure": "None",
   "wcagVersion": "2.1",
   "profileName": "WCAG 2.1 AA (arkusz Excel)",
-  "summary": "Nie wykryto automatycznie niezgodności. 21 kryteriów wymaga oceny ręcznej (w całości lub w części).",
+  "summary": "Nie wykryto automatycznie niezgodności. 24 kryteria wymagają oceny ręcznej (w całości lub w części).",
   "disclaimer": "Wynik automatyczny nie potwierdza zgodności z WCAG",
   "workbook": {
     "title": "Rejestr zamówień z makrami",
@@ -23,7 +23,7 @@
     "warnings": 0,
     "needsReview": 0,
     "info": 1,
-    "manualChecks": 21
+    "manualChecks": 24
   },
   "findings": [
     {
@@ -133,12 +133,28 @@
       "hint": "Makr audyt nie uruchamia. Otwórz skoroszyt w zaufanym środowisku, przejrzyj kod (Deweloper → Visual Basic) i sprawdź działanie makr samą klawiaturą i z czytnikiem ekranu. Alternatywa: udostępnij wersję bez makr (Plik → Zapisz jako → Skoroszyt programu Excel (*.xlsx))."
     },
     {
+      "id": "manual-2.2.2:macros",
+      "wcag": [
+        "2.2.2"
+      ],
+      "question": "Czy makra nie zmieniają treści samoczynnie (np. Application.OnTime odświeżające dane albo animujące komórki), a jeśli tak – czy użytkownik może to wstrzymać, zatrzymać lub ukryć?",
+      "hint": "Makr audyt nie uruchamia. Otwórz skoroszyt w zaufanym środowisku, przejrzyj kod (Deweloper → Visual Basic) i sprawdź działanie makr samą klawiaturą i z czytnikiem ekranu. Alternatywa: udostępnij wersję bez makr (Plik → Zapisz jako → Skoroszyt programu Excel (*.xlsx))."
+    },
+    {
       "id": "manual-2.4.2:structure",
       "wcag": [
         "2.4.2"
       ],
       "question": "Czy tytuł we właściwościach albo nazwa pliku opisuje temat lub cel skoroszytu?",
       "hint": "Plik → Informacje → Właściwości → Tytuł."
+    },
+    {
+      "id": "manual-2.4.3:macros",
+      "wcag": [
+        "2.4.3"
+      ],
+      "question": "Czy w formularzach użytkownika otwieranych przez makra kolejność przechodzenia klawiszem Tab jest zgodna z logiką formularza?",
+      "hint": "Makr audyt nie uruchamia. Otwórz skoroszyt w zaufanym środowisku, przejrzyj kod (Deweloper → Visual Basic) i sprawdź działanie makr samą klawiaturą i z czytnikiem ekranu. Alternatywa: udostępnij wersję bez makr (Plik → Zapisz jako → Skoroszyt programu Excel (*.xlsx))."
     },
     {
       "id": "manual-2.4.6:structure",
@@ -183,6 +199,14 @@
         "3.2.2"
       ],
       "question": "Czy makra nie zmieniają kontekstu bez uprzedzenia, gdy użytkownik zmienia wartość komórki albo kontrolki (np. zdarzenie Worksheet_Change przenoszące do innego arkusza)?",
+      "hint": "Makr audyt nie uruchamia. Otwórz skoroszyt w zaufanym środowisku, przejrzyj kod (Deweloper → Visual Basic) i sprawdź działanie makr samą klawiaturą i z czytnikiem ekranu. Alternatywa: udostępnij wersję bez makr (Plik → Zapisz jako → Skoroszyt programu Excel (*.xlsx))."
+    },
+    {
+      "id": "manual-3.3.2:macros",
+      "wcag": [
+        "3.3.2"
+      ],
+      "question": "Czy pola w formularzach użytkownika i oknach (np. InputBox) otwieranych przez makra mają widoczne etykiety lub instrukcje?",
       "hint": "Makr audyt nie uruchamia. Otwórz skoroszyt w zaufanym środowisku, przejrzyj kod (Deweloper → Visual Basic) i sprawdź działanie makr samą klawiaturą i z czytnikiem ekranu. Alternatywa: udostępnij wersję bez makr (Plik → Zapisz jako → Skoroszyt programu Excel (*.xlsx))."
     },
     {
@@ -390,8 +414,9 @@
       "sc": "2.2.2",
       "name": "Pauza, zatrzymanie, ukrycie",
       "level": "A",
-      "status": "NotApplicable",
-      "reason": "Nie wykryto animowanych obrazów, osadzonych multimediów ani połączeń danych. Zgodnie z WCAG2ICT (Comments on Conformance) kryterium nie jest naruszane, gdy treść, której dotyczy, nie występuje."
+      "status": "ManualReview",
+      "reason": "Skoroszyt zawiera makra, których narzędzie nie uruchamia ani nie ocenia; makra mogą dodawać funkcje objęte tym kryterium – makra wymagają oceny ręcznej (pozycja na liście kontroli ręcznych).",
+      "manualChecks": 1
     },
     {
       "sc": "2.3.1",
@@ -419,8 +444,9 @@
       "sc": "2.4.3",
       "name": "Kolejność fokusu",
       "level": "A",
-      "status": "NotApplicable",
-      "reason": "Nie wykryto obiektów pływających, kontrolek ani arkuszy chronionych. Zgodnie z WCAG2ICT (Comments on Conformance) kryterium nie jest naruszane, gdy treść, której dotyczy, nie występuje."
+      "status": "ManualReview",
+      "reason": "Skoroszyt zawiera makra, których narzędzie nie uruchamia ani nie ocenia; makra mogą dodawać funkcje objęte tym kryterium – makra wymagają oceny ręcznej (pozycja na liście kontroli ręcznych).",
+      "manualChecks": 1
     },
     {
       "sc": "2.4.4",
@@ -538,8 +564,9 @@
       "sc": "3.3.2",
       "name": "Etykiety lub instrukcje",
       "level": "A",
-      "status": "NotApplicable",
-      "reason": "Nie wykryto pól do wypełnienia (walidacji danych, kontrolek ani arkuszy chronionych). Zgodnie z WCAG2ICT (Comments on Conformance) kryterium nie jest naruszane, gdy treść, której dotyczy, nie występuje."
+      "status": "ManualReview",
+      "reason": "Skoroszyt zawiera makra, których narzędzie nie uruchamia ani nie ocenia; makra mogą dodawać funkcje objęte tym kryterium – makra wymagają oceny ręcznej (pozycja na liście kontroli ręcznych).",
+      "manualChecks": 1
     },
     {
       "sc": "3.3.3",

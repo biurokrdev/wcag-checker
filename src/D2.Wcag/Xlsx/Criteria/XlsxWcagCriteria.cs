@@ -281,7 +281,8 @@ public static class XlsxWcagCriteria
             "Dotyczy, gdy skoroszyt zawiera treść ruchomą lub odświeżaną automatycznie (animowane obrazy, wideo, połączenia danych odświeżane przy otwarciu albo co określony czas). Połączenia danych (xl/connections.xml) audyt wykrywa, ale nie ustala, czy odświeżanie zmienia widoczną treść.",
             "Czy treść ruchomą lub odświeżaną automatycznie (animowane obrazy, automatyczne odświeżanie danych) można wstrzymać, zatrzymać lub ukryć?",
             HasMovingOrRefreshing, "Nie wykryto animowanych obrazów, osadzonych multimediów ani połączeń danych.",
-            hint: "Połączenia danych: Dane → Zapytania i połączenia → Właściwości (Odśwież dane podczas otwierania pliku, Odświeżaj co … min).");
+            hint: "Połączenia danych: Dane → Zapytania i połączenia → Właściwości (Odśwież dane podczas otwierania pliku, Odświeżaj co … min).",
+            macro: "Czy makra nie zmieniają treści samoczynnie (np. Application.OnTime odświeżające dane albo animujące komórki), a jeśli tak – czy użytkownik może to wstrzymać, zatrzymać lub ukryć?");
         Add("2.3.1", "Trzy błyski lub wartości poniżej progu", "Three Flashes or Below Threshold", "A", Both, Conditional, XlsxCheckType.Manual,
             "three-flashes-or-below-threshold",
             "Dotyczy, gdy skoroszyt zawiera animowane obrazy albo wideo.",
@@ -297,7 +298,8 @@ public static class XlsxWcagCriteria
         Add("2.4.3", "Kolejność fokusu", "Focus Order", "A", Both, Conditional, XlsxCheckType.Manual, "focus-order",
             "Dotyczy, gdy skoroszyt zawiera obiekty pływające, kontrolki albo arkusz chroniony z komórkami do wypełnienia. Kolejność w siatce ustala Excel; autor wpływa na kolejność obiektów i komórek odblokowanych.",
             "Czy przechodzenie klawiszem Tab po kontrolkach, obiektach i polach do wypełnienia odbywa się w kolejności zgodnej z logiką arkusza?",
-            HasFocusOrderContent, "Nie wykryto obiektów pływających, kontrolek ani arkuszy chronionych.");
+            HasFocusOrderContent, "Nie wykryto obiektów pływających, kontrolek ani arkuszy chronionych.",
+            macro: "Czy w formularzach użytkownika otwieranych przez makra kolejność przechodzenia klawiszem Tab jest zgodna z logiką formularza?");
         Add("2.4.4", "Cel łącza (w kontekście)", "Link Purpose (In Context)", "A", Both, Conditional, XlsxCheckType.Heuristic, "link-purpose-in-context",
             "Dotyczy, gdy skoroszyt zawiera hiperłącza. WCAG2ICT: stosuje się wprost; łączem jest każdy element zachowujący się jak hiperłącze.",
             "Czy cel każdego łącza wynika z jego tekstu albo z tekstu łącza wraz z nagłówkami jego wiersza i kolumny?",
@@ -369,7 +371,8 @@ public static class XlsxWcagCriteria
             "Dotyczy, gdy arkusz wymaga wprowadzania danych. Etykiety lub instrukcje są wymagane, gdy treść wymaga danych od użytkownika; komunikat wejściowy walidacji jest jednym ze sposobów, nie jedynym.",
             "Czy każde pole do wypełnienia ma widoczną etykietę lub instrukcję mówiącą, co i w jakim formacie wpisać?",
             HasInput, "Nie wykryto pól do wypełnienia (walidacji danych, kontrolek ani arkuszy chronionych).",
-            hint: "Dane → Poprawność danych → karta Komunikat wejściowy.");
+            hint: "Dane → Poprawność danych → karta Komunikat wejściowy.",
+            macro: "Czy pola w formularzach użytkownika i oknach (np. InputBox) otwieranych przez makra mają widoczne etykiety lub instrukcje?");
         Add("3.3.3", "Sugestie korekty błędów", "Error Suggestion", "AA", Both, Conditional, XlsxCheckType.Heuristic, "error-suggestion",
             "Dotyczy walidacji danych ze znanym zbiorem poprawnych wartości: gdy błąd jest wykrywany automatycznie i znane są sugestie poprawy, mają być podane użytkownikowi.",
             "Czy komunikat o błędzie podaje, jak go poprawić (dopuszczalne wartości, zakres, format), jeśli jest to znane?",
@@ -387,7 +390,8 @@ public static class XlsxWcagCriteria
         Add("3.3.8", "Dostępne uwierzytelnianie (minimum)", "Accessible Authentication (Minimum)", "AA", Only22, NotApplicable, null,
             "accessible-authentication-minimum",
             "Kryterium dotyczy procesu uwierzytelniania. Oceniany plik nie jest zaszyfrowany hasłem otwarcia (takich plików narzędzie nie analizuje), a hasło ochrony arkusza nie służy weryfikacji tożsamości, tylko odblokowaniu edycji (interpretacja własna autorów macierzy).",
-            working: true);
+            working: true,
+            macro: "Czy makra nie wymagają logowania (np. hasła w formularzu użytkownika), a jeśli tak – czy hasło można wkleić albo wpisać z menedżera haseł, bez testu funkcji poznawczych?");
         Add("4.1.1", "Poprawność kodu", "Parsing", "A", Only21, NotApplicable, null, "parsing",
             "Kryterium usunięte w WCAG 2.2. Errata WCAG 2.1 (Note 1) wyłącza z oceny treść w HTML lub XML, a plik XLSX jest zapisany w XML – dlatego narzędzie kryterium nie ocenia (status „Nie dotyczy”). Uwaga: EN 301 549 V3.2.1 (10.4.1.1) nadal zawiera ten wymóg i wymienia OOXML.");
         Add("4.1.2", "Nazwa, rola, wartość", "Name, Role, Value", "A", Both, Conditional, XlsxCheckType.Auto, "name-role-value",

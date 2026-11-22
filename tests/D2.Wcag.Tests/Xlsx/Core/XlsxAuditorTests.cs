@@ -597,7 +597,8 @@ public class XlsxAuditorTests
     [InlineData("2.1")]
     public void Macros_CriteriaThatMacrosCanAffect_AreManualReview_NotNotApplicable(string version)
     {
-        string[] affected = ["2.1.1", "2.1.2", "2.1.4", "2.2.1", "2.5.2", "3.2.1", "3.2.2", "4.1.2", "4.1.3"];
+        string[] affected = ["2.1.1", "2.1.2", "2.1.4", "2.2.1", "2.2.2", "2.4.3", "2.5.2", "3.2.1", "3.2.2", "3.3.2", "4.1.2", "4.1.3",
+            .. version == "2.2" ? ["3.3.8"] : Array.Empty<string>()];
         var macro = new WcagXlsxAuditor().Audit(XlsxFixtureCatalog.Build("macro"), new XlsxAuditProfile { WcagVersion = version });
         var clean = new WcagXlsxAuditor().Audit(Clean, new XlsxAuditProfile { WcagVersion = version });
 

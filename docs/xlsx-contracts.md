@@ -131,7 +131,9 @@ public sealed record XlsxCriterionResult(string Sc, string Name, string Level, I
 Status kryterium (jedna reguła, w `XlsxCriteriaEvaluator`):
 1. kryterium nie należy do wybranej wersji WCAG → pomijane (np. 4.1.1 w profilu 2.2; nowe w 2.2 w profilu 2.1);
 2. jest zgłoszenie o wadze `Error` powiązane z SC → `Failed`;
-3. katalog mówi „nie dotyczy” (zawsze albo warunek na skoroszycie spełniony, np. brak osadzonych multimediów) → `NotApplicable` z uzasadnieniem z macierzy;
+3. skoroszyt zawiera makra, a kryterium ma w katalogu pytanie o makra (`MacroQuestion`) → `ManualReview` z uzasadnieniem, że makra nie były uruchamiane ani oceniane, i pozycją checklisty `manual-{sc}:macros`;
+3a. kryterium realizuje program, a nie treść pliku (`SoftwareDependent`, np. 1.4.4, 1.4.13, 2.4.7 bez ActiveX) → `SoftwareDependent` („Zależy od programu – nie oceniano”);
+3b. katalog mówi „nie dotyczy” (zawsze albo warunek na skoroszycie spełniony, np. brak osadzonych multimediów) → `NotApplicable` z uzasadnieniem z macierzy;
 4. są zgłoszenia `Warning`/`NeedsReview` albo pozycje checklisty dla SC, albo kryterium jest tylko do oceny ręcznej → `ManualReview`;
 5. w pozostałych przypadkach (kryterium ma reguły automatyczne/heurystyczne i nic nie zgłosiły) → `NoIssuesDetected`. Kryterium z pokryciem tylko częściowym ma w `Reason` dopisek, co pozostaje do oceny ręcznej.
 

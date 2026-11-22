@@ -145,7 +145,7 @@ public class XlsxWcagCriteriaTests
             }
         });
         Assert.Equal(["1.4.4", "1.4.10", "1.4.13", "2.4.7"], XlsxWcagCriteria.All.Where(c => c.SoftwareDependent).Select(c => c.Sc));
-        Assert.Equal(["2.1.1", "2.1.2", "2.1.4", "2.2.1", "2.5.2", "3.2.1", "3.2.2", "4.1.2", "4.1.3"],
+        Assert.Equal(["2.1.1", "2.1.2", "2.1.4", "2.2.1", "2.2.2", "2.4.3", "2.5.2", "3.2.1", "3.2.2", "3.3.2", "3.3.8", "4.1.2", "4.1.3"],
             XlsxWcagCriteria.All.Where(c => c.MacroQuestion is not null).Select(c => c.Sc));
         Assert.All(XlsxWcagCriteria.All.Where(c => c.MacroQuestion is not null), c => Assert.EndsWith("?", c.MacroQuestion));
     }
