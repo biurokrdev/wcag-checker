@@ -2,3 +2,4 @@
 *.xlsx binary
 *.xlsm binary
 tests/snapshots/** text eol=lf
+samples/*.expected.json text eol=lf

@@ -1,0 +1,94 @@
+{
+  "file": "przyklad_arkusz_zgodny.xlsx",
+  "kind": "xlsx",
+  "profiles": [
+    {
+      "name": "WCAG 2.2",
+      "standards": [],
+      "wcagVersion": "2.2",
+      "errors": 0,
+      "warnings": 0,
+      "needsReview": 0,
+      "info": 0,
+      "issues": [],
+      "manualChecks": [
+        {
+          "code": "XL-CHART-CONTRAST",
+          "severity": "Manual",
+          "standard": null,
+          "locations": [
+            ""
+          ]
+        },
+        {
+          "code": "XL-CONTRAST",
+          "severity": "Manual",
+          "standard": null,
+          "locations": [
+            ""
+          ]
+        },
+        {
+          "code": "XL-TEXT-IN-IMAGE",
+          "severity": "Manual",
+          "standard": null,
+          "locations": [
+            "0000|Drawing|0000002|00008|Ikona budżetu|3"
+          ]
+        },
+        {
+          "code": "XL-TEXT-IN-IMAGE",
+          "severity": "Manual",
+          "standard": null,
+          "locations": [
+            "0002|Drawing|0000008|00002|Logo|2"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "WCAG 2.1",
+      "standards": [],
+      "wcagVersion": "2.1",
+      "errors": 0,
+      "warnings": 0,
+      "needsReview": 0,
+      "info": 0,
+      "issues": [],
+      "manualChecks": [
+        {
+          "code": "XL-CHART-CONTRAST",
+          "severity": "Manual",
+          "standard": null,
+          "locations": [
+            ""
+          ]
+        },
+        {
+          "code": "XL-CONTRAST",
+          "severity": "Manual",
+          "standard": null,
+          "locations": [
+            ""
+          ]
+        },
+        {
+          "code": "XL-TEXT-IN-IMAGE",
+          "severity": "Manual",
+          "standard": null,
+          "locations": [
+            "0000|Drawing|0000002|00008|Ikona budżetu|3"
+          ]
+        },
+        {
+          "code": "XL-TEXT-IN-IMAGE",
+          "severity": "Manual",
+          "standard": null,
+          "locations": [
+            "0002|Drawing|0000008|00002|Logo|2"
+          ]
+        }
+      ]
+    }
+  ]
+}
