@@ -1,0 +1,1992 @@
+{
+  "file": "przyklad_pismo_niezgodne.docx",
+  "kind": "docx",
+  "profiles": [
+    {
+      "name": "wcag/2.1",
+      "standards": [
+        "wcag/2.1"
+      ],
+      "wcagVersion": null,
+      "errors": 9,
+      "warnings": 20,
+      "needsReview": 0,
+      "info": 3,
+      "issues": [
+        {
+          "code": "EMPTY_HEADING",
+          "severity": "Error",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Paragraph:25"
+          ]
+        },
+        {
+          "code": "HIDDEN_TEXT_LOW_CONTRAST",
+          "severity": "Error",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Run:15:3"
+          ]
+        },
+        {
+          "code": "IMAGE_MISSING_ALT_TEXT",
+          "severity": "Error",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Drawing:0"
+          ]
+        },
+        {
+          "code": "INVALID_HYPERLINK",
+          "severity": "Error",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Hyperlink:0"
+          ]
+        },
+        {
+          "code": "LANGUAGE_INVALID",
+          "severity": "Error",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "LIST_MISSING_SEMANTIC",
+          "severity": "Error",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Paragraph:7",
+            "body:Paragraph:8",
+            "body:Paragraph:17",
+            "body:Paragraph:18"
+          ]
+        },
+        {
+          "code": "TABLE_HEADER_CELL_EMPTY",
+          "severity": "Error",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:TableCell:0:1"
+          ]
+        },
+        {
+          "code": "TABLE_MISSING_HEADERS",
+          "severity": "Error",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Table:1"
+          ]
+        },
+        {
+          "code": "TEXT_LOW_CONTRAST",
+          "severity": "Error",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Run:15:1",
+            "body:Run:15:2"
+          ]
+        },
+        {
+          "code": "CAPS_TEXT_PRESENT",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Run:10:1"
+          ]
+        },
+        {
+          "code": "COMMENTS_PRESENT",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Paragraph:53"
+          ]
+        },
+        {
+          "code": "CONTENT_BEFORE_HEADING",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Paragraph:0"
+          ]
+        },
+        {
+          "code": "FAKE_HEADING",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Paragraph:14"
+          ]
+        },
+        {
+          "code": "FLOATING_ELEMENTS_PRESENT",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Drawing:2"
+          ]
+        },
+        {
+          "code": "FORM_FIELD_LABEL_MISSING",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Paragraph:54"
+          ]
+        },
+        {
+          "code": "HEADING_LEVEL_SKIPPED",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Paragraph:12"
+          ]
+        },
+        {
+          "code": "HEADING_TOO_LONG",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Paragraph:26"
+          ]
+        },
+        {
+          "code": "HYPERLINK_AMBIGUOUS",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Hyperlink:1",
+            "body:Hyperlink:2"
+          ]
+        },
+        {
+          "code": "IMAGE_ALT_TEXT_PLACEHOLDER",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Drawing:1"
+          ]
+        },
+        {
+          "code": "MANUAL_TABS",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Paragraph:1"
+          ]
+        },
+        {
+          "code": "NESTED_TABLE",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Table:1"
+          ]
+        },
+        {
+          "code": "PAGE_NUMBERS_MISSING",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "REPEATED_BLANKS",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Paragraph:2",
+            "body:Run:16:1"
+          ]
+        },
+        {
+          "code": "TABLE_CAPTION_MISSING",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Table:1"
+          ]
+        },
+        {
+          "code": "TABLE_IRREGULAR",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Table:0"
+          ]
+        },
+        {
+          "code": "TABLE_LAYOUT_SUSPECTED",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Table:2"
+          ]
+        },
+        {
+          "code": "TABLE_MERGED_CELLS",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:TableCell:0:7"
+          ]
+        },
+        {
+          "code": "TITLE_GENERIC",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "TRACKED_CHANGES_PRESENT",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Paragraph:53"
+          ]
+        },
+        {
+          "code": "JUSTIFIED_TEXT",
+          "severity": "Info",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Paragraph:10",
+            "body:Paragraph:13",
+            "body:Paragraph:15"
+          ]
+        },
+        {
+          "code": "MANUAL_CHECK_SUGGESTED",
+          "severity": "Info",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "TOC_MISSING",
+          "severity": "Info",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Document:0"
+          ]
+        }
+      ],
+      "manualChecks": []
+    },
+    {
+      "name": "firmowy/1.9",
+      "standards": [
+        "firmowy/1.9"
+      ],
+      "wcagVersion": null,
+      "errors": 1,
+      "warnings": 5,
+      "needsReview": 0,
+      "info": 0,
+      "issues": [
+        {
+          "code": "TITLE_PHRASE_MISSING",
+          "severity": "Error",
+          "standard": "firmowy/1.9",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "AUTHOR_PHRASE_MISSING",
+          "severity": "Warning",
+          "standard": "firmowy/1.9",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "INVALID_MARGINS",
+          "severity": "Warning",
+          "standard": "firmowy/1.9",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "INVALID_MARGINS",
+          "severity": "Warning",
+          "standard": "firmowy/1.9",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "INVALID_MARGINS",
+          "severity": "Warning",
+          "standard": "firmowy/1.9",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "INVALID_MARGINS",
+          "severity": "Warning",
+          "standard": "firmowy/1.9",
+          "locations": [
+            "body:Document:0"
+          ]
+        }
+      ],
+      "manualChecks": []
+    },
+    {
+      "name": "firmowy/2.0",
+      "standards": [
+        "firmowy/2.0"
+      ],
+      "wcagVersion": null,
+      "errors": 40,
+      "warnings": 12,
+      "needsReview": 0,
+      "info": 2,
+      "issues": [
+        {
+          "code": "AUTHOR_NOT_INSTITUTION",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "BODY_TEXT_SIZE_MISMATCH",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Run:13:2"
+          ]
+        },
+        {
+          "code": "F20-FOOTER-MISSING",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:0"
+          ]
+        },
+        {
+          "code": "F20-FOOTER-PAGE-NUMBER-MISSING",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "footer/0:Paragraph:0"
+          ]
+        },
+        {
+          "code": "F20-REGISTRATION-DATA-FORMAT",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "footer/0:Paragraph:1"
+          ]
+        },
+        {
+          "code": "FONT_FAMILY_MISMATCH",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Run:13:0"
+          ]
+        },
+        {
+          "code": "FONT_WEIGHT_IN_FAMILY_NAME",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Run:13:1"
+          ]
+        },
+        {
+          "code": "FOOTER_STYLE_MISMATCH",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "footer/0:Run:0:0"
+          ]
+        },
+        {
+          "code": "FOOTER_TITLE_MISSING",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "footer/0:Paragraph:0"
+          ]
+        },
+        {
+          "code": "HEADING_LEVEL_SKIPPED",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:12"
+          ]
+        },
+        {
+          "code": "HEADING_STYLE_MISMATCH",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:26"
+          ]
+        },
+        {
+          "code": "HEADING_STYLE_MISMATCH",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:27"
+          ]
+        },
+        {
+          "code": "HEADING_STYLE_MISMATCH",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:49"
+          ]
+        },
+        {
+          "code": "HEADING_STYLE_MISMATCH",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:57"
+          ]
+        },
+        {
+          "code": "HEADING_STYLE_MISMATCH",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:6"
+          ]
+        },
+        {
+          "code": "INVALID_MARGINS",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "INVALID_MARGINS",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "INVALID_MARGINS",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "INVALID_MARGINS",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "JUSTIFICATION_FORBIDDEN",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:10",
+            "body:Paragraph:13",
+            "body:Paragraph:15"
+          ]
+        },
+        {
+          "code": "LANGUAGE_INVALID",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "LINE_SPACING_MISMATCH",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:13"
+          ]
+        },
+        {
+          "code": "LINK_STYLE_MISMATCH",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Run:51:1"
+          ]
+        },
+        {
+          "code": "LIST_BULLET_COLOR_MISMATCH",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:19",
+            "body:Paragraph:20",
+            "body:Paragraph:21"
+          ]
+        },
+        {
+          "code": "PAGE_FORMAT_NOT_A4",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "SAMPLE_MARK_STYLE_MISMATCH",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:5"
+          ]
+        },
+        {
+          "code": "TABLE_ALIGNMENT_MISMATCH",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:TableCell:0:0",
+            "body:TableCell:0:1",
+            "body:TableCell:0:2",
+            "body:TableCell:0:3",
+            "body:TableCell:0:4",
+            "body:TableCell:0:5",
+            "body:TableCell:0:6",
+            "body:TableCell:0:7",
+            "body:TableCell:0:8",
+            "body:TableCell:0:9"
+          ]
+        },
+        {
+          "code": "TABLE_BORDER_MISMATCH",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Table:0"
+          ]
+        },
+        {
+          "code": "TABLE_EMPTY_CELL",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:TableCell:0:1",
+            "body:TableCell:0:9"
+          ]
+        },
+        {
+          "code": "TABLE_HEADER_NOT_BOLD",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:TableCell:0:0",
+            "body:TableCell:0:2"
+          ]
+        },
+        {
+          "code": "TABLE_MISSING_HEADERS",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Table:1"
+          ]
+        },
+        {
+          "code": "TABLE_ROW_CAN_SPLIT",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Table:0"
+          ]
+        },
+        {
+          "code": "TITLE_SUFFIX_INVALID",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "TOC_HEADING_IN_TOC",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:6"
+          ]
+        },
+        {
+          "code": "TOC_HEADING_STYLE_MISMATCH",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:6"
+          ]
+        },
+        {
+          "code": "VARIABLE_COLOR_MISMATCH",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Run:11:3"
+          ]
+        },
+        {
+          "code": "VARIANT_INFLECTION_SHORTCUT",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:11"
+          ]
+        },
+        {
+          "code": "VARIANT_MARKER_COLOR_MISMATCH",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Run:11:1",
+            "body:Run:11:4"
+          ]
+        },
+        {
+          "code": "VARIANT_MARKER_UNBALANCED",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:11"
+          ]
+        },
+        {
+          "code": "VARIANT_SLASH_ALTERNATIVE",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:11@47+9"
+          ]
+        },
+        {
+          "code": "BODY_TEXT_SIZE_MISMATCH",
+          "severity": "Warning",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Run:13:3"
+          ]
+        },
+        {
+          "code": "BRAND_IMAGE_MISMATCH",
+          "severity": "Warning",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "header/0:Drawing:0"
+          ]
+        },
+        {
+          "code": "HEADING_SPACING_MISMATCH",
+          "severity": "Warning",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:4"
+          ]
+        },
+        {
+          "code": "LIST_NUMBER_NOT_BOLD",
+          "severity": "Warning",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:22",
+            "body:Paragraph:23",
+            "body:Paragraph:24"
+          ]
+        },
+        {
+          "code": "SAMPLE_MARK_NOT_ON_EVERY_PAGE",
+          "severity": "Warning",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:5"
+          ]
+        },
+        {
+          "code": "TABLE_TITLE_MISSING",
+          "severity": "Warning",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Table:0"
+          ]
+        },
+        {
+          "code": "TABLE_TITLE_MISSING",
+          "severity": "Warning",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Table:1"
+          ]
+        },
+        {
+          "code": "TEXT_COLOR_NOT_ALLOWED",
+          "severity": "Warning",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Run:15:1",
+            "body:Run:15:3"
+          ]
+        },
+        {
+          "code": "TEXT_COLOR_USAGE_MISMATCH",
+          "severity": "Warning",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Run:15:2"
+          ]
+        },
+        {
+          "code": "TITLE_GENERIC",
+          "severity": "Warning",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "TITLE_PAGE_FOOTER_PRESENT",
+          "severity": "Warning",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:4"
+          ]
+        },
+        {
+          "code": "TOC_REQUIRED",
+          "severity": "Warning",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "TABLE_DESCRIPTION_MISSING",
+          "severity": "Info",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Table:0"
+          ]
+        },
+        {
+          "code": "TABLE_DESCRIPTION_MISSING",
+          "severity": "Info",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Table:1"
+          ]
+        }
+      ],
+      "manualChecks": []
+    },
+    {
+      "name": "style/1.0",
+      "standards": [
+        "style/1.0"
+      ],
+      "wcagVersion": null,
+      "errors": 4,
+      "warnings": 5,
+      "needsReview": 0,
+      "info": 0,
+      "issues": [
+        {
+          "code": "STY-DIRECT-OVERRIDE",
+          "severity": "Error",
+          "standard": "style/1.0",
+          "locations": [
+            "body:Paragraph:10"
+          ]
+        },
+        {
+          "code": "STY-DIRECT-OVERRIDE",
+          "severity": "Error",
+          "standard": "style/1.0",
+          "locations": [
+            "body:Paragraph:13"
+          ]
+        },
+        {
+          "code": "STY-DIRECT-OVERRIDE",
+          "severity": "Error",
+          "standard": "style/1.0",
+          "locations": [
+            "body:Paragraph:15"
+          ]
+        },
+        {
+          "code": "STY-FAKE-HEADING",
+          "severity": "Error",
+          "standard": "style/1.0",
+          "locations": [
+            "body:Paragraph:14"
+          ]
+        },
+        {
+          "code": "STY-DIRECT-REDUNDANT",
+          "severity": "Warning",
+          "standard": "style/1.0",
+          "locations": [
+            "body:Paragraph:13"
+          ]
+        },
+        {
+          "code": "STY-DIRECT-REDUNDANT",
+          "severity": "Warning",
+          "standard": "style/1.0",
+          "locations": [
+            "body:Paragraph:16"
+          ]
+        },
+        {
+          "code": "STY-DIRECT-REDUNDANT",
+          "severity": "Warning",
+          "standard": "style/1.0",
+          "locations": [
+            "body:Paragraph:51"
+          ]
+        },
+        {
+          "code": "STY-DUPLICATE",
+          "severity": "Warning",
+          "standard": "style/1.0",
+          "locations": [
+            "body:Paragraph:53"
+          ]
+        },
+        {
+          "code": "STY-NOT-IN-GALLERY",
+          "severity": "Warning",
+          "standard": "style/1.0",
+          "locations": [
+            "body:Paragraph:52"
+          ]
+        }
+      ],
+      "manualChecks": []
+    },
+    {
+      "name": "hierarchia/1.0",
+      "standards": [
+        "hierarchia/1.0"
+      ],
+      "wcagVersion": null,
+      "errors": 4,
+      "warnings": 2,
+      "needsReview": 0,
+      "info": 0,
+      "issues": [
+        {
+          "code": "HIER-EMPTY",
+          "severity": "Error",
+          "standard": "hierarchia/1.0",
+          "locations": [
+            "body:Paragraph:25"
+          ]
+        },
+        {
+          "code": "HIER-FAKE",
+          "severity": "Error",
+          "standard": "hierarchia/1.0",
+          "locations": [
+            "body:Paragraph:14"
+          ]
+        },
+        {
+          "code": "HIER-NO-PARENT",
+          "severity": "Error",
+          "standard": "hierarchia/1.0",
+          "locations": [
+            "body:Paragraph:0"
+          ]
+        },
+        {
+          "code": "HIER-SKIP",
+          "severity": "Error",
+          "standard": "hierarchia/1.0",
+          "locations": [
+            "body:Paragraph:12"
+          ]
+        },
+        {
+          "code": "HIER-LIST-SKIP",
+          "severity": "Warning",
+          "standard": "hierarchia/1.0",
+          "locations": [
+            "body:Paragraph:20"
+          ]
+        },
+        {
+          "code": "HIER-NUM-MISMATCH",
+          "severity": "Warning",
+          "standard": "hierarchia/1.0",
+          "locations": [
+            "body:Paragraph:50"
+          ]
+        }
+      ],
+      "manualChecks": []
+    },
+    {
+      "name": "wcag/2.1 + firmowy/1.9",
+      "standards": [
+        "wcag/2.1",
+        "firmowy/1.9"
+      ],
+      "wcagVersion": null,
+      "errors": 10,
+      "warnings": 25,
+      "needsReview": 0,
+      "info": 3,
+      "issues": [
+        {
+          "code": "EMPTY_HEADING",
+          "severity": "Error",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Paragraph:25"
+          ]
+        },
+        {
+          "code": "HIDDEN_TEXT_LOW_CONTRAST",
+          "severity": "Error",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Run:15:3"
+          ]
+        },
+        {
+          "code": "IMAGE_MISSING_ALT_TEXT",
+          "severity": "Error",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Drawing:0"
+          ]
+        },
+        {
+          "code": "INVALID_HYPERLINK",
+          "severity": "Error",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Hyperlink:0"
+          ]
+        },
+        {
+          "code": "LANGUAGE_INVALID",
+          "severity": "Error",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "LIST_MISSING_SEMANTIC",
+          "severity": "Error",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Paragraph:7",
+            "body:Paragraph:8",
+            "body:Paragraph:17",
+            "body:Paragraph:18"
+          ]
+        },
+        {
+          "code": "TABLE_HEADER_CELL_EMPTY",
+          "severity": "Error",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:TableCell:0:1"
+          ]
+        },
+        {
+          "code": "TABLE_MISSING_HEADERS",
+          "severity": "Error",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Table:1"
+          ]
+        },
+        {
+          "code": "TEXT_LOW_CONTRAST",
+          "severity": "Error",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Run:15:1",
+            "body:Run:15:2"
+          ]
+        },
+        {
+          "code": "TITLE_PHRASE_MISSING",
+          "severity": "Error",
+          "standard": "firmowy/1.9",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "AUTHOR_PHRASE_MISSING",
+          "severity": "Warning",
+          "standard": "firmowy/1.9",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "CAPS_TEXT_PRESENT",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Run:10:1"
+          ]
+        },
+        {
+          "code": "COMMENTS_PRESENT",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Paragraph:53"
+          ]
+        },
+        {
+          "code": "CONTENT_BEFORE_HEADING",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Paragraph:0"
+          ]
+        },
+        {
+          "code": "FAKE_HEADING",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Paragraph:14"
+          ]
+        },
+        {
+          "code": "FLOATING_ELEMENTS_PRESENT",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Drawing:2"
+          ]
+        },
+        {
+          "code": "FORM_FIELD_LABEL_MISSING",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Paragraph:54"
+          ]
+        },
+        {
+          "code": "HEADING_LEVEL_SKIPPED",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Paragraph:12"
+          ]
+        },
+        {
+          "code": "HEADING_TOO_LONG",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Paragraph:26"
+          ]
+        },
+        {
+          "code": "HYPERLINK_AMBIGUOUS",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Hyperlink:1",
+            "body:Hyperlink:2"
+          ]
+        },
+        {
+          "code": "IMAGE_ALT_TEXT_PLACEHOLDER",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Drawing:1"
+          ]
+        },
+        {
+          "code": "INVALID_MARGINS",
+          "severity": "Warning",
+          "standard": "firmowy/1.9",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "INVALID_MARGINS",
+          "severity": "Warning",
+          "standard": "firmowy/1.9",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "INVALID_MARGINS",
+          "severity": "Warning",
+          "standard": "firmowy/1.9",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "INVALID_MARGINS",
+          "severity": "Warning",
+          "standard": "firmowy/1.9",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "MANUAL_TABS",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Paragraph:1"
+          ]
+        },
+        {
+          "code": "NESTED_TABLE",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Table:1"
+          ]
+        },
+        {
+          "code": "PAGE_NUMBERS_MISSING",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "REPEATED_BLANKS",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Paragraph:2",
+            "body:Run:16:1"
+          ]
+        },
+        {
+          "code": "TABLE_CAPTION_MISSING",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Table:1"
+          ]
+        },
+        {
+          "code": "TABLE_IRREGULAR",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Table:0"
+          ]
+        },
+        {
+          "code": "TABLE_LAYOUT_SUSPECTED",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Table:2"
+          ]
+        },
+        {
+          "code": "TABLE_MERGED_CELLS",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:TableCell:0:7"
+          ]
+        },
+        {
+          "code": "TITLE_GENERIC",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "TRACKED_CHANGES_PRESENT",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Paragraph:53"
+          ]
+        },
+        {
+          "code": "JUSTIFIED_TEXT",
+          "severity": "Info",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Paragraph:10",
+            "body:Paragraph:13",
+            "body:Paragraph:15"
+          ]
+        },
+        {
+          "code": "MANUAL_CHECK_SUGGESTED",
+          "severity": "Info",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "TOC_MISSING",
+          "severity": "Info",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Document:0"
+          ]
+        }
+      ],
+      "manualChecks": []
+    },
+    {
+      "name": "wcag/2.1 + firmowy/2.0",
+      "standards": [
+        "wcag/2.1",
+        "firmowy/2.0"
+      ],
+      "wcagVersion": null,
+      "errors": 47,
+      "warnings": 31,
+      "needsReview": 0,
+      "info": 5,
+      "issues": [
+        {
+          "code": "AUTHOR_NOT_INSTITUTION",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "BODY_TEXT_SIZE_MISMATCH",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Run:13:2"
+          ]
+        },
+        {
+          "code": "EMPTY_HEADING",
+          "severity": "Error",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Paragraph:25"
+          ]
+        },
+        {
+          "code": "F20-FOOTER-MISSING",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:0"
+          ]
+        },
+        {
+          "code": "F20-FOOTER-PAGE-NUMBER-MISSING",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "footer/0:Paragraph:0"
+          ]
+        },
+        {
+          "code": "F20-REGISTRATION-DATA-FORMAT",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "footer/0:Paragraph:1"
+          ]
+        },
+        {
+          "code": "FONT_FAMILY_MISMATCH",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Run:13:0"
+          ]
+        },
+        {
+          "code": "FONT_WEIGHT_IN_FAMILY_NAME",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Run:13:1"
+          ]
+        },
+        {
+          "code": "FOOTER_STYLE_MISMATCH",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "footer/0:Run:0:0"
+          ]
+        },
+        {
+          "code": "FOOTER_TITLE_MISSING",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "footer/0:Paragraph:0"
+          ]
+        },
+        {
+          "code": "HEADING_LEVEL_SKIPPED",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:12"
+          ]
+        },
+        {
+          "code": "HEADING_STYLE_MISMATCH",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:26"
+          ]
+        },
+        {
+          "code": "HEADING_STYLE_MISMATCH",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:27"
+          ]
+        },
+        {
+          "code": "HEADING_STYLE_MISMATCH",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:49"
+          ]
+        },
+        {
+          "code": "HEADING_STYLE_MISMATCH",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:57"
+          ]
+        },
+        {
+          "code": "HEADING_STYLE_MISMATCH",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:6"
+          ]
+        },
+        {
+          "code": "HIDDEN_TEXT_LOW_CONTRAST",
+          "severity": "Error",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Run:15:3"
+          ]
+        },
+        {
+          "code": "IMAGE_MISSING_ALT_TEXT",
+          "severity": "Error",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Drawing:0"
+          ]
+        },
+        {
+          "code": "INVALID_HYPERLINK",
+          "severity": "Error",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Hyperlink:0"
+          ]
+        },
+        {
+          "code": "INVALID_MARGINS",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "INVALID_MARGINS",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "INVALID_MARGINS",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "INVALID_MARGINS",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "JUSTIFICATION_FORBIDDEN",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:10",
+            "body:Paragraph:13",
+            "body:Paragraph:15"
+          ]
+        },
+        {
+          "code": "LANGUAGE_INVALID",
+          "severity": "Error",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "LINE_SPACING_MISMATCH",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:13"
+          ]
+        },
+        {
+          "code": "LINK_STYLE_MISMATCH",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Run:51:1"
+          ]
+        },
+        {
+          "code": "LIST_BULLET_COLOR_MISMATCH",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:19",
+            "body:Paragraph:20",
+            "body:Paragraph:21"
+          ]
+        },
+        {
+          "code": "LIST_MISSING_SEMANTIC",
+          "severity": "Error",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Paragraph:7",
+            "body:Paragraph:8",
+            "body:Paragraph:17",
+            "body:Paragraph:18"
+          ]
+        },
+        {
+          "code": "PAGE_FORMAT_NOT_A4",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "SAMPLE_MARK_STYLE_MISMATCH",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:5"
+          ]
+        },
+        {
+          "code": "TABLE_ALIGNMENT_MISMATCH",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:TableCell:0:0",
+            "body:TableCell:0:1",
+            "body:TableCell:0:2",
+            "body:TableCell:0:3",
+            "body:TableCell:0:4",
+            "body:TableCell:0:5",
+            "body:TableCell:0:6",
+            "body:TableCell:0:7",
+            "body:TableCell:0:8",
+            "body:TableCell:0:9"
+          ]
+        },
+        {
+          "code": "TABLE_BORDER_MISMATCH",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Table:0"
+          ]
+        },
+        {
+          "code": "TABLE_EMPTY_CELL",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:TableCell:0:1",
+            "body:TableCell:0:9"
+          ]
+        },
+        {
+          "code": "TABLE_HEADER_CELL_EMPTY",
+          "severity": "Error",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:TableCell:0:1"
+          ]
+        },
+        {
+          "code": "TABLE_HEADER_NOT_BOLD",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:TableCell:0:0",
+            "body:TableCell:0:2"
+          ]
+        },
+        {
+          "code": "TABLE_MISSING_HEADERS",
+          "severity": "Error",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Table:1"
+          ]
+        },
+        {
+          "code": "TABLE_ROW_CAN_SPLIT",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Table:0"
+          ]
+        },
+        {
+          "code": "TEXT_LOW_CONTRAST",
+          "severity": "Error",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Run:15:1",
+            "body:Run:15:2"
+          ]
+        },
+        {
+          "code": "TITLE_SUFFIX_INVALID",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "TOC_HEADING_IN_TOC",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:6"
+          ]
+        },
+        {
+          "code": "TOC_HEADING_STYLE_MISMATCH",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:6"
+          ]
+        },
+        {
+          "code": "VARIABLE_COLOR_MISMATCH",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Run:11:3"
+          ]
+        },
+        {
+          "code": "VARIANT_INFLECTION_SHORTCUT",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:11"
+          ]
+        },
+        {
+          "code": "VARIANT_MARKER_COLOR_MISMATCH",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Run:11:1",
+            "body:Run:11:4"
+          ]
+        },
+        {
+          "code": "VARIANT_MARKER_UNBALANCED",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:11"
+          ]
+        },
+        {
+          "code": "VARIANT_SLASH_ALTERNATIVE",
+          "severity": "Error",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:11@47+9"
+          ]
+        },
+        {
+          "code": "BODY_TEXT_SIZE_MISMATCH",
+          "severity": "Warning",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Run:13:3"
+          ]
+        },
+        {
+          "code": "BRAND_IMAGE_MISMATCH",
+          "severity": "Warning",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "header/0:Drawing:0"
+          ]
+        },
+        {
+          "code": "CAPS_TEXT_PRESENT",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Run:10:1"
+          ]
+        },
+        {
+          "code": "COMMENTS_PRESENT",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Paragraph:53"
+          ]
+        },
+        {
+          "code": "CONTENT_BEFORE_HEADING",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Paragraph:0"
+          ]
+        },
+        {
+          "code": "FAKE_HEADING",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Paragraph:14"
+          ]
+        },
+        {
+          "code": "FLOATING_ELEMENTS_PRESENT",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Drawing:2"
+          ]
+        },
+        {
+          "code": "FORM_FIELD_LABEL_MISSING",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Paragraph:54"
+          ]
+        },
+        {
+          "code": "HEADING_LEVEL_SKIPPED",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Paragraph:12"
+          ]
+        },
+        {
+          "code": "HEADING_SPACING_MISMATCH",
+          "severity": "Warning",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:4"
+          ]
+        },
+        {
+          "code": "HEADING_TOO_LONG",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Paragraph:26"
+          ]
+        },
+        {
+          "code": "HYPERLINK_AMBIGUOUS",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Hyperlink:1",
+            "body:Hyperlink:2"
+          ]
+        },
+        {
+          "code": "IMAGE_ALT_TEXT_PLACEHOLDER",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Drawing:1"
+          ]
+        },
+        {
+          "code": "LIST_NUMBER_NOT_BOLD",
+          "severity": "Warning",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:22",
+            "body:Paragraph:23",
+            "body:Paragraph:24"
+          ]
+        },
+        {
+          "code": "MANUAL_TABS",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Paragraph:1"
+          ]
+        },
+        {
+          "code": "NESTED_TABLE",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Table:1"
+          ]
+        },
+        {
+          "code": "PAGE_NUMBERS_MISSING",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "REPEATED_BLANKS",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Paragraph:2",
+            "body:Run:16:1"
+          ]
+        },
+        {
+          "code": "SAMPLE_MARK_NOT_ON_EVERY_PAGE",
+          "severity": "Warning",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:5"
+          ]
+        },
+        {
+          "code": "TABLE_CAPTION_MISSING",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Table:1"
+          ]
+        },
+        {
+          "code": "TABLE_IRREGULAR",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Table:0"
+          ]
+        },
+        {
+          "code": "TABLE_LAYOUT_SUSPECTED",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Table:2"
+          ]
+        },
+        {
+          "code": "TABLE_MERGED_CELLS",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:TableCell:0:7"
+          ]
+        },
+        {
+          "code": "TABLE_TITLE_MISSING",
+          "severity": "Warning",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Table:0"
+          ]
+        },
+        {
+          "code": "TABLE_TITLE_MISSING",
+          "severity": "Warning",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Table:1"
+          ]
+        },
+        {
+          "code": "TEXT_COLOR_NOT_ALLOWED",
+          "severity": "Warning",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Run:15:1",
+            "body:Run:15:3"
+          ]
+        },
+        {
+          "code": "TEXT_COLOR_USAGE_MISMATCH",
+          "severity": "Warning",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Run:15:2"
+          ]
+        },
+        {
+          "code": "TITLE_GENERIC",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "TITLE_PAGE_FOOTER_PRESENT",
+          "severity": "Warning",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Paragraph:4"
+          ]
+        },
+        {
+          "code": "TOC_REQUIRED",
+          "severity": "Warning",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "TRACKED_CHANGES_PRESENT",
+          "severity": "Warning",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Paragraph:53"
+          ]
+        },
+        {
+          "code": "JUSTIFIED_TEXT",
+          "severity": "Info",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Paragraph:10",
+            "body:Paragraph:13",
+            "body:Paragraph:15"
+          ]
+        },
+        {
+          "code": "MANUAL_CHECK_SUGGESTED",
+          "severity": "Info",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "TABLE_DESCRIPTION_MISSING",
+          "severity": "Info",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Table:0"
+          ]
+        },
+        {
+          "code": "TABLE_DESCRIPTION_MISSING",
+          "severity": "Info",
+          "standard": "firmowy/2.0",
+          "locations": [
+            "body:Table:1"
+          ]
+        },
+        {
+          "code": "TOC_MISSING",
+          "severity": "Info",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Document:0"
+          ]
+        }
+      ],
+      "manualChecks": []
+    }
+  ]
+}

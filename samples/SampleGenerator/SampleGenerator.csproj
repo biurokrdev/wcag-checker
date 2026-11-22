@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <RootNamespace>D2.Wcag.SampleGenerator</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\D2.Wcag\D2.Wcag.csproj" />
+    <!-- Deterministyczny zapis XLSX (FixtureXlsx) wspólny z fixturami testów. -->
+    <ProjectReference Include="..\..\tests\D2.Wcag.Fixtures\D2.Wcag.Fixtures.csproj" />
+  </ItemGroup>
+
+</Project>
