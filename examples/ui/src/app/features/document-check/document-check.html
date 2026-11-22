@@ -143,18 +143,32 @@
   <section class="report" data-testid="result" [attr.data-format]="vm.format" [attr.data-status]="result()?.status">
     <div class="report-head">
       <div class="title-row">
-        <h2 class="report-title">Raport: {{ vm.summary.fileName }}</h2>
+        <!-- Excel: tabindex="-1" – po wyniku fokus trafia na nagłówek (ogłoszenie wyniku); Word bez atrybutu, jak dotąd. -->
+        <h2 class="report-title" #reportTitle [attr.tabindex]="vm.format === 'xlsx' ? -1 : null">Raport: {{ vm.summary.fileName }}</h2>
         <div class="title-actions" data-testid="export">
           @for (a of vm.actions; track a.id) {
             @switch (a.id) {
               @case ('export-docx') {
-                <button type="button" (click)="exportReport()" [disabled]="exporting() || !vm.reportId" data-testid="export-docx">
-                  {{ exporting() ? 'Przygotowanie raportu…' : a.label }}
+                <button type="button" (click)="exportReport('docx')" [disabled]="exporting() || !vm.reportId" data-testid="export-docx">
+                  {{ exporting() === 'docx' ? 'Przygotowanie raportu…' : a.label }}
+                </button>
+              }
+              @case ('export-pdf') {
+                <button type="button" (click)="exportReport('pdf')" [disabled]="exporting() || !vm.reportId" data-testid="export-pdf">
+                  {{ exporting() === 'pdf' ? 'Przygotowanie raportu…' : a.label }}
                 </button>
               }
               @case ('export-comments') {
                 @if (a.available) {
                   <app-comment-export-button [reportId]="vm.reportId" [fileName]="vm.summary.fileName" />
+                } @else if (a.comingSoon) {
+                  <!-- Akcja jeszcze nieobsługiwana dla formatu (Excel): przycisk zablokowany, a odznaka „Dostępne niebawem” jest
+                       powiązana z nim przez aria-describedby – czytnik ogłasza stan i powód, nie tylko podpowiedź po najechaniu
+                       (jak kafelek PDF w sekcji „Typ pliku”). -->
+                  <span class="coming-soon-action">
+                    <button type="button" disabled aria-describedby="export-comments-soon" data-testid="export-comments">{{ a.label }}</button>
+                    <span class="badge" id="export-comments-soon" data-testid="export-comments-soon">{{ comingSoonLabel }}</span>
+                  </span>
                 }
               }
               @case ('finish') {
@@ -303,6 +317,75 @@
           </section>
         }
       }
+
+      @if (xlsxResult(); as x) {
+        <!-- Excel: własne sekcje Podsumowania w tej samej oprawie co bloki standardów Word (pasek bloku, zwijane sekcje).
+             Kolory macierzy kryteriów, checklisty i komunikatów – zmienne --xr-* z xlsx-results.colors.ts. -->
+        <div class="xlsx-summary" [style]="xlsxCssVars" data-testid="xlsx-summary">
+          <section class="standard-block" data-standard="xlsx-workbook">
+            <h3 class="standard-bar">{{ x.profile.profileName }}</h3>
+            <div class="standard-body">
+              @if (x.workbook.isEmpty || x.workbook.hasMacros) {
+                <details class="section" open data-section="notices">
+                  <summary class="section-bar">Uwagi o skoroszycie</summary>
+                  @if (x.workbook.isEmpty) {
+                    <p class="xlsx-notice" data-testid="xlsx-empty">
+                      <span class="mark" aria-hidden="true">i</span>
+                      <b>Skoroszyt jest pusty.</b> Nie zawiera treści do oceny – kryteria zależne od treści mają stan „Nie dotyczy”.
+                    </p>
+                  }
+                  @if (x.workbook.hasMacros) {
+                    <p class="xlsx-notice" data-testid="xlsx-macros">
+                      <span class="mark" aria-hidden="true">i</span>
+                      <b>Skoroszyt zawiera makra.</b> Makr nie uruchomiono i nie oceniano; formularze i okna tworzone przez makra
+                      wymagają oceny ręcznej.
+                    </p>
+                  }
+                </details>
+              }
+              <details class="section" open data-section="counts" data-testid="xlsx-counts">
+                <summary class="section-bar">Zgłoszenia według wagi <span class="muted">({{ vm.findings.length }})</span></summary>
+                <table class="checks">
+                  <thead>
+                    <tr><th class="col-status">Waga</th><th>Liczba</th></tr>
+                  </thead>
+                  <tbody>
+                    @for (c of xlsxCounts(); track c.severity) {
+                      <tr [attr.data-severity]="c.severity">
+                        <td><span [class]="severityClass(c.severity)">{{ c.label }}</span></td>
+                        <td>{{ c.count }}</td>
+                      </tr>
+                    }
+                    <tr data-severity="manual">
+                      <td>Pozycje checklisty</td>
+                      <td>{{ x.counts.manualChecks }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </details>
+            </div>
+          </section>
+
+          <section class="standard-block" data-standard="xlsx-criteria">
+            <h3 class="standard-bar">Kryteria WCAG {{ x.profile.wcagVersion }}</h3>
+            <div class="standard-body">
+              <details class="section" open data-section="criteria">
+                <summary class="section-bar">Stan kryteriów <span class="muted">({{ xlsxCriteriaSummary() }})</span></summary>
+                <app-xlsx-criteria [result]="x" data-testid="xlsx-criteria" />
+              </details>
+              <details class="section" open data-section="checklist">
+                <summary class="section-bar">Checklista oceny ręcznej <span class="muted">({{ x.manualChecks.length }})</span></summary>
+                <app-xlsx-checklist [items]="x.manualChecks" [checked]="checkedManual()" (checkedChange)="checkedManual.set($event)" data-testid="xlsx-checklist" />
+              </details>
+            </div>
+          </section>
+
+          <p class="xlsx-disclaimer" data-testid="xlsx-disclaimer">
+            <b>{{ xlsxDisclaimer }}.</b> Raport z automatycznej analizy pliku; nie zastępuje audytu dostępności ani testów
+            z technologiami wspomagającymi.
+          </p>
+        </div>
+      }
     </div>
 
       @if (findings().length === 0) {
@@ -350,6 +433,9 @@
             <div class="finding-title">
               <span class="severity-tag" [class]="'severity-tag ' + severityClass(f.severity)">{{ f.severityLabel }}</span>
               <h4>{{ f.title }}</h4>
+              @if (f.checkType; as ct) {
+                <span class="check-type-tag" [attr.data-check-type]="ct.id" data-testid="finding-check-type-tag">{{ ct.label }}</span>
+              }
             </div>
             <p class="muted finding-meta">Pozycja {{ f.index + 1 }} z {{ findings().length }} · kod {{ f.code }}</p>
             <p class="message" data-testid="finding-message">{{ f.message }}</p>
@@ -379,7 +465,7 @@
                 <dt>{{ fact.label }}</dt>
                 <dd [attr.data-testid]="fact.testId ?? null" [class.mono]="fact.mono">
                   @if (fact.links; as links) {
-                    @for (l of links; track l.href; let last = $last) {<a [href]="l.href" target="_blank" rel="noopener">{{ l.text }}</a>@if (!last) {, }}
+                    @for (l of links; track l.href; let last = $last) {<a [href]="l.href" target="_blank" rel="noopener">{{ l.text }}<span class="visually-hidden"> (otwiera się w nowej karcie)</span></a>@if (!last) {, }}
                   } @else {{{ fact.value }}}
                 </dd>
               }
@@ -425,9 +511,4 @@
       </div>
       }
   </section>
-}
-
-<!-- Wynik audytu skoroszytu Excel (stan ustawia DocumentCheck.handleXlsx); obok raportu Word, niezależny od niego. -->
-@if (xlsxResult(); as x) {
-  <app-xlsx-report [result]="x" (finish)="nextWorkbook()" />
 }

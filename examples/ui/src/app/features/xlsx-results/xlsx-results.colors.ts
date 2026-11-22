@@ -1,11 +1,12 @@
-// Kolory widoku wyników audytu XLSX. Jedyne miejsce, w którym są zapisane: komponent app-xlsx-report wystawia je
-// jako zmienne CSS (--xr-*) na swoim elemencie, arkusze stylów widoku (także komponentów podrzędnych, które je
-// dziedziczą) korzystają wyłącznie z tych zmiennych, a test kontrastu (xlsx-report.colors.spec.ts) liczy
-// współczynniki z tych samych wartości.
+// Kolory sekcji Excela w zakładce „Podsumowanie” wspólnego raportu (macierz kryteriów, checklista oceny ręcznej,
+// komunikaty o makrach i pustym skoroszycie, zastrzeżenie). Jedyne miejsce, w którym są zapisane: DocumentCheck
+// wystawia je jako zmienne CSS (--xr-*) na kontenerze sekcji Excela (.xlsx-summary), arkusze stylów (app-xlsx-criteria,
+// app-xlsx-checklist dziedziczą zmienne) korzystają wyłącznie z nich, a test kontrastu (xlsx-results.colors.spec.ts)
+// liczy współczynniki z tych samych wartości. Nagłówek, zakładki i lista zgłoszeń mają style raportu Word.
 // page, panel, surface, text i accent powtarzają globalne --page, --surface-2, --surface, --ink i --indigo
 // (src/styles.scss). Globalnego --muted (#777) i pomarańczowego fokusu widok nie używa – mają za niski kontrast
 // na szarym panelu.
-export const XLSX_REPORT_COLORS = {
+export const XLSX_RESULTS_COLORS = {
   // Tło strony: nagłówek raportu, nagłówki sekcji, stopka.
   page: '#f4f4f4',
   // Szary panel sekcji (przełączniki, legenda, checklista).
@@ -32,28 +33,26 @@ export const XLSX_REPORT_COLORS = {
   // Informacja (pusty skoroszyt, makra).
   notice: '#e9f0f8',
   noticeBorder: '#5b7fa8',
-  // Komunikat błędu eksportu.
-  alert: '#fcebe9',
   // Stopka z zastrzeżeniem.
   footer: '#333333',
   onFooter: '#ffffff',
 } as const;
 
-export type XlsxReportColor = keyof typeof XLSX_REPORT_COLORS;
+export type XlsxResultsColor = keyof typeof XLSX_RESULTS_COLORS;
 
 // Nazwa zmiennej CSS koloru: textSoft → --xr-text-soft.
-export function xlsxReportCssName(key: string): string {
+export function xlsxResultsCssName(key: string): string {
   return `--xr-${key.replace(/[A-Z]/g, (c) => `-${c.toLowerCase()}`)}`;
 }
 
-// Zmienne CSS wystawiane przez app-xlsx-report na swoim elemencie (wiązanie [style]).
-export const XLSX_REPORT_CSS_VARS: Readonly<Record<string, string>> = Object.fromEntries(
-  Object.entries(XLSX_REPORT_COLORS).map(([key, value]) => [xlsxReportCssName(key), value]),
+// Zmienne CSS wystawiane przez DocumentCheck na kontenerze sekcji Excela (wiązanie [style]).
+export const XLSX_RESULTS_CSS_VARS: Readonly<Record<string, string>> = Object.fromEntries(
+  Object.entries(XLSX_RESULTS_COLORS).map(([key, value]) => [xlsxResultsCssName(key), value]),
 );
 
 // Pary pierwszy plan / tło faktycznie użyte w arkuszach stylów widoku, z progiem WCAG:
 // 4,5 – tekst (SC 1.4.3), 3 – obramowania, znaki statusu i fokus (SC 1.4.11, 2.4.7/2.4.11).
-export const XLSX_REPORT_CONTRAST_PAIRS: readonly { what: string; fg: XlsxReportColor; bg: XlsxReportColor; min: 4.5 | 3 }[] = [
+export const XLSX_RESULTS_CONTRAST_PAIRS: readonly { what: string; fg: XlsxResultsColor; bg: XlsxResultsColor; min: 4.5 | 3 }[] = [
   { what: 'tekst na tle strony', fg: 'text', bg: 'page', min: 4.5 },
   { what: 'tekst na szarym panelu', fg: 'text', bg: 'panel', min: 4.5 },
   { what: 'tekst na karcie', fg: 'text', bg: 'surface', min: 4.5 },
@@ -74,15 +73,12 @@ export const XLSX_REPORT_CONTRAST_PAIRS: readonly { what: string; fg: XlsxReport
   { what: 'liczniki statusów na szarym panelu: neutralny', fg: 'neutral', bg: 'panel', min: 4.5 },
   { what: 'tekst etykiety (chip)', fg: 'text', bg: 'chip', min: 4.5 },
   { what: 'tekst informacji (pusty skoroszyt, makra)', fg: 'text', bg: 'notice', min: 4.5 },
-  { what: 'tekst komunikatu błędu eksportu', fg: 'text', bg: 'alert', min: 4.5 },
-  { what: 'znak błędu w komunikacie błędu eksportu', fg: 'error', bg: 'alert', min: 3 },
   { what: 'tekst stopki z zastrzeżeniem', fg: 'onFooter', bg: 'footer', min: 4.5 },
   { what: 'stopka względem tła strony', fg: 'footer', bg: 'page', min: 3 },
   { what: 'obramowanie karty względem szarego panelu', fg: 'border', bg: 'panel', min: 3 },
   { what: 'obramowanie karty względem wnętrza karty', fg: 'border', bg: 'surface', min: 3 },
   { what: 'obramowanie etykiety (chip) względem karty', fg: 'accent', bg: 'surface', min: 3 },
   { what: 'obramowanie informacji względem tła strony', fg: 'noticeBorder', bg: 'page', min: 3 },
-  { what: 'obramowanie komunikatu błędu względem tła strony', fg: 'error', bg: 'page', min: 3 },
   { what: 'wskaźnik fokusu względem tła strony', fg: 'accent', bg: 'page', min: 3 },
   { what: 'wskaźnik fokusu względem szarego panelu', fg: 'accent', bg: 'panel', min: 3 },
   { what: 'wskaźnik fokusu względem karty', fg: 'accent', bg: 'surface', min: 3 },

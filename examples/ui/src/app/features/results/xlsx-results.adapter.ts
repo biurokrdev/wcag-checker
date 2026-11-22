@@ -26,7 +26,7 @@ import { xlsxHierarchy, xlsxHierarchyRef } from './xlsx-hierarchy';
 // z łączami do „Understanding”, typ sprawdzenia, brak podglądu strony, eksport PDF i „Pobierz z komentarzami”
 // jako „Dostępne niebawem”. Wynik nigdy nie stwierdza zgodności – werdykt to zdanie podsumowania z API.
 
-const SEVERITY: Record<XlsxSeverity, ResultSeverity> = { Error: 'error', Warning: 'warning', NeedsReview: 'needs-review', Info: 'info' };
+export const XLSX_RESULT_SEVERITY: Record<XlsxSeverity, ResultSeverity> = { Error: 'error', Warning: 'warning', NeedsReview: 'needs-review', Info: 'info' };
 
 // Etykiety wag małą literą, jak w raporcie Word (SEVERITY_LABEL: „błąd”, „ostrzeżenie”, „informacja”).
 export const XLSX_RESULT_SEVERITY_LABEL: Record<XlsxSeverity, string> = {
@@ -108,7 +108,7 @@ export function xlsxFinding(f: XlsxFinding, index: number, profileName: string):
   return {
     index,
     code: f.code,
-    severity: SEVERITY[f.severity],
+    severity: XLSX_RESULT_SEVERITY[f.severity],
     severityLabel: XLSX_RESULT_SEVERITY_LABEL[f.severity],
     title: f.title,
     message: f.message,

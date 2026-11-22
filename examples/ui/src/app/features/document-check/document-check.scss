@@ -647,3 +647,62 @@
     outline-color: var(--dc-focus);
   }
 }
+
+// ---- Raport Excel: różnice dozwolone wobec raportu Word (reszta to te same klasy i bloki).
+
+// Nagłówek raportu Excel dostaje fokus programowo (tabindex="-1") – obwódka tylko przy fokusie z klawiatury.
+.report-title[tabindex='-1']:focus-visible {
+  outline: 3px solid var(--indigo);
+  outline-offset: 3px;
+}
+
+// Akcja jeszcze nieobsługiwana dla formatu: zablokowany przycisk i odznaka „Dostępne niebawem” (opis przycisku
+// przez aria-describedby). Kolory odznaki jak w kafelku PDF sekcji „Typ pliku” (#fff na #333, 12,6:1).
+.coming-soon-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+
+  .badge {
+    padding: 0.1rem 0.5rem;
+    background: var(--ink);
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+}
+
+// Typ sprawdzenia (automatycznie / heurystyka / do oceny ręcznej) obok tytułu zgłoszenia – tekstem, nie kolorem.
+.finding-detail .check-type-tag {
+  flex: none;
+  font-size: 0.8rem;
+  padding: 0.1rem 0.45rem;
+  border: 1px solid var(--indigo);
+  color: var(--ink);
+  background: var(--surface);
+}
+
+// Sekcje Excela w „Podsumowaniu”: komunikaty i zastrzeżenie (kolory --xr-* z xlsx-results.colors.ts).
+.xlsx-summary {
+  .xlsx-notice {
+    background: var(--xr-notice);
+    border: 1px solid var(--xr-notice-border);
+    color: var(--xr-text);
+    padding: 0.6rem 0.9rem;
+    margin: 0.6rem 0 0;
+
+    .mark {
+      display: inline-block;
+      min-width: 1.1em;
+      font-weight: 700;
+      text-align: center;
+    }
+  }
+
+  .xlsx-disclaimer {
+    background: var(--xr-footer);
+    color: var(--xr-on-footer);
+    padding: 0.8rem 1.1rem;
+    margin: 0;
+  }
+}

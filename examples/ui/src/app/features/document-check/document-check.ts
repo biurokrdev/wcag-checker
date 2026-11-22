@@ -1,14 +1,24 @@
 import { Component, ElementRef, Injector, OnDestroy, OnInit, afterNextRender, computed, inject, signal, viewChild } from '@angular/core';
 import { Subscription, finalize } from 'rxjs';
 import { saveBlob } from '../../core/download';
-import { DEFAULT_FILE_TYPE, FileTypeConfig, FileTypeId, WcagVersion, checkFile, fileTypeConfig } from '../../core/file-types';
+import { COMING_SOON_LABEL, DEFAULT_FILE_TYPE, FileTypeConfig, FileTypeId, WcagVersion, checkFile, fileTypeConfig } from '../../core/file-types';
 import { WcagDocumentsService } from '../../core/wcag-documents.service';
 import { WcagWorkbooksService } from '../../core/wcag-workbooks.service';
-import { XlsxValidationResult } from '../../core/xlsx-models';
+import {
+  XLSX_CRITERION_STATUSES,
+  XLSX_CRITERION_STATUS_LABEL,
+  XLSX_DISCLAIMER,
+  XLSX_SEVERITIES,
+  XLSX_SEVERITY_PLURAL,
+  XlsxReportFormat,
+  XlsxValidationResult,
+} from '../../core/xlsx-models';
 import { CommentExportButton } from '../comment-export/comment-export-button';
 import { ContentTree } from '../content-tree/content-tree';
 import { FileTypePicker } from '../file-type/file-type-picker';
-import { XlsxReport } from '../xlsx-results/xlsx-report';
+import { XlsxChecklist } from '../xlsx-results/xlsx-checklist';
+import { XlsxCriteria } from '../xlsx-results/xlsx-criteria';
+import { XLSX_RESULTS_CSS_VARS } from '../xlsx-results/xlsx-results.colors';
 import { DOCUMENT_CHECK_UPLOAD_COLORS } from './document-check.colors';
 import {
   CHECK_STATUS_LABEL,
@@ -24,6 +34,7 @@ import {
 } from '../../core/models';
 import { RESULT_SEVERITY_CLASS, ResultFinding, ResultSeverity, ResultsViewModel, hierarchyIssueCountLabel } from '../../core/results-view-model';
 import { wordResultsViewModel } from '../results/word-results.adapter';
+import { XLSX_RESULT_SEVERITY, xlsxResultsViewModel } from '../results/xlsx-results.adapter';
 
 export type ReportTab = 'summary' | 'findings' | 'hierarchy';
 
@@ -33,7 +44,8 @@ export const REPORT_TABS: readonly ReportTab[] = ['summary', 'findings', 'hierar
 // Nad standardami sekcja „Typ pliku” (app-file-type-picker): Word działa jak dotąd, Excel ma własny standard
 // (WCAG + wybór wersji) i własne teksty pola pliku, PDF jest niedostępny. Wybory są pamiętane osobno dla typu.
 // Excel: plik sprawdzony w przeglądarce idzie do api/wcag-workbooks/validate z wybraną wersją WCAG; odrzucenie
-// z serwera jest pokazywane przy polu pliku (formularz zostaje), wynik – w app-xlsx-report.
+// z serwera jest pokazywane przy polu pliku (formularz zostaje), wynik – w tym samym raporcie co Word (adapter
+// xlsx-results.adapter.ts); w „Podsumowaniu” Excel ma własne sekcje (liczby, kryteria, checklista, zastrzeżenie).
 // Przebieg: wybór standardów i pliku DOCX (także przeciągnięciem) → analiza (API) → raport w trzech zakładkach
 // (wzorzec WAI-ARIA Tabs: strzałki, Home/End, roving tabindex). Raport renderuje wspólny ResultsViewModel
 // (core/results-view-model.ts) budowany adapterem formatu – Word i Excel używają tych samych bloków szablonu.
@@ -43,7 +55,7 @@ export const REPORT_TABS: readonly ReportTab[] = ['summary', 'findings', 'hierar
 // „Hierarchia dokumentu”: drzewo treści (app-content-tree) i podgląd wskazanego miejsca; zakładka jest zawsze.
 @Component({
   selector: 'app-document-check',
-  imports: [ContentTree, CommentExportButton, FileTypePicker, XlsxReport],
+  imports: [ContentTree, CommentExportButton, FileTypePicker, XlsxCriteria, XlsxChecklist],
   templateUrl: './document-check.html',
   styleUrl: './document-check.scss',
 })
@@ -59,6 +71,10 @@ export class DocumentCheck implements OnInit, OnDestroy {
   protected readonly coverageLabel = CRITERION_COVERAGE_LABEL;
   protected readonly checkStatusLabel = CHECK_STATUS_LABEL;
   protected readonly issueLabel = issueLabel;
+  protected readonly comingSoonLabel = COMING_SOON_LABEL;
+  protected readonly xlsxDisclaimer = XLSX_DISCLAIMER;
+  // Kolory sekcji Excela w „Podsumowaniu” (macierz kryteriów, checklista, komunikaty, zastrzeżenie) jako zmienne --xr-*.
+  protected readonly xlsxCssVars = XLSX_RESULTS_CSS_VARS;
   // Kolory strefy pliku poza ścieżką Word (kontrast tekstu, obramowania i fokusu) jako zmienne CSS --dc-*; Word zostaje bez zmian.
   protected readonly uploadStyle = [
     `--dc-drop-text: ${DOCUMENT_CHECK_UPLOAD_COLORS.dropText}`,
@@ -92,13 +108,17 @@ export class DocumentCheck implements OnInit, OnDestroy {
 
   private readonly fileInput = viewChild<ElementRef<HTMLInputElement>>('fileInput');
   private readonly pickButton = viewChild<ElementRef<HTMLButtonElement>>('pickButton');
+  private readonly reportTitle = viewChild<ElementRef<HTMLElement>>('reportTitle');
 
   protected readonly busy = signal(false);
   protected readonly stage = signal('');
   protected readonly error = signal<string | null>(null);
   protected readonly result = signal<ValidationResult | null>(null);
-  // Wynik audytu skoroszytu Excel (app-xlsx-report).
+  // Wynik audytu skoroszytu Excel (raport: adapter xlsxResultsViewModel).
   protected readonly xlsxResult = signal<XlsxValidationResult | null>(null);
+  // Excel: odhaczone pozycje checklisty oceny ręcznej. Stan trzyma ekran (nie komponent checklisty), więc przetrwa
+  // przełączanie zakładek; trafia do eksportu raportu (checkedManual). Od nowa dla każdego wyniku.
+  protected readonly checkedManual = signal<ReadonlySet<string>>(new Set());
 
   // Raport: zakładka, strona listy wystąpień, zaznaczone wystąpienie i jego podgląd.
   protected readonly tab = signal<ReportTab>('summary');
@@ -116,7 +136,8 @@ export class DocumentCheck implements OnInit, OnDestroy {
 
   // Weryfikacja ręczna: indeksy wystąpień oznaczonych przyciskiem; pamiętane w przeglądarce per raport.
   protected readonly verified = signal<ReadonlySet<number>>(new Set());
-  protected readonly exporting = signal(false);
+  // Format trwającego eksportu (Word: zawsze docx); null – nic się nie pobiera.
+  protected readonly exporting = signal<XlsxReportFormat | null>(null);
   protected readonly exportError = signal<string | null>(null);
 
   protected readonly formVisible = computed(() => !this.busy() && this.error() === null && this.result() === null && this.xlsxResult() === null);
@@ -124,10 +145,12 @@ export class DocumentCheck implements OnInit, OnDestroy {
   // Word wymaga co najmniej jednego standardu z katalogu; typ ze stałą listą ma standard zaznaczony na stałe.
   protected readonly canSelectFile = computed(() => !this.usesCatalog() || this.selected().length > 0);
 
-  // Wspólny model widoku raportu (Word: adapter wordResultsViewModel).
+  // Wspólny model widoku raportu: Word – adapter wordResultsViewModel, Excel – xlsxResultsViewModel.
   protected readonly vm = computed<ResultsViewModel | null>(() => {
     const r = this.result();
-    return r ? wordResultsViewModel(r) : null;
+    if (r) return wordResultsViewModel(r);
+    const x = this.xlsxResult();
+    return x ? xlsxResultsViewModel(x) : null;
   });
 
   protected readonly findings = computed(() => this.vm()?.findings ?? []);
@@ -163,10 +186,27 @@ export class DocumentCheck implements OnInit, OnDestroy {
     return groups;
   });
 
+  // Excel, „Podsumowanie”: liczby zgłoszeń według wagi (odznaki jak na liście zgłoszeń).
+  protected readonly xlsxCounts = computed(() => {
+    const counts = this.vm()?.summary.counts;
+    if (!counts || !this.xlsxResult()) return [];
+    return XLSX_SEVERITIES.map((s) => ({ severity: XLSX_RESULT_SEVERITY[s], label: XLSX_SEVERITY_PLURAL[s], count: counts[XLSX_RESULT_SEVERITY[s]] }));
+  });
+
+  // Excel: liczby kryteriów według stanu w pasku sekcji „Stan kryteriów” (jak liczby w paskach sekcji Word).
+  protected readonly xlsxCriteriaSummary = computed(() => {
+    const criteria = this.xlsxResult()?.criteria ?? [];
+    return XLSX_CRITERION_STATUSES.map((status) => ({ status, n: criteria.filter((c) => c.status === status).length }))
+      .filter((s) => s.n > 0)
+      .map((s) => `${XLSX_CRITERION_STATUS_LABEL[s.status].toLocaleLowerCase('pl')}: ${s.n}`)
+      .join(', ');
+  });
+
   private request?: Subscription;
   private catalogRequest?: Subscription;
   private previewRequest?: Subscription;
   private locationRequest?: Subscription;
+  private exportRequest?: Subscription;
 
   ngOnInit(): void {
     this.catalogRequest = this.api.standards().subscribe({
@@ -183,6 +223,7 @@ export class DocumentCheck implements OnInit, OnDestroy {
     this.catalogRequest?.unsubscribe();
     this.previewRequest?.unsubscribe();
     this.locationRequest?.unsubscribe();
+    this.exportRequest?.unsubscribe();
   }
 
   protected isSelected(key: string): boolean {
@@ -404,32 +445,61 @@ export class DocumentCheck implements OnInit, OnDestroy {
     this.persistVerified();
   }
 
-  // Raport DOCX z listą zweryfikowanych wystąpień; plik leci z API i jest zapisywany w przeglądarce.
-  protected exportReport(): void {
+  // Raport do pobrania: Word – DOCX z listą zweryfikowanych wystąpień; Excel – DOCX albo PDF z odhaczonymi pozycjami
+  // checklisty. Plik leci z API i jest zapisywany w przeglądarce.
+  protected exportReport(format: XlsxReportFormat = 'docx'): void {
+    if (this.xlsxResult()) {
+      this.exportWorkbook(format);
+      return;
+    }
     const reportId = this.result()?.reportId;
     if (!reportId || this.exporting()) return;
 
-    this.exporting.set(true);
+    this.exporting.set('docx');
     this.exportError.set(null);
     this.api
       .export(reportId, { verified: [...this.verified()].sort((a, b) => a - b), includePreviews: true, reviewer: null }, 'docx')
-      .pipe(finalize(() => this.exporting.set(false)))
+      .pipe(finalize(() => this.exporting.set(null)))
       .subscribe({
         next: (blob) => saveBlob(blob, `${this.result()!.document.fileName.replace(/\.docx$/i, '')}_raport.docx`),
         error: (e) => this.exportError.set(WcagDocumentsService.errorMessage(e)),
       });
   }
 
-  // „Zakończ”: wynik od nowa, wybór standardów zostaje.
-  protected next(): void {
-    this.reset();
+  // Excel: raport z wyniku trzymanego w API, z odhaczonymi pozycjami checklisty w kolejności checklisty. Nazwa pliku
+  // z Content-Disposition albo z nazwy skoroszytu („budzet.xlsx” → „budzet_raport.pdf”). API eksportu skoroszytu nie
+  // przyjmuje stanu „Zweryfikowany” – ten zostaje w przeglądarce (licznik w nagłówku, localStorage per raport).
+  // Błąd – w tym samym miejscu co błąd eksportu Word (role="alert"); pobranie ogłasza stały region live.
+  private exportWorkbook(format: XlsxReportFormat): void {
+    const x = this.xlsxResult();
+    if (!x?.reportId || this.exporting()) return;
+
+    const checkedManual = x.manualChecks.filter((c) => this.checkedManual().has(c.id)).map((c) => c.id);
+    this.exporting.set(format);
+    this.exportError.set(null);
+    this.liveMessage.set('');
+    this.exportRequest?.unsubscribe();
+    this.exportRequest = this.workbooks
+      .export(x.reportId, format, { checkedManual }, x.file.fileName)
+      .pipe(finalize(() => this.exporting.set(null)))
+      .subscribe({
+        next: (file) => {
+          saveBlob(file.blob, file.fileName);
+          this.liveMessage.set(`Pobrano raport ${file.fileName}.`);
+        },
+        error: (e: unknown) => this.exportError.set(`Nie udało się pobrać raportu. ${e instanceof Error ? e.message : ''}`.trim()),
+      });
   }
 
-  // „Sprawdź kolejny” w raporcie Excel: formularz wraca z tym samym typem i wersją WCAG, fokus na „Wybierz plik”.
-  protected nextWorkbook(): void {
+  // „Zakończ”: wynik od nowa, wybór standardów zostaje. Excel: formularz wraca z tym samym typem i wersją WCAG,
+  // a fokus – na „Wybierz plik” (przycisk „Zakończ” znika razem z raportem, fokus nie może spaść na body).
+  protected next(): void {
+    const workbook = this.xlsxResult() !== null;
     this.reset();
-    this.liveMessage.set('');
-    this.focusPickButton();
+    if (workbook) {
+      this.liveMessage.set('');
+      this.focusPickButton();
+    }
   }
 
   // Po błędzie technicznym wynik (o ile był) zostaje, znika tylko komunikat.
@@ -530,10 +600,12 @@ export class DocumentCheck implements OnInit, OnDestroy {
 
   // Audyt XLSX: wywoływane wyłącznie dla typu Excel, po sprawdzeniu pliku w przeglądarce (rozszerzenie .xlsx, niepusty,
   // do 20 MB), z wersją WCAG wybraną w sekcji „Standardy”. Na czas analizy formularz znika („Analiza skoroszytu…”).
-  // Ogłoszenia: początek – tylko stały region live (tekst „stage” nie jest regionem live), koniec – tylko fokus na nagłówku raportu.
+  // Ogłoszenia: początek – tylko stały region live (tekst „stage” nie jest regionem live), koniec – tylko fokus na nagłówku
+  // raportu (h2.report-title z tabindex="-1" wyłącznie dla Excela). Formularz z przyciskiem „Wybierz plik”, na którym był
+  // fokus, znika – bez przeniesienia fokus spadłby na body, a czytnik nie dowiedziałby się o wyniku. Fokus na nagłówku
+  // ogłasza „Raport: {plik}” i stawia użytkownika klawiatury na początku raportu, tak jak dawny osobny widok Excela.
   // Odrzucenie z serwera (np. dokument Word wysłany jako .xlsx, plik zaszyfrowany) wraca przy polu pliku jak błąd
   // przeglądarki: formularz zostaje, komunikat ma role="alert", fokus wraca na „Wybierz plik” (opisany komunikatem).
-  // Wynik trafia do app-xlsx-report, który przenosi fokus na swój nagłówek.
   private handleXlsx(file: File, wcagVersion: WcagVersion): void {
     this.reset();
     this.busy.set(true);
@@ -545,9 +617,11 @@ export class DocumentCheck implements OnInit, OnDestroy {
       .subscribe({
         next: (r) => {
           this.xlsxResult.set(r);
-          // Wynik ogłasza fokus przeniesiony na nagłówek raportu (app-xlsx-report) – drugi komunikat w regionie live
-          // dublowałby to ogłoszenie, więc region jest tylko czyszczony.
+          this.verified.set(this.restoreVerified(r.reportId ?? null));
+          // Wynik ogłasza fokus przeniesiony na nagłówek raportu – drugi komunikat w regionie live dublowałby to
+          // ogłoszenie, więc region jest tylko czyszczony.
           this.liveMessage.set('');
+          afterNextRender(() => this.reportTitle()?.nativeElement.focus(), { injector: this.injector });
         },
         error: (e) => {
           this.fileError.set(WcagWorkbooksService.errorMessage(e));
@@ -582,12 +656,15 @@ export class DocumentCheck implements OnInit, OnDestroy {
     this.previewBusy.set(false);
     this.closeLocation();
     this.verified.set(new Set());
-    this.exporting.set(false);
+    this.checkedManual.set(new Set());
+    this.exportRequest?.unsubscribe();
+    this.exporting.set(null);
     this.exportError.set(null);
   }
 
+  // Weryfikacja Word i Excel: ten sam mechanizm, klucz to identyfikator raportu z modelu widoku.
   private persistVerified(): void {
-    const reportId = this.result()?.reportId;
+    const reportId = this.vm()?.reportId;
     if (!reportId) return;
     try {
       localStorage.setItem(`wcag-verified:${reportId}`, JSON.stringify([...this.verified()]));
