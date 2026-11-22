@@ -263,8 +263,22 @@ public sealed class WcagXlsxAuditor : IWcagXlsxAuditor
         var manualCriteria = criteria.Results.Count(c => c.NeedsManualReview);
         return new XlsxAuditResult(version, info, findings, checklist, criteria.Results, counts, Summarize(counts, manualCriteria, workbook.IsEmpty))
         {
-            Outline = XlsxWorkbookOutline.From(workbook),
+            Outline = TryOutline(workbook),
         };
+    }
+
+    // Struktura skoroszytu jest tylko dodatkiem do prezentacji (zakładka „Hierarchia dokumentu”): błąd przy jej budowie
+    // nie może przerwać audytu – wynik zostaje, a struktura jest null (UI pokazuje wtedy pusty stan).
+    private static XlsxWorkbookOutline? TryOutline(XlsxWorkbook workbook)
+    {
+        try
+        {
+            return XlsxWorkbookOutline.From(workbook);
+        }
+        catch (Exception ex) when (ex is not OutOfMemoryException)
+        {
+            return null;
+        }
     }
 
     /// <summary>Zdanie podsumowania. Nigdy nie stwierdza zgodności – najmocniejsze: „Nie wykryto automatycznie niezgodności”.</summary>
