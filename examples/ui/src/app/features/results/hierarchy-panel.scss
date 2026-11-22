@@ -1,0 +1,81 @@
+// Zakładka „Hierarchia dokumentu”: rama drzewa i stany puste. Pusty stan wygląda jak „Brak uwag po walidacji”
+// (.no-findings w document-check.scss): białe tło, wyśrodkowany tekst; ikona jest dekoracyjna (aria-hidden).
+:host {
+  display: block;
+}
+
+.hierarchy-panel {
+  background: var(--surface);
+  padding: 0.25rem 0 1rem;
+}
+
+.panel-heading {
+  margin: 0;
+  padding: 0.75rem 1rem 0.25rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.hierarchy-empty {
+  padding: 2rem 1.25rem;
+  text-align: center;
+
+  .empty-icon {
+    display: block;
+    font-size: 2rem;
+    line-height: 1;
+    margin-bottom: 0.6rem;
+    color: var(--muted);
+  }
+
+  p {
+    margin: 0 auto 0.4rem;
+    max-width: 40rem;
+  }
+
+  b {
+    font-size: 1.1rem;
+  }
+
+  &.is-error .empty-icon {
+    color: var(--bad);
+  }
+
+  .error-detail {
+    margin: 0.6rem auto 0;
+    max-width: 40rem;
+    text-align: left;
+
+    summary {
+      cursor: pointer;
+      color: var(--indigo);
+    }
+
+    .mono {
+      font-family: Consolas, 'Courier New', monospace;
+      font-size: 0.86rem;
+      overflow-wrap: anywhere;
+      margin: 0.4rem 0 0;
+    }
+  }
+}
+
+.hierarchy-notice {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  margin: 0.5rem 1rem 0.25rem;
+  padding: 0.6rem 0.8rem;
+  background: #fff7e6;
+  border: 1px solid #f0d9a8;
+  border-left: 4px solid var(--warn);
+
+  .notice-icon {
+    color: var(--warn);
+    font-weight: 700;
+  }
+
+  p {
+    margin: 0;
+  }
+}

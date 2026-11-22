@@ -3,7 +3,8 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ContentTree } from '../content-tree/content-tree';
-import { Finding, FindingPreview, Issue, Standard, StandardsCatalog, ValidationResult } from '../../core/models';
+import { Finding, FindingPreview, Issue, Standard, StandardsCatalog, StructureNode, ValidationResult } from '../../core/models';
+import { axeViolations } from '../../testing/a11y';
 import { DocumentCheck } from './document-check';
 
 const STANDARDS = '/api/wcag-documents/standards';
@@ -120,6 +121,63 @@ function preview(overrides: Partial<FindingPreview> = {}): FindingPreview {
     note: 'Strona 1 z 1, zaznaczony element: ukryty 1.',
     ...overrides,
   };
+}
+
+const HIER: Standard = { key: 'hierarchia/1.0', id: 'hierarchia', version: '1.0', name: 'Hierarchia treści', confirmed: true, note: null };
+
+// Dokument z drzewem treści: H1 → akapity, pusty H3 → grupa akapitów. Zgłoszenia: 35 spoza drzewa (stopka, cały dokument),
+// HIER-EMPTY przy pustym H3 (indeks 35, druga strona listy), HIER-LIST-SKIP w zwiniętym akapicie 7 (indeks 36).
+const STRUCTURE: StructureNode[] = [
+  {
+    kind: 'Heading',
+    text: 'Wstęp',
+    count: 1,
+    key: 'body:Paragraph:0',
+    level: 1,
+    styleName: 'Nagłówek 1',
+    children: [
+      { kind: 'Paragraphs', text: 'Treść wstępu.', count: 3, key: 'body:Paragraph:1', styleName: 'Normalny', children: [] },
+      {
+        kind: 'Heading',
+        text: '',
+        count: 1,
+        key: 'body:Paragraph:4',
+        level: 3,
+        styleName: 'Nagłówek 3',
+        children: [{ kind: 'Paragraphs', text: 'Opis szczegółów.', count: 2, key: 'body:Paragraph:6', styleName: 'Normalny', children: [] }],
+      },
+    ],
+  },
+];
+
+function hierarchyValidation(overrides: Partial<ValidationResult> = {}): ValidationResult {
+  const plain = Array.from({ length: 35 }, (_, i) =>
+    finding(i, { occurrence: i + 1, occurrenceCount: 35, location: { key: `footer/0:Run:0:${i}`, kind: 'Run', story: 'footer/0', index: 0, subIndex: i, snippet: `stopka ${i}` } }),
+  );
+  plain[34] = finding(34, { location: null, occurrence: 1, occurrenceCount: 1, severity: 'Info', code: 'MANUAL_CHECK_SUGGESTED', label: 'Zalecane sprawdzenie ręczne' });
+  const hier = (index: number, code: string, label: string, severity: Finding['severity'], paragraph: number): Finding =>
+    finding(index, {
+      code,
+      label,
+      severity,
+      category: 'Headings',
+      standard: 'hierarchia/1.0',
+      standardName: 'Hierarchia treści',
+      criteria: [],
+      occurrence: 1,
+      occurrenceCount: 1,
+      location: { key: `body:Paragraph:${paragraph}`, kind: 'Paragraph', story: 'body', index: paragraph, subIndex: null, snippet: '' },
+    });
+  return validation({
+    standards: [WCAG, HIER],
+    outline: [
+      { level: 1, text: 'Wstęp' },
+      { level: 3, text: '' },
+    ],
+    structure: STRUCTURE,
+    findings: [...plain, hier(35, 'HIER-EMPTY', 'Pusty nagłówek', 'Error', 4), hier(36, 'HIER-LIST-SKIP', 'Przeskok poziomu listy', 'Warning', 7)],
+    ...overrides,
+  });
 }
 
 describe('DocumentCheck', () => {
@@ -588,21 +646,20 @@ describe('DocumentCheck', () => {
     expect(q('finding-details')).toBeNull();
   });
 
-  it('opens the finding for a place chosen in the structure panel, or loads a preview of the place itself', () => {
+  it('previews the place of a node chosen in the content tree and stays on the hierarchy tab', () => {
     const { fixture, q, click, validated } = render();
     validated();
+    click('tab-hierarchy');
     const tree = fixture.debugElement.query(By.directive(ContentTree)).componentInstance as ContentTree;
 
-    // Klucz, dla którego jest zgłoszenie: zakładka wyników i zaznaczone wystąpienie.
+    // Także klucz, dla którego jest zgłoszenie: wybór węzła nie przełącza zakładki (do wyników prowadzi osobny przycisk).
     tree.locate.emit('body:Run:4:1');
     fixture.detectChanges();
-    expect(q('panel-findings')!.hidden).toBe(false);
-    expect(q('finding-1')!.classList).toContain('selected');
-    expect(q('location-preview')).toBeNull();
-    http.expectOne(previewUrl('r1', 1)).flush(preview());
+    expect(q('panel-hierarchy')!.hidden).toBe(false);
+    expect(q('panel-findings')!.hidden).toBe(true);
+    http.expectOne((r) => r.url === locationUrl('r1') && r.params.get('key') === 'body:Run:4:1').flush(preview());
     fixture.detectChanges();
 
-    // Klucz bez zgłoszenia: podgląd samego miejsca pod panelem struktury.
     tree.locate.emit('body:Paragraph:7');
     fixture.detectChanges();
     expect(q('location-stage')).toBeTruthy();
@@ -614,7 +671,6 @@ describe('DocumentCheck', () => {
     expect(q('location-preview')!.textContent).toContain('zaznaczony element: Akapit.');
     expect(q<HTMLImageElement>('location-zoom')!.getAttribute('src')).toBe('data:image/jpeg;base64,BBBB');
     expect(q<HTMLImageElement>('location-page')!.getAttribute('src')).toBe('data:image/jpeg;base64,AAAA');
-    expect(q('finding-1')!.classList).toContain('selected');
 
     click('location-close');
     expect(q('location-preview')).toBeNull();
@@ -625,5 +681,185 @@ describe('DocumentCheck', () => {
     http.expectOne((r) => r.url === locationUrl('r1')).flush({ title: 'Raport wygasł.' }, { status: 404, statusText: 'Not Found' });
     fixture.detectChanges();
     expect(q('location-error')!.textContent).toContain('Raport wygasł.');
+  });
+
+  // ---- zakładka „Hierarchia dokumentu”: stany, nawigacja, porównanie z dawnym panelem, axe
+
+  describe('hierarchy tab', () => {
+    const rowText = (row: Element) => row.querySelector('.text')!.textContent!.trim();
+    const treeRow = (root: HTMLElement, text: string) =>
+      Array.from(root.querySelectorAll<HTMLElement>('[data-testid="tree-node"]')).find((row) => rowText(row) === text)!;
+
+    it('ok: shows the content tree with the problem counter and no notice', async () => {
+      const { q, click, validated } = render();
+      validated(hierarchyValidation());
+
+      expect(q('hierarchy-count')!.textContent).toBe(' (2 problemy)');
+      click('tab-hierarchy');
+      const panel = q('panel-hierarchy')!;
+      expect(panel.querySelector('h3')!.textContent).toBe('Hierarchia treści');
+      expect(panel.textContent).not.toContain('Struktura dokumentu');
+      expect(q('hierarchy-panel')!.dataset['status']).toBe('ok');
+      expect(q('hierarchy-not-analyzed')).toBeNull();
+      expect(q('hierarchy-empty')).toBeNull();
+      expect(panel.contains(q('content-tree'))).toBe(true);
+      expect(q('tree-problems')!.textContent).toContain('W treści: 1 błąd, 1 ostrzeżenie.');
+      expect(await axeViolations(panel)).toEqual([]);
+    });
+
+    it('not-analyzed: shows the notice above the tree and no counter', async () => {
+      const { q, click, validated } = render();
+      validated(hierarchyValidation({ standards: [WCAG] }));
+
+      expect(q('hierarchy-count')).toBeNull();
+      expect(q('tab-hierarchy')!.textContent!.trim()).toBe('Hierarchia dokumentu');
+      click('tab-hierarchy');
+      const notice = q('hierarchy-not-analyzed')!;
+      expect(notice.textContent).toContain('Hierarchia nie była analizowana.');
+      expect(notice.textContent).toContain('Zaznacz standard Hierarchia treści i uruchom walidację ponownie.');
+      expect(notice.querySelector('[aria-hidden="true"]')).toBeTruthy();
+      // Komunikat stoi nad drzewem, a drzewo zostaje.
+      expect(notice.compareDocumentPosition(q('content-tree')!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+      expect(q('tree')).toBeTruthy();
+      expect(await axeViolations(q('panel-hierarchy')!)).toEqual([]);
+    });
+
+    it('empty: shows the empty state with a decorative icon, no tree and no counter', async () => {
+      const { q, click, validated } = render();
+      validated(validation({ standards: [WCAG, HIER], wcag: null, outline: [], structure: [], findings: [] }));
+
+      expect(q('hierarchy-count')).toBeNull();
+      click('tab-hierarchy');
+      const empty = q('hierarchy-empty')!;
+      expect(empty.textContent).toContain('Nie wykryto hierarchii dokumentu.');
+      expect(empty.textContent).toContain(
+        'Dokument nie zawiera nagłówków ani elementów struktury. Użyj stylów Nagłówek 1–3 z Galerii stylów, aby nadać treści strukturę.',
+      );
+      expect(empty.querySelector('.empty-icon')!.getAttribute('aria-hidden')).toBe('true');
+      expect(q('content-tree')).toBeNull();
+      // Panel zakładki jest fokusowalny, więc czytnik czyta tekst stanu po wejściu w zakładkę.
+      expect(q('panel-hierarchy')!.getAttribute('tabindex')).toBe('0');
+      expect(q('panel-hierarchy')!.contains(empty)).toBe(true);
+      expect(await axeViolations(q('panel-hierarchy')!)).toEqual([]);
+    });
+
+    it('shows the same problems and places as the former standalone structure panel for the same input', () => {
+      const r = hierarchyValidation();
+      const { fixture, q, click, validated } = render();
+      validated(r);
+      click('tab-hierarchy');
+
+      // Dawny panel: to samo drzewo treści z tymi samymi danymi (structure, outline, findings), osobno.
+      const old = TestBed.createComponent(ContentTree);
+      old.componentRef.setInput('nodes', r.structure);
+      old.componentRef.setInput('outline', r.outline);
+      old.componentRef.setInput('findings', r.findings);
+      old.detectChanges();
+      const oldEl = old.nativeElement as HTMLElement;
+      const snapshot = (root: HTMLElement) => ({
+        rows: Array.from(root.querySelectorAll('[data-testid="tree-node"]')).map((row) => [
+          rowText(row),
+          (row as HTMLElement).dataset['state'],
+          row.querySelector('.meta')?.textContent ?? null,
+          row.querySelector('[data-testid="tree-inside"]')?.textContent ?? null,
+        ]),
+        problems: root.querySelector('[data-testid="tree-problems"]')!.textContent,
+        outside: root.querySelector('[data-testid="tree-outside"]')?.textContent ?? null,
+      });
+
+      const inTab = snapshot(q('panel-hierarchy')!);
+      expect(inTab).toEqual(snapshot(oldEl));
+      // Wzorzec: błąd przy pustym H3, ostrzeżenie przy grupie akapitów z przeskokiem listy (akapit 7 w grupie od 6).
+      expect(inTab.rows).toEqual([
+        ['Wstęp', 'ok', 'Nagłówek 1 · poziom 1', 'w środku: 2 problemy'],
+        ['Treść wstępu.', 'ok', 'Normalny · 3 akapity', null],
+        ['(pusty nagłówek)', 'error', 'Nagłówek 3 · poziom 3', 'w środku: 1 problem'],
+        ['Opis szczegółów.', 'warning', 'Normalny · 2 akapity', null],
+      ]);
+      expect(inTab.outside).toContain('35 zgłoszeń dotyczy');
+
+      // Te same miejsca w szczegółach węzła.
+      treeRow(q('panel-hierarchy')!, 'Opis szczegółów.').click();
+      fixture.detectChanges();
+      http.expectOne((req) => req.url === locationUrl('r1')).flush(preview());
+      fixture.detectChanges();
+      treeRow(oldEl, 'Opis szczegółów.').click();
+      old.detectChanges();
+      expect(q('tree-detail')!.textContent).toBe(oldEl.querySelector('[data-testid="tree-detail"]')!.textContent);
+      expect(q('tree-detail')!.textContent).toContain('Akapit 7 (pierwszy z 2 w grupie)');
+    });
+
+    it('"Pokaż w wynikach walidacji" opens the finding on its page, focuses it and announces it', async () => {
+      const { fixture, q, click, validated } = render();
+      validated(hierarchyValidation());
+      click('tab-hierarchy');
+
+      treeRow(q('panel-hierarchy')!, '(pusty nagłówek)').click();
+      fixture.detectChanges();
+      http.expectOne((r) => r.url === locationUrl('r1')).flush(preview());
+      fixture.detectChanges();
+
+      click('tree-detail-finding');
+      await fixture.whenStable();
+
+      expect(q('tab-findings')!.getAttribute('aria-selected')).toBe('true');
+      expect(q('panel-findings')!.hidden).toBe(false);
+      expect(q('panel-hierarchy')!.hidden).toBe(true);
+      // Wystąpienie 35 jest na drugiej stronie listy (po 30).
+      expect(q('pager')!.textContent).toContain('Strona 2 z 2');
+      const item = q('finding-35')!;
+      expect(item.classList).toContain('selected');
+      expect(document.activeElement).toBe(item);
+      expect(q('live-region')!.textContent).toBe(`Pokazano wynik walidacji: ${item.querySelector('.code')!.textContent}, pozycja 36 z 37.`);
+      expect(q('location-preview')).toBeNull();
+      http.expectOne(previewUrl('r1', 35)).flush(preview());
+    });
+
+    it('"Pokaż w hierarchii" reveals and focuses the tree node of the finding and announces it', async () => {
+      const { fixture, q, click, validated } = render();
+      validated(hierarchyValidation());
+      click('tab-findings');
+      http.expectOne(previewUrl('r1', 0)).flush(preview());
+      fixture.detectChanges();
+      // Zgłoszenie spoza hierarchii nie ma przycisku.
+      expect(q('show-in-hierarchy')).toBeNull();
+
+      // Zwinięte drzewo: odsłonięcie musi rozwinąć gałąź.
+      click('tree-collapse-all');
+      click('pager-next');
+      click('finding-36');
+      http.expectOne(previewUrl('r1', 36)).flush(preview());
+      fixture.detectChanges();
+      const title = q('finding-36')!.querySelector('.code')!.textContent;
+
+      click('show-in-hierarchy');
+      await fixture.whenStable();
+
+      expect(q('tab-hierarchy')!.getAttribute('aria-selected')).toBe('true');
+      expect(q('panel-hierarchy')!.hidden).toBe(false);
+      const focused = document.activeElement as HTMLElement;
+      expect(focused.getAttribute('role')).toBe('treeitem');
+      expect(rowText(focused)).toBe('Opis szczegółów.');
+      expect(focused.getAttribute('aria-selected')).toBe('true');
+      expect(q('tree-detail')!.textContent).toContain('Akapit 7 (pierwszy z 2 w grupie)');
+      expect(q('live-region')!.textContent).toBe(`Pokazano w hierarchii dokumentu: ${title}. Miejsce: Akapit 7 (pierwszy z 2 w grupie): Opis szczegółów.`);
+    });
+
+    it('does not offer "Pokaż w hierarchii" when the tab has no tree', () => {
+      const { fixture, q, click, validated } = render();
+      const hier = finding(0, {
+        code: 'HIER-EMPTY',
+        label: 'Pusty nagłówek',
+        standard: 'hierarchia/1.0',
+        location: { key: 'body:Paragraph:4', kind: 'Paragraph', story: 'body', index: 4, subIndex: null, snippet: '' },
+      });
+      validated(validation({ standards: [HIER], outline: [], structure: [], findings: [hier] }));
+      click('tab-findings');
+      http.expectOne(previewUrl('r1', 0)).flush(preview());
+      fixture.detectChanges();
+
+      expect(q('finding-0')!.classList).toContain('selected');
+      expect(q('show-in-hierarchy')).toBeNull();
+    });
   });
 });

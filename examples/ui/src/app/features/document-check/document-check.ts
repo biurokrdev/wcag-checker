@@ -6,7 +6,6 @@ import { WcagDocumentsService } from '../../core/wcag-documents.service';
 import { WcagWorkbooksService } from '../../core/wcag-workbooks.service';
 import { XlsxValidationResult } from '../../core/xlsx-models';
 import { CommentExportButton } from '../comment-export/comment-export-button';
-import { ContentTree } from '../content-tree/content-tree';
 import { FileTypePicker } from '../file-type/file-type-picker';
 import { XlsxReport } from '../xlsx-results/xlsx-report';
 import { DOCUMENT_CHECK_UPLOAD_COLORS } from './document-check.colors';
@@ -23,6 +22,7 @@ import {
   ValidationResult,
 } from '../../core/models';
 import { RESULT_SEVERITY_CLASS, ResultFinding, ResultSeverity, ResultsViewModel, hierarchyIssueCountLabel } from '../../core/results-view-model';
+import { HierarchyPanel } from '../results/hierarchy-panel';
 import { wordResultsViewModel } from '../results/word-results.adapter';
 
 export type ReportTab = 'summary' | 'findings' | 'hierarchy';
@@ -40,10 +40,12 @@ export const REPORT_TABS: readonly ReportTab[] = ['summary', 'findings', 'hierar
 // „Podsumowanie”: bloki standardów z zwijanymi sekcjami i tabelą Status | Kontrola | Szczegóły, raport kryteriów WCAG.
 // „Wyniki walidacji”: po lewej lista wystąpień (każde osobno, po 30 na stronę), po prawej opis, weryfikacja ręczna
 // i podgląd strony z zaznaczeniem dociągany po kliknięciu. Raport do pobrania jako DOCX ze stanem weryfikacji.
-// „Hierarchia dokumentu”: drzewo treści (app-content-tree) i podgląd wskazanego miejsca; zakładka jest zawsze.
+// „Hierarchia dokumentu”: app-hierarchy-panel (Word: drzewo treści, Excel: struktura skoroszytu, stany puste) i podgląd
+// wskazanego miejsca; zakładka jest zawsze. Nawigacja między zakładkami przenosi fokus i ogłasza zmianę w regionie live:
+// „Pokaż w wynikach walidacji” (z drzewa) → showFindingFromHierarchy, „Pokaż w hierarchii” (ze szczegółów) → showInHierarchy.
 @Component({
   selector: 'app-document-check',
-  imports: [ContentTree, CommentExportButton, FileTypePicker, XlsxReport],
+  imports: [HierarchyPanel, CommentExportButton, FileTypePicker, XlsxReport],
   templateUrl: './document-check.html',
   styleUrl: './document-check.scss',
 })
@@ -92,6 +94,7 @@ export class DocumentCheck implements OnInit, OnDestroy {
 
   private readonly fileInput = viewChild<ElementRef<HTMLInputElement>>('fileInput');
   private readonly pickButton = viewChild<ElementRef<HTMLButtonElement>>('pickButton');
+  private readonly hierarchyPanel = viewChild(HierarchyPanel);
 
   protected readonly busy = signal(false);
   protected readonly stage = signal('');
@@ -108,7 +111,7 @@ export class DocumentCheck implements OnInit, OnDestroy {
   protected readonly previewBusy = signal(false);
   protected readonly previewError = signal<string | null>(null);
 
-  // Podgląd miejsca wskazanego w panelu struktury, gdy nie ma dla niego zgłoszenia.
+  // Podgląd miejsca wskazanego w drzewie treści Word (wybór węzła w zakładce hierarchii).
   protected readonly locationKey = signal<string | null>(null);
   protected readonly locationPreview = signal<FindingPreview | null>(null);
   protected readonly locationBusy = signal(false);
@@ -138,6 +141,12 @@ export class DocumentCheck implements OnInit, OnDestroy {
   protected readonly hierarchyCount = computed(() => {
     const h = this.vm()?.hierarchy;
     return h && h.status === 'ok' ? hierarchyIssueCountLabel(h.issues.length) : null;
+  });
+
+  // „Pokaż w hierarchii” ma sens tylko, gdy zakładka pokazuje drzewo.
+  protected readonly hierarchyBrowsable = computed(() => {
+    const status = this.vm()?.hierarchy.status;
+    return status === 'ok' || status === 'not-analyzed';
   });
 
   protected readonly verifiedCount = computed(() => this.findings().filter((f) => this.verified().has(f.index)).length);
@@ -311,18 +320,40 @@ export class DocumentCheck implements OnInit, OnDestroy {
       });
   }
 
-  // Wskazanie miejsca z panelu struktury: jeśli jest zgłoszenie dla tego klucza, otwiera je w „Wynikach walidacji”;
-  // inaczej dociąga podgląd samego miejsca i pokazuje go pod panelem struktury.
-  protected locate(key: string): void {
-    const finding = this.findings().find((f) => f.locationRef === key);
-    if (finding) {
-      this.closeLocation();
-      this.tab.set('findings');
-      this.page.set(Math.floor(finding.index / DocumentCheck.PAGE_SIZE) + 1);
-      this.select(finding);
+  // „Pokaż w wynikach walidacji” z zakładki hierarchii: zakładka wyników, właściwa strona listy, zaznaczone wystąpienie;
+  // po renderze fokus na pozycji listy, a region live ogłasza, co pokazano.
+  protected showFindingFromHierarchy(index: number): void {
+    const finding = this.findings()[index];
+    if (!finding) return;
+    this.closeLocation();
+    this.tab.set('findings');
+    this.page.set(Math.floor(finding.index / DocumentCheck.PAGE_SIZE) + 1);
+    this.select(finding);
+    this.liveMessage.set(`Pokazano wynik walidacji: ${finding.title}, pozycja ${finding.index + 1} z ${this.findings().length}.`);
+    afterNextRender(() => this.host.nativeElement.querySelector<HTMLElement>(`[data-testid="finding-${finding.index}"]`)?.focus(), {
+      injector: this.injector,
+    });
+  }
+
+  // „Pokaż w hierarchii” ze szczegółów zgłoszenia: zakładka hierarchii, odsłonięty węzeł z fokusem (drzewo przenosi fokus
+  // po renderze) i ogłoszenie. Gdy węzła nie ma – fokus na panelu zakładki i komunikat.
+  protected showInHierarchy(finding: ResultFinding): void {
+    const ref = finding.hierarchyRef;
+    if (!ref) return;
+    this.showTab('hierarchy');
+    const panel = this.hierarchyPanel();
+    if (panel?.reveal(ref)) {
+      const place = panel.describe(ref);
+      this.liveMessage.set(`Pokazano w hierarchii dokumentu: ${finding.title}.${place ? ` Miejsce: ${place}` : ''}`);
       return;
     }
 
+    this.liveMessage.set(`Nie znaleziono miejsca zgłoszenia „${finding.title}” w hierarchii dokumentu.`);
+    afterNextRender(() => this.host.nativeElement.querySelector<HTMLElement>('#report-panel-hierarchy')?.focus(), { injector: this.injector });
+  }
+
+  // Wybór węzła drzewa treści Word: podgląd samego miejsca pod drzewem (zakładka hierarchii zostaje otwarta).
+  protected previewPlace(key: string): void {
     this.locationRequest?.unsubscribe();
     this.tab.set('hierarchy');
     this.locationKey.set(key);
