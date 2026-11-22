@@ -299,7 +299,7 @@ public static class XlsxWcagCriteria
             "Dotyczy, gdy skoroszyt zawiera obiekty pływające, kontrolki albo arkusz chroniony z komórkami do wypełnienia. Kolejność w siatce ustala Excel; autor wpływa na kolejność obiektów i komórek odblokowanych.",
             "Czy przechodzenie klawiszem Tab po kontrolkach, obiektach i polach do wypełnienia odbywa się w kolejności zgodnej z logiką arkusza?",
             HasFocusOrderContent, "Nie wykryto obiektów pływających, kontrolek ani arkuszy chronionych.",
-            macro: "Czy w formularzach użytkownika otwieranych przez makra kolejność przechodzenia klawiszem Tab jest zgodna z logiką formularza?");
+            macro: "Czy w formularzach użytkownika otwieranych przez makra kolejność przechodzenia klawiszem Tab odpowiada logice formularza?");
         Add("2.4.4", "Cel łącza (w kontekście)", "Link Purpose (In Context)", "A", Both, Conditional, XlsxCheckType.Heuristic, "link-purpose-in-context",
             "Dotyczy, gdy skoroszyt zawiera hiperłącza. WCAG2ICT: stosuje się wprost; łączem jest każdy element zachowujący się jak hiperłącze.",
             "Czy cel każdego łącza wynika z jego tekstu albo z tekstu łącza wraz z nagłówkami jego wiersza i kolumny?",

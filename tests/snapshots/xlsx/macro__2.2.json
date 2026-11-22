@@ -153,7 +153,7 @@
       "wcag": [
         "2.4.3"
       ],
-      "question": "Czy w formularzach użytkownika otwieranych przez makra kolejność przechodzenia klawiszem Tab jest zgodna z logiką formularza?",
+      "question": "Czy w formularzach użytkownika otwieranych przez makra kolejność przechodzenia klawiszem Tab odpowiada logice formularza?",
       "hint": "Makr audyt nie uruchamia. Otwórz skoroszyt w zaufanym środowisku, przejrzyj kod (Deweloper → Visual Basic) i sprawdź działanie makr samą klawiaturą i z czytnikiem ekranu. Alternatywa: udostępnij wersję bez makr (Plik → Zapisz jako → Skoroszyt programu Excel (*.xlsx))."
     },
     {
