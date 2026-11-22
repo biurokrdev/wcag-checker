@@ -205,9 +205,16 @@
     </div>
 
     <div role="tabpanel" id="report-panel-hierarchy" aria-labelledby="report-tab-hierarchy" tabindex="0" [hidden]="tab() !== 'hierarchy'" data-testid="panel-hierarchy">
-    @if (result(); as r) {
-      <app-content-tree [nodes]="r.structure ?? []" [outline]="r.outline" [findings]="wordFindings()" (locate)="locate($event)" />
-    }
+    <app-hierarchy-panel
+      [hierarchy]="vm.hierarchy"
+      [format]="vm.format"
+      [findings]="vm.findings"
+      [wordNodes]="result()?.structure ?? []"
+      [wordOutline]="result()?.outline ?? []"
+      [wordFindings]="wordFindings()"
+      (showFinding)="showFindingFromHierarchy($event)"
+      (previewPlace)="previewPlace($event)"
+    />
 
     @if (locationKey()) {
       <section class="location-preview" data-testid="location-preview" aria-label="Podgląd miejsca w dokumencie">
@@ -470,7 +477,12 @@
                 </dd>
               }
               <dt>Miejsce</dt>
-              <dd [class.mono]="f.locationMono">{{ f.locationLabel }}</dd>
+              <dd [class.mono]="f.locationMono">
+                {{ f.locationLabel }}
+                @if (f.hierarchyRef && hierarchyBrowsable()) {
+                  <button type="button" class="link small" (click)="showInHierarchy(f)" data-testid="show-in-hierarchy">Pokaż w hierarchii</button>
+                }
+              </dd>
               <dt>Weryfikacja</dt>
               <dd><span data-testid="verified-state" [class.status-ok]="isVerified(f)">{{ isVerified(f) ? 'zweryfikowano ręcznie' : 'niezweryfikowane' }}</span></dd>
             </dl>

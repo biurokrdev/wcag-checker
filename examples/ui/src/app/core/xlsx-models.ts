@@ -116,6 +116,81 @@ export interface XlsxValidationResult {
   criteria: XlsxCriterion[];
   // Arkusze, do których odnoszą się zgłoszenia, w kolejności skoroszytu.
   sheets: string[];
+  // Struktura skoroszytu do zakładki „Hierarchia dokumentu”; starsze API jej nie podaje (pusty stan zakładki).
+  structure?: XlsxStructure;
+}
+
+// Struktura skoroszytu (API: WorkbookStructureDto, biblioteka: XlsxWorkbookOutline). „key” węzła to klucz lokalizacji
+// tego obiektu – ten sam co location.key zgłoszeń (komórki i zakresy wskazują arkusz przez sheetIndex).
+export type XlsxSheetState = 'Visible' | 'Hidden' | 'VeryHidden';
+export type XlsxDrawingType = 'Image' | 'Shape' | 'Chart' | 'TextBox' | 'Control';
+
+export interface XlsxStructureTable {
+  name: string;
+  range: string;
+  hasHeaderRow: boolean;
+  hasTotalsRow: boolean;
+  columns: number;
+  hasAltText: boolean;
+  key: string;
+}
+
+export interface XlsxStructureChart {
+  name: string;
+  title?: string;
+  chartType: string;
+  hasAltText: boolean;
+  decorative: boolean;
+  anchor?: string;
+  key: string;
+}
+
+export interface XlsxStructureDrawing {
+  name: string;
+  type: XlsxDrawingType;
+  hasAltText: boolean;
+  decorative: boolean;
+  hidden: boolean;
+  isGroup: boolean;
+  anchor?: string;
+  key: string;
+}
+
+export interface XlsxStructureControl {
+  name: string;
+  kind: string;
+  isActiveX: boolean;
+  hasAltText: boolean;
+  label?: string;
+  anchor?: string;
+  key: string;
+}
+
+export interface XlsxStructureSheet {
+  name: string;
+  index: number;
+  state: XlsxSheetState;
+  isChartSheet: boolean;
+  usedRange?: string;
+  key: string;
+  tables: XlsxStructureTable[];
+  charts: XlsxStructureChart[];
+  drawings: XlsxStructureDrawing[];
+  controls: XlsxStructureControl[];
+}
+
+export interface XlsxStructureName {
+  name: string;
+  value: string;
+  // Arkusz nazwy lokalnej; brak – nazwa skoroszytu.
+  scope?: string;
+  hidden: boolean;
+  key: string;
+}
+
+export interface XlsxStructure {
+  sheets: XlsxStructureSheet[];
+  definedNames: XlsxStructureName[];
 }
 
 export interface XlsxCatalogCriterion {

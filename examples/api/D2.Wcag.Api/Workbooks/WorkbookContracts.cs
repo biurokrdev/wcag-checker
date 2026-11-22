@@ -180,7 +180,9 @@ public sealed record WorkbookValidationResponse(
     IReadOnlyList<WorkbookManualCheckDto> ManualChecks,
     IReadOnlyList<WorkbookCriterionDto> Criteria,
     // Nazwy arkuszy, do których odnoszą się zgłoszenia i pozycje checklisty, w kolejności arkuszy w skoroszycie.
-    IReadOnlyList<string> Sheets)
+    IReadOnlyList<string> Sheets,
+    // Struktura skoroszytu do zakładki „Hierarchia dokumentu” (pole dodatkowe, tylko do odczytu; eksport z niego nie korzysta).
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] WorkbookStructureDto? Structure = null)
 {
     public WorkbookValidationResponse WithReportId(string id) => this with { ReportId = id };
 
@@ -208,9 +210,73 @@ public sealed record WorkbookValidationResponse(
             findings,
             manual,
             result.Criteria.Select(WorkbookCriterionDto.From).ToList(),
-            sheets);
+            sheets,
+            result.Outline is null ? null : WorkbookStructureDto.From(result.Outline));
     }
 }
+
+// Struktura skoroszytu (XlsxWorkbookOutline): arkusze w kolejności skoroszytu z Tabelami, wykresami, obrazami/kształtami
+// i kontrolkami oraz nazwy zdefiniowane. „key” to klucz lokalizacji obiektu (jak location.key zgłoszeń).
+public sealed record WorkbookStructureDto(IReadOnlyList<WorkbookStructureSheetDto> Sheets, IReadOnlyList<WorkbookStructureNameDto> DefinedNames)
+{
+    public static WorkbookStructureDto From(XlsxWorkbookOutline outline) => new(
+        outline.Sheets.Select(s => new WorkbookStructureSheetDto(
+            s.Name, s.Index, s.State, s.IsChartSheet, s.UsedRange, s.Key,
+            s.Tables.Select(t => new WorkbookStructureTableDto(t.Name, t.Range, t.HasHeaderRow, t.HasTotalsRow, t.Columns, t.HasAltText, t.Key)).ToList(),
+            s.Charts.Select(c => new WorkbookStructureChartDto(c.Name, c.Title, c.ChartType, c.HasAltText, c.Decorative, c.Anchor, c.Key)).ToList(),
+            s.Drawings.Select(d => new WorkbookStructureDrawingDto(d.Name, d.Type, d.HasAltText, d.Decorative, d.Hidden, d.IsGroup, d.Anchor, d.Key)).ToList(),
+            s.Controls.Select(c => new WorkbookStructureControlDto(c.Name, c.Kind, c.IsActiveX, c.HasAltText, c.Label, c.Anchor, c.Key)).ToList())).ToList(),
+        outline.DefinedNames.Select(n => new WorkbookStructureNameDto(n.Name, n.Value, n.Scope, n.Hidden, n.Key)).ToList());
+}
+
+public sealed record WorkbookStructureSheetDto(
+    string Name,
+    int Index,
+    XlsxSheetState State,
+    bool IsChartSheet,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? UsedRange,
+    string Key,
+    IReadOnlyList<WorkbookStructureTableDto> Tables,
+    IReadOnlyList<WorkbookStructureChartDto> Charts,
+    IReadOnlyList<WorkbookStructureDrawingDto> Drawings,
+    IReadOnlyList<WorkbookStructureControlDto> Controls);
+
+public sealed record WorkbookStructureTableDto(string Name, string Range, bool HasHeaderRow, bool HasTotalsRow, int Columns, bool HasAltText, string Key);
+
+public sealed record WorkbookStructureChartDto(
+    string Name,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? Title,
+    string ChartType,
+    bool HasAltText,
+    bool Decorative,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? Anchor,
+    string Key);
+
+public sealed record WorkbookStructureDrawingDto(
+    string Name,
+    XlsxDrawingType Type,
+    bool HasAltText,
+    bool Decorative,
+    bool Hidden,
+    bool IsGroup,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? Anchor,
+    string Key);
+
+public sealed record WorkbookStructureControlDto(
+    string Name,
+    string Kind,
+    bool IsActiveX,
+    bool HasAltText,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? Label,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? Anchor,
+    string Key);
+
+public sealed record WorkbookStructureNameDto(
+    string Name,
+    string Value,
+    [property: JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)] string? Scope,
+    bool Hidden,
+    string Key);
 
 // Wiersz katalogu kryteriów (bez pliku): zastosowanie do arkusza wg macierzy docs/xlsx-wcag-matrix.md.
 public sealed record WorkbookCatalogCriterionDto(

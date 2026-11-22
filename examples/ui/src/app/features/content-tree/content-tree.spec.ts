@@ -132,6 +132,8 @@ describe('ContentTree', () => {
     fixture.componentRef.setInput('findings', inputs.findings ?? []);
     const located: string[] = [];
     fixture.componentInstance.locate.subscribe((key) => located.push(key));
+    const shown: number[] = [];
+    fixture.componentInstance.showFinding.subscribe((index) => shown.push(index));
     fixture.detectChanges();
 
     const el = fixture.nativeElement as HTMLElement;
@@ -153,7 +155,7 @@ describe('ContentTree', () => {
       target.dispatchEvent(new KeyboardEvent('keydown', { key: name, bubbles: true, cancelable: true }));
       fixture.detectChanges();
     };
-    return { fixture, el, q, rows, row, click, key, located };
+    return { fixture, el, q, rows, row, click, key, located, shown };
   }
 
   // ---- lista zastępcza (API bez drzewa)
@@ -344,7 +346,7 @@ describe('ContentTree', () => {
   // ---- wskazanie miejsca
 
   it('emits locate with the node key and shows the text fragment with the paragraph number', () => {
-    const { q, row, click, located } = render({ nodes: BROKEN, findings: BROKEN_FINDINGS });
+    const { q, row, click, located, shown } = render({ nodes: BROKEN, findings: BROKEN_FINDINGS });
     expect(q('tree-detail')).toBeNull();
 
     click(row('Powyżej jest pusty nagłówek poziomu 3.'));
@@ -358,12 +360,16 @@ describe('ContentTree', () => {
     expect(detail.textContent).toContain('Komunikat HIER-FAKE');
     expect(row('Powyżej jest pusty nagłówek poziomu 3.').getAttribute('aria-selected')).toBe('true');
 
-    // Zgłoszenie ze zwiniętego akapitu prowadzi do swojego miejsca, nie do początku grupy.
-    click(q('tree-detail-finding')!);
-    expect(located).toEqual(['body:Paragraph:7', 'body:Paragraph:8']);
+    // „Pokaż w wynikach walidacji” prowadzi do tego wystąpienia (zwinięty akapit 8), nie do początku grupy.
+    const button = q('tree-detail-finding')!;
+    expect(button.textContent).toContain('Pokaż w wynikach walidacji');
+    expect(button.textContent).toContain('błąd: Etykieta HIER-FAKE');
+    click(button);
+    expect(shown).toEqual([4]);
+    expect(located).toEqual(['body:Paragraph:7']);
 
     click(row('Szczegóły zakresu'));
-    expect(located[2]).toBe('body:Paragraph:4');
+    expect(located[1]).toBe('body:Paragraph:4');
     expect(q('tree-detail')!.textContent).toContain('Akapit 5');
     expect(q('tree-detail')!.textContent).toContain('Nagłówek 4 · poziom 4');
   });
@@ -378,6 +384,53 @@ describe('ContentTree', () => {
     click(row('Tabela 4 × 2'));
     expect(located).toEqual(['body:Table:0']);
     expect(q('tree-detail')!.textContent).toContain('Tabela 1');
+  });
+
+  // ---- odsłonięcie węzła z „Wyników walidacji”
+
+  it('reveals the node of a finding: expands collapsed branches, selects it and moves focus to it', async () => {
+    const { fixture, q, rows, row, click } = render({ nodes: BROKEN, findings: BROKEN_FINDINGS });
+    click(q('tree-collapse-all')!);
+    expect(rows().length).toBe(4);
+
+    // Akapit 8 (HIER-FAKE) jest zwinięty w grupie od akapitu 7 pod pustym H3.
+    expect(fixture.componentInstance.reveal('body:Paragraph:8')).toBe(true);
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const group = row('Powyżej jest pusty nagłówek poziomu 3.');
+    expect(group.getAttribute('aria-selected')).toBe('true');
+    expect(group.getAttribute('tabindex')).toBe('0');
+    expect(document.activeElement).toBe(group);
+    expect(q('tree-detail')!.textContent).toContain('Akapit 8 (pierwszy z 3 w grupie)');
+    expect(fixture.componentInstance.describe('body:Paragraph:8')).toBe('Akapit 8 (pierwszy z 3 w grupie): Powyżej jest pusty nagłówek poziomu 3.');
+  });
+
+  it('turns the problem filter off when it hides the revealed node, and says false for unknown keys', async () => {
+    const { fixture, q, row, click } = render({ nodes: BROKEN, findings: BROKEN_FINDINGS });
+    click(q('tree-only-problems')!);
+
+    expect(fixture.componentInstance.reveal('body:Paragraph:3')).toBe(true);
+    fixture.detectChanges();
+    await fixture.whenStable();
+    expect(q<HTMLInputElement>('tree-only-problems')!.checked).toBe(false);
+    expect(document.activeElement).toBe(row('Dokument zaczyna się od nagłówka poziomu 2.'));
+
+    expect(fixture.componentInstance.reveal('footer/0:Paragraph:0')).toBe(false);
+    expect(fixture.componentInstance.reveal('body:Paragraph:999')).toBe(false);
+  });
+
+  it('reveals a row outside the rendered portion of a large tree', async () => {
+    const { fixture, rows } = render({ nodes: largeTree() });
+    expect(rows().length).toBe(1);
+
+    expect(fixture.componentInstance.reveal('body:Paragraph:1499')).toBe(true);
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const focused = document.activeElement as HTMLElement;
+    expect(focused.dataset['kind']).toBe('Paragraphs');
+    expect(focused.textContent).toContain('Akapit 59.');
   });
 
   // ---- dostępność

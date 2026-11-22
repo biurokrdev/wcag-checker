@@ -261,7 +261,10 @@ public sealed class WcagXlsxAuditor : IWcagXlsxAuditor
 
         // „Do oceny ręcznej” oraz „Brak wykrytych problemów” z pytaniem pozostawionym na checkliście (ocena ręczna w części).
         var manualCriteria = criteria.Results.Count(c => c.NeedsManualReview);
-        return new XlsxAuditResult(version, info, findings, checklist, criteria.Results, counts, Summarize(counts, manualCriteria, workbook.IsEmpty));
+        return new XlsxAuditResult(version, info, findings, checklist, criteria.Results, counts, Summarize(counts, manualCriteria, workbook.IsEmpty))
+        {
+            Outline = XlsxWorkbookOutline.From(workbook),
+        };
     }
 
     /// <summary>Zdanie podsumowania. Nigdy nie stwierdza zgodności – najmocniejsze: „Nie wykryto automatycznie niezgodności”.</summary>

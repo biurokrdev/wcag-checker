@@ -411,6 +411,13 @@ Snapshoty pełnego wyniku: `tests/snapshots/xlsx/{fixtura}__{wersja}.json` (prze
 - Limit 20 MB wspólny z `WordDocument.MaxSizeBytes`.
 - Kontrakty JSON: camelCase, enumy jako nazwy, pola puste pomijane.
 
+### 5.1 Struktura skoroszytu (zakładka „Hierarchia dokumentu”)
+
+- **Biblioteka:** `XlsxAuditResult.Outline` (`XlsxWorkbookOutline`, `src/D2.Wcag/Xlsx/XlsxWorkbookOutline.cs`) – publiczny model tylko do odczytu: arkusze w kolejności skoroszytu (`State` Visible/Hidden/VeryHidden, `IsChartSheet`, `UsedRange`), w nich Tabele (nazwa wyświetlana, zakres, wiersz nagłówków, wiersz sumy, liczba kolumn, tekst alternatywny), wykresy (tytuł, typ, opis, dekoracyjny), obrazy/kształty/pola tekstowe/grupy (tekst alternatywny tak/nie, dekoracyjny, ukryty) i kontrolki, a także nazwy zdefiniowane (wartość, zakres arkusza dla nazwy lokalnej, ukryta). Budowany w `Evaluate` z modelu `XlsxWorkbook`, który audyt i tak wczytał – **bez dodatkowego parsowania** i w tych samych limitach. Nie wpływa na zgłoszenia, checklistę, kryteria, liczniki ani podsumowanie; `null`, gdy pliku nie odczytano. Teksty z pliku (tytuły, etykiety, wartości nazw) są skracane jak fragmenty zgłoszeń (80 znaków).
+- **Klucze:** `Key` każdego węzła to `XlsxLocation.Key` tego samego obiektu (`OfSheet`, `OfTable`, `OfChart`, `OfDrawing`, `OfControl`, `OfDefinedName`; skoroszyt – `XlsxWorkbookOutline.WorkbookKey`). Zgłoszenie wskazuje węzeł przez `location.key`; komórki i zakresy – arkusz przez `sheetIndex`.
+- **Snapshoty:** `tests/snapshots/xlsx/**` serializują jawną projekcję wyniku (`XlsxSnapshotTests.Project`), więc nowa właściwość ich nie zmienia; snapshoty API dotyczą wyłącznie ścieżki Word.
+- **API – decyzja:** opcjonalne pole `structure` w odpowiedzi `POST validate` (`WorkbookStructureDto`), a nie osobny endpoint – żaden snapshot ani test kontraktu nie serializuje odpowiedzi skoroszytu w całości, a pole pozwala UI zbudować hierarchię synchronicznie z tej samej odpowiedzi (bez drugiego żądania i stanu ładowania). Pole jest pomijane, gdy struktury brak (zasada „pola puste pomijane”); eksport DOCX/PDF z niego nie korzysta, więc raporty są bajtowo bez zmian. Starszy klient je ignoruje; UI bez pola pokazuje pusty stan zakładki.
+
 ## 6. Znane ograniczenia (świadome)
 
 - Kontrast liczony ze stylu komórki i stylów formatowania warunkowego; nie uwzględnia stylu tabeli (pasy wierszy stylu tabeli) ani obrazów w tle – przypadki te trafiają do checklisty.

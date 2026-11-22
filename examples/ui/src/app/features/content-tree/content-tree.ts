@@ -49,7 +49,7 @@ const NO_MARKS: Marks = { findings: [], errors: 0, warnings: 0, insideErrors: 0,
 const STATE_LABEL: Record<NodeState, string> = { ok: 'OK', warning: 'ostrzeżenie', error: 'błąd' };
 const STATE_ICON: Record<NodeState, string> = { ok: '✓', warning: '!', error: '✕' };
 
-// Panel „Hierarchia treści”, widoczny w raporcie zawsze – niezależnie od wybranych standardów (także bez WCAG).
+// Drzewo „Hierarchia treści” w zakładce „Hierarchia dokumentu” (app-hierarchy-panel), widoczne w raporcie zawsze – niezależnie od wybranych standardów (także bez WCAG).
 // Pokazuje drzewo treści z API (`nodes`): nagłówki, pod nimi zwinięte akapity, listy z poziomami i tabele; przy węźle
 // styl, poziom i stan wyliczony z wystąpień zgłoszeń (`findings`). Gdy API nie zwraca drzewa (pusty dokument albo
 // starsze API), panel pokazuje dotychczasową listę nagłówków (`outline`) albo informację, że nagłówków nie ma.
@@ -57,6 +57,10 @@ const STATE_ICON: Record<NodeState, string> = { ok: '✓', warning: '!', error: 
 // Przypisanie zgłoszenia do węzła: klucze akapitowe węzłów rosną w kolejności drzewa, więc zgłoszenie z akapitu n
 // (także fragmentu tekstu w tym akapicie) należy do ostatniego węzła o numerze akapitu ≤ n – dzięki temu zgłoszenia
 // z akapitów zwiniętych w grupę trafiają do tej grupy. Zgłoszenia tabel i komórek trafiają do węzła tabeli.
+//
+// Nawigacja: kliknięcie węzła pokazuje jego opis i emituje `locate` (podgląd miejsca); przycisk „Pokaż w wynikach walidacji”
+// przy zgłoszeniu emituje `showFinding` z indeksem wystąpienia. `reveal(key)` – odwrotny kierunek: rozwija gałąź, zaznacza
+// węzeł dla klucza miejsca zgłoszenia i przenosi na niego fokus.
 //
 // Duże dokumenty: wiersze są spłaszczoną listą widocznych węzłów (zwinięte gałęzie nie są renderowane), a lista jest
 // renderowana porcjami po PAGE wierszy – „Rozwiń wszystko” na kilku tysiącach węzłów nie tworzy ich naraz w DOM.
@@ -83,6 +87,9 @@ export class ContentTree {
 
   // Klucz miejsca w dokumencie (jak FindingLocation.key), które użytkownik chce zobaczyć.
   readonly locate = output<string>();
+
+  // Indeks wystąpienia (Finding.index) do pokazania w „Wynikach walidacji”.
+  readonly showFinding = output<number>();
 
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly injector = inject(Injector);
@@ -298,10 +305,47 @@ export class ContentTree {
     }
   }
 
-  protected locateFinding(finding: Finding): void {
-    if (finding.location) {
-      this.locate.emit(finding.location.key);
+  // Odsłania węzeł dla klucza miejsca (FindingLocation.key zgłoszenia albo klucz węzła): wyłącza filtr, jeśli go ukrywa,
+  // rozwija przodków, dokłada porcję wierszy, zaznacza węzeł i przenosi na niego fokus po renderze. false – brak węzła.
+  reveal(key: string): boolean {
+    const item = this.itemFor(key);
+    if (!item) {
+      return false;
     }
+
+    if (this.onlyProblems() && !this.hasProblem(item)) {
+      this.onlyProblems.set(false);
+    }
+
+    const next = new Set(this.expanded());
+    for (let parent = item.parent; parent; parent = parent.parent) {
+      next.add(parent.id);
+    }
+
+    this.expanded.set(next);
+    this.selectedId.set(item.id);
+    this.focusRow(item);
+    return true;
+  }
+
+  // Opis węzła dla ogłoszenia: „Akapit 9: Wstęp”.
+  describe(key: string): string | null {
+    const item = this.itemFor(key);
+    return item ? `${this.place(item)}: ${this.title(item)}` : null;
+  }
+
+  private itemFor(key: string): TreeItem | null {
+    const tree = this.tree();
+    const finding = this.findings().find((f) => f.location?.key === key);
+    if (finding) {
+      const byParagraph = tree.all.filter((i) => i.paragraph !== null);
+      const owned = owner(finding, byParagraph, tablesOf(tree));
+      if (owned) {
+        return owned;
+      }
+    }
+
+    return tree.all.find((i) => i.node.key === key) ?? null;
   }
 
   protected toggle(item: TreeItem, event?: Event): void {
@@ -461,12 +505,7 @@ function mark(tree: Tree, findings: Finding[]): Marking {
 
   // Węzły z kluczem akapitowym są już w kolejności rosnących numerów akapitów (kolejność dokumentu).
   const byParagraph = tree.all.filter((i) => i.paragraph !== null);
-  const tables = new Map<string, TreeItem>();
-  for (const item of tree.all) {
-    if (item.paragraph === null && item.node.key) {
-      tables.set(item.node.key, item);
-    }
-  }
+  const tables = tablesOf(tree);
 
   const marksOf = (item: TreeItem): Marks => {
     let marks = marking.byItem.get(item.id);
@@ -511,6 +550,17 @@ function mark(tree: Tree, findings: Finding[]): Marking {
   }
 
   return marking;
+}
+
+function tablesOf(tree: Tree): Map<string, TreeItem> {
+  const tables = new Map<string, TreeItem>();
+  for (const item of tree.all) {
+    if (item.paragraph === null && item.node.key) {
+      tables.set(item.node.key, item);
+    }
+  }
+
+  return tables;
 }
 
 function owner(finding: Finding, byParagraph: TreeItem[], tables: Map<string, TreeItem>): TreeItem | null {

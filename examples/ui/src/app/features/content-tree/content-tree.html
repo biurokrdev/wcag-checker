@@ -1,124 +1,118 @@
-<section class="standard-block" data-testid="content-tree">
-  <h3 class="standard-bar">Struktura dokumentu</h3>
-  <div class="standard-body">
-    @if (tree().all.length === 0) {
-      <!-- Brak drzewa treści (pusty dokument albo API bez drzewa): lista nagłówków z wyniku. -->
-      <details class="section" open>
-        <summary class="section-bar">Struktura nagłówków <span class="muted">({{ outline().length }})</span></summary>
-        @if (outline().length === 0) {
-          <p class="muted empty" data-testid="outline-empty">Dokument nie zawiera nagłówków ani innej treści do pokazania w drzewie.</p>
-        } @else {
-          <ol class="outline" data-testid="outline">
-            @for (h of outline(); track $index) {
-              <li [style.margin-left.rem]="(h.level - 1) * 1.2"><span class="level">H{{ h.level }}</span> {{ h.text }}</li>
-            }
-          </ol>
-        }
-      </details>
+<!-- Drzewo treści Word w zakładce „Hierarchia dokumentu” (nagłówek zakładki daje app-hierarchy-panel). -->
+<div class="content-tree" data-testid="content-tree">
+  @if (tree().all.length === 0) {
+    <!-- Brak drzewa treści (pusty dokument albo API bez drzewa): lista nagłówków z wyniku. -->
+    <h4 class="sub-heading">Struktura nagłówków <span class="muted">({{ outline().length }})</span></h4>
+    @if (outline().length === 0) {
+      <p class="muted empty" data-testid="outline-empty">Dokument nie zawiera nagłówków ani innej treści do pokazania w drzewie.</p>
     } @else {
-      <details class="section" open>
-        <summary class="section-bar">Hierarchia treści <span class="muted" data-testid="tree-summary">({{ summary() }})</span></summary>
-
-        @if (tree().headings === 0) {
-          <p class="muted empty" data-testid="outline-empty">Dokument nie zawiera nagłówków – poniżej jest sama treść, bez podziału na sekcje.</p>
+      <ol class="outline" data-testid="outline">
+        @for (h of outline(); track $index) {
+          <li [style.margin-left.rem]="(h.level - 1) * 1.2"><span class="level">H{{ h.level }}</span> {{ h.text }}</li>
         }
-
-        <div class="toolbar">
-          <label class="filter">
-            <input
-              type="checkbox"
-              [checked]="onlyProblems()"
-              (change)="setOnlyProblems($any($event.target).checked)"
-              data-testid="tree-only-problems"
-            />
-            Pokaż tylko problemy
-          </label>
-          <button type="button" class="secondary small" (click)="expandAll()" data-testid="tree-expand-all">Rozwiń wszystko</button>
-          <button type="button" class="secondary small" (click)="collapseAll()" data-testid="tree-collapse-all">Zwiń wszystko</button>
-          <span class="muted" data-testid="tree-problems">{{ problemsSummary() }}</span>
-        </div>
-
-        @if (outsideSummary(); as outside) {
-          <p class="muted" data-testid="tree-outside">{{ outside }}</p>
-        }
-
-        @if (visible().length === 0) {
-          <p class="muted empty" data-testid="tree-no-problems">Żaden węzeł drzewa nie ma błędów ani ostrzeżeń.</p>
-        } @else {
-          <ul class="tree" role="tree" aria-label="Hierarchia treści dokumentu" data-testid="tree">
-            @for (item of rendered(); track item.id) {
-              <li
-                class="node"
-                role="treeitem"
-                [class.selected]="selectedId() === item.id"
-                [class.state-error]="state(item) === 'error'"
-                [class.state-warning]="state(item) === 'warning'"
-                [attr.aria-level]="item.depth + 1"
-                [attr.aria-posinset]="item.position"
-                [attr.aria-setsize]="item.siblings"
-                [attr.aria-expanded]="hasChildren(item) ? isOpen(item) : null"
-                [attr.aria-selected]="selectedId() === item.id"
-                [attr.tabindex]="activeId() === item.id ? 0 : -1"
-                [attr.data-node-id]="item.id"
-                [attr.data-kind]="item.node.kind"
-                [attr.data-state]="state(item)"
-                [style.padding-left.rem]="0.4 + item.depth * 1.2"
-                (click)="select(item)"
-                (keydown)="onKey($event, item)"
-                data-testid="tree-node"
-              >
-                @if (hasChildren(item)) {
-                  <span class="toggle" aria-hidden="true" (click)="toggle(item, $event)" data-testid="tree-toggle">{{ isOpen(item) ? '▾' : '▸' }}</span>
-                } @else {
-                  <span class="toggle none" aria-hidden="true"></span>
-                }
-                <span [class]="'state state-' + state(item)" [attr.title]="stateText(item)">
-                  <span aria-hidden="true">{{ stateIcon(item) }}</span>
-                  <span class="visually-hidden">{{ stateText(item) }}.</span>
-                </span>
-                <span class="badge" [class.heading]="item.node.kind === 'Heading'">{{ badge(item) }}</span>
-                <span class="text" [class.blank]="item.node.kind === 'Heading' && !item.node.text.trim()">{{ title(item) }}</span>
-                @if (meta(item); as m) {
-                  <span class="meta">{{ m }}</span>
-                }
-                @if (insideText(item); as inside) {
-                  <span [class]="'inside state-' + insideState(item)" data-testid="tree-inside">{{ inside }}</span>
-                }
-              </li>
-            }
-          </ul>
-
-          @if (remaining() > 0) {
-            <p class="more">
-              <button type="button" class="secondary small" (click)="showMore()" data-testid="tree-more">Pokaż kolejne {{ remaining() < page ? remaining() : page }}</button>
-              <span class="muted" data-testid="tree-remaining">Pokazano {{ rendered().length }} z {{ visible().length }} pozycji.</span>
-            </p>
-          }
-        }
-
-        <div aria-live="polite">
-          @if (selected(); as s) {
-            <div class="node-detail" data-testid="tree-detail">
-              <p class="where">
-                <strong>{{ place(s) }}</strong>
-                @if (meta(s); as m) { <span class="muted"> · {{ m }}</span> }
-                <span [class]="'state-' + state(s)"> · {{ stateText(s) }}</span>
-              </p>
-              <p class="fragment">{{ title(s) }}</p>
-              @if (marks(s).findings.length > 0) {
-                <ul class="plain">
-                  @for (f of marks(s).findings; track f.index) {
-                    <li>
-                      <button type="button" class="link" (click)="locateFinding(f)" data-testid="tree-detail-finding">{{ findingLabel(f) }}</button>
-                      – {{ f.message }}
-                    </li>
-                  }
-                </ul>
-              }
-            </div>
-          }
-        </div>
-      </details>
+      </ol>
     }
-  </div>
-</section>
+  } @else {
+    <p class="muted summary-line" data-testid="tree-summary">{{ summary() }}</p>
+
+    @if (tree().headings === 0) {
+      <p class="muted empty" data-testid="outline-empty">Dokument nie zawiera nagłówków – poniżej jest sama treść, bez podziału na sekcje.</p>
+    }
+
+    <div class="toolbar">
+      <label class="filter">
+        <input
+          type="checkbox"
+          [checked]="onlyProblems()"
+          (change)="setOnlyProblems($any($event.target).checked)"
+          data-testid="tree-only-problems"
+        />
+        Pokaż tylko problemy
+      </label>
+      <button type="button" class="secondary small" (click)="expandAll()" data-testid="tree-expand-all">Rozwiń wszystko</button>
+      <button type="button" class="secondary small" (click)="collapseAll()" data-testid="tree-collapse-all">Zwiń wszystko</button>
+      <span class="muted" data-testid="tree-problems">{{ problemsSummary() }}</span>
+    </div>
+
+    @if (outsideSummary(); as outside) {
+      <p class="muted" data-testid="tree-outside">{{ outside }}</p>
+    }
+
+    @if (visible().length === 0) {
+      <p class="muted empty" data-testid="tree-no-problems">Żaden węzeł drzewa nie ma błędów ani ostrzeżeń.</p>
+    } @else {
+      <ul class="tree" role="tree" aria-label="Hierarchia treści dokumentu" data-testid="tree">
+        @for (item of rendered(); track item.id) {
+          <li
+            class="node"
+            role="treeitem"
+            [class.selected]="selectedId() === item.id"
+            [class.state-error]="state(item) === 'error'"
+            [class.state-warning]="state(item) === 'warning'"
+            [attr.aria-level]="item.depth + 1"
+            [attr.aria-posinset]="item.position"
+            [attr.aria-setsize]="item.siblings"
+            [attr.aria-expanded]="hasChildren(item) ? isOpen(item) : null"
+            [attr.aria-selected]="selectedId() === item.id"
+            [attr.tabindex]="activeId() === item.id ? 0 : -1"
+            [attr.data-node-id]="item.id"
+            [attr.data-kind]="item.node.kind"
+            [attr.data-state]="state(item)"
+            [style.padding-left.rem]="0.4 + item.depth * 1.2"
+            (click)="select(item)"
+            (keydown)="onKey($event, item)"
+            data-testid="tree-node"
+          >
+            @if (hasChildren(item)) {
+              <span class="toggle" aria-hidden="true" (click)="toggle(item, $event)" data-testid="tree-toggle">{{ isOpen(item) ? '▾' : '▸' }}</span>
+            } @else {
+              <span class="toggle none" aria-hidden="true"></span>
+            }
+            <span [class]="'state state-' + state(item)" [attr.title]="stateText(item)">
+              <span aria-hidden="true">{{ stateIcon(item) }}</span>
+              <span class="visually-hidden">{{ stateText(item) }}.</span>
+            </span>
+            <span class="badge" [class.heading]="item.node.kind === 'Heading'">{{ badge(item) }}</span>
+            <span class="text" [class.blank]="item.node.kind === 'Heading' && !item.node.text.trim()">{{ title(item) }}</span>
+            @if (meta(item); as m) {
+              <span class="meta">{{ m }}</span>
+            }
+            @if (insideText(item); as inside) {
+              <span [class]="'inside state-' + insideState(item)" data-testid="tree-inside">{{ inside }}</span>
+            }
+          </li>
+        }
+      </ul>
+
+      @if (remaining() > 0) {
+        <p class="more">
+          <button type="button" class="secondary small" (click)="showMore()" data-testid="tree-more">Pokaż kolejne {{ remaining() < page ? remaining() : page }}</button>
+          <span class="muted" data-testid="tree-remaining">Pokazano {{ rendered().length }} z {{ visible().length }} pozycji.</span>
+        </p>
+      }
+    }
+
+    <div aria-live="polite">
+      @if (selected(); as s) {
+        <div class="node-detail" data-testid="tree-detail">
+          <p class="where">
+            <strong>{{ place(s) }}</strong>
+            @if (meta(s); as m) { <span class="muted"> · {{ m }}</span> }
+            <span [class]="'state-' + state(s)"> · {{ stateText(s) }}</span>
+          </p>
+          <p class="fragment">{{ title(s) }}</p>
+          @if (marks(s).findings.length > 0) {
+            <ul class="plain">
+              @for (f of marks(s).findings; track f.index) {
+                <li>
+                  <b>{{ findingLabel(f) }}</b> – {{ f.message }}
+                  <button type="button" class="link" (click)="showFinding.emit(f.index)" data-testid="tree-detail-finding">Pokaż w wynikach walidacji<span class="visually-hidden">: {{ findingLabel(f) }}</span></button>
+                </li>
+              }
+            </ul>
+          }
+        </div>
+      }
+    </div>
+  }
+</div>

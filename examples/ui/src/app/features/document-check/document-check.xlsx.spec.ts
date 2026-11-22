@@ -6,6 +6,7 @@ import { XlsxValidationResult } from '../../core/xlsx-models';
 import { axeViolations } from '../../testing/a11y';
 import { emptyWorkbookResult, macroWorkbookResult, manyFindingsResult, noFindingsResult, workbookResult } from '../../testing/xlsx-results';
 import { XLSX_RESULTS_COLORS, xlsxResultsCssName } from '../xlsx-results/xlsx-results.colors';
+import { XLSX_STRUCTURE, xlsxStructureFindings } from '../results/hierarchy-test-data';
 import { DocumentCheck } from './document-check';
 
 const STANDARDS = '/api/wcag-documents/standards';
@@ -545,4 +546,81 @@ describe('DocumentCheck – Excel audit', () => {
     },
     AXE_TIMEOUT,
   );
+
+  // ------------------------------------------------------------ zakładka „Hierarchia dokumentu” (struktura skoroszytu)
+
+  describe('hierarchy tab', () => {
+    const structured = () => workbookResult({ findings: xlsxStructureFindings(), structure: XLSX_STRUCTURE });
+    const nodeRow = (el: HTMLElement, label: string) =>
+      Array.from(el.querySelectorAll<HTMLElement>('[data-testid="tree-node"]')).find((r) => r.querySelector('.text')!.textContent!.trim() === label)!;
+
+    it('ok: shows the workbook structure with the problem counter; node clicks call no preview API', async () => {
+      const { fixture, el, q, text, audit, showTab } = render();
+      audit(structured());
+
+      expect(text(q('hierarchy-count'))).toBe('(3 problemy)');
+      showTab('hierarchy');
+      expect(q('panel-hierarchy')!.querySelector('h3')!.textContent).toBe('Struktura skoroszytu');
+      expect(q('workbook-tree')).toBeTruthy();
+      nodeRow(el, 'Dane ukryte').click();
+      fixture.detectChanges();
+      // Brak żądań HTTP (http.verify w afterEach): Excel nie ma podglądu miejsca.
+      expect(q('location-preview')).toBeNull();
+      expect(await axeViolations(q('panel-hierarchy')!)).toEqual([]);
+    }, AXE_TIMEOUT);
+
+    it('empty: API without structure – empty state, no counter', async () => {
+      const { q, text, audit, showTab } = render();
+      audit(workbookResult({ structure: undefined }));
+
+      expect(q('hierarchy-count')).toBeNull();
+      showTab('hierarchy');
+      expect(text(q('hierarchy-empty'))).toContain('Nie wykryto elementów struktury skoroszytu.');
+      expect(await axeViolations(q('panel-hierarchy')!)).toEqual([]);
+    }, AXE_TIMEOUT);
+
+    it('error: unreadable structure – message with technical detail, no counter', async () => {
+      const { q, text, audit, showTab } = render();
+      audit(workbookResult({ structure: { sheets: 7 } as unknown as XlsxValidationResult['structure'] }));
+
+      expect(q('hierarchy-count')).toBeNull();
+      showTab('hierarchy');
+      expect(text(q('hierarchy-error'))).toContain('Nie udało się odczytać struktury dokumentu.');
+      expect(q('hierarchy-error-detail')!.tagName).toBe('DETAILS');
+      expect(await axeViolations(q('panel-hierarchy')!)).toEqual([]);
+    }, AXE_TIMEOUT);
+
+    it('navigates both ways with focus and announcements', async () => {
+      const { fixture, el, q, live, audit, showTab } = render();
+      audit(structured());
+
+      // Hierarchia → wyniki.
+      showTab('hierarchy');
+      nodeRow(el, 'Obraz 1').click();
+      fixture.detectChanges();
+      q('tree-detail-finding')!.click();
+      fixture.detectChanges();
+      await fixture.whenStable();
+      expect(q('tab-findings')!.getAttribute('aria-selected')).toBe('true');
+      expect(document.activeElement).toBe(q('finding-0'));
+      expect(q('finding-0')!.classList).toContain('selected');
+      expect(live()).toBe('Pokazano wynik walidacji: Brak tekstu alternatywnego, pozycja 1 z 4.');
+
+      // Wyniki → hierarchia (zgłoszenie arkusza ukrytego).
+      q('finding-1')!.click();
+      fixture.detectChanges();
+      q('show-in-hierarchy')!.click();
+      fixture.detectChanges();
+      await fixture.whenStable();
+      expect(q('tab-hierarchy')!.getAttribute('aria-selected')).toBe('true');
+      expect(document.activeElement).toBe(nodeRow(el, 'Dane ukryte'));
+      expect(live()).toBe('Pokazano w hierarchii dokumentu: Ukryty arkusz. Miejsce: arkusz Dane ukryte');
+
+      // Zgłoszenie komórki nie ma węzła w drzewie – bez przycisku.
+      showTab('findings');
+      q('finding-2')!.click();
+      fixture.detectChanges();
+      expect(q('show-in-hierarchy')).toBeNull();
+    });
+  });
 });
