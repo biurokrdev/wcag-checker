@@ -9,12 +9,12 @@ import {
   XlsxValidationResult,
 } from '../../core/xlsx-models';
 
-let nextId = 0;
-
 // Macierz kryteriów WCAG profilu (A i AA): pięć statusów, każdy ze znakiem i tekstem (nigdy sam kolor);
 // „Brak wykrytych problemów” jest neutralny (szary okrąg), bo nie potwierdza spełnienia kryterium. Kryteria realizowane
 // przez program mają własny status „Zależy od programu – nie oceniano”; kryterium częściowo zależne od programu,
-// ale z oceną ręczną (np. 1.4.10), ma dodatkowo etykietę w wierszu.
+// ale z oceną ręczną (np. 1.4.10), ma dodatkowo etykietę w wierszu. Komponent jest treścią sekcji „Stan kryteriów”
+// w zakładce „Podsumowanie” raportu (DocumentCheck); kolory --xr-* dziedziczy z kontenera sekcji Excela.
+// Element komponentu nosi data-testid="xlsx-criteria" (nadaje go szablon rodzica).
 @Component({
   selector: 'app-xlsx-criteria',
   templateUrl: './xlsx-criteria.html',
@@ -23,7 +23,6 @@ let nextId = 0;
 export class XlsxCriteria {
   readonly result = input.required<XlsxValidationResult>();
 
-  protected readonly uid = `xc${nextId++}`;
   protected readonly statusIcon = XLSX_CRITERION_STATUS_ICON;
   protected readonly statusTone = XLSX_CRITERION_STATUS_TONE;
   protected readonly softwareDependentLabel = XLSX_SOFTWARE_DEPENDENT_LABEL;

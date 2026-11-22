@@ -4,7 +4,8 @@ import { XlsxManualCheck, xlsxCriterionLabel } from '../../core/xlsx-models';
 let nextId = 0;
 
 // Checklista oceny ręcznej. Pola wyboru są notatką człowieka na czas sesji ekranu: nie zmieniają statusów kryteriów
-// ani liczników, trafiają do pobieranego raportu. Stan trzyma rodzic (app-xlsx-report). Licznik „Odhaczono X z N”
+// ani liczników, trafiają do pobieranego raportu. Stan trzyma rodzic (DocumentCheck), więc przetrwa przełączanie
+// zakładek raportu. Komponent jest treścią sekcji „Checklista oceny ręcznej” w „Podsumowaniu”. Licznik „Odhaczono X z N”
 // jest w regionie aria-live obecnym od początku. Długa lista pokazuje po PAGE pozycji z przyciskiem „Pokaż kolejne”.
 @Component({
   selector: 'app-xlsx-checklist',
