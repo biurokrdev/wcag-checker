@@ -144,6 +144,12 @@ public sealed class XlsxAuditResult
 
     /// <summary>Jedno–dwa zdania podsumowania; nigdy nie mówi, że plik jest zgodny.</summary>
     public string Summary { get; }
+
+    /// <summary>
+    /// Struktura skoroszytu (arkusze, Tabele, wykresy, obrazy, kontrolki, nazwy) do widoku hierarchii; <c>null</c>, gdy pliku
+    /// nie odczytano. Dane dodatkowe: nie wpływają na zgłoszenia, checklistę, kryteria ani podsumowanie.
+    /// </summary>
+    public XlsxWorkbookOutline? Outline { get; internal init; }
 }
 
 public interface IWcagXlsxAuditor
