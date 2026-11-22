@@ -1,5 +1,5 @@
-// Wspólne elementy widoku wyników XLSX. Kolory wyłącznie ze zmiennych --xr-* (xlsx-report.colors.ts), które
-// app-xlsx-report ustawia na swoim elemencie; komponenty podrzędne je dziedziczą.
+// Wspólne elementy sekcji Excela w „Podsumowaniu” raportu. Kolory wyłącznie ze zmiennych --xr-* (xlsx-results.colors.ts),
+// które DocumentCheck ustawia na kontenerze sekcji Excela (.xlsx-summary); komponenty je dziedziczą.
 @mixin base {
   :host {
     display: block;

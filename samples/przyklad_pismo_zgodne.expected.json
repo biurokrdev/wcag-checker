@@ -1,0 +1,145 @@
+{
+  "file": "przyklad_pismo_zgodne.docx",
+  "kind": "docx",
+  "profiles": [
+    {
+      "name": "wcag/2.1",
+      "standards": [
+        "wcag/2.1"
+      ],
+      "wcagVersion": null,
+      "errors": 0,
+      "warnings": 0,
+      "needsReview": 0,
+      "info": 1,
+      "issues": [
+        {
+          "code": "MANUAL_CHECK_SUGGESTED",
+          "severity": "Info",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Document:0"
+          ]
+        }
+      ],
+      "manualChecks": []
+    },
+    {
+      "name": "firmowy/2.0",
+      "standards": [
+        "firmowy/2.0"
+      ],
+      "wcagVersion": null,
+      "errors": 0,
+      "warnings": 0,
+      "needsReview": 0,
+      "info": 0,
+      "issues": [],
+      "manualChecks": []
+    },
+    {
+      "name": "style/1.0",
+      "standards": [
+        "style/1.0"
+      ],
+      "wcagVersion": null,
+      "errors": 0,
+      "warnings": 0,
+      "needsReview": 0,
+      "info": 0,
+      "issues": [],
+      "manualChecks": []
+    },
+    {
+      "name": "hierarchia/1.0",
+      "standards": [
+        "hierarchia/1.0"
+      ],
+      "wcagVersion": null,
+      "errors": 0,
+      "warnings": 0,
+      "needsReview": 0,
+      "info": 0,
+      "issues": [],
+      "manualChecks": []
+    },
+    {
+      "name": "wcag/2.1 + firmowy/2.0 + style/1.0 + hierarchia/1.0",
+      "standards": [
+        "wcag/2.1",
+        "firmowy/2.0",
+        "style/1.0",
+        "hierarchia/1.0"
+      ],
+      "wcagVersion": null,
+      "errors": 0,
+      "warnings": 0,
+      "needsReview": 0,
+      "info": 1,
+      "issues": [
+        {
+          "code": "MANUAL_CHECK_SUGGESTED",
+          "severity": "Info",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Document:0"
+          ]
+        }
+      ],
+      "manualChecks": []
+    },
+    {
+      "name": "firmowy/1.9",
+      "standards": [
+        "firmowy/1.9"
+      ],
+      "wcagVersion": null,
+      "errors": 0,
+      "warnings": 1,
+      "needsReview": 0,
+      "info": 0,
+      "issues": [
+        {
+          "code": "AUTHOR_PHRASE_MISSING",
+          "severity": "Warning",
+          "standard": "firmowy/1.9",
+          "locations": [
+            "body:Document:0"
+          ]
+        }
+      ],
+      "manualChecks": []
+    },
+    {
+      "name": "wcag/2.1 + firmowy/1.9",
+      "standards": [
+        "wcag/2.1",
+        "firmowy/1.9"
+      ],
+      "wcagVersion": null,
+      "errors": 0,
+      "warnings": 1,
+      "needsReview": 0,
+      "info": 1,
+      "issues": [
+        {
+          "code": "AUTHOR_PHRASE_MISSING",
+          "severity": "Warning",
+          "standard": "firmowy/1.9",
+          "locations": [
+            "body:Document:0"
+          ]
+        },
+        {
+          "code": "MANUAL_CHECK_SUGGESTED",
+          "severity": "Info",
+          "standard": "wcag/2.1",
+          "locations": [
+            "body:Document:0"
+          ]
+        }
+      ],
+      "manualChecks": []
+    }
+  ]
+}
